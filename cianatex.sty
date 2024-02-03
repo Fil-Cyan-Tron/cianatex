@@ -1,0 +1,109 @@
+%Alpha 1.0.0
+\ProvidesPackage{cianatex}
+
+%Pacchetti
+
+    %Roba per la lingua
+        %codifica del testo
+        \RequirePackage[utf8]{inputenc}
+        %font italiani
+        \RequirePackage[T1]{fontenc}
+        %elementi di linguaggio
+        \RequirePackage[italian]{babel}
+
+    %TODO: pacchetti per le immagini (per ora frega sega)
+
+    %Tabelle
+        %Tabelle di base
+        \RequirePackage{array}
+        %Tabelle grosse
+        \RequirePackage{longtable}
+        %Dimensionamento delle colonne
+        \RequirePackage{multirow}
+
+    %TODO: supporto per Tikz (non so usarlo, quindi che diavolo lo importo a fare?)
+
+    %Collegamenti
+        %Url cliccabili
+        \RequirePackage{url}
+        %Tavole dei contenuti et cetera
+        \RequirePackage{hyperref}
+
+    %Simboli e font
+        %I vari simboli degli insiemi numerici
+        \RequirePackage{amsfonts}
+        %Coefficienti binomiali
+        \RequirePackage{amsmath}
+        %Insieme vuoto per davvero con \varnothing che poi rinominiamo in \vuoto
+        \RequirePackage{amssymb}
+        %Arco con \wideparen{AB}
+        \RequirePackage{yhmath}
+        %Testo barrato
+        \RequirePackage{cancel}
+        %Integrali bizzarri tipo \fint
+        \RequirePackage{esint}
+
+%Roba nuova per davvero
+
+    %roba basic
+        %Insieme vuoto bello
+        \newcommand\vuoto\varnothing
+        \renewcommand\emptyset\vuoto
+        %Simbolo del parallelismo
+        \newcommand\parallelo{{/\!/}}
+        %Tette, tette iperboliche e arcotette in italiano
+        \newcommand\sen{\operatorname{sen}}
+        \renewcommand\sin\sen
+        \newcommand\senh{\operatorname{senh}}
+        \renewcommand\sinh\senh
+        \newcommand\arcsen{\operatorname{arcsen}}
+        \renewcommand\arcsin\arcsen
+        %Tangentopoli, cotangentopoli, arcotangentopoli e arcocotangentopoli con la tg
+        \newcommand\tg{\operatorname{tg}}
+        \newcommand\cotg{\operatorname{cotg}}
+        \newcommand\arctg{\operatorname{arctg}}
+        \newcommand\arccotg{\operatorname{arccotg}}
+        %Parti immaginarie e reali
+        \renewcommand\Im{\operatorname{Im}}
+        \renewcommand\Re{\operatorname{Re}}
+        %Dominio
+        \newcommand\dom{\operatorname{dom}}
+        %Rango
+        \newcommand\rk{\operatorname{rk}}
+        \renewcommand*{\d}{\:\text{d}}
+        %Sottostrutture e sovrastrutture
+        \newcommand\substruct\vartriangleleft
+        \newcommand\superstruct\vartriangleright
+        %Implicazioni
+        \newcommand\Harr\Leftrightarrow
+        \newcommand\Rarr\Rightarrow
+        \newcommand\Larr\Leftarrow
+        %Definizione della funzione bella bella, gli argomenti sono [nome, dominio, codominio, variabile, funzione]
+        \newcommand{\definefunction}[5]{
+            \begin{array}{cccccl}
+                #1 : & #2 & \longrightarrow & #3                   &    & \\
+                     & #4 & \longmapsto & #1 \left( #4 \right) & := & #5
+            \end{array}
+            }
+        %Insiemi numerici
+        \newcommand\N{\mathbb{N}}
+        \newcommand\Z{\mathbb{Z}}
+        \newcommand\Q{\mathbb{Q}}
+        \newcommand\R{\mathbb{R}}
+        \newcommand\C{\mathbb{C}}
+        %Entità algebriche
+        \newcommand\K{\mathbb{K}}
+        \newcommand\F{\mathbb{F}}
+        \newcommand\G{\mathcal{G}}
+        %Entità geometriche
+        \newcommand\A{\mathbb{A}}
+        \renewcommand\P{\mathbb{P}}
+        %Misure
+        \renewcommand\L{\mathcal{L}}
+        \renewcommand\H{\mathcal{H}}
+        %Insieme delle parti, famiglie topologiche e sigma algebre
+        \newcommand{\parti}[1]{\mathcal{P}\left(#1\right)}
+        \newcommand{\boreliani}[1]{\mathcal{B}\left(#1\right)}
+        \newcommand{\compatti}[1]{\mathcal{K}\left(#1\right)}
+        \newcommand{\misurabili}[2]{\mathcal{M}_{#1}\left(#2\right)}
+
