@@ -3,111 +3,113 @@
 
 %Pacchetti
 
-    %Pagina A4, mezzo pollice di margine a sinistra e destra e un pollice in alto e in basso 
-        \usepackage[a4paper, total={7.3in, 9.7in}]{geometry}
-
     %Roba per la lingua
         %codifica del testo
-        \RequirePackage[utf8]{inputenc}
+            \RequirePackage[utf8]{inputenc}
         %font italiani
-        \RequirePackage[T1]{fontenc}
+            \RequirePackage[T1]{fontenc}
         %elementi di linguaggio
-        \RequirePackage[italian]{babel}
+            \RequirePackage[italian]{babel}
 
     %TODO: pacchetti per le immagini (per ora frega sega)
 
     %Tabelle
         %Tabelle di base
-        \RequirePackage{array}
+            \RequirePackage{array}
         %Tabelle grosse
-        \RequirePackage{longtable}
+            \RequirePackage{longtable}
         %Dimensionamento delle colonne
-        \RequirePackage{multirow}
+            \RequirePackage{multirow}
 
     %TODO: supporto per Tikz (non so usarlo, quindi che diavolo lo importo a fare?)
 
     %Collegamenti
         %Url cliccabili
-        \RequirePackage{url}
+            \RequirePackage{url}
         %Tavole dei contenuti et cetera
-        \RequirePackage{hyperref}
+            \RequirePackage{hyperref}
 
     %Simboli e font
         %I vari simboli degli insiemi numerici
-        \RequirePackage{amsfonts}
+            \RequirePackage{amsfonts}
         %Coefficienti binomiali
-        \RequirePackage{amsmath}
+            \RequirePackage{amsmath}
         %Insieme vuoto per davvero con \varnothing che poi rinominiamo in \vuoto
-        \RequirePackage{amssymb}
+            \RequirePackage{amssymb}
         %Arco con \wideparen{AB}
-        \RequirePackage{yhmath}
+            \RequirePackage{yhmath}
         %Testo barrato
-        \RequirePackage{cancel}
+            \RequirePackage{cancel}
         %Integrali bizzarri tipo \fint
-        \RequirePackage{esint}
+            \RequirePackage{esint}
 
 %Roba nuova per davvero
 
     %roba basic
         %Insieme vuoto bello
-        \newcommand\vuoto\varnothing
-        \renewcommand\emptyset\vuoto
+            \newcommand\vuoto\varnothing
+            \renewcommand\emptyset\vuoto
         %Simbolo del parallelismo
-        \newcommand\parallelo{{/\!/}}
+            \newcommand\parallelo{{/\!/}}
         %Tette, tette iperboliche e arcotette in italiano
-        \newcommand\sen{\operatorname{sen}}
-        \renewcommand\sin\sen
-        \newcommand\senh{\operatorname{senh}}
-        \renewcommand\sinh\senh
-        \newcommand\arcsen{\operatorname{arcsen}}
-        \renewcommand\arcsin\arcsen
+            \newcommand\sen{\operatorname{sen}}
+            \renewcommand\sin\sen
+            \newcommand\senh{\operatorname{senh}}
+            \renewcommand\sinh\senh
+            \newcommand\arcsen{\operatorname{arcsen}}
+            \renewcommand\arcsin\arcsen
         %Tangentopoli, cotangentopoli, arcotangentopoli e arcocotangentopoli con la tg
-        \newcommand\tg{\operatorname{tg}}
-        \newcommand\cotg{\operatorname{cotg}}
-        \newcommand\arctg{\operatorname{arctg}}
-        \newcommand\arccotg{\operatorname{arccotg}}
+            \newcommand\tg{\operatorname{tg}}
+            \newcommand\cotg{\operatorname{cotg}}
+            \newcommand\arctg{\operatorname{arctg}}
+            \newcommand\arccotg{\operatorname{arccotg}}
         %Parti immaginarie e reali
-        \renewcommand\Im{\operatorname{Im}}
-        \renewcommand\Re{\operatorname{Re}}
+            \renewcommand\Im{\operatorname{Im}}
+            \renewcommand\Re{\operatorname{Re}}
         %Dominio
-        \newcommand\dom{\operatorname{dom}}
+            \newcommand\dom{\operatorname{dom}}
         %Rango
-        \newcommand\rk{\operatorname{rk}}
-        \renewcommand*{\d}{\:\text{d}}
+            \newcommand\rk{\operatorname{rk}}
+            \renewcommand*{\d}{\:\text{d}}
         %Sottostrutture e sovrastrutture
-        \newcommand\substruct\vartriangleleft
-        \newcommand\superstruct\vartriangleright
+            \newcommand\substruct\vartriangleleft
+            \newcommand\superstruct\vartriangleright
         %Implicazioni
-        \newcommand\Harr\Leftrightarrow
-        \newcommand\Rarr\Rightarrow
-        \newcommand\Larr\Leftarrow
+            \newcommand\Harr\Leftrightarrow
+            \newcommand\Rarr\Rightarrow
+            \newcommand\Larr\Leftarrow
         %Definizione della funzione bella bella, gli argomenti sono [nome, dominio, codominio, variabile, funzione]
-        \newcommand{\definefunction}[5]{
-            \begin{array}{cccccl}
-                #1 : & #2 & \longrightarrow & #3                   &    & \\
-                     & #4 & \longmapsto & #1 \left( #4 \right) & := & #5
-            \end{array}
-            }
+            \newcommand{\definefunction}[5]{
+                \begin{array}{cccc}
+                    #1 :  & #2 & \longrightarrow & #3\\
+                    \quad & #4 &   \longmapsto   & #5
+                \end{array}
+                }
         %Insiemi numerici
-        \newcommand\N{\mathbb{N}}
-        \newcommand\Z{\mathbb{Z}}
-        \newcommand\Q{\mathbb{Q}}
-        \newcommand\R{\mathbb{R}}
-        \newcommand\C{\mathbb{C}}
+            \newcommand\N{\mathbb{N}} %Naturali
+            \newcommand\Z{\mathbb{Z}} %Interi
+            \newcommand\Q{\mathbb{Q}} %Razionali
+            \newcommand\R{\mathbb{R}} %Reali
+            \newcommand\C{\mathbb{C}} %Complessi
         %Entità algebriche
-        \newcommand\K{\mathbb{K}}
-        \newcommand\F{\mathbb{F}}
-        \newcommand\G{\mathcal{G}}
+            \newcommand\K{\mathbb{K}} %Campi in geometria
+            \newcommand\F{\mathbb{F}} %Campi in algebra
+            \newcommand\G{\mathcal{G}} %Gruppi, occasionalmente
         %Entità geometriche
-        \newcommand\A{\mathbb{A}}
-        \renewcommand\P{\mathbb{P}}
-        \newcommand\E{\mathbb{E}}
+            \newcommand\A{\mathbb{A}} %Spazi affini, anelli occasionalmente
+            \renewcommand\P{\mathbb{P}} %Spazi proiettivi
+            \newcommand\E{\mathbb{E}} %Spazi euclidei
         %Misure
-        \renewcommand\L{\mathcal{L}}
-        \renewcommand\H{\mathcal{H}}
-        %Insieme delle parti, famiglie topologiche e sigma algebre
-        \newcommand{\parti}[1]{\mathcal{P}\left(#1\right)}
-        \newcommand{\boreliani}[1]{\mathcal{B}\left(#1\right)}
-        \newcommand{\compatti}[1]{\mathcal{K}\left(#1\right)}
-        \newcommand{\misurabili}[2]{\mathcal{M}_{#1}\left(#2\right)}
-
+            \renewcommand\L{\mathcal{L}} %Misura di Lebesgue, o pre-spazio L
+            \renewcommand\H{\mathcal{H}} %Misura di Hausdorff
+        %Altro
+            \newcommand{\taue}[1]{\tau_e^{#1}} %Topologia euclidea su \R^n
+            \newcommand{\parti}[1]{\mathcal{P}\left(#1\right)} %Insieme delle parti
+            \newcommand{\borel}[1]{\mathcal{B}\left(#1\right)} %Boreliani sullo spazio topologico
+            \newcommand{\comp}[1]{\mathcal{K}\left(#1\right)} %Compatti sullo spazio topologico
+            \newcommand{\mis}[2]{\mathcal{M}_{#1}\left(#2\right)} %Misurabili per una certa misura sull'insieme
+            \newcommand{\tribu}{\mathcal{F}} %Tribù in probabilità
+        %Shortcuts per mathcal, mathbb e mathbf
+            \newcommand{\mc}[1]{\mathcal{#1}}
+            \newcommand{\mbb}[1]{\mathbb{#1}}
+            \newcommand{\mbf}[1]{\mathbf{#1}}
