@@ -3,4 +3,4 @@
 *.aux
 *.pdf
 *.tex
-*.gz
+*.synctex.gz
