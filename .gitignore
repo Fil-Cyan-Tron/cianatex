@@ -4,3 +4,7 @@
 *.pdf
 *.tex
 *.synctex.gz
+*.toc
+*.bib
+*.bcf
+*.run.xml

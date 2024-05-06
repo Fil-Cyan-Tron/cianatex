@@ -3,6 +3,9 @@
 
 %Pacchetti
 
+    %Layout pagina
+        \usepackage[a4paper, margin=15mm]{geometry}
+
     %Roba per la lingua
         %codifica del testo
             \RequirePackage[utf8]{inputenc}
@@ -25,13 +28,20 @@
         %Dimensionamento delle colonne
             \RequirePackage{multirow}
 
-    %TODO: supporto per Tikz (non so usarlo, quindi che diavolo lo importo a fare?)
+    %Diagrammi commutativi
+        \RequirePackage{quiver}
 
     %Collegamenti
         %Url cliccabili
             \RequirePackage{url}
         %Tavole dei contenuti et cetera
             \RequirePackage{hyperref}
+
+    %Bibliografia
+        %Quotes
+            \RequirePackage{csquotes}
+        %Bibliografia
+            \RequirePackage[style = alphabethic]{biblatex}
 
     %Simboli e font
         %I vari simboli degli insiemi numerici
@@ -113,12 +123,35 @@
             \newcommand{\comp}[1]{\mathcal{K}\left(#1\right)} %Compatti sullo spazio topologico
             \newcommand{\mis}[2]{\mathcal{M}_{#1}\left(#2\right)} %Misurabili per una certa misura sull'insieme
             \newcommand{\tribu}{\mathcal{F}} %Tribù in probabilità
+            \newcommand{\bin}[2]{\left(\begin{array}{c} #1 \\ #2 \end{array}\right)}
         %Shortcuts per mathcal, mathbb e mathbf
             \newcommand{\mc}[1]{\mathcal{#1}}
             \newcommand{\mbb}[1]{\mathbb{#1}}
             \newcommand{\mbf}[1]{\mathbf{#1}}
+        %Categories
+            \newcommand\mor{\operatorname{mor}}
+            \newcommand\ob{\operatorname{ob}}
+            \newcommand{\catname}[1]{\text{\sffamily\textbf{#1}}}
+            \newcommand\setcat{\catname{Set}}
+            \newcommand\topcat{\catname{Top}}
+            \newcommand\grpcat{\catname{Grp}}
+            \newcommand\veccat{\catname{Vec}}
+            \newcommand\fldcat{\catname{Fld}}
+            \newcommand{\id}[1]{\operatorname{id}_{#1}}
 
     %Ambienti
         %Teoremi, proposizioni et cetera
             \newtheorem{theorem}{Teorema}[section]
             \newtheorem{definition}{Definizione}[section]
+            \newtheorem{proposition}{Proposizione}[section]
+            \newtheorem{observation}{Osservazione}[section]
+            \newtheorem{example}{Esempio}[section]
+
+        % Frames
+            \newenvironment{shaded}%
+            {\begin{mdframed}[backgroundcolor=lightgray!40, linecolor=white, innertopmargin=4pt, innerbottommargin=13pt]}%
+            {\end{mdframed}}
+
+            \newenvironment{lineframe}%
+            {\begin{mdframed}[linecolor=black, innertopmargin=0pt, innerbottommargin=10pt]}%
+            {\end{mdframed}}
