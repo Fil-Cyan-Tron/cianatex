@@ -8,3 +8,6 @@
 *.bib
 *.bcf
 *.run.xml
+*.bbl
+*.blg
+*.sh
