@@ -1,0 +1,184 @@
+\documentclass{article}
+
+\usepackage{cianatex}
+
+%\addbibresource{categories.bib}
+
+\title{Categorie per il matematico disoccupato}
+\author{Filippo L. Troncana, per il corso "Strumenti Informatici per la Matematica"}
+\date{A.A. 2023/2024}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduzione e prime definizioni}
+\label{sec:Intro}
+
+Durante la seconda metà del XX secolo la profondissima (sebbene apparentemente banale) osservazione del fatto che in fondo tutta la matematica è fatta di \textit{cosi}\footnote{termine tecnico} e frecce tra \textit{cosi} ha motivato l'introduzione del concetto di Categoria.
+
+Informalmente parlando una categoria è fatta da oggetti che condividono un certo senso di struttura e delle frecce che li collegano, che preservano questo tipo di struttura. Un esempio classico è la categoria $\setcat$, ovvero gli insiemi e le funzioni tra essi, oppure la categoria $\topcat$ degli spazi topologici le cui frecce sono le funzioni continue. Procediamo a dare una definizione un po' più rigorosa.
+
+\begin{definition}
+    Una \emph{\textbf{categoria}} $\mc{C}$ consiste nelle seguenti:
+    \begin{itemize}
+        \item Una classe $\ob(\mc{C})$ i cui elementi sono detti \emph{oggetti} di $\mc{C}$\footnote{Occasionalmente, scriveremo $A\in \mc{C}$ invece di $A \in \ob(\mc{C})$ con un lieve abuso di notazione}.
+        \item Una classe $\mor(\mc{C})$ i cui elementi sono detti \emph{morfismi} di $\mc{C}$. Ogni morfismo $f$ ha un unico oggetto sorgente $A$ e un unico oggetto di destinazione $B$, e si denota con $f:A\to B$. La classe dei morfismi tra due oggetti nella stessa categoria si indica con $\mor(A,B)$.
+        \item Per ogni terna di oggetti $A,B,C \in \ob(\mc{C})$, è definita una \emph{legge di composizione} tra morfismi, che a un morfismo $f : A \to B$ e $g: B \to C$ associa un unico morfismo $g \circ f : A \to C$. La composizione di morfismi deve rispettare le seguenti proprietà:
+        \begin{itemize}
+            \item L'\emph{associatività}: per qualsiasi terna di morfismi $f: A\to B$, $g: B\to C$ e $h:C \to D$ vale $h \circ (g \circ f) = (h \circ g) \circ f$.
+            \item L'esistenza del morfismo \emph{identità}: per ogni oggetto $X \in \ob(\mc{C})$ esiste un morfismo $\id{X} : X \to X$ tale che per ogni morfismo $f:A \to X$ e $g: X \to A$ valgano $\id{X} \circ f = f$ e $g \circ \id{X} = g$.
+        \end{itemize}
+    \end{itemize}
+\end{definition}
+
+\begin{observation}
+    Dato che per ogni oggetto esiste un unico (la dimostrazione dell'unicità è banale) morfismo identità, una categoria risulta essere univocamente determinata dai suoi morfismi, e pertanto è possibile definire le categorie semplicemente in base alla classe dei morfismi.
+\end{observation}
+
+Arricchiamo leggermente il nostro linguaggio
+
+\begin{definition}
+    Sia $\mc{C}$ una categoria.\\
+    Se $\mor(\mc{C})$ è un insieme (e dunque per l'osservazione precedente lo è anche $\ob(\mc{C})$), allora $C$ si dice \emph{piccola}, altrimenti si dice \emph{grande}.\\
+    Una categoria in cui una volta fissati due $A,B \in \ob(\mc{C})$ allora $\mor(A,B)$ è un insieme si dice \emph{localmente piccola}.
+\end{definition}
+
+\begin{definition}
+    Sia $\mc{C}$ una categoria e sia $f:A\to B$ un morfismo. Esso si dice:\begin{itemize}
+        \item \emph{Endomorfismo} se $A=B$
+        \item \emph{Isomorfismo} se $\exists f' : B\to A$ tale che $f \circ f' = \id{B} \wedge f' \circ f = \id{A}$
+        \item \emph{Automorfismo} se è contemporaneamente endomorfismo e isomorfismo.
+    \end{itemize}
+\end{definition}
+
+Al lettore dotato di un qualsivoglia $\varepsilon > 0$ piccolo a piacere di familiarità con l'algebra astratta, la definizione di categoria risulterà analoga a quella di monoide. In effetti un monoide $(M,+)$ non è altro che una categoria piccola con un unico oggetto (l'insieme $M$) e i cui morfismi corrispondono alle traslazioni degli elementi di $M$ sugli altri elementi di $M$.\\ Inoltre, quasi sempre, quando si esprime l'unicità di qualcosa in teoria delle categorie la si considera a meno di isomorfismo, come vedremo \hyperref[sec:Universal]{più avanti}.
+
+\section{Diagrammi commutativi}
+\label{sec:Diagrams}
+
+Ai \textit{cat-boys}\footnote{Teorici delle categorie} piace molto esprimere qualsiasi proprietà attraverso cosiddetti diagrammi commutativi, utili strumenti per esprimere le relazioni fra oggetti e morfismi in una categoria
+
+\begin{definition}
+    Un \emph{diagramma commutativo} è un grafo diretto in cui i nodi sono costituiti da oggetti e i cui archi sono costituiti da morfismi tra essi in modo tale che percorrere un arco corrisponda ad applicare il morfismo a esso associato. 
+\end{definition}
+
+Ad esempio, i diagrammi commutativi possono essere usati per riformulare in modo visualmente intuitivo alcuni teoremi.
+
+\begin{theorem}
+    Sia $\K \in \fldcat$, siano $V,W \in \veccat(\K)$ e sia $f \in \mor(V,W)$.\\
+    Allora $\exists! \phi \in \mor{V/\ker(f), \Im(f)}$ tale che $\phi$ sia un isomorfismo e si abbia $f = i \circ \phi \circ \pi$.\\
+    Equivalentemente, $\exists! \phi \in \mor{V/\ker(f), \Im(f)}$ tale che il seguente diagramma commuti:
+    \[\begin{tikzcd}
+        V && W \\
+        \\
+        {V/\ker(f)} && {\operatorname{im}(f)}
+        \arrow["f"{description}, from=1-1, to=1-3]
+        \arrow["\pi"{description}, from=1-1, to=3-1]
+        \arrow["\phi"{description}, shift left=3, from=3-1, to=3-3]
+        \arrow["i"{description}, hook, from=3-3, to=1-3]
+        \arrow["{\phi^{-1}}"{description}, shift left=3, from=3-3, to=3-1]
+    \end{tikzcd}\]
+\end{theorem}
+
+\section{Funtori e trasformazioni naturali}
+\label{Sec:Functors}
+
+\subsection{Funtori}
+
+Abbiamo parlato di oggetti e frecce tra oggetti. Ma se volessimo parlare di frecce tra le frecce?
+
+\begin{definition}
+    Siano $\mc{C}, \mc{D}$ due categorie.\\
+    Un \emph{Funtore covariante} è una mappa $F: \mc{C}\to\mc{D}$ tale che:\begin{itemize}
+        \item $\forall X \in \ob(\mc{C}), \exists! F(X)\in \ob(\mc{D})$
+        \item $\forall f:A\to B \in \mor(\mc{C}), \exists! F(f):F(A)\to F(B) \in \mor(\mc{D})$
+    \end{itemize}
+    Un \emph{Funtore controvariante} è una mappa $G$ da $C$ a $D$ tale che:\begin{itemize}
+        \item $\forall X \in \ob(\mc{C}), \exists! G(X)\in \ob(\mc{D})$
+        \item $\forall f:A\to B \in \mor(\mc{C}), \exists! G(f):G(B)\to G(A) \in \mor(\mc{D})$
+    \end{itemize}
+    Un Funtore (covariante o controvariante) $F:\mc{C}\to \mc{D}$ deve rispettare le seguenti proprietà:\begin{itemize}
+        \item $\forall X \in \ob(\mc{C}), F(\id{X} = \id{F(X)})$
+        \item $\forall f,g \in \mor(\mc{C}),F(g\circ f) = F(g) \circ F(f)$
+    \end{itemize}
+\end{definition}
+
+La situazione che stiamo immaginando si traduce dunque in questo diagramma commutativo
+
+\[\begin{tikzcd}
+	{F(X)} &&&&&& {F(Y)} \\
+	& X &&&& Y \\
+	&& {G(X)} && {G(Y)} \\
+	\\
+	&& {G(X)} && {G(Z)} \\
+	& X &&&& Z \\
+	{F(X)} &&&&&& {F(Z)}
+	\arrow[""{name=0, anchor=center, inner sep=0}, "{F(f)}", from=1-1, to=1-7]
+	\arrow[""{name=1, anchor=center, inner sep=0}, "{F(\id_X)}"', from=1-1, to=7-1]
+	\arrow[""{name=2, anchor=center, inner sep=0}, "{F(g)}", from=1-7, to=7-7]
+	\arrow[""{name=3, anchor=center, inner sep=0}, "f"{description}, from=2-2, to=2-6]
+	\arrow[""{name=4, anchor=center, inner sep=0}, "{\id_X}"{description}, from=2-2, to=6-2]
+	\arrow[""{name=5, anchor=center, inner sep=0}, "g"{description}, from=2-6, to=6-6]
+	\arrow[""{name=6, anchor=center, inner sep=0}, "{G(f)}", from=3-5, to=3-3]
+	\arrow[""{name=7, anchor=center, inner sep=0}, "{G(\id_X)}"', from=5-3, to=3-3]
+	\arrow[""{name=8, anchor=center, inner sep=0}, "{G(g)}", from=5-5, to=3-5]
+	\arrow[""{name=9, anchor=center, inner sep=0}, "{G(g \circ f)}"', from=5-5, to=5-3]
+	\arrow[""{name=10, anchor=center, inner sep=0}, "{g \circ f}"{description}, from=6-2, to=6-6]
+	\arrow[""{name=11, anchor=center, inner sep=0}, "{F(g\circ f)}"', from=7-1, to=7-7]
+	\arrow["F"{description}, shorten <=4pt, shorten >=4pt, Rightarrow, from=3, to=0]
+	\arrow["G"{description}, shorten <=4pt, shorten >=4pt, Rightarrow, from=3, to=6]
+	\arrow["G"{description}, shorten <=7pt, shorten >=7pt, Rightarrow, from=4, to=7]
+	\arrow["F"{description}, shorten <=7pt, shorten >=7pt, Rightarrow, from=4, to=1]
+	\arrow["G"{description}, shorten <=7pt, shorten >=7pt, Rightarrow, from=5, to=8]
+	\arrow["F"{description}, shorten <=7pt, shorten >=7pt, Rightarrow, from=5, to=2]
+	\arrow["G"{description}, shorten <=4pt, shorten >=4pt, Rightarrow, from=10, to=9]
+	\arrow["F"{description}, shorten <=4pt, shorten >=4pt, Rightarrow, from=10, to=11]
+\end{tikzcd}\]
+
+Vediamo degli esempi che ci permettano di chiarire:\begin{itemize}
+    \item La mappa $S:\grpcat \to \setcat$ che ad un gruppo $(G,+)$ associa l'insieme $G$ è un funtore covariante, detto funtore dimenticante\footnote{nonostante "dimenticante" sia il termine utilizzato in letteratura, l'autore preferisce "smemorato"}. Esistono numerosi (infiniti, in effetti) funtori smemorati, ad esempio da $\fldcat$ a $\veccat(\K)$, da $\veccat(\K)$ a $\grpcat$, da $\topcat$ a $\setcat$ e così via, da qualsiasi categoria i cui oggetti siano quelli della categoria in arrivo con una struttura più regolare.
+    \item La mappa $\pi_1 : \topcat^* \to \grpcat$ che a uno spazio topologico con un punto fissato associa il suo gruppo fondamentale è un funtore covariante, in particolare è il primo (definito come tale) incontrato dalla maggior parte degli studenti.
+    \item La mappa $*:\veccat(\K) \to \veccat(\K) $ che ad uno spazio vettoriale $V$ associa il suo spazio duale $V^*$, ovvero lo spazio vettoriale dei morfismi $V \to \K$ (dove $\K$ è visto come oggetto in $\veccat(\K$)), è un funtore controvariante.
+    \item La mappa $\setcat \to \graphcat^*$ (dove $\graphcat^*$ è la categoria dei grafi diretti) che ad una famiglia di oggetti e morfismi rappresentati da un insieme di indici associa un diagramma commutativo è un funtore\footnote{Sì, sostanzialmente qualsiasi cosa è un funtore}.
+\end{itemize}
+
+È interessante notare che in una data categoria la classe dei morfismi tra due oggetti può possedere una struttura notevole: per esempio fissato un $V \in \ob(\veccat(\K))$, l'insieme $\mor(V,V)$ è un'algebra associativa su $\K$, al cui studio è dedicato tutto il primo semestre del corso di Geometria A.
+
+\subsection{Trasformazioni naturali}
+
+\section{Proprietà universali}
+\label{sec:Universal}
+
+Uno dei principali punti di forza della teoria delle categorie è il permettere di formulare delle cosiddette "proprietà universali" di una costruzione. Partiamo con un esempio
+
+\begin{theorem}
+    $\R$ è l'unico campo completo totalmente ordinato, a meno di isomorfismo.
+\end{theorem}
+
+Le possibili costruzioni dei numeri reali sono molte, le più famose sono quelle per classi di equivalenza di successioni di Cauchy o per sezioni di Dedekind a partire da $\Q$, ma come facciamo a dimostrare che una nuova bizzarra costruzione che ci è appena venuta in mente sia effettivamente una costruzione dei numeri reali? È semplice, basta dimostrare che con le opportune operazioni, che idealmente dovrebbero emergere in modo naturale dalla nostra costruzione, questo oggetto costituisca un campo totalmente ordinato e completo, e dal teorema precedente avremo la garanzia che sia $\R$ (o almeno, che sia isomorfo a esso). Dunque c'è un senso in cui questa è una proprietà che è "universale" rispetto alle costruzioni dei numeri reali.\\ Esaminiamo un altro caso.
+
+\begin{definition}
+    Siano $X,Y$ oggetti in una categoria $\mc{C}$. Si dice \emph{prodotto} di $X$ e $Y$ un oggetto $X \cattimes Y$ di $\mc{C}$ fornito di una coppia di morfismi $\pi_X: X \cattimes Y \to X$ e $\pi_Y : X \cattimes Y \to Y$ suriettivi tale che per qualsiasi morfismo $f:Z\to X \cattimes Y$ esistano unici $f_X: Z \to X$ e $f_Y : Z\to Y$ tali per cui il seguente diagramma commuti: 
+    \[\begin{tikzcd}
+	    && Z \\
+	    \\
+	    A && {X \cattimes Y} && Y
+	    \arrow["f"{description}, from=1-3, to=3-3]
+	    \arrow["{\pi_X}"{description}, from=3-3, to=3-1]
+	    \arrow["{f_X}"{description}, from=1-3, to=3-1]
+	    \arrow["{f_Y}"{description}, from=1-3, to=3-5]
+	    \arrow["{\pi_Y}"{description}, from=3-3, to=3-5]
+    \end{tikzcd}\]
+\end{definition}
+
+In questo modo, generalizziamo le idee di prodotto cartesiano in $\setcat$, prodotto topologico in $\topcat$ o prodotto tensoriale in $\veccat(\K)$: qualsiasi tipo di "prodotto" tra due strutture dello stesso tipo è completamente caratterizzato dalle proiezioni alle sue componenti.
+
+\section{Conclusione}
+\label{sec:Ending}
+
+In conclusione, il formalismo della teoria delle categorie fornisce una sorta di "grande teoria unificata" delle varie branche della matematica
+
+%\printbibliography
+
+\end{document}
