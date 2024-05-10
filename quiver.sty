@@ -14,8 +14,10 @@
 
 % `tikz-cd` is necessary to draw commutative diagrams.
 \RequirePackage{tikz-cd}
+% 'tikz-nfold' is necessary for arrows of order higher than 2
+\RequirePackage{tikz-nfold}
 % `amssymb` is necessary for `\lrcorner` and `\ulcorner`.
-\RequirePackage{amssymb}
+%\RequirePackage{amssymb} Already included in cianatex.sty
 % `calc` is necessary to draw curved arrows.
 \usetikzlibrary{calc}
 % `pathmorphing` is necessary to draw squiggly arrows.
