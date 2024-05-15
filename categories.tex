@@ -104,7 +104,7 @@ Abbiamo parlato di oggetti e frecce tra oggetti. Ma se volessimo parlare di frec
     \end{itemize}
 \end{definition}
 
-La situazione che stiamo immaginando si traduce dunque in questo diagramma commutativo
+La situazione che stiamo immaginando si traduce dunque in questo diagramma commutativo (dove $F$ e $G$ sono come nella definizione)
 
 \[\begin{tikzcd}
 	{F(X)} &&&&&& {F(Y)} \\
@@ -115,20 +115,20 @@ La situazione che stiamo immaginando si traduce dunque in questo diagramma commu
 	& X &&&& Z \\
 	{F(X)} &&&&&& {F(Z)}
 	\arrow[""{name=0, anchor=center, inner sep=0}, "{F(f)}", from=1-1, to=1-7]
-	\arrow[""{name=1, anchor=center, inner sep=0}, "{F(\id_X)}"', from=1-1, to=7-1]
+	\arrow[""{name=1, anchor=center, inner sep=0}, "{\id{F(X)}}"', from=1-1, to=7-1]
 	\arrow[""{name=2, anchor=center, inner sep=0}, "{F(g)}", from=1-7, to=7-7]
 	\arrow[""{name=3, anchor=center, inner sep=0}, "f"{description}, from=2-2, to=2-6]
-	\arrow[""{name=4, anchor=center, inner sep=0}, "{\id_X}"{description}, from=2-2, to=6-2]
+	\arrow[""{name=4, anchor=center, inner sep=0}, "{\id{X}}"{description}, from=2-2, to=6-2]
 	\arrow[""{name=5, anchor=center, inner sep=0}, "g"{description}, from=2-6, to=6-6]
 	\arrow[""{name=6, anchor=center, inner sep=0}, "{G(f)}", from=3-5, to=3-3]
-	\arrow[""{name=7, anchor=center, inner sep=0}, "{G(\id_X)}"', from=5-3, to=3-3]
+	\arrow[""{name=7, anchor=center, inner sep=0}, "{\id{G(X)}}"', from=5-3, to=3-3]
 	\arrow[""{name=8, anchor=center, inner sep=0}, "{G(g)}", from=5-5, to=3-5]
 	\arrow[""{name=9, anchor=center, inner sep=0}, "{G(g \circ f)}"', from=5-5, to=5-3]
 	\arrow[""{name=10, anchor=center, inner sep=0}, "{g \circ f}"{description}, from=6-2, to=6-6]
-	\arrow[""{name=11, anchor=center, inner sep=0}, "{F(g\circ f)}"', from=7-1, to=7-7]
+	\arrow[""{name=11, anchor=center, inner sep=0}, "{F(g \circ f)}"', from=7-1, to=7-7]
 	\arrow["F"{description}, shorten <=4pt, shorten >=4pt, Rightarrow, from=3, to=0]
-	\arrow["G"{description}, shorten <=4pt, shorten >=4pt, Rightarrow, from=3, to=6]
 	\arrow["G"{description}, shorten <=7pt, shorten >=7pt, Rightarrow, from=4, to=7]
+	\arrow["G"{description}, shorten <=4pt, shorten >=4pt, Rightarrow, from=3, to=6]
 	\arrow["F"{description}, shorten <=7pt, shorten >=7pt, Rightarrow, from=4, to=1]
 	\arrow["G"{description}, shorten <=7pt, shorten >=7pt, Rightarrow, from=5, to=8]
 	\arrow["F"{description}, shorten <=7pt, shorten >=7pt, Rightarrow, from=5, to=2]
@@ -143,9 +143,38 @@ Vediamo degli esempi che ci permettano di chiarire:\begin{itemize}
     \item La mappa $\setcat \to \graphcat^*$ (dove $\graphcat^*$ è la categoria dei grafi diretti) che ad una famiglia di oggetti e morfismi rappresentati da un insieme di indici associa un diagramma commutativo è un funtore\footnote{Sì, sostanzialmente qualsiasi cosa è un funtore}.
 \end{itemize}
 
-È interessante notare che in una data categoria la classe dei morfismi tra due oggetti può possedere una struttura notevole: per esempio fissato un $V \in \ob(\veccat(\K))$, l'insieme $\mor(V,V)$ è un'algebra associativa su $\K$, al cui studio è dedicato tutto il primo semestre del corso di Geometria A.
+È interessante notare che in una data categoria la classe dei morfismi tra due oggetti può possedere una struttura notevole: per esempio fissato un $V \in \ob(\veccat(\K))$, l'insieme $\mor(V,V)$ è un'algebra associativa su $\K$, al cui studio è dedicato tutto il primo semestre del corso di Geometria A. Ma se volessimo fissare due categorie e parlare dei funtori tra di esse, come potremmo procedere?
 
 \subsection{Trasformazioni naturali}
+
+\begin{definition}
+    Siano $F,G : \mc{A} \to \mc{B}$ due funtori dalla categoria $\mc{A}$ alla categoria $\mc{B}$\\
+    Si dice \emph{trasformazione naturale} una collezione $\{\alpha_X : F(X) \to G(X)\}$ di morfismi in $\mc{B}$ indicizzati da oggetti di $\mc{A}$ tale che il seguente diagramma commuti:
+    \[\begin{tikzcd}
+        X & {F(X)} && {G(X)} \\
+        \\
+        Y & {F(Y)} && {G(Y)}
+        \arrow["f"{description}, from=1-1, to=3-1]
+        \arrow["{\alpha_X}"{description}, from=1-2, to=1-4]
+        \arrow["{F(f)}"{description}, from=1-2, to=3-2]
+        \arrow["{G(f)}"{description}, from=1-4, to=3-4]
+        \arrow["{\alpha_X}"{description}, from=3-2, to=3-4]
+    \end{tikzcd}\]
+    Ovvero, tale che per ogni oggetto $X$ e ogni morfismo $f: X \to Y$ di $\mc{A}$ si abbia $\alpha_X \circ F(f) = G(f) \circ \alpha_X$.
+\end{definition}
+Possiamo dunque immaginare una trasformazione naturale come una specie di funtore tra funtori dunque, in un diagramma commutativo di questo tipo:
+\[\begin{tikzcd}
+	&& X && Y \\
+	\\
+	{F(X)} && {F(Y)} && {[\alpha(F)](X)} && {[\alpha(F)](Y)}
+	\arrow[""{name=0, anchor=center, inner sep=0}, "f"{description}, from=1-3, to=1-5]
+	\arrow[""{name=1, anchor=center, inner sep=0}, "{F(f)}"{description}, from=3-1, to=3-3]
+	\arrow[""{name=2, anchor=center, inner sep=0}, "{[\alpha(F)](f)}"{description}, from=3-5, to=3-7]
+	\arrow[""{name=3, anchor=center, inner sep=0}, "F"{description}, shorten <=15pt, shorten >=15pt, Rightarrow, from=0, to=1]
+	\arrow[""{name=4, anchor=center, inner sep=0}, "{\alpha(F)}"{description}, shorten <=17pt, shorten >=17pt, Rightarrow, from=0, to=2]
+	\arrow["\alpha"{description}, shorten <=15pt, shorten >=15pt, Rightarrow, scaling nfold=3, from=3, to=4]
+\end{tikzcd}\]
+
 
 \section{Proprietà universali}
 \label{sec:Universal}
