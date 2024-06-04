@@ -1,4 +1,4 @@
-%Alpha 1.0.0
+%Requires texlive 2024
 \ProvidesPackage{cianatex}
 
 %Pacchetti
@@ -46,9 +46,11 @@
 
     %Bibliografia
         %Quotes
-        %    \RequirePackage{csquotes}
+            \RequirePackage{csquotes}
         %Bibliografia
-        %    \RequirePackage[style = alphabethic]{biblatex}
+            \RequirePackage[backend=biber, sorting=ydnt, bibstyle=ieee]{biblatex}
+        %Citazioni lapidare
+            \RequirePackage{epigraph}
 
     %Simboli e font
         %I vari simboli degli insiemi numerici

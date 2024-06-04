@@ -2,7 +2,7 @@
 
 \usepackage{cianatex}
 
-%\addbibresource{categories.bib}
+\addbibresource{categories.bib}
 
 \title{Categorie per il matematico disoccupato}
 \author{Filippo L. Troncana, per il corso "Strumenti Informatici per la Matematica"}
@@ -10,6 +10,7 @@
 
 \begin{document}
 
+\nocite{*}
 \maketitle
 
 \section{Introduzione e prime definizioni}
@@ -81,6 +82,31 @@ Ad esempio, i diagrammi commutativi possono essere usati per riformulare in modo
     \end{tikzcd}\]
 \end{theorem}
 
+La stessa definizione di categoria può essere ridata attraverso i diagrammi commutativi.
+
+\begin{definition}
+    Una \emph{Categoria} $\mc{C}$ è formata da:
+    \begin{itemize}
+        \item Una classe di oggetti denotata $\ob(\mc{C})$.
+        \item Una classe di morfismi denotata $\mor(\mc{C})$ in cui ogni morfismo $f$ ha un oggetto $A$ di partenza (detto dominio) e $B$ di arrivo (detto codominio) e si denota con $f:A\to B$.
+        \item Una legge di composizione $(g,f)\mapsto gf$ tale che i seguenti diagrammi commutino.
+        \[\begin{tikzcd}
+            & X && Y & W && Y \\
+            X \\
+            &&& Z && X && Z
+            \arrow["f"{description}, from=1-2, to=1-4]
+            \arrow["gf"{description}, from=1-2, to=3-4]
+            \arrow["g"{description}, from=1-4, to=3-4]
+            \arrow["fh"{description}, from=1-5, to=1-7]
+            \arrow["h"{description}, from=1-5, to=3-6]
+            \arrow["g"{description}, from=1-7, to=3-8]
+            \arrow["{\id{X}}"{description}, from=2-1, to=2-1, loop, in=55, out=125, distance=10mm]
+            \arrow["f"{description}, from=3-6, to=1-7]
+            \arrow["gf"{description}, from=3-6, to=3-8]
+        \end{tikzcd}\]
+    \end{itemize}
+\end{definition}
+
 \section{Funtori e trasformazioni naturali}
 \label{Sec:Functors}
 
@@ -141,6 +167,7 @@ Vediamo degli esempi che ci permettano di chiarire:\begin{itemize}
     \item La mappa $\pi_1 : \topcat^* \to \grpcat$ che a uno spazio topologico con un punto fissato associa il suo gruppo fondamentale è un funtore covariante, in particolare è il primo (definito come tale) incontrato dalla maggior parte degli studenti.
     \item La mappa $*:\veccat(\K) \to \veccat(\K) $ che ad uno spazio vettoriale $V$ associa il suo spazio duale $V^*$, ovvero lo spazio vettoriale dei morfismi $V \to \K$ (dove $\K$ è visto come oggetto in $\veccat(\K$)), è un funtore controvariante.
     \item La mappa $\setcat \to \graphcat^*$ (dove $\graphcat^*$ è la categoria dei grafi diretti) che ad una famiglia di oggetti e morfismi rappresentati da un insieme di indici associa un diagramma commutativo è un funtore\footnote{Sì, sostanzialmente qualsiasi cosa è un funtore}.
+    \item In una categoria localmente piccola $\mc{C}$, fissato un oggetto $X$, la mappa $\mor(X,-):\mc{C}\to\setcat$ manda un oggetto $Y$ nell'insieme $\mor{X,Y}$ (o viceversa) è un funtore particolarmente importante, detto \textit{morfuntore}\footnote{Traduzione casalinga dell'espressione inglese \textit{hom-functor}}.
 \end{itemize}
 
 È interessante notare che in una data categoria la classe dei morfismi tra due oggetti può possedere una struttura notevole: per esempio fissato un $V \in \ob(\veccat(\K))$, l'insieme $\mor(V,V)$ è un'algebra associativa su $\K$, al cui studio è dedicato tutto il primo semestre del corso di Geometria A. Ma se volessimo fissare due categorie e parlare dei funtori tra di esse, come potremmo procedere?
@@ -175,6 +202,12 @@ Possiamo dunque immaginare una trasformazione naturale come una specie di funtor
 	\arrow["\alpha"{description}, shorten <=15pt, shorten >=15pt, Rightarrow, scaling nfold=3, from=3, to=4]
 \end{tikzcd}\]
 
+L'idea di trasformazione naturale ci serve a definire un altro concetto fondamentale, l'aggiunzione tra categorie.
+
+\begin{definition}
+    Siano $\mc{C}$ e $\mc{D}$ due categorie.\\
+    Si dice \emph{aggiunzione} tra $\mc{C}$ e $\mc{D}$ una coppia di funtori $L:\mc{C}\to\mc{D}$ e $R:\mc{D}\to\mc{C}$ tale che ci sia un isomorfismo $\mor_{\mc{D}}(L(X),Y)\cong \mor_{\mc{C}}(X,R(Y))$ per qualsiasi coppia di oggetti $X$ e $Y$ in $\mc{C}$ e $\mc{D}$ tale che le mappe.
+\end{definition}
 
 \section{Proprietà universali}
 \label{sec:Universal}
@@ -182,7 +215,7 @@ Possiamo dunque immaginare una trasformazione naturale come una specie di funtor
 Uno dei principali punti di forza della teoria delle categorie è il permettere di formulare delle cosiddette "proprietà universali" di una costruzione. Partiamo con un esempio
 
 \begin{theorem}
-    $\R$ è l'unico campo completo totalmente ordinato, a meno di isomorfismo.
+    $\R$ è l'unico campo completo totalmente ordinato, a meno di isomorfismo. \cite{Huntington1903}
 \end{theorem}
 
 Le possibili costruzioni dei numeri reali sono molte, le più famose sono quelle per classi di equivalenza di successioni di Cauchy o per sezioni di Dedekind a partire da $\Q$, ma come facciamo a dimostrare che una nuova bizzarra costruzione che ci è appena venuta in mente sia effettivamente una costruzione dei numeri reali? È semplice, basta dimostrare che con le opportune operazioni, che idealmente dovrebbero emergere in modo naturale dalla nostra costruzione, questo oggetto costituisca un campo totalmente ordinato e completo, e dal teorema precedente avremo la garanzia che sia $\R$ (o almeno, che sia isomorfo a esso). Dunque c'è un senso in cui questa è una proprietà che è "universale" rispetto alle costruzioni dei numeri reali.\\ Esaminiamo un altro caso.
@@ -210,8 +243,8 @@ In conclusione, il formalismo della teoria delle categorie fornisce una sorta di
 
 \section{Off topic}
 
-Durante il mio \emph{spulciare} l'amplissima libreria di texlive, mi sono imbattuto nel pacchetto \texttt{rpgicons} che è semplicemente stupendo quindi ecco cosine da farci \die{twelveside}{2}
+Durante il mio \emph{spulciare} l'amplissima libreria di texlive, mi sono imbattuto nel pacchetto \texttt{rpgicons} che è semplicemente stupendo, permette di fare cose come \die{twentyside}{20}
 
-%\printbibliography
+\printbibliography
 
 \end{document}
