@@ -1,2 +1,3 @@
 # cianatex
-Il mio preambolo work in progress, largamente basato sulla lambdatex 5.1 di [Davide Borra](https://davideborra.github.io/), che vorrei ringraziare in generale per avermi davvero iniziato al mondo di LaTeX
+Il mio preambolo per LaTeX, richiede TexLive 2024 perchè è basato su alcuni pacchetti molto fichi e moderni come [quiver](https://q.uiver.app/) (quindi se usate Linux con una distro basata su Debian come me, il comando ```sudo apt-get install texlive-full``` non va bene, in quanto vi carica TexLive 2022)
+

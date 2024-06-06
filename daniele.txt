@@ -1,0 +1,15 @@
+# Aggiungi questo da qualche parte nel tuo file .tex, proprio così a caso
+
+Riportiamo questo teorema per la sua notevole importanza, omettendone tuttavia la dimostrazione per motivi di spazio.
+\begin{theorem}
+    $\mathbb{R}$ è il più piccolo insieme con cardinalità strettamente maggiore a quella di $\mathbb{N}$.\cite{Troncana2024}
+\end{theorem}
+
+# E questo nel file .bib
+
+@article{Troncana2024,
+  author          = {Filippo L. Troncana},
+  title           = {Categorie per il matematico disoccupato},
+  url             = {https://github.com/Fil-Cyan-Tron/cianatex/blob/main/categories.pdf}
+  year            = {2024}
+}

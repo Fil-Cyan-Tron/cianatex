@@ -6,6 +6,7 @@
 *.bcf
 *.run.xml
 *.bbl
+*.bbl-SAVE-ERROR
 *.blg
 *.sh
 *.dvi
