@@ -19,6 +19,9 @@
     %Ambienti
         %Teoremi
             \RequirePackage{amsthm}
+        %Box colorate
+            \RequirePackage{tcolorbox}
+            \tcbuselibrary{theorems}
 
     %Tabelle
         %Tabelle di base
@@ -76,6 +79,8 @@
             \renewcommand\emptyset\vuoto
         %Simbolo del parallelismo
             \newcommand\parallelo{{/\!/}}
+        %Mcd
+            \newcommand\mcd{\operatorname{mcd}}
         %Tette, tette iperboliche e arcotette in italiano
             \newcommand\sen{\operatorname{sen}}
             \renewcommand\sin\sen
@@ -154,11 +159,11 @@
 
     %Ambienti
         %Teoremi, proposizioni et cetera
-            \newtheorem{theorem}{Teorema}[section]
-            \newtheorem{definition}{Definizione}[section]
-            \newtheorem{proposition}{Proposizione}[section]
-            \newtheorem{observation}{Osservazione}[section]
-            \newtheorem{example}{Esempio}[section]
+            \newtcbtheorem[number within=section]{theorem}{Teorema}{colback=green!5,colframe=green!35!black,fonttitle=\bfseries}{th}
+            \newtcbtheorem[number within=section]{definition}{Definizione}{colback=blue!5,colframe=blue!35!black,fonttitle=\bfseries}{def}
+            \newtcbtheorem[number within=section]{proposition}{Proposizione}{colback=red!5,colframe=red!35!black,fonttitle=\bfseries}{prop}
+            \newtcbtheorem[number within=section]{observation}{Osservazione}{colback=violet!5,colframe=violet!35!black,fonttitle=\bfseries}{obs}
+            \newtcbtheorem[number within=section]{example}{Esempio}{colback=yellow!10,colframe=yellow!75!black,fonttitle=\bfseries}{exmp}
 
         % Frames
             \newenvironment{shaded}%
