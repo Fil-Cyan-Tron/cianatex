@@ -8,6 +8,5 @@
 *.bbl
 *.bbl-SAVE-ERROR
 *.blg
-*.sh
 *.dvi
 *.txt

@@ -1,4 +1,10 @@
 # cianatex
 Il mio preambolo per LaTeX, richiede TexLive 2024 perchè è basato su alcuni pacchetti molto fichi e moderni come [quiver](https://q.uiver.app/) (quindi se usate Linux con una distro basata su Debian come me, il comando ```sudo apt-get install texlive-full``` non va bene, in quanto vi carica TexLive 2022)
 
-Per compilare includo il mio super-casalingo script ```compile.sh``` che va semplicemente chiamato nel terminale come ```./compile.sh FILENAME``` e compila i file ```FILENAME.tex``` e ```FILENAME.bib``` un paio di volte per sopprimere gli errori.
+## Compilazione assistita
+
+Per compilare includo il mio super-casalingo script ```compile.sh``` che va semplicemente chiamato nel terminale come ```./compile.sh FILENAME BIB``` e compila i file ```FILENAME.tex``` e se ```BIB == yesbib``` allora compila pure ```FILENAME.bib``` un paio di volte per sopprimere gli errori.
+
+### Debugging
+
+Ho incluso anche lo script ```debug.sh``` che va chiamato nel terminale come ```./debug.sh FILENAME BIB RECOMPILE``` che rimuove i file di supporto per pulire errori vari e nel caso in cui si abbia ```RECOMPILE == yesrecompile``` chiama ```./compile.sh FILENAME BIB```

@@ -18,7 +18,7 @@
 
     %Ambienti
         %Teoremi
-            \RequirePackage{amsthm}
+            %\RequirePackage{amsthm}
         %Box colorate
             \RequirePackage{tcolorbox}
             \tcbuselibrary{theorems}
@@ -68,6 +68,48 @@
             \RequirePackage{cancel}
         %Integrali bizzarri tipo \fint
             \RequirePackage{esint}
+
+%Colorcoding
+    
+    %Standard
+        \definecolor{theoremcolor}{rgb}{1.0, 0.0, 0.0} %rosso standard
+        \definecolor{proofcolor}{rgb}{1.0, 0.6, 0.0} %persimmon
+        \definecolor{definitioncolor}{rgb}{0.0, 1.0, 0.0} %verde standard
+        \definecolor{propositioncolor}{rgb}{0.0, 0.0, 1.0} %blu standard
+        \definecolor{remarkcolor}{rgb}{0.7, 0.0, 0.7} %viola :)
+        \definecolor{examplecolor}{rgb}{0.85, 0.75, 0.0} %giallo
+
+    %Colori pastello
+        \DeclareOption{pastel}{
+            \definecolor{theoremcolor}{rgb}{0.9, 0.31, 0.28} %rosso pastello
+            \definecolor{proofcolor}{rgb}{0.9, 0.6, 0.28} %arancio pastello
+            \definecolor{definitioncolor}{rgb}{0.37, 0.77, 0.37} %verde pastello
+            \definecolor{propositioncolor}{rgb}{0.58, 0.68, 0.71} %blu pastello
+            \definecolor{remarkcolor}{rgb}{0.7, 0.5, 0.69} %viola :)
+            \definecolor{examplecolor}{rgb}{0.96, 0.6, 0.76} %magenta
+        }
+
+    %Grigio depresso
+        \DeclareOption{depression}{
+            \definecolor{theoremcolor}{rgb}{0.4, 0.4, 0.37}
+            \definecolor{proofcolor}{rgb}{0.4, 0.4, 0.37}
+            \definecolor{definitioncolor}{rgb}{0.4, 0.4, 0.37}
+            \definecolor{propositioncolor}{rgb}{0.4, 0.4, 0.37}
+            \definecolor{remarkcolor}{rgb}{0.4, 0.4, 0.37}
+            \definecolor{examplecolor}{rgb}{0.4, 0.4, 0.37}
+        }
+
+    %Zun
+        \DeclareOption{zun}{
+            \definecolor{theoremcolor}{HTML}{C8D6FD}
+            \definecolor{proofcolor}{HTML}{C8D6FD}
+            \definecolor{definitioncolor}{HTML}{C8D6FD}
+            \definecolor{propositioncolor}{HTML}{C8D6FD}
+            \definecolor{remarkcolor}{HTML}{C8D6FD}
+            \definecolor{examplecolor}{HTML}{C8D6FD}
+        }
+
+    \ProcessOptions\relax
 
 %Roba nuova per davvero
 
@@ -158,12 +200,15 @@
             \newcommand\cattimes{\mathbf{\Pi}}
 
     %Ambienti
+
         %Teoremi, proposizioni et cetera
-            \newtcbtheorem[number within=section]{theorem}{Teorema}{colback=green!5,colframe=green!35!black,fonttitle=\bfseries}{th}
-            \newtcbtheorem[number within=section]{definition}{Definizione}{colback=blue!5,colframe=blue!35!black,fonttitle=\bfseries}{def}
-            \newtcbtheorem[number within=section]{proposition}{Proposizione}{colback=red!5,colframe=red!35!black,fonttitle=\bfseries}{prop}
-            \newtcbtheorem[number within=section]{observation}{Osservazione}{colback=violet!5,colframe=violet!35!black,fonttitle=\bfseries}{obs}
-            \newtcbtheorem[number within=section]{example}{Esempio}{colback=yellow!10,colframe=yellow!75!black,fonttitle=\bfseries}{exmp}
+            \newtcbtheorem[number within=subsection]{theorem}{Teorema}{colback=white,colframe=theoremcolor!100!black,fonttitle=\bfseries}{th}
+            \newtcolorbox{proofbox}{colback=white,colframe=proofcolor!100!black, fonttitle=\bfseries, title=Dimostrazione}
+            \newenvironment{proof}{\proofbox}{\endproofbox}
+            \newtcbtheorem[number within=subsection]{definition}{Definizione}{colback=white,colframe=definitioncolor!100!black,fonttitle=\bfseries}{def}
+            \newtcbtheorem[number within=subsection]{proposition}{Proposizione}{colback=white,colframe=propositioncolor!100!black,fonttitle=\bfseries}{prop}
+            \newtcbtheorem[number within=subsection]{remark}{Osservazione}{colback=white,colframe=remarkcolor!100!black,fonttitle=\bfseries}{rem}
+            \newtcbtheorem[number within=subsection]{example}{Esempio}{colback=white,colframe=examplecolor!100!black,fonttitle=\bfseries}{exmp}
 
         % Frames
             \newenvironment{shaded}%
