@@ -205,7 +205,7 @@
         %Teoremi, proposizioni et cetera
             \newtcbtheorem[number within=subsection]{theorem}{Teorema}{colback=white,colframe=theoremcolor!100!black,fonttitle=\bfseries}{th}
             \newtcolorbox{proofbox}{colback=white,colframe=proofcolor!100!black, fonttitle=\bfseries, title=Dimostrazione}
-            \newenvironment{proof}{\proofbox}{\endproofbox}
+            \newenvironment{proof}{\proofbox}{\begin{flushright}$\square$\end{flushright}\endproofbox}
             \newtcbtheorem[number within=subsection]{definition}{Definizione}{colback=white,colframe=definitioncolor!100!black,fonttitle=\bfseries}{def}
             \newtcbtheorem[number within=subsection]{proposition}{Proposizione}{colback=white,colframe=propositioncolor!100!black,fonttitle=\bfseries}{prop}
             \newtcbtheorem[number within=subsection]{remark}{Osservazione}{colback=white,colframe=remarkcolor!100!black,fonttitle=\bfseries}{rem}
