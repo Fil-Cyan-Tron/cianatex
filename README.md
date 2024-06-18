@@ -8,3 +8,11 @@ Per compilare includo il mio super-casalingo script ```compile.sh``` che va semp
 ### Debugging
 
 Ho incluso anche lo script ```debug.sh``` che va chiamato nel terminale come ```./debug.sh FILENAME BIB RECOMPILE``` che rimuove i file di supporto per pulire errori vari e nel caso in cui si abbia ```RECOMPILE == yesrecompile``` chiama ```./compile.sh FILENAME BIB```
+
+## Opzioni
+
+Il pacchetto supporta diverse opzioni per quanto riguarda la palette per gli ambienti, di default usa una palette dai colori accesi ma offre anche le opzioni ```pastel``` per avere dei colori pastello, ```depression``` per avere uniformemente grigio e ```zun``` per avere sempre il colore #c8d6fd.
+
+## Demo
+
+Il file ```categories.tex``` funge da demo per molti comandi, mentre il file ```provacolori.tex``` serve semplicemente per provare le palette.
