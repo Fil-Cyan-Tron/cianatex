@@ -69,50 +69,51 @@
         %Integrali bizzarri tipo \fint
             \RequirePackage{esint}
 
-%Colorcoding
+%Opzioni
+
+    %Colorcoding
     
-    %Standard
-        \definecolor{theoremcolor}{rgb}{1.0, 0.0, 0.0} %rosso standard
-        \definecolor{proofcolor}{rgb}{1.0, 0.6, 0.0} %persimmon
-        \definecolor{definitioncolor}{rgb}{0.0, 1.0, 0.0} %verde standard
-        \definecolor{propositioncolor}{rgb}{0.0, 0.0, 1.0} %blu standard
-        \definecolor{remarkcolor}{rgb}{0.7, 0.0, 0.7} %viola :)
-        \definecolor{examplecolor}{rgb}{0.85, 0.75, 0.0} %giallo
+        %Standard
+            \definecolor{theoremcolor}{rgb}{1.0, 0.0, 0.0} %rosso standard
+            \definecolor{proofcolor}{rgb}{1.0, 0.6, 0.0} %persimmon
+            \definecolor{definitioncolor}{rgb}{0.0, 1.0, 0.0} %verde standard
+            \definecolor{propositioncolor}{rgb}{0.0, 0.0, 1.0} %blu standard
+            \definecolor{remarkcolor}{rgb}{0.7, 0.0, 0.7} %viola :)
+            \definecolor{examplecolor}{rgb}{0.85, 0.75, 0.0} %giallo
 
-    %Colori pastello
-        \DeclareOption{pastel}{
-            \definecolor{theoremcolor}{rgb}{0.9, 0.31, 0.28} %rosso pastello
-            \definecolor{proofcolor}{rgb}{0.9, 0.6, 0.28} %arancio pastello
-            \definecolor{definitioncolor}{rgb}{0.37, 0.77, 0.37} %verde pastello
-            \definecolor{propositioncolor}{rgb}{0.58, 0.68, 0.71} %blu pastello
-            \definecolor{remarkcolor}{rgb}{0.7, 0.5, 0.69} %viola :)
-            \definecolor{examplecolor}{rgb}{0.96, 0.6, 0.76} %magenta
-        }
+        %Colori pastello
+            \DeclareOption{pastel}{
+                \definecolor{theoremcolor}{rgb}{0.9, 0.31, 0.28} %rosso pastello
+                \definecolor{proofcolor}{rgb}{0.9, 0.6, 0.28} %arancio pastello
+                \definecolor{definitioncolor}{rgb}{0.37, 0.77, 0.37} %verde pastello
+                \definecolor{propositioncolor}{rgb}{0.58, 0.68, 0.71} %blu pastello
+                \definecolor{remarkcolor}{rgb}{0.7, 0.5, 0.69} %viola :)
+                \definecolor{examplecolor}{rgb}{0.96, 0.6, 0.76} %magenta
+            }
 
-    %Grigio depresso
-        \DeclareOption{depression}{
-            \definecolor{theoremcolor}{rgb}{0.4, 0.4, 0.37}
-            \definecolor{proofcolor}{rgb}{0.4, 0.4, 0.37}
-            \definecolor{definitioncolor}{rgb}{0.4, 0.4, 0.37}
-            \definecolor{propositioncolor}{rgb}{0.4, 0.4, 0.37}
-            \definecolor{remarkcolor}{rgb}{0.4, 0.4, 0.37}
-            \definecolor{examplecolor}{rgb}{0.4, 0.4, 0.37}
-        }
+        %Grigio depresso
+            \DeclareOption{depression}{
+                \definecolor{theoremcolor}{rgb}{0.4, 0.4, 0.37}
+                \definecolor{proofcolor}{rgb}{0.4, 0.4, 0.37}
+                \definecolor{definitioncolor}{rgb}{0.4, 0.4, 0.37}
+                \definecolor{propositioncolor}{rgb}{0.4, 0.4, 0.37}
+                \definecolor{remarkcolor}{rgb}{0.4, 0.4, 0.37}
+                \definecolor{examplecolor}{rgb}{0.4, 0.4, 0.37}
+            }
 
-    %Zun
-        \DeclareOption{zun}{
-            \definecolor{theoremcolor}{HTML}{C8D6FD}
-            \definecolor{proofcolor}{HTML}{C8D6FD}
-            \definecolor{definitioncolor}{HTML}{C8D6FD}
-            \definecolor{propositioncolor}{HTML}{C8D6FD}
-            \definecolor{remarkcolor}{HTML}{C8D6FD}
-            \definecolor{examplecolor}{HTML}{C8D6FD}
-        }
+        %Zun
+            \DeclareOption{zun}{
+                \definecolor{theoremcolor}{HTML}{C8D6FD}
+                \definecolor{proofcolor}{HTML}{C8D6FD}
+                \definecolor{definitioncolor}{HTML}{C8D6FD}
+                \definecolor{propositioncolor}{HTML}{C8D6FD}
+                \definecolor{remarkcolor}{HTML}{C8D6FD}
+                \definecolor{examplecolor}{HTML}{C8D6FD}
+            }
 
-    \ProcessOptions\relax
+\ProcessOptions\relax
 
 %Roba nuova per davvero
-
     %roba basic
         %Emph più bellino
             \newcommand{\bemph}[1]{\textbf{\emph{#1}}}
@@ -209,12 +210,3 @@
             \newtcbtheorem[number within=subsection]{proposition}{Proposizione}{colback=white,colframe=propositioncolor!100!black,fonttitle=\bfseries}{prop}
             \newtcbtheorem[number within=subsection]{remark}{Osservazione}{colback=white,colframe=remarkcolor!100!black,fonttitle=\bfseries}{rem}
             \newtcbtheorem[number within=subsection]{example}{Esempio}{colback=white,colframe=examplecolor!100!black,fonttitle=\bfseries}{exmp}
-
-        % Frames
-            \newenvironment{shaded}%
-            {\begin{mdframed}[backgroundcolor=lightgray!40, linecolor=white, innertopmargin=4pt, innerbottommargin=13pt]}%
-            {\end{mdframed}}
-
-            \newenvironment{lineframe}%
-            {\begin{mdframed}[linecolor=black, innertopmargin=0pt, innerbottommargin=10pt]}%
-            {\end{mdframed}}
