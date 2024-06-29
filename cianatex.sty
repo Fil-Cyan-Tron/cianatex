@@ -16,6 +16,11 @@
 
     %TODO: pacchetti per le immagini (per ora frega sega)
 
+    %Plots
+        \RequirePackage{tikz}
+        \RequirePackage{tikz-3dplot}
+
+    
     %Ambienti
         %Teoremi
             %\RequirePackage{amsthm}
@@ -30,10 +35,14 @@
             \RequirePackage{longtable}
         %Dimensionamento delle colonne
             \RequirePackage{multirow}
+        %Multicolonne
+            \RequirePackage{multicol}
 
     %Diagrammi commutativi
         \RequirePackage{quiver}
         \usetikzlibrary{nfold}
+
+
 
     %Collegamenti
         %Url cliccabili
@@ -180,9 +189,12 @@
             \newcommand{\parti}[1]{\mathcal{P}\left(#1\right)} %Insieme delle parti
             \newcommand{\borel}[1]{\mathcal{B}\left(#1\right)} %Boreliani sullo spazio topologico
             \newcommand{\comp}[1]{\mathcal{K}\left(#1\right)} %Compatti sullo spazio topologico
-            \newcommand{\mis}[2]{\mathcal{M}_{#1}\left(#2\right)} %Misurabili per una certa misura sull'insieme
+            \newcommand\M{\mathcal{M}} %Misurabili 
             \newcommand{\tribu}{\mathcal{F}} %Tribù in probabilità
-            \newcommand{\bin}[2]{\left(\begin{array}{c} #1 \\ #2 \end{array}\right)}
+            \newcommand{\bin}[2]{\begin{pmatrix} #1 \\ #2 \end{pmatrix}}
+            \newcommand\de{\text{ d}}
+            \newcommand\embin{\hookrightarrow}
+            \newcommand\embout{\hookleftarrow}
         %Shortcuts per mathcal, mathbb e mathbf
             \newcommand{\mc}[1]{\mathcal{#1}}
             \newcommand{\mbb}[1]{\mathbb{#1}}
