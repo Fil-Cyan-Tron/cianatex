@@ -396,4 +396,31 @@
     \[t := \tan \left(\frac{x}{2}\right) \Rarr \sin x = \frac{2 t}{1 + t^2} \quad \cos x = \frac{1 - t^2}{1+t^2}\]
 \end{example}
 
+\subsection{Flowcharts}
+
+\begin{example}{Esercizio standard sulle serie di Fourier}{}
+    Sia $f:A\to\R$ una funzione $2\pi$-periodica la cui espressione $f(x)$ è data per $[-\pi,\pi[$ e indichiamo con $S_f$ la sua serie di Fourier in astratto.
+    \begin{enumerate}
+        \item Prima di tutto controlliamo le simmetrie di $f$, che ci possono aiutare col grafico e più tardi coi coefficienti di $S_f$:\begin{itemize}
+            \item Se $f$ è pari, ovvero $f(x) = f(-x)$, abbiamo che il suo grafico è simmetrico rispetto all'asse $y$ e che (se $f$ è regolare a tratti) per ogni $n\in\Z^+$ abbiamo $b_n=0$.
+            \item Se $f$ è dispari, ovvero $f(x)=-f(-x)$, abbiamo che il suo grafico è simmetrico rispetto all'origine e che (se $f$ è regolare a tratti) per ogni $n\in\N$ abbiamo $a_n=0$.
+        \end{itemize}
+        \item Poi disegnamo il grafico di $f$ su $[-\pi,\pi[$
+        \item Verifichiamo la continuità a tratti di $f$ e calcoliamo il suo insieme di discontinuità $D\subset [-\pi,\pi[$ e i limiti $f(x+0)$ e $f(x-0)$ per ogni $x\in D$.
+        \item Verifichiamo che $f$ sia $L^2(-\pi,\pi)$ per ottenere i seguenti risultati:\begin{itemize}
+            \item $S_f$ converge incondizionatamente a $f$ in $(L^2(-\pi,\pi),||\cdot||_2)$.
+            \item $S_f$ converge puntualmente a $f$ per $\L^1$-quasi ogni $x \in ]-\pi,\pi[$.
+        \end{itemize}
+        \item Verifichiamo la regolarità a tratti per ottenere i seguenti risultati:\begin{itemize}
+            \item $S_f$ converge puntualmente a $f$ in $\R\setminus D$.
+            \item $S_f$ converge alla media dei limiti destro e sinistro in $D$.
+            \item $S_f$ converge uniformemente a $f$ negli intervalli chiusi in cui $f$ è continua.
+        \end{itemize}
+        \item Calcoliamo i coefficienti $\{a_n\}_\N$ e $\{b_n\}_{\Z^+}$ di $S_f$ con le formule:
+        \[a_n = \frac{1}{\pi}\int_{[-\pi,\pi]} f(t) \cos(nt) \de\L^1(t) \quad b_n = \frac{1}{\pi}\int_{[-\pi,\pi]} f(t) \sin(nt) \de\L^1(t)\]
+        Ricordandoci le regolarità e simmetrie di cui sopra per facilitarci i calcoli.
+    \end{enumerate}
+\end{example}
+
+
 \end{document}
