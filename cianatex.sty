@@ -152,7 +152,8 @@
             \newcommand\dom{\operatorname{dom}}
         %Rango
             \newcommand\rk{\operatorname{rk}}
-            \renewcommand*{\d}{\:\text{d}}
+        %Grado
+            \renewcommand\deg{\operatorname{deg}}
         %Sottostrutture e sovrastrutture
             \newcommand\substruct\vartriangleleft
             \newcommand\superstruct\vartriangleright
@@ -185,16 +186,15 @@
             \renewcommand\L{\mathcal{L}} %Misura di Lebesgue, o pre-spazio L
             \renewcommand\H{\mathcal{H}} %Misura di Hausdorff
         %Altro
-            \newcommand{\taue}[1]{\tau_e^{#1}} %Topologia euclidea su \R^n
-            \newcommand{\parti}[1]{\mathcal{P}\left(#1\right)} %Insieme delle parti
-            \newcommand{\borel}[1]{\mathcal{B}\left(#1\right)} %Boreliani sullo spazio topologico
-            \newcommand{\comp}[1]{\mathcal{K}\left(#1\right)} %Compatti sullo spazio topologico
+            \newcommand\parti{\mathcal{P}} %Insieme delle parti
+            \newcommand\B{\mathcal{B}} %Boreliani
+            \newcommand{\comp}{\mathcal{K}} %Compatti 
             \newcommand\M{\mathcal{M}} %Misurabili 
             \newcommand{\tribu}{\mathcal{F}} %Tribù in probabilità
-            \newcommand{\bin}[2]{\begin{pmatrix} #1 \\ #2 \end{pmatrix}}
-            \newcommand\de{\text{ d}}
-            \newcommand\embin{\hookrightarrow}
-            \newcommand\embout{\hookleftarrow}
+            \newcommand{\bin}[2]{\begin{pmatrix} #1 \\ #2 \end{pmatrix}} %Coefficiente binomiale
+            \newcommand\de{\text{ d}} %d per gli integrali
+            \newcommand\embin{\hookrightarrow} %immerso in
+            \newcommand\embout{\hookleftarrow} %in cui è immerso
         %Shortcuts per mathcal, mathbb e mathbf
             \newcommand{\mc}[1]{\mathcal{#1}}
             \newcommand{\mbb}[1]{\mathbb{#1}}
@@ -215,10 +215,10 @@
     %Ambienti
 
         %Teoremi, proposizioni et cetera
-            \newtcbtheorem[number within=subsection]{theorem}{Teorema}{colback=white,colframe=theoremcolor!100!black,fonttitle=\bfseries}{th}
-            \newtcolorbox{proofbox}{colback=white,colframe=proofcolor!100!black, fonttitle=\bfseries, title=Dimostrazione}
+            \newtcbtheorem[number within=subsection]{theorem}{Teorema}{colback=white,colframe=theoremcolor!100!black,fonttitle=\bfseries, sharp corners}{th}
+            \newtcolorbox{proofbox}{colback=white,colframe=proofcolor!100!black, fonttitle=\bfseries, title=Dimostrazione, sharp corners}
             \newenvironment{proof}{\proofbox}{\begin{flushright}$\square$\end{flushright}\endproofbox}
-            \newtcbtheorem[number within=subsection]{definition}{Definizione}{colback=white,colframe=definitioncolor!100!black,fonttitle=\bfseries}{def}
-            \newtcbtheorem[number within=subsection]{proposition}{Proposizione}{colback=white,colframe=propositioncolor!100!black,fonttitle=\bfseries}{prop}
-            \newtcbtheorem[number within=subsection]{remark}{Osservazione}{colback=white,colframe=remarkcolor!100!black,fonttitle=\bfseries}{rem}
-            \newtcbtheorem[number within=subsection]{example}{Esempio}{colback=white,colframe=examplecolor!100!black,fonttitle=\bfseries}{exmp}
+            \newtcbtheorem[number within=subsection]{definition}{Definizione}{colback=white,colframe=definitioncolor!100!black,fonttitle=\bfseries, sharp corners}{def}
+            \newtcbtheorem[number within=subsection]{proposition}{Proposizione}{colback=white,colframe=propositioncolor!100!black,fonttitle=\bfseries, sharp corners}{prop}
+            \newtcbtheorem[number within=subsection]{remark}{Osservazione}{colback=white,colframe=remarkcolor!100!black,fonttitle=\bfseries, sharp corners}{rem}
+            \newtcbtheorem[number within=subsection]{example}{Esempio}{colback=white,colframe=examplecolor!100!black,fonttitle=\bfseries, sharp corners}{exmp}
