@@ -1,0 +1,498 @@
+\documentclass{article}
+\usepackage[pastel]{cianatex}
+
+\title{Dimostrazioni per l'esame orale di Analisi Matematica A}
+\author{Filippo L. Troncana}
+\date{A.A. 2023/2024}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+
+\section{Modulo 1}
+
+\subsection{Irrazionalità della radice di 2}
+
+\begin{theorem}{}{}
+    Non esiste $q \in \Q$ tale che $q^2=2$.
+\end{theorem}
+\begin{proof}
+    Siano $a,b \in \Z\times \Z \backslash \{0\}$ tali che $\mcd (a,b)= 1$ e $\left(\frac{a}{b}\right)^2 = 2$.\\
+    Abbiamo automaticamente che $a^2 = 2b^2$, dunque $2|a^2$ e in quanto $2$ è un numero primo, $2|a$, ovvero $a^2 = 4n$ per un qualche $n \in \Z$.\\
+    Allora possiamo scrivere $4n = 2b^2 \Rarr b^2 = 2n$, ma allora analogamente a quanto scritto sopra, $2|b$.\\
+    Pertanto, $\mcd(a,b)\ge 2$, ma questo porta a una contraddizione, dunque non esistono tali $a,b \in \Z\times\Z\backslash\{0\}$.
+\end{proof}
+
+\subsection{Radici n-esime di un numero complesso}
+
+\begin{theorem}{}{}
+    Sia $z \in \C$ scritto come $z = \rho\cos(\theta) + i\rho\sin(\theta)$ con $\rho, \theta \in \R_{\ge 0}\times \R$.\\
+    Allora $\forall n \in \Z^+$, si ha $z = (\rho^{1/n} \cos(\theta/n) +i\rho^{1/n} \sin(\theta/n) )^n$.
+\end{theorem}
+\begin{proof}
+    Segue direttamente dall'identità di Eulero, ovvero $e^{\theta i} = \cos(\theta) + i\sin(\theta)$
+\end{proof}
+
+\subsection{Esistenza del limite per funzioni monotone}
+
+\begin{theorem}{}{}
+    Sia $X\subset\R$ e sia $f:X\to \R$ una funzione monotona crescente (decrescente) e $x \in \R$.\\
+    Se $x_0$ è un punto di accumulazione sinistro ((destro)) per $X$, allora \[\exists \lim_{x\to x_0^-} f(x) = \sup_{X\cap ]-\infty, x_0[} f \quad \left(\left(\lim_{x\to x_0^+} f(x) = \inf_{X\cap ]x_0,+\infty[} f\right)\right)\]
+    Se $x_0=\pm\infty$ Allora
+    \[\lim_{x\to+\infty} f(x) = \sup_X f \quad \lim_{x\to-\infty} f(x) = \inf_X f\]
+\end{theorem}
+\begin{proof}
+    Sia $f$ crescente e dimostriamo il caso finito, il resto è analogo.\\
+    Sia $l = \sup_{X\cap]-\infty, x_0[ }f$, che esiste per la completezza di $\R$.\\
+    Allora abbiamo che per ogni $\varepsilon >0$ esiste $x_\varepsilon \in X\cap]-\infty, x_0[$ tale che $l-\varepsilon < f(x_\varepsilon)\le l$ e per qualsiasi $x \in ]x_\varepsilon, x_0[$ abbiamo $l-\varepsilon < f(x_\varepsilon) \le f(x) \le l < l+\varepsilon$.
+\end{proof}
+
+\subsection{Esistenza degli zeri}
+
+\begin{theorem}{}{}
+    Sia $f: [a,b]\to \R$ una funzione $\mc{C}^0([a,b])$ tale che $f(a)f(b)< 0$.\\
+    Esiste $c \in ]a,b[$ tale che $f(c)=0$.
+\end{theorem}
+\begin{proof}
+    Assumiamo $f(a)<0$ (il caso contrario è analogo) e definiamo tre successioni in questo modo.
+    \[\begin{cases}
+        a_0, b_0 = a,b\\
+        c_n = \frac{b_n - a_n}{2} \quad \forall n\in\N\\
+        a_{n+1} = c_n \quad \text{se } f(c_n) < 0, \quad a_{n+1}=a_n \quad \text{altrimenti}.\\
+        b_{n+1} = c_n \quad \text{se } f(c_n) > 0, \quad b_{n+1}=b_n \quad \text{altrimenti}.
+    \end{cases}\]
+    Abbiamo che $|c_n - c_{n+1}| = \frac{b-a}{2^{n+1}}$, quindi è una successione di Cauchy contenuta in $]a,b[$ e in quanto tale converge a $c\in ]a,b[$, dobbiamo solo dimostrare che $f(c)=0$.\\
+    Notiamo che $a_n$ e $b_n$ sono due successioni monotone la cui differenza è uguale a $\frac{b-a}{2^n}$, quindi hanno entrambe un limite e questo è lo stesso, ovvero $c$ (è abbastanza semplice vederlo).\\
+    In particolare $f(a_n) \le 0$ e $f(b_n)\ge 0$, dunque passando al limite (cosa che possiamo fare grazie alla continuità di $f$) abbiamo $0 \le f(c) \le 0$, quindi $f(c)=0$.
+\end{proof}
+
+\subsection{Teorema dei valori intermedi}
+
+\begin{theorem}{}{}
+    Sia $f : [a,b] \to \R$ una funzione $\mc{C}^0([a,b])$ con $f(a) < f(b)$ (analogo per il caso contrario).\\
+    Si ha $f([a,b]) \supseteq [f(a), f(b)]$.
+\end{theorem}
+\begin{proof}
+    Consideriamo per $k \in [f(a), f(b)]$ la funzione $x \mapsto f(x)-k$ definita sull'intervallo $[a,b]$.\\
+    Essa soddisfa abbastanza evidentemente le ipotesi del teorema di esistenza degli zeri, segue la tesi.
+\end{proof}
+
+\subsection{Teorema di Fermat}
+
+\begin{theorem}{}{}
+    Sia $f : [a,b] \to \R$ una funzione $\mc{C}^0([a,b])$ e $\mc{D}^1(]a,b[)$.\\
+    Se per un qualche $x_0 \in ]a,b[$ si ha un punto di massimo/minimo locale di $f$, allora $f'(x_0)=0$.
+\end{theorem}
+\begin{proof}
+    Assumiamo che $x_0 \in ]a,b[$ sia un punto di massimo locale (analogo per un minimo).\\
+    Significa che esiste $\delta>0$ tale che:
+    \[\frac{f(x_0 - \delta) - f(x_0)}{\delta} \le 0 \le \frac{f(x_0 + \delta) - f(x_0)}{\delta}\]
+    Ma in quanto $f$ è derivabile, mandando $\delta\to 0$ i limiti destro e sinistro devono coincidere e si ha $f'(x_0)\le 0\le f'(x_0)$, da cui segue la tesi. 
+\end{proof}
+
+\subsection{Teorema di Lagrange (formulazione che comprende il teorema di Rolle)}
+
+\begin{theorem}{}{}
+    Sia $f : [a,b] \to \R$ una funzione $\mc{C}^0([a,b])$ e $\mc{D}^1(]a,b[)$.\\
+    Allora esiste  $c \in ]a,b[$ tale che $f'(c)(b-a) = f(b)-f(a)$
+\end{theorem}
+\begin{proof}
+    Consideriamo il caso in cui $f(b)=f(a)$. Per il teorema di Weierstrass, la funzione ha un massimo e un minimo, dunque esiste $c \in ]a,b[$ tale che $f'(c) = 0$ e segue la tesi.\\
+    Altrimenti consideriamo la funzione $\hat{f} : x \mapsto f(x) - \frac{f(b)-f(a)}{b-a}x$. Questa soddisfa le nostre ipotesi e ricade nel caso precedente, quindi esiste $c \in ]a,b[$ tale che:
+    \[\hat{f}'(c)(b-a) = \left(f'(x) - \frac{f(b)-f(a)}{b-a}\right)(b-a)=0 \Rarr f'(c)(b-a) = f(b)-f(a)\]
+\end{proof}
+
+\subsection{Taylor con resto di Peano}
+\begin{theorem}{}{}
+    Sia $A$ un aperto di $\R^m$ e sia  $f: A \to \R$ una funzione di classe $\mc{C}^n(A)$.\\
+    Allora per $x_0 \in A$ si ha che $f(x) = P_{n,x_0}(x) + o(||x-x_0||^n)$, dove:
+    \[P_{n,x_o}(x) := \sum_{i=0}^{n} \frac{D^i_{x_0}(x-x_0)}{i!}\]
+    Dove $D^i_{x_0} : A\to\R$ è la forma di ordine $i$ associata al tensore $(\partial_\alpha)$ delle derivate $i$-esime con multi-indice $\alpha$ di lunghezza $i$.\\
+    Se $m=1$ allora abbiamo più semplicemente:
+    \[P_{n,x_0}(x) = \sum_{i=0}^{n}\frac{d^if}{dx^i} (x_0) \frac{(x-x_0)^i}{i!}\]
+\end{theorem}
+\begin{proof}
+    Dimostriamo solo il caso $m=1$, inoltre possiamo assumere $x_0=0$ a meno di traslazioni.\\
+    Procediamo per induzione su $n$:\begin{itemize}
+        \item Se $n=0$ abbiamo $f(x)=f(0) + o(1)$, vero per definizione di continuità.
+        \item Se $n=1$ abbiamo $f(x) = f(0) + f'(0)x + o(x)$, vero per definizione di derivata.
+        \item Assumiamo che valga il teorema per $n-1$ e $f \in \mc{C}^n(A)$. Abbiamo
+        \[\lim_{x\to 0}\frac{f(x)- P_{n}(x)}{x^n} = \frac{0}{0} \Rarr \lim_{x\to 0}\frac{f(x)- P_{n}(x)}{x^n} = \lim_{x\to 0}\frac{f'(x)- P'_{n}(x)}{(x^n)'}\]
+        Sia $Q_k(x)$ il polinomio di Taylor di ordine $k$ associato a $f'$, e abbiamo che $P'_n(x) = nQ_{n-1}(x)$, quindi per ipotesi induttiva arriviamo alla nostra tesi:
+        \[\lim_{x\to 0}\frac{f(x)- P_{n}(x)}{x^n} = \lim_{x\to 0}\frac{f'(x)- P'_{n}(x)}{(x^n)'} = \lim_{x\to 0} \frac{n}{n}\frac{f'(x)-Q_{n-1}(x)}{x^{n-1}} = 0\]
+    \end{itemize}
+\end{proof}
+
+\subsection{Condizione necessaria per la convergenza di una serie}
+
+\begin{theorem}{}{}
+    Sia $\{a_n\}_\N$ una successione tale che $\sum_\N a_n = l \in \R$.\\
+    Allora si ha $\lim_{n\to+\infty} a_n = 0$.
+\end{theorem}
+\begin{proof}
+    Sia $\{S_n\}_\N$ la successione delle somme parziali. In convergente, essa deve essere di Cauchy, quindi per ogni $\varepsilon>0$ deve esistere $N \in \N$ tale che per ogni $i, j > N$ si ha $|S_i - S_j|<\varepsilon$.\\
+    In particolare allora, per ogni $\varepsilon>0$ deve esistere $N\in \N$ tale che per ogni $i>N$ si ha $|S_{i+1}-S_i| = |a_{i+1}| < \varepsilon$, che per definizione vuol dire che $\{a_n\}_\N$ è infinitesima.
+\end{proof}
+
+\subsection{Criteri per convergenza di serie a termini non negativi}
+
+\begin{theorem}{}{}
+    Sia $\{a_n\}_\N$ una successione tale che $\forall n \in \N, a_n \ge 0$.\\
+    Valgono le seguenti: \begin{enumerate}
+        \item Se esiste una successione $\{b_n\}_\N$ a termini non negativi tale che eventualmente si abbia $b_n \ge a_n$, allora si ha \begin{itemize}
+            \item $\{b_n\}_\N \in l^1(\N) \Rarr \{a_n\}_\N \in l^1(\N)$.
+            \item $\sum_\N a_n = +\infty \Rarr \sum_\N b_n = +\infty$.
+        \end{itemize}
+        \item Se $\lim_{n\to+\infty} \sqrt[n]{a_n} = k$ si ricade in uno dei seguenti casi: \begin{itemize}
+            \item Se $k<1$, allora $\{a_n\}_\N \in l^1(\N)$.
+            \item Se $k>1$, allora $\sum_\N a_n = +\infty$.
+            \item Se $k=1$, chi può dire.
+        \end{itemize}
+        \item TODO: Confronto asintotico
+    \end{enumerate}
+\end{theorem}{}{}
+\begin{proof}
+    Sia $\{a_n\}_\N$ come da ipotesi e sia $\{A_n\}_\N$ la successione delle sue somme parziali:\begin{enumerate}
+        \item Sia $\{b_n\}_\N$ come da ipotesi, sia $\{B_n\}_\N$ la successione delle sue somme parziali e sia $N \in \N$ il primo indice tale che $\forall n>N, a_n\le b_n$. Allora abbiamo:\begin{itemize}
+            \item Assumiamo $\{b_n\}_\N \in l^1(\N)$ e consideriamo la successione $\{\hat{B}_n := B_n - B_N\}_{n>N}$. Abbiamo dunque:
+            \[0\le A_n \le \hat{B}_n + A_N \le B_n + A_N \to l + A_N \in \R\]
+        \end{itemize}
+    \end{enumerate}
+\end{proof}
+
+\subsection{Teorema della media integrale}
+
+\begin{theorem}{}{}
+    Sia $f : [a, b] \to \R$ con $f \in \mc{C}^0([a,b])$.\\
+    Allora esiste $c \in [a,b]$ tale che:
+    \[f(c)(b-a) =\int_a^b f(x)d x\]
+\end{theorem}
+\begin{proof}
+    Per il teorema di Weierstrass, $f([a,b]) = [m,M]$, dunque definiamo le funzioni costanti su $[a,b]$ $x\mapsto m$ e $x\mapsto M$. Per la monotonia dell'integrale di Riemann abbiamo:
+    \[m(b-a)=\int_a^b m d x \le \int_a^b f(x) d x \le \int_a^b M d x = M(b-a)\]
+    dunque 
+    \[m \le \frac{1}{b-a}\int_a^b f(x) d x \le M\]
+    Segue la tesi.
+\end{proof}
+
+\subsection{Teorema di Torricelli-Barrow}
+
+\begin{theorem}{}{}
+    Sia $g : [a,b]\to \R$ una funzione in $\mc{R}([a,b])$ tale che esista una funzione $G:[a,b]\to \R$ che sia continua su $[a,b]$ e sia sua primitiva su $]a,b[$. Allora vale:
+    \[\int_a^b g(x) d x = G(b)-G(a)\]
+\end{theorem}
+\begin{proof}
+    Suddividiamo l'intervallo $[a,b]$ in sottointervalli della forma $[x_i, x_{i+1}]$ con $i \in \{0,...,I\}$ dove $x_0 = a$ e $x_I = b$. Abbiamo allora
+    \[G(b)-G(a) = G(x_I) - G(x_{I-1}) + G(x_{I-1}) - ... - G(x_1) + G(x_1) - G(x_0)\]
+    Su ciascun intervallo $[x_i, x_{i+1}]$ possiamo usare il teorema di Lagrange e trovare un $c_i$ tale che $G(x_{i+1}) - G(x_i) = G'(c_i)(x_{i+1}-x_i) = g(c_i)(x_{i+1}-x_i)$. Abbiamo dunque
+    \[G(b)-G(a) = \sum_{0\le i < I } g(c_i)(x_{i+1}-x_i)\]
+    Che con il tendere di $I$ all'infinito corrisponde alla definizione di integrale di Riemann.
+\end{proof}
+
+\subsection{Teorema fondamentale del calcolo integrale}
+
+\begin{theorem}{}{}
+    Sia $f:[a,b] \to \R$ una funzione in $\mc{R}([a,b])$ e sia $F: [a,b]\to \R$ definita come
+    \[F(x) := \int_a^x f(x) d x\]
+    Allora $F \in \mc{C}^0([a,b])$, e se $f \in \mc{C}^0([a,b])$ si ha $F \in \mc{C}^1(]a,b[)$ e vale $F'(x)=f(x)$
+\end{theorem}
+\begin{proof}
+    In quanto continua, abbiamo $f([a,b]) = [m,M]$. Per la formula di spezzamento, con $x_0, x_1 \in [a,b]$ abbiamo:
+    \[|F(x_1) - F(x_0)| = \left|\int_a^{x_1} f(x)dx - \int_a^{x_0} f(x)dx\right| \le \left| \int_{x_0}^{x_1} f(x)dx\right| \le |M(x_1-x_0)|\]
+    Allora con $x_1 \to x_0$ abbiamo $F(x_1)\to F(x_0)$, dunque è continua.\\
+    Ora assumiamo che anche $f$ sia continua.\\
+    Prendiamo $x_0 \in [a,b]$ e $h > 0$ (con $h<0$ è analogo). Per il teorema della media integrale esiste un $c_h \in [x_0, x_0 + h]$ tale che:
+    \[\frac{F(x_0+h) - F(x_0)}{h} = \frac{1}{h} \int_{x_0}^{x_0+h}f(x)dx = f(c_h)\]
+    Facendo tendere $h\to 0$ abbiamo quindi $F'(x_0) = f(x_0)$.
+\end{proof}
+
+\subsection{Risoluzione equazioni differenziali del primo ordine a variabili separabili}
+
+\begin{theorem}{}{}
+    Sia $\varphi:f'= g(f)$ un'equazione differenziale con $g \in \mc{C}^0(\R)$ tale che $g = G'$ con $G$ invertibile e $g\circ f \neq 0$ in qualche aperto reale.\\
+    Allora l'integrale generale di $\varphi$ è $f(x) = G^{-1}(ke^x)$.
+\end{theorem}
+\begin{proof}
+    Manipoliamo un po' questa equazione.
+    \[f' = G'(f) \Harr \frac{f'}{G'(f)} = 1 \Harr \frac{d}{dx}\log (G(f)) = 1 \]
+    Passiamo alle primitive 
+    \[\log (G(f(x))) = x +C \Harr G(f(x)) = e^{x+C} = k e^x \Harr f(x) = G^{-1}(ke^x)\]
+\end{proof}
+
+\section{Modulo 2}
+
+\subsection{Disuguaglianza di Cauchy-Schwarz}
+
+\begin{theorem}{}{}
+    Sia $(H,\cdot)$ un $\R$-spazio vettoriale pre-Hilbertiano con norma indicata con $N$.\\ 
+    Si ha che $|x \cdot y|\le N(x)N(y)$.
+\end{theorem}
+\begin{proof}
+    Escludiamo i casi dove $x=0$ e $y=0$ che sono banali, e sia $\lambda \in \R$.\\
+    Abbiamo \[0 < N(x-\lambda y)^2 = (x-\lambda y)\cdot (x-\lambda y) = x\cdot x - \lambda 2 (x\cdot y) + \lambda^2 (y\cdot y)\]
+    Dato che questa disequazione deve valere per ogni $\lambda \in \R$, abbiamo $4(x\cdot y)^2 < 4(x\cdot x)(y\cdot y)$ ed estraendo la radice (operazione possibile dato che norma e prodotto scalare sono definiti positivi) segue la tesi.
+\end{proof}
+
+\subsection{Caratterizzazione dei chiusi nello spazio euclideo}
+
+\begin{theorem}{}{}
+    Un sottoinsieme $C$ di $\R^n$ è chiuso se e solo se:\begin{enumerate}
+        \item ogni successione $\{x_i\}_\N \subset C$ convergente converge a un $\hat{x} \in C$.
+        \item $\partial C \subset C$.
+        \item $C$ contiene tutti i suoi punti di accumulazione.
+    \end{enumerate}
+\end{theorem}
+\begin{proof}
+    Procederemo circolarmente per dimostrare l'equivalenza, di solito avremo $A = C^c$.\begin{enumerate}
+        \item Assumiamo che $C$ sia chiuso. Per definizione di convergenza, abbiamo che per ogni $\varepsilon > 0$ esiste $N>0$ tale che $\{x_i\}_{i>N} \subset B_\varepsilon(\hat{x})$, ma quindi per ogni $\varepsilon > 0$ abbiamo $C \cap B_\varepsilon(\hat{x})\neq \emptyset$ e dunque $\hat{x} \in C$.
+        \item Assumiamo $C$ chiuso, dunque $A$ è aperto per definizione; allora per definizione di frontiera, in ogni punto $x\in\partial C$ la pallina centrata in $x$ ha sempre intersezione non vuota con $C$, dunque $\partial C \cap A = \emptyset$, quindi $\partial C \subset C$. Assumiamo che $\partial C\subset C$; allora per ogni punto in $C$, o questo sta nei punti interni (dunque la pallina centrata in esso è contenuta in $C$) o sta nella frontiera (dunque la pallina centrata in esso ha intersezione non vuota con $C$), dunque ogni punto in $A$ ammette una pallina totalmente esterna a $C$, quindi $A$ è aperto e $C$ è chiuso.
+        \item Assumiamo che $C$ sia chiuso. Abbiamo che dato $C^*$ l'insieme dei suoi punti di accumulazione, questo è l'insieme dei punti $x\in\R^n$ tali che $B_r(x)\cap C \neq \emptyset$ per qualsiasi $r>0$.\\ Dato che $C$ è chiuso, ogni suo punto esterno ammette una palla completamente nel suo complementare, dunque $C^* \subset C$.\\
+        Supponiamo che $C^* \subset C$. 
+    \end{enumerate}
+\end{proof}
+
+\subsection{Teorema di Bolzano-Weierstrass}
+
+\begin{theorem}{}{}
+    Sia $\{x_i\}_\N$ una successione limitata in $\R^n$.\\
+    Essa ammette una sottosuccessione $\{x_{\sigma(i)}\}_\N$ convergente a $\hat{x}$ in $\R^n$.
+\end{theorem}
+\begin{proof}
+    Iniziamo con il caso $n=1$ e supponiamo $\{x_i\}_\N \subset [a_0,b_0]$.\\
+    Definiamo $c_0 := (b_0 - a_0)/2$ come il punto medio dell'intervallo. Dato che $\{x_i\}_\N$ ha infiniti termini, almeno uno tra gli intervalli $[a_0, c_0]$ e $[c_0, b_0]$ contiene infiniti termini di $\{x_i\}_\N$.\\
+    Supponiamo che sia $[a_0,c_0]$, poniamo $a_1 := a_0$ e $b_1:= c_0$ e ripetiamo questo processo con il nuovo $c_1 = (b_1 - a_1)/2$, dimezzando ogni volta l'intervallo e scegliendo la (o una delle) metà in cui giacciono infiniti termini della successione, ottenendo dunque una successione di intervalli $\{[a_j, b_j]\}_\N$ ciascuno di ampiezza $(b-a)/2^j$.\\
+    Notiamo che $\{a_i\}_\N$ e $\{b_i\}_\N$ sono entrambe monotone (rispettivamente crescente e decrescente) e limitate, dunque convergono rispettivamente a $\alpha \in [a,b]$ e $\beta \in [a,b]$, dove 
+    \[\beta - \alpha = \lim_{i\to+\infty}b_i - a_i = \lim_{i\to+\infty} \frac{b-a}{2^i} = 0 \Rarr \alpha = \beta=: \hat{x}\]
+    Poniamo $\sigma:\N \to \N$ tale che $x_{\sigma(i)} \in [a_i, b_i]$ e abbiamo ottenuto una sottosuccessione $\{x_{\sigma(i)}\}_\N$ convergente a $\hat{x}$.\\
+    Per i casi $n>1$ abbiamo una successione della forma $\{(x^1,...,x^n)_i\}_\N$ che corrisponde a una successione $\{(x^1_i,...,x^n_i)\}_\N$, ovvero una $n$-upla di successioni $\{x^j_i\}_\N$.\\
+    Procediamo come sopra sulla successione $\{x^1_i\}_\N$ ottenendo la funzione $\sigma_1$, poi procediamo sulla successione $\{x^2_{\sigma_1(i)}\}_\N$ ottenendo la funzione $\sigma_{1,2}$ e così via, sulla coordinata $m+1$-esima procederemo sulla successione $\{x^{m+1}_{\sigma_{1,...,m}(i)}\}_\N$.
+    Arriveremo alla sottosuccessione $\{(x^1,...,x^n)_{\sigma_{1,...,n}(i)}\}_\N$ in cui tutte le coordinate convergono a una qualche $\hat{x}^j \in \R$.
+\end{proof}
+\begin{remark}{}{}
+    Nella dimostrazione precedente, quello che stiamo facendo è definire implicitamente una catena di funzioni iniettive
+    \[\N \xrightarrow{\sigma_1} \N \xrightarrow{\sigma_{2}}... \xrightarrow{\sigma_{n-1}}\N \xrightarrow{\sigma_{n}} \N\]
+    Ottenendo esplicitamente la loro composizione $\sigma_{1,...,n} = \sigma_n \circ ... \circ \sigma_1$
+\end{remark}
+
+\subsection{Teorema di Heine-Borel}
+\begin{theorem}{}{}
+    Un sottoinsieme $K$ di $\R^n$ è (sequenzialmente) compatto se e solo se è chiuso e limitato.
+\end{theorem}
+\begin{proof} Consideriamo entrambe le implicazioni.
+    \begin{enumerate}
+        \item Assumiamo che $K$ sia compatto .\begin{enumerate}
+            \item Supponiamo che $K$ sia illimitato. Allora esiste una successione $\{x_i\}_\N$ tale che per ogni $i$ si abbia $||x_i||\ge i$, ma questa non ammetterebbe sottosuccessioni convergenti, dunque $K$ deve essere limitato.
+            \item Prendiamo una successione $\{x_i\}_\N$ convergente a $\hat{x}$. Allora tutte le sue sottosuccessioni devono convergere a $\hat{x}$, ma dato che $K$ è compatto, $\hat{x}$ deve appartenere a $K$
+        \end{enumerate}
+        \item Assumiamo che $K$ sia chiuso e limitato. In quanto limitato, per il teorema di Bolzano-Weierstrass ogni successione contenuta in $K$ deve avere una sottosuccessione convergente, e in quanto chiuso questa deve convergere a un elemento di $K$.
+    \end{enumerate}
+\end{proof}
+
+\subsection{Condizione di Cauchy}
+
+\begin{theorem}{}{}
+    Una successione in $\R^n$ è convergente se e solo se è di Cauchy.
+\end{theorem}
+\begin{proof}
+    Consideriamo entrambe le implicazioni.\begin{enumerate}
+        \item Assumiamo che una successione $\{x_i\}_\N$ sia convergente a $\hat{x}$. Allora per ogni $\varepsilon/2>0$ esiste $N>0$ tale che per ogni $i,j>N$, si abbia $d(x_i,x_j) \le d(x_i, \hat{x}) + d(\hat{x},x_j) < \varepsilon$, ovvero è di Cauchy.
+        \item Assumiamo che una successione $\{x_i\}_\N$ sia di Cauchy. \begin{enumerate}
+            \item Dimostriamo che è limitata. Noi abbiamo che per ogni $\varepsilon >0$ esiste $N>0$ tale che per ogni $i,j >N$ si abbia $d(x_i, x_j) < \varepsilon$. Poniamo $\varepsilon = 1$ e abbiamo $d(0, x_i) \le d(x_i, x_N) + d(0, x_N) < 1 + d(0, x_N) \le 1 + M$ con  $M = \max \{d(0,x_0), ..., d(0, x_N)\}$.
+            \item In quanto limitata, per il teorema di cui Bolzano-Weierstrass essa ammette sottosuccessioni convergenti a qualche insieme di $\hat{x}$. Supponiamo che una sottosuccessione $\{x_{\sigma(i)}\}_\N$ converga a $\hat{x}$.\\
+            Applicando le definizioni di successione di Cauchy e successione convergente abbiamo che per ogni $\varepsilon/2 > 0$ esiste $N>0$ tale che per ogni $i>N$ si abbia $d(\hat{x},x_i) \le d(\hat{x}, x_{\sigma(i)}) + d(x_{\sigma(i)}, x_i) < \varepsilon$ e quindi tutta la successione converge a $\hat{x}$.
+        \end{enumerate}
+    \end{enumerate}
+\end{proof}
+
+\subsection{Definizione e caratterizzazione di Continuità nello spazio euclideo}
+
+\begin{theorem}{}{}
+    Una funzione $f:\R^n \to \R^m$ è continua se e solo se la controimmagine di ogni aperto (chiuso) è un aperto (chiuso).
+\end{theorem}
+\begin{proof}
+    Valutiamo entrambe le implicazioni.\begin{enumerate}
+        \item Sia $f$ continua, ovvero in ogni punto $x\in\R^n$ (con $y=f(x)$) per ogni $\varepsilon>0$ esiste $\delta>0$ tale che $f(B_\delta(x)) \subset B_\varepsilon (y)$, ovvero che per ogni punto $x\in\R^n$ passando alle controimmagini abbiamo $B_\delta(x_0) \subset f^{-1}(B_\varepsilon(y))$.\\ Dunque abbiamo dimostrato che una pallina in entrata è sempre contenuta nella controimmagine di una pallina in arrivo, ovvero le controimmagini delle palline in arrivo sono aperti; dato che le palline sono una base della topologia euclidea e la controimmagine commuta con l'unione, abbiamo la tesi.
+        \item Assumiamo che la controimmmagine di ogni aperto sia un aperto e scegliamo un aperto non vuoto $A$.\\
+        Abbiamo che per ogni $y = f(x)$, per ogni $\varepsilon>0$ esiste un $\delta>0$ tale che $B_\delta(x) \subset f^{-1}(B_\varepsilon(y))$, che passando alle immagini porta alla tesi.
+    \end{enumerate}
+\end{proof}
+
+\subsection{Esistenza degli zeri su connessi per archi}
+
+\begin{theorem}{}{}
+    Sia $A$ un sottoinsieme di $\R^n$ connesso per archi e sia $f: A\to\R$ una funzione $\mc{C}^0(A)$.\\
+    Se esistono $x,y \in A$ tali che $f(x)f(y)<0$, allora esiste $z \in A$ tale che $f(z)=0$.\\
+    In particolare, per ogni $x,y \in A$ con $x\le y$, si ha che $[f(x), f(y)] \subset f(A)$.
+\end{theorem}
+\begin{proof}
+    Sia $\gamma : [0,1] \to A$ un arco contenuto in $A$ tale che $\gamma(0) = x$ e $\gamma(1)=y$.\\
+    Allora la funzione $f\circ \gamma : [0,1] \to \R$ soddisfa le ipotesi del teorema di esistenza degli zeri per funzioni continue su un intervallo, dunque esiste almeno un $t \in [0,1]$ tale che $z = \gamma(t)$ sia uno zero per $f$. \\
+    Per dimostrare il corollario, ovvero dei valori intermedi, per qualsiasi $k \in [f(x),f(y)]$ consideriamo la funzione $f-k$.
+\end{proof}
+
+\subsection{Teorema di Weierstrass}
+
+\begin{theorem}{}{}
+    \begin{itemize}
+        \item Forma debole: sia $K$ un sottoinsieme compatto di $\R^n$ e sia $f : K \to \R$ una funzione $\mc{C}^0(K)$.\\
+        Allora esistono minimo $m$ e massimo $M$ di $f$ su $K$ e in particolare se $K$ è connesso per archi, $f(K)=[m,M]$.
+        \item Forma forte: sia $K$ un sottoinsieme compatto di $\R^n$ e sia $f:K\to\R^m$ una funzione $\mc{C}^0(K)$\\
+        Allora $f(K)$ è un sottoinsieme compatto di $\R^m$.
+    \end{itemize}
+    La forma forte implica la forma debole nel caso $n=1$.
+\end{theorem}
+\begin{proof}
+    Dimostriamo la forma debole dimostrando la limitatezza superiore e l'esistenza del massimo per $f$, l'esistenza del minimo seguirà dall'applicazione a $-f$.\\
+    Supponiamo che $f(K)$ non sia limitato superiormente. Dunque deve esistere una successione $\{x_i\}_\N$ tale che per ogni $i \in \N$ si abbia $f(x_i)>i$ che per via della compattezza di $K$ deve contenere una sottosuccessione con la stessa proprietà che converga a $\hat{x}$. Ma allora per ogni $i \in \N$ si avrebbe $f(\hat{x})>i$, perciò $\hat{x} \notin K$, assurdo, dunque $f$ è limitata superiormente.\\
+    Sia allora $M$ il minimo maggiorante di $f$. Per ogni $i \in \N$, sia $M_i = M - 2^{-i}$ e definiamo una successione $\{x_i\}_\N$ in $K$ tale che $f(x_i) = M_i$. In quanto successione in $K$ ammette una sottosuccessione convergente a $\hat{x}$ e per continuità di $f$ abbiamo $f(x_{\sigma(i)})\to f(\hat{x})$ dove $f(\hat{x}) = \lim_{i\to+\infty} M_i = M$, dunque $M$ è il massimo di $f$ su $K$.\\
+    Per il teorema precedente, se $K$ è connesso per archi, $f$ contiene tutti i valori intermedi tra $m$ (il suo minimo) e $M$, dunque $f(K) = [m,M]$.
+\end{proof}
+\begin{proof}
+    Dimostriamo ora la forma forte.\\
+    Sia $\{y_i\}_\N \subset f(K)$ una successione di punti immagine. Allora a questa è associata una successione di fibre $\{f^{-1}(y_i)_\N\} \subset \mc{P}(K)$.\\
+    Usando l'assioma della scelta, per ogni $f^{-1}(y_i)$ possiamo scegliere un $x_i$ tale che $f(x_i) = y_i$ e dunque possiamo considerare la successione $\{x_i\}_\N \subset K$. In quanto successione in un compatto, ammette una sottosuccessione $\{x_{\sigma(i)}\}_\N\to\hat{x}\in K$, e dunque per continuità di $f$ allora anche $\{f(x_{\sigma(i)})\}_\N = \{y_{\sigma(i)}\}_\N \to \hat{y} = f(\hat{x})$.\\
+    Ponendo $m=1$ abbiamo che l'immagine di $f$ deve essere chiusa e limitata, dunque un'unione di intervalli chiusi, pertanto ha un massimo $b$ e un minimo $a$.\\
+    Se $K$ è connesso per archi, per il teorema dei valori intermedi abbiamo $f(K)=[a,b]$.
+\end{proof}
+\subsection{Teorema di Heine Cantor}
+
+\begin{theorem}{}{}
+    Sia $K$ un compatto di $\R^n$ e $f : K \to \R^m$ una funzione $\mc{C}^0(K)$.\\
+    $f$ è uniformemente continua su $K$.
+\end{theorem}
+\begin{proof}
+    Supponiamo per assurdo che $f$ non sia uniformemente continua, ovvero che esista $\varepsilon>0$ tale che per ogni $\delta>0$ esista una coppia di punti $x_\delta, y_\delta \in K$ tale che $||y_\delta - x_\delta||<\delta$ ma $||f(y_\delta) - f(x_\delta)||\ge \varepsilon$, ovvero che la differenza delle loro $f$ non tenda mai a $0$.\\
+    Definiamo $\{\delta_{i}\}_\N = 2^{-i}$ e consideriamo le successioni $\{x_{\delta_i}\}_\N$ e $\{y_{\delta_i}\}_\N$. Abbiamo che $||y_{\delta_i} - x_{\delta_i}||<\delta_i$ per ogni $i \in \N$, dunque deve tendere a 0, ma quindi devono ammettere due sottosuccessioni (determinate da una sottosuccessione $\{\delta_{\sigma(i)}\}_\N$) che tendano allo stesso limite $\hat{x} \in K$.\\
+    Per la continuità di $f$, abbiamo che $||f(y_{\delta_{\sigma(i)}}) - f(x_{\delta_{\sigma(i)}})||$ deve tendere a $0$, assurdo per ipotesi, dunque segue la tesi. 
+\end{proof}
+
+\subsection{Derivabilità e continuità delle funzioni differenziabili}
+
+\begin{theorem}{}{}
+    Sia $f:A\subset \R^n \to \R$ una funzione differenziabile in $x_0 \in A$.\\
+    Allora:\begin{enumerate}
+        \item $f$ è continua in $x_0$.
+        \item È derivabile lungo ogni direzione e vale $d(x_0) = \nabla f(x_0) $
+        \item Se $v \in \mathbb{S}^{n-1}$ vale $D_v f(x_0) = \langle \nabla f(x_0), v\rangle$.
+    \end{enumerate}
+\end{theorem}
+\begin{proof}
+    Supponiamo che $f$ sia differenziabile in $x_0=0$, che $f(0)=0$ e sia $d := d(0)$. Abbiamo che $f(h)= \langle d, h\rangle + o(||h||)$. \begin{enumerate}
+        \item Per Cauchy-Schwarz abbiamo $\langle d, h\rangle\to 0$ quando $h\to 0$, dunque $f$ è continua in $0$.
+        \item  Sia $d = (d_1,...,d_n)$ e $h_i = te_i$ con $t> 0$. Abbiamo per definizione $f(h_i)= \langle d, te_i\rangle + o(t) = td_i + o(t)$, dunque $f$ è derivabile lungo $e_i$ e $d_i = \partial_i f$. Dato che vale per ogni $i$, abbiamo $d = \nabla f$.
+        \item Sia $v\in \mathbb{S}^{n-1}$ con $v = (v_1,...,v_n)$ e sia $t>0$. Per linearità abbiamo $f(tv) = \langle d,tv\rangle + o(t) = t\sum_i \sum_j d_i v_j \delta_{i,j} + o(t)$ che come visto sopra è $t\sum_i\sum_j\partial_i f \cdot v_j \delta_{i,j} + o(t) = t\sum_i \partial_i f \cdot v_i + o(t)= t\langle\nabla f, v \rangle + o(t)$, dunque $\partial_v f = \langle\nabla f, v \rangle$. 
+    \end{enumerate}
+\end{proof}
+
+\subsection{Teorema del differenziale totale}
+
+\begin{theorem}{}{}
+    Sia $f: A \subset \R^n \to \R$ e $x_0 \in A$. Se $f$ è $\mc{C}^1(U_{x_0})$, allora $f$ è differenziabile in $x_0$.
+\end{theorem}
+\begin{proof}
+    Dimostriamo il caso $n=2$.\\
+    Possiamo supporre che $x_0 = 0$ e $f(0)=0$ e sia $v = (h,k)$. Abbiamo $f(v) = f(h,k) = f(h,k) - f(0, k) + f(0, k) - f(0) = \heartsuit$, che applicando il teorema di Lagrange ci dice che esistono $\xi, \zeta$ tali che $\heartsuit = f_x(\xi,k)h + f_y(0,\zeta)k$.\\
+    Ora possiamo dire
+    \[0\le\left|\frac{f(v) - \langle \nabla f(0), v\rangle}{||v||}\right| = \left|\frac{f_x(\xi,k)h + f_y(0,\zeta)k - f_x(0)h - f_y(0)k}{||v||}\right|\]
+    Per la disuguaglianza triangolare abbiamo
+    \[ \le \frac{h}{||v||}|f_x(\xi,k) - f_x(0)| + \frac{k}{||v||}|f_y(0,\zeta) - f_y(0)| \le |f_x(\xi,k) - f_x(0)| +|f_y(0,\zeta) - f_y(0)|\]
+    Mandiamo $v\to 0$ e per la continuità delle derivate quest'ultimo termine va a 0, dunque $f$ è differenziabile.
+\end{proof}
+
+\begin{remark}{}{}
+    Le implicazioni vanno così
+    \[f \in \mc{C}^1 \Harr f,f_x,f_y \in \mc{C}^0 \Rarr \forall x \exists a_x : f(x+v) = f(x) + \langle a_x, v\rangle + o(||v||) \Rarr a_x = \nabla f(x)\]
+\end{remark}
+
+\subsection{Derivazione delle funzioni composte}
+
+\begin{theorem}{}{}
+    Siano $\gamma : [0,1]\to\R^n$ e $f:\gamma([0,1])\to\R$ due funzioni $\mc{C}^1$ sui punti interni dei rispettivi domini.\\
+    Si ha $(f\circ\gamma)' = \langle(\nabla f)\circ\gamma, \gamma'\rangle$.
+\end{theorem}
+\begin{proof}
+    Sia $t \in ]0,1[$, un $h>0$ tale che $t+h \in ]0,1[$ e sia $\Delta_h \gamma(t) := \gamma(t+h)-\gamma(t)$.\\
+    In quanto $\gamma$ è $\mc{C}^1$, abbiamo $\Delta_h \gamma(t) = \gamma'(t) h + m(h)h$, dove $m(h)$ è una funzione infinitesima per $h\to 0$.\\
+    Sia $x \in A$, un $k\in \R^n$ tale che $x+k \in A$ e sia $\Delta_k f(x) := f(x+k)- f(x)$.\\
+    In quanto $f$ è $\mc{C}^1$ abbiamo $\Delta_k f(x) = \langle\nabla f(x), k\rangle + M(k)||k||$, dove $M(k)$ è una funzione infinitesima per $k\to 0$.\\
+    Prendiamo $x = \gamma(t)$ e $k = \Delta_h\gamma(t)$ e abbiamo $(\Delta_k f)(\gamma(t)) = \langle (\nabla f)(\gamma(t)), \Delta_h \gamma(t)\rangle + M(\Delta_h\gamma(t))||\Delta_h\gamma(t)||$.\\
+    Ponendo $\Delta_h (f\circ \gamma)(t) := (\Delta_k f)(\gamma(t))$ e facendo qualche sostituzione otteniamo:
+    \[\Delta_h (f\circ \gamma)(t) = \langle (\nabla f)(\gamma(t)), \gamma'(t) h + m(h)h\rangle + M(\gamma'(t) h + m(h)h)||\gamma'(t) h + m(h)h||\]
+    Dividiamo tutto per $h$ e arriviamo a
+    \[\frac{\Delta_h (f\circ \gamma)(t)}{h} = \langle (\nabla f)(\gamma(t)), \gamma'(t) + m(h)\rangle + M(\gamma'(t)h + m(h)h)||\gamma'(t) + m(h)||\]
+    E dunque mandando $h\to 0$ otteniamo
+    \[\frac{d}{dt}(f\circ\gamma)(t) = \langle (\nabla f)(\gamma(t)), \gamma'(t)\rangle\] 
+\end{proof}
+
+\subsection{Teorema di Lagrange Super Saiyan}
+
+\begin{theorem}{}{}
+    Sia $A$ un aperto di $\R^n$, sia $f:A\to\R$ una funzione $\mc{C}^1(A)$ e siano $x,y \in A$ tali che $[x,y]\subset A$.\\
+    Allora esiste $z \in [x,y]$ tale che $\langle\nabla f(z), y-x\rangle = f(y)-f(x)$.
+\end{theorem}
+\begin{proof}
+    Sia $\gamma : [0,1]\to\R^n$ la combinazione convessa $t\mapsto ty + (1-t)x$ e consideriamo $f\circ \gamma$.\\
+    Questa soddisfa le ipotesi del teorema di Lagrange, dunque esiste $l \in [0,1]$ tale che $(f\circ\gamma)'(l) = (f\circ\gamma)(1)-(f\circ\gamma)(0) = f(y)-f(x)$.\\
+    Ponendo $z = \gamma(l)$, per le regole di derivazione delle funzioni composte abbiamo
+    \[\frac{d}{dt}(f\circ\gamma) = \langle(\nabla f)\circ\gamma,\gamma'\rangle \xrightarrow{\varphi_l} \langle\nabla f(z),y-x\rangle\]
+    Segue la tesi.
+\end{proof}
+
+\subsection{Teorema di Fermat Super Saiyan}
+
+\begin{theorem}{}{}
+    Sia $A$ un aperto di $\R^n$ e sia $f:A\to\R$ una funzione $\mc{C}^1(A)$.\\
+    Se $x_0 \in A$ è un punto di massimo o minimo per $f$, si ha $\nabla f(x_0) = 0$.
+\end{theorem}
+\begin{proof}
+    Assumiamo che $x_0$ sia un punto di massimo (la dimostrazione del minimo è analoga) e consideriamo per $v \in \R^n\backslash \{0\}$ la funzione $f_v : t\mapsto f(x_0 + tv)$.\\
+    Abbiamo che $t=0$ deve essere un punto di massimo per $f_v$, dunque dobbiamo avere:
+    \[\frac{df_v}{dt}(0) = \frac{\partial f}{\partial v}(x_0)=\langle\nabla f(x_0), v\rangle=0\]
+    Dato che questo deve verificarsi per ogni $v$, abbiamo $\nabla f(x_0) = 0$.
+\end{proof}
+
+\subsection{Condizioni sufficienti per estremi locali}
+
+\begin{theorem}{}{}
+    Sia $f : A \subset \R^n\to\R$ tale che $f \in \mc{C}^2(A)$ e sia $x_0$ un suo punto critico.\\
+    Se $Q_{f,x_0}$ è definita positiva (negativa), allora $x_0$ è un punto di massimo (minimo) locale.\\
+    Se $Q_{f,x_0}$ è indefinita, allora $x_0$ è un punto di sella.\\
+    Se $Q_{f,x_0}$ è semidefinita, non possiamo dire nulla a priori sulla natura di $x_0$.
+\end{theorem}
+\begin{proof}
+    Possiamo supporre $x_0 = 0$ e $f(0) = 0$ senza perdita di generalità.\\
+    Dato che $0$ è un punto critico, abbiamo $\nabla f(0) = 0$ e $f$ è approssimata in un intorno di $0$ da $Q_{f,0}(x)+o(||x||^2)$.\\
+    Se $Q_{f,0}$ è definita positiva (negativa), in un intorno di $0$ la $f$ è strettamente maggiore (minore) di $0$, dunque è un massimo (minimo) locale.\\
+    Se $Q_{f,0}$ è indefinita, in un intorno di $0$ abbiamo sia punti in cui $f>0$ e altri in cui $f<0$, dunque è un punto di sella.\\
+    Se è semidefinita invece non possiamo dire nulla a priori.
+\end{proof}
+
+\subsection{Teorema del Dini in due variabili}
+
+\begin{theorem}{}{}
+    Sia $A$ un aperto di $\R^2$, sia $f:A\to\R$ una funzione $\mc{C}^n(A)$ con $n>1$ e sia $P_0=(x_0,y_0) \in A$ tale che $f(P_0)=0$.\\
+    Se $f_y(P_0) \neq 0$ in un intorno di $y_0$, esiste un'unica funzione $\varphi : V_{x_0} \to V_{y_0}$ di classe $\mc{C}^n(V_{x_0})$ tale che in un intorno $V=V_{x_0}\times V_{y_0}$ di $P_0$ si abbia $f(x,\varphi(x))=0$ e si abbia:
+    \[\varphi'(x)=-\frac{f_x(x,\varphi(x))}{f_y(x,\varphi(x))}\]
+\end{theorem}
+\begin{proof}
+    Supponiamo $f \in \mc{C}^k$ con $k\ge 1$ e possiamo supporre $P_0= (0,0)$ e $f_y(0,0)>0$ senza perdita di generalità.\begin{itemize}
+        \item Esistenza, unicità e continuità.\\
+        Dato che $f$ è almeno $\mc{C}^1$ e dunque $f_y$ è almeno $\mc{C}^0$, per la permanenza del segno esistono $a,b>0$ tali che per ogni $x \in [-a,a]$ e $y \in [-b,b]$ si abbia $f_y(x,y)>0$ e in particolare che $f|_x : y\mapsto z = f(x,y)$ sia minore di $0$ in $-b$ e maggiore di $0$ in $b$, in quanto (per permanenza del segno) abbiamo che ogni $f|_x$ ha uno zero.\\
+        In quanto $f|_x:[-b,b]\to\R$ è strettamente crescente per quanto scritto sopra e continua, è invertibile, dunque ammette un'unica inversa (continua, dato che $f|_x$ è invertibile su un compatto) $f|_x^{-1} : z \mapsto y$, dunque definiamo $\varphi:x \mapsto f|_x^{-1}(0)$.\\
+        In quanto la mappa $x\mapsto f_x(y)$ è continua su $[-a,a]$ per ogni $y \in [-b,b]$, abbiamo che $\varphi$ è anch'essa continua.
+        \item Formula della derivata e differenziabilità.\\
+        Abbiamo ottenuto che per ogni  $(x,y)\in[-a,a]\times [-b,b]$ si abbia $f(x,y)=0\Harr y = \varphi (x)$. Fissiamo un $x \in [-a,a]$ e prendiamo $h$ con $0<h<|a-x|$, dunque abbiamo $0 = f(x+h,\varphi(x+h)) - f(x,\varphi(x))$.\\
+        Per la differenziabilità di $f$ abbiamo che la sua variazione è uguale a (dove $w(h)$ è una funzione infinitesima per $h\to 0$)
+        \[0=\langle (\nabla f) (x,\varphi(x)), (h, \varphi(x+h) - \varphi(x)) \rangle + w(h)h = \frac{\partial f}{\partial x}(x,\varphi(x)) \cdot h + \frac{\partial f}{\partial y} (x,\varphi(x)) \cdot (\varphi(x+h) - \varphi(x)) + w(h)h\]
+        con un po' di algebra otteniamo
+        \[\frac{\varphi(x+h) - \varphi(x)}{h} = -\frac{f_x(x,\varphi(x)) + w(h)}{f_y(x,\varphi(x))}\]
+        E mandando $h\to 0$ otteniamo
+        \[\varphi'(x) = -\frac{f_x}{f_y}(x,\varphi(x))\]
+        Dato che $f$ è $\mc{C}^k$, le sue derivate prime sono $\mc{C}^{k-1}$, dunque $\varphi'$ è un multiplo scalare di un rapporto di funzioni $\mc{C}^{k-1}$ con denominatore non nullo per ipotesi, ovvero è $\mc{C}^{k-1}$ e quindi $\varphi$ è $\mc{C}^k$.
+    \end{itemize}
+\end{proof}
+
+
+\end{document}
