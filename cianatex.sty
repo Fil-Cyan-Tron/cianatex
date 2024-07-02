@@ -89,6 +89,9 @@
             \definecolor{propositioncolor}{rgb}{0.0, 0.0, 1.0} %blu standard
             \definecolor{remarkcolor}{rgb}{0.7, 0.0, 0.7} %viola :)
             \definecolor{examplecolor}{rgb}{0.85, 0.75, 0.0} %giallo
+            \definecolor{notationcolor}{rgb}{0.43, 0.21, 0.1} %Auburn (marroncino)
+            \definecolor{corollarycolor}{rgb}{0.9, 0.17, 0.31} %Amaranto (rossastro rosa)
+            \definecolor{lemmacolor}{rgb}{0.0, 0.5, 0.69} %Bluastro-ciano
 
         %Colori pastello
             \DeclareOption{pastel}{
@@ -98,7 +101,10 @@
                 \definecolor{propositioncolor}{rgb}{0.58, 0.68, 0.81} %blu pastello
                 \definecolor{remarkcolor}{rgb}{0.7, 0.5, 0.69} %viola :)
                 \definecolor{examplecolor}{rgb}{0.96, 0.6, 0.76} %magenta
-            }
+                \definecolor{notationcolor}{rgb}{0.47, 0.27, 0.23} %Bole
+                \definecolor{corollarycolor}{rgb}{1.0, 0.75, 0} %ambra
+                \definecolor{lemmacolor}{rgb}{0.0, 0.36, 0.25} %british racing green
+                }
 
         %Grigio depresso
             \DeclareOption{depression}{
@@ -108,6 +114,7 @@
                 \definecolor{propositioncolor}{rgb}{0.4, 0.4, 0.37}
                 \definecolor{remarkcolor}{rgb}{0.4, 0.4, 0.37}
                 \definecolor{examplecolor}{rgb}{0.4, 0.4, 0.37}
+                \definecolor{notationcolor}{rgb}{0.4, 0.4, 0.37}
             }
 
         %Zun
@@ -118,6 +125,7 @@
                 \definecolor{propositioncolor}{HTML}{C8D6FD}
                 \definecolor{remarkcolor}{HTML}{C8D6FD}
                 \definecolor{examplecolor}{HTML}{C8D6FD}
+                \definecolor{notationcolor}{HTML}{C8D6FD}
             }
 
 \ProcessOptions\relax
@@ -195,6 +203,7 @@
             \newcommand\de{\text{ d}} %d per gli integrali
             \newcommand\embin{\hookrightarrow} %immerso in
             \newcommand\embout{\hookleftarrow} %in cui è immerso
+            \newcommand\supp{\operatorname{supp}} %supporto
         %Shortcuts per mathcal, mathbb e mathbf
             \newcommand{\mc}[1]{\mathcal{#1}}
             \newcommand{\mbb}[1]{\mathbb{#1}}
@@ -222,3 +231,6 @@
             \newtcbtheorem[number within=subsection]{proposition}{Proposizione}{colback=white,colframe=propositioncolor!100!black,fonttitle=\bfseries, sharp corners}{prop}
             \newtcbtheorem[number within=subsection]{remark}{Osservazione}{colback=white,colframe=remarkcolor!100!black,fonttitle=\bfseries, sharp corners}{rem}
             \newtcbtheorem[number within=subsection]{example}{Esempio}{colback=white,colframe=examplecolor!100!black,fonttitle=\bfseries, sharp corners}{exmp}
+            \newtcolorbox{notation}{colback=white,colframe=notationcolor!100!black, fonttitle=\bfseries, title=Notazione, sharp corners}
+            \newtcbtheorem[number within=subsection]{corollary}{Corollario}{colback=white,colframe=corollarycolor!100!black,fonttitle=\bfseries, sharp corners}{cor}
+            \newtcbtheorem[number within=subsection]{lemma}{Lemma}{colback=white,colframe=lemmacolor!100!black,fonttitle=\bfseries, sharp corners}{lemma}

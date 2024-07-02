@@ -1,0 +1,157 @@
+\documentclass{article}
+\usepackage[pastel]{cianatex}
+
+\title{Fondamenti di Fisica Matematica - Modulo 2}
+\author{Filippo $\L$. Troncana \\ Trascrizione in \LaTeX del riassunto di Matilde Calabri delle note di Nicolò Drago}
+\date{A.A. 2023/2024}
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+\section{Lezione 1}
+
+\begin{definition}{Supporto}{}
+    Sia $X$ uno spazio topologico e $f:X\to\C$ una mappa.\\
+    Si dice \bemph{supporto} di $f$ l'insieme $\{x\in X : f(x)\neq 0\}$ e lo indichiamo come $\supp(f)$
+\end{definition}
+\begin{notation}
+    Sia $X$ uno spazio topologico e $A\subset X$ un aperto. Denotiamo con $\bar{A}$ la chiusura di $A$.
+\end{notation}
+
+\begin{remark}{}{}
+    $x \in \supp(f) \Rarr f(x)\neq 0$.
+\end{remark}
+
+\begin{definition}{Funzione differenziabile}{}
+    Sia $\Omega\subset \R^n$ un aperto non vuoto, sia $f:\Omega\to\R^m$ una funzione e sia $x_0\in\Omega$.\\
+    $f$ si dice \bemph{differenziabile} in $x_0$ se esiste una mappa lineare $L_{x_0} : \Omega\to\R^m$ tale che:
+    \[\lim_{||h||_n \to 0} \frac{||f(x_0 + h) - f(x_0) - L_{x_0}(h)||_m}{||h||_n} = 0\]
+\end{definition}
+
+\begin{remark}{}{}
+    Sia $\{e_i\}_1^n$ la base canonica di $\R^n$. Ponendo $h=e_j$, la differenziabilità di $f$ in $x_0$ implica l'esistenza della derivata parziale di $f$ lungo la direzione $e_j$ in $x_0$ e che $L_{x_0} = \nabla f (x_0)$.
+\end{remark}
+
+\begin{remark}{}{}
+    Al contrario, l'esistenza delle derivate parziali non implica la differenziabilità.
+\end{remark}
+
+\begin{proposition}{}{}
+    Sia $\Omega$ un aperto di $\R^n$ e sia $f:\Omega\to\R^m$ una funzione tale che esistano e siano continue le derivate parziali in $x_0\in\Omega$.\\
+    Allora $f$ è differenziabile in $x_0$
+\end{proposition}
+
+\begin{definition}{$\mc{C}^k$-differenziabilità}{}
+    Sia $\Omega$ un aperto di $\R^n$ e sia $f:\Omega\to\R^m$.\\
+    $f$ è $\mc{C}^k(\Omega)$, o $\mc{C}^k$\bemph{-differenziabile} su $\Omega$ se esistono continue tutte le derivate miste di ordine $k$ su $\Omega$.
+\end{definition}
+
+\begin{notation}
+    Indichiamo con $\mc{C}_c^k(\Omega)$ lo spazio delle funzioni $\mc{C}^k$-differenziabili a supporto compatto.
+\end{notation}
+
+\begin{remark}{}{}
+    $\mc{C}^k(\Omega)$ e $\mc{C}_c^k(\Omega)$ sono $\R$-spazi vettoriali
+\end{remark}
+
+\begin{definition}{}{}
+    Le funzioni contenute in $\mc{C}^\infty(\Omega) = \bigcap \mc{C}^k(\Omega)$ sono dette funzioni lisce (a supporto compatto se il loro supporto è compatto). 
+\end{definition}
+
+\begin{definition}{Differenziabilità su un chiuso}{}
+    Sia $\Omega$ un aperto di $\R^m$ e sia $\bar{\Omega}$ la sua chiusura.\\
+    Una funzione $f:\bar{\Omega}\to\R^m$ si dice $\mc{C}^k$\bemph{-differenziabile} su $\bar{\Omega}$ se le derivate di ordine $k$ sono estendibili con continuità a $\bar{\Omega}$.
+\end{definition}
+
+\section{Lezione 2}
+
+\begin{definition}{Operatore differenziale semilineare del secondo ordine}{ODS2}
+    Un operatore $D:\mc{C}^2(\Omega) \to \mc{C}^0(\Omega)$ si dice \bemph{semilineare del secondo ordine} se può essere scritto come $(Du)(x) = A(x)\times H_u(x) + \Phi(x,u(x), \nabla u(x))$ per qualsiasi $u \in \mc{C}^2(\Omega)$, dove $A(x)$ è una matrice simmetrica che dipende con continuità da $x\in\Omega$ e $\Phi$ dipende con continuità dai suoi parametri.
+\end{definition}
+
+\begin{definition}{Equazione differenziale alle derivate parziali semilineare}{}
+    Si dice \bemph{equazione differenziale alle derivate parziali semilineare} un'equazione con incognita $u$ della forma $Du = f$ dove $D$ è un operatore differenziale semilineare dato e $f$ è una funzione data.
+\end{definition}
+
+\begin{remark}{}{}
+    La definizione di \href{def:ODS2}{operatore differenziale semilineare del secondo ordine} si può generalizzare in due modi:\begin{itemize}
+        \item a funzioni a valori vettoriali, anche complessi, ma richiediamo che $A$ e $\Phi$ abbiano comunque valore reale.
+        \item a ordini $k$ arbitrari sostituendo a $H_u$ e $\nabla u$  rispettivamente il tensore derivata\footnote{Semplicemente, il tensore in cui l'elemento di multi-indice $\alpha = (i,...,j)$ corrisponde alla derivata mista delle direzioni $x_i,...,x_j$} di ordine $k$ e i tensori derivata fino all'ordine $k-1$.
+    \end{itemize}
+    Nel caso in cui $\Phi$ dovesse essere dipendente in modo lineare da $u$ e $\nabla u$, l'operatore si direbbe \bemph{lineare} come l'equazione associata.\\
+    Si può anche parlare di operatori quasilineari, in cui $A = A(x,u(x),\nabla u(x))$, e delle equazioni associate.\\
+    Vale la pena notare che questi operatori siano tutti locali, e che non dipendano da proprietà globali della funzione come ad esempio il suo integrale su $\Omega$.
+\end{remark}
+
+\begin{definition}{Diffeomorfismo}{}
+    Dati due aperti $\Omega\subset \R^n$ e $\Omega'\subset \R^m$, si dice \bemph{diffeomorfismo} di ordine $k$ una funzione $f:\Omega \to \Omega'$ $k$-differenziabile e invertibile con inversa $k$-differenziabile.
+\end{definition}
+
+\begin{theorem}{Invertibilità locale}{}
+    Siano $\Omega$ e $\Omega$ due aperti di $\R^n$ e $f:\Omega\to\Omega'$ una funzione $k$-differenziabile con $\det J_f \neq 0$ su $\Omega$.\\
+    Allora $f$ è un $k$-diffeomorfismo tra $\Omega$ e $\Omega'$.
+\end{theorem}
+
+\begin{corollary}{}{}
+    Sia $\Omega$ un aperto di $\R^n$ e sia $f:\Omega\to\R^n$ una funzione $k$-differenziabile tale che $\det J_f \neq 0$ su $\Omega$.\\
+    Allora $f(\Omega)$ è un aperto e se $f$ è iniettiva allora è un $k$-diffeomorfismo.
+\end{corollary}
+
+\begin{lemma}{}{}
+    Sia $D:\mc{C}^2(\Omega)\to\mc{C}^0(\Omega)$ un operatore differenziale del secondo ordine semilineare e sia $\tilde{x} : \Omega \to \tilde{\Omega}$ un diffeomorfismo e per ogni $u \in \mc{C}^2(\Omega)$ sia $\tilde{u} := u\circ \tilde{x} \in \mc{C}^2(\tilde{\Omega})$. Allora:\begin{itemize}
+        \item $Du = 0 \Rarr \tilde{D}\tilde{u} = 0$, dove $\tilde{D}$ è definito come $D(\tilde{x}^{-1}\circ \tilde{u})$.
+    \end{itemize}
+\end{lemma}
+
+\begin{remark}{}{}
+    Sotto cambiamenti di coordinate come nel lemma precedente, abbiamo che $A$ si trasforma in modo tensoriale, a differenza di $\Phi$, per questo sarà detto \bemph{simbolo principale} di $D$.
+\end{remark}
+
+\begin{definition}{Operatori ellittici, iperbolici e parabolici}{}
+    Sia $\Omega$ un aperto di $\R^m$ $D:\mc{C}^2(\Omega)\to\mc{C}^0(\Omega)$ un operatore differenziale semilineare del secondo ordine e sia $A$ il suo simbolo principale. Siano $(n_+,n_-,n_0)$ i numeri rispettivamente degli elementi positivi, negativi e nulli sulla diagonale di $A$ (assumiamo $\Omega$ abbastanza piccolo perchè questi siano costanti).\begin{itemize}
+        \item Se $n_+ = m$ o $n_- = m$, $D$ si dice \bemph{ellittico}.
+        \item Se $n_0=0$, $D$ si dice \bemph{iperbolico}.
+        \item Se $n_+ = 1$ e $n_- = m-1$ oppure $n_+ = m-1$ e $n_- = 1$, allora $D$ si dice \bemph{normalmente iperbolico}.
+        \item Se $n_0 \neq 0$ e $n_+ = m-n_0$ oppure $n_- = m-n_0$, allora $D$ si dice \bemph{parabolico}
+        \item Se è parabolico e $n_0 = 1$, allora si dice \bemph{normalmente parabolico}.
+    \end{itemize}
+    Lo stesso vale per le equazioni associate.
+\end{definition}
+
+\section{Lezione 3: Esempi di operatori differenziali del secondo ordine semilineari}
+
+\begin{example}{Operatore delle onde, o di D'Alembert}{}
+    Consideriamo funzioni a valori reali di un vettore $x$ di $n$ coordinate spaziali e del tempo $t$.\\
+    L'operatore delle onde (a cui è associata l'equazione delle onde):
+    \[ D(u) := \left(\frac{1}{c^2}\frac{\partial^2}{\partial t^2} - \Delta_x\right) u \quad \text{dove}\quad \Delta_x u := \frac{\partial^2 u}{\partial x_1^2} +...+ \frac{\partial^2 u}{\partial x_n^2}\]
+    Ha simbolo principale non-zero solo sulla diagonale, che ha la forma $(c^{-2},-1,...,-1,)$, dunque è iperbolico.
+\end{example}
+
+\begin{example}{Operatore di Helmholtz}{}
+    Dall'equazione delle onde, assumiamo una soluzione $u(t,x)$ della forma $e^{i\omega t}v(x)$\\
+    Allora l'operatore $e^{i\omega t}(\lambda + \Delta)$ è un operatore ellittico con $\lambda>0$ ed è detto operatore di Helmholtz.
+\end{example}
+
+\begin{example}{Operatore di Laplace normale e massivo}{}
+    Come visto sopra, l'operatore di Laplace:
+    \[\Delta u := \frac{\partial^2 u}{\partial x_1^2} +...+ \frac{\partial^2 u}{\partial x_n^2}\]
+    Ha diagonale $(1,...,1)$, come l'operatore di Laplace massivo $(\Delta - \eta^2)$, dunque è ellittico.
+\end{example}
+
+\begin{example}{Operatore del calore}{}
+    L'operatore del calore:
+    \[\frac{1}{\sigma^2} \frac{\partial}{\partial t} - \Delta_x\]
+    È un operatore parabolico avendo diagonale $(0,-1,...,-1)$
+\end{example}
+
+\section{Lezione 4: un poco di geometria differenziale}
+
+\begin{definition}{Ipersuperficie $k$-regolare}{}
+    Sia $\Sigma$ un sottoinsieme di $\R^n$.\\
+    $\Sigma$ si dice \bemph{ipersuperficie regolare} di ordine $k$ se è localmente luogo di zeri di funzioni $k$-differenziabili con gradiente non-nullo.
+\end{definition}
+
+\end{document}
