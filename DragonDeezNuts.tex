@@ -2,16 +2,27 @@
 \usepackage[pastel]{cianatex}
 
 \title{Fondamenti di Fisica Matematica - Modulo 2}
-\author{Filippo $\L$. Troncana \\ Trascrizione in \LaTeX del riassunto di Matilde Calabri delle note di Nicolò Drago}
+\author{Filippo $\L$. Troncana \\ \footnotesize Trascrizione in \LaTeX\ del riassunto di Matilde Calabri delle note del prof. Nicolò Drago, rivisitazione delle note del prof. Valter Moretti}
 \date{A.A. 2023/2024}
 
 \begin{document}
 
 \maketitle
 
+
+\begin{abstract}\normalsize
+    Tra noi studenti del corso di laura in Matematica dell'università degli studi di Trento, il professor Valter Moretti ha la fama di essere il professore dalla notazione più ostica e dai contacci più inverecondi.\\
+    Ahinoi, il suo discepolo Nicolò Drago\footnote{Detto Nick Drake in questa trattazione} si è dimostrato all'altezza di raccogliere tale eredità e purtroppo sembra che la nostra collega Matilde si stia incamminando lungo l'oscuro cammino della setta dei fisici matematici genovesi.\\
+    Al fine di salvaguardare la mia e vostra sanità mentale\footnote{Nonchè impedire l'ulteriore arricchimento di avidi oculisti}, ho deciso di provvedere (ovunque e nella misura in cui mi fosse possibile) allo snellire la notazione, usando il \bemph{poco noto} fatto che il prodotto tra matrici può essere calcolato anche senza esplicitare ciascun termine.\\
+    Qualcuno potrebbe insinuare che dietro a questa macelleria notazionale ci possa essere un'inadeguata capacità di svolgere i calcoli\footnote{E avrebbe ragione}, ma l'opinione del sottoscritto è che lavorando in spazi vettoriali con una dimensione maggiore di $2$, esplicitare le coordinate equivalga ad un autosabotaggio.\\
+    Pertanto rimango convinto che sebbene ogni tanto questo sforzo di condensazione avrà sicuramente introdotto qualche errore, il beneficio in termini di leggibilità sia soverchiante.\\
+    Buono studio a tutti voi, a morte i multi-indici e a morte la notazione di Einstein per le matrici.    
+\end{abstract}
+
+
 \tableofcontents
 
-\section{Lezione 1}
+\section{Introduzione}
 
 \begin{definition}{Supporto}{}
     Sia $X$ uno spazio topologico e $f:X\to\C$ una mappa.\\
@@ -66,10 +77,24 @@
     Una funzione $f:\bar{\Omega}\to\R^m$ si dice $\mc{C}^k$\bemph{-differenziabile} su $\bar{\Omega}$ se le derivate di ordine $k$ sono estendibili con continuità a $\bar{\Omega}$.
 \end{definition}
 
-\section{Lezione 2}
+\begin{notation}
+    Sia $\Omega \in \R^n$ un aperto e sia $f:\Omega \to \R$ una funzione derivabile due volte su $\Omega$. Denotiamo
+    \[H_f(x):=\begin{pmatrix}
+        \frac{\partial^2 f}{\partial x_1^2}(x) &\dots & \frac{\partial^2 f}{\partial x_n\partial x_1}(x)\\
+        \vdots & \ddots & \vdots \\
+        \frac{\partial^2 f}{\partial x_1\partial x_n}(x) &\dots & \frac{\partial^2 f}{\partial x_n^2}(x)
+    \end{pmatrix}\]
+    Se $f \in \mc{C}^2(\Omega)$ allora $H_f(x)$ è simmetrica.
+\end{notation}
+
+\begin{notation}
+    Siano $A = (a_{i,j})$ e $B = (b_{i,j})$ due matrici $n\times n$ sullo stesso campo $\K$. Useremo queste convenzioni:
+    \[A\times B = (c_{i,j}) = \sum_{r=1}^{n} a_{i,r} b_{r,j} \in M_{n\times n}(\K) \quad \text{e} \quad A\cdot B = \sum_{i = 1}^{n} \sum_{j=1}^{n} a_{i,j} b_{i,j} \in \K\]
+\end{notation}
+
 
 \begin{definition}{Operatore differenziale semilineare del secondo ordine}{ODS2}
-    Un operatore $D:\mc{C}^2(\Omega) \to \mc{C}^0(\Omega)$ si dice \bemph{semilineare del secondo ordine} se può essere scritto come $(Du)(x) = A(x)\times H_u(x) + \Phi(x,u(x), \nabla u(x))$ per qualsiasi $u \in \mc{C}^2(\Omega)$, dove $A(x)$ è una matrice simmetrica che dipende con continuità da $x\in\Omega$ e $\Phi$ dipende con continuità dai suoi parametri.
+    Un operatore $D:\mc{C}^2(\Omega) \to \mc{C}^0(\Omega)$ si dice \bemph{semilineare del secondo ordine} se può essere scritto come $(Du)(x) = A(x)\cdot H_u(x) + \Phi(x,u(x), \nabla u(x))$ per qualsiasi $u \in \mc{C}^2(\Omega)$, dove $A(x)$ è una matrice simmetrica che dipende con continuità da $x\in\Omega$ e $\Phi$ dipende con continuità dai suoi parametri.
 \end{definition}
 
 \begin{definition}{Equazione differenziale alle derivate parziali semilineare}{}
@@ -121,7 +146,7 @@
     Lo stesso vale per le equazioni associate.
 \end{definition}
 
-\section{Lezione 3: Esempi di operatori differenziali del secondo ordine semilineari}
+\section{Esempi di operatori differenziali del secondo ordine semilineari}
 
 \begin{example}{Operatore delle onde, o di D'Alembert}{}
     Consideriamo funzioni a valori reali di un vettore $x$ di $n$ coordinate spaziali e del tempo $t$.\\
@@ -147,7 +172,7 @@
     È un operatore parabolico avendo diagonale $(0,-1,...,-1)$
 \end{example}
 
-\section{Lezione 4: un poco di geometria differenziale}
+\section{Un poco di geometria differenziale}
 
 \begin{definition}{Ipersuperficie $k$-regolare}{}
     Sia $\Sigma$ un sottoinsieme di $\R^n$.\\
@@ -155,7 +180,345 @@
 \end{definition}
 
 \begin{remark}{}{}
-    Per il teorema del Dini, questo implica che $\Sigma$ sia localmente immagine di funzioni $k$-differenziabili.
+    La non-nullità del gradiente delle funzioni che definiscono $\Sigma$ è invariante per cambiamenti di coordinate, e in particolare abbiamo che rappresenta il vettore normale alla superficie.
+\end{remark}
+
+\begin{definition}{Ipersuperficie orientabile}{}
+    Un'ipersuperficie $\Sigma\subset\R^n$ è detta \bemph{orientabile} se esiste un campo vettoriale definito su $\Sigma$ tale che questo sia unitario e sempre normale a $\Sigma$. 
+\end{definition}
+
+\begin{definition}{}{}
+    Sia $\Omega$ un aperto non vuoto di $\R^n$ tale che $\partial\Omega$ sia un'ipersuperficie $1$-regolare.\\
+    Diciamo che un campo vettoriale $v$ \bemph{punta verso l'esterno} di $\Omega$ se è localmente il gradiente normalizzato di una funzione $S\in\mc{C}^1$  tale che $S(\partial\Omega) = \{0\}$ e $S(\Omega) = ]-\infty,0[$.
+\end{definition}
+
+Il teorema seguente è fondamentale per dotare un'ipersuperficie $k$-regolare di un sistema di coordinate speciali dette normali di Riemann.
+
+\begin{theorem}{Teorema della funzione implicita}{}
+    Sia $\Omega$ un aperto di $\R^n$, sia $f \in \mc{C}^k(\Omega)$ tale che per $x_0 \in \Omega$ si abbia $\partial_{x^i} f(x_0)\neq 0$. Inoltre per $x\in\R^n$ scriviamo $x = x^1e_1 + \hat{x}$\\
+    Allora esistono intorni aperti $\U_{x_0^1}$ dove $x_0 = x_0^1 e_1 + \hat{x_0}$ e $\U_{\hat{x}_0}$ tale che $\U_{x_0^1}\times\U_{\hat{x}_0}\subset\Omega $ ed esiste un'unica $g\in\mc{C}^k(\U_{\hat{x}_0})$ tale che $f(g(\hat{x}),\hat{x}) = f(x)$ su tutto $\U_{\hat{x}_0}$.
+\end{theorem}
+
+\begin{remark}{}{}
+    Per l'invarianza di $\nabla S \neq 0$ per cambiamenti di coordinate, d'ora in poi possiamo sempre assumere $x_0 = 0$ e che $\nabla S$ sia parallelo a $e_1$.\\
+    Questo implica anche che $g(0)=0$ e le sue derivate parziali in $\hat{x_0}$ siano nulle
+\end{remark}
+
+Con una stramarea di calcoli magici incredibili arriviamo alle \bemph{coordinate normali di Riemann} $(t,\hat{x})$ tali che su $\Sigma$ si abbia (localmente) $t=0$ e alla \bemph{misura di Lebesgue indotta} (detta misura di Hausdorff dagli esperti). 
+
+Siano $(t,\xi)$ le coordinate di Riemann definite su un aperto $\U \subset \R^n$, assumiamo che $\U=I\times\U_\Sigma$ e sia $f \in \mc{C}_c^0(\U)$ con supporto contenuto in $\U$. Se $x(t,\xi)$ è un cambiamento di coordinate e $J_x(t,\xi)$ il suo jacobiano, denotando $\tilde{f}(t,\xi) = f(x(t,\xi))$ allora vale:
+
+\[\int_{\R^n} f(x)\de^n x = \int_I \int_{\U_\Sigma} \tilde{f}(t,\xi) \cdot J_x(t,\xi) \de\xi\de t \]
+
+Dato che $f$ è continua possiamo considerare l'integrale
+
+\[\int_\Sigma f_\Sigma(y) \de S(y) = \int_{\U_\Sigma}\tilde{f}(0,\xi) \cdot J_x(0,\xi) \de\xi\]
+
+Questo definisce per "incollamento"\footnote{Non venite a chiedere a me cosa cazzo significhi} una misura sulla $\sigma$-algebra boreliana di $\Sigma$ con la topologia indotta. Quando $\Sigma$ è chiusa e orientata, denotiamo l'integrale di cui sopra con $\oint_{+\Sigma}$, dove il segno definisce l'orientazione presa in esame.
+
+Adesso ci sarebbe tutta una bella parte sul calcolo del volume o della superficie dell'ipersfera ma Dio sa che non frega nulla nè a me nè a voi.
+
+\section{Il problema di Cauchy per PDE locali}
+
+Consideriamo una PDE locale del secondo ordine della forma $F(x,u(x),\nabla u(x), H_u(x)) = 0$ con $F$ continua.
+
+\begin{definition}{Problema di Cauchy}{}
+    Sia $\Omega$ un aperto di $\R^n$ non vuoto e $\Sigma$ una $k$-ipersuperficie regolare orientabile con normale unitaria $\nu$.\\
+    Il \bemph{problema di Cauchy} per $F$ con dati in $\Sigma$ consiste nell'individuare $u$ tale che:
+    \[F(x,u(x),\nabla u(x), H_u(x)) = 0 \quad u|_\Sigma = u_0 \quad \frac{\partial u}{\partial \nu}\big{|}_\Sigma = (\nu \cdot \nabla u)|_\Sigma = u_1\]
+    Dove $u_0 \in \mc{C}^2(\Sigma)$ e $u_1 \in \mc{C}^1(\Sigma)$ sono date.
+\end{definition}
+
+Osserviamo che la regolarità richiesta di $u$ è compatibile con le regolarità date di $u_0$ e $u_1$.
+
+\begin{definition}{Buona positura nel senso di Hadamard}{}
+    Un problema di Cauchy (come sopra) si dice \bemph{ben posto nel senso di Hadamard} se la soluzione $u$ esiste, è unica e se una piccola variazione dei dati porta a una piccola variazione delle soluzioni, formalmente se fissata una topologia (ad esempio la convergenza puntuale) abbiamo che delle successioni $\{u_{0,n}\}_\N\to u_0$ e $\{u_{1,n}\}_\N\to u_1$ inducono una successione $\{u_n\}_\N\to u$.\\
+    Se almeno una delle condizioni non è rispettata, il problema si dice \bemph{mal posto}.
+\end{definition}
+
+\begin{remark}{}{}
+    La condizione di esistenza e unicità della soluzione è abbastanza una speranza naturale, mentre la condizione di piccola variazione è importante in molte applicazioni nel mondo reale perchè abbiamo sempre un qualche tipo di incertezza nelle misure; questa aspettativa potrebbe essere comunque tradita esaminando sistemi caotici, ma non sono nello scopo di questo corso.\\
+    È in effetti una condizione un po' ambigua in quanto dipendente dalla scelta di una topologia, ma è una scelta che va fatta caso per caso.
+\end{remark}
+
+\begin{example}{PDC mal posto}{}
+    Consideriamo il problema di Cauchy in $\R^2$:
+    \[\Delta u = 0 \quad u(x,0) = u_0(x) \quad \frac{\partial u}{\partial y}(x,0) = u_1(x)\]    
+    Con dati iniziali
+    \[u_{0,n}(x) = 0 \quad u_{1,n} = \frac{\sin(nx)}{n} \]
+    Fidandoci del nostro profeta Nick Drake che ci dice che è mal posto, concludiamo che è mal posto.
+\end{example}
+
+\begin{notation}
+    Ogni volta che dovremo fidarci del profeta Nick Drake useremo il simbolo \Nick.
+\end{notation}
+
+\begin{notation}
+    Sia $x = (t,\hat{x})$ e $A(x)$ la matrice dei soliti operatori semilineari vattelappesca.\\
+    Indichiamo con $A_t(x)$ la riga di $A$ attinente alle derivate su $t$ di ciascuna derivata su $\hat{x}_i$ e $A_{\hat{x}}(x)$ la sottomatrice attinente alle derivate spaziali miste.
+\end{notation}
+
+\begin{definition}{PDC in forma normale}{}
+    Consideriamo il problema di Cauchy (con $x = (t,\hat{x})$ in coordinate di Riemann sulla superficie $\Sigma$):
+    \[A(x)\cdot H_u(x) + \Phi(x, u(x), \nabla u(x)) = 0 \quad u(0,\hat{x}) = u_0(\hat{x}) \quad \frac{\partial u}{\partial t}(0,\hat{x}) = u_1(\hat{x})\]
+    Questo si dice \bemph{in forma normale} se l'equazione può essere riscritta come:
+    \[\frac{\partial^2 u}{\partial t^2} = A_t(x) \cdot \frac{\partial \nabla_{\hat{x}} u }{\partial t}(x) - A_{\hat{x}}(x) \cdot H_{u,\hat{x}}(x) - \Phi\left(x,u(x),\frac{\partial u}{\partial t}(x), \nabla_{\hat{x}} u(x) \right)\]
+\end{definition}
+
+\begin{definition}{Funzione analitica}{}
+    Sia $f \in \mc{C}^\infty(\Omega)$. Diremo che $f\in\mc{C}^\omega(\Omega)$, ovvero che $f$ è \bemph{analitica} in $\Omega$ se la sua serie di Taylor è assolutamente convergente a $f$ in $\Omega$\footnote{Nick questa cosa la esprime formalmente in modo inverecondo quindi con permesso io decido di ometterla}.
+\end{definition}
+
+\begin{theorem}{Teorema di Cauchy-Kovalevskaja}{C-K}
+    Si consideri un problema di Cauchy in forma normale come sopra tali che tutti i dati (vale a dire $u_0$, $u_1$, $\Phi$ e ogni componente di $A$) siano analitici in un tale $x_0 \in \Omega$\\
+    Allora esiste ed è unica in un intorno $\U_{x_0} \subset \Omega$ una soluzione $u\in\mc{C}^2(\U_{x_0})$ tale che $u$ sia analitica in $x_0$.
+\end{theorem}
+
+\begin{definition}{Successioni maggiorate}{}
+    Siano $F = \{f_i\}_I$ e $G = \{g_i\}_I$ due successioni di funzioni, con $f_i$ a valori in $\R$ e $g_i$ a valori in $\R$ non negativi.\\
+    Diciamo che $F$ è \bemph{maggiorata} da $G$ se per ogni $i\in I$ vale $|f_i| \le g_i$, e scriviamo $F<<G$.
+\end{definition}
+
+\section{Ipersuperfici caratteristiche per PDE semlineari}
+
+Discutiamo adesso l'estensione del teorema di \href{th:C-K}{C-K} in un dominio generale.
+
+\begin{notation}
+    Fino a contrordine, $\Omega \subset \R^n$ sarà un aperto connesso non vuoto, $\Sigma\subset\Omega$ sarà una $\mc{C}^k$-ipersuperficie regolare orientabile con normale $\nu$.
+\end{notation}
+
+Così possiamo applicare in coordinate di Riemann per ciascun $x_0 \in \Omega$ il teorema di C-K e considerare $\Omega = \R^n$ e $\Sigma = \R^{n-1}\embin\R^n$
+
+Resta il problema di poter scrivere la PDE in forma normale, possibile nei casi in cui $\Sigma$ sia appropriatamente non degenere.
+
+Consideriamo quindi il PDC per una PDE semilineare del secondo ordine:
+
+\[A(x)\cdot H_u(x) + \Phi(x,u(x),\nabla u(x)) = 0 \quad u|_\Sigma = u_0 \quad \nu \cdot \nabla u|_\Sigma = u_1\]
+
+Con molta allegria assumeremo sempre che tutti i dati siano disgustosamente analitici e ci limiteremo a studiare la possibilità di riscrittura in forma normale.
+
+Consideriamo $x_0 \in \Sigma$ e le coordinate di Riemann $x = (t,\xi_2,...,\xi_n)$ in un intorno $\U_{x_0}$.
+
+In particolare allora, un punto $x \in \U_{x_0}$ può essere parametrizzato come $x = x(t,\xi) = (t x_1 , \xi_2 x_2,...,\xi_n x_n )$, e se appartiene anche a $\Sigma$ abbiamo che $t=0$, dunque possiamo considerare la curva $t\mapsto x(t,\xi)$ che per costruzione identifica la retta normale a $\Sigma$ con origine in $x$, dunque il vettore $\nu(x)$ corrisponde alla derivata temporale di $x$ calcolata in $t=0$. Questo implica quindi che
+
+\[\frac{\partial u}{\partial \nu} (x_0) = \nu \cdot \nabla u(x_0) = \frac{\de x}{\de t}(0,\xi_0) \cdot \nabla u(x_0) = \frac{\partial \tilde{u}}{\partial t}(0,\xi_0), \quad \text{dove} \quad \tilde{u}(t,\xi) = (u\circ x)(t,\xi)\]
+
+Unendo queste considerazioni al lemma \href{lem:1.0.1}{1.0.1} possiamo riscrivere il nostro problema di Cauchy come:
+
+\[\tilde{A}_{tt}(t,\xi) \frac{\partial^2 \tilde{u}}{\partial t^2}(t,\xi) + \tilde{A}_t(t,\xi)\cdot \frac{\partial \nabla_\xi \tilde{u}}{\partial t}(t,\xi) + \tilde{A}_\xi(t,\xi) \cdot H_{\tilde{u},\xi}(t,\xi) +  \tilde{\Phi}\left(t,\xi,\tilde{u}(t,\xi), \frac{\partial \tilde{u}}{\partial t}(t,\xi), \nabla_\xi \tilde{u}(t,\xi)\right) = 0\]
+
+Con dati 
+
+\[\tilde{u}(0,\xi) = \tilde{u}_0(\xi) \quad \frac{\partial \tilde{u}}{\partial t}(0,\xi) = \tilde{u}_1(\xi)\]
+
+A questo punto una condizione sufficiente è che $\tilde{A}_{t,t}(t_0,\xi_0)\neq 0$, che per continuità implica che non lo sia in un intorno di $x_0$.
+
+\begin{corollary}{C-K per PDE semilineari}{}
+    Sia $x_0 = (0,\xi_0)\in\Sigma\subset \Omega$ tale che $\tilde{A}_{t,t}(0,\xi_0)\neq 0$ e assumiamo che negli intorni associati per gli argomenti dei dati questi siano analitici\\
+    Allora in un intorno $U_{(0,\xi_0)}\subset\Omega$ esiste ed è unica la soluzione del PDC analitica in $\U_{x_0}$.
+\end{corollary}
+
+\begin{definition}{Ipersuperficie caratteristica}{}
+    Siano $\Sigma \subset \Omega$ una $\mc{C}^k$-ipersuperficie regolare e sia $D$ un operatore differenziale semilineare del secondo ordine tali che per ogni $x_0 \in \Sigma$ esista $\U_{x_0}$ in cui $\Sigma$ sia luogo di zeri di una funzione $S$ tale che $\nabla S\neq 0$ e 
+    \[A(x) \cdot \left(\frac{\partial S}{\partial x_j}(x) \frac{\partial S}{\partial x_k}(x)\right) = 0\]
+    Allora $\Sigma$ si dice \bemph{ipersuperficie caratteristica} per $D$.
+\end{definition}
+
+Il problema di Cauchy associato a $D$ è detto \bemph{caratteristico} se i dati sono su una superficie caratteristica per $D$.
+
+\section{PDE ellittiche: problema di Dirichlet}
+
+Concentriamoci sulle PDE ellittiche, in particolare l'equazione di Poisson $-\Delta u = f$, che con $f=0$ si riduce all'equazione di Laplace.
+
+Considereremo questa equazione su $\Omega \subset \R^n$ e su $\R^n \setminus \bar{\Omega}$, dove $\Omega$ è un aperto con chiusura compatta, considereremo l'equazione come derivante dallo studio di soluzioni tempo-indipendenti dell'equazione del calore, dove $u$ rappresenta la temperatura in un continuo.
+
+In quanto equazione ellittica, non ha superfici caratteristiche \Nick e dunque il PDC è mal posto! Dobbiamo formulare allora un problema diverso:
+
+\begin{definition}{Problema di Dirichlet interno}{}
+    Consiste nel trovare $u\in\mc{C}^0(\bar{\Omega})\cap\mc{C}^2(\Omega)$ tale che:
+    \[-\Delta u = f \quad\text{su } \Omega, \qquad u|_{\partial\Omega} = u_0 \quad \text{su }\partial\Omega\] 
+    Con $f \in \mc{C}^0(\Omega)$ e $u_0 \in \mc{C}^0(\partial\Omega)$ assegnate.
+\end{definition}
+
+\begin{definition}{Problema di Dirichlet esterno}{}
+    Consiste nel trovare $u \in \mc{C}^0(\R^n \setminus \Omega)\cap\mc{C}^2(\R^n \setminus \bar{\Omega})$ tale che:
+    \[-\Delta u = f \quad\text{su } \R^n \setminus \bar{\Omega}, \qquad u|_{\partial\Omega} = u_0 \quad \text{su }\partial\Omega, \qquad \lim_{R\to\infty} \max_{\partial B_R(0)} |u-u_\infty| = 0\]
+    Con $u_\infty \in \R$ dato e $f \in \mc{C}^0(\R^n \setminus \bar{\Omega})$ e $u_0 \in \mc{C}^0(\partial\Omega)$ assegnate.
+\end{definition}
+
+A che ci interessano questi problemi? A poco in realtà, su domini generici, ma sappiamo che la soluzione esiste ed è unica; proviamo a studiarli con dati $f= 0$, $u_0 = 0$ e $u_\infty = 0$.
+
+\begin{definition}{Funzioni armoniche}{}
+    Sia $\Omega$ un aperto di $\R^n$ e sia $u\in\mc{C}^2(\Omega)$. Allora\begin{itemize}
+        \item Se $-\Delta u \le 0$ allora $u$ si dice \bemph{subarmonica}
+        \item Se $-\Delta u \ge 0$ allora $u$ si dice \bemph{superarmonica}
+        \item Se $-\Delta u = 0$ allora $u$ si dice \bemph{armonica}
+    \end{itemize}
+\end{definition}
+
+Le funzioni subarmoniche in particolare ci permettono di generalizzare il fatto che in un intervallo $[a,b]$ una funzione lineare o convessa ha massimo in $a$ o $b$.
+
+\begin{theorem}{Principio del massimo}{}
+    Sia $u\in\mc{C}^0(\bar{\Omega})\cap\mc{C}^2(\Omega)$. Valgono le seguenti:\begin{itemize}
+        \item Se $u$ è subarmonica, \[\max_{\bar{\Omega}}u = \max_{\partial\Omega}u\] (analogamente per il minimo con le superarmoniche)
+        \item Se $u$ è armonica, \[\max_{\bar{\Omega}} u = \max_{\partial\Omega}u, \quad \min_{\bar{\Omega}} u = \min_{\partial\Omega}u, \quad \max_{\bar{\Omega}}|u| = \max_{\partial\Omega}|u|\]
+    \end{itemize}
+\end{theorem}
+
+\begin{proof}
+    Banalmente, dato che $\partial\Omega\subset\bar{\Omega}$, abbiamo \[\max_{\partial\Omega} u \le \max_{\bar{\Omega}} u\]
+    Assumiamo che $-\Delta u < 0$ e sia $x_0\in\bar{\Omega}$ punto di massimo per $u$ su $\bar{\Omega}$.\\
+    Se $x_0\in\partial\Omega$, banale, quindi assumiamo che $x_0\in\Omega$\\
+    Abbiamo in particolare che $\nabla u (x_0) = 0$ in quanto punto critico e che $H_u(x_0)$ è definita positiva, dunque in un intorno di $x_0$ il valore di $u$ è maggiore di $u(x_0)$, ma questa è una contraddizione, dunque abbiamo che $x_0\in\partial\Omega$.\\
+    Ora assumiamo $-\Delta u \le 0$ e per $\varepsilon>0$ definiamo $u_\varepsilon(x) = u(x)+\varepsilon ||x||^2$, e abbiamo abbastanza evidentemente che $-\Delta u_\varepsilon < 0$, quindi:
+    \[\max_{\bar{\Omega}}u \le \max{\bar{\Omega}} u_\varepsilon = \max_{\partial\Omega} u_\epsilon \le \max_{\partial\Omega} u + \varepsilon \max_{\partial\Omega}||x||^2 =: \max_{\partial\Omega} u + \varepsilon c \]
+    Mandando $\varepsilon\to 0$ otteniamo la tesi.\\
+    Nel caso in cui $-\Delta u = 0$ abbiamo che $\pm u$ sono subarmoniche e la tesi segue banalmente.
+\end{proof}
+
+\begin{remark}{}{}
+    Abbiamo dimostrato anche che se una funzione è strettamente subarmonica, nei punti interni è strettamente più piccola del suo massimo sulla frontiera, inoltre il teorema vale per qualsiasi operatore della forma:
+    \[Du(x) = A(x)\cdot H_u(x) + b(x)\cdot \nabla u(x)\]
+    Dove $A(x)$ è definita positiva e $A(x),b(x)\in\mc{C}^0(\bar{\Omega})$
+\end{remark}
+
+\begin{theorem}{Unicità della soluzione del PDD interno}{}
+    Siano $f\in\mc{C}^0(\Omega)$, $u_0\in \mc{C}^0(\partial\Omega)$ e $u\in\mc{C}^0(\bar{\Omega})\cap\mc{C}^2(\Omega)$ tali che $u$ sia soluzione del PDD interno con dati $f$ e $u_0$.\\
+    Se $u$ esiste, è unica.
+\end{theorem}
+\begin{proof}
+    Siano $u,u'$ due soluzioni con gli stessi dati iniziali. Abbiamo che $v = v-v'$ risolve il PDD interno con dati iniziali nulli. Dunque abbiamo che $\Delta v = 0$ e $v|_{\partial\Omega} = 0$, quindi è armonica e per il principio del massimo abbiamo
+    \[\max_{\bar{\Omega}}|v| = \max_{\partial\Omega} |v| = 0 \Rarr v=0\Harr u=u' \]
+\end{proof}
+
+\begin{remark}{}{}
+    Usando il principio del massimo, possiamo provare che l'esempio \href{exmp:4.0.1}{4.0.1} non ammette soluzione, in particolare perchè l'armonicità è una condizione abbastanza forte da rendere troppo stringenti le condizioni sulla derivata prima.\\
+    Inoltre, il PDD interno con $f=0$ è ben posto! Abbiamo esistenza e unicità, ci manca solo la dipendenza continua dai dati.
+\end{remark}
+\begin{proof}
+    Usiamo la norma $||\cdot||_\infty =: ||\cdot ||$ in $\mc{C}^0$ e siano $u,u'$ soluzioni con dati iniziali $u_0,u_0'$. Allora abbiamo che 
+    \[||u-u'|| = \max_{\bar{\Omega}} |u-u'| = \max_{\partial\Omega} |u-u'| = ||u_0-u_0'||\]
+\end{proof}
+
+\begin{theorem}{Unicità delle soluzioni del PDD esterno}{}
+    Siano $f\in\mc{C}^0(\R^n\setminus\bar{\Omega})$, $u_0\in \mc{C}^0(\partial\Omega)$, $u_\infty \in \R$ e $u\in\mc{C}^0(\R^n\setminus\Omega)\cap\mc{C}^2(\R^n\setminus\bar{\Omega})$ tali che $u$ sia soluzione del PDD esterno con dati $f$, $u_0$ e $u_\infty$.\\
+    Se $u$ esiste, è unica.
+\end{theorem}
+\begin{proof}
+    Siano $u,u'$ due soluzioni diverse con gli stessi dati, dunque consideriamo $v = u-u'$ che è soluzione del PDD esterno con dati nulli.\\
+    In quanto $\bar{\Omega}$ è compatto, esiste $R>0$ tale che $\bar{\Omega}\subset B_R(0)$, dunque definiamo $\Omega_R := B_R(0) \setminus \bar{\Omega}$ che è un aperto con chiusura compatta $\bar{\Omega}_R = \bar{B}_R(0)\setminus\Omega$ e frontiera $\partial\Omega_R = \partial B_R(0) \cup \partial\Omega$.\\
+    $v$ è armonica in $\R^n\setminus \bar{\Omega}$ dunque lo è anche in $\Omega_R$, quindi abbiamo
+    \[|v|\le \max_{\bar{\Omega}_R}|v| = \max_{\partial B_R(0)} |v| \xrightarrow{R\to +\infty} 0  \Rarr v = 0 \Harr u=u'\]
+\end{proof}
+
+\section{PDE ellittiche: problemi di Neumann e Robin}
+
+\begin{notation}
+    Ricordiamoci che $\nabla f$ è il gradiente, ovvero il vettore delle derivate prime, $\nabla \cdot f$ è la divergenza, ovvero la somma delle derivate prime e $\nabla\cdot\nabla f = (\nabla \cdot\nabla) f = \Delta f$ è il laplaciano, ovvero la somma delle derivate seconde.
+\end{notation}
+
+\begin{theorem}{Teorema della divergenza di Gauss}{gauss}
+    Sia $\Omega$ un aperto di $\R^n$ la cui frontiera è una $\mc{C}^k$-ipersuperficie regolare con normale $\nu$ e misura di Lebesgue indotta $S$ e sia $F:\bar{\Omega}\to\R^n$ un campo vettoriale $\mc{C}^1(\Omega)$ e $\mc{C}^0(\bar{\Omega})$. Allora vale
+    \[\int_\Omega \nabla \cdot F \de^n x = \oint_{+\partial\Omega} F \cdot\nu \de S\]
+\end{theorem}
+
+\begin{remark}{}{}
+    Nel caso $n=1$ con $\Omega =]a,b[$, si riduce al TFC.
+\end{remark}
+
+\begin{theorem}{Identità di Green}{green}
+    Siano $u_1 \in \mc{C}^1(\bar{\Omega})$ e $u_2 \in \mc{C}^2(\bar{\Omega})$. Vale:
+    \[\int_{\Omega} u_1\Delta u_2 \de^n x = \oint_{+\partial\Omega} u_1 \frac{\partial u_2}{\partial \nu}\de S - \int_\Omega \nabla u_1 \cdot \nabla u_2 \de^n x \]
+    Inoltre, se $u_1 \in \mc{C}^2(\bar{\Omega})$ vale:
+    \[\int_\Omega u_1\Delta u_2 - u_2 \Delta u_1 \de^n x = \oint_{+\partial\Omega} u_1 \frac{\partial u_2}{\partial \nu} - u_2 \frac{\partial u_1}{\partial \nu} \de S\]
+\end{theorem}
+
+\begin{remark}{}{}
+    Nel caso $n=1$ con $\Omega =]a,b[$, si riduce a:
+    \[\int_a^b u_1 u_2'' - u_2 u_1'' \de x = [u_1u_2' - u_2u_1']_a^b\]
+\end{remark}
+
+\begin{definition}{Problemi di Neumann e Robin}{}
+    Trovare $u \in \mc{C}^2(\Omega)\cap\mc{C}^1(\bar{\Omega})$ tale che:
+    \[-\Delta u = f \quad \text{su }\Omega, \qquad \frac{\partial u}{\partial\nu} + \alpha u = u_1 \quad\text{su }\partial\Omega\]
+    Con $f \in \mc{C}^0(\Omega)$ e $u_1 \in \mc{C}^0(\partial\Omega)$ e $\alpha \ge 0$.\\
+    Se $\alpha = 0$ si dice \bemph{problema di Neumann}, altrimenti \bemph{problema di Robin}.
+\end{definition}
+
+\begin{remark}{}{}
+    In un PDN i dati non possono essere assegnati in modo indipendente:
+    \[\int_\Omega f\de^n x = \int_\Omega -\Delta u \de^n x = \int_\Omega -\nabla \cdot \nabla u \de^n x = \oint_{+\partial \Omega} - \nabla u \cdot \nu \de S = -\int_{\partial \Omega} u_1 \de S\]
+\end{remark}
+
+\begin{remark}{Interpretazione fisica del PDN e PDR per l'equazione del calore}{}
+    Sia $u$ la temperatura di equilibrio in $\Omega$, allora abbiamo che  $q = -k\nabla u $ è il flusso di calore in $\Omega$ secondo la legge di Fourier, con $k>0$\footnote{se $k$ fosse negativo avremmo un flusso di calore dal freddo al caldo... esotico direi!}. Se nel PDD assegnavamo una temperatura al bordo, ora assegnamo un flusso di calore verso $\Omega$.\begin{itemize}
+        \item Nel caso in cui $\alpha=0$, ovvero il PDN, avremmo \[u_1 = \frac{\partial u}{\partial \nu} = \nabla u \cdot \nu = \frac{-q\cdot \nu}{k}\] E in questo modo giustifichiamo anche la condizione \[\int_\Omega f\de^n x =-\int_{\partial \Omega} u_1 \de S\] Dato che $f$ deve modellare le sorgenti di calore interne a $\Omega$.
+        \item Nel caso in cui $\alpha > 0$, ovvero il PDR, cerchiamo di modellare un caso in cui il flusso di calore può variare, entrante o uscente, in quanto non ho delle condizioni adeguate nè per il PDD nè per il PDN.
+    \end{itemize}
+\end{remark}
+
+\begin{lemma}{Corollario del teorema di Lagrange}{lagrange}
+    Sia $f\in\mc{C}^1(\Omega)$ tale che $\Omega$ sia connesso.\\
+    Se $\nabla f = 0$, allora $f$ è costante su $\Omega$.
+\end{lemma}
+
+\begin{theorem}
+    Sia $u \in \mc{C}^2(\Omega)\cap\mc{C}^1(\bar{\Omega})$ che risolva un PDN o PDR con dati $f$, $u_1$ e $\alpha$.\\
+    Se $\alpha=0$, $u$ è unica a meno di costanti.\\
+    Se $\alpha>0$, $u$ è unica.
+\end{theorem}
+
+\begin{proof}
+    Siano $u,u'$ due soluzioni coi medesimi dati iniziali. Allora $v := u-u'$ risolve il problema con dati iniziali nulli, ovvero:\begin{itemize}
+        \item Nel PDN:
+        \[0 = \int_\Omega v\Delta v \de^n x = \oint_{+\partial\Omega} 0 v\de S - \int_\Omega ||\nabla v||^2 \de^n x \Rarr \nabla v = 0\] Dunque $v$ è costante, ovvero le soluzioni $u$ e $u'$ sono al massimo differenti per una costante.
+        \item Nel PDR:
+        \[0 = \int_\Omega v\Delta v \de^n x = -\alpha \oint_{+\partial\Omega} v^2 \de S - \int_\Omega ||\nabla v||^2 \de^n x\] Dunque abbiamo che $v$ è costante come sopra e che il suo quadrato ha integrale nullo, dunque $v=0$ e le soluzioni sono la stessa.
+    \end{itemize}
+\end{proof}
+
+\begin{remark}{}{}
+    Nel caso del PDN, pensiamo a un thermos, che non scambia calore con l'esterno. Tutte le distribuzioni uniformi di temperatura sono soluzioni al PDN con dati nulli, perchè senza flusso di calore da/verso l'esterno, all'equilibrio avremo una temperatura costante.\\
+    E se $a<0$? In tal caso non avremmo l'unicità, basti pensare al problema in $n=2$ con $\Omega = B_1(0)$, $f$ nulla come $u_1$ e $\alpha = -1$, poichè avremmo come soluzioni ad esempio $u(x,y)=0$ e $u(x,y) = ax+by$ con $(a,b)\neq(0,0)$
+\end{remark}
+
+\section{PDE ellittiche: la soluzione fondamentale}
+
+Cerchiamo $u \in \mc{C}^2(\R^n)$ tale che $\Delta u = 0$ e $u(x) = \tilde{u}(z)$ con $z = ||x||^2$, ovvero soluzioni che presentino una simmetria radiale.
+
+Abbiamo
+
+\[\frac{\partial^2 u}{\partial x_i^2} = \frac{\partial}{\partial x_i} [2x_i\tilde{u}(z)] = 4x_i^2 \tilde{u}(z) + 2\tilde{u}'(z)\]
+
+Sommando per ogni $i \in \{1,...,n\}$ e imponendo $\Delta u = 0$ otteniamo $4z\tilde{u}''(z) + 2n\tilde{u}'(z) = 0$ e possiamo risolvere quest'equazione! Dividiamoci in due casi:\begin{itemize}
+\item Nel caso $n>2$
+\begin{remark}{Consistenza dimensionale}{}
+    Notiamo che se $z$ è una lunghezza, allora abbiamo che $\dim 2n\tilde{u}'(z) = [L]^{-1}\dim \tilde{u}$ e quindi $\dim 4z \tilde{u}''(z) = [L][L]^{-2}\dim\tilde{u} = [L]^{-1}\dim \tilde{u}$, dunque la nostra equazione è dimensionalmente consistente.
+\end{remark}
+
+Il fatto che sia dimensionalmente consistente ci suggerisce di scegliere $\tilde{u}(z) = z^\alpha$ con $\alpha \in \R$ da determinare. Abbiamo
+
+\[4\alpha(\alpha-1)z^{\alpha-1} + 2n\alpha z^{\alpha - 1} = 0 \Rarr \alpha(2\alpha - 2 - n) = 0 \Rarr \alpha = 0 \quad \text{o}\quad \alpha = \frac{2-n}{2}\]
+
+Il che ci porta a $\tilde{u}(z) = az^0 + b\sqrt{z}^{2-n}$ e dunque a $u(x) = a + b||x||^{2-n}$
+
+\item Nel caso in cui $n=2$ invece ottengo $z\tilde{u}''(z) + \tilde{u}'(z) = [z\tilde{u}'(z)]'=0$ ovvero $z\tilde{u}'(z) = c$ e quindi $\tilde{u}(z) = c\log(x) + b$
+\end{itemize}
+
+Purtroppo non ottengo funzioni su tutto $\R^n$, ma proviamo a dedicarci solo a $\R^n\setminus\{0\}$.
+
+\begin{definition}{Soluzione fondamentale dell'equazione di Laplace}{}
+    Sia $n\ge 2$ e sia $G_n : \R^n\setminus\{0\}\to\R$ definita in questo modo:\begin{itemize}
+        \item Se $n=2$ \[G_2(x) = \tilde{G}_2(||x||) \quad \text{dove} \quad \tilde{G}_2(z) = \frac{1}{4}\log(z)\]
+        \item Se $n>2$ \[G_n(x) = \tilde{G}_n(||x||) \quad \text{dove} \quad \tilde{G}_n(z) =\frac{1}{(2-n)\omega_n} z^{2-n}\]
+    \end{itemize}
+    Dove $\omega_n$ è la misura di $\partial B_1(0)\subset \R^n$
+\end{definition}
+
+\begin{remark}{Ma perchè fondamentale?}{}
+    Scegliamo $R>0$ e prendiamo $\Omega = B_R(0)$, dunque $\nu = R^-1 x$. Abbiamo che per ogni $n\ge 2$, si ha:
+    \[\frac{\partial G_n}{\partial \nu} = \nabla G_n \cdot \nu = \frac{\partial \tilde{G}_n}{\partial R} =\frac{1}{R^{n-1}\omega_n}\]
+    Ovvero il reciproco della misura di $\partial B_R(0)\subset \R^n$.
 \end{remark}
 
 \end{document}
