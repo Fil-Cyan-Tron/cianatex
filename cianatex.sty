@@ -27,7 +27,7 @@
         %Teoremi
             %\RequirePackage{amsthm}
         %Box colorate
-            \RequirePackage{tcolorbox}
+            \RequirePackage[most]{tcolorbox}
             \tcbuselibrary{theorems}
 
     %Tabelle
@@ -211,6 +211,7 @@
             \newcommand\supp{\operatorname{supp}} %supporto
             \newcommand\Nick{\ability[positive]{charisma}[frame=spellschool, scale=0.5]\:} %proof by nick drake
             \renewcommand\S{\mathbb{S}} %Sfera
+            \newcommand\Loc{\operatorname{L}_{\text{loc}}}
         %Shortcuts per mathcal, mathbb e mathbf
             \newcommand{\mc}[1]{\mathcal{#1}}
             \newcommand{\mbb}[1]{\mathbb{#1}}
@@ -231,13 +232,13 @@
     %Ambienti
 
         %Teoremi, proposizioni et cetera
-            \newtcbtheorem[number within=subsection]{theorem}{Teorema}{colback=white,colframe=theoremcolor!100!black,fonttitle=\bfseries, sharp corners}{th}
-            \newtcolorbox{proofbox}{colback=white,colframe=proofcolor!100!black, fonttitle=\bfseries, title=Dimostrazione, sharp corners}
+            \newtcbtheorem[number within=subsection]{theorem}{Teorema}{enhanced,breakable,colback=white,colframe=theoremcolor!100!black,fonttitle=\bfseries,sharp corners}{th}
+            \newtcolorbox{proofbox}{enhanced,breakable,colback=white,colframe=proofcolor!100!black, fonttitle=\bfseries, title=Dimostrazione,sharp corners}
             \newenvironment{proof}{\proofbox}{\begin{flushright}$\square$\end{flushright}\endproofbox}
-            \newtcbtheorem[number within=subsection]{definition}{Definizione}{colback=white,colframe=definitioncolor!100!black,fonttitle=\bfseries, sharp corners}{def}
-            \newtcbtheorem[number within=subsection]{proposition}{Proposizione}{colback=white,colframe=propositioncolor!100!black,fonttitle=\bfseries, sharp corners}{prop}
-            \newtcbtheorem[number within=subsection]{remark}{Osservazione}{colback=white,colframe=remarkcolor!100!black,fonttitle=\bfseries, sharp corners}{rem}
-            \newtcbtheorem[number within=subsection]{example}{Esempio}{colback=white,colframe=examplecolor!100!black,fonttitle=\bfseries, sharp corners}{exmp}
-            \newtcolorbox{notation}{colback=white,colframe=notationcolor!100!black, fonttitle=\bfseries, title=Notazione, sharp corners}
-            \newtcbtheorem[number within=subsection]{corollary}{Corollario}{colback=white,colframe=corollarycolor!100!black,fonttitle=\bfseries, sharp corners}{cor}
-            \newtcbtheorem[number within=subsection]{lemma}{Lemma}{colback=white,colframe=lemmacolor!100!black,fonttitle=\bfseries, sharp corners}{lemma}
+            \newtcbtheorem[number within=subsection]{definition}{Definizione}{enhanced,breakable,colback=white,colframe=definitioncolor!100!black,fonttitle=\bfseries,sharp corners}{def}
+            \newtcbtheorem[number within=subsection]{proposition}{Proposizione}{enhanced,breakable,colback=white,colframe=propositioncolor!100!black,fonttitle=\bfseries,sharp corners}{prop}
+            \newtcbtheorem[number within=subsection]{remark}{Osservazione}{enhanced,breakable,colback=white,colframe=remarkcolor!100!black,fonttitle=\bfseries,sharp corners}{rem}
+            \newtcbtheorem[number within=subsection]{example}{Esempio}{enhanced,breakable,colback=white,colframe=examplecolor!100!black,fonttitle=\bfseries,sharp corners}{exmp}
+            \newtcolorbox{notation}{enhanced,breakable,colback=white,colframe=notationcolor!100!black, fonttitle=\bfseries, title=Notazione,sharp corners}
+            \newtcbtheorem[number within=subsection]{corollary}{Corollario}{enhanced,breakable,colback=white,colframe=corollarycolor!100!black,fonttitle=\bfseries,sharp corners}{cor}
+            \newtcbtheorem[number within=subsection]{lemma}{Lemma}{enhanced,breakable,colback=white,colframe=lemmacolor!100!black,fonttitle=\bfseries,sharp corners}{lemma}

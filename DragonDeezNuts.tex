@@ -462,7 +462,7 @@ Le funzioni subarmoniche in particolare ci permettono di generalizzare il fatto 
     Se $\nabla f = 0$, allora $f$ è costante su $\Omega$.
 \end{lemma}
 
-\begin{theorem}
+\begin{theorem}{}{}
     Sia $u \in \mc{C}^2(\Omega)\cap\mc{C}^1(\bar{\Omega})$ che risolva un PDN o PDR con dati $f$, $u_1$ e $\alpha$.\\
     Se $\alpha=0$, $u$ è unica a meno di costanti.\\
     Se $\alpha>0$, $u$ è unica.
@@ -520,5 +520,193 @@ Purtroppo non ottengo funzioni su tutto $\R^n$, ma proviamo a dedicarci solo a $
     \[\frac{\partial G_n}{\partial \nu} = \nabla G_n \cdot \nu = \frac{\partial \tilde{G}_n}{\partial R} =\frac{1}{R^{n-1}\omega_n}\]
     Ovvero il reciproco della misura di $\partial B_R(0)\subset \R^n$.
 \end{remark}
+
+\begin{definition}{Funzione localmente sommabile}{}
+    Sia $f:\R^n \to \R$.\\
+    $f$ si dice \bemph{localmente sommabile} se per ogni aperto $\Omega$ a chiusura compatta si ha che $f|_\Omega$ è sommabile.\\
+    Scriveremo $f \in \Loc^1(\R^n)$.
+\end{definition}
+
+\begin{lemma}{}{}
+    Sia $\Omega$ un aperto di $\R^n$ e sia $f:\Omega\to\R$ una funzione $\mc{C}^0(\Omega)$. Allora per ogni $x_0 \in \Omega$ vale:
+    \[\lim_{\varepsilon\to 0} \frac{1}{|\partial B_\varepsilon (x_0)|}\oint_{\partial B_\varepsilon(x_0)}f(x)\de S(x) = f(x_0)\]
+\end{lemma}
+
+\begin{lemma}{}{}
+    Sia $f \in \mc{C}^2_c(\R^n)$ e sia $u:\R^n\to\R$ definita come
+    \[u(x) := \int_{\R^n} \frac{f(y)}{||x-y||^{n-2}}\de^n y\]
+    Allora $u\in\mc{C}^2(\R^n)$ e vale
+    \[\frac{\partial^2 u}{\partial x_j \partial x_k} = \int_{\R^n} \frac{1}{||x-y||^{n-2}}\frac{\partial^2 f}{\partial x_j\partial x_k}(y)\de^n y\]
+\end{lemma}
+
+\begin{theorem}{}{}
+    Sia $n\ge 2$ e sia $x_0 \in \R^n$. Valgono le seguenti:\begin{itemize}
+        \item $G_n \in \mc{C}^\infty(\R^n \setminus \{0\})\cap \Loc^1(\R^n)$
+        \item $\Delta G_n(x) = 0$ per qualsiasi $x \in \R^n \setminus \{0\}$
+        \item Per una qualsiasi $f\in\mc{C}^2_c(\R^n)$ e per ogni $x \in \R^n$ vale:
+        \[\int_{\R^n}G_n(x-y)\Delta f(y) \de^n y = f(x)\]
+        \item Per una qualsiasi $f\in\mc{C}^2_c(\R^n)$, la mappa $u:\R^n\to\R$ definita come
+        \[u(x) = \int_{\R^n} G_n(x-y)f(y)\de^n y\]
+        è ben definita, $u\in \mc{C}^2(\R^n)$ e $\Delta u = f$. 
+    \end{itemize}
+\end{theorem}
+\begin{proof}
+    Consideriamo solo il caso $n>2$, il caso $n=2$ è analogo.\begin{itemize}
+        \item Il fatto che sia $\mc{C}^\infty$ è automatico dalla definizione, è una composizione di mappe $\mc{C}^\infty$ sul dominio, mentre per dimostrare l'integrabilità locale basta integrare su una palla arbitraria:
+        \[\int_{B_{R_0}(0)} G_n(x)\de^n x = \int_0^{R_0} \oint_{\partial B_R(0)}\frac{R^{2-n}}{(n-n)\omega_n}\de\Omega_n R^{n-1}\de R = \frac{1}{n-2}\int_0^{R_0} R\de R < +\infty\]
+        \item Segue dalla costruzione.
+        \item Prendiamo $f\in\mc{C}^2_c(\R^n)$ e innanzitutto notiamo che l'integrale (che chiameremo $I$) è effettivamente finito (in quanto il supporto di $f$ è contenuto in una qualche palla di centro $x$ e raggio $R$), dunque possiamo scrivere
+        \[ \int_{\R^n} G_n(x-y)\Delta f(y) \de^n y \le \int_{B_R(x)}|G_n(x-y)|\cdot |\Delta f(y)|\de^n y \le \sup|\Delta f|\int_{B_R(x)} |G_n(x-y)|\de^n y < +\infty  \]
+        Ora dobbiamo solo dimostrare l'identità usando il corollario della convergenza dominata\footnote{Leggerete spesso queste parole.}
+        \[\int_{\R^n} G_n(x-y)\Delta f(y) \de^n y = \lim_{\varepsilon \to 0} \int_{B_R(x)\setminus B_\varepsilon(x)}G_n(x-y)\Delta f(y) \de^n y = \lim_{\varepsilon\to 0} \int_{B_R(x)} \chi_{B_\varepsilon(x)^c}G_n(x-y)f(y)\de^n y\]
+        Dove in particolare
+        \[|\chi_{B_\varepsilon(x)^c}G_n(x-y)\Delta f(y)|\le|G_n(x-y)\Delta f(y)| \in L^1(B_R(x))\]
+        Dato che $G_n(x-y)$ è singolare se e solo se $x=y$, possiamo applicare Green
+        \[I = \lim_{\varepsilon \to 0} \int_{B_R(x)\setminus B_\varepsilon(x)}\Delta G_n(x-y) f(y) \de^n y + \lim_{\varepsilon\to 0} \oint_{\partial [B_R(x)\setminus B_\varepsilon(x)]} G_n(x-y)\frac{\partial f}{\partial \nu}(y) - \frac{\partial G_n}{\partial \nu}(x-y) f(y)\de S(y)\]
+        Ma dato che $\Delta G_n= 0$ diventa
+        \[I=\lim_{\varepsilon\to 0}\oint_{\partial B_\varepsilon(x)}\frac{\partial G_n}{\partial \nu}(x-y)f(y)\de S(y) - \lim_{\varepsilon\to 0}\oint_{\partial B_\varepsilon(x)}\frac{\partial f}{\partial \nu}(y)G_n(x-y)\de S(y) =: A-B\]
+        Studiamo $A$:
+        \[\lim_{\varepsilon\to 0}\oint_{\partial B_\varepsilon(x)}\frac{\partial G_n}{\partial \nu}(x-y)f(y)\de S(y) = \lim_{\varepsilon\to 0} \frac{1}{\partial B_\varepsilon(x)}\oint_{\partial B_\varepsilon(x)}f(y)\de S(y) = f(x)\]
+        Studiamo $B$:
+        \[\left|\oint_{\partial B_\varepsilon(x)}\frac{\partial f}{\partial \nu}(y)G_n(x-y)\de S(y)\right|\le \oint_{\partial B_\varepsilon(x)}\left|\frac{\partial f}{\partial \nu}(y)\right||G_n(x-y)|\de S(y)\le |\tilde{G}_n(\varepsilon)|\oint_{\partial B_\varepsilon(x)}\left|\frac{\partial f}{\partial \nu}(y)\right|\de S(y)\le\]
+        \[\le \sup||\nabla f|| \tilde{G}_n(\varepsilon) \omega_n \varepsilon^{n-1} = c\varepsilon \to 0\]
+        \item La buona definizione e doppia differenziabilità di $u$ seguono dal lemma di sopra, dobbiamo dimostrare $\Delta u = f$
+        \[\Delta u(x) = \int_{\R^n} G_n(z) \Delta f(x-z)\de^n z = \int_{\R^n} G_n(x-y)\Delta f(y)\de S(y) = f(x)\]
+    \end{itemize}
+\end{proof}
+
+\begin{remark}{}{}
+    Il quarto punto funziona anche assumendo che $f$ sia semplicemente continua a supporto compatto, $u$ rimane ben definita ma bisogna dimostrare che sia $\mc{C}^2(\R^n)$ e che $\Delta u = f$.
+\end{remark}
+\begin{proof}
+    Sia $g \in \mc{C}^2_c(\R^n)$ e assumiamo $u \in \mc{C}^2(\R^n)$. Consideriamo
+    \[\int_{\R^n}\Delta u (x) g(x) \de^n x = \int_{\R^n}u(x)\Delta g(x)\de^n x = \int_{\R^n}\int_{\R^n}G_n(x-y)f(y)\Delta g(x)\de^n y\de^n x = \int_{\R^n} f(x)g(x)\de^n x\]
+    Che implica che per qualsiasi $g \in \mc{C}^2_c(\R^n)$ vale
+    \[\int_{\R^n}(\Delta u - f)(x)g(x)\de^n x = 0\]
+    Ovvero $\Delta u = f$.
+\end{proof}
+
+\begin{theorem}{}{}
+    Sia $n>2$ e consideriamo il PDD su $\R^n$ con dati $f \in \mc{C}^2_c(\R^n)$ e $u_\infty\in\R$:
+    \[-\Delta u = f \quad \text{e}\quad \lim_{x\to\infty}|u(x)-u_\infty|\]
+    Allora esiste ed è unica $u \in \mc{C}^2(\R^n)$ che in particolare è definita come:
+    \[u(x):= u_\infty - \int_{\R^n} G_n(x-y)f(y)\de^n y\]
+    Inoltre esistono $R,C>0$ tali che 
+    \[|u(x) - u_\infty| \le \frac{C}{||x||^{n-2}}||f||_1 \quad \text{e}\quad \supp(f) \subset B_R(0)\]
+\end{theorem}
+\begin{proof}
+    L'unicità l'abbiamo dimostrata prima, l'esistenza segue dalla definizione con il teorema di prima, manca da dimostrare la limitatezza (l'esistenza di $R$ segue direttamente da Heine-Borel)\\
+    Per ogni $R>0$ e $y \in B_R(0)$ vale $||x||\le ||x-y||+||y||\le ||x-y||+R$ e dunque $||x-y||\ge ||x|| - R$
+    TODO finirla
+\end{proof}
+
+\section{PDE ellittiche: formula della media}
+
+La formula della media è importantissima per lo studio di molte notevoli proprietà delle funzioni armoniche. In particolare vedremo la forma forte del principio del massimo.
+
+\begin{theorem}{Formula di rappresentazione}{}
+    Sia $\Omega$ un aperto di $\R^n$ con chiusura compatta e frontiera $\mc{C}^1$-regolare orientabile e sia $u \in \mc{C}^2(\Omega)\cap\mc{C}^0(\bar{\Omega})$ tale che $\Delta u \in L^\infty$. Allora per ogni $x \in \Omega$ vale:
+    \[u(x) = \oint_{\partial\Omega} \frac{\partial G_n}{\partial \nu}(x-y) u(y) - G_n(x-y)\frac{\partial u}{\partial \nu}(y) \de S(y) + \int_\Omega G_n(x-y)\Delta u(y)\de^n y\]
+\end{theorem}
+\begin{proof}
+    Per ogni $x\in\Omega$ abbiamo
+    \[\int_\Omega G_n(x-y)\Delta u(y)\de^n y = \lim_{\varepsilon\to 0} \int_{\Omega\setminus B_\varepsilon(x)} G_n(x-y)\Delta u(y)\de^n y =\]
+    \[= \lim_{\varepsilon\to 0} \int_{\Omega\setminus B_\varepsilon(x)}\Delta G_n(x-y) u(y)\de^n y + \lim_{\varepsilon\to 0}\oint_{\partial[\Omega\setminus B_\varepsilon(x)]} G_n(x-y)\frac{\partial u}{\partial \nu}(y) - \frac{\partial G_n}{\partial \nu}(x-y) u(y) \de S(y) = \]
+    \[= \oint_{\partial\Omega} G_n(x-y)\frac{\partial u}{\partial \nu}(y) - \frac{\partial G_n}{\partial \nu}(x-y) u(y) \de S(y) - \lim_{\varepsilon\to 0}\oint_{\partial B_\varepsilon(x)} G_n(x-y)\frac{\partial u}{\partial \nu}(y) - \frac{\partial G_n}{\partial \nu}(x-y) u(y) \de S(y) = \]
+    \[= \oint_{\partial\Omega} G_n(x-y)\frac{\partial u}{\partial \nu}(y) - \frac{\partial G_n}{\partial \nu}(x-y) u(y) \de S(y) + u(x) = \int_\Omega G_n(x-y)\Delta u(y)\de^n y\]
+\end{proof}
+
+Adesso abbiamo uno strumento potensissimo da applicare alle funzioni armoniche, infatti
+
+\begin{corollary}{Formula di rappresentazione per le funzioni armoniche}{}
+    Sia $\Omega$ un aperto di $\R^n$ con chiusura compatta e frontiera $\mc{C}^1$-regolare orientabile e sia $u \in \mc{C}^2(\Omega)\cap\mc{C}^0(\bar{\Omega})$ tale che $\Delta u = 0$. Allora per ogni $x \in \Omega$ vale:
+    \[u(x) = \oint_{\partial\Omega} \frac{\partial G_n}{\partial \nu}(x-y) u(y) - G_n(x-y)\frac{\partial u}{\partial \nu}(y) \de S(y)\]
+\end{corollary}
+
+\begin{theorem}{}{}
+    Sia $\Omega$ un aperto e $u:\Omega \to \R$ armonica. Allora $u$ è anche liscia
+\end{theorem}
+\begin{proof}
+    Dobbiamo dimostrare che per tutti gli $x\in\Omega$ esistono tutte le derivate miste.\\
+    Fissiamo $x_0 \in \Omega $ e $\varepsilon>0$ tale che $B_\varepsilon(x_0)\subset\Omega$. Per ogni $x \in B_\varepsilon(x_0)$ abbiamo:
+    \[u(x) = \oint_{\partial B_\varepsilon(x_0)} \frac{\partial G_n}{\partial \nu}(x-y) u(y) - G_n(x-y)\frac{\partial u}{\partial \nu}(y) \de S(y)\]
+    Sia $0<\varepsilon' < \varepsilon$. Dimostriamo che $u$ è liscia in $B_{\varepsilon'}(x_0)$.
+    Sia $\alpha \in \Z_+^n$ e sia $\partial^\alpha u$ la derivata mista di $u$ per gli indici di $\alpha$. Dato che per ogni $x \in B_{\varepsilon'}(x_0)$ e $y \in \partial B_\varepsilon(x_0)$ la funzione $G_n(x-y)$ è liscia, 
+    TODO: finire
+\end{proof}
+
+\begin{theorem}{Formula della media}{mean}
+    Sia $u \in \mc{C}^2(\Omega)$ tale che $\Delta u = 0$. Allora per ogni $x \in \Omega$ e $R>0$ tale che $\bar{B}_R(x)\subset \Omega$ vale:
+    \[u(x) = \frac{1}{|\partial B_R(x)|}\oint_{\partial B_R(x)}u(y) \de S(y) = \frac{1}{| B_R(x)|}\int_{B_R(x)}u(y)\de^n y\] 
+\end{theorem}
+\begin{proof}
+    Per la formula di rappresentazione ho
+    \[u(x) = \oint_{\partial\Omega} \frac{\partial G_n}{\partial \nu}(x-y) u(y) - G_n(x-y)\frac{\partial u}{\partial \nu}(y) \de S(y) =\]
+    \[= \frac{1}{|\partial B_R(x)|}\oint_{\partial B_R(x)}u(y) \de S(y) - \tilde{G}_n(R) \oint_{\partial B_R(x)} \frac{\partial u}{\partial \nu}(y) \de S(y) =\]\[= \frac{1}{|\partial B_R(x)|}\oint_{\partial B_R(x)}u(y) \de S(y) - \int_{B_R(x)} \Delta u (y)\de^n y = \frac{1}{|\partial B_R(x)|}\oint_{\partial B_R(x)}u(y) \de S(y) - 0\]
+    Per dimostrare la seconda uguaglianza basta usare il TFA
+\end{proof}
+\begin{remark}{}{}
+    Se vale la formula della media e $u$ è continua, allora $u$ è armonica.
+\end{remark}
+
+\begin{theorem}{Principio del massimo forte}{}
+    Sia $\Omega$ un aperto di $\R^n$ connesso con chiusura compatta e sia $u \in \mc{C}^0(\bar{\Omega})$ tale che per ogni $x\in\Omega$ e $R>0$ tali che $\bar{B}_R(x)\subset \Omega$ valga la formula della media. Allora se $u$ assume massimo, minimo o massimo assoluto in un punto di $\Omega$, è costante su $\Omega$.
+\end{theorem}
+\begin{proof}
+    Assumiamo che $x_0 \in \Omega$ sia punto di massimo per $u$, gli altri casi seguiranno analogamente. Definiamo $U\subset \Omega$ come l'insieme dei punti di massimo globale di $u$, che chiaramente non è vuoto in quanto $x_0\in U$.\\
+    Abbiamo che $U = u^{-1}(\{u(x_0)\})$ dunque è chiuso.\\
+    Vogliamo dimostrare che $U$ è aperto. Sia $x\in U$ e supponiamo per assurdo che esista una successione $\{x_i\}_\N$ tale che per ogni $i \in \N$ esista $x_i \in B_{2^{-i}}(x)$ tale che $x_i\notin U$. Per la formula della media avremmo:
+    \[u(x) = \frac{1}{|B_|}\]
+    TODO: finirla
+\end{proof}
+
+\begin{remark}{}{}
+    Chiaramente la forma forte implica la forma debole.
+\end{remark}
+
+\begin{theorem}{Teorema di Liouville}{}
+    Sia $u:\R^n\to\R$ armonica su $\R^n$. Se $u$ è limitata superiormente o inferiormente, allora è costante.
+\end{theorem}
+\begin{proof}
+    Assumiamo che $u$ sia limitata inferiormente. Definiamo $v := u-\inf u \ge 0$. Allora $v$ è armonica, dunque è liscia. In particolare su ogni direzione $x_k$ vale:
+    \[\Delta \frac{\partial v}{\partial x_k} =\sum_{i = 1}^n \frac{\partial^3 u}{\partial x_i^2 \partial x_k} = \frac{\partial \Delta v}{\partial k} = 0\]
+    Ovvero, le derivate prime di una funzione armonica sono armoniche, dunque possiamo applicare alle derivate di $v$ la formula della media
+    \[\left|\frac{\partial v}{\partial x_k}(x)\right| =\frac{1}{|B_R(x)|}\left| \int_{B_R(x)}\frac{\partial v}{\partial y_k}(y) \de^n y\right|\]
+    Ora, sia $F : \R^n\to\R^n$ definito come $F_k(x) = v(x)e_k$, dunque la sua divergenza è la somma delle derivate di $v$, quindi posso applicare Gauss:
+    \[\left|\frac{\partial v}{\partial x_k}(x)\right| = \frac{1}{|B_R(x)|} \oint_{\partial B_R(x)}|v(y) \nu_k |\de S(y) = \frac{1}{|B_R(x)|} \oint_{\partial B_R(x)}|v(y)|\de S(y) = \frac{1}{|B_R(x)|} v(x) |\partial B_R(x)| = \frac{n}{R}v(x)\]
+    Dunque mandando $R\to +\infty$ otteniamo che la derivata è nulla in ogni direzione su tutto $\R^n$, dunque $v$ (come automaticamente $u$) è costante.\\
+    Se $u$ è limitata superiormente, la dimostrazione è analoga.
+\end{proof}
+
+Abbiamo che questo teorema vale per le funzioni armoniche in $L^\infty(\R^n)$, ma vale anche negli altri $L^p(\R^n)$? In effetti sì, e in modo ancora più forte, ma prima ricordiamoci di un certo risultato
+
+\begin{lemma}{Disuguaglianza di Holder}{holder}
+    Sia $(X,\mu)$ uno spazio con misura, siano $p,q \in [1,+\infty]$ tali che $p^{-1}+q^{-1}= 1$ e siano $f\in L^p(X,\mu)$ e $g \in L^q(X,\mu)$. Allora vale:
+    \[f g \in L^1(X,\mu) \quad \text{e}\quad ||fg||_1 \le ||f||_p||g||_q\]
+\end{lemma}
+
+\begin{theorem}{}{}
+    Sia $p \in [1,+\infty[$ e sia $u:\R^n\to\R$ armonica e $p$-sommabile.\\
+    Allora $u$ è la funzione identicamente nulla.
+\end{theorem}
+\begin{proof}
+    Sia $x \in \R^n$ e $R>0$. Per la formula della media vale:
+    \[|u(x)| = \frac{1}{|B_R(x)|}\left| \int_{B_R(x)} u(y)\de^n y\right| \le \frac{1}{|B_R(x)|}\int_{B_R(x)} |u(y)|\de^n y = \frac{1}{|B_R(x)|} ||u \chi_{B_R(x)}||_1\]
+    Applicando \href{lemma:holder}{Holder} con $p' = p(p-1)^{-1}$ vale:
+    \[|u(x)|\le \frac{1}{|B_R(x)|} ||u||_p ||\chi_{B_R(x)}||_{p'} = \frac{||u||_p}{|B_R(x)|^{1/p}} \to 0\]
+    Dunque $u(x) = 0$
+\end{proof}
+
+\section{PDE ellittiche: funzioni armoniche su domini illimitati}
+
+Sia $\Omega \in \R^n$ un aperto con chiusura compatta e superficie $1$-regolare orientabile con normale $\nu$.
+
+\begin{definition}{PDN esterno}{}
+    Trovare $u\in \mc{C}^2(\R^n\setminus \bar{\Omega})\cap \mc{C}^0(\R^n\setminus\Omega)$ tale che:
+    \[-\Delta u = f \quad \text{su }\R^n\setminus\bar{\Omega}, \qquad \frac{\partial u}{\partial \nu} = u_1 \quad \text{su }\partial\Omega, \qquad \lim_{x\to+\infty} |u(x)-u_\infty| = 0 \]
+    Con $f \in \mc{C}^0(\R^n\setminus\bar{\Omega})$, $u_1 \in \mc{C}^0(\partial\Omega)$ e $u_\infty\in\R$ assegnati. 
+\end{definition}
+
+L'idea per studiare questo genere di problemi è chiudere $\Omega$ in una palla, trattarli come PDN interni per ciascuna palla e poi mandarla all'infinito.
 
 \end{document}
