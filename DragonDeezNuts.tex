@@ -1,4 +1,4 @@
-\documentclass{article}
+\documentclass{book}
 \usepackage[pastel]{cianatex}
 
 \title{Fondamenti di Fisica Matematica - Modulo 2}
@@ -10,15 +10,14 @@
 \maketitle
 
 
-\begin{abstract}\normalsize
-    Tra noi studenti del corso di laura in Matematica dell'università degli studi di Trento, il professor Valter Moretti ha la fama di essere il professore dalla notazione più ostica e dai contacci più inverecondi.\\
-    Ahinoi, il suo discepolo Nicolò Drago\footnote{Detto Nick Drake in questa trattazione} si è dimostrato all'altezza di raccogliere tale eredità e purtroppo sembra che la nostra collega Matilde si stia incamminando lungo l'oscuro cammino della setta dei fisici matematici genovesi.\\
-    Al fine di salvaguardare la mia e vostra sanità mentale\footnote{Nonchè impedire l'ulteriore arricchimento di avidi oculisti}, ho deciso di provvedere (ovunque e nella misura in cui mi fosse possibile) allo snellire la notazione, usando il \bemph{poco noto} fatto che il prodotto tra matrici può essere calcolato anche senza esplicitare ciascun termine.\\
-    Qualcuno potrebbe insinuare che dietro a questa macelleria notazionale ci possa essere un'inadeguata capacità di svolgere i calcoli\footnote{E avrebbe ragione}, ma l'opinione del sottoscritto è che lavorando in spazi vettoriali con una dimensione maggiore di $2$, esplicitare le coordinate equivalga ad un autosabotaggio.\\
-    Pertanto rimango convinto che sebbene ogni tanto questo sforzo di condensazione avrà sicuramente introdotto qualche errore, il beneficio in termini di leggibilità sia soverchiante.\\
-    Buono studio a tutti voi, a morte i multi-indici e a morte la notazione di Einstein per le matrici.    
-\end{abstract}
-
+\section*{Prefazione}
+    
+Tra noi studenti del corso di laura in Matematica dell'università degli studi di Trento, il professor Valter Moretti ha la fama di essere il professore dalla notazione più ostica e dai contacci più inverecondi.\\
+Ahinoi, il suo discepolo Nicolò Drago\footnote{Detto Nick Drake in questa trattazione} si è dimostrato all'altezza di raccogliere tale eredità e purtroppo sembra che la nostra collega Matilde si stia incamminando lungo l'oscuro cammino della setta dei fisici matematici genovesi.\\
+Al fine di salvaguardare la mia e vostra sanità mentale\footnote{Nonchè impedire l'ulteriore arricchimento di avidi oculisti}, ho deciso di provvedere (ovunque e nella misura in cui mi fosse possibile) allo snellire la notazione, usando il \bemph{poco noto} fatto che il prodotto tra matrici può essere calcolato anche senza esplicitare ciascun termine.\\
+Qualcuno potrebbe insinuare che dietro a questa macelleria notazionale ci possa essere un'inadeguata capacità di svolgere i calcoli\footnote{E avrebbe ragione}, ma l'opinione del sottoscritto è che lavorando in spazi vettoriali con una dimensione maggiore di $2$, esplicitare le coordinate equivalga ad un autosabotaggio.\\
+Pertanto rimango convinto che sebbene ogni tanto questo sforzo di condensazione avrà sicuramente introdotto qualche errore, il beneficio in termini di leggibilità sia soverchiante.\\
+Buono studio a tutti voi, a morte i multi-indici e a morte la notazione di Einstein per le matrici.
 
 \tableofcontents
 
@@ -208,13 +207,13 @@ Con una stramarea di calcoli magici incredibili arriviamo alle \bemph{coordinate
 
 Siano $(t,\xi)$ le coordinate di Riemann definite su un aperto $\U \subset \R^n$, assumiamo che $\U=I\times\U_\Sigma$ e sia $f \in \mc{C}_c^0(\U)$ con supporto contenuto in $\U$. Se $x(t,\xi)$ è un cambiamento di coordinate e $J_x(t,\xi)$ il suo jacobiano, denotando $\tilde{f}(t,\xi) = f(x(t,\xi))$ allora vale:
 
-\[\int_{\R^n} f(x)\de^n x = \int_I \int_{\U_\Sigma} \tilde{f}(t,\xi) \cdot J_x(t,\xi) \de\xi\de t \]
+\[\int\limits_{\R^n} f(x)\de^n x = \int\limits_I \int\limits_{\U_\Sigma} \tilde{f}(t,\xi) \cdot J_x(t,\xi) \de\xi\de t \]
 
 Dato che $f$ è continua possiamo considerare l'integrale
 
-\[\int_\Sigma f_\Sigma(y) \de S(y) = \int_{\U_\Sigma}\tilde{f}(0,\xi) \cdot J_x(0,\xi) \de\xi\]
+\[\int\limits_\Sigma f_\Sigma(y) \de S(y) = \int\limits_{\U_\Sigma}\tilde{f}(0,\xi) \cdot J_x(0,\xi) \de\xi\]
 
-Questo definisce per "incollamento"\footnote{Non venite a chiedere a me cosa cazzo significhi} una misura sulla $\sigma$-algebra boreliana di $\Sigma$ con la topologia indotta. Quando $\Sigma$ è chiusa e orientata, denotiamo l'integrale di cui sopra con $\oint_{+\Sigma}$, dove il segno definisce l'orientazione presa in esame.
+Questo definisce per "incollamento"\footnote{Non venite a chiedere a me cosa cazzo significhi} una misura sulla $\sigma$-algebra boreliana di $\Sigma$ con la topologia indotta. Quando $\Sigma$ è chiusa e orientata, denotiamo l'integrale di cui sopra con $\oint\limits_{+\Sigma}$, dove il segno definisce l'orientazione presa in esame.
 
 Adesso ci sarebbe tutta una bella parte sul calcolo del volume o della superficie dell'ipersfera ma Dio sa che non frega nulla nè a me nè a voi.
 
@@ -326,7 +325,9 @@ A questo punto una condizione sufficiente è che $\tilde{A}_{t,t}(t_0,\xi_0)\neq
 
 Il problema di Cauchy associato a $D$ è detto \bemph{caratteristico} se i dati sono su una superficie caratteristica per $D$.
 
-\section{PDE ellittiche: problema di Dirichlet}
+\chapter{PDE ellittiche}
+
+\section{Problema di Dirichlet}
 
 Concentriamoci sulle PDE ellittiche, in particolare l'equazione di Poisson $-\Delta u = f$, che con $f=0$ si riduce all'equazione di Laplace.
 
@@ -411,7 +412,7 @@ Le funzioni subarmoniche in particolare ci permettono di generalizzare il fatto 
     \[|v|\le \max_{\bar{\Omega}_R}|v| = \max_{\partial B_R(0)} |v| \xrightarrow{R\to +\infty} 0  \Rarr v = 0 \Harr u=u'\]
 \end{proof}
 
-\section{PDE ellittiche: problemi di Neumann e Robin}
+\section{Problemi di Neumann e Robin}
 
 \begin{notation}
     Ricordiamoci che $\nabla f$ è il gradiente, ovvero il vettore delle derivate prime, $\nabla \cdot f$ è la divergenza, ovvero la somma delle derivate prime e $\nabla\cdot\nabla f = (\nabla \cdot\nabla) f = \Delta f$ è il laplaciano, ovvero la somma delle derivate seconde.
@@ -419,7 +420,7 @@ Le funzioni subarmoniche in particolare ci permettono di generalizzare il fatto 
 
 \begin{theorem}{Teorema della divergenza di Gauss}{gauss}
     Sia $\Omega$ un aperto di $\R^n$ la cui frontiera è una $\mc{C}^k$-ipersuperficie regolare con normale $\nu$ e misura di Lebesgue indotta $S$ e sia $F:\bar{\Omega}\to\R^n$ un campo vettoriale $\mc{C}^1(\Omega)$ e $\mc{C}^0(\bar{\Omega})$. Allora vale
-    \[\int_\Omega \nabla \cdot F \de^n x = \oint_{+\partial\Omega} F \cdot\nu \de S\]
+    \[\int\limits_\Omega \nabla \cdot F \de^n x = \oint\limits_{+\partial\Omega} F \cdot\nu \de S\]
 \end{theorem}
 
 \begin{remark}{}{}
@@ -428,14 +429,14 @@ Le funzioni subarmoniche in particolare ci permettono di generalizzare il fatto 
 
 \begin{theorem}{Identità di Green}{green}
     Siano $u_1 \in \mc{C}^1(\bar{\Omega})$ e $u_2 \in \mc{C}^2(\bar{\Omega})$. Vale:
-    \[\int_{\Omega} u_1\Delta u_2 \de^n x = \oint_{+\partial\Omega} u_1 \frac{\partial u_2}{\partial \nu}\de S - \int_\Omega \nabla u_1 \cdot \nabla u_2 \de^n x \]
+    \[\int\limits_{\Omega} u_1\Delta u_2 \de^n x = \oint\limits_{+\partial\Omega} u_1 \frac{\partial u_2}{\partial \nu}\de S - \int\limits_\Omega \nabla u_1 \cdot \nabla u_2 \de^n x \]
     Inoltre, se $u_1 \in \mc{C}^2(\bar{\Omega})$ vale:
-    \[\int_\Omega u_1\Delta u_2 - u_2 \Delta u_1 \de^n x = \oint_{+\partial\Omega} u_1 \frac{\partial u_2}{\partial \nu} - u_2 \frac{\partial u_1}{\partial \nu} \de S\]
+    \[\int\limits_\Omega u_1\Delta u_2 - u_2 \Delta u_1 \de^n x = \oint\limits_{+\partial\Omega} u_1 \frac{\partial u_2}{\partial \nu} - u_2 \frac{\partial u_1}{\partial \nu} \de S\]
 \end{theorem}
 
 \begin{remark}{}{}
     Nel caso $n=1$ con $\Omega =]a,b[$, si riduce a:
-    \[\int_a^b u_1 u_2'' - u_2 u_1'' \de x = [u_1u_2' - u_2u_1']_a^b\]
+    \[\int\limits_a^b u_1 u_2'' - u_2 u_1'' \de x = [u_1u_2' - u_2u_1']_a^b\]
 \end{remark}
 
 \begin{definition}{Problemi di Neumann e Robin}{}
@@ -447,12 +448,12 @@ Le funzioni subarmoniche in particolare ci permettono di generalizzare il fatto 
 
 \begin{remark}{}{}
     In un PDN i dati non possono essere assegnati in modo indipendente:
-    \[\int_\Omega f\de^n x = \int_\Omega -\Delta u \de^n x = \int_\Omega -\nabla \cdot \nabla u \de^n x = \oint_{+\partial \Omega} - \nabla u \cdot \nu \de S = -\int_{\partial \Omega} u_1 \de S\]
+    \[\int\limits_\Omega f\de^n x = \int\limits_\Omega -\Delta u \de^n x = \int\limits_\Omega -\nabla \cdot \nabla u \de^n x = \oint\limits_{+\partial \Omega} - \nabla u \cdot \nu \de S = -\int\limits_{\partial \Omega} u_1 \de S\]
 \end{remark}
 
 \begin{remark}{Interpretazione fisica del PDN e PDR per l'equazione del calore}{}
     Sia $u$ la temperatura di equilibrio in $\Omega$, allora abbiamo che  $q = -k\nabla u $ è il flusso di calore in $\Omega$ secondo la legge di Fourier, con $k>0$\footnote{se $k$ fosse negativo avremmo un flusso di calore dal freddo al caldo... esotico direi!}. Se nel PDD assegnavamo una temperatura al bordo, ora assegnamo un flusso di calore verso $\Omega$.\begin{itemize}
-        \item Nel caso in cui $\alpha=0$, ovvero il PDN, avremmo \[u_1 = \frac{\partial u}{\partial \nu} = \nabla u \cdot \nu = \frac{-q\cdot \nu}{k}\] E in questo modo giustifichiamo anche la condizione \[\int_\Omega f\de^n x =-\int_{\partial \Omega} u_1 \de S\] Dato che $f$ deve modellare le sorgenti di calore interne a $\Omega$.
+        \item Nel caso in cui $\alpha=0$, ovvero il PDN, avremmo \[u_1 = \frac{\partial u}{\partial \nu} = \nabla u \cdot \nu = \frac{-q\cdot \nu}{k}\] E in questo modo giustifichiamo anche la condizione \[\int\limits_\Omega f\de^n x =-\int\limits_{\partial \Omega} u_1 \de S\] Dato che $f$ deve modellare le sorgenti di calore interne a $\Omega$.
         \item Nel caso in cui $\alpha > 0$, ovvero il PDR, cerchiamo di modellare un caso in cui il flusso di calore può variare, entrante o uscente, in quanto non ho delle condizioni adeguate nè per il PDD nè per il PDN.
     \end{itemize}
 \end{remark}
@@ -471,9 +472,9 @@ Le funzioni subarmoniche in particolare ci permettono di generalizzare il fatto 
 \begin{proof}
     Siano $u,u'$ due soluzioni coi medesimi dati iniziali. Allora $v := u-u'$ risolve il problema con dati iniziali nulli, ovvero:\begin{itemize}
         \item Nel PDN:
-        \[0 = \int_\Omega v\Delta v \de^n x = \oint_{+\partial\Omega} 0 v\de S - \int_\Omega ||\nabla v||^2 \de^n x \Rarr \nabla v = 0\] Dunque $v$ è costante, ovvero le soluzioni $u$ e $u'$ sono al massimo differenti per una costante.
+        \[0 = \int\limits_\Omega v\Delta v \de^n x = \oint\limits_{+\partial\Omega} 0 v\de S - \int\limits_\Omega ||\nabla v||^2 \de^n x \Rarr \nabla v = 0\] Dunque $v$ è costante, ovvero le soluzioni $u$ e $u'$ sono al massimo differenti per una costante.
         \item Nel PDR:
-        \[0 = \int_\Omega v\Delta v \de^n x = -\alpha \oint_{+\partial\Omega} v^2 \de S - \int_\Omega ||\nabla v||^2 \de^n x\] Dunque abbiamo che $v$ è costante come sopra e che il suo quadrato ha integrale nullo, dunque $v=0$ e le soluzioni sono la stessa.
+        \[0 = \int\limits_\Omega v\Delta v \de^n x = -\alpha \oint\limits_{+\partial\Omega} v^2 \de S - \int\limits_\Omega ||\nabla v||^2 \de^n x\] Dunque abbiamo che $v$ è costante come sopra e che il suo quadrato ha integrale nullo, dunque $v=0$ e le soluzioni sono la stessa.
     \end{itemize}
 \end{proof}
 
@@ -482,7 +483,7 @@ Le funzioni subarmoniche in particolare ci permettono di generalizzare il fatto 
     E se $a<0$? In tal caso non avremmo l'unicità, basti pensare al problema in $n=2$ con $\Omega = B_1(0)$, $f$ nulla come $u_1$ e $\alpha = -1$, poichè avremmo come soluzioni ad esempio $u(x,y)=0$ e $u(x,y) = ax+by$ con $(a,b)\neq(0,0)$
 \end{remark}
 
-\section{PDE ellittiche: la soluzione fondamentale}
+\section{La soluzione fondamentale}
 
 Cerchiamo $u \in \mc{C}^2(\R^n)$ tale che $\Delta u = 0$ e $u(x) = \tilde{u}(z)$ con $z = ||x||^2$, ovvero soluzioni che presentino una simmetria radiale.
 
@@ -529,14 +530,14 @@ Purtroppo non ottengo funzioni su tutto $\R^n$, ma proviamo a dedicarci solo a $
 
 \begin{lemma}{}{}
     Sia $\Omega$ un aperto di $\R^n$ e sia $f:\Omega\to\R$ una funzione $\mc{C}^0(\Omega)$. Allora per ogni $x_0 \in \Omega$ vale:
-    \[\lim_{\varepsilon\to 0} \frac{1}{|\partial B_\varepsilon (x_0)|}\oint_{\partial B_\varepsilon(x_0)}f(x)\de S(x) = f(x_0)\]
+    \[\lim_{\varepsilon\to 0} \frac{1}{|\partial B_\varepsilon (x_0)|}\oint\limits_{\partial B_\varepsilon(x_0)}f(x)\de S(x) = f(x_0)\]
 \end{lemma}
 
 \begin{lemma}{}{}
     Sia $f \in \mc{C}^2_c(\R^n)$ e sia $u:\R^n\to\R$ definita come
-    \[u(x) := \int_{\R^n} \frac{f(y)}{||x-y||^{n-2}}\de^n y\]
+    \[u(x) := \int\limits_{\R^n} \frac{f(y)}{||x-y||^{n-2}}\de^n y\]
     Allora $u\in\mc{C}^2(\R^n)$ e vale
-    \[\frac{\partial^2 u}{\partial x_j \partial x_k} = \int_{\R^n} \frac{1}{||x-y||^{n-2}}\frac{\partial^2 f}{\partial x_j\partial x_k}(y)\de^n y\]
+    \[\frac{\partial^2 u}{\partial x_j \partial x_k} = \int\limits_{\R^n} \frac{1}{||x-y||^{n-2}}\frac{\partial^2 f}{\partial x_j\partial x_k}(y)\de^n y\]
 \end{lemma}
 
 \begin{theorem}{}{}
@@ -544,34 +545,34 @@ Purtroppo non ottengo funzioni su tutto $\R^n$, ma proviamo a dedicarci solo a $
         \item $G_n \in \mc{C}^\infty(\R^n \setminus \{0\})\cap \Loc^1(\R^n)$
         \item $\Delta G_n(x) = 0$ per qualsiasi $x \in \R^n \setminus \{0\}$
         \item Per una qualsiasi $f\in\mc{C}^2_c(\R^n)$ e per ogni $x \in \R^n$ vale:
-        \[\int_{\R^n}G_n(x-y)\Delta f(y) \de^n y = f(x)\]
+        \[\int\limits_{\R^n}G_n(x-y)\Delta f(y) \de^n y = f(x)\]
         \item Per una qualsiasi $f\in\mc{C}^2_c(\R^n)$, la mappa $u:\R^n\to\R$ definita come
-        \[u(x) = \int_{\R^n} G_n(x-y)f(y)\de^n y\]
+        \[u(x) = \int\limits_{\R^n} G_n(x-y)f(y)\de^n y\]
         è ben definita, $u\in \mc{C}^2(\R^n)$ e $\Delta u = f$. 
     \end{itemize}
 \end{theorem}
 \begin{proof}
     Consideriamo solo il caso $n>2$, il caso $n=2$ è analogo.\begin{itemize}
         \item Il fatto che sia $\mc{C}^\infty$ è automatico dalla definizione, è una composizione di mappe $\mc{C}^\infty$ sul dominio, mentre per dimostrare l'integrabilità locale basta integrare su una palla arbitraria:
-        \[\int_{B_{R_0}(0)} G_n(x)\de^n x = \int_0^{R_0} \oint_{\partial B_R(0)}\frac{R^{2-n}}{(n-n)\omega_n}\de\Omega_n R^{n-1}\de R = \frac{1}{n-2}\int_0^{R_0} R\de R < +\infty\]
+        \[\int\limits_{B_{R_0}(0)} G_n(x)\de^n x = \int\limits_0^{R_0} \oint\limits_{\partial B_R(0)}\frac{R^{2-n}}{(n-n)\omega_n}\de\Omega_n R^{n-1}\de R = \frac{1}{n-2}\int\limits_0^{R_0} R\de R < +\infty\]
         \item Segue dalla costruzione.
         \item Prendiamo $f\in\mc{C}^2_c(\R^n)$ e innanzitutto notiamo che l'integrale (che chiameremo $I$) è effettivamente finito (in quanto il supporto di $f$ è contenuto in una qualche palla di centro $x$ e raggio $R$), dunque possiamo scrivere
-        \[ \int_{\R^n} G_n(x-y)\Delta f(y) \de^n y \le \int_{B_R(x)}|G_n(x-y)|\cdot |\Delta f(y)|\de^n y \le \sup|\Delta f|\int_{B_R(x)} |G_n(x-y)|\de^n y < +\infty  \]
+        \[ \int\limits_{\R^n} G_n(x-y)\Delta f(y) \de^n y \le \int\limits_{B_R(x)}|G_n(x-y)|\cdot |\Delta f(y)|\de^n y \le \sup|\Delta f|\int\limits_{B_R(x)} |G_n(x-y)|\de^n y < +\infty  \]
         Ora dobbiamo solo dimostrare l'identità usando il corollario della convergenza dominata\footnote{Leggerete spesso queste parole.}
-        \[\int_{\R^n} G_n(x-y)\Delta f(y) \de^n y = \lim_{\varepsilon \to 0} \int_{B_R(x)\setminus B_\varepsilon(x)}G_n(x-y)\Delta f(y) \de^n y = \lim_{\varepsilon\to 0} \int_{B_R(x)} \chi_{B_\varepsilon(x)^c}G_n(x-y)f(y)\de^n y\]
+        \[\int\limits_{\R^n} G_n(x-y)\Delta f(y) \de^n y = \lim_{\varepsilon \to 0} \int\limits_{B_R(x)\setminus B_\varepsilon(x)}G_n(x-y)\Delta f(y) \de^n y = \lim_{\varepsilon\to 0} \int\limits_{B_R(x)} \chi_{B_\varepsilon(x)^c}G_n(x-y)f(y)\de^n y\]
         Dove in particolare
         \[|\chi_{B_\varepsilon(x)^c}G_n(x-y)\Delta f(y)|\le|G_n(x-y)\Delta f(y)| \in L^1(B_R(x))\]
         Dato che $G_n(x-y)$ è singolare se e solo se $x=y$, possiamo applicare Green
-        \[I = \lim_{\varepsilon \to 0} \int_{B_R(x)\setminus B_\varepsilon(x)}\Delta G_n(x-y) f(y) \de^n y + \lim_{\varepsilon\to 0} \oint_{\partial [B_R(x)\setminus B_\varepsilon(x)]} G_n(x-y)\frac{\partial f}{\partial \nu}(y) - \frac{\partial G_n}{\partial \nu}(x-y) f(y)\de S(y)\]
+        \[I = \lim_{\varepsilon \to 0} \int\limits_{B_R(x)\setminus B_\varepsilon(x)}\Delta G_n(x-y) f(y) \de^n y + \lim_{\varepsilon\to 0} \oint\limits_{\partial [B_R(x)\setminus B_\varepsilon(x)]} G_n(x-y)\frac{\partial f}{\partial \nu}(y) - \frac{\partial G_n}{\partial \nu}(x-y) f(y)\de S(y)\]
         Ma dato che $\Delta G_n= 0$ diventa
-        \[I=\lim_{\varepsilon\to 0}\oint_{\partial B_\varepsilon(x)}\frac{\partial G_n}{\partial \nu}(x-y)f(y)\de S(y) - \lim_{\varepsilon\to 0}\oint_{\partial B_\varepsilon(x)}\frac{\partial f}{\partial \nu}(y)G_n(x-y)\de S(y) =: A-B\]
+        \[I=\lim_{\varepsilon\to 0}\oint\limits_{\partial B_\varepsilon(x)}\frac{\partial G_n}{\partial \nu}(x-y)f(y)\de S(y) - \lim_{\varepsilon\to 0}\oint\limits_{\partial B_\varepsilon(x)}\frac{\partial f}{\partial \nu}(y)G_n(x-y)\de S(y) =: A-B\]
         Studiamo $A$:
-        \[\lim_{\varepsilon\to 0}\oint_{\partial B_\varepsilon(x)}\frac{\partial G_n}{\partial \nu}(x-y)f(y)\de S(y) = \lim_{\varepsilon\to 0} \frac{1}{\partial B_\varepsilon(x)}\oint_{\partial B_\varepsilon(x)}f(y)\de S(y) = f(x)\]
+        \[\lim_{\varepsilon\to 0}\oint\limits_{\partial B_\varepsilon(x)}\frac{\partial G_n}{\partial \nu}(x-y)f(y)\de S(y) = \lim_{\varepsilon\to 0} \frac{1}{\partial B_\varepsilon(x)}\oint\limits_{\partial B_\varepsilon(x)}f(y)\de S(y) = f(x)\]
         Studiamo $B$:
-        \[\left|\oint_{\partial B_\varepsilon(x)}\frac{\partial f}{\partial \nu}(y)G_n(x-y)\de S(y)\right|\le \oint_{\partial B_\varepsilon(x)}\left|\frac{\partial f}{\partial \nu}(y)\right||G_n(x-y)|\de S(y)\le |\tilde{G}_n(\varepsilon)|\oint_{\partial B_\varepsilon(x)}\left|\frac{\partial f}{\partial \nu}(y)\right|\de S(y)\le\]
+        \[\left|\oint\limits_{\partial B_\varepsilon(x)}\frac{\partial f}{\partial \nu}(y)G_n(x-y)\de S(y)\right|\le \oint\limits_{\partial B_\varepsilon(x)}\left|\frac{\partial f}{\partial \nu}(y)\right||G_n(x-y)|\de S(y)\le |\tilde{G}_n(\varepsilon)|\oint\limits_{\partial B_\varepsilon(x)}\left|\frac{\partial f}{\partial \nu}(y)\right|\de S(y)\le\]
         \[\le \sup||\nabla f|| \tilde{G}_n(\varepsilon) \omega_n \varepsilon^{n-1} = c\varepsilon \to 0\]
         \item La buona definizione e doppia differenziabilità di $u$ seguono dal lemma di sopra, dobbiamo dimostrare $\Delta u = f$
-        \[\Delta u(x) = \int_{\R^n} G_n(z) \Delta f(x-z)\de^n z = \int_{\R^n} G_n(x-y)\Delta f(y)\de S(y) = f(x)\]
+        \[\Delta u(x) = \int\limits_{\R^n} G_n(z) \Delta f(x-z)\de^n z = \int\limits_{\R^n} G_n(x-y)\Delta f(y)\de S(y) = f(x)\]
     \end{itemize}
 \end{proof}
 
@@ -580,9 +581,9 @@ Purtroppo non ottengo funzioni su tutto $\R^n$, ma proviamo a dedicarci solo a $
 \end{remark}
 \begin{proof}
     Sia $g \in \mc{C}^2_c(\R^n)$ e assumiamo $u \in \mc{C}^2(\R^n)$. Consideriamo
-    \[\int_{\R^n}\Delta u (x) g(x) \de^n x = \int_{\R^n}u(x)\Delta g(x)\de^n x = \int_{\R^n}\int_{\R^n}G_n(x-y)f(y)\Delta g(x)\de^n y\de^n x = \int_{\R^n} f(x)g(x)\de^n x\]
+    \[\int\limits_{\R^n}\Delta u (x) g(x) \de^n x = \int\limits_{\R^n}u(x)\Delta g(x)\de^n x = \int\limits_{\R^n}\int\limits_{\R^n}G_n(x-y)f(y)\Delta g(x)\de^n y\de^n x = \int\limits_{\R^n} f(x)g(x)\de^n x\]
     Che implica che per qualsiasi $g \in \mc{C}^2_c(\R^n)$ vale
-    \[\int_{\R^n}(\Delta u - f)(x)g(x)\de^n x = 0\]
+    \[\int\limits_{\R^n}(\Delta u - f)(x)g(x)\de^n x = 0\]
     Ovvero $\Delta u = f$.
 \end{proof}
 
@@ -590,37 +591,37 @@ Purtroppo non ottengo funzioni su tutto $\R^n$, ma proviamo a dedicarci solo a $
     Sia $n>2$ e consideriamo il PDD su $\R^n$ con dati $f \in \mc{C}^2_c(\R^n)$ e $u_\infty\in\R$:
     \[-\Delta u = f \quad \text{e}\quad \lim_{x\to\infty}|u(x)-u_\infty|\]
     Allora esiste ed è unica $u \in \mc{C}^2(\R^n)$ che in particolare è definita come:
-    \[u(x):= u_\infty - \int_{\R^n} G_n(x-y)f(y)\de^n y\]
+    \[u(x):= u_\infty - \int\limits_{\R^n} G_n(x-y)f(y)\de^n y\]
     Inoltre esistono $R,C>0$ tali che 
     \[|u(x) - u_\infty| \le \frac{C}{||x||^{n-2}}||f||_1 \quad \text{e}\quad \supp(f) \subset B_R(0)\]
 \end{theorem}
 \begin{proof}
     L'unicità l'abbiamo dimostrata prima, l'esistenza segue dalla definizione con il teorema di prima, manca da dimostrare la limitatezza (l'esistenza di $R$ segue direttamente da Heine-Borel)\\
     Per ogni $R>0$ e $y \in B_R(0)$ vale $||x||\le ||x-y||+||y||\le ||x-y||+R$ e dunque $||x-y||\ge ||x|| - R$
-    TODO finirla
+    TODO
 \end{proof}
 
-\section{PDE ellittiche: formula della media}
+\section{Formula della media}
 
 La formula della media è importantissima per lo studio di molte notevoli proprietà delle funzioni armoniche. In particolare vedremo la forma forte del principio del massimo.
 
 \begin{theorem}{Formula di rappresentazione}{}
     Sia $\Omega$ un aperto di $\R^n$ con chiusura compatta e frontiera $\mc{C}^1$-regolare orientabile e sia $u \in \mc{C}^2(\Omega)\cap\mc{C}^0(\bar{\Omega})$ tale che $\Delta u \in L^\infty$. Allora per ogni $x \in \Omega$ vale:
-    \[u(x) = \oint_{\partial\Omega} \frac{\partial G_n}{\partial \nu}(x-y) u(y) - G_n(x-y)\frac{\partial u}{\partial \nu}(y) \de S(y) + \int_\Omega G_n(x-y)\Delta u(y)\de^n y\]
+    \[u(x) = \oint\limits_{\partial\Omega} \frac{\partial G_n}{\partial \nu}(x-y) u(y) - G_n(x-y)\frac{\partial u}{\partial \nu}(y) \de S(y) + \int\limits_\Omega G_n(x-y)\Delta u(y)\de^n y\]
 \end{theorem}
 \begin{proof}
     Per ogni $x\in\Omega$ abbiamo
-    \[\int_\Omega G_n(x-y)\Delta u(y)\de^n y = \lim_{\varepsilon\to 0} \int_{\Omega\setminus B_\varepsilon(x)} G_n(x-y)\Delta u(y)\de^n y =\]
-    \[= \lim_{\varepsilon\to 0} \int_{\Omega\setminus B_\varepsilon(x)}\Delta G_n(x-y) u(y)\de^n y + \lim_{\varepsilon\to 0}\oint_{\partial[\Omega\setminus B_\varepsilon(x)]} G_n(x-y)\frac{\partial u}{\partial \nu}(y) - \frac{\partial G_n}{\partial \nu}(x-y) u(y) \de S(y) = \]
-    \[= \oint_{\partial\Omega} G_n(x-y)\frac{\partial u}{\partial \nu}(y) - \frac{\partial G_n}{\partial \nu}(x-y) u(y) \de S(y) - \lim_{\varepsilon\to 0}\oint_{\partial B_\varepsilon(x)} G_n(x-y)\frac{\partial u}{\partial \nu}(y) - \frac{\partial G_n}{\partial \nu}(x-y) u(y) \de S(y) = \]
-    \[= \oint_{\partial\Omega} G_n(x-y)\frac{\partial u}{\partial \nu}(y) - \frac{\partial G_n}{\partial \nu}(x-y) u(y) \de S(y) + u(x) = \int_\Omega G_n(x-y)\Delta u(y)\de^n y\]
+    \[\int\limits_\Omega G_n(x-y)\Delta u(y)\de^n y = \lim_{\varepsilon\to 0} \int\limits_{\Omega\setminus B_\varepsilon(x)} G_n(x-y)\Delta u(y)\de^n y =\]
+    \[= \lim_{\varepsilon\to 0} \int\limits_{\Omega\setminus B_\varepsilon(x)}\Delta G_n(x-y) u(y)\de^n y + \lim_{\varepsilon\to 0}\oint\limits_{\partial[\Omega\setminus B_\varepsilon(x)]} G_n(x-y)\frac{\partial u}{\partial \nu}(y) - \frac{\partial G_n}{\partial \nu}(x-y) u(y) \de S(y) = \]
+    \[= \oint\limits_{\partial\Omega} G_n(x-y)\frac{\partial u}{\partial \nu}(y) - \frac{\partial G_n}{\partial \nu}(x-y) u(y) \de S(y) - \lim_{\varepsilon\to 0}\oint\limits_{\partial B_\varepsilon(x)} G_n(x-y)\frac{\partial u}{\partial \nu}(y) - \frac{\partial G_n}{\partial \nu}(x-y) u(y) \de S(y) = \]
+    \[= \oint\limits_{\partial\Omega} G_n(x-y)\frac{\partial u}{\partial \nu}(y) - \frac{\partial G_n}{\partial \nu}(x-y) u(y) \de S(y) + u(x) = \int\limits_\Omega G_n(x-y)\Delta u(y)\de^n y\]
 \end{proof}
 
 Adesso abbiamo uno strumento potensissimo da applicare alle funzioni armoniche, infatti
 
 \begin{corollary}{Formula di rappresentazione per le funzioni armoniche}{}
     Sia $\Omega$ un aperto di $\R^n$ con chiusura compatta e frontiera $\mc{C}^1$-regolare orientabile e sia $u \in \mc{C}^2(\Omega)\cap\mc{C}^0(\bar{\Omega})$ tale che $\Delta u = 0$. Allora per ogni $x \in \Omega$ vale:
-    \[u(x) = \oint_{\partial\Omega} \frac{\partial G_n}{\partial \nu}(x-y) u(y) - G_n(x-y)\frac{\partial u}{\partial \nu}(y) \de S(y)\]
+    \[u(x) = \oint\limits_{\partial\Omega} \frac{\partial G_n}{\partial \nu}(x-y) u(y) - G_n(x-y)\frac{\partial u}{\partial \nu}(y) \de S(y)\]
 \end{corollary}
 
 \begin{theorem}{}{}
@@ -629,20 +630,20 @@ Adesso abbiamo uno strumento potensissimo da applicare alle funzioni armoniche, 
 \begin{proof}
     Dobbiamo dimostrare che per tutti gli $x\in\Omega$ esistono tutte le derivate miste.\\
     Fissiamo $x_0 \in \Omega $ e $\varepsilon>0$ tale che $B_\varepsilon(x_0)\subset\Omega$. Per ogni $x \in B_\varepsilon(x_0)$ abbiamo:
-    \[u(x) = \oint_{\partial B_\varepsilon(x_0)} \frac{\partial G_n}{\partial \nu}(x-y) u(y) - G_n(x-y)\frac{\partial u}{\partial \nu}(y) \de S(y)\]
+    \[u(x) = \oint\limits_{\partial B_\varepsilon(x_0)} \frac{\partial G_n}{\partial \nu}(x-y) u(y) - G_n(x-y)\frac{\partial u}{\partial \nu}(y) \de S(y)\]
     Sia $0<\varepsilon' < \varepsilon$. Dimostriamo che $u$ è liscia in $B_{\varepsilon'}(x_0)$.
     Sia $\alpha \in \Z_+^n$ e sia $\partial^\alpha u$ la derivata mista di $u$ per gli indici di $\alpha$. Dato che per ogni $x \in B_{\varepsilon'}(x_0)$ e $y \in \partial B_\varepsilon(x_0)$ la funzione $G_n(x-y)$ è liscia, 
-    TODO: finire
+    TODO
 \end{proof}
 
 \begin{theorem}{Formula della media}{mean}
     Sia $u \in \mc{C}^2(\Omega)$ tale che $\Delta u = 0$. Allora per ogni $x \in \Omega$ e $R>0$ tale che $\bar{B}_R(x)\subset \Omega$ vale:
-    \[u(x) = \frac{1}{|\partial B_R(x)|}\oint_{\partial B_R(x)}u(y) \de S(y) = \frac{1}{| B_R(x)|}\int_{B_R(x)}u(y)\de^n y\] 
+    \[u(x) = \frac{1}{|\partial B_R(x)|}\oint\limits_{\partial B_R(x)}u(y) \de S(y) = \frac{1}{| B_R(x)|}\int\limits_{B_R(x)}u(y)\de^n y\] 
 \end{theorem}
 \begin{proof}
     Per la formula di rappresentazione ho
-    \[u(x) = \oint_{\partial\Omega} \frac{\partial G_n}{\partial \nu}(x-y) u(y) - G_n(x-y)\frac{\partial u}{\partial \nu}(y) \de S(y) =\]
-    \[= \frac{1}{|\partial B_R(x)|}\oint_{\partial B_R(x)}u(y) \de S(y) - \tilde{G}_n(R) \oint_{\partial B_R(x)} \frac{\partial u}{\partial \nu}(y) \de S(y) =\]\[= \frac{1}{|\partial B_R(x)|}\oint_{\partial B_R(x)}u(y) \de S(y) - \int_{B_R(x)} \Delta u (y)\de^n y = \frac{1}{|\partial B_R(x)|}\oint_{\partial B_R(x)}u(y) \de S(y) - 0\]
+    \[u(x) = \oint\limits_{\partial\Omega} \frac{\partial G_n}{\partial \nu}(x-y) u(y) - G_n(x-y)\frac{\partial u}{\partial \nu}(y) \de S(y) =\]
+    \[= \frac{1}{|\partial B_R(x)|}\oint\limits_{\partial B_R(x)}u(y) \de S(y) - \tilde{G}_n(R) \oint\limits_{\partial B_R(x)} \frac{\partial u}{\partial \nu}(y) \de S(y) =\]\[= \frac{1}{|\partial B_R(x)|}\oint\limits_{\partial B_R(x)}u(y) \de S(y) - \int\limits_{B_R(x)} \Delta u (y)\de^n y = \frac{1}{|\partial B_R(x)|}\oint\limits_{\partial B_R(x)}u(y) \de S(y) - 0\]
     Per dimostrare la seconda uguaglianza basta usare il TFA
 \end{proof}
 \begin{remark}{}{}
@@ -657,7 +658,7 @@ Adesso abbiamo uno strumento potensissimo da applicare alle funzioni armoniche, 
     Abbiamo che $U = u^{-1}(\{u(x_0)\})$ dunque è chiuso.\\
     Vogliamo dimostrare che $U$ è aperto. Sia $x\in U$ e supponiamo per assurdo che esista una successione $\{x_i\}_\N$ tale che per ogni $i \in \N$ esista $x_i \in B_{2^{-i}}(x)$ tale che $x_i\notin U$. Per la formula della media avremmo:
     \[u(x) = \frac{1}{|B_|}\]
-    TODO: finirla
+    TODO
 \end{proof}
 
 \begin{remark}{}{}
@@ -671,9 +672,9 @@ Adesso abbiamo uno strumento potensissimo da applicare alle funzioni armoniche, 
     Assumiamo che $u$ sia limitata inferiormente. Definiamo $v := u-\inf u \ge 0$. Allora $v$ è armonica, dunque è liscia. In particolare su ogni direzione $x_k$ vale:
     \[\Delta \frac{\partial v}{\partial x_k} =\sum_{i = 1}^n \frac{\partial^3 u}{\partial x_i^2 \partial x_k} = \frac{\partial \Delta v}{\partial k} = 0\]
     Ovvero, le derivate prime di una funzione armonica sono armoniche, dunque possiamo applicare alle derivate di $v$ la formula della media
-    \[\left|\frac{\partial v}{\partial x_k}(x)\right| =\frac{1}{|B_R(x)|}\left| \int_{B_R(x)}\frac{\partial v}{\partial y_k}(y) \de^n y\right|\]
+    \[\left|\frac{\partial v}{\partial x_k}(x)\right| =\frac{1}{|B_R(x)|}\left| \int\limits_{B_R(x)}\frac{\partial v}{\partial y_k}(y) \de^n y\right|\]
     Ora, sia $F : \R^n\to\R^n$ definito come $F_k(x) = v(x)e_k$, dunque la sua divergenza è la somma delle derivate di $v$, quindi posso applicare Gauss:
-    \[\left|\frac{\partial v}{\partial x_k}(x)\right| = \frac{1}{|B_R(x)|} \oint_{\partial B_R(x)}|v(y) \nu_k |\de S(y) = \frac{1}{|B_R(x)|} \oint_{\partial B_R(x)}|v(y)|\de S(y) = \frac{1}{|B_R(x)|} v(x) |\partial B_R(x)| = \frac{n}{R}v(x)\]
+    \[\left|\frac{\partial v}{\partial x_k}(x)\right| = \frac{1}{|B_R(x)|} \oint\limits_{\partial B_R(x)}|v(y) \nu_k |\de S(y) = \frac{1}{|B_R(x)|} \oint\limits_{\partial B_R(x)}|v(y)|\de S(y) = \frac{1}{|B_R(x)|} v(x) |\partial B_R(x)| = \frac{n}{R}v(x)\]
     Dunque mandando $R\to +\infty$ otteniamo che la derivata è nulla in ogni direzione su tutto $\R^n$, dunque $v$ (come automaticamente $u$) è costante.\\
     Se $u$ è limitata superiormente, la dimostrazione è analoga.
 \end{proof}
@@ -691,13 +692,13 @@ Abbiamo che questo teorema vale per le funzioni armoniche in $L^\infty(\R^n)$, m
 \end{theorem}
 \begin{proof}
     Sia $x \in \R^n$ e $R>0$. Per la formula della media vale:
-    \[|u(x)| = \frac{1}{|B_R(x)|}\left| \int_{B_R(x)} u(y)\de^n y\right| \le \frac{1}{|B_R(x)|}\int_{B_R(x)} |u(y)|\de^n y = \frac{1}{|B_R(x)|} ||u \chi_{B_R(x)}||_1\]
+    \[|u(x)| = \frac{1}{|B_R(x)|}\left| \int\limits_{B_R(x)} u(y)\de^n y\right| \le \frac{1}{|B_R(x)|}\int\limits_{B_R(x)} |u(y)|\de^n y = \frac{1}{|B_R(x)|} ||u \chi_{B_R(x)}||_1\]
     Applicando \href{lemma:holder}{Holder} con $p' = p(p-1)^{-1}$ vale:
     \[|u(x)|\le \frac{1}{|B_R(x)|} ||u||_p ||\chi_{B_R(x)}||_{p'} = \frac{||u||_p}{|B_R(x)|^{1/p}} \to 0\]
     Dunque $u(x) = 0$
 \end{proof}
 
-\section{PDE ellittiche: funzioni armoniche su domini illimitati}
+\section{Funzioni armoniche su domini illimitati}
 
 Sia $\Omega \in \R^n$ un aperto con chiusura compatta e superficie $1$-regolare orientabile con normale $\nu$.
 
@@ -707,6 +708,161 @@ Sia $\Omega \in \R^n$ un aperto con chiusura compatta e superficie $1$-regolare 
     Con $f \in \mc{C}^0(\R^n\setminus\bar{\Omega})$, $u_1 \in \mc{C}^0(\partial\Omega)$ e $u_\infty\in\R$ assegnati. 
 \end{definition}
 
-L'idea per studiare questo genere di problemi è chiudere $\Omega$ in una palla, trattarli come PDN interni per ciascuna palla e poi mandarla all'infinito.
+L'idea per studiare l'unicità delle soluzioni a questo genere di problemi è chiudere $\Omega$ in una palla $B_N(0)$ e definendo $\Omega_N := B_N(0) \setminus \bar{\Omega }$, trattarli come PDN interni per ciascuna palla e poi mandarla all'infinito, perchè infatti avremmo (definendo $v = u-u'$ come nelle solite dimostrazioni):
+
+\[\int\limits_{\Omega_N} v\Delta v \de^n x = -\int\limits_{\Omega_N}||\nabla v||\de^n x + \oint\limits_{\partial \Omega} v \frac{\partial v}{\partial \nu}\de S + \oint\limits_{\partial B_N(0)} v \frac{\partial v}{\partial \nu}\de S\]
+
+Sappiamo che in quanto $v$ è soluzione con dati nulli, $\Delta v=0$ come la sua derivata normale sul bordo di $\Omega$, però non è detto che lo sia sul bordo della palla: questo ci richiede che all'infinito, $v\sim ||x||^{-k}$.
+
+Vedremo che le funzioni armoniche soddisfano questa cosa (in $n>2$ attenti!!!) perchè dai porca miseria, credevate davvero che ci sia qualche bella proprietà che le funzioni armoniche non hanno?
+
+\begin{corollary}{Corollario del principio del massimo in forma forte}{}
+    Siano $u,u' \in \mc{C}^2(\Omega) \cap \mc{C}^0(\bar{\Omega})$ due soluzioni del PDD con $f$ nulla e $u_0,u_0' \in \mc{C}^0(\partial\Omega)$ tali che $u_0\ge u_0'$ ed esista un punto $x_0 \in \partial\Omega$ dove $u_0(x_0)>u_0'(x_0)$.\\
+    Allora $u>u'$ su tutto $\Omega$
+\end{corollary}
+\begin{proof}
+    Sia $v:= u-u'$, che è soluzione del PDD $\Delta v = 0$ e $v_0 := u_0-u_0'\ge 0$. Abbiamo che in almeno in un punto $x_0 \in \partial \Omega$, $v_0(x_0) >0$.\\
+    Sia $x \in \Omega$. Ho due casi: o $v(x)$ è maggiore del minimo di $v$ su $\partial \Omega$, dunque $v(x)$ è maggiore di $0$, o è uguale al minimo di $v$ su $\partial \Omega$, ma in quel caso $v$ dovrebbe essere costante e maggiore di $0$ in quanto lo è in almeno un punto, dunque $u>u'$ su tutto $\Omega$.
+\end{proof}
+
+Ci serve una roba del genere ma su domini illimitati.
+
+\begin{proposition}{}{}
+    Sia $u$ armonica su $\R^n \setminus \bar{\Omega}$ e continua su $\R^n \setminus \Omega$ tale che $u|_{\partial\Omega}\ge 0$ e $u\to 0$ all'infinito.\\
+    Allora, $u\ge 0$ su $\R^n \setminus \Omega$.
+\end{proposition}
+\begin{proof}
+    Per definizione:
+    \[\lim_{x\to\infty} u(x) = 0 \Rarr \lim_{R\to+\infty}\sup_{B_R(0)}|u| = 0 \Rarr \forall \varepsilon >0, \exists R_\varepsilon > 0 : \forall R>R_\varepsilon, \sup_{B_R(0)}|u| < \varepsilon\wedge \Omega \subset B_R(0)\]
+    Osserviamo dunque che $u$ ristretta a $B_R(0)$ è strettamente maggiore di $-\varepsilon$. Sia $u' := -\varepsilon$.\\
+    Notiamo che soddisfa il PDD interno a $\Omega_R := B_R(0)\setminus \bar{\Omega}$ con $f$ nulla e condizione di bordo $-\varepsilon$, e $u|_{\partial \Omega_R}>-\varepsilon$ per il corollario di prima, dunque $u(x)>-\varepsilon$ su tutto $\Omega_R$ per ogni $R>R_\varepsilon$.\\
+    Mandando $\varepsilon\to 0$ otteniamo $u\ge 0$ su tutto $\R^n \setminus \Omega$.
+\end{proof}
+
+\begin{theorem}{}{}
+    Sia $n\ge 3$ e $u$ armonica su $\R^n\setminus \bar{\Omega}$ tale che $u\to 0$ quando $x\to\infty$.\\
+    Allora esistono $C,R>0$ tali che $\bar{\Omega}\subset B_R(0)$ e in $\R^n\setminus B_R(0)$:
+    \[|u| \le \frac{C}{||x||^{n-2}}\qquad \text{e}\qquad \left|\frac{\partial u}{\partial x_k}\right|\le \frac{\tilde{C}}{||x||^{n-1}} \quad \forall k\]
+\end{theorem}
+\begin{proof}
+    Per definizione di limite abbiamo:
+    \[\exists R>0 \quad \text{t.c.} \quad \bar{\Omega}\subset B_R(0) \quad \text{e} \quad |u| <\frac{1}{(n-2)\omega_n} \quad \text{su } \partial B_R(0)\]
+    Consideriamo $v:= u + R^{n-2}G_n = u(x) - \frac{R^{n-2}}{(n-2)\omega_n ||x||^{n-2}}$ e osserviamo che $v$ risolve il seguente PDD esterno:
+    \[\Delta v = 0 \quad\text{su }\R^n \setminus\bar{B}_R(0), \qquad \lim_{x\to\infty}v(x) = 0, \qquad v|_{\partial B_R(0)} = u|_{\partial B_R(0)} - \frac{1}{(n-2)\omega_n} < 0\]
+    Dunque per la proposizione precedente, $v \le 0$ su tutto $\R^n \setminus\bar{B}_R(0)$, dunque $u(x) \le \frac{R^{n-2}}{(n-2)\omega_n ||x||^{n-2}}$
+    Poi procediamo analogamente con $v' = u - R^{n-2}G_n$.\\
+    Adesso consideriamo $R$ tale che $|u(x)| \le c||x||^{2-n}$
+    TODO
+\end{proof}
+
+\begin{theorem}{Unicità della soluzione dei PDN}{}
+    Siano $u,u'$ due soluzioni al PDN:
+    \[\Delta u = f \quad \text{su }\R^n\setminus \bar{\Omega},\qquad \frac{\partial u}{\partial \nu} = u_1 \quad \text{su }\partial\Omega, \qquad \lim_{x\to\infty}u(x) = u_\infty\]
+    Con gli stessi dati. Allora $u=u'$
+\end{theorem}
+\begin{proof}
+    Definiamo $v = u-u'$ che risolve il PDN esterno con dati nulli. Sia dunque $R>0$ tale che $\bar{\Omega}\subset B_R(0)$ e $|v|\le C||x||^{2-n}$ e $||\nabla v||\le C||x||^{1-n}$, allora posto $\Omega_N := B_R(0)\setminus \bar{\Omega}$ si ha:
+    \[\int\limits_{\Omega_R} v\Delta v \de^n x = 0 = \oint\limits_{\partial \Omega_R} v \frac{\partial v}{\partial \nu}\de S - \int\limits_{\Omega_R} ||\nabla v||^2 \de^n x = \oint\limits_{\partial B_R(0)} v \frac{\partial v}{\partial \nu}\de S - \int\limits_{\Omega_R} ||\nabla v||^2 \de^n x\]
+    Vediamo che quando $R\to \infty$, il secondo termine tende all'integrale su tutto il dominio di $||v||^2$, mentre il primo termine può essere maggiorato in questo modo:
+    \[\left|\oint\limits_{\partial B_R(0)} v \frac{\partial v}{\partial \nu}\de S\right|\le \oint\limits_{\partial B_R(0)} \frac{C}{||x||^{n-2}} \frac{C}{||x||^{n-1}}\de S = \frac{C^2\omega_n}{R^{n-2}}\to 0\]
+    Quindi all'infinito abbiamo
+    \[0 = \lim_{R\to +\infty} -\int\limits_{\Omega_R} ||\nabla v||^2 \de^n x = 0 \Rarr \nabla v = 0 \Rarr v = 0 \Rarr u = u'\]
+\end{proof}
+
+\chapter{PDE iperboliche}
+
+In questo capitolo considereremo l'equazione di Klein-Gordon con $\mu > 0$, che con $\mu = 0$ a volte ridurremmo all'equazione delle onde:
+\[\frac{1}{c^2}\frac{\partial^2 u}{\partial t^2} - \Delta_x u + \mu^2 u = 0\]
+Con $u: \R^{n+1}\to \R$, dove consideriamo i punti come $(t,x)$ con $t \in \R$ e $x \in\R^n$.
+Il simbolo principale di questo operatore è la matrice identità con il primo elemento invertito di segno, dunque è una PDE iperbolica; inoltre la superficie $\Sigma := \{(0,x)\in \R^{n+1}\}$ non è caratteristica \Nick e quindi possiamo dare condizioni su di essa senza che C-K esploda.
+
+Scopriremo che il parametro $c^2$ rappresenta una velocità di propagazione finita, cosa effettivamente importante dal punto di vista fisico.
+
+\section{Unicità su domini limitati}
+
+\begin{definition}{Problema di Cauchy con condizioni al bordo}{}
+    Sia $\Omega \subset \R^n$ un aperto con chiusura compatta e frontiera regolare orientabile.\\
+    Fissiamo $T>0$ e definiamo $\Omega_T :=\Omega\times ]-T,T[$ e indichiamo con abuso di notazione $\bar{\Omega}_T:=\bar{\Omega}\times ]-T,T[$.\\
+    Il \bemph{problema di Cauchy con condizioni al bordo} per l'equazione di K-G consiste nel trovare una $u\in \mc{C}^2(\Omega_T)$ tale che:
+    \[T_1 : \frac{1}{c^2}\frac{\partial^2 u}{\partial t^2} - \Delta_x u + \mu^2 u = f \quad \text{su }\Omega_T\]
+    \[T_2 : u(x,0) = u_0(x) \quad \text{su }\bar{\Omega}\]
+    \[T_3 : \frac{\partial u}{\partial t}(x,0) = u_1(x)\quad \text{su }\bar{\Omega}\]
+    \[T_4 : \sin\theta \frac{\partial u}{\partial \nu} + \cos\theta u = u_{BC} \quad \text{su } \partial\Omega \times ]-T,T[\]
+    Con $c,\mu \in \R$, $\theta \in [0,2\pi]$, $f \in \mc{C}^0(\bar{\Omega}_T)$, $u_0 \in \mc{C}^2(\bar{\Omega})$, $u_1 \in \mc{C}^1(\bar{\Omega})$ e $u_{BC} \in \mc{C}^1(\partial\Omega \times ]-T,T[)$\footnote{Prendendo $\theta = 0$ possiamo anche imporre $\mc{C}^2$} dati.
+\end{definition}
+\begin{remark}{Interpretazioni fisiche e compatibilità tra i dati}{}
+    $T_1$ ci dice cosa succede alla membrana quando sollecitiamo il tamburo, con la $f$ che rappresenta le nostre sollecitazioni.\\
+    $T_2$ e $T_3$ ci danno le condizioni della membrana in un certo istante $t=0$; se nessuno ha battuto la membrana, $u_0$ sarà costante e $u_1$ nulla.\\
+    $T_4$ ci dice che la membrana del tamburo sul bordo del tamburo è sempre ferma; il tamburo corrisponde a $u_{BC} = 0$ e $\theta = 0$, ovvero che la membrana sia vincolata a stare ferma su un piano.\\
+    Inoltre il paramentro $\theta$ ci permette di considerare tutti i problemi visti sopra: $\theta = 0 \Rarr$ Dirichlet nelle situazioni tempo-indipendenti ellittiche, $\theta = \pi/2\Rarr$ Neumann e $\theta in ]0,\pi/2[\Rarr$ Robin in quanto non si annulla nulla e entrambi i fattori sono positivi; in poche parole, con una condizione al bordo prendiamo tutti i casi ellittici.\\
+    Inoltre abbiamo una certa dipendenza tra i dati, infatti:
+    \[\sin\theta \frac{\partial u}{\partial \nu}(x,0) + \cos\theta u(x,0) = u_{BC}(x,0)\Rarr u_{BC}(x,0) = \sin\theta \frac{\partial u_0}{\partial \nu}(x) + \cos\theta u_0(x)\]
+    E analogamente
+    \[\sin\theta\frac{\partial}{\partial t} \frac{\partial u}{\partial \nu}(x,0) + \cos\theta\frac{\partial}{\partial t} u(x,0) =\frac{\partial}{\partial t} u_{BC}(x,0) \Rarr \frac{\partial}{\partial t} u_{BC}(x,0) =  \sin\theta \frac{\partial u_1}{\partial \nu}(x) + \cos\theta u_1(x)\]
+    Che sono condizioni necessarie sui dati per l'esistenza di soluzioni.\\
+    Infine, dobbiamo considerare il fatto che noi stiamo trattando il tempo in maniera simmetrica: conoscendo lo stato della membrana in un $t=0$, vogliamo ricostruirne le condizioni sia prima che dopo.\\
+    L'equazione delle onde infatti presenta quella che si dice \bemph{time-reversal simmetry}, ovvero se $u(x,t)$ è soluzione, lo è anche $u(x,-t)$. Purtroppo altre equazioni, come quella del calore, non ci fanno questo stesso regalo.
+\end{remark}
+
+\begin{theorem}{Unicità delle soluzioni del PDC-BC}{}
+    Siano $u,u'$ due soluzioni del PDC-BC con gli stessi dati $c$, $\mu$, $\theta$, $f$, $u_0$, $u_1$ e $u_{BC}$.\\
+    Allora $u=u'$
+\end{theorem}
+\begin{proof}
+    Sia $v = u-u'$. Questa risolve il PDC-BC con dati $c$, $\mu$, $\theta$ e gli altri dati nulli. Definiamo la \bemph{densità di energia} $E_v$ come:
+    \[E_v = \frac{1}{2}\left[ \frac{1}{c^2}\left(\frac{\partial v}{\partial t}\right)^2 + ||\nabla_x v||^2 + \mu^2 v^2 \right] \in \mc{C}^1(\bar{\Omega}_T)\]
+    Abbiamo che $E_v(x,t)\ge 0$, $E_v(x,0) = 0$ ed è costantemente zero se e solo se $v$ è costantemente 0. Dato che è $\mc{C}^1$ posso derivarla nel tempo facendo orribili contacci ottenendo:
+    \[\frac{\partial E_v}{\partial t} = \nabla_x \cdot \frac{\partial v}{\partial t} \nabla_x v\]
+    Dunque possiamo definire la funzione
+    \[E_{v,\Omega}(t) := \int\limits_{\Omega} E_v(x,t)\de^n x\]
+    Che è $\mc{C}^1$ su $]-T,T[$ e si annulla in $t=0$
+    \[\frac{d}{d t}E_{v,\Omega}(t) = \int\limits_{\Omega} \frac{\partial E_v}{\partial t}(x,t)\de^n x = \int\limits_{\Omega}\nabla_x \cdot \frac{\partial v}{\partial t}(x,t) \nabla_x v(x,t)\de^n x = \oint\limits_{\partial\Omega}\frac{\partial v}{\partial \nu} \frac{\partial v}{\partial t}\de S\]
+    Consideriamo dunque due casi:\\
+    Se $\theta = 0, \pi/2$ allora su $\partial\Omega \times ]-T,T[$ abbiamo
+    \[v = 0 \quad \text{o} \quad \frac{\partial v}{\partial t} = 0\Rarr \frac{d}{d t}E_{v,\Omega}(t) =0 \wedge E_{v,\Omega}(0) \Rarr E_v = 0 \Rarr v = 0\]
+    TODO caso $0<\theta < \pi/2$
+\end{proof}
+\begin{remark}{}{}
+    Abbiamo chiamato $E_v$ "densità di energia", e dunque $E_{v,\Omega}$ corrisponderebbe all'energia della funzione $v$ sulla regione $\Omega$. Abbiamo anche
+    \[\frac{d}{d t}E_{v,\Omega}(t) = \int\limits_{\Omega}\nabla_x \cdot J \de^n x = \oint\limits_{\partial \Omega}J \cdot \nu \de S\]
+    Dove $J$ è il nostro \bemph{flusso di energia}. 
+\end{remark}
+
+\section{Velocità di propagazione finita}
+
+Una proprietà interessante dell'equazione di K-G (e delle onde) è che le soluzioni propagano il loro supporto a velocità finita, in particolare una soluzione a supporto compatto lo rimane per tutti gli istanti successivi.
+
+Per dimostrare questa cosa, ci servirà il prossimo lemma.
+
+\begin{lemma}{}{}
+    Sia $I = [0,1]$ e sia $F \in \mc{C}^0(I^2)$. Definiamo
+    \[f(t) = \int\limits_0^t F(s,t)\de s\]
+    Allora abbiamo che 
+    \[\frac{\partial F}{\partial t}\in \mc{C}^0(I^2)\Rarr f \in \mc{C}^1(I) \quad \text{e}\quad \frac{d}{dt}f(t) = F(t,t) + \int\limits_0^t \frac{\partial F}{\partial t}(s,t)\de s\]
+\end{lemma}
+\begin{proof}
+    TODO
+\end{proof}
+
+Ci servono un paio di risultatelli tecnici
+
+\begin{definition}{Cono di dipendenza}{}
+    Sia $(x_0,t_0)\in \R^{n+1}$. Il \bemph{cono di dipendenza} con vertice in $(x_0,t_0)$ è l'insieme $D_{x_0,t_0} := \{(x,t) \in \R^{n+1}: t\le t_0, ||x-x_0||\le c |t-t_0|\}$.\\
+    TODO immagine del cono
+\end{definition}
+
+Vogliamo dimostrare che il valore di $u(x_0,t_0)$ dipende soltanto dai valori di $u$ in $D_{x_0,t_0}$, varrebbe anche su domini limitati ma noi lo facciamo su tutto $\R^{n+1}$
+
+\begin{theorem}{}{}
+    Sia $u \in \mc{C}^2(\R^{n+1})$ che risolva l'equazione di K-G. Supponiamo anche che $u(x,0) = 0$ e $\frac{\partial u}{\partial t} (x,0) = 0$ in $B_{ct_0}(x_0)$ per un certo $(x_0,t_0)$.\\
+    Allora $u=0$ su $D_{x_0,t_0}\cap \R^n\times [0,t_0]$.
+\end{theorem}
+\begin{proof}
+    Consideriamo la funzione $e_u : [0,t_0]\to \R$ definita come:
+    \[e_v(t):= \int\limits_{B_{c(t_0-t)}(x_0)}E_u(x,t)\de^n x = \int\limits_0^{c(t_0-t)} \oint\limits\limits_{\partial B_R(x_0)} E_u(x,t)\de S(x)\de R =: \int\limits_0^{c(t_0-t)} F(R,t)\de R \]
+    Per il corollario della convergenza dominata, $F \in \mc{C}^0([0,t_0]^2)$ come la sua derivata temporale, dunque il suo limite per $R\to 0$ è $0$
+    TODO
+\end{proof}
+
 
 \end{document}
