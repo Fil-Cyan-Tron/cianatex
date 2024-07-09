@@ -1,0 +1,136 @@
+\documentclass{article}
+
+\usepackage[pastel]{cianatex}
+
+\title{Domande dell'orale di Calcolo delle Probabilità e Statistica Matematica}
+\author{Filippo $\L$ Troncana (ovviamente su domande di Luigi Amedeo Bianchi)}
+\date{A.A. 2023/2024, appello di Giugno}
+
+\begin{document}
+
+\maketitle
+
+\paragraph*{Disclaimer:} Gli interrogati sono raccolti nell'ordine in cui mi sono state riferite le domande, non necessariamente nell'ordine di interrogazione. Aggiungerò le risposte, o almeno un tentativo.
+
+\section{}%Lucrezia
+
+\subsection*{Domande}
+
+\begin{enumerate}
+    \item Sia $X\sim \exp(\lambda)$ con $\lambda > 0$ e sia $Y = g(X)$ con $g(x) = (1-x)^2$. Quali sono legge e media di $Y$?
+    \item Intervalli di confidenza.
+    \item Introduzione alla Statistica.
+    \item Media campionaria e dimostrazione della correttezza.
+\end{enumerate}
+
+\subsection*{Risposte}
+
+\begin{enumerate}
+    \item Piuttosto che usare la formula, si può usare la definizione di legge, notando innanzitutto che $P(Y < 0) = 0$, quindi esaminiamo $y\ge 0$:
+    \[ F_Y(y) = P(Y\le y) = P((1-X)^2 \le y) = P(|1-X|\le \sqrt{y}) = P(X \ge 1-\sqrt{y} \wedge X \le 1) + P(X \le 1+\sqrt{y} \wedge X > 1)\]
+    Dunque otteniamo
+    \[F_Y(y) = \ind_{y\ge 0} \int\limits_{1-\sqrt{y}}^{1+\sqrt{y}} f_X(x)\de x = \begin{cases}
+        0 & y < 0\\
+        \int\limits_{0}^{1+\sqrt{y}} \lambda e^{-\lambda x}\de x & y > 1\\
+        \int\limits_{1-\sqrt{y}}^{1+\sqrt{y}}\lambda e^{-\lambda x}\de x & y \in [0,1]
+    \end{cases} = \begin{cases}
+        0 & y < 0\\
+        F_X(1+\sqrt{y}) - F_X(1-\sqrt{y}) & y \ge 0
+    \end{cases}\]
+    \item TODO
+    \item TODO
+    \item Sia $X := \{X_i\}_1^n$ un campione di variabili aleatorie (che assumeremo indipendenti e identicamente distribuite) da una popolazione di media $\mu$ sconosciuta. La \bemph{media campionaria} di $X$ indicata con $\hat{\mu}_n$ è lo stimatore
+    \[\hat{\mu}_n = E\left[\frac{1}{n}\sum_{x=1}^n X_i\right] \quad \text{che per la linearità della speranza è uguale a}\quad \frac{1}{n}\sum_{i=1}^n E[X_i]\]
+    Ed è corretto come conseguenza della \href{th:WLLN}{legge debole dei grandi numeri}, che ci dice che 
+    \[\hat{\mu}_n \xrightarrow{n\to +\infty} \mu\]
+\end{enumerate}
+
+\section{}%Alessandro Ruocco
+
+\subsection*{Domande}
+
+\begin{enumerate}
+    \item Legge debole dei grandi numeri: enunciato, dimostrazione, significato e applicazione.
+    \item Variabile aleatoria binomiale: definizione, legge e media (con dimostrazione della media).
+\end{enumerate}
+
+\subsection*{Risposte}
+
+\begin{enumerate}
+    \item 
+    \begin{theorem}{Legge debole dei grandi numeri}{WLLN}
+        Sia $\{X_i\}_\N$ una successione di variabili aleatorie identicamente distribuite e indipendenti, ciascuna di media $\mu$ e varianza $\sigma^2$ e sia $S_n := X_1+...+X_n$. Allora abbiamo che per ogni $\varepsilon>0$ si ha
+        \[\lim_{n\to +\infty} P\left(\left| \frac{S_n}{n} - \mu \right|> \varepsilon\right)=0\] 
+    \end{theorem}
+    \begin{proof}
+        Sfruttando il fatto che $E[S_n/n] = \mu$ e $\Var[S_n/n] = \sigma^2/n$ e la disuguaglianza di Chebychev, fissiamo $\varepsilon>0$ e otteniamo
+        \[P\left(\left| \frac{S_n}{n} - \mu \right|> \varepsilon\right) = P\left(\left| \frac{S_n}{n} - E\left[\frac{S_n}{n}\right] \right|> \varepsilon\right)\le \frac{\Var\left(\frac{S_n}{n}\right)}{\varepsilon^2} = \frac{\sigma^2}{n\varepsilon^2}\xrightarrow{n\to+\infty} 0\]
+    \end{proof}
+    L'idea è che in una successione di variabili aleatorie, $S_n-n\mu = o(n)$, ma non è detto che $S_n - n\mu \to 0$, attenzione! Ci dà un'idea della frequenza dei risultati, non del risultato che dobbiamo aspettarci al prossimo tentativo: se finora sono uscite $42'000'000$ teste e $42$ croci, non è per nulla detto che esca croce (anche se potremmo iniziare a farci qualche domanda sulla qualità della moneta).
+    \item 
+    \begin{definition}{Variabile aleatoria binomiale}{VABin}
+        Sia $\{X_i\}_1^n$ una successione di variabili aleatorie bernoulliane di parametro $p\in [0,1]$.\\
+        Una variabile aleatoria $X$ si dice \bemph{binomiale} e si indica $X\sim\binva(n,p)$ se
+        \[X = \sum_{i=1}^n X_i\]
+    \end{definition}
+    La legge di $X$ è 
+    \[\varphi_X(k) = \ind_{\{0\to n\}}(k)\bin{n}{k} p^k(1-p)^{n-k}\]
+    Per la linearità della speranza, abbiamo che 
+    \[E[X] = E\left[\sum_{i=1}^n X_i\right] = \sum_{i=1}^n E[X_i] = np\]
+\end{enumerate}
+
+\section{}%Marco Chiesa
+
+\subsection*{Domande}
+
+\begin{enumerate}
+    \item Intervalli di confidenza: costruzione, interpretazione, esempi, proprietà.
+    \item In quanti modi si possono suddividere nove ubriachi in tre taxi con tre persone ciascuno?
+\end{enumerate}
+
+\subsection*{Risposte}
+
+\begin{enumerate}
+    \item TODO
+    \item Innanzitutto possiamo immaginare $9!$ al numeratore, in quanto possiamo immaginare che i nostri passeggeri siano rappresentati da $\{1\to 9\}$ e disporli in tre taxi sarebbe come immaginare una parola fatta di ciascuno di questi simboli, ma c'è un problema: la disposizione $123|456|789$ è equivalente a quella $123|789|456$ e a quella $132|456|789$ ad esempio, dunque dobbiamo anche dividere per i possibili ordini dei taxi e i possibili ordini dei passeggeri, ottenendo $9!/(3!)^2$.
+\end{enumerate}
+
+\section{}%Davide Borra
+
+\subsection*{Domande}
+
+\begin{enumerate}
+    \item Test statistici: definizione, obiettivi, proprietà ed esempi.
+    \item In un roster di quaranta giocatori numerati, qual è la probabilità che in una squadra da undici giocatori non ci siano due giocatori con numeri consecutivi?
+\end{enumerate}
+
+\subsection*{Risposte}
+
+\section{}%Riccardo
+
+\subsection*{Domande}
+
+\begin{enumerate}
+    \item Successioni di variabili aleatorie.
+    \item Teorema centrale del limite.
+\end{enumerate}
+
+\subsection*{Risposte}
+
+\section{}%Tex
+
+\subsection*{Domande}
+
+\begin{enumerate}
+    \item Variabili aleatorie poissoniane: definizioni, proprietà, esempi, intervallo di confidenza per una popolazione di poissoniane.
+\end{enumerate}
+
+\section{}%Maddalena
+
+\subsection*{Domande}
+
+\begin{enumerate}
+    \item Variabili aleatorie geometriche: definizione, proprietà, varianza e media con dimostrazione.
+\end{enumerate}
+
+\end{document}
