@@ -84,39 +84,41 @@
 
     %Colorcoding
     
-        %Standard
-            \definecolor{theoremcolor}{rgb}{1.0, 0.0, 0.0} %rosso standard
-            \definecolor{proofcolor}{rgb}{1.0, 0.6, 0.0} %persimmon
-            \definecolor{definitioncolor}{rgb}{0.0, 1.0, 0.0} %verde standard
-            \definecolor{propositioncolor}{rgb}{0.0, 0.0, 1.0} %blu standard
-            \definecolor{remarkcolor}{rgb}{0.7, 0.0, 0.7} %viola :)
-            \definecolor{examplecolor}{rgb}{0.85, 0.75, 0.0} %giallo
-            \definecolor{notationcolor}{rgb}{0.43, 0.21, 0.1} %Auburn (marroncino)
-            \definecolor{corollarycolor}{rgb}{0.9, 0.17, 0.31} %Amaranto (rossastro rosa)
-            \definecolor{lemmacolor}{rgb}{0.0, 0.5, 0.69} %Bluastro-ciano
+        %Standard https://colorkit.co/palette/ff595e-ff924c-ffca3a-c5ca30-8ac926-52a675-1982c4-4267ac-6a4c93/
+            \definecolor{theoremcolor}{HTML}{ff595e} %Rosso
+            \definecolor{proofcolor}{HTML}{ff924c} %Arancio
+            \definecolor{definitioncolor}{HTML}{8ac926} %Verde
+            \definecolor{propositioncolor}{HTML}{1982c4} %Azzurro
+            \definecolor{remarkcolor}{HTML}{6a4c93} %Viola
+            \definecolor{examplecolor}{HTML}{ffca3a} %Giallo
+            \definecolor{notationcolor}{HTML}{c5ca30} %Giallastro
+            \definecolor{corollarycolor}{HTML}{52a675} %Verde cobalto
+            \definecolor{lemmacolor}{HTML}{4267ac} %Bluastro-ciano
 
         %Colori pastello
             \DeclareOption{pastel}{
-                \definecolor{theoremcolor}{rgb}{0.9, 0.31, 0.28} %rosso pastello
-                \definecolor{proofcolor}{rgb}{0.9, 0.6, 0.28} %arancio pastello
-                \definecolor{definitioncolor}{rgb}{0.37, 0.77, 0.37} %verde pastello
-                \definecolor{propositioncolor}{rgb}{0.58, 0.68, 0.81} %blu pastello
-                \definecolor{remarkcolor}{rgb}{0.7, 0.5, 0.69} %viola :)
-                \definecolor{examplecolor}{rgb}{0.96, 0.6, 0.76} %magenta
-                \definecolor{notationcolor}{rgb}{0.47, 0.27, 0.23} %Bole
-                \definecolor{corollarycolor}{rgb}{1.0, 0.75, 0} %ambra
-                \definecolor{lemmacolor}{rgb}{0.0, 0.36, 0.25} %british racing green
+                \definecolor{theoremcolor}{HTML}{0.9, 0.31, 0.28} %rosso pastello
+                \definecolor{proofcolor}{HTML}{0.9, 0.6, 0.28} %arancio pastello
+                \definecolor{definitioncolor}{HTML}{0.37, 0.77, 0.37} %verde pastello
+                \definecolor{propositioncolor}{HTML}{0.58, 0.68, 0.81} %blu pastello
+                \definecolor{remarkcolor}{HTML}{0.7, 0.5, 0.69} %viola :)
+                \definecolor{examplecolor}{HTML}{0.96, 0.6, 0.76} %magenta
+                \definecolor{notationcolor}{HTML}{0.47, 0.27, 0.23} %Bole
+                \definecolor{corollarycolor}{HTML}{1.0, 0.75, 0} %ambra
+                \definecolor{lemmacolor}{HTML}{0.0, 0.36, 0.25} %british racing green
                 }
 
         %Grigio depresso
             \DeclareOption{depression}{
-                \definecolor{theoremcolor}{rgb}{0.4, 0.4, 0.37}
-                \definecolor{proofcolor}{rgb}{0.4, 0.4, 0.37}
-                \definecolor{definitioncolor}{rgb}{0.4, 0.4, 0.37}
-                \definecolor{propositioncolor}{rgb}{0.4, 0.4, 0.37}
-                \definecolor{remarkcolor}{rgb}{0.4, 0.4, 0.37}
-                \definecolor{examplecolor}{rgb}{0.4, 0.4, 0.37}
-                \definecolor{notationcolor}{rgb}{0.4, 0.4, 0.37}
+                \definecolor{theoremcolor}{HTML}{0.4, 0.4, 0.37}
+                \definecolor{proofcolor}{HTML}{0.4, 0.4, 0.37}
+                \definecolor{definitioncolor}{HTML}{0.4, 0.4, 0.37}
+                \definecolor{propositioncolor}{HTML}{0.4, 0.4, 0.37}
+                \definecolor{remarkcolor}{HTML}{0.4, 0.4, 0.37}
+                \definecolor{examplecolor}{HTML}{0.4, 0.4, 0.37}
+                \definecolor{notationcolor}{HTML}{0.4, 0.4, 0.37}
+                \definecolor{corollarycolor}{HTML}{0.4, 0.4, 0.37}
+                \definecolor{lemmacolor}{HTML}{0.4, 0.4, 0.37}
             }
 
         %Zun
@@ -244,13 +246,80 @@
     %Ambienti
 
         %Teoremi, proposizioni et cetera
-            \newtcbtheorem[number within=subsection]{theorem}{Teorema}{enhanced,breakable,colback=white,colframe=theoremcolor!100!black,fonttitle=\bfseries,sharp corners}{th}
-            \newtcolorbox{proofbox}{enhanced,breakable,colback=white,colframe=proofcolor!100!black, fonttitle=\bfseries, title=Dimostrazione,sharp corners}
+            
+
+
+            \newtcbtheorem[number within=subsection]{theorem}{Teorema}{
+                enhanced,
+                breakable,
+                colback=white,
+                colframe=theoremcolor,
+                fonttitle=\bfseries,
+                sharp corners
+                }{th}
+            \newtcolorbox{proofbox}{
+                enhanced,
+                breakable,
+                colback=white,
+                colframe=proofcolor, 
+                fonttitle=\bfseries, 
+                title=Dimostrazione,
+                sharp corners
+                }
             \newenvironment{proof}{\proofbox}{\begin{flushright}$\square$\end{flushright}\endproofbox}
-            \newtcbtheorem[number within=subsection]{definition}{Definizione}{enhanced,breakable,colback=white,colframe=definitioncolor!100!black,fonttitle=\bfseries,sharp corners}{def}
-            \newtcbtheorem[number within=subsection]{proposition}{Proposizione}{enhanced,breakable,colback=white,colframe=propositioncolor!100!black,fonttitle=\bfseries,sharp corners}{prop}
-            \newtcbtheorem[number within=subsection]{remark}{Osservazione}{enhanced,breakable,colback=white,colframe=remarkcolor!100!black,fonttitle=\bfseries,sharp corners}{rem}
-            \newtcbtheorem[number within=subsection]{example}{Esempio}{enhanced,breakable,colback=white,colframe=examplecolor!100!black,fonttitle=\bfseries,sharp corners}{exmp}
-            \newtcolorbox{notation}{enhanced,breakable,colback=white,colframe=notationcolor!100!black, fonttitle=\bfseries, title=Notazione,sharp corners}
-            \newtcbtheorem[number within=subsection]{corollary}{Corollario}{enhanced,breakable,colback=white,colframe=corollarycolor!100!black,fonttitle=\bfseries,sharp corners}{cor}
-            \newtcbtheorem[number within=subsection]{lemma}{Lemma}{enhanced,breakable,colback=white,colframe=lemmacolor!100!black,fonttitle=\bfseries,sharp corners}{lemma}
+            \newtcbtheorem[number within=subsection]{definition}{Definizione}{
+                enhanced,
+                breakable,
+                colback=white,
+                colframe=definitioncolor,
+                fonttitle=\bfseries,
+                sharp corners
+                }{def}
+            \newtcbtheorem[number within=subsection]{proposition}{Proposizione}{
+                enhanced,
+                breakable,
+                colback=white,
+                colframe=propositioncolor,
+                fonttitle=\bfseries,
+                sharp corners
+                }{prop}
+            \newtcbtheorem[number within=subsection]{remark}{Osservazione}{
+                enhanced,
+                breakable,
+                colback=white,
+                colframe=remarkcolor,
+                fonttitle=\bfseries,
+                sharp corners
+                }{rem}
+            \newtcbtheorem[number within=subsection]{example}{Esempio}{
+                enhanced,
+                breakable,
+                colback=white,
+                colframe=examplecolor,
+                fonttitle=\bfseries,
+                sharp corners
+                }{exmp}
+            \newtcolorbox{notation}{
+                enhanced,
+                breakable,
+                colback=white,
+                colframe=notationcolor, 
+                fonttitle=\bfseries, 
+                title=Notazione,
+                sharp corners}
+            \newtcbtheorem[number within=subsection]{corollary}{Corollario}{
+                enhanced,
+                breakable,
+                colback=white,
+                colframe=corollarycolor,
+                fonttitle=\bfseries,
+                sharp corners
+                }{cor}
+            \newtcbtheorem[number within=subsection]{lemma}{Lemma}{
+                enhanced,
+                breakable,
+                colback=white,
+                colframe=lemmacolor,
+                fonttitle=\bfseries,
+                sharp corners
+                }{lemma}

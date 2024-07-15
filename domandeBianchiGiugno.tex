@@ -1,6 +1,6 @@
 \documentclass{article}
 
-\usepackage[pastel]{cianatex}
+\usepackage{cianatex}
 
 \title{Domande dell'orale di Calcolo delle Probabilità e Statistica Matematica}
 \author{Filippo $\L$ Troncana (ovviamente su domande di Luigi Amedeo Bianchi)}
@@ -36,8 +36,11 @@
     \end{cases} = \begin{cases}
         0 & y < 0\\
         F_X(1+\sqrt{y}) - F_X(1-\sqrt{y}) & y \ge 0
-    \end{cases}\]
-    \item TODO
+    \end{cases} \]
+    Per calcolare la media usiamo
+    \[E[g(X)] = \int\limits_{\R} g(x) f_X(x)\de x = \int\limits_0^{+\infty} (1-x)^2 \lambda e^{-\lambda x}\de x = \int\limits_0^{+\infty} x^2 \lambda e^{-\lambda x}\de x - \int\limits_0^{+\infty} 2x \lambda e^{-\lambda x}\de x + \int\limits_0^{+\infty} \lambda e^{-\lambda x}\de x\]
+    Che farà qualche numero reale che non ho voglia di calcolare, immagino.
+    \item Immaginiamo di avere una popolazione $\Omega$ di cui vogliamo trovare un qualche parametro $\theta\in\R$. Estraiamo un campione $X=\{X_i\}_1^n$ e otteniamo una stima $\Theta[X]$. Un intervallo di confidenza bilaterale di livello $1-\alpha$ con $\alpha \in ]0,1[$ è un intervallo della forma $I_\alpha = [\Theta[X]-A_\alpha, \Theta[X] + B_\alpha]$ tale che $P(\theta \in I_\alpha) = 1-\alpha$. Se $A_\alpha$ o $B_\alpha$ sono $+\infty$, parliamo di intervallo unilaterale rispettivamente sinistro e destro.
     \item TODO
     \item Sia $X := \{X_i\}_1^n$ un campione di variabili aleatorie (che assumeremo indipendenti e identicamente distribuite) da una popolazione di media $\mu$ sconosciuta. La \bemph{media campionaria} di $X$ indicata con $\hat{\mu}_n$ è lo stimatore
     \[\hat{\mu}_n = E\left[\frac{1}{n}\sum_{x=1}^n X_i\right] \quad \text{che per la linearità della speranza è uguale a}\quad \frac{1}{n}\sum_{i=1}^n E[X_i]\]
@@ -117,20 +120,66 @@
 
 \subsection*{Risposte}
 
+\begin{enumerate}
+    \item TODO
+    \item Allora, prepariamo gli ingredienti che ci servono per questo Teorema
+    \begin{definition}{Funzione generatrice dei momenti}{MGF}
+        Sia $X$ una variabile aleatoria con densità $f_X$ e supporto $R_X$. Si dice \bemph{funzione generatrice dei momenti} di $X$ la funzione $M_X(t) = E[e^{tX}]$. In particolare vale:
+        \[M_X(t) = \sum_{x \in R_X} e^{tx} f_X(x)\quad \text{se }X\text{ discreta,}\qquad M_X(t) = \int\limits_{R_X} e^{tx} f_X(x)\de x \quad \text{se }X\text{ assolutamente continua.}\]
+    \end{definition}
+    \begin{lemma}{}{}
+        Siano due variabili aleatorie indipendenti $X$ e $Y$. Valgono i seguenti:
+        \begin{itemize}
+            \item Se $Z = aX + bY + c$ si ha $M_Z(t) =M_X(at)M_Y(bt)e^{ct}$.
+            \item Se esiste un aperto non vuoto $U\subset \R$ tale che $M_X(t) = M_Y(t)$ per ogni $t \in U$, allora $X\sim Y$ 
+            \item Vale $\de^n M_X(0) = E[X^n]$, quindi in particolare $M_X'(0) = E[X]$ e se $E[X]=0$, si ha $M_X''(0) = \Var(X)$.
+            \item Se $X\sim \normva(0,1)$ allora $M_X(t) = e^\frac{x^2}{2}$
+        \end{itemize}
+    \end{lemma}
+    Ora possiamo enunciare il nostro
+    \begin{theorem}{Teorema centrale del limite}{}
+        Sia $\{X_i\}_\N$ una successione di variabili aleatorie indipendenti ognuna con media $\mu$ e varianza $\sigma^2$. Si ha
+        \[S_n^* = \frac{S_n-n\mu}{\sqrt{\sigma^2 n}}\xrightarrow[n\to \infty]{\L}\normva(0,1), \quad\text{ovvero,}\quad P\left(\frac{S_n - n\mu}{\sqrt{\sigma^2 n}}\le x\right) \xrightarrow[n\to +\infty]{\text{pt. per }x\in\R} \Phi(x)\]
+    \end{theorem}
+    \begin{proof}
+        Consideriamo com'è fatta $M_{S_n^*}(t)$. Possiamo riscrivere
+        \[S_n^* = \frac{\sum_{i=0}^n (X_i - \mu)}{\sigma \sqrt{n}} = \frac{1}{\sqrt{n}}\sum_{i=0}^n \frac{X_i - \mu}{\sigma} =: \frac{1}{\sqrt{n}}\sum_{i=0}^n X_i^*\]
+        Dunque per il lemma di cui sopra
+        \[M_{S_n^*}(t) = M_{X^*}^n\left(\frac{t}{\sqrt{n}}\right) = \left[M_X\left(\frac{t}{\sigma\sqrt{n}}\right)e^{-\frac{\mu t}{\sigma}}\right]^n\]
+        Centrando in $t=0$ la serie di Taylor di $M_X(t)$ otteniamo che
+        \[M_X(t)\sim M_X(0) + M_X'(0)t + M_X''(0)\frac{t^2}{2} = 1 + \mu t + \sigma^2 \frac{t^2}{2}\]
+        Possiamo assumere che $\mu = 0$ senza perdita di generalità e otteniamo
+        \[M_{S_n^*}(t) = M_X^n\left(\frac{t}{\sigma\sqrt{n}}\right) \sim \left(1 + \frac{\sigma^2}{2}\frac{t^2}{\sigma^2 n}\right)^n\xrightarrow[n\to +\infty]{\text{in un intorno di }0} e^\frac{t^2}{2}\]
+        Dunque hanno la stessa MGF in un intorno di $0$ e pertanto sono identicamente distribuite.
+    \end{proof}
+\end{enumerate}
+
 \section{}%Tex
 
-\subsection*{Domande}
+\subsection*{Domanda}
 
-\begin{enumerate}
-    \item Variabili aleatorie poissoniane: definizioni, proprietà, esempi, intervallo di confidenza per una popolazione di poissoniane.
-\end{enumerate}
+Variabili aleatorie poissoniane: definizioni, proprietà, esempi, intervallo di confidenza per una popolazione di poissoniane.
+
+\subsection*{Risposta}
+
+\begin{definition}{Variabile aleatoria poissoniana}{}
+    Sia $X$ una variabile aleatoria tale che per un certo $\mu \in \R^+$ abbia funzione di ripartizione
+    \[\varphi_X(x) = \ind_\N \frac{\mu^x }{x!}e^{-\mu}\]
+    Allora $X$ si dice \bemph{poissoniana} di media $\mu$ e si scrive $X\sim\poisva(\mu)$
+\end{definition}
+Una poissoniana di media $\mu$ ha speranza $\mu$ (wow!), le poissoniane sono riproducibili e si ha $\poisva(\mu) + \poisva(\lambda) = \poisva(\mu + \lambda)$ e si ha
+\begin{proposition}{}{}
+    Data una successione $\{p_n\}_\N$ tale che $np_n \to \mu \in \R^+$, la successione $\{\binva(n,p_n)\}_\N$ converge in legge a $\poisva(\mu)$, ovvero:
+    \[\bin{n}{k} p_n^k(1-p_n)^k \xrightarrow[n\to +\infty]{\text{pt. per }k \in \N} \frac{\mu^k}{k!} e^{-\mu}\]
+\end{proposition}
+Un esempio di poissoniana potrebbe essere "quante botte mi darà LAB se uso Fubini per il volume di un cubo sapendo che in media ne dà 42?"
 
 \section{}%Maddalena
 
-\subsection*{Domande}
+\subsection*{Domanda}
 
-\begin{enumerate}
-    \item Variabili aleatorie geometriche: definizione, proprietà, varianza e media con dimostrazione.
-\end{enumerate}
+Variabili aleatorie geometriche: definizione, proprietà, varianza e media con dimostrazione.
+
+\subsection*{Risposta}
 
 \end{document}
