@@ -1,0 +1,1638 @@
+\section{Funzioni misurabili.}
+\begin{boxdef}[Funzione misurabile]
+    Siano $(X, \mc{A}, \mu)$ e $(Y, \tau)$, rispettivamente, uno spazio con misura e uno spazio topologico. Allora una funzione $f: X \rightarrow Y$ si dice "misurabile" se per ogni $G \in \tau$ si ha $f^{-1}(G) \in \mc{A}$.
+\end{boxdef}
+\begin{oss}Consideriamo uno spazio misurabile $(X, \mc{A}, \mu)$ e supponiamo che $X$ sia anche uno spazio topologico con la topologia inclusa in $\mc{A}$. Inoltre, siano $Y$ uno spazio topologico e $f: X \rightarrow Y$ una funzione continua. Allora $f$ è misurabile. Esempi di situazioni di questo tipo sono:
+\begin{itemize}
+  \item $\left(\mathbb{R}^{n}, \mc{M}_{\mc{L}^{n}},\left.\mc{L}^{n}\right|_{\mc{M}_{\mc{L}^{n}}}\right), f: \mathbb{R}^{n} \rightarrow \overline{\mathbb{R}}$ continua;
+  \item $\left(\mathbb{R}^{n}, \mc{M}_{\mc{H}^{s}},\left.\mc{H}^{s}\right|_{\mc{M}_{\mc{H}^{s}}}\right), f: \mathbb{R}^{n} \rightarrow \overline{\mathbb{R}}$ continua.
+\end{itemize}
+\end{oss}
+
+\begin{proposition}[$\circ$] \label{prop: composizione funzioni continue misurabili} Sia $(X, \mc{A}, \mu)$ uno spazio con misura e siano $Y, Z$ spazi topologici. Supponiamo inoltre che $f: X \rightarrow Y$ e $g: Y \rightarrow Z$ siano, rispettivamente, una funzione misurabile e una funzione continua. Allora $g \circ f: X \rightarrow Z$ è una funzione misurabile.
+\end{proposition}
+\begin{proof}
+    Sia $G$ un aperto di $Z$, allora si ha 
+    \[(g\circ f)^{-1}(G)=f^{-1}(g^{-1}(G))\]
+    ma poiché $g$ è continua, $g^{-1}(G)$ è un aperto in $Y$, quindi $f^{-1}(g^{-1}(G))\in \mc{A}$.
+\end{proof}
+
+\begin{exc}Siano dati due insiemi qualsiasi $X, Y$ e una funzione qualsiasi $f: X \rightarrow Y$. Provare che:
+    \begin{itemize}
+        \item Per ogni $\left\{E_{j}\right\} \subset \P(Y)$ si ha $f^{-1}\left(\bigcap_{j} E_{j}\right)=\bigcap_{j} f^{-1}\left(E_{j}\right)$ e $f^{-1}\left(\bigcup_{j} E_{j}\right)=\bigcup_{j} f^{-1}\left(E_{j}\right)$;
+        \item Per ogni $E \in \P(Y)$ si ha $f^{-1}\left(E^{c}\right)=\left[f^{-1}(E)\right]^{c}$.
+    \end{itemize}
+\end{exc}
+
+\paragraph*{Topologia euclidea estesa} Per enunciare il seguente risultato è importante ricordare la definizione di topologia euclidea estesa: la famiglia
+\[\bar\beta = \{]a,b[\,|\,a,b\in \Q\}\cup\{[-\infty, b[\,|\, b\in \R\}\cup \{]a,+\infty]\,|\, a\in \R\}\]
+è la base di una topologia su $\bar\R$ detta topologia euclidea estesa.
+    
+\begin{proposition}[$**$| Criterio delle semirette]\label{prop: criterio semirette}
+    Siano dati uno spazio con misura $(X, \mc{A}, \mu)$ e una funzione $f : X \rightarrow \bar \R$. Allora le seguenti affermazioni sono fra di loro equivalenti:
+
+    \begin{enumerate}
+        \item  $f$ è misurabile;
+        \item $f^{-1}(]a,+\infty]) \in \mc{A}$ per ogni $a \in \mathbb{R}$;
+        \item $f^{-1}([a,+\infty]) \in \mc{A}$ per ogni $a \in \mathbb{R}$;
+        \item $f^{-1}([-\infty, a[) \in \mc{A}$ per ogni $a \in \mathbb{R}$;
+        \item $f^{-1}([-\infty, a]) \in \mc{A}$ per ogni $a \in \mathbb{R}$.
+    \end{enumerate}
+\end{proposition}
+\begin{proof}~
+    \begin{itemize}[leftmargin = 45pt]
+        \item[$(1)\Rarr (2)$] Poiché $]a,+\infty]\in \bar\tau$, $\forall a\in\R$, per definizione di misurabilità si ha  $f^{-1}(]a,+\infty])\in \mc{A}$.
+        \item[$(2)\Rarr (3)$] $\forall a \in \R$, si ha $[a,+\infty]=\bigcap_{j=1}^{+\infty}]a-\frac{1}{j},+\infty]$, quindi 
+        \[f^{-1}([a,+\infty])=f^{-1}\left( \bigcap_{j=1}^{+\infty}\left]a-\frac{1}{j},+\infty \right]\right)=\bigcap_{j=1}^{+\infty}f^{-1}\left( \left]a-\frac{1}{j},+\infty \right]\right)\]
+        Quindi per $(2)$, $f^{-1}(]a-\frac{1}{j},+\infty])\in \mc{A}$, quindi poiché $\mc{A}$ è una $\sigma$-algebra, $f^{-1}([a,+\infty])\in \mc{A}$.
+        \item[$(3)\Rarr (4)$]$\forall a \in \R$, si ha 
+            \[f^{-1}([-\infty,a[)=f^{-1}([a,+\infty]^c)=f^{-1}([a,+\infty])^c\]
+            ora, poiché $f^{-1}([a,+\infty])\in \mc{A}$ per $(3)$, siccome $\mc{A}$ è una $\sigma$-algebra, $f^{-1}([-\infty,a[)\in \mc{A}$.
+        \item[$(4)\Rarr (5)$] [Analogo a $(2)\Rarr(3)$] $\forall a \in \R$, si ha $[-\infty,a]=\bigcap_{j=1}^{+\infty}]-\infty,a+\frac{1}{j}]$, quindi 
+        \[f^{-1}([-\infty,a])=f^{-1}\left( \bigcap_{j=1}^{+\infty}\left[-\infty,a+\frac{1}{j} \right[\right)=\bigcap_{j=1}^{+\infty}f^{-1}\left( \left[-\infty, a+\frac{1}{j} \right[\right)\]
+        Quindi per $(4)$, $f^{-1}([-\infty,a+\frac{1}{j}[)\in \mc{A}$, quindi poiché $\mc{A}$ è una $\sigma$-algebra, $f^{-1}([-\infty,a])\in \mc{A}$.
+        \item[$(5)\Rarr (2)$] [Analogo a $(3)\Rarr(4)$] $\forall a \in \R$, si ha 
+        \[f^{-1}(]a,+\infty[)=f^{-1}([-\infty,a]^c)=f^{-1}([-\infty,a])^c\]
+        ora, poiché $f^{-1}([-\infty,a])\in \mc{A}$ per $(5)$, siccome $\mc{A}$ è una $\sigma$-algebra, $f^{-1}(]a,+\infty])\in \mc{A}$.
+        \item[$(2)\Rarr (1)$] Per $(2)$, $\forall a\in \R, f^{-1}(]a,+\infty])\in \mc{A}$. Inoltre, in quanto $(2)\Harr (4)$,  $\forall a \in \R, f^{-1}([-\infty,a[)\in \mc{A}$, quindi anche 
+            \[f^{-1}(]a,b[)=f^{-1}(]a,+\infty]\cap[-\infty,b[)=f^{-1}(]a,+\infty])\cap f^{-1}(]-\infty,b])\in \mc{A}\]
+        in quanto $\mc{A}$ è una $\sigma$-algebra. Di conseguenza tutti gli elementi di $\bar \beta$ hanno controimmagine in $\mc{A}$, per cui dato che $\mc{A}$ è una $\sigma$-algebra\footnote{[NdR] Questo passaggio non è banale: stiamo infatti implicitamente applicando il Teorema di Lindeloff, che ci garantisce (siccome $(\bar\R,\bar\tau)$ possiede una base numerabile) che ogni unione arbitraria di aperti può essere vista come unione numerabile di alcuni tra gli stessi aperti che stiamo unendo. Per maggiori dettagli si rimanda alle note del corso di Geometria B, Esercizio 2.9.}, ogni aperto di $\bar\tau$ ha controimmagine in $\mc{A}$, quindi $f$ è misurabile. 
+    \end{itemize} 
+\end{proof}
+\begin{exc}[\footnote{Già incluso nella dimostrazione, NdR}]Con riferimento a Proposizione \ref{prop: criterio semirette} provare $(4) \Rightarrow(5)$ e (5) $\Rightarrow(2)$.
+\end{exc}
+
+\begin{exc}\label{exc: 2.3} Provare che se $(X, \mc{A}, \mu)$ è uno spazio con misura e $f: X \rightarrow \overline{\mathbb{R}}$ è una funzione misurabile, allora le funzioni $-f, f / 2$ e $f^{2}$ sono misurabili. \end{exc}
+
+\begin{shadedTheorem}[$**$| Chiusura]\label{thm: chiusura}
+   Se $(X, \mc{A}, \mu)$ è uno spazio con misura, valgono le seguenti proprietà:
+        \begin{enumerate}
+          \item Siano $f, g: X \rightarrow \overline{\mathbb{R}}$ misurabili. Allora $f+g$ (escludendo che si verifichi $\infty-\infty$ ), $|f|, f g, \max \{f, g\}$ e $\min \{f, g\}$ sono misurabili. Se $g(x) \neq 0$ per ogni $x \in X$, la funzione ${f} /{g}$ è misurabile.
+          \item Sia data una successione di funzioni misurabili $f_{k}: X \rightarrow \overline{\mathbb{R}}(k=1,2, \ldots)$. Allora le funzioni $\inf _{k} f_{k}$, $\sup _{k} f_{k}$, $\liminf _{k} f_{k}$ e $\limsup _{k} f_{k}$ sono misurabili. In particolare, se esiste $\lim _{k} f_{k}$ allora questo è misurabile.
+        \end{enumerate}
+\end{shadedTheorem}
+\begin{proof}\ 
+    \begin{enumerate}
+        \setcounter{enumi}{1}
+        \item $\{f_k : X \to \overline{\R}\}_{\text{num}}$ famiglia di funzioni misurabili, allora $\forall a \in \R$
+        \tesi[ 1]{\inf_k f_k \ \text{è misurabile}}
+        \[ x \in \left( \inf_k f_k \right)^{-1} ([a,+ \infty ]) \iff \left( \inf_k f_k \right) (x) \geq a \iff \inf_k \{ f_k (x)\} \geq a \iff f_k (x) \geq a \ \forall k \iff \] \[ \iff x \in f_k^{-1} ([a,+ \infty ]) \iff x \in \bigcap_k f_k^{-1} ([a,+ \infty ]) \]  allora \[ \left( \inf_k f_k \right)^{-1} ([a,+ \infty ]) = \bigcap_k f_k^{-1} ([a,+ \infty ])\]
+        Per il criterio delle semirette, $f_k^{-1} ([a,+ \infty ]) \in \mc A $. Dato che $\mc A$ è una $\sigma$ - algebra anche \ $\bigcap_k f_k^{-1} ([a,+ \infty ]) \in \mc A$. \\
+        $ \implies $ per il criterio delle semirette, $ \inf_k f_k$ è misurabile \ (analogamente, $\sup_k f_k$ è misurabile)
+
+        \tesi[ 2]{\liminf_k f_k \ \text{è misurabile}}
+        \[\left(\liminf_k f_k \right)(x) =  \liminf_k f_k(x) = \sup_H \underbrace{\inf_{k \geq H} f_k(x)}_{\nearrow \ \Rightarrow \ \exists \lim\limits_{H \to \infty} = \ \sup\limits_H} = \sup_H \left( \inf_{k \geq H} f_k\right)(x) = \left[ \sup_H \left( \inf_{k \geq H} f_k\right) \right](x)\] allora
+        \[  \liminf_k f_k = \sup_H \left( \inf_{k \geq H} f_k\right) \]
+        Per la tesi 1, $\inf_{k \geq H} f_k \in \mc A$, sempre per la tesi 1 anche $\sup_H \left( \inf_{k \geq H} f_k\right) \in \mc A$. \\
+        $\implies \liminf_k f_k$ è misurabile (analogamente $\limsup_k f_k$)
+        \\
+
+        \setcounter{enumi}{0}
+        \item $f,g : X \to \overline{\R}$ \ funzioni misurabili \\
+        
+        Supponiamo $f,g$ finite, ovvero $f,g : X \to \R$, allora $\forall a \in \R$
+        \tesi[ 1]{f+g \ \text{è misurabile}}
+        \[ (f+g)^{-1} (]a,+ \infty]) = \{ x \in X | f(x) + g(x) > a \} \underbrace{=}_{g \  \text{finita}} \{x \in X | f(x) > a - g(x)\} = \] \[= \bigcup_{q \in \Q} ( \{ x \in X | f(x)>q\} \cap \underbrace{\{x \in X | \ q>a-g(x)\}}_{= \ \{x \in X | g(x) > a-q\}} ) = \bigcup_{q \in \Q} \left(f^{-1}(]q,+ \infty]) \cap g^{-1}(]a-q,+ \infty])\right)\]
+        Dato che $f\ \text{e} \ g$ misurabili, allora $f^{-1}(]q,+ \infty]), g^{-1}(]a-q,+ \infty]) \in \mc A$. 
+        Dato che $\mc A$ è una $\sigma$-algebra, allora anche $\bigcup\limits_{q \in \Q} \left(f^{-1}(]q,+ \infty]) \cap g^{-1}(]a-q,+ \infty])\right) \in \mc A$. \\
+        $ \implies $ per il criterio delle semirette, $f+g$ è misurabile.
+
+        \tesi[ 2]{|f| \ \text{è misurabile}} \\
+        $|f| = |\cdot| \circ f$ composizione di $f$ misurabile e $|\cdot|$ continua, quindi per la Proposizione \ref{prop: composizione funzioni continue misurabili}, $|f|$ è misurabile.
+
+        \tesi[ 3]{f \cdot g \ \text{è misurabile}} 
+        \[f \cdot g = \frac{(f+g)^2-f^2-g^2}{2} \]
+        Per tesi 1 e Esercizio \ref{exc: 2.3}, $f \cdot g$ è misurabile. 
+
+        \tesi[ 4]{\min \{f,g\} \ \text{è misurabile}} \\
+        Per la tesi 1 del punto 2, $\min \{f,g\}$ è misurabile (analogamente, $\max \{f,g\}$ è misurabile). \\
+
+        $g(x) \neq 0 \ \forall x \in X$
+        \tesi[ 5]{\frac{f}{g} \ \text{è misurabile}} \\
+        Voglio dimostrare che $\frac{1}{g}$ è misurabile, per il criterio delle semirette lo è $\iff \left( \frac{1}{g}\right)^{-1} (]a,+ \infty]) \in \mc A \ \forall a \in \R$.
+        %\left\{ x \in X \, \left| \, \frac{1}{g(x)} > a \right.\right\} \in \mc A \ \forall a \in \R 
+        \begin{itemize}
+            \item Caso $a=0$
+            \[ \left( \frac{1}{g}\right)^{-1} (]0,+ \infty]) = \left\{ x \in X \, \left| \, \frac{1}{g(x)} > 0 \right.\right\} = \left\{ x \in X \, \left| \, g(x) > 0\right.\right\} = g^{-1}(]0,+ \infty])\] 
+            Dato che $g$ è misurabile, per il criterio delle semirette $g^{-1}(]0,+ \infty]) \in \mc A$.
+            
+            \item Caso $0<a<+ \infty$
+            \[\left( \frac{1}{g}\right)^{-1} (]a,+ \infty]) = \left\{ x \in X \,\left|\, \frac{1}{g(x)} > a\right.\right\} = \left\{ x \in X \, \left| \, g(x) > 0 \land g(x) < \frac{1}{a}\right.\right\} = \]
+            \[= g^{-1}(]0,+ \infty]) \, \cap \, g^{-1} \left( \left[- \infty, \frac{1}{a} \right[ \right)\]
+            Dato che $g$ è misurabile, per il criterio delle semirette $g^{-1}(]0,+ \infty]), g^{-1} \left( \left]- \infty, \frac{1}{a} \right] \right) \in \mc A$. Dato che $\mc A$ è una $\sigma$ - algebra anche $g^{-1}(]0,+ \infty]) \, \cap \, g^{-1} \left( \left[- \infty, \frac{1}{a} \right[ \right) \in \mc A$.
+            
+            \item Caso $- \infty <a<0$
+            \[\left( \frac{1}{g}\right)^{-1} (]a,+ \infty]) = \left\{ x \in X \,\left|\, \frac{1}{g(x)} > a\right.\right\} = \]
+            \[ = \left\{ x \in X \, \left| \, g(x) > 0 \land g(x) > \frac{1}{a}\right.\right\} \cup \left\{ x \in X \, \left| \, g(x) < 0 \land g(x) < \frac{1}{a}\right.\right\} = \]
+            \[\left\{ x \in X \, \left| \, g(x) > 0 \right.\right\} \cup \left\{ x \in X \, \left| \, g(x) < \frac{1}{a}\right.\right\} = g^{-1}(]0,+ \infty]) \, \cup \, g^{-1} \left( \left[- \infty, \frac{1}{a} \right[\right) \]
+            Dato che $g$ è misurabile, per il criterio delle semirette $g^{-1}(]0,+ \infty]), g^{-1} \left( \left]- \infty, \frac{1}{a} \right] \right) \in \mc A$. Dato che $\mc A$ è una $\sigma$ - algebra anche $g^{-1}(]0,+ \infty]) \, \cup \, g^{-1} \left( \left[- \infty, \frac{1}{a} \right[ \right) \in \mc A$. \\
+            $\implies \frac{1}{g}$ è misurabile \\
+            Per la tesi 3, anche $\frac{f}{g}$ è misurabile.
+        \end{itemize}
+        
+        \tesi[]{\text{Esternsione a funzioni a valori in} \ \overline{\R}} \\
+        Notazione: \ $h,k: X \to \overline{\R} \ \ \ h \lor k := \max\{h,k\} \ \ \ h \land k := \min\{h,k\} \\ (h \lor k)(x) := \max\{h(x),k(x)\} \ \ \ (h \land k)(x) := \min\{h(x),k(x)\}  $  \\ \\
+        Definisco: $f_j := (f \land j) \lor (-j)$, $g_j := (g \land j) \lor (-j)$: sono finite e limitate.
+        \[\lim_{j \to + \infty} f_j(x) = f(x) \land \lim_{j \to + \infty} g_j(x) = g(x) \ \forall x \in X \implies f_j+g_j \ \text{converge puntualmente a} \ f+g\] 
+        Dato che $f_j+g_j$ è misurabile e il limite esiste  per ipotesi, $f+g$ è misurabile per la tesi 1 del punto 1. \\ \\
+        Analogamente si dimostrano le altre proprietà del punto 1 per funzioni a valori in $\overline{\R}$.\qedhere
+    \end{enumerate}
+\end{proof}
+
+\begin{oss}Può capitare che il valore assoluto di una funzione non misurabile sia misurabile. Per esempio, consideriamo lo spazio con misura $\left(\mathbb{R}, \mc{M}_{\mc{L}^{1}},\left.\mc{L}^{1}\right|_{\mc{M}_{\mc{L}^{1}}}\right)$ e sia $E$ l'insieme non misurabile di Vitali (si veda Esempio 1.9). Allora la funzione $f:=\chi_{E}-\chi_{E^{c}}$ non è misurabile, mentre $|f|=1$ è misurabile.
+\end{oss}
+
+\section{Integrale: definizione e prime proprietà}
+
+\begin{boxdef}
+  Sia $X$ un insieme. Una funzione $f: X \rightarrow \overline{\mathbb{R}}$ si dice "numerabilmente semplice" se $\operatorname{Im}(f)$ è numerabile.
+\end{boxdef}
+
+\begin{oss}
+  Se $f: X \rightarrow \overline{\mathbb{R}}$ è una funzione numerabilmente semplice allora si ha
+  \[
+  f=\sum_{i} a_{i} \chi_{A_{i}} \quad(\text{rappresentazione canonica di } f)
+  \]
+  dove $\left\{a_{i}\right\}=\operatorname{Im}(f)$ e $A_{i}:=f^{-1}\left(\left\{a_{i}\right\}\right)$. Osserviamo che $\left\{A_{i}\right\}$ è una partizione di $X$ e cioè:
+  \begin{itemize}
+    \item $A_{i} \cap A_{j}=\varnothing$, se $i \neq j$;
+  
+    \item $\bigsqcup_{i} A_{i}=X$.
+  \end{itemize}
+  Nel caso particolare che $X$ sia il dominio di uno spazio con misura $(X, \mc{A}, \mu)$ e che $f$ sia misurabile si ha inoltre che $A_{i} \in \mc{A}$, per ogni $i$. Infatti, osservando che $\left\{a_{i}\right\}^{c}=$ $\left[-\infty, a_{i}\right[ \cup\left]a_{i},+\infty\right]$ è un sottoinsieme aperto di $\overline{\mathbb{R}}$, si ha:
+  \[
+  A_{i}=f^{-1}\left(\left\{a_{i}\right\}\right)=f^{-1}\left(\left[\left\{a_{i}\right\}^{c}\right]^{c}\right)=\left[f^{-1}\left(\left\{a_{i}\right\}^{c}\right)\right]^{c} \in \mc{A}
+  \]
+\end{oss}
+
+\begin{boxdef}
+    Sia $(X, \mc{A}, \mu)$ uno spazio con misura e indichiamo con $\Sigma$ la famiglia delle funzioni numerabilmente semplici e misurabili $\varphi: X \rightarrow \overline{\mathbb{R}}$. Allora:
+    \begin{enumerate}[label = $(\roman*)$]
+    \item Se $\varphi \in \Sigma$ e $\varphi \geq 0$, poniamo
+    \[
+    I_{\mu}(\varphi):=\sum_{i} a_{i} \mu\left(A_{i}\right) ; \quad\left\{a_{i}\right\}=\operatorname{Im}(\varphi), A_{i}:=\varphi^{-1}\left(\left\{a_{i}\right\}\right)
+    \]
+    dove si assume per convenzione che $0 \cdot \infty=\infty \cdot 0=0$;
+    \item Sia $\Sigma^{*}$ la famiglia delle funzioni $\varphi \in \Sigma$ tali che almeno uno di $I_{\mu}(\varphi \vee 0) e$ $I_{\mu}((-\varphi) \vee 0)$ sia finito. Se $\varphi \in \Sigma^{*}$ allora poniamo
+    \[
+    I_{\mu}(\varphi):=I_{\mu}(\varphi \vee 0)-I_{\mu}((-\varphi) \vee 0)
+    \]
+    \end{enumerate}
+\end{boxdef}
+
+\begin{oss}[$a$]\label{oss: 2.4a}
+    Nelle ipotesi e con la notazione di Definizione 2.3, sia $\varphi \in \Sigma$ e definiamo
+    \[
+    J_{+}:=\left\{i \mid a_{i} \geq 0\right\}, \quad J_{-}:=\left\{i \mid a_{i}<0\right\}
+    \]
+    Allora
+    \[
+    \varphi \vee 0=\sum_{i \in J_{+}} a_{i} \chi_{A_{i}}, \quad-[(-\varphi) \vee 0]=\varphi \wedge 0=\sum_{i \in J_{-}} a_{i} \chi_{A_{i}}
+    \]
+    da cui
+    \[
+    I_{\mu}(\varphi \vee 0)=\sum_{i \in J_{+}} a_{i} \mu\left(A_{i}\right)=\sum_{i \in J_{+}}\left|a_{i}\right| \mu\left(A_{i}\right)
+    \]
+    e
+    \[
+    I_{\mu}((-\varphi) \vee 0)=\sum_{i \in J_{-}}\left(-a_{i}\right) \mu\left(A_{i}\right)=\sum_{i \in J_{-}}\left|a_{i}\right| \mu\left(A_{i}\right)
+    \]
+    Ne segue che (solo se $\phi\in \Sigma^*$, in quanto vogliamo sommare gli integrali semplici)
+    \[
+    I_{\mu}(\varphi)=\sum_{i} a_{i} \mu\left(A_{i}\right)=I_{\mu}(\varphi \vee 0)-I_{\mu}((-\varphi) \vee 0)
+    \]
+\end{oss}
+\addtocounter{xoss}{-1}
+\begin{oss}[$b$]   \label{oss: 2.4b}
+    Nelle ipotesi e con la notazione di Definizione 2.3, sia $\varphi \in \Sigma$. Com'è naturale attendersi, si ha anche
+    \begin{equation}
+    I_{\mu}(|\varphi|)=\sum_{i}\left|a_{i}\right| \mu\left(A_{i}\right)=I_{\mu}(\varphi \vee 0)+I_{\mu}((-\varphi) \vee 0)\label{eq: 2.1}
+    \end{equation}
+    Per dimostrarlo, osserviamo prima di tutto che se $i \in J+$ allora potrebbe capitare che esista $j \in J_{-}$tale che $-a_{j}=a_{i}$. In tal caso poniamo $f(i):=j$ e indichiamo con $L$ l'insieme degli $i$ per cui questo accade. Rimane così definita una funzione
+    \[
+    f: L \subset J_{+} \rightarrow f(L) \subset J_{-}
+    \]
+    con la seguente proprietà
+    \[
+    -a_{f(i)}=a_{i} \quad(\text { per ogni } i \in L)
+    \]
+    Se $L \neq \varnothing$ allora la rappresentazione canonica di $|\varphi|$ sarà
+    \[
+    \begin{aligned}
+    |\varphi| & =\sum_{i}\left|a_{i}\right| \chi_{A_{i}}=\sum_{i \in J_{+}} a_{i} \chi_{A_{i}}+\sum_{i \in J_{-}}\left(-a_{i}\right) \chi_{A_{i}} \\
+    & =\sum_{i \in J_{+} \backslash L} a_{i} \chi_{A_{i}}+\sum_{i \in L} a_{i} \chi_{A_{i} \cup A_{f(i)}}+\sum_{j \in J_{-} \backslash f(L)}\left(-a_{j}\right) \chi_{A_{j}} .
+    \end{aligned}
+    \]
+    Da questa (dopo aver osservato che $|\varphi| \in \Sigma^{*}$ in quanto è banalmente numerabilmente semplice, è misurabile per il Teorema \ref{thm: chiusura} e $I_\mu((-|\phi|)\vee 0) = 0$) si ricava facilmente che vale \eqref{eq: 2.1}. Se invece $L=\varnothing$, la rappresentazione canonica di $|\varphi|$ sarà ovviamente
+    \[
+    |\varphi|=\sum_{i}\left|a_{i}\right| \chi_{A_{i}}=\sum_{i \in J_{+}} a_{i} \chi_{A_{i}}+\sum_{i \in J_{-}}\left(-a_{i}\right) \chi_{A_{i}}
+    \]
+    e allora \eqref{eq: 2.1} segue banalmente dalla definizione di integrale semplice. La precedente discussione prova, in particolare, l'equivalenza delle seguenti proprietà:
+    \begin{itemize}
+      \item $\phi \in \Sigma^*$ e $I_{\mu}(\varphi) \in \mathbb{R}$
+    
+      \item $I_{\mu}(\varphi \vee 0), I_{\mu}((-\varphi) \vee 0)<+\infty$;
+    
+      \item $I_{\mu}(|\varphi|)=\sum_{i}\left|a_{i}\right| \mu\left(A_{i}\right)<+\infty$.
+    \end{itemize}
+    Le prime due sono equivalenti per definizione, la seconda e la terza sono equivalenti per la \eqref{eq: 2.1} e $I_\mu(\phi\vee 0), I_\mu((-\phi)\vee 0)\geq 0$ per costruzione.
+\end{oss}
+
+\begin{boxdef}
+    Siano dati uno spazio con misura $(X, \mc{A}, \mu)$ e due funzioni
+    \[
+    f, g: X \rightarrow \overline{\mathbb{R}}
+    \]
+    \begin{enumerate}[label=$(\roman*)$]
+        \item Se esiste $Z \in \mc{A}$ tale che $\mu(Z)=0$ e $f(x) \leq g(x)$ per ogni $x \in X \setminus Z$, allora diremo che " $f$ è minore o uguale di $g$ quasi ovunque rispetto a $\mu$ " (o equivalentemente che "g è maggiore o uguale di $f$ quasi ovunque rispetto a $\mu$ ") e scriveremo $f \leq g$ $\ \mu$-q.o. (o equivalentemente $g \geq f \ \mu$-q.o.);
+        \item Se esiste $Z \in \mc{A}$ tale che $\mu(Z)=0$ e $f(x)=g(x)$ per ogni $x \in X \setminus Z$, allora diremo che " $f$ è uguale a $g$ quasi ovunque rispetto a $\mu$ " e scriveremo $f=g \ \mu$-q.o.
+    \end{enumerate}
+\end{boxdef}
+Potrebbero essere utilizzati nella trattazione anche i simboli (per niente ufficiali) $\operatorname{\forallbut}_\mu x \in X$, $\leq_\mu$ e $=_\mu$ [NdR].
+\begin{exc}
+    Siano dati uno spazio con misura $(X, \mc{A}, \mu)$ e tre funzioni
+\[
+f, g, h: X \rightarrow \overline{\mathbb{R}}
+\]
+
+Provare le seguenti proprietà:
+
+\begin{enumerate}[label=$(\roman*)$]
+    \item Si ha $f=g \ \mu$-q.o. se e solo se
+    \[
+    \left\{\begin{array}{l}
+    f \leq g \quad \mu \text {-q.o. } \\
+    f \geq g \quad \mu \text {-q.o.. }
+    \end{array}\right.
+    \]
+    \item Se
+    \[
+    \begin{cases}f=g & \mu \text {-q.o. } \\ g \leq h & \mu \text {-q.o. }\end{cases}
+    \]
+    allora $f \leq h \ \mu$-q.o.
+    
+\end{enumerate}
+\end{exc}
+\begin{oss}
+    Sia dato uno spazio con misura $(X, \mc{A}, \mu)$. Allora $\mu$ è monotona, i.e.,
+    \[
+    \mu\left(A_{1}\right) \leq \mu\left(A_{2}\right) \text {, per ogni } A_{1}, A_{2} \in \mc{A} \text { tali che } A_{1} \subset A_{2}
+    \]
+\end{oss}
+
+
+\begin{proposition}[$*$]\label{prop: 2.3}
+    Sia $(X, \mc{A}, \mu)$ uno spazio con misura. Allora
+    \[
+    I_{\mu}(\varphi) \leq I_{\mu}(\psi)
+    \]
+    per ogni $\varphi, \psi \in \Sigma^{*}$ tali che $\varphi \leq \psi \ \mu$-q.o. Di conseguenza, se consideriamo una funzione $f: X \rightarrow \overline{\mathbb{R}}$ e poniamo
+    \[
+    \Sigma_{-}(f):=\left\{\varphi \in \Sigma^{*} \mid \varphi \leq f \mu-q . o .\right\}, \quad \Sigma_{+}(f):=\left\{\varphi \in \Sigma^{*} \mid \varphi \geq f \mu-\text { q.o. }\right\}
+    \]
+    allora tali insiemi sono entrambi non vuoti e vale la disuguaglianza
+    \[
+    \sup \left\{I_{\mu}(\varphi) \mid \varphi \in \Sigma_{-}(f)\right\} \leq \inf \left\{I_{\mu}(\varphi) \mid \varphi \in \Sigma_{+}(f)\right\}
+    \]
+\end{proposition}
+
+
+\begin{oss}
+    Se $(X, \mc{A}, \mu)$ è uno spazio con misura e $\varphi, \psi \in \Sigma^{*}$ sono tali che $\varphi=\psi$ $\ \mu$-q.o., allora da Proposizione \ref{prop: 2.3} segue subito che $I_{\mu}(\varphi)=I_{\mu}(\psi)$.
+\end{oss}
+
+\begin{boxdef}
+    Siano dati uno spazio con misura $(X, \mc{A}, \mu)$ e una funzione $f: X \rightarrow \overline{\mathbb{R}}$. Allora:
+    
+    \begin{enumerate}[label=$(\roman*)$]
+        \item L" "integrale superiore di f" è dato da
+        \[
+        \int^{*} f \d \mu:=\inf \left\{I_{\mu}(\varphi) \mid \varphi \in \Sigma_{+}(f)\right\}
+        \]
+        mentre l' "integrale inferiore di $f$ " $\grave{e}$
+        \[
+        \int_{*} f \d \mu:=\sup \left\{I_{\mu}(\varphi) \mid \varphi \in \Sigma_{-}(f)\right\} .
+        \]
+        (N.B. Si ha $\int_{*} f \d \mu \leq \int^{*} f \d \mu$, per Proposizione \ref{prop: 2.3})
+        \item Si dice che "$f$ è integrabile" se $f$ è misurabile e gli integrali inferiore e superiore di $f$ sono uguali. In tal caso si definisce l' "integrale di f" come segue
+        \[
+        \int f \d \mu:=\int^{*} f \d \mu=\int_{*} f \d \mu .
+        \]
+        \item Si dice che "$f$ è sommabile" se $f$ è integrabile $e \int f \d \mu$ è finito.
+    \end{enumerate}
+\end{boxdef}
+
+\begin{oss}
+     Siano dati uno spazio con misura $(X, \mc{A}, \mu)$ e due funzioni $f, g: X \rightarrow$ $\overline{\mathbb{R}}$ tali che $f=g \ \mu$-q.o. Allora si ha
+    \[
+    \Sigma_{-}(f)=\Sigma_{-}(g), \quad \Sigma_{+}(f)=\Sigma_{+}(g)
+    \]
+    e quindi
+    \[
+    \int_{*} f \d \mu=\int_{*} g \d \mu, \quad \int^{*} f \d \mu=\int^{*} g \d \mu \text {. }
+    \]
+    In particolare, $f$ è integrabile se e solo se $g$ è integrabile. In tal caso si ha
+    \[
+    \int f \d \mu=\int g \d \mu
+    \]
+\end{oss}
+
+
+\begin{exc}\label{exc: 2.5}
+    Provare che se $\varphi \in \Sigma^{*}$ e $I_{\mu}(\varphi) \in \mathbb{R}$, allora esiste $\bar{\varphi} \in \Sigma^{*}$ tale che $\operatorname{Im}(\bar{\varphi}) \subset \mathbb{R}$ e $\bar{\varphi}=\varphi \ \mu$-q.o. (e quindi $I_{\mu}(\bar{\varphi})=I_{\mu}(\varphi)$, per Osservazione 2.6).
+\end{exc}
+
+
+\begin{exc}
+    Provare che se $E, F$ sono sottoinsiemi di $X$, allora $\chi_{E} \chi_{F}=\chi_{E \cap F}$.
+\end{exc}
+
+\begin{exc}\label{exc: 2.7}
+    Data una funzione $f: X \rightarrow \overline{\mathbb{R}}$, sia
+    \[
+    P:=f^{-1}([0,+\infty]), \quad N:=P^{c}=f^{-1}([-\infty, 0))
+    \]
+    Dimostrare che
+    \[
+    |f|=f \chi_{P}-f \chi_{N}, \quad f=|f| \chi_{P}-|f| \chi_{N} .
+    \]
+\end{exc}
+
+Il seguente risultato elenca le prime proprietà dell'integrale, ben note nella trattazione elementare.
+
+\begin{shadedTheorem}[$***$| Sette Punti]\label{thm: 7pt}
+    Sia $(X, \mc{A}, \mu)$ uno spazio con misura. Valgono le seguenti proprietà:
+    \begin{enumerate}
+        \item \label{7pt: 1}Se $\varphi \in \Sigma^{*}$ allora $\varphi$ è integrabile e si ha $\int \varphi \d \mu=I_{\mu}(\varphi)$. In particolare, se $I_{\mu}(\varphi)$ è finito allora $\varphi$ è sommabile;
+        \item \label{7pt: 2}Una funzione $f: X \rightarrow \overline{\mathbb{R}}$ tale che
+        \[
+        -\infty<\int_{*} f \d \mu, \quad \int^{*} f \d \mu<+\infty
+        \]
+        è finita $\ \mu$-q.o. In particolare, una funzione sommabile è finita $\ \mu$-q.o.;
+        \item \label{7pt: 3}(Linearità) Se $f, g$ sono funzioni sommabili e $\alpha, \beta \in \mathbb{R}$, allora $\alpha f+\beta g$ (purché sia ben definita) è sommabile e si ha
+        \[
+        \int(\alpha f+\beta g) \d \mu=\alpha \int f \d \mu+\beta \int g \d \mu ;
+        \]
+        \item \label{7pt: 4}(Monotonia) Se $f, g$ sono due funzioni integrabili tali che $f \leq g \ \mu$-q.o., allora
+        \[
+        \int f \d \mu \leq \int g \d \mu
+        \]
+        \item \label{7pt: 5}Se $f$ è una funzione sommabile e $A \in \mc{A}$, allora $f \chi_{A}$ è una funzione sommabile;
+        \item \label{7pt: 6}Una funzione misurabile $f$ è sommabile se e soltanto se $|f|$ è una funzione sommabile;
+        \item \label{7pt: 7}Se $f$ è una funzione sommabile, allora
+        \[
+        \left|\int f \d \mu\right| \leq \int|f| \d \mu
+        \]
+    \end{enumerate}
+\end{shadedTheorem}
+\begin{proof}~
+    \begin{enumerate}
+        \item Sia $\phi\in \Sigma^*$, allora $\phi \in \Sigma_-(\phi)$, quindi $I_\mu(\phi)\leq \sup_{\Sigma_-(\phi)}I_\mu = \int_*\phi\d \mu$. Analogamente $\phi \in \Sigma_+(\phi)$, quindi $I_\mu(\phi)\geq \inf_{\Sigma_+(\phi)}I_\mu = \int^*\phi\d \mu$. 
+        Segue quindi che $I_\mu(\phi) \leq \int_*\phi\d \mu = \int^*\phi\d \mu \leq I_\mu(\phi)$, da cui $\phi$ è integrabile e vale $\int\phi\d \mu = I_\mu(\phi)$.
+        \item Osserviamo inizialmente che in generale si ha $\int_*f\d \mu\leq \int^* f\d \mu$. Ora, per definizione di integrale inferiore, $\exists \phi \in \Sigma_-(f)$ tale che 
+        \[-\infty<\int_*f\d\mu-1<I_\mu(\phi)<\int_*f\d\mu\leq \int^* f\d\mu<+\infty\]
+        quindi $I_\mu(\phi)\in\R$. Di conseguenza per l'Esercizio \ref{exc: 2.5}, $\exists \bar\phi\in \Sigma^*$ tale che $\Im \phi\subset \R$ e $\bar \phi = \phi\ \mu$-q.o, per cui $I_\mu(\phi)=I_\mu(\bar\phi)$. Poiché $f\geq \phi\ \mu-q.o.$, $f\geq \bar \phi\ \mu$-q.o.
+
+        Analogamente, per definizione di integrale superiore, $\exists \psi \in \Sigma_+(f)$ tale che 
+        \[+\infty>\int^*f\d\mu+1>I_\mu(\psi)>\int^*f\d\mu\geq \int_* f\d\mu<-\infty\]
+        quindi $I_\mu(\psi)\in\R$. Di conseguenza per l'Esercizio \ref{exc: 2.5}, $\exists\bar \psi\in \Sigma^*$ tale che $\Im \psi\subset \R$ e $\bar \psi = \psi\ \mu$-q.o, per cui $I_\mu(\psi)=I_\mu(\bar\psi)$. Poiché $f\leq \psi\ \mu-q.o.$, $f\leq \bar \psi\ \mu$-q.o.
+
+        In conclusione $-\infty < \bar \phi \leq f \leq \bar\psi < +\infty\ \mu$-q.o. e quindi $f$ è finita $\mu$-q.o.
+        \item Siano $f,g:X\to \bar\R$ sommabili e $\alpha,\beta \in \R$. Osserviamo che è equivalente provare che 
+        \begin{enumerate}
+            \item \,[Additività] $f+g$ è sommabile e $\int(f+g)\d\mu = \int f \d \mu + \int g \d \mu$;
+            \item \,[Omogeneità] $\alpha f$ è sommabile e $\int\alpha f\d\mu = \alpha \int f \d \mu$.
+        \end{enumerate}
+        Noi proveremo solo (a), (b) è analogo e non è richiesto per l'esame.
+        \begin{itemize}
+            \item \textbf{Step 1:} Proviamo che la tesi vale per funzioni numerabilmente semplici. Siano $\phi, \psi\in \Sigma^*$ tali che $I_\mu(\phi), I_{\mu}(\psi)\in \R$ e $\Im\phi,\Im\psi \subset \R$. Proviamo che $\phi+\psi \in \Sigma^*$ e $I_\mu(\phi+\psi)=I_\mu(\phi)+I_\mu(\psi)$. Consideriamo le rappresentazioni canoniche di $\phi$ e $\psi$:
+            \[\phi = \sum_{i}a_i\chi_{A_i}\qquad \qquad \psi = \sum_jb_j\chi_{B_j}\]
+            allora  $\phi +\psi = \sum_{i}a_i\chi_{A_i}+\sum_jb_j\chi_{B_j}$ (N.B.: non è la rappresentazione canonica) dove 
+            \[\forall i, A_i= A_i\cap \bigsqcup_jB_j = \bigsqcup _j(A_i\cap B_j)\qquad \qquad \forall j, B_j= B_j\cap \bigsqcup_iA_i = \bigsqcup _i(A_i\cap B_j)\]
+            quindi 
+            \[\phi+\psi = \sum_{ij}a_i\chi_{A_i\cap B_j}+\sum_{ij}b_j\chi_{A_i\cap B_j} = \sum_{ij}(a_i+b_j)\chi_{A_i\cap B_j} = \sum_{(i,j)\in \Gamma}(a_i+b_j)\chi_{A_i\cap B_j}\]
+            dove $\Gamma = \{(i,j)\,|\,A_i\cap B_j\neq \varnothing\}$. Definiamo quindi $\gamma : \Gamma\ni(i,j) \mapsto a_i+b_j\in \R$ che è ben definita perché $a_i,b_j\in \R$ per ipotesi. Osserviamo che $|\Im\gamma| \leq \aleph_0$, allora possiamo scrivere $\Im\gamma = \{c_h\}_{h\in H}\subset \R$. Ponendo $\Gamma_h = \gamma^{-1}(\{c_h\})$, si ha che $\Gamma = \bigsqcup_{h\in H}\Gamma_h$, quindi 
+            \[\phi + \psi = \sum_{h\in H}\sum_{(i,j)\in \Gamma_h}(\overbrace{a_i+b_j}^{c_h})\chi_{A_i\cap B_j} = \sum_{h\in H}c_h\chi_{\bigsqcup_{(i,j)\in \Gamma_h}A_i\cap B_j} = \sum_{h\in H}c_h\chi_{C_h}\]
+            dove $C_h:=\bigsqcup_{(i,j)\in \Gamma_h}A_i\cap B_j$ e $\sum_{h\in H}c_h\chi_{C_h}$ è la rappresentazione canonica di $\phi+\psi$. Possiamo quindi scrivere\footnote{La scrittura ha senso in quanto $|\phi+\psi|\geq 0$, quindi usiamo il primo caso di definizione di integrale semplice.}
+            \[\begin{aligned}
+                I_\mu(|\phi+\psi|) & \overset{\text{Oss \ref{oss: 2.4b}}(b)}{=} \sum_{h\in H}|c_h|\mu(C_h) = \sum_{h\in H}|c_h|\sum _{(i,j)\in \Gamma_h}\mu(A_i\cap B_j) = \sum_{(i,j)\in \Gamma}|a_i+b_j|\mu(A_i\cap B_j)= \\
+                 & = \sum_{ij}|a_i+b_j|\mu(A_i\cap B_j)\overset{\text{D.T.}}\leq \sum_{ij}|a_i|\mu(A_i\cap B_j)+ \sum_{ij}|b_i|\mu(A_i\cap B_j) \\
+                  &= \sum_{i}|a_i|\sum_j\mu(A_i\cap B_j)+\sum_{j}|b_j|\sum_i\mu(A_i\cap B_j) \underset{(\circ)}{\overset{\sigma\text{-add.}}{=}} \sum_i|a_i|\mu(A_i) + \sum_j|b_j|\mu(B_j) = \\
+                    & = I_\mu(|\phi|)+I_\mu(|\psi|)
+            \end{aligned}\]
+            infatti $(\circ)$ $\sum_j\mu(A_i\cap B_j)=\mu(\bigcup_j(A_i\cap B_j)) = \mu (A_i\cap \bigcup_jB_h) = \mu(A_i\cap X)=\mu(A_i)$ (analog. per $B_j$). Ora 
+            \[\begin{cases}
+                I_\mu(\phi)\in \R\\
+                I_\mu(\psi)\in \R
+            \end{cases}\implies \begin{cases}
+                I_\mu(|\phi|)<+\infty\\
+                I_\mu(|\psi|)<+\infty
+            \end{cases}\implies I_\mu(|\phi|)+I_\mu(|\psi|)<+\infty\]
+            Quindi per la stima precedente $I_\mu(|\phi+\psi|)<+\infty$, quindi per l'Osservazione \hyperref[oss: 2.4b]{2.4 ($b$)} $\phi+\psi\in \Sigma^*$ e $I_\mu(\phi+\psi)\in \R$. Di conseguenza, assume un senso il simbolo
+            \[\begin{aligned}
+                I_\mu(\phi+\psi) & = \sum_{h\in H}c_h\mu(C_h) = \sum_{h\in H}c_h\sum _{(i,j)\in \Gamma_h}\mu(A_i\cap B_j) = \sum_{(i,j)\in \Gamma}(a_i+b_j)\mu(A_i\cap B_j)= \\
+                 & = \sum_{ij}(a_i+b_j)\mu(A_i\cap B_j) = \sum_{ij}a_i\mu(A_i\cap B_j)+ \sum_{ij}b_i\mu(A_i\cap B_j) \\
+                  &= \sum_{i}a_i\sum_j\mu(A_i\cap B_j)+\sum_{j}b_j\sum_i\mu(A_i\cap B_j) \underset{(*)}{\overset{\sigma\text{-add.}}{=}} \sum_ia_i\mu(A_i) + \sum_jb_j\mu(B_j) \overset{\text{Oss \ref{oss: 2.4a}}(a)}= \\
+                    & = I_\mu(\phi)+I_\mu(\psi).
+            \end{aligned}\]
+            \item \textbf{Step 2:} Proviamo che $\int f\d\mu+\int g\d\mu = \int (f+g)\d \mu$. Sia $\epsilon$ fissato arbitrariamente. Allora esistono $\phi_1\in \Sigma_-(f)$ e $\psi_1 \in \Sigma_+(f)$ tali che 
+            \[-\infty < \int f\d\mu-\epsilon < I_\mu(\phi_1)\leq \int f\d\mu\leq I_{\mu}(\psi_1)<\int f\d\mu +\epsilon <+\infty \tag{$*$}\]
+            Analogamente esistono $\phi_2\in \Sigma_-(g)$ e $\psi_2 \in \Sigma_+(g)$ tali che 
+            \[-\infty < \int g\d\mu-\epsilon < I_\mu(\phi_2)\leq \int g\d\mu\leq I_{\mu}(\psi_2)<\int g\d\mu +\epsilon <+\infty \tag{$**$}\]
+            Allora, per l'Esercizio \ref{exc: 2.5}, esistono $\bar\phi_i, \bar\psi_i$ tali che 
+            \[\begin{cases}
+                \bar \phi_i = \phi_i\ \mu\text{-q.o.}\\
+                \bar \psi_i = \psi_i\ \mu\text{-q.o.}\\
+                \Im \phi_i\subset \R\\  
+                \Im \psi_i\subset \R
+            \end{cases}\qquad i = 1,2\]
+            \[\begin{aligned}\overset{(*)}{\underset{(**)}{\implies}}\quad & -\infty < \boxed{\int f\d\mu  +\int g\d \mu -2\epsilon} < I_\mu(\phi_1)+I_\mu(\phi_2) = I_\mu(\bar \phi_1)+I_\mu(\bar \phi_2) \overset{\text{Step 1}}{=} \\ & = I_\mu (\bar\phi_1+\bar \phi_2)  \underset{(\dagger )}{\leq} \boxed{\int_*(f+g)\d \mu \leq \int^*(f+g)\d\mu} \underset{(\ddagger )}{\leq} I_\mu(\bar\psi_1+\bar\psi_2) \\ &= I_\mu(\bar\psi_1)+I_\mu(\bar\psi_2) < \boxed{\int f\d\mu  +\int g\d \mu + 2\epsilon} < +\infty\end{aligned}\tag{$\lozenge$}\]
+            dove in $(\dagger)$ abbiamo sfruttato il fatto che, essendo $\bar \phi_1+\bar \phi_2 = \phi_1+\phi_2\leq f+g$ $\mu-q.o.$, si ha che $ \bar \phi_1+\bar \phi_2 \in \Sigma_-(f+g)$, mentre in $(\ddagger)$ vale una proprietà analoga per cui $\bar\psi_1+\bar\psi_2\in \Sigma_+(f+g)$.
+            Riscrivendo ora la parte riquadrata di $(\lozenge)$ otteniamo
+            \[0\leq \underbrace{\int^*(f+g)\d\mu-\int_*(f+g)\d\mu}<\left(\int f\d\mu  +\int g\d \mu + 2\epsilon\right)-\left(\int f\d\mu  +\int g\d \mu - 2\epsilon\right)=4\epsilon \]
+            da cui, siccome la parte evidenziata non dipende da $\epsilon$ e la disuguaglianza deve valere per ogni $\epsilon$, segue che $\int^*(f+g)\d\mu-\int_*(f+g)\d\mu=0$, quindi $\int^*(f+g)\d\mu=\int_*(f+g)\d\mu$ e $f+g$ è integrabile. Inoltre, sempre riscrivendo la parte riquadrata di $(\lozenge)$ otteniamo
+            \[\int f\d\mu  +\int g\d \mu -2\epsilon < \int(f+g)\d \mu <\int f\d\mu  +\int g\d \mu + 2\epsilon \qquad \iff\]
+            \[-2\epsilon < \int(f+g)\d\mu-\left[\int f \d \mu + \int g \d \mu\right] < 2\epsilon\qquad \iff\]
+            \[0\leq \left|\int(f+g)\d\mu-\left[\int f \d \mu + \int g \d \mu\right]\right|<2\epsilon\]
+            per cui per lo stesso argomento $\int(f+g)\d\mu=\int f \d \mu + \int g \d \mu$.
+        \end{itemize}
+        \item Osserviamo che $\Sigma_-(f)\subset \Sigma_-(g)$ (infatti se $\phi \in \Sigma_-(f)$, $\phi \in \Sigma^*$ e $\phi\leq f\ \mu$-q.o., quindi siccome $f\leq g\ \mu-q.o.$ segue che $\phi\leq g\ \mu$-q.o., quindi $\phi \in \Sigma_-(g)$). Allora 
+        \[\int_*f\d\mu = \sup_{\Sigma_-(f)}I_\mu \leq \sup_{\Sigma_-(g)}I_{\mu}=\int_*g\d\mu\]
+        allora poiché $f$ e $g$ sono integrabili segue la tesi.
+        \item Sia $\epsilon >0$ fissato arbitrariamente. Allora $\exists \phi \in \Sigma_-(f), \psi \in \Sigma_+(f)$ tali che 
+        \[\tag{$\lozenge$} -\infty<\int f\d\mu-\epsilon <I_\mu(\phi)\leq I_{\mu}(\psi)<\int f\d\mu+\epsilon<+\infty.\]
+        Consideriamo ora le rappresentazioni canoniche di $\phi$ e $\psi$:
+        \[\phi = \sum_{i\in I}a_i\chi_{A_i} \qquad \psi = \sum_{j\in J}b_j\chi_{B_j}\]
+        Allora $\phi\chi_{A}=\sum_{i\in I}a_i\chi_{A_i}\chi_A=\sum_{i\in I}a_i\chi_{A_i\cap A}$, da cui segue che (ponendo $I_+ = \{i\in I\,|\, a_i\geq 0\}$ e $I_- = \{i\in I\,|\, a_i\leq 0\}$)
+        \[(\phi\chi_A)\vee 0 = \sum_{i\in I_+}a_i\chi_{A_i\cap A} \quad \text{e}\quad (-\phi\chi_A)\vee 0 = \sum_{i\in I_-}{-a_i}\chi_{A_i\cap A}.\]
+        Attenzione: quella che abbiamo ottenuto non è la rappresentazione canonica, in quanto la controimmagine di $0$ non è stata accorpata. Tuttavia possiamo trattarle come se lo fossero appunto perché l'unico problema si ha quando $\phi$ assume valore $0$. Segue quindi che 
+        \[I_\mu((\phi\chi_A)\vee 0) = \sum_{i\in I_+}a_i\mu(A\cap A_i)\leq \sum_{i\in I}a_i\mu(A_i)=I_{\mu}(\phi\vee 0)<+\infty\]
+        e, analogamente, che $I_\mu((-\phi\chi_A)\vee 0)\leq I_\mu((-\phi)\vee 0)<+\infty$. Abbiamo quindi provato che 
+        \[0\leq I_{\mu}((\phi\chi_A)\vee 0)<+\infty\quad \text{e}\quad 0\leq I_\mu(\phi\vee 0)<+\infty\]
+        quindi $\phi\chi_A\in \Sigma^*$ e $I_\mu(\phi\chi_A)\in \R$, quindi $\phi$ è sommabile. Inotre, procedendo analogamente, si prova che le stesse proprietà valgono anche per $\psi$ in luogo di $\phi$. Ora, siccome $\phi\leq f\leq \psi\ \mu$-q.o., vale $\phi\chi_A\leq f\chi_A\leq \psi\chi_A\ \mu$-q.o., quindi 
+        \[\phi\chi_A \in \Sigma_-(f\chi_A)\quad \text{e} \quad \psi\chi_A \in \Sigma_+(f\chi_A)\]
+        ovvero
+        \[I_\mu(\phi\chi_A)\leq \int_*f\chi_A\d\mu\leq \int^*f\chi_A\d\mu\leq I_\mu(\psi\chi_A)\tag{$\divideontimes$}\]
+        da cui
+        \[0\leq \int^*f\chi_A\d\mu-\int_*f\chi_A\d\mu \leq I_\mu(\psi\chi_A)-I_\mu(\phi\chi_A) \overset{\ref{7pt: 1}}{=} \int\psi\chi_A\d\mu-\int\phi\chi_A\d\mu \overset{\ref{7pt: 3}}{=}\]
+        \[=\int(\psi\chi_A-\phi\chi_A)\d\mu = \int (\psi-\phi)\chi_A\d\mu \overset{\ref{7pt: 4}}{\leq}\int(\psi-\phi)\d\mu \overset{\ref{7pt: 3}}{=} \int \psi\d\mu-\int\phi\d\mu = \]
+        \[=I_{\mu}(\psi)-I_\mu(\phi)\overset{(\lozenge)}{\leq}\int f\d\mu+\epsilon -\left(\int f \d\mu -\epsilon\right) = 2\epsilon \]
+        ovvero
+        \[0\leq \int^*f\chi_A\d\mu-\int_*f\chi_A\d\mu\leq 2\epsilon\qquad\forall \epsilon <0\]
+        e poiché al secondo membro non vi è dipendenza da $\epsilon$, deve essere $\int^*f\chi_A\d\mu=\int_*f\chi_A\d\mu$. Infine, da $(\divideontimes)$, segue che $f\chi_A$ è sommabile:
+        \[-\infty<I_\mu(\phi\chi_A)\leq \int f\chi_A\d\mu\leq I_\mu(\psi\chi_A)<+\infty\]
+        \item \begin{itemize}
+            \item[\say{$\Rarr$})] Supponiamo che $f$ sia sommbile e consideriamo la decomposizione dell'Esercizio \ref{exc: 2.7}. Allora per il criterio delle semirette $N,P\in \mc{A}$. Inoltre, per lo stesso esercizio $|f|=f\chi_P-f\chi_N$ che è sommabile per \ref{7pt: 3} e \ref{7pt: 5} di questo teorema. 
+            \item[\say{$\Larr$})] Si procede analogamente al caso precedente. Supponiamo che $|f|$ sia sommbile e consideriamo la decomposizione dell'Esercizio \ref{exc: 2.7}. Allora per il criterio delle semirette $N,P\in \mc{A}$. Inoltre, per lo stesso esercizio $f=|f|\chi_P-|f|\chi_N$ che è sommabile per \ref{7pt: 3} e \ref{7pt: 5} di questo teorema. 
+        \end{itemize}
+        \item Consideriamo la decomposizione dell'Esercizio \ref{exc: 2.7}. Allora per il criterio delle semirette $N,P\in \mc{A}$. Inoltre, per lo stesso esercizio $f=|f|\chi_P-|f|\chi_N$ che è sommabile per \ref{7pt: 3} e \ref{7pt: 5} di questo teorema. Di conseguenza
+        \[\left|\int f\d\mu\right| = \left|\int |f|\chi_P-|f|\chi_N \d\mu\right| \overset{\ref{7pt: 3}}{=}\left|\int |f|\chi_P\d\mu-\int|f|\chi_N \d\mu\right| \overset{\text{D.T.}}\leq \]
+        \[\leq \left|\int |f|\chi_P\d\mu\right|+\left|\int|f|\chi_N \d\mu\right| = \int |f|\chi_P\d\mu+\int|f|\chi_N \d\mu = \int |f|\d\mu\qedhere\]
+    \end{enumerate}
+\end{proof}
+
+\begin{oss}
+    Una funzione non misurabile (e quindi non integrabile) può avere valore assoluto sommabile. Per esempio: se lo spazio con misura è $\left(\mathbb{R}, \mc{M}_{\mc{L}^{1}},\left.\mc{L}^{1}\right|_{\mc{M}_{\mc{L}^{1}}}\right)$ e se $E$ indica l'insieme non misurabile di Vitali (Esempio 1.9), allora la funzione $f:=\chi_{E}-\chi_{[0,1] \backslash E}$ non è misurabile mentre $|f|=\chi_{[0,1]}$ è ovviamente sommabile. Questo fa capire come mai nel punto \ref{7pt: 6} di Teorema \ref{thm: 7pt} si assume che $f$ sia misurabile.
+\end{oss}
+
+
+\begin{boxdef}
+    Sia $(X, \mc{A}, \mu)$ uno spazio con misura. Se $f: X \rightarrow \overline{\mathbb{R}}$ è una funzione misurabile e se $A \in \mc{A}$, allora:
+    \begin{enumerate}[label=$(\roman*)$]
+        \item Se $f \chi_{A}$ è integrabile, si dice che "$f$ è integrabile in $A$" e si pone
+        \[
+        \int_{A} f \d \mu:=\int f \chi_{A} \d \mu
+        \]
+        \item Se $f \chi_{A}$ è sommabile, si dice che "$f$ è sommabile in $A$ ".
+    \end{enumerate}
+\end{boxdef}
+
+
+\begin{oss}
+    Sia $(X, \mc{A}, \mu)$ uno spazio con misura e sia $f: X \rightarrow \overline{\mathbb{R}}$ una funzione misurabile. Valgono le seguenti proprietà:
+    
+    \begin{itemize}
+      \item La funzione $f$ è integrabile (risp. sommabile) in $X$ se e solo se $f$ è integrabile (risp. sommabile). In tal caso si ha $\int_{X} f \d \mu=\int f \d \mu$, infatti $f=f\chi_X$
+    
+      \item (Compatibilità misura-integrale) Se $A \in \mc{A}$ allora la funzione 1 è integrabile in $A$ e vale $\int_{A} 1 \d \mu=\mu(A)$. Segue infatti dalla definizione:
+      \[\textstyle\int_A1\d\mu = \int1\chi_A\d\mu = \int (1\chi_A+0\chi_{A^c})\d\mu = I_{\mu}(1\chi_A+0\chi_{A^c}) = 1\mu(A)+0\mu(A^c)=\mu(A)\]
+    
+      \item Se $f$ è sommabile allora $f$ è sommabile in ogni $A \in \mc{A}$ (per \ref{7pt: 5} di Teorema \ref{thm: 7pt}).
+    
+    \end{itemize}
+\end{oss}
+
+Vale il seguente teorema che manifesta la maggior "versatilità" di questa questa teoria dell'integrazione rispetto a quella più elementare di Riemann.
+
+\begin{shadedTheorem}[$**$]\label{thm: 2.3}
+    Sia $(X, \mc{A}, \mu)$ uno spazio con misura e consideriamo una funzione misurabile $f: X \rightarrow \overline{\mathbb{R}}$ tale che $f \geq 0 \ \mu$-q.o. Allora $f$ è integrabile.
+\end{shadedTheorem}
+\begin{proof}
+    \begin{itemize}
+        \item Se $\int_* f \d \mu = +\infty$ la tesi segue automaticamente.
+        \item Altrimenti, supponiamo $\int_* f \d \mu < +\infty$. Allora, $\int_* f \d \mu \ge 0$ in quanto $0 \in \Sigma_-(f)$.\\
+        Allora partizioniamo $X$ ponendo $N := f^{-1}([-\infty,0[) \in \mc{A}$ (abbiamo che, $f \ge 0 \text{ $\mu$-q.o.} \Rarr \boxed{\mu(N)=0}$.), $Z := f^{-1}(0) \in \mc{A}$, $P := f^{-1}(]0,+\infty[)$ e $I := f^{-1}(+\infty)$.\\
+        Vogliamo verificare che $\mu(I)=0$. Consideriamo $+\infty \chi_I \le f$ su $X \setminus N$. Abbiamo allora che $+\infty \chi_I \le f \text{ $\mu$-q.o.}$ e $+\infty \chi_I \in \Sigma^*$ dunque $+\infty \chi_I \in \Sigma_-(f) \Rarr +\infty\mu(I) \le \int_* f \d \mu < +\infty \Rarr \boxed{\mu(I)=0}$.\\
+        Per $k \in \Z^+ $ poniamo $t_k := 1 + \frac{1}{k} > 1$ (abbiamo che $t_k^h < t_k^{h+1} \forall h \in \Z$ e $\lim_{h \to -\infty} t_k^h = 0$, $\lim_{h \to +\infty} t_k^h = +\infty$). Allora abbiamo \[\bigcup_{h \in \Z} [t_k^h,t_k^{h+1}[\ =\ ]0,+\infty[\qquad \implies\qquad P = \bigcup_{h \in \Z}f^{-1}([t_k^h,t_k^{h+1}[)\]
+        E definiamo $E_k^h := f^{-1}([t_k^h,t_k^{h+1}[)$. Osserviamo che:
+        \begin{itemize}
+            \item $E_k^h = f^{-1}([-\infty,t_k^{h+1}[) \cap f^{-1}([t_k^h,+\infty]) \in \mc{A}$
+            \item $\{E_k^h\}_{h \in \Z}$ è una famiglia di misurabili a due a due disgiunti
+            \item $\forall x \in E_k^h, t_k^h \le f(x) < t_k^{h+1}$
+        \end{itemize}
+        Poniamo dunque \[\varphi_k := 0 \chi_{P^c} + \sum_{h \in \Z} t_k^h \chi_{E_k^h}\]
+        Abbiamo che è la sua stessa rappresentazione canonica e per costruzione $\varphi_k \in \Sigma^*$. Per quanto osservato prima, fissato $n \in \Z$ abbiamo $\forall x \in E_k^n, \varphi_k(x) \le f(x) < t_k\varphi_k(x)$, fatto che dunque vale $\forall x \in P$.\\
+        Abbiamo che vale anche per $x \in Z$, dunque possiamo scrivere: $\varphi_k(x) \le f(x) < t_k\varphi_k(x) \text{ $\mu$-q.o.}$.\\
+        Poichè $\varphi_k \in \Sigma^*$, abbiamo $\varphi_k \in \Sigma_-(f)$ e $t_k \varphi_k \in \Sigma_+(f)$ e \[I_\mu (\varphi_k) \le \int_* f \d \mu \le \int^* f \d \mu \le I_\mu (t_k\varphi_k)\]
+        Per il teorema \ref{thm: 7pt}.\ref{7pt: 1} abbiamo che $\varphi_k$ è integrabile e $I_\mu(\varphi_k) = \int \varphi_k \d \mu$ e per il teorema \ref{thm: 7pt}.\ref{7pt: 3} vale lo stesso per $t_k \varphi_k$ e $\int t_k \varphi_k d\mu = t_k \int \varphi_k \d \mu$. Quindi possiamo concludere con: \[0 \le \int^* f \d \mu - \int_* f \d \mu \le t_kI_\mu(\varphi_k)-I_\mu(\varphi_k)\] e quindi mandando $k \to +\infty$ segue la tesi, la differenza tra l'integrale superiore e inferiore di $f$ è 0.\qedhere
+    \end{itemize}
+\end{proof}
+% Esercizio 2.8. 
+\begin{exc}
+    Sia $(X, \mc{A}, \mu)$ uno spazio con misura. Provare che per ogni funzione integrabile $f: X \rightarrow \overline{\mathbb{R}}$ vale la disuguaglianza $\left|\int f \d \mu\right| \leq \int|f| \d \mu$ (provata in Teorema \ref{thm: 7pt} per $f$ sommabile).
+\end{exc}
+\begin{excproof}
+    Si hanno due casi:
+    \begin{itemize}
+        \item Se $|f|$ non è sommabile, allora $\int|f|\d\mu=+\infty$ e la disuguaglianza è banalmente verificata.
+        \item Se $|f|$ è sommabile, allora per il Teorema \ref{thm: 7pt}.\ref{7pt: 7} segue la tesi.\qedhere
+    \end{itemize}
+\end{excproof}
+
+% Esercizio 2.9. 
+\begin{exc}\label{exc: 2.9}
+    Sia $(X, \mc{A}, \mu)$ uno spazio con misura. Provare che se $f, g: X \rightarrow \overline{\mathbb{R}}$ sono due funzioni misurabili tali che $f, g \geq 0 \ \mu$-q.o., allora si ha $\int(f+g) \d \mu=\int f \d \mu+\int g \d \mu$.
+\end{exc}
+\begin{excproof}
+    Si hanno due casi:
+    \begin{enumerate}
+        \item Se $\int f\d\mu +\int g\d\mu<+\infty$, allora $0\leq \int f\d\mu+\int g\d\mu<+\infty$ , per cui $f$ e $g$ sono sommabili e la tesi segue dal Teorema \ref{thm: 7pt}.\ref{7pt: 3}.
+        \item Se $\int f\d\mu+\int g\d\mu = +\infty$, allora almeno uno dei due addendo è $+\infty$ (supponiamo $\int f \d\mu$). Allora, siccome $f,g\geq 0\ \mu$-q.o., segue che $f+g\geq f\ \mu$-q.o., quindi per monotonia dell'integrale $\int(f+g)\d\mu\geq \int f\d\mu=+\infty$, ovvero $\int(f+g)\d\mu = +\infty = \int f\d\mu+\int g\d\mu$.\qedhere
+    \end{enumerate}
+\end{excproof}
+
+% Corollario $2.1(*)$. 
+\begin{corollary}[$*$]\label{cor: 2.1}
+    Sia $(X, \mc{A}, \mu)$ uno spazio con misura. Siano $f, g: X \rightarrow \overline{\mathbb{R}}$, rispettivamente, una funzione misurabile e una funzione sommabile soddisfacenti $|f| \leq|g| \ \mu$-q.o. Allora $f$ è sommabile.
+\end{corollary}
+\begin{proof}
+    $f$ misurabile implica che lo sia $|f|$, che in quanto sempre positiva è anche integrabile. Allo stesso modo, il fatto che $g$ sia sommabile implica che lo sia anche $|g|$ e in quanto questa maggiora $|f|$ quasi ovunque, segue evidentemente che anche $|f|$ e quindi $f$ siano sommabili.
+\end{proof}
+Vale anche questo facile (e intuitivo) risultato che ci sarà utile in seguito, che è l'analogo dell'\href{https://github.com/davideborra/esercitazione-analisi-A-2022-23/raw/main/E10%20-%2028.11.2022/main.pdf}{Esercizio 10.2 delle Esercitazioni di Analisi A}.
+
+% Proposizione $2.4\left(^{*}\right)$. 
+\begin{proposition}[$*$]\label{prop: 2.4}
+    Sia $(X, \mc{A}, \mu)$ uno spazio con misura e sia $f: X \rightarrow \overline{\mathbb{R}}$ una funzione misurabile tale che $f \geq 0 \ \mu$-q.o. e $\int_{X} f \d \mu=0$. Allora $f=0 \ \mu$-q.o.
+\end{proposition}
+\begin{proof}
+    Sia $P := \{x \in X : f(x)>0\} = f^{-1}(\R^+) \in \mc{A}$. Inoltre $\forall h \in \N^*$ definiamo $P_h := \{x \in X : f(x)>\frac{1}{h}\} = f^{-1}(]\frac{1}{h},+\infty]) \in \mc{A}$. Possiamo notare che \[P = \bigcup_{h \in \N^*} P_h \qquad \implies\qquad 0 = \int f d\mu \ge \int \frac{1}{h}\chi_{P_h} \d \mu = \frac{1}{h}\mu(P_h) \ge 0\]
+    Dunque abbiamo che $\forall h \in \N^*, \mu(P_h) = 0$ e in quanto unione numerabile di insiemi a misura nulla, $\mu(P) = 0$ e dunque $f$ è nulla quasi ovunque.
+\end{proof}
+
+Quanto al confronto fra l'integrale di Lebesgue e l'integrale di Riemann, vale il seguente risultato (solo enunciato, dimostrazione e.g. in [5, Theorem 6.16]).
+
+% TeOrema 2.4. 
+\begin{shadedTheorem}
+    Una funzione limitata $f:[a, b] \rightarrow \mathbb{R}$ è integrabile secondo Riemann se $e$ solo se $f$ è continua $\mc{L}^{1}$-q.o. in $[a, b]$. In tal caso l'integrale di Riemann di $f$ coincide con $\int_{[a, b]} \tilde{f} \d \mc{L}^{1}$, dove $\tilde{f}: \mathbb{R} \rightarrow \mathbb{R}$ è l'estensione di $f$ che vale zero in $\mathbb{R} \backslash[a, b]$.
+\end{shadedTheorem}
+
+Anticipazioni sul teorema di Fubini e sulla formula dell'area, finalizzate alle esercitazioni. Esempi ed esercizi su integrali.
+
+\section{Teoremi di convergenza integrale}
+Vale il seguente importante risultato, per una dimostrazione del quale si suggerisce di consultare [3, Section 6.10]. I tre teoremi di seguito enunciati, sono tra loro equivalenti: non daremo la dimostrazione del primo ma lo utilizzeremo per provare gli altri due.
+%2.5
+\begin{shadedTheorem}[Lemma di Fatou]Sia $(X, \mc{A}, \mu)$ uno spazio con misura e consideriamo una successione di funzioni misurabili $f_{k}: X \rightarrow \overline{\mathbb{R}}$ tali che $f_{k} \geq 0 \ \mu$-q.o. Allora
+\[ \int \liminf_{k} f_{k} \d \mu \leq \liminf_{k} \int f_{k} \d \mu.\]
+\end{shadedTheorem}
+% Teorema 2.6 
+\begin{shadedTheorem}[\,$*$\,|\,Beppo Levi - Convergenza monotona]\label{thm: 2.6} Sia $(X, \mc{A}, \mu)$ uno spazio con misura e consideriamo una successione di funzioni misurabili $f_{k}: X \rightarrow \overline{\mathbb{R}}$ tali che $f_{k+1} \geq f_{k} \geq 0 \ \mu$-q.o. Allora
+
+\[\lim _{k} \int f_{k} \d \mu=\int \lim _{k} f_{k} \d \mu .\]
+\end{shadedTheorem}
+\begin{proof}
+    Osserviamo innanzitutto che la scrittura ha senso in quanto per il Teorema \ref{thm: 2.3} $f_k$ è integrabile $\forall k$. Analogamente, $\forall k,\ \exists Z_k\in \mc A$ tale che $\mu(Z_k)=0$ e $f_{k+1}\geq f_k\geq 0$ in $X\setminus Z_k$. Posto $Z=\bigcup_kZ_k$, vale $\mu(Z)=0$, quindi $\{f_k\}_k$ è una successione crescente, quindi esiste il limite, il quale è misurabile per il teorema di chiusura e non negativo, quindi integrabile. Ora, osserviamo che vale 
+    \[\int\lim_kf_k\d\mu = \int \liminf_kf_k\d\mu\leq \liminf_k\int f_k\d\mu \leq \liminf_k\int \lim_kf_k\d\mu\leq \int \lim_k f_k\d \mu\]
+    in quanto, siccome $\{f_k\}_k$ è crescente, $\forall j$ vale $f_j\leq \lim_kf_k$ $\mu$-q.o. Segue quindi che 
+    \[\int \lim_kf_k\d\mu = \liminf _k\int f_k\d\mu\]
+    ma poiché $\{f_k\}_k$ è crescente, per monotonia dell'integrale anche ${\int f_k\d\mu}_k$ è crescente, quindi esiste il limite ed è uguale al liminf, ovvero
+    \[\int \lim_kf_k\d\mu = \liminf _k\int f_k\d\mu = \lim _k\int f_k\d\mu\qedhere\]
+\end{proof}
+% Corollario $2.2\left(^{\circ}\right)$. 
+\begin{corollary}[\,$\circ$\,|\,Convergenza per serie]\label{cor: 2.2 serie}
+Sia $(X, \mc{A}, \mu)$ uno spazio con misura e consideriamo una successione di funzioni misurabili $f_{k}: X \rightarrow \overline{\mathbb{R}}$ tali che $f_{k} \geq 0 \ \mu$-q.o. Allora
+\[\int \sum_{k} f_{k} \d \mu=\sum_{k} \int f_{k} \d \mu\]
+\end{corollary}
+\begin{proof}
+    Osserviamo innanzitutto che $\forall k,\ f_k$ è non negativa e misurabile. Inoltre per monotonia dell'integrale, anche $\int f_k\d\mu$ è non negativo, quindi esiste il limite delle somme parziali. Analogamente $\forall k,\ \exists Z_k\in \mc A$ tale che $\mu(Z_k)=0$ e $f_k\geq 0$ in $X\setminus Z_k$. Posto $Z=\bigcup_kZ_k$, vale $\mu(Z)=0$ e $f_k\geq 0$ su $X\setminus Z$. Sia ora $S_N = \sum_{k=1}^Nf_k$ l'$N$-esimo termine della successione delle somme parziali, Allora esso è ben definito su $X\setminus Z$ e vale $S_N\leq S_{N+1}$ su $X\setminus Z$, quindi esiste il limite di tale successione e $\sum_kf_k$ è misurabile e non negativa, quindi integrabile per il Teorema \ref{thm: 2.3}. Ora, per il Teorema \ref{thm: 2.6} e l'Esercizio \ref{exc: 2.9} vale
+    \[\int \sum_{k} f_{k} \d \mu=\int \lim_{N\to +\infty}S_N \d \mu=\lim_{N\to +\infty}\int S_N \d \mu=\lim_{N\to +\infty}\int \sum_{k=1}^Nf_k \d \mu=\lim_{N\to +\infty}\sum_{k=1}^N\int f_k \d \mu=\sum_{k=1}^{+\infty}\int f_k \d \mu\qedhere\]
+\end{proof}
+% Teorema 2.7 (Convergenza dominata $(* *))$. 
+\begin{shadedTheorem}[\,$**$\,|\,Convergenza dominata di Lebesgue]\label{thm: 2.7 conv dom}
+Sia $(X, \mc{A}, \mu)$ uno spazio con misura e si abbiano:
+\begin{enumerate}[label=$\roman*)$]
+\item Una successione di funzioni misurabili $f_{k}: X \rightarrow \overline{\mathbb{R}}$ che converge $\ \mu$-q.o. a $f$ : $X \rightarrow \overline{\mathbb{R}}$
+\item Una funzione sommabile $g: X \rightarrow \overline{\mathbb{R}}$ tale che $\left|f_{k}\right| \leq g \ \mu$-q.o., per ogni $k$. 
+\end{enumerate}
+Allora ogni $f_{k}$ e $f$ sono sommabili e vale
+\[\lim _{k} \int\left|f_{k}-f\right| \d \mu=0\]
+In particolare
+\[\lim _{k} \int f_{k} \d \mu=\int f \d \mu\]
+\end{shadedTheorem}
+\begin{proof}
+    \TODO
+\end{proof}
+% OSSERVAZIONE 2.10. 
+
+\begin{oss}
+    Il seguente esempio mostra come, in generale:
+    \begin{itemize}
+      \item Nel Lemma di Fatou possa valere la disuguaglianza stretta;
+      \item La conclusione del teorema di Lebesgue (convergenza dominata) possa essere falsa sotto la sola ipotesi di convergenza puntuale.
+    \end{itemize}
+    Consideriamo lo spazio con misura $\left(\mathbb{R}, \mc{M}_{\mc{L}^{1}},\left.\mc{L}^{1}\right|_{\mc{M}_{\mc{L}^{1}}}\right)$ e la successione di funzioni
+    \[f_{k}:=k \chi_{]0,1 / k[}: \mathbb{R} \rightarrow \mathbb{R} \quad(k=1,2, \ldots)\]
+    Si vede subito che tale successione converge ovunque alla funzione $f:=0$, mentre si ha
+    \[\int f_{k} d\left(\left.\mc{L}^{1}\right|_{\mc{M}_{\mc{L}^1}}\right)=\int_{]0,1 / k[} k d\left(\left.\mc{L}^{1}\right|_{\mc{M}_{\mc{L}}^1}\right)= k\mc{L}^1(]0,1 / k[) = 1\]
+    e anche
+    \[\int\left|f_{k}-f\right| d\left(\left.\mc{L}^{1}\right|_{\mc{M}_{\mc{L}^{1}}}\right)=\int_{]0,1 / k[} k d\left(\left.\mc{L}^{1}\right|_{\mc{M}_{\mc{L}^{1}}}\right)=1\]
+    per ogni $k$. Quindi
+    \[\int f d\left(\left.\mc{L}^{1}\right|_{\mc{M}_{\mc{L}^{1}}}\right)=0<1=\lim _{k} \int f_{k} d\left(\left.\mc{L}^{1}\right|_{\mc{M}_{\mc{L}^{1}}}\right)\]
+    e
+    \[\lim _{k} \int\left|f_{k}-f\right| d\left(\left.\mc{L}^{1}\right|_{\mc{M}_{\mc{L}^{1}}}\right)=1 \neq 0\]
+\end{oss}
+I seguenti risultati (Corollario \ref{cor: 2.3} e Osservazione \ref{oss: 2.11}) sono stati rimossi dai contenuti del corso. Sono stati lasciati nelle note per completezza, ma non sono richiesti per l'Esame (sono infatti stati rimossi dalle note fornite dal Docente).
+% Corollario $2.3\left(^{*}\right)$.
+\begin{corollary}\label{cor: 2.3}
+    Sia $(X, \mc{A}, \mu)$ uno spazio con misura e $f: X \rightarrow \overline{\mathbb{R}}$ una funzione sommabile. Allora la funzione $\nu_{f}: \mc{A} \rightarrow \mathbb{R}$ definita come segue
+    \[\nu_{f}(A):=\int f \chi_{A} \d \mu=\int_{A} f \d \mu, \quad A \in \mc{A}\]
+    è una misura con segno, i.e.
+    \begin{enumerate}
+        \item Si ha $\nu_{f}(\varnothing)=0$;
+        \item $S e\left\{A_{i}\right\}$ è una famiglia numerabile di elementi a-due-a-due disgiunti di $\mc{A}$, allora
+        \[
+        \nu_{f}\left(\bigcup_{i} A_{i}\right)=\sum_{i} \nu_{f}\left(A_{i}\right)
+        \]
+    \end{enumerate}
+    e tale serie converge assolutamente. Inoltre:
+    \begin{enumerate}[resume]
+        \item $\nu_{f}$ è assolutamente continua rispetto a $\mu$, ossia: se $A \in \mc{A}$ e $\mu(A)=0$, allora $\nu_{f}(A)=0$; 
+        \item la variazione totale di $\nu_{f}$ è finita e più precisamente si ha
+    \end{enumerate}
+    \[
+    \left|\nu_{f}\right|(X) :=\sup \left\{\sum_{j}\left|\nu_{f}\left(X_{j}\right)\right|:\left\{X_{j}\right\}_{n u m} \text { partiz. mis. di } X\right\} \leq \int|f| \d \mu<+\infty .
+    \]
+\end{corollary}
+
+% OsSERVAZIONE 2.11. 
+\begin{oss}\label{oss: 2.11}
+    Sia $(X, \mc{A}, \mu)$ uno spazio con misura e sia $\nu: \mc{A} \rightarrow \mathbb{R}$ una misura con segno assolutamente continua rispetto a $\mu$ (ossia: se $\mu(A)=0$, con $A \in \mc{A}$, allora $\nu(A)=0)$ e avente variazione totale finita, cioè:
+    \begin{enumerate}[label=$\roman*)$]
+        \item se $A \in \mc{A}$ e $\mu(A)=0$, allora $\nu(A)=0$;
+        \item la variazione totale di $\nu$ è finita e cioè
+    \end{enumerate}
+    \[|\nu|(X):=\sup \left\{\sum_{j}\left|\nu\left(X_{j}\right)\right|:\left\{X_{j}\right\}_{\text {num }} \text { partiz. mis. di } X\right\}<+\infty\]
+    Sorge spontaneamente la seguente questione: è vero che $\nu$ si può rappresentare nella forma integrale (3.1)? Ebbene, a tale questione risponde affermativamente il teorema di Radon Nikodym. Esso afferma che esiste una funzione sommabile $f: X \rightarrow \overline{\mathbb{R}}$ tale che $\nu_{f}=\nu$. Per una dimostrazione di tale importante risultato si può consultare, per esempio, $[\mathbf{5}$, Section 6.6].
+\end{oss}
+\section{Il teorema di Fubini}
+%Proposizione $2.5\left(^{* *}\right.$. 
+\begin{proposition}[$* *$]\label{prop: 2.5}
+    Siano dati due insiemi $X, Y$ e due misure esterne
+    \[\mu: \P(X) \rightarrow[0,+\infty], \quad \nu: \P(Y) \rightarrow[0,+\infty]\]
+    Inoltre, se $E \subset X \times Y$, sia
+    \[\mc{R}(E):=\biggl\{\left\{A_{i} \times B_{i}\right\}_{\text {num }} \bigg|A_{i} \in \mc{M}_{\mu}, B_{i} \in \mc{M}_{\nu}, E \subset \bigcup_{i}\left(A_{i} \times B_{i}\right)\biggr\}\]
+    Allora la funzione
+    \[\mu \times \nu: \P(X \times Y) \rightarrow[0,+\infty]\]
+    definita come segue $(E \subset X \times Y)$
+    \[(\mu \times \nu)(E):= \begin{cases}0 & \text { se } E=\varnothing \\ \inf \left\{\sum_{i} \mu\left(A_{i}\right) \nu\left(B_{i}\right) \mid\left\{A_{i} \times B_{i}\right\} \in \mc{R}(E)\right\} & \text { se } E \neq \varnothing\end{cases}\]
+    è una misura esterna.
+\end{proposition}
+\begin{proof}
+    Poniamo $S(\{A_i\times B_i\}_i)=\sum_{i}\mu(A_i)\nu(B_i)$. Verifichiamo gli assiomi di \hyperref[def: misura esterna]{Misura Esterna}:
+    \begin{enumerate}[label=$\roman*)$]
+        \item $(\mu\times\nu)(\varnothing)=0$ per definizione.
+        \item Siano $E\subset F\subset  X\times Y$ \tesi{(\mu\times\nu)(E)\leq (\mu\times\nu)(F)}\\
+        Se $E=\varnothing$, allora $(\mu\times\nu)(E)=0\leq (\mu\times\nu)(F)$. Supponiamo quindi $E\neq \varnothing$, allora $F\neq \varnothing$ e $\mc{R}(F)\subset \mc{R}(E)$, quindi $\inf_{\mc{R}(E)}S\leq \inf_{\mc{R}(F)}S$, ovvero  $(\mu\times\nu)(E)\leq (\mu\times\nu)(F)$.
+        \item Sia $\{E_j\}_j\subset \mc{P}(X\times Y)$ numerabile. \tesi{(\mu\times\nu)\bigg(\bigcup_jE_j\bigg)\leq \sum_j(\mu\times\nu)(E_j)}\\
+        Se $E_j=\varnothing$ per ogni $j$, allora $\bigcup_jE_j=\varnothing$ e $(\mu\times\nu)\bigg(\bigcup_jE_j\bigg)=0\leq \sum_j(\mu\times\nu)(E_j)$. Supponiamo quindi che esista $j_0$ tale che $E_{j_0}\neq \varnothing$, allora poniamo $J^*:=\{j\,|\,R_j\neq \varnothing\}$ e proviamo equivalentemente la 
+        
+        ~\tesi[ 2]{(\mu\times\nu)\bigg(\bigcup_{j\in J^*}E_j\bigg)\leq \sum_{j\in J^*}(\mu\times\nu)(E_j)}\\
+        Se $\sum_{j\in J^*}(\mu\times\nu)(E_j)=+\infty$ la tesi è banale. Poniamo quindi che sia finito. Sia $\varepsilon>0$ fissato arbitrariamente, allora per definizione di $\inf$, $\forall j\in J^*,\ \exists \{A_i^{(j)}\times B_i^{(j)}\}_{i}\in \mc{R}(E)$ tale che $\sum_i(\mu\times \nu)(A_i^{(j)}\times B_i^{(j)})< (\mu\times\nu)(E_j)+\frac{\varepsilon}{2^j}\ (*)$. Inoltre vale $\{A_i^{(j)}\times B_i^{(j)}\}_{\substack{i\quad\\j\in J^*}}\in \mc{R}(E)$. Allora
+        \[\begin{aligned}(\mu\times \nu)\biggl(\cup_{j\in J^*}E_j\biggr) & \leq \sum_{\substack{i\\j\in J^*}}\left(\mu\left(A_i^{(j)}\right) \nu\left(B_i^{(j)}\right)\right) = \sum_{j\in J^*}\underset{(*)}{\underline{\sum_i\mu(A_i^{(j)})\nu(B_i^{(j)})}}\leq \sum_{j\in J^*}\left((\mu\times \nu)(E_j)+\frac{\epsilon}{2^j}\right)\leq\\ &\leq \sum_{j\in J^*}(\mu\times \nu)(E_j)+\sum_{j\in J^*}\frac{\epsilon}{2^j} \leq \sum_{j\in J^*}(\mu\times \nu)(E_j)+\epsilon\end{aligned}\]
+        da qui, per $\epsilon\to 0$, segue la tesi.\qedhere
+    \end{enumerate}
+\end{proof}
+
+Per le misure di Lebesgue vale il seguente risultato.
+
+% Proposizione 2.6 (**). 
+\begin{proposition}[$**$]\label{prop: 2.6 prodotto Ln}
+    Per ogni coppia di numeri interi positivi $m, n$ si ha
+    \[\mc{L}^{m} \times \mc{L}^{n}=\mc{L}^{m+n}\]
+\end{proposition}
+\begin{proof}
+    Sia $E \subset \mathbb{R}^{m+n}$. \tesi{(\mc{L}^{m} \times \mc{L}^{n})(E)=(\mc{L}^{m+n})(E)}\\
+    Proviamo separatamente le due disuguaglianze:
+    \begin{itemize}
+        \item[\say{$\leq$})] Se $\mc{L}^{m+n}(E)=+\infty$, la tesi è banale. Possiamo quindi supporre $\mc{L}^{m+n}(E)<+\infty$. Fissato $\epsilon >0$, esiste una famiglia numerabile di intervalli aperti $\{I_j\}_j\subset \P(R^{m+
+        n})$ tali che $\bigcup_jI_j\supset E$ e 
+        \[\mc{L}^{m+n}(E)+\epsilon > \sum_jv_{m+n}(I_j) = \sum_jv_m(I_j^{(m)})v_n(I_j^{(n)})= \underset{(\lozenge)}{\underline{\sum_j\mc{L}^m(I_j^{(m)})\mc{L}^n(I_j^{(n)})}}\geq (\mc{L}^m\times \mc{L}^n)(E)\]
+        in quanto per definizione di $\mc{L}^m\times \mc{L}^n$, $(\mc{L}^m\times \mc{L}^n)(E)$ è l'estremo inferiore di oggetti del tipo $(\lozenge)$. La misurabilità segue dal fatto che gli intervalli sono tutti aperti, e quindi misurabili in quanto la misura esterna di Lebesgue è boreliana. Dall'arbitrarietà di $\epsilon$ segue la disuguaglianza $(\mc{L}^{m} \times \mc{L}^{n})(E)\leq(\mc{L}^{m+n})(E)$.
+        \item[\say{$\geq$})] Se $\mc{L}^{m+n}(E)=+\infty$, la tesi è banale. Possiamo quindi supporre $\mc{L}^{m+n}(E)<+\infty$. Fissato $\epsilon >0$, esiste un ricoprimento numerabile $\{A_j\times B_j\}\in \mc{R}(E)$ tale che 
+        \[\sum_j\mc{L}^m(A_j)\mc L^n(B_j) < (\mc L^m \times \mc L^n)(E)+\epsilon\tag{$\bullet$}\]
+        \paragraph{NB.} Supponiamo ora che si possa sempre scegliere la famiglia $\{A_j\times B_j\}$ affinché $\mc{L}^m(A_j)<1 $ e $\mc L^n(B_j) < 1\ \forall j$. La dimostrazione di questa proprietà verrà data in coda.
+
+        Per ogni $j$ sia ${I_{j,h}^{(m)}}_h$ una famiglia numerabile di intervalli aperti di $\R^m$ tali che $\bigcup_{h}I_{j,h}^{(m)} \supset A_j$ e 
+        \[\sum_hv_m(I_{j,h}^{(m)})<\mc L^m(A_j)+\frac{\epsilon}{2^j}.\tag{$\ast$}\]
+        Analogamente, per ogni $j$ sia ${I_{j,k}^{(n)}}_k$ una famiglia numerabile di intervalli aperti di $\R^n$ tali che $\bigcup_{k}I_{j,k}^{(n)} \supset B_j$ e 
+        \[\sum_kv_n(I_{j,k}^{(n)})<\mc L^n(B_j)+\frac{\epsilon}{2^j}\tag{$\ast\ast$}\]
+        Moltiplicando $(*)$ e $(**)$ membro a membro, otteniamo
+        \[\sum_{h,k}\underbrace{v_m(I_{j,h}^{(m)})v_n(I_{j,k}^{(n)})}_{v_{m+n}(I_{j,h}^{(m)}\times I_{j,k}^{(n)})}\mc L^m(A_j)\mc L^n(B_j)  +\frac{\epsilon}{2^j}\underbrace{\left( \mc L^n(A_j) + \mc L^n(B_j) \right)}_{<2\ (\textbf{NB})}+\underbrace{\frac{\epsilon}{4^j}}_{<\frac{\epsilon}{2^j}}\]
+        da ciò segue che 
+        \[\sum_{j,h,k}v_{m+n}\left( I_{j,h}^{(m)} \times I_{j,k}^{(n)} \right)<\sum_j\mc{L}^m(A_j)\mc L^n(B_j)+ 2\epsilon \sum_j\frac{1}{2^j}+ \epsilon^2\sum_j\frac{1}{2^j} \underset{(\bullet)}{<} (\mc L^m \times \mc L^n)(E)+\epsilon+ 2\epsilon + \epsilon ^2.\]
+        Inoltre, poiché $\{I_{j,h}^{(m)}\times I_{j,k}^{(n)}\}_{j,h,k}\in \mc R(\bigcup_jA_j\times B_j)\subset \mc R(E)$, $\sum_{j,h,k}v_{m+n}(I_{j,h}^{(m)}\times I_{j,k}^{(n)})\geq \mc L^{m+n}(E)$. Pertanto, segue 
+        \[\mc L^{m+n}(E)\leq (\mc L^m \times \mc L^n)(E)+4\epsilon + \epsilon^2\]
+        da cui, per l'arbitrarietà di $\epsilon$, segue la disuguaglianza $(\mc{L}^{m} \times \mc{L}^{n})(E)\geq(\mc{L}^{m+n})(E)$.
+    \end{itemize}
+    \paragraph{Rimane ora da provare il NB.} Sia $\{Q^{(m)}_h\}_h$ il reticolo unitario semiaperto di $\R^m$ ($[a_1,b_1[\times \dots \times [a_m,b_m[$), e sia in particolare $Q^{(m)}=[0,1[^m[$. Poiché $\Z^m$ è numerabile, lo identifichiamo con $\Z^m= \{\mu_j\}_{j=1}^{+\infty}$, per cui $Q^{(m)}_j= Q^{(m)}+\mu_j$. Analogamente per il reticolo unitario semiaperto di $\R^n$. Allora $A_j = A_j \cap \bigsqcup_hQ_h^{(m)} = \bigsqcup_h (A_j\cap Q^{(m)}_h) = \bigsqcup_h A_j^{(h)}$, dove $A_j^{(h)} = A_j\cap Q^{(m)}_h$. Analogamente costruiamo $B_j^{(k)}$. Segue quindi che 
+    \[\mc L^m(A_j) = \sum_h\mc L^m(A_j^{(h)})\qquad \qquad  \mc L^n(B_j) = \sum_k\mc L^n(B_j^{(k)})\]
+    \[\bigcup_{i,j,k}(A_j^{(h)}\times B_j^{k}) = \bigcup_{j}\bigcup_{h,k}\left( (A_j\cap Q_h^{(m)}) \times (B_j\cap Q_k^{(n)})\right) = \bigcup_{j}\left( \bigcup_{h}(A_j\cap Q_h^{(m)}) \times \bigcup_{k}(B_j\cap Q_k^{(n)})\right) = \bigcup_j(A_j\times B_j)\]
+    Inoltre, per $\sigma$-additività, vale 
+    \[\sum_{j,h,k}\mc L^m(A_j^{(h)})\mc L^n(B_j^{(k)}) = \sum_j\mc L^m(A_j)\mc L^n(B_j)\]
+    e per monotonia
+    \[\mc L^m(A_j^{(h)}) \leq \mc L^m(Q^{(m)}_h) = 1\qquad \qquad  \mc L^n(B_j^{(k)})\leq \mc L^n(Q^{(n)}_k) = 1\]
+    per cui la famiglia $\{A_j^{(h)}\times B_j^{(k)}\}_{j,h,k}$ soddisfa le proprietà richieste. \qedhere
+\end{proof}
+
+% Definizione 2.7. 
+
+\begin{boxdef}\label{def: misura esterna sigma-finita}
+    Una misura esterna $\varphi: \P(X) \rightarrow[0,+\infty]$ è detta $\sigma$-finita se esiste una famiglia numerabile $\left\{X_{j}\right\}$ di insiemi misurabili rispetto a $\varphi$ tale che $X=\bigcup_{j} X_{j}$ e $\varphi\left(X_{j}\right)<$ $+\infty$ per ogni $j$.
+\end{boxdef}
+
+% OSSERVAZIONE 2.12. 
+\begin{oss}
+    In Definizione \ref{def: misura esterna sigma-finita} non sarebbe restrittivo aggiungere l'ipotesi che gli insiemi $X_{j}$ siano a-due-a-due disgiunti.
+\end{oss}
+Vale il seguente profondo risultato, per la dimostrazione del quale rimandiamo a $[\mathbf{5}$, Theorem 6.46].
+
+% Teorema 2.8. 
+\begin{shadedTheorem}[Lemmone]\label{thm: 2.8}
+    Siano date due misure esterne $\sigma$-finite
+    \[\mu: \P(X) \rightarrow[0,+\infty], \quad \nu: \P(Y) \rightarrow[0,+\infty]\]
+    Allora per ogni $S \in \mc{M}_{\mu \times \nu}$ si ha:
+    \begin{enumerate}
+    \item $S_{x}:=\{y \in Y \mid(x, y) \in S\} \in \mc{M}_{\nu}$, per $\mu$-q.o. $x \in X$;
+    \item $x \mapsto \nu\left(S_{x}\right)$ è $\mu$-misurabile (quindi $\mu$-integrabile) e vale l'identità
+    \[\int \nu\left(S_{x}\right) \d \mu(x)=(\mu \times \nu)(S)\]
+    \end{enumerate}
+\end{shadedTheorem}
+
+% OsSERVAzione 2.13.
+
+\begin{oss}
+    Con riferimento a Teorema \ref{thm: 2.8}, potremmo chiederci se valga la proprietà più forte che
+    \[S_{x} \in \mc{M}_{\nu} \text { per ogni } x \in X \text {, tutte le volte che } S \in \mc{M}_{\mu \times \nu} \text {. }\]
+    Ebbene, in generale questo non è vero. Per provarlo, consideriamo l'insieme di Vitali $E \notin \mc{M}_{\mc{L}^{1}}$ costruito in Esempio 1.9 e definiamo
+    \[S:=\{0\} \times E \subset \mathbb{R} \times \mathbb{R}\]
+    Poiché $\left(\mc{L}^{1} \times \mc{L}^{1}\right)(S)=\mc{L}^{2}(S)=0$, si ha che $S \in \mc{M}_{\mc{L}^{1} \times \mc{L}^{1}}$ (per (2) di Teorema \ref{thm: proprietà misurabili}). Tuttavia $S_{0}=E \notin \mc{M}_{\mc{L}^{1}}$.
+\end{oss}
+
+% Teorema $2.9(* * *)$. 
+
+\begin{shadedTheorem}[$***$\,|\,Fubini]\label{thm: fubini}
+    Siano date due misure esterne $\sigma$-finite
+    \[\mu: \P(X) \rightarrow[0,+\infty], \quad \nu: \P(Y) \rightarrow[0,+\infty]\]
+    e una funzione $\mu \times \nu$-misurabile $f(x, y): X \times Y \rightarrow \overline{\mathbb{R}}$. Supponiamo inoltre che $f$ sia $(\mu \times \nu)$-sommabile in $S \in \mc{M}_{\mu \times \nu}$. Allora:
+    \begin{enumerate}
+    \item $S_{x}:=\{y \in Y \mid(x, y) \in S\} \in \mc{M}_{\nu}$, per $\ \mu$-q.o. $x \in X$;
+    
+    \item $y \mapsto f(x, y)$ è $\nu$-sommabile in $S_{x}$, per $\ \mu$-q.o. $x \in X$;
+    
+    \item $x \mapsto \int_{S_{x}} f(x, y) d \nu(y)$ è $\mu$-sommabile;
+    
+    \item vale l'uguaglianza
+    \[\int_{S} f d(\mu \times \nu)=\int_{X}\left[\int_{S_{x}} f(x, y) d \nu(y)\right] \d \mu(x)\]
+    \end{enumerate}
+\end{shadedTheorem}
+\begin{proof}~
+    \begin{itemize}
+        \item \textbf{\underline{Step 1:}} Proviamo inizialmente il teorema nelle ipotesi $S=X\times Y$ (quindi $S_x=Y\ \forall x\in X$) e $f\geq 0$.
+        \begin{textbox}{\faExclamationTriangle}
+            Man mano incontreremo proprietà che valgono $\mu$-q.o. e per le quali chiameremo $N$ l'insieme dei trasgressori. Ogni volta che affermeremo che ogni proprietà vale per ogni $x\in X\setminus N$, staremo implicitamente ampliando $N$ al fine di includere i nuovi trasgressori. Poiché in ogni caso si lavorerà sempre con quantità numerabili, l'insieme $N$ avrà sempre misura nulla, per cui le proprietà varranno contemporaneamente $\mu$-q.o.
+        \end{textbox}
+        \begin{textbox}{Proprietà}
+            Durante la dimostrazione incontreremo numerose proprietà che è bene sottolineare perché verranno richiamate più volte. Le riportiamo pertanto qui per facilitare la lettura:
+            \begin{enumerate}[label=\eqref{eq:fub: \alph*}]
+                \item $\nu(I_x)=0$\ $\forall x \in X\setminus N$;
+                \item $\phi_k\leq f\leq t_k\phi_k$ in $P\cup Z=(X\cup Y)\setminus I$, ovvero $\mu\times\nu$-q.o.;
+                \item $\forall x\in X\setminus N, (E_h^{(k)})_x\in\mc{M}_\nu \ \forall h,k$; inoltre $x\mapsto \nu((E_h^{(k)})_x)$ è $\mu$-misurabile e vale\[\int_X\nu ((E_h^{(k)})_x)\d\mu(x)=(\mu\times\nu)(E_h^{(k)});\]
+                \item $\phi_k(x,\cdot)$ è $\nu$-misurabile $\forall x\in X\setminus N$;
+                \item $\displaystyle\int_Y\phi_k(x,y)\d\nu(y)=\sum_{k\in \Z}t_h^h\nu((E_h^{(k)})_x)\ \forall x\in X\setminus N$;
+                \item $\displaystyle \int_X\left(\int_Y\phi_K(x,y)\d\nu(y)\right)\d\mu(x) = \int_{X\times Y}\!\!\!\!\!\!\!\!\!\!\phi_k\d(\mu\times \nu)$;
+                \item $\forall x\in X\setminus N$, $f(x,\cdot)$ è $\nu$-misurabile e non negativa, quindi è integrabile;
+                \item $\displaystyle\forall x \in X\setminus N, \quad \int_Y\phi_k(x,y)\d\nu(y)\leq \int_Yf(x,y)\d\nu(y)\leq t_k\int_Y\phi_k(x,y) \d\nu(y)$
+            \end{enumerate} 
+        \end{textbox}
+        La tesi (1) segue subito dal \lemmone, proviamo quindi gli altri punti. Poniamo 
+        \[Z:=f^{-1}(\{0\})\qquad P = f^{-1}(]0,+\infty[)\qquad I\in f^{-1}(\{+\infty\})\]
+        i quali sono $\mu\times\nu$-misurabili in quanto controimmagini di boreliani mediante $f$ e formano una partizione di $X\times Y$. Poiché $f$ è supposta sommabile, per il Teorema \ref{thm: 7pt}.\ref{7pt: 2} è finita $\mu\times \nu$-q.o, ovvero $(\mu\times \nu)(I)=0$. Allora per il \lemmone, segue che $I_x\in \mc{M}_\nu\ \mu$-q.o. e la funzione $x\mapsto \nu(I_x)$ è $\mu$-misurabile e non negativa, per cui integrabile per il Teorema \ref{thm: 2.3} e vale $\int_X\nu(I_x)d\mu=(\mu\times \nu)(I_x) = 0$, da cui $\nu(I_x)=0\ \mu$-q.o. Esiste quindi un $N\in \mc{M}_\mu$ tale che \[\mu(N)=0 \text{\quad e \quad}\nu(I_x)=0\ \forall x\in X\setminus N.\tag{a}\label{eq:fub: a}\]
+
+        Sia $k\in \mc{N^*}$ fissato arbitrariamente, allora poniamo $t_k=1+\frac{1}{k}$. Allora, come già osservato nella dimostrazione del Teorema \ref{thm: 2.3}, 
+        \[]0,+\infty[\ =\ \bigsqcup_{h\in \Z}[t_k^h, t_k^{h+1}[\]
+        e, in particolare, 
+        \[P=f^{-1}(]0,+\infty[)\ =\ f^{-1}\biggl(\bigsqcup_{h\in \Z}[t_k^h, t_k^{h+1}[ \biggr)= \bigsqcup_{h\in \Z}f^{-1}[t_k^h, t_k^{h+1}[) = \bigsqcup_{h\in \Z}E_h^{(k)}\]
+        dove poniamo $E_h^{(k)}:=f^{-1}([t_k^h, t_k^{h+1}[) \in\mc{M}_{\mu\times\nu}$. Poniamo ora $\phi_k:=\sum\limits_{h\in \Z}t_k^h\chi_{E_h^{(k)}}$ e osserviamo che se $(x,y)\in E_h^{(k)}$, allora per costruzione di $E_h^{(k)}$ vale $t_k^h\leq f(x,y)<t_k^{h+1}$, da cui per costruzione di $\phi_k$ vale
+        \[\phi_k(x,y) =t_k^h\leq f(x,y)<t_k^{h+1} = t_k\phi_k(x,y)\]
+        e quindi, poiché ciò vale per ogni $(x,y)$, possiamo scrivere (\say{rilassando} il $<$ a $\leq$)
+        \[\phi_k\leq f\leq t_k\phi_k\tag{b}\label{eq:fub: b}\]
+        e osservare che in questo senso vale anche su $Z$ dove tutti i membri si annullano, quindi vale su $(X\times Y)\setminus I$, quindi $\mu\times \nu$-q.o.
+        \paragraph{Fubini per $\boldsymbol\phi_{\boldsymbol k}$} Proviamo inizialmente una versione più debole del Teorema per la sola $\phi_k\in \Sigma^*$: per il \lemmone, $(E_h^{k})_x\in \mc{M}_{\nu}$ per $\mu$-q.o. $x\in X$ e $x\mapsto \nu((E_h^{(k)})_x)$ è $\mu$-misurabile (e non negativa, quindi integrabile) e vale 
+        \[\int_X\nu ((E_h^{(k)})_x)\d\mu(x)=(\mu\times\nu)(E_h^{(k)})\tag{c}\label{eq:fub: c}\]
+        Fissato ora $x$, si ha 
+        \[\phi_k(x,\cdot) = \sum_{h\in \Z}t^h_k\chi_{(E_h^{(k)})_x}(x,\cdot) \underset{\text{Es. \ref{exc: fub1}}}{=} \sum_{h\in \Z}t^h_k\chi_{(E_h^{k})_x}\]
+        da cui, per il Teorema di Chiusura (\ref{thm: chiusura}), \[\phi_k(x,\cdot) \text{ è $\nu$-misurabile.}\tag{d}\label{eq:fub: d}\] Siccome è non negativa, è anche integrabile e per il Corollario \ref{cor: 2.2 serie} e per l'omogeoeità dell'integrale (generalizzata come nell'Esercizio \ref{exc: 2.9}), $\forall x\in X\setminus N$ vale 
+        \[\int_{Y=S_x}\!\!\!\!\!\!\!\!\!\!\!\phi_k(x,y)\d\nu(y) = \int_Y\sum_{j\in \Z}t_k^h\chi_{(E_h^{(k)})_x}(y)\nu(y) = \sum_{h\in \Z}t_k^h\int_Y\!\!\chi_{(E_h^{(k)})_x}(y)\d\nu(y) \overset{\ref{thm: 7pt}\ref{7pt: 1}}{=} \sum_{h\in\Z}t_k^h\nu((E_h^{(k)})_x).\label{eq:fub: e}\tag{e}\]
+        In particolare per \eqref{eq:fub: c} e il teorema di chiusura, segue che la funzione $x\mapsto \sum\limits_{h\in \Z}t_k^h\nu((E_h^{(k)})_x)=\int\limits_{Y}\phi_k(x,y)\d\nu(y)$ è $\nu$-misurabile e non negativa, quindi integrabile e vale 
+        \[\begin{aligned}\int_X\left(\int_Y\phi_k(x,y)\d\nu(x,y)\right)\d\mu(x)&\overset{\eqref{eq:fub: e}}{=}\int_X\left(\sum_{h\in \Z}t_k^h\nu((E_h^{(k)})_x)\right)\d\mu(x) = \sum_{h\in \Z}t_k^{h}\sum_X\nu((E_h^{(k)})_x)\d\mu(x) = \\ & \overset{\eqref{eq:fub: c}}{=} \sum_{h\in \Z}t_k^{h}(\mu\times \nu)(E_h^{(k)}) = \int_{X\times Y}\!\!\!\!\!\!\!\!\!\!\phi_k\d(\mu\times \nu) \end{aligned}\tag{f}\label{eq:fub: f}\]
+        dalla definizione di $\phi\in \Sigma^*$.
+        \paragraph{Fubini per $\boldsymbol f$} Riscrivendo \eqref{eq:fub: b} equivalentemente si ha 
+        \[\phi_k(x,y)\leq f(x,y)\leq t_k\phi_k(x,y)\qquad \forall x \in X,\ \forall y\in Y\setminus I_x\]
+        dove per \eqref{eq:fub: a}, $\nu(I_x)=0$ per ogni $x\in X\setminus N$. In questa situazione ($(X\times Y)\setminus I$), $f$ è finita quindi lo è anche $\phi_k$ e conseguentemente anche $t_k\phi_k$. Segue pertanto che 
+        \[0\leq f(x,y)-\phi_k(x,y) \leq (\underbrace{t_k-1}_{1/k})\phi_k(x,y) \leq \frac{1}{k}f(x,y)<+\infty.\]
+        Per $k\to +\infty$, $\phi_{k}(x,y)\to f(x,y)$ per ogni $x\in X$ e $y\in Y\setminus I_x$, ovvero per ogni $x\in X\setminus N$ (ovvero dove $\nu(I_x)=0$ per \eqref{eq:fub: a}) $\phi(x,\cdot)\to f(x,\cdot)$ $\nu$-q.o. Di conseguenza per il Teorema di Chiusura, (\ref{thm: chiusura}) \[\text{$f(x,\cdot)$ è $\nu$-misurabile $\forall x \in X\setminus N$ e non negativa, quindi integrabile.}\tag{g}\label{eq:fub: g}\]
+        Inoltre, per \eqref{eq:fub: b}, $\phi_k(x,y)\leq f(x,y)\leq t_k\phi_k(x,y)\ \forall x\in X, \forall y\in Y\setminus I_x$ e quindi un particolare $\forall x \in X\setminus N$ e e $\forall y\in Y\setminus I_x$, ovvero $\nu$-q.o., quindi 
+        \[\forall x \in X\setminus N, \quad \phi_k(x,\cdot) \leq f(x,\cdot) \leq t_k\phi_k(x,\cdot)\quad \nu-\text{q.o.}\]
+        da cui per monotoina dell'integrale segue 
+        \[\forall x \in X\setminus N, \quad\int_Y\phi_k(x,y)\d\nu(y)\leq \int_Yf(x,y)\d\nu(y)\leq t_k\int_Y\phi_k(x,y) \d\nu(y) \tag{h}\label{eq:fub: h}.\]
+        Osserviamo ora che per \eqref{eq:fub: f}, \eqref{eq:fub: b} e monotonia dell'integrale
+        \[0 \leq \int_x\left(\int_Y\phi_k(x,y)\d\nu(y)\right)\d\mu(x) = \int_{X\times Y}\!\!\!\!\!\!\!\!\!\!\phi_k\d(\mu\times \nu) \leq \int_{X\times Y}\!\!\!\!\!\!\!\!\!\!f\d(\mu\times \nu) < +\infty\]
+        quindi $z\mapsto \int_Y\phi_k(x,y)\d\nu(y)$ è $\mu$-sommabile, quindi finita $\mu$-q.o., ovvero (a meno di ingrandire $N$ all'uopo) 
+        \[\int_Y\phi_k(x,y)\d\nu(y)<+\infty\quad \forall x \in X\setminus N\tag{i}\label{eq:fub: i}.\]
+        Da ciò segue che i tre membri di \eqref{eq:fub: h} sono finiti $\forall x\in X\setminus N$, quindi ciò può essere riscritto come
+        \[0\leq \int_Yf(x,y)\d\nu(y)-\int_Y\phi_k(x,y)\d\nu(y)\leq (\underbrace{t_k-1}_{1/k})\int_Y\phi_k(x,y) \d\nu(y) \overset{\eqref{eq:fub: h}}{\leq} \frac{1}{k}\int_Yf(x,y)\d\nu(y)< +\infty\]
+        $\forall x \in X\setminus N$. Da cui per $k\to +\infty$, $\int_{Y}\phi_k(x,y)\d\nu(y)\to \int_{Y}f(x,y)\d\nu(y)\ \forall x\in X\setminus N$. Ricordando ora che per \eqref{eq:fub: c} e \eqref{eq:fub: e}, $x\mapsto \int_{Y}\phi_k(x,y)\d\nu(y)$ è misurabile, segue dal Teorema di Chiusura che anche $x\mapsto \int_{X}f(x,y)\d\nu(y)$ lo è e vale (per \eqref{eq:fub: b} e monotonia dell'integrale)
+        \[\begin{aligned}
+            \int_{X\times Y}\!\!\!\!\!\!\!\!\!\!\phi_k\d(\mu\times \nu) &= \int_X\left(\int_Y\phi_k(x,y)\d\nu(y)\right)\d\mu(x) \leq \int_X\left(\int_Yf(x,y)\d\nu(y)\right)\d\mu(x)\leq \\&\leq t_k\int_X\left(\int_Y\phi_k(x,y)\d\nu(y)\right)\d\mu(x)  \overset{\eqref{eq:fub: f}}= t_k\int_{X\times Y}\!\!\!\!\!\!\!\!\!\!\phi_k\d(\mu\times \nu)\leq t_k\int_{X\times Y}\!\!\!\!\!\!\!\!\!\!f\d(\mu\times \nu)<+\infty
+        \end{aligned}\tag{$\diamondsuit$}\label{eq:fub: quadri}\]
+        In particolare questo prova la tesi $(3)$, ovvero che $x \mapsto \int_{S_{x}} f(x, y) d \nu(y)$ è $\mu$-sommabile. Dal Teorema \ref{thm: 7pt}.\ref{7pt: 2} segue che è anche finita $\mu$-q.o., quindi $\int_{S_{x}} f(x, y) d \nu(y)<+\infty$ per $\mu$-q.o. $x\in X$ e quindi per lo stesso argomento $y\mapsto f(x,y)$ è $\nu$-sommabile in $Y=S_x$ per $\mu$-q.o. $x\in X$, ovvero vale la tesi (2).
+
+        Rimane da provare solo la tesi (4): riscrivendo \eqref{eq:fub: quadri} si ha 
+        \[\int_{X\times Y}\!\!\!\!\!\!\!\!\!\!\phi_k\d(\mu\times \nu) 
+        \leq \int_X\left(\int_Yf(x,y)\d\nu(y)\right)\d\mu(x)
+        \leq t_k\int_{X\times Y}\!\!\!\!\!\!\!\!\!\!\phi_k\d(\mu\times \nu)<+\infty\tag{$\ast$}\label{eq:fub: ast}\]
+        inoltre, da \eqref{eq:fub: b} per monotonia dell'integrale,
+        \[\int_{X\times Y}\!\!\!\!\!\!\!\!\!\!\phi_k\d(\mu\times \nu) \leq
+         \int_{X\times Y}\!\!\!\!\!\!\!\!\!\!f\d(\mu\times \nu) 
+         \leq t_k\int_{X\times Y}\!\!\!\!\!\!\!\!\!\!\phi_k\d(\mu\times \nu)\tag{$\ast\ast$}\label{eq:fub: ast2}. \]
+        In \eqref{eq:fub: ast} e \eqref{eq:fub: ast2} osserviamo che $\int_X\left(\int_Yf(x,y)\d\nu(y)\right)\d\mu(x)$ e $\int_{X\times Y}f\d(\mu\times \nu)$ stanno nello stesso intervallo, per cui la loro differenza in valore assoluto è maggiorata dall'ampiezza dell'intervallo stesso, ovvero
+        \[\left|\int_{X\times Y}\!\!\!\!\!\!\!\!\!\!f\d(\mu\times \nu)-\int_X\left(\int_Yf(x,y)\d\nu(y)\right)\d\mu(x)\right|\leq t_k\int_{X\times Y}\!\!\!\!\!\!\!\!\!\!\phi_k\d(\mu\times \nu)-\int_{X\times Y}\!\!\!\!\!\!\!\!\!\!\phi_k\d(\mu\times \nu) = \]
+        \[=(t_k-1)\int_{X\times Y}\!\!\!\!\!\!\!\!\!\!\phi_k\d(\mu\times \nu) = \frac{1}{k}\int_{X\times Y}\!\!\!\!\!\!\!\!\!\!\phi_k\d(\mu\times \nu) \leq \frac{1}{k}\int_{X\times Y}\!\!\!\!\!\!\!\!\!\!f\d(\mu\times \nu).\]
+        Ora, poiché $\left|\int_{X\times Y}f\d(\mu\times \nu)-\int_X\left(\int_Yf(x,y)\d\nu(y)\right)\d\mu(x)\right|$ non dipende da $k$ e $\frac{1}{k}\int_{X\times Y}f\d(\mu\times \nu)\underset{k\mapsto 0}\longrightarrow$, per $k\to 0$, si ha la tesi $(4)$.
+        \item \textbf{\underline{Step 2:}} Consideriamo ora $S=X\times Y$ e $f$ senza ulteriori restrizioni. Siano $P=f^{-1}([0,+\infty])$ e $N=P^{c}=f^{-1}([-\infty,0[)$ e chiamiamo $f_+=f\chi_P$ e $f_-=-f\chi_{N}$, allora osserviamo che $f=f_+-f_-$. Poiché $f$ è misurabile e $P,N\in M_{\mu\times\nu}$, allora $f_+,f_-$ sono misurabili e sono non negative, quindi integrabili e per il Teorema \ref{thm: 7pt}.\ref{7pt: 5}. Segue quindi che verificano le ipotesi dello \textbf{\underline{Step 1}}, quindi per $f_+$ e $f_-$ valgono le tesi del teorema. 
+        \begin{itemize}
+            \item Per la tesi (2), si ha che 
+            \[\begin{cases}
+                y\mapsto f_{+}(x,y) \text{ è $\nu$-sommabile in $S_x=Y$ per $\mu$-q.o. $x\in X$} \\
+                y\mapsto f_{-}(x,y) \text{ è $\nu$-sommabile in $S_x=Y$ per $\mu$-q.o. $x\in X$}
+            \end{cases}\]
+            da cui, per il Teorema \ref{thm: 7pt}.\ref{7pt: 3}, anche $y\mapsto f(x,y)=f_+(x,y)-f_-(x,y)$ è $\nu$-sommabile in $S_x=Y$ per $\mu$-q.o. $x\in X$, il che prova la tesi $(2)$.
+            \item Per il Teorema \ref{thm: 7pt}.\ref{7pt: 3}, si ha anche che
+            \[x\mapsto \int_Yf_+(x,y)\d\nu(y)-\int_Yf_-(x,y)\d\nu(y) = \int_Y(f_+(x,y)-f_-(x,y))\d\nu(y) = \int_Yf(x,y)\d\nu(y)\]
+            è $\mu$-sommabile, ovvero la tesi (3).
+            \item Per la tesi (4) applicata a $f_+$ e $f_-$, si ha che 
+            \[\begin{cases}
+                \displaystyle \int_X\left(\int_Yf_+(x,y)\d\nu(y)\right)\d\mu(x) = \int_{X\times Y}\!\!\!\!\!\!\!\!\!\!f_+\d(\mu\times \nu)\\
+                \displaystyle \int_X\left(\int_Yf_-(x,y)\d\nu(y)\right)\d\mu(x) = \int_{X\times Y}\!\!\!\!\!\!\!\!\!\!f_-\d(\mu\times \nu)
+            \end{cases}\]
+            da cui, sottraendo membro a membro, si ottiene
+            \[\int_X\left(\int_Yf_+(x,y)\d\nu(y)\right)\d\mu(x) - \int_X\left(\int_Yf_-(x,y)\d\nu(y)\right)\d\mu(x) = \int_{X\times Y}\!\!\!\!\!\!\!\!\!\!f_+\d(\mu\times \nu) - \int_{X\times Y}\!\!\!\!\!\!\!\!\!\!f_-\d(\mu\times \nu)\]
+            ovvero, per il Teorema \ref{thm: 7pt}.\ref{7pt: 3}, e per la tesi (3)
+            \[\int_X\left(\int_Yf_+(x,y)\d\nu(y)\right)\d\mu(x) - \int_X\left(\int_Yf_-(x,y)\d\nu(y)\right)\d\mu(x) = \int_X\left(\int_Yf(x,y)\d\nu(y)\right)\d\mu(x)\]
+            e
+            \[\int_{X\times Y}\!\!\!\!\!\!\!\!\!\!f_+\d(\mu\times \nu) - \int_{X\times Y}\!\!\!\!\!\!\!\!\!\!f_-\d(\mu\times \nu) = \int_{X\times Y}\!\!\!\!\!\!\!\!\!\!f\d(\mu\times \nu)\]
+            ovvero la tesi (4).
+        \end{itemize}
+        \item \textbf{\underline{Step 3:}} Consideriamo ora $f$ e $S$ senza ulteriori restrizioni, e osserviamo inizialmente che $f\chi_S$ è $\mu\times \nu$-sommabile su $X\times Y$ e per definizione di $\int_S f\d(\mu\times\nu)$,
+        \[\int_{X\times Y}\!\!\!\!\!\!\!\!\!\!f\chi_S\d(\mu\times \nu) =\int_S\!f\d(\mu\times\nu)\]
+        Possiamo quindi applicare lo \textbf{\underline{Step 2}} a $f\chi_S$ su $X\times Y$:
+        \begin{itemize}
+            \item Per la tesi (2), si ha che $y\mapsto (f\chi_S)(x,y)$ è $\nu$-sommabile su $Y$ per $\mu$-q.o. $x\in X$, ma $(f\chi_S)(x,y) = f(x,y)\chi_S(x,y) = f(x,y)\chi_{S_x}(y)$, ovvero $y\mapsto f(x,y)$ è $\nu$-sommabile su $S_x$ per $\mu$-q.o. $x\in X$, ovvero la tesi (2).
+            \item Per la tesi (3), \(x\mapsto \int_Y(f\chi_S)(x,y)\d\nu(y)\) è $\mu$-sommabile, ma 
+            \[\int_Y(f\chi_S)(x,y)\d\nu(y) = \int_Yf(x,y)\chi_{S_x}(y)\d\nu(y) = \int_{S_x}f(x,y)\d\nu(y),\]
+            quindi $x\mapsto \int_{S_x}f(x,y)\d\nu(y)$ è $\mu$-sommabile, ovvero la tesi (3).
+            \item Per la tesi (4), si ha che
+            \[\int_X\left(\int_Y(f\chi_S)(x,y)\d\nu(y)\right)\d\mu(x) = \int_{X\times Y}(f\chi_S)\d(\mu\times \nu)\]
+            ma per i punto precedenti si ha 
+            \[\int_X\left(\int_Y(f\chi_S)(x,y)\d\nu(y)\right)\d\mu(x) = \int_X\left(\int_{S_x}f(x,y)\d\nu(y)\right)\d\mu(x)\]
+            e 
+            \[\int_{X\times Y}(f\chi_S)\d(\mu\times \nu) = \int_Sf\d(\mu\times \nu)\]
+            ovvero la tesi (4). \qedhere
+        \end{itemize}
+    \end{itemize}
+\end{proof}
+\begin{exc}\label{exc: fub1}
+    Provare che se $E\subset X\times Y$, allora $\chi_E(x,y) = \chi_{E_x}(y)\ \forall (x,y)\in X\times Y$.
+\end{exc}
+Naturalmente, lo stesso argomento prova anche il seguente risultato speculare al precedente. 
+
+%Teorema $2.10\left(^{\circ}\right)$. 
+\begin{shadedTheorem}[$\circ$]\label{thm: 2.10}
+Siano date due misure esterne $\sigma$-finite
+\[\mu: \P(X) \rightarrow[0,+\infty], \quad \nu: \P(Y) \rightarrow[0,+\infty]\]
+e una funzione $\mu \times \nu$-misurabile $f(x, y): X \times Y \rightarrow \overline{\mathbb{R}}$. Supponiamo inoltre che $f$ sia $(\mu \times \nu)$-sommabile in $S \in \mc{M}_{\mu \times \nu}$. Allora:
+\begin{enumerate}
+    \item $S_{y}:=\{x \in X \mid(x, y) \in S\} \in \mc{M}_{\mu}$, per $\nu$-q.o. $y \in Y$;
+    \item  $x \mapsto f(x, y)$ è $\mu$-sommabile in $S_{y}$, per $\nu$-q.o. $y \in Y$;
+    \item $y \mapsto \int_{S_{y}} f(x, y) \d \mu(x)$ è $\nu$-sommabile;
+    \item vale l'uguaglianza
+    \[\int_{S} f d(\mu \times \nu)=\int_{Y}\left[\int_{S_{y}} f(x, y) \d \mu(x)\right] d \nu(y)\]
+\end{enumerate}
+\end{shadedTheorem}
+Applicando Teorema \ref{thm: fubini} alle misure di Lebesgue e ricordando Proposizione \ref{prop: 2.6 prodotto Ln}, otteniamo subito il seguente risultato.
+
+% Corollario $2.4\left({ }^{\circ}\right)$. 
+\begin{corollary}[$\circ$]
+    Sia $f(x, y): \mathbb{R}^{m} \times \mathbb{R}^{n} \rightarrow \overline{\mathbb{R}}$ una funzione $\mc{L}^{m+n}$-misurabile. Supponiamo inoltre che $f$ sia $\mc{L}^{m+n}$-sommabile in $S \in \mc{M}_{\mc{L}^{m+n}}$. Allora:
+    \begin{enumerate}
+        \item $S_{x}:=\left\{y \in \mathbb{R}^{n} \mid(x, y) \in S\right\} \in \mc{M}_{\mc{L}^{n}}$, per $\mc{L}^{m}$-q.o. $x \in \mathbb{R}^{m}$;
+        
+        \item $y \mapsto f(x, y)$ è $\mc{L}^{n}$-sommabile in $S_{x}$, per $\mc{L}^{m}$-q.o. $x \in \mathbb{R}^{m}$;
+        
+        \item $x \mapsto \int_{S_{x}} f(x, y) \d \mc{L}^{n}(y)$ è $\mc{L}^{m}$-sommabile;
+        
+        \item vale l'uguaglianza
+        \[\int_{S} f \d \mc{L}^{m+n}=\int_{\mathbb{R}^{m}}\left[\int_{S_{x}} f(x, y) \d \mc{L}^{n}(y)\right] \d \mc{L}^{m}(x)\]
+    \end{enumerate}
+\end{corollary}
+
+% OsServazione 2.14. 
+\begin{oss}[Compatibilità misura-integrale]
+    Siano dati una misura esterna $\sigma$-finita $\mu: \P(X) \rightarrow[0,+\infty]$, una funzione $\mu$-misurabile $f: X \rightarrow[0,+\infty]$ e $\Omega \in \mc{M}_{\mu}$. Osserviamo che $f \chi_{\Omega}$ è $\mu$-misurabile e non negativa, quindi essa è integrabile (per Teorema \ref{thm: 2.3}). Definiamo il sottografico di $\left.f\right|_{\Omega}$:
+    \begin{equation}\label{eq: 2.4.1}
+        S_{\left.f\right|_{\Omega}}:=\{(x, t) \in \Omega \times[0,+\infty] \mid 0 \leq t<f(x)\}
+    \end{equation}
+    Usando il \lemmone\ e la sottostante Proposizione \ref{prop: 2.7}, si prova facilmente il seguente risultato sulla "compatibilità misura-integrale":
+    \[S_{\left.f\right|_{\Omega}} \in \mc{M}_{\mu \times \mc{L}^{1}} \text { e vale l'uguaglianza }\left(\mu \times \mc{L}^{1}\right)\left(S_{\left.f\right|_{\Omega}}\right)=\int_{\Omega} f \d \mu\]
+    Infatti, applicando Proposizione 2.7 in $\left(X, \mc{M}_{\mu},\left.\mu\right|_{\mc{M}_{\mu}}\right)$, troviamo una successione di funzioni numerabilmente semplici e misurabili $s_{j}: X \rightarrow \mathbb{R}$ tali che $0 \leq s_{j} \leq s_{j+1} \leq f$ e $s_{j}$ converge puntualmente a $f$. Ne consegue facilmente che
+    \[
+        S_{\left.f\right|_{\Omega}}=\bigcup_{j=1}^{\infty} S_{\left.s_{j}\right|_{\Omega}}
+    \]
+    Inoltre, per un passo della dimostrazione di Teorema 2.8 in cui si prova che $\mc{M}_{\mu} \times \mc{M}_{\mc{L}^{1}} \subset$ $\mc{M}_{\mu \times \mc{L}^{1}}$, si vede subito che $S_{s_{j} \mid \Omega} \in \mc{M}_{\mu \times \mc{L}^{1}}$ per ogni $j$. Poiché $\mc{M}_{\mu \times \mc{L}^{1}}$ è una $\sigma$-algebra, ne consegue che $S_{\left.f\right|_{\Omega}} \in \mc{M}_{\mu \times \mc{L}^{1}}$. Quindi, applicando nuovamente Teorema 2.8, otteniamo che:
+    \begin{itemize}
+        \item $\left(S_{\left.f\right|_{\Omega}}\right)_{x} \in \mc{M}_{\mc{L}^{1}}$ per $\ \mu$-q.o. $x \in X$ e $x \mapsto \mc{L}^{1}\left(\left(S_{\left.f\right|_{\Omega}}\right)_{x}\right)$ è $\mu$-misurabile e quindi $\mu$ integrabile. Osserviamo che in questo caso speciale tali fatti sono ovvi in quanto
+        \[ \left(S_{\left.f\right|_{\Omega}}\right)_{x}=[0, f(x)) \text { se } x \in \Omega, \quad\left(S_{\left.f\right|_{\Omega}}\right)_{x}=\varnothing \text { se } x \in X \backslash \Omega\]
+        e
+        \[\mc{L}^{1}\left(\left(S_{\left.f\right|_{\Omega}}\right)_{x}\right)=\left(f \chi_{\Omega}\right)(x), \quad x \in X\]
+        \item Si ha
+        \[\left(\mu \times \mc{L}^{1}\right)\left(S_{\left.f\right|_{\Omega}}\right)=\int \mc{L}^{1}\left(\left(S_{\left.f\right|_{\Omega}}\right)_{x}\right) \d \mu(x)=\int\left(f \chi_{\Omega}\right)(x) \d \mu(x)=\int_{\Omega} f \d \mu\]
+    \end{itemize}
+    Ciò conclude la dimostrazione di \eqref{eq: 2.4.1}. Nel caso speciale $X=\mathbb{R}^{m}$ e $\mu=\mc{L}^{m}$, ricordando anche Proposizione 2.6, si trova
+    \[S_{\left.f\right|_{\Omega}} \in \mc{M}_{\mc{L}^{m+1}} \text { e vale } \mc{L}^{m+1}\left(S_{\left.f\right|_{\Omega}}\right)=\int_{\Omega} f \d \mc{L}^{m}\]
+\end{oss}
+
+Ecco l'enunciato del teorema di approssimazione appena usato (per una dimostrazione vedasi $[\mathbf{5}$, Theorem 5.24]).
+
+% Proposizione 2.7.
+
+\begin{proposition}\label{prop: 2.7}
+    Siano dati uno spazio con misura $(X, \mc{A}, \alpha)$ e una funzione misurabile $f: X \rightarrow[0,+\infty]$. Allora esiste una successione di funzioni numerabilmente semplici e misurabili $s_{j}: X \rightarrow \mathbb{R}$ tali che $\operatorname{Im}\left(s_{j}\right)$ è finito, $0 \leq s_{j} \leq s_{j+1} \leq f$ e $s_{j}$ converge puntualmente a $f$.
+\end{proposition}\label{prop: 2.7}
+
+Esempi.
+
+Grazie al Teorema di Fubini, prossiamo provare il seguente risultato, altrimenti impossibile con la sola teoria dell'integrale di Riemann:
+
+\begin{tcolorbox}[
+    colframe=yellow!30!green, 
+    colback = white,
+    enhanced jigsaw, breakable,
+    arc=0mm, 
+    rightrule=0mm,
+    toprule=0mm,
+    titlerule=0mm,
+    bottomrule=0mm,
+    left = 1mm,
+    top = 1mm,
+    bottom = 1mm,
+    right = 1mm,
+    bottomrule at break=0mm,
+    ]
+    \textbf{\color{yellow!30!green}Proposizione. } $\displaystyle \int_\R e^{-x^2}\d\mc{L}^1(x) = \sqrt{\pi}$
+\end{tcolorbox}
+\begin{proof}
+    Prima di tutto osserviamo che $\int_{-\infty}^{+
+    \infty}e^{-x^2}\d x = \int_\R e^{-x^2}\d\mc{L}^1(x)$ in quanto
+    \begin{gather*}\int_{-\infty}^{+\infty}e^{-x^2}\d x = \lim_{a\to -\infty}\int_a^0e^{-x^2}\d x + \lim_{b\to +\infty}\int_0^be^{-x^2}\d x = \lim_{a\to -\infty}\int_{[a,0]}e^{-x^2}\d \mc{L}^1(x) + \lim_{b\to +\infty}\int_{[0,b]}e^{-x^2}\d \mc{L}^1(x) = \\ = 2\lim_{b\to +\infty}\int_{[0,b]}e^{-x^2}\d \mc{L}^1(x) = 2 \lim_{\substack{k\to +\infty\\k\in \N}}\int_\R e^{-x^2}\chi_{[0,k]}(x)\d \mc{L}^1(x) \overset{B.L.}{=}2 \int_\R \lim_{\substack{k\to +\infty\\k\in \N}}(e^{-x^2}\chi_{[0,k]}(x))\d \mc{L}^1(x) = \\= 2\int_{[0,+\infty]} e^{-x^2}\d\mc{L}^{1} = \int_\R e^{-x^2}\d\mc{L}^1(x)\end{gather*}
+    Sia ora $f(x,y):=e^{-(x^2+y^2)}$ e sia $E$ il suo sottografico, ovvero 
+    \[E = \left\{(x,y,z)\in \R^3\,|\,0\leq z \leq f(x,y)\right\}\in \mc{F}\subset \mc{B}(\R^3)\subset \mc{M}_{\mc L^3}\]
+    e osserviamo che $\mc{G}_f$ è superficie di rotazione di $f$ intorno all'asse $z$. Sia $\Gamma_c$ la curva di livello di quota $c$, allora se $c\leq 0$ o $c>1$, $\Gamma_c = \varnothing$. Altrimenti
+    \[e^{-x^2-y^2} = c \iff  -x^2-y^2 = \ln c \iff x^2+y^2 = \ln\frac{1}{c}\]
+    ovvero $\Gamma_c$ è la circonferenza di raggio $\sqrt{\ln\frac{1}{c}}$ centrata nell'origine.
+    \begin{multline*}\bullet \quad \mc{L}^3(E) = \int_E1\d\mc{L}^3 \underset{\substack{\text{Fubini}\\\text{verticale}}}{=} \int_{]0,1[}\left(\int_{E_z}1\ \d \mc{L}^2(x,y)\right)\ \d \mc{L}^1(z) = \int_{]0,1[}\mc L^2(E_z)\ \d \mc{L}^1(z) = \int_{]0,1[}\mc \pi\ln\frac{1}{z}\ \d \mc{L}^1(z) =\\ \underset{\substack{\text{come}\\\text{sopra}}}{\overset{B.L.}{=}} \pi \lim_{\epsilon \to 0}\int_{[\epsilon,1]}\ln\frac{1}{z} \overset{(*)}{=} \pi\lim_{\epsilon \to 0}(\epsilon \ln\epsilon -\epsilon +1) = \pi\end{multline*}
+    dove $E_z$ è il disco centrato nell'origine di raggio $\sqrt{\ln\frac{1}{z}}$ e
+    \[\tag{$*$} \int_\epsilon^1\ln\frac{1}{z}\d z = \int_1^\epsilon \ln z \d z =\left[ z\ln z \right]_1^\epsilon -\int_1^\epsilon z\frac{1}{z}\d z = \epsilon \ln\epsilon -\epsilon +1\]
+    \begin{multline*}
+        \bullet\quad \mc{L}^3(E) = \int_E1\d\mc{L}^3 \underset{\substack{\text{Fubini}\\\text{orizzontale}}}{=}\int_{\R^2_{xy}}\left(\int_{E_{(x,y)}}1\ \d \mc{L}^1(z)\right)\ \d \mc{L}^2(x,y) = \int_{\R^2_{xy}}\mc{L}^1\left(E_{(x,y)}\right)\ \d \mc{L}^2(x,y) =\\ = \int_{\R^2_{xy}}f(x,y)\ \d \mc{L}^2(x,y) \underset{\substack{\text{Fubini}\\\text{verticale}}}{=}\int_R\left(\int_R e^{-x^2}e^{-y^2}\d\mc{L}^1(y)\right)\d\mc L^1(y) = \left(\int_\R e^{-x^2}\d\mc{L}^1(x)\right)^2 
+    \end{multline*}
+    da cui $\left(\int_\R e^{-x^2}\d\mc{L}^1(x)\right)^2 = \pi$, ovvero $\int_\R e^{-x^2}\d\mc{L}^1(x) = \sqrt{\pi}$.
+\end{proof}
+
+\section{La formula dell'area}
+
+\paragraph{Premessa introduttiva sulle parametrizzazioni} Enunciamo ora la definizione rigorosa di parametrizzazione regolare.
+
+% Definizione 2.8
+\begin{boxdef}\label{def: parametrizzazione}
+    Siano $n$ e $N$ due numeri interi positivi tali che $n \leq N$. Allora una \say{$(n, N)$-parametrizzazione regolare} (o semplicemente \say{parametrizzazione regolare}) è una mappa $\varphi: C \to \R^{N}$ tale che
+    \begin{enumerate}[label=$\roman*)$]
+        \item $C$ è un sottoinsieme compatto di $\mathbb{R}^{n}$ ed esiste un aperto $A$ in $\mathbb{R}^{n}$ soddisfacente
+            \[C=\bar{A}, \quad \mc{L}^{n}(\partial A)=0\]
+        \item $\left.\varphi\right|_{A}$ è iniettiva;
+        \item $\varphi$ è di classe $C^{1}$, cioè esistono un aperto $U$ in $\mathbb{R}^{n}$ e una mappa $\Phi \in C^{1}\left(U, \mathbb{R}^{N}\right)$ tali che
+        \[C \subset U,\left.\quad \Phi\right|_{C}=\varphi\]
+        \item Per ogni $x \in A$ si ha
+            \[J \varphi(x):=\left(\operatorname{det}\left[D \varphi(x)^{t} \times D \varphi(x)\right]\right)^{1 / 2} \neq 0 .\]
+        Tale funzione è detta "fattore di trasformazione (associato a $\varphi$ )".
+    \end{enumerate}
+\end{boxdef}
+
+%OSS 2.15
+\begin{oss}
+    Nelle ipotesi di Definizione \ref{def: parametrizzazione}, se $x \in \partial A$ si ha
+    \[
+    \left(\operatorname{det}\left[D \Phi(x)^{t} \times D \Phi(x)\right]\right)^{1 / 2}=\lim _{\substack{a \rightarrow x \\ a \in A}}\left(\operatorname{det}\left[D \Phi(a)^{t} \times D \Phi(a)\right]\right)^{1 / 2}=\lim _{\substack{a \rightarrow x \\ a \in A}} J \varphi(a)
+    \]
+    Quindi la funzione
+
+    \[
+    x \mapsto\left(\operatorname{det}\left[D \Phi(x)^{t} \times D \Phi(x)\right]\right)^{1 / 2}, \quad x \in \bar{A}=C
+    \]
+
+    non dipende dalla scelta dell'estensione $\Phi$ (ma solo da $\varphi$) e per questo motivo sarà indicata, quando servirà, con la stessa notazione $J \varphi$.
+\end{oss}
+
+%OSS 2.16
+\begin{oss}\label{oss: 2.16}
+    Adottiamo la notazione introdotta in Definizione \ref{def: parametrizzazione}. Allora:
+
+\begin{itemize}
+    \item Per una $(1, N)$-parametrizzazione regolare si ha
+    \[J \varphi(x)=\left\|\varphi^{\prime}(x)\right\|, \text { per ogni } x \in A\]
+    \item Per una $(2,3)$-parametrizzazione regolare si ha
+    \[J \varphi(x)=\left\|D_{1} \varphi(x) \wedge D_{2} \varphi(x)\right\| \text {, per ogni } x \in A\]
+    \item Per una $(n, n)$-parametrizzazione regolare si ha
+    \[J \varphi(x)=|\operatorname{det} D \varphi(x)| \text {, per ogni } x \in A.\]
+\end{itemize}
+\end{oss}
+
+%OSS 2.17
+\begin{oss}
+    Un modo geometricamente naturale per definire lo spazio tangente all'immagine di una parametrizzazione regolare è il seguente:
+    \begin{boxdef*}Si considerino una $(n, N)$-parametrizzazione regolare $\varphi, x^{0} \in A$ e $v \in$ $\mathbb{R}^{N}$. Allora $v$ è detto "vettore tangente a $S:=\varphi(A)$ in $\varphi\left(x^{0}\right)$ " se esistono $\varepsilon>0$ e $\gamma \in C^{1}\left((-\varepsilon, \varepsilon), \mathbb{R}^{N}\right)$ tali che
+        \[\gamma(0)=\varphi\left(x^{0}\right), \quad \gamma((-\varepsilon, \varepsilon)) \subset S, \quad \gamma^{\prime}(0)=v .\]
+    \end{boxdef*}
+    L'insieme dei vettori tangenti a $S$ in $\varphi\left(x^{0}\right)$ è indicato con $T_{\varphi\left(x^{0}\right)} S$.
+    
+    Si dimostra facilmente questo risultato:
+    
+    \begin{proposition*}
+    Dati una $(n, N)$-parametrizzazione regolare $\varphi$ e $x^{0} \in A$, si ha
+    \[T_{\varphi\left(x^{0}\right)} S=\operatorname{Im} D \varphi\left(x^{0}\right)\]
+    dove $S:=\varphi(A)$. In particolare $T_{\varphi\left(x^{0}\right)} S$ è uno spazio vettoriale di dimensione $n$ e la famiglia di vettori $\left\{D_{1} \varphi\left(x^{0}\right), \ldots, D_{n} \varphi\left(x^{0}\right)\right\}$ è una sua base.
+    \end{proposition*}
+\end{oss}
+    
+Vale il seguente risultato di cui dimostriamo solo il caso delle superfici ($n=2, N=3$).
+
+%Proposizione 2.8
+\begin{proposition}[$**$]\label{prop: 2.8}
+    Sia $\varphi$ una $(n, N)$-parametrizzazione regolare. Allora $\varphi(A)$ è una sottovarietà $n$-dimensionale di $\mathbb{R}^{N}$ di classe $C^{1}$ (dove $A$ è come in Definizione \ref{def: parametrizzazione}).
+\end{proposition}
+\begin{proof}
+    Proviamo il caso in cui $n=2$ e $N=3$, gli altri seguono analogamente dal teorema di invertibilità locale per $n\le N\in \N$.\\
+    Sia $x^0 \in A$; per quanto detto prima, abbiamo $J\phi(x^0)^2 = (\det M_1)^2+(\det M_2)^2+(\det M_3)^2$ e pertanto almeno uno dei tre non si annulla in $x^0$. Possiamo supporre senza perdita di generalità che sia quello di $M_3$, gli altri casi sono assolutamente analoghi, quindi abbiamo
+    \[M_3 = \begin{pmatrix} D_1\phi_1(x^0) & D_2\phi_1(x^0)\d_1\phi_2(x^0) & D_2\phi_2(x^0) \end{pmatrix}\]
+    Per $x\in \A$ poniamo $\Phi(x) := \begin{pmatrix} \phi _1(x)\\ \phi_2(x)\end{pmatrix}$ e osserviamo che $\Phi\in\mc C ^1(A,\R^2)$ e inoltre $\det D\Phi(x^0)=\det M_3 \ne 0$.\\
+    Per il teorema di invertibilità locale, esistono $U \in \mc{N}(x^0)$ e $V \in \mc{N}(\phi(x^0))$ tali che $\Phi|_U^V : U\to V$ è un diffeomorfismo di classe $\mc C^1$, e dunque poniamo $\psi := (\Phi|_U^V)^{-1}$ e dunque poniamo $f := \phi_3 \circ \psi $ che risulta automaticamente $\mc C^1$. Per provare che $\mc G_f = \phi(U)$, poniamo $y = \begin{pmatrix} y_1\\ y_2\end{pmatrix} \in V$ e osserviamo
+    \[ \begin{pmatrix} y \\ f(y)\end{pmatrix} = \begin{pmatrix} y \\ (\phi_3 \circ \psi)(y)\end{pmatrix} = \begin{pmatrix} (\Phi\circ \psi)(y) \\ (\phi_3 \circ \psi)(y)\end{pmatrix} = \begin{pmatrix} (\phi_1\circ \psi)(y) \\ (\phi_2\circ \psi)(y) \\ (\phi_3 \circ \psi)(y)\end{pmatrix} = (\phi \circ \psi)(y)\]
+    Dunque $\mc G_f = (\phi \circ \psi)(V) = \phi(U)$.
+\end{proof}
+
+
+%Osservazione 2.18
+\begin{oss}
+    Considerazioni intuitive ci convincono facilmente del seguente fatto (che si prova rigorosamente combinando la formula dell'area e [14, Theorem 6.27]) concernente le curve:
+    \begin{quote}
+        Se $C$ è un intervallo compatto di $\mathbb{R}$ e $\varphi: C \rightarrow \mathbb{R}^{N}$ è una $(1, N)$ parametrizzazione regolare, allora $\mc{H}^{1}(\varphi(C))$ coincide con l'estremo superiore della lunghezza delle curve poligonali inscritte in $\varphi(C)$.
+    \end{quote}
+
+    L'esempio di Schwarz mostra che un fatto analogo non sussiste per le superfici. Infatti esso prova che ogni superficie semicilindrica $E$ è approssimabile (con arbitrario grado di precisione) mediante superfici poliedrali inscritte in $E$ e aventi facce "trasversali" alla stessa $E$. Ciò consente a tali superfici approssimanti di avere area arbitrariamente grande. In altri termini, l'estremo superiore dell'area delle superfici poliedrali inscritte in $E$ vale $+\infty$.
+    \begin{center}
+        \input{chapters/lanterna-di-schwarz.tex}
+    \end{center}
+\end{oss}
+
+
+\paragraph{Trattazione intuitiva della formula dell'area.} Le seguenti considerazioni si riferiscono esplicitamente a una (2,3)-parametrizzazione regolare $\varphi: C=\bar{A} \rightarrow \mathbb{R}^{3}$, ma si estendono in modo semplice e naturale a una $(n, N)$-parametrizzazione regolare.
+
+L'esempio di Schwarz ci fa capire come sia necessario produrre superfici poliedrali approssimanti aventi le facce che "si dispongono sempre di più in posizione tangente a $\varphi(C)$, al crescere del grado di approssimazione". Descriviamo un modo per farlo:
+
+\begin{itemize}
+  \item Consideriamo $P_{0} \in A$ e sia $\varepsilon \neq 0$ un numero reale abbastanza prossimo a 0 affinché si abbia che il triangolo il triangolo $T(\varepsilon)$ di vertici $P_{0}, P_{0}+(\varepsilon, 0), P_{0}+(0, \varepsilon)$ sia contenuto in $A$. Inoltre, indichiamo con $T_{\varphi}(\varepsilon)$ il triangolo inscritto in $\varphi(A)$ di vertici $\varphi\left(P_{0}\right), \varphi\left(P_{0}+(\varepsilon, 0)\right), \varphi\left(P_{0}+(0, \varepsilon)\right)$. Da
+    \[\lim _{\varepsilon \rightarrow 0} \frac{\varphi\left(P_{0}+(\varepsilon, 0)\right)-\varphi\left(P_{0}\right)}{\varepsilon}=D_{1} \varphi\left(P_{0}\right), \quad \lim _{\varepsilon \rightarrow 0} \frac{\varphi\left(P_{0}+(0, \varepsilon)\right)-\varphi\left(P_{0}\right)}{\varepsilon}=D_{2} \varphi\left(P_{0}\right)\]
+    e poiché $\left\{D_{1} \varphi\left(P_{0}\right), D_{2} \varphi\left(P_{0}\right)\right\}$ è una base dello spazio tangente a $\varphi(A)$ in $\varphi\left(P_{0}\right)$, concludiamo che il triangolo $T_{\varphi}(\varepsilon)$ tende a disporsi "in posizione tangente" a $\varphi(A)$ in $\varphi\left(P_{0}\right)$, quando $\varepsilon \rightarrow 0$. Inoltre si ha
+
+    \[\begin{aligned}
+    \frac{\mc{H}^{2}\left(T_{\varphi}(\varepsilon)\right)}{\mc{L}^{2}(T(\varepsilon))} & =\frac{\left|\left[\varphi\left(P_{0}+(\varepsilon, 0)\right)-\varphi\left(P_{0}\right)\right] \times\left[\varphi\left(P_{0}+(0, \varepsilon)\right)-\varphi\left(P_{0}\right)\right]\right| / 2}{\varepsilon^{2} / 2} \\
+    & =\left|\frac{\varphi\left(P_{0}+(\varepsilon, 0)\right)-\varphi\left(P_{0}\right)}{\varepsilon} \times \frac{\varphi\left(P_{0}+(0, \varepsilon)\right)-\varphi\left(P_{0}\right)}{\varepsilon}\right|
+    \end{aligned}\]
+    e quindi (ricordando anche il secondo punto di Osservazione \ref{oss: 2.16})
+    \[\lim _{\varepsilon \rightarrow 0+} \frac{\mc{H}^{2}\left(T_{\varphi}(\varepsilon)\right)}{\mc{L}^{2}(T(\varepsilon))}=\left|D_{1} \varphi\left(P_{0}\right) \times D_{2} \varphi\left(P_{0}\right)\right|=J \varphi\left(P_{0}\right)\]
+
+    Il numero $J \varphi\left(P_{0}\right)$ può pertanto essere interpretato come "fattore di trasformazione dell'area indotto da $\varphi$ in $P_{0}$ ".
+
+    \item Consideriamo, nel piano, il reticolo triangolare isoscele-retto di passo $\varepsilon$ e sia $\left\{T_{i}(\varepsilon) \mid i=1, \ldots, N(\varepsilon)\right\}$ la famiglia dei triangoli individuati da tale reticolo, che sono costruiti come nel punto precedente e sono contenuti in $A$. Indichiamo con $P_{i}(\varepsilon)$ il vertice del triangolo $T_{i}(\varepsilon)$ corrispondente all'angolo retto e sia $T_{\varphi, i}(\varepsilon)$ il triangolo inscritto in $\varphi(A)$ avente come vertici le immagini attraverso $\varphi$ dei vertici di $T_{i}(\varepsilon)$. Allora la superficie poliedrale
+    \[\bigcup_{i=1}^{N(\varepsilon)} T_{\varphi, i}(\varepsilon)\]
+    è inscritta in $\varphi(A)$ e ha la proprietà "desiderata": le sue facce "tendono a disporsi in posizione tangente" quando $\varepsilon \rightarrow 0$. Inoltre, se $f: \varphi(A) \rightarrow \mathbb{R}$ è una funzione continua, allora si ha 
+        \[\begin{aligned}
+        \sum_{i=1}^{N(\varepsilon)} f\left(\varphi\left(P_{i}(\varepsilon)\right)\right) \mc{H}^{2}\left(T_{\varphi, i}(\varepsilon)\right)= & \sum_{i=1}^{N(\varepsilon)} f\left(\varphi\left(P_{i}(\varepsilon)\right)\right) \frac{\mc{H}^{2}\left(T_{\varphi, i}(\varepsilon)\right)}{\mc{L}^{2}\left(T_{i}(\varepsilon)\right)} \mc{L}^{2}\left(T_{i}(\varepsilon)\right) \\
+        = & \sum_{i=1}^{N(\varepsilon)} f\left(\varphi\left(P_{i}(\varepsilon)\right)\right) \delta_{i}(\varepsilon) \mc{L}^{2}\left(T_{i}(\varepsilon)\right)+ \\
+        & \quad+\sum_{i=1}^{N(\varepsilon)} f\left(\varphi\left(P_{i}(\varepsilon)\right)\right) J \varphi\left(P_{i}(\varepsilon)\right) \mc{L}^{2}\left(T_{i}(\varepsilon)\right)
+        \end{aligned}\]    
+    dove
+        \[\delta_{i}(\varepsilon):=\frac{\mc{H}^{2}\left(T_{\varphi, i}(\varepsilon)\right)}{\mc{L}^{2}\left(T_{i}(\varepsilon)\right)}-J \varphi\left(P_{i}(\varepsilon)\right)\]
+        La combinazione dei due punti precedenti fornisce uno sketch di prova della formula dell'area per una ( 2,3$)$-parametrizzazione regolare:  
+        \[\int_{\varphi(A)} f \d \mc{H}^{2}=\int_{A}(f \circ \varphi) J \varphi \d \mc{L}^{2}\]       
+\end{itemize}
+
+Ora possiamo finalmente enunciare efficacemente il teorema generale della formula dell'area, per una dimostrazione completa del quale si rimanda a [7,8] (per esempio).
+%Teorema 2.11
+\begin{shadedTheorem}[Formula dell'area] \label{thm: 2.11 formula-dell-area}
+    Siano date una ( $n, N$ )-parametrizzazione regolare $\varphi: C=\bar{A} \rightarrow \mathbb{R}^{N}$ e una funzione continua $f: \varphi(C) \rightarrow \mathbb{R}$. Allora vale l'identità
+    \[\int_{\varphi(A)} f \d \mc{H}^{n}=\int_{A}(f \circ \varphi) J \varphi \d \mc{L}^{n}\left(=\int_{C}(f \circ \varphi) J \varphi \d \mc{L}^{n}\right)\]
+\end{shadedTheorem}
+
+%OSSERVAZIONE 2.19. 
+\begin{oss}\label{oss: 2.19}
+    Risalendo direttamente alla definizione di $\mc{H}^{n}$, non è difficile provare che vale la seguente proprietà: Se $U$ è un sottoinsieme aperto di $\mathbb{R}^{n}, \Phi \in C^{1}\left(U, \mathbb{R}^{N}\right)$ e $K$ è un sottoinsieme compatto di $U$ tale che $\mc{L}^{n}(K)=0$, allora si ha anche $\mc{H}^{n}(\Phi(K))=0$. Pertanto, nelle ipotesi di Teorema 2.11, essendo $\varphi(C) \backslash \varphi(A) \subset \varphi(\partial A)$, si ha $\mc{H}^{n}(\varphi(C))=$ $\mc{H}^{n}(\varphi(A))$ e quindi anche
+
+    \[
+    \int_{\varphi(C)} f \d \mc{H}^{n}=\int_{\varphi(A)} f \d \mc{H}^{n}
+    \]
+\end{oss}
+
+% Corollario $2.5\left(^{\circ}\right.$.
+\begin{corollary}[$\circ$]
+    Siano $\varphi: C \rightarrow \mathbb{R}^{N}$ e $\psi: K \rightarrow \mathbb{R}^{N}$ due $(n, N)$-parametrizzazioni regolari aventi la stessa immagine $E$ (i.e. $\varphi(C)=\psi(K)=E$ ) e sia $f: E \rightarrow \mathbb{R}$ una funzione continua. Allora
+    \[\int_{C}(f \circ \varphi) J \varphi \d \mc{L}^{n}=\int_{K}(f \circ \psi) J \psi \d \mc{L}^{n} .\]
+\end{corollary}
+\begin{proof}
+    Dato che siamo stati espertati\footnote{Si ringrazie F. Troncana per il neologismo} dalla trattazione precedente, segue banalmente dal teorema della formula dell'area che entrambi gli integrali sono uguali a 
+    \[\int_E f d\mc{H}^n\qedhere\]
+\end{proof}
+Da Teorema \ref{thm: 2.11 formula-dell-area} e dai primi due punti di Osservazione \ref{oss: 2.16} segue subito il seguente risultato.
+
+% Corollario $2.6\left(^{\circ}\right.$ ).
+\begin{corollary}[$\circ$] Valgono i seguenti fatti (dove $A$ è come in Definizione 2.8):
+\begin{enumerate}
+    \item Se $\gamma: C \rightarrow \mathbb{R}^{N}$ è una $(1, N)$-parametrizzazione regolare e se $f: \gamma(C) \rightarrow \mathbb{R}$ è una funzione continua, allora
+    \[\int_{\gamma(C)} f \d \mc{H}^{1}=\int_{\gamma(A)} f \d \mc{H}^{1}=\int_{A}(f \circ \gamma)\left|\gamma^{\prime}\right| \d \mc{L}^{1}\]
+    \item Se $\varphi: C \rightarrow \mathbb{R}^{3}$ è una (2,3)-parametrizzazione regolare e se $f: \varphi(C) \rightarrow \mathbb{R}$ è una funzione continua, allora
+    \[\int_{\varphi(C)} f \d \mc{H}^{2}=\int_{\varphi(A)} f \d \mc{H}^{2}=\int_{A}(f \circ \varphi)\left|D_{1} \varphi \times D_{2} \varphi\right| \d \mc{L}^{2}\]
+\end{enumerate}
+\end{corollary}
+\begin{proof}
+    Segue immediatamente dal teorema della formula dell'area e dai $J\phi$ calcolati in precedenza.
+\end{proof}
+
+Da Teorema \ref{thm: 2.11 formula-dell-area}, dal terzo punto di Osservazione \ref{oss: 2.16} e da (2) in Teorema 1.10 segue poi la seguente formula per il cambiamento di variabile nell'integrale.
+
+% Corollario $2.7\left(^{\circ}\right)$. 
+\begin{corollary}[$\circ$]Se $\varphi: C \rightarrow \mathbb{R}^{n}$ è una $(n, n)$-parametrizzazione regolare $e$ se $f$ : $\varphi(C) \rightarrow \mathbb{R}$ è una funzione continua, allora
+    \[\int_{\varphi(C)} f \d \mc{L}^{n}=\int_{\varphi(A)} f \d \mc{L}^{n}=\int_{A}(f \circ \varphi)|\operatorname{det}(D \varphi)| \d \mc{L}^{n}\]
+    dove $A$ è come in Definizione 2.8.
+\end{corollary}
+\begin{proof}
+    Segue immediatamente dal teorema della formula dell'area e dai $J\phi$ calcolati in precedenza.
+\end{proof}
+
+\section{Formule di Gauss, Green e Stokes}
+Per discutere la nozione di orientazione di una parametrizzazione è utile la seguente definizione
+
+%Definizione 2.9. 
+\begin{boxdef}
+    \begin{enumerate}
+        \item Se $\gamma: C \rightarrow \mathbb{R}^{N}(C=\bar{A})$ è una $(1, N)$-parametrizzazione regolare, allora il \say{campo (vettoriale) unitario tangente a $\gamma$} è definito come segue:
+        \[
+        \tau_{\gamma}: A \rightarrow \mathbb{S}^{N-1}, \quad \tau_{\gamma}:=\frac{\gamma^{\prime}}{\left\|\gamma^{\prime}\right\|}
+        \]
+        \item Se $\varphi: C \rightarrow \mathbb{R}^{3}(C=\bar{A})$ è una $(2,3)$-parametrizzazione regolare, allora \say{il campo (vettoriale) normale a $\varphi$}:
+        \[
+        \nu_{\varphi}: A \rightarrow \mathbb{S}^{2}, \quad \nu_{\varphi}:=\frac{D_{1} \varphi \times D_{2} \varphi}{\left\|D_{1} \varphi \times D_{2} \varphi\right\|}
+        \]
+    \end{enumerate}
+\end{boxdef}
+Passiamo ora a definire le nozioni di curva regolare a tratti e di superficie regolare a tratti.
+
+% DEFINIZIONE 2.10. 
+\begin{boxdef}\label{def: 2.10 CRATO}
+    Si consideri una famiglia finita di $(1, N)$-parametrizzazioni regolari
+
+    \[
+    \gamma_{i}: C_{i} \rightarrow \mathbb{R}^{N} \quad(i=1, \ldots, k)
+    \]
+
+    tali che, posto $\Gamma_{i}:=\gamma_{i}\left(C_{i}\right)$ e $\Gamma_{i}^{*}:=\gamma_{i}\left(A_{i}\right)$ (ricordiamo che, per Definizione 2.8, esiste un aperto $A_{i}$ tale che $\overline{A_{i}}=C_{i}$ eccetera...):
+    \begin{enumerate}[label=$\roman*)$]
+        \item $C_{i}$ è un intervallo;
+        \item $\Gamma_{i}^{*} \cap \Gamma_{j}^{*}=\emptyset$ per ogni $i, j$ con $i \neq j$.
+    \end{enumerate}
+    Allora $\Gamma:=\bigcup_{i=1}^{k} \Gamma_{i}$ è detta \say{curva regolare a tratti} (risp. \say{curva regolare}, se $k=1$ ). Ogni $\Gamma_{i}$ è detto \say{tratto regolare} di $\Gamma$, mentre l'insieme $\Gamma_{i}^{*}:=\gamma_{i}\left(A_{i}\right)$ è detto \say{parte interna} di $\Gamma_{i}$. Infine, se $\tau$ è il campo vettoriale definito come segue
+
+    \[
+    \tau: \bigcup_{i=1}^{k} \Gamma_{i}^{*} \rightarrow \mathbb{S}^{N-1},\left.\quad \tau\right|_{\Gamma_{i}^{*}}:=\tau_{\gamma_{i}} \circ\left(\left.\gamma_{i}\right|_{A_{i}}\right)^{-1}
+    \]
+
+    allora la coppia $(\Gamma, \tau)$ è detta \say{curva regolare a tratti orientata} la famiglia $\left\{\gamma_{i}\right\}$ è detta \say{parametrizzazione} di $(\Gamma, \tau)$.
+\end{boxdef}
+% DEFINIZIONE 2.11. 
+\begin{boxdef}\label{def: 2.11 SRATO}
+    Si consideri una famiglia finita di $(2,3)$-parametrizzazioni regolari
+    \[
+    \varphi_{i}: C_{i} \rightarrow \mathbb{R}^{3} \quad(i=1, \ldots, k)
+    \]
+    tali che, posto $\Sigma_{i}:=\varphi_{i}\left(C_{i}\right)$ e $\Sigma_{i}^{*}:=\varphi_{i}\left(A_{i}\right)$ (ricordiamo che, per Definizione 2.8, esiste un aperto $A_{i}$ tale che $\overline{A_{i}}=C_{i}$ eccetera... ):
+    
+    \begin{enumerate}[label=$\roman*)$]
+        \item $\partial C_{i}$ è una curva regolare a tratti;
+        \item $\Sigma_{i}^{*} \cap \Sigma_{j}^{*}=\emptyset$ per ogni $i, j$ con $i \neq j$.
+    \end{enumerate}
+    Allora $\Sigma:=\bigcup_{i=1}^{k} \Sigma_{i}$ è detta "superficie regolare a tratti"(risp. "superficie regolare", se $k=1$ ). Ogni $\Sigma_{i}$ è detto "tratto regolare" di $\Sigma$, mentre l'insieme $\Sigma_{i}^{*}:=\varphi_{i}\left(A_{i}\right)$ è detto "parte interna" di $\Sigma_{i}$. Infine, se $\nu$ è il campo vettoriale definito come segue
+    \[
+        \nu: \bigcup_{i=1}^{k} \Sigma_{i}^{*} \rightarrow \mathbb{S}^{2},\left.\quad \nu\right|_{\Sigma_{i}^{*}}:=\nu_{\varphi_{i}} \circ\left(\left.\varphi_{i}\right|_{A_{i}}\right)^{-1}
+        \]
+        allora la coppia $(\Sigma, \nu)$ è detta "superficie regolare a tratti orientata" e la famiglia $\left\{\varphi_{i}\right\}$ è detta "parametrizzazione" di $(\Sigma, \nu)$.
+\end{boxdef}
+
+% OSSERVAZIONE 2.20. 
+\begin{oss}\label{oss: 2.20}
+    Se $(\Gamma, \tau)$ è una curva regolare a tratti orientata, allora $\tau$ è continuo nella parte interna di ogni tratto regolare di $\Gamma$. Analogamente, se $(\Sigma, \nu)$ è una superficie regolare a tratti orientata, allora $\nu$ è continuo nella parte interna di ogni tratto regolare di $\Sigma$.
+\end{oss}
+
+% OssERVAZIONE 2.21. 
+\begin{oss}\label{oss: 2.21}
+    Valgono i seguenti fatti:
+
+\begin{itemize}
+  \item Se $\Gamma$ è una curva regolare a tratti, allora si ha
+
+\[
+\begin{aligned}
+\mc{H}^{1}\left(\Gamma \backslash \bigcup_{i=1}^{k} \Gamma_{i}^{*}\right) & =\mc{H}^{1}\left(\bigcup_{i=1}^{k} \Gamma_{i} \backslash \bigcup_{i=1}^{k} \Gamma_{i}^{*}\right) \\
+& \leq \mc{H}^{1}\left(\bigcup_{i=1}^{k}\left(\Gamma_{i} \backslash \Gamma_{i}^{*}\right)\right) \\
+& \leq \sum_{i=1}^{k} \mc{H}^{1}\left(\Gamma_{i} \backslash \Gamma_{i}^{*}\right) \\
+& =\sum_{i=1}^{k} \mc{H}^{1}\left(\Gamma_{i}\right)-\mc{H}^{1}\left(\Gamma_{i}^{*}\right)
+\end{aligned}
+\]
+
+dove, per Osservazione \ref{oss: 2.19} e con la notazione di Definizione \ref{def: 2.10 CRATO}, si ha
+
+\[
+\mc{H}^{1}\left(\Gamma_{i}\right)=\mc{H}^{1}\left(\gamma_{i}\left(C_{i}\right)\right)=\mc{H}^{1}\left(\gamma_{i}\left(A_{i}\right)\right)=\mc{H}^{1}\left(\Gamma_{i}^{*}\right) .
+\]
+
+Abbiamo così provato che
+
+\[
+\mc{H}^{1}\left(\Gamma \backslash \bigcup_{i=1}^{k} \Gamma_{i}^{*}\right)=0
+\]
+
+Quindi, se per ogni $i=1, \ldots, k$ si ha una funzione continua e limitata $f_{i}: \Gamma_{i}^{*} \rightarrow$ $\mathbb{R}$, allora
+
+\[
+f: \bigcup_{i=1}^{k} \Gamma_{i}^{*} \rightarrow \mathbb{R},\left.\quad f\right|_{\Gamma_{i}^{*}}:=f_{i}
+\]
+
+è una funzione definita $\mc{H}^{1}$-q.o. in $\Gamma$ e si ha
+
+\[
+\int_{\Gamma} f \d \mc{H}^{1}=\int_{\bigcup_{i=1}^{k} \Gamma_{i}^{*}} f \d \mc{H}^{1}=\sum_{i=1}^{k} \int_{\Gamma_{i}^{*}} f \d \mc{H}^{1}=\sum_{i=1}^{k} \int_{\Gamma_{i}} f_{i} \d \mc{H}^{1}
+\]
+
+  \item Se $\Sigma$ è una superficie regolare a tratti, allora si ha
+
+\[
+\begin{aligned}
+\mc{H}^{2}\left(\Sigma \backslash \bigcup_{i=1}^{k} \Sigma_{i}^{*}\right) & =\mc{H}^{2}\left(\bigcup_{i=1}^{k} \Sigma_{i} \backslash \bigcup_{i=1}^{k} \Sigma_{i}^{*}\right) \\
+& \leq \mc{H}^{2}\left(\bigcup_{i=1}^{k}\left(\Sigma_{i} \backslash \Sigma_{i}^{*}\right)\right) \\
+& \leq \sum_{i=1}^{k} \mc{H}^{2}\left(\Sigma_{i} \backslash \Sigma_{i}^{*}\right) \\
+& =\sum_{i=1}^{k}\left(\mc{H}^{2}\left(\Sigma_{i}\right)-\mc{H}^{2}\left(\Sigma_{i}^{*}\right)\right)
+\end{aligned}
+\]
+
+dove, per Osservazione \ref{oss: 2.19} e con la notazione di Definizione \ref{def: 2.11 SRATO}, si ha
+
+\[
+\mc{H}^{2}\left(\Sigma_{i}\right)=\mc{H}^{2}\left(\varphi_{i}\left(C_{i}\right)\right)=\mc{H}^{2}\left(\varphi_{i}\left(A_{i}\right)\right)=\mc{H}^{2}\left(\Sigma_{i}^{*}\right) .
+\]
+
+Abbiamo così provato che
+
+\[
+\mc{H}^{2}\left(\Sigma \backslash \bigcup_{i=1}^{k} \Sigma_{i}^{*}\right)=0
+\]
+
+Quindi, se per ogni $i=1, \ldots, k$ si ha una funzione continua e limitata $f_{i}: \Sigma_{i}^{*} \rightarrow$ $\mathbb{R}$, allora
+
+\[
+f: \bigcup_{i=1}^{k} \Sigma_{i}^{*} \rightarrow \mathbb{R},\left.\quad f\right|_{\Sigma_{i}^{*}}:=f_{i}
+\]
+
+è una funzione definita $\mc{H}^{2}$-q.o. in $\Sigma$ e si ha
+
+\[
+\int_{\Sigma} f \d \mc{H}^{2}=\int_{\bigcup_{i=1}^{k} \Sigma_{i}^{*}} f \d \mc{H}^{2}=\sum_{i=1}^{k} \int_{\Sigma_{i}^{*}} f \d \mc{H}^{2}=\sum_{i=1}^{k} \int_{\Sigma_{i}} f_{i} \d \mc{H}^{2}
+\]
+\end{itemize}
+\end{oss}
+
+Grazie a Osservazione \ref{oss: 2.20} e a Osservazione \ref{oss: 2.21} si può dare la seguente definizione.
+
+%Definizione 2.12. 
+\begin{boxdef}
+Dati una curva regolare a tratti orientata $(\Gamma, \tau)$ in $\mathbb{R}^{N}$ e un campo vettoriale continuo $F: \Gamma \rightarrow \mathbb{R}^{N}$, si definisce l' \say{integrale di $F$ su $(\Gamma, \tau)$} come segue:
+
+\[
+\int_{(\Gamma, \tau)} F:=\int_{\Gamma} F \cdot \tau\ \d \mc{H}^{1}
+\]
+
+Analogamente, dati una superficie regolare a tratti orientata $(\Sigma, \nu)$ e un campo vettoriale continuo $F: \Sigma \rightarrow \mathbb{R}^{3}$, si definisce l' \say{integrale di $F$ su $(\Sigma, \nu)$} come segue:
+
+\[
+\int_{(\Sigma, \nu)} F:=\int_{\Sigma} F \cdot \nu\ \d \mc{H}^{2}
+\]
+\end{boxdef}
+
+Da Definizione 2.10, Definizione 2.11 e Definizione 2.12 segue subito il seguente risultato.
+
+%Proposizione $2.9\left(^{*}\right)$. 
+\begin{proposition}[$*$]\label{prop: 2.9}
+Sia $(\Gamma, \tau)$ una curva regolare a tratti orientata in $\mathbb{R}^{N}$ e sia $F$ : $\Gamma \rightarrow \mathbb{R}^{N}$ un campo vettoriale continuo. Allora, se $\left\{\gamma_{i}\right\}$ è una parametrizzazione di $(\Gamma, \tau)$, si ha:
+
+\[
+\int_{(\Gamma, \tau)} F=\sum_{i} \int_{A_{i}}\left(F \circ \gamma_{i}\right) \cdot \gamma_{i}^{\prime}\ \d \mc{L}^{1}
+\]
+
+Analogamente, sia $(\Sigma, \nu)$ una superficie regolare a tratti orientata e sia $F: \Sigma \rightarrow \mathbb{R}^{3}$ un campo vettoriale continuo. Allora, se $\left\{\varphi_{i}\right\}$ è una parametrizzazione di $(\Sigma, \nu)$, si ha:
+
+\[
+\int_{(\Sigma, \nu)} F=\sum_{i} \int_{A_{i}}\left(F \circ \varphi_{i}\right) \cdot\left(D_{1} \varphi_{i} \times D_{2} \varphi_{i}\right) \d \mc{L}^{2}
+\]
+\end{proposition}
+\begin{proof}
+    Dimostriamo per le CRATO, segue analogamente per le SRATO.
+    \[\int_{(\Gamma,\tau)} F = \int_{\Gamma} (F \cdot \tau) d\mc{H}^1 = \sum_{i \in I} \int_{\Gamma_i^*} (F \cdot \tau) d\mc{H}^1\]
+    Applicando la formula dell'area abbiamo 
+    \begin{align*}
+        \sum_{i \in I} \int_{\Gamma_i^*} (F \cdot \tau) d\mc{H}^1 & = \sum_{i \in I} \int_{A_i} ((F\circ \gamma_i) \cdot (\tau\circ \gamma_i)) \|\gamma_i'\| d\mc{L}^1 = \sum_{i \in I} \int_{A_i} \left((F\circ \gamma_i) \cdot \frac{\gamma_i'}{\|\gamma_i'\|}\right) \|\gamma_i'\| d\mc{L}^1 =\\&= \sum_{i \in I} \int_{A_i} ((F\circ \gamma_i) \cdot \gamma_i') d\mc{L}^1
+    \end{align*}
+\end{proof}
+
+% DEFINIZIONE 2.13. 
+\begin{boxdef}
+    Un sottoinsieme $E$ di $\mathbb{R}^{2}$ è detto "$x_{2}$-semplice" se esistono due funzioni
+
+    \[
+    f, g \in C([a, b]) \cap C^{1}(a, b) \quad(-\infty<a<b<+\infty)
+    \]
+
+    aventi grafico di lunghezza finita e tali che
+
+    \[
+    E=\left\{x \in[a, b] \times \mathbb{R} \mid f\left(x_{1}\right) \leq x_{2} \leq g\left(x_{1}\right)\right\} \quad \text { (in particolare } E \text { è compatto). }
+    \]
+
+    In modo del tutto analogo si definiscono gli insiemi $x_{1}$-semplici. Un sottoinsieme di $\mathbb{R}^{2}$ si dice \say{semplice} se esso è $x_{i}$-semplice per $i=1,2$. Infine chiameremo \say{insieme composto} ogni unione finita di insiemi semplici $E_{i}$ tali che $E_{i} \cap E_{j}=\partial E_{i} \cap \partial E_{j}$ per ogni $i, j$ con $i \neq j$.
+\end{boxdef}
+
+% DEFINIZIONE 2.14. 
+\begin{boxdef}
+    Un sottoinsieme $E$ di $\mathbb{R}^{3}$ è detto "$x_{3}$-semplice" se esistono una famiglia finita $\left\{C_{1}, \ldots, C_{k}\right\}$ di sottoinsiemi compatti di $\mathbb{R}^{2}$ e due funzioni continue
+
+    \[
+    f, g: C \rightarrow \mathbb{R}, \quad C:=C_{1} \cup \cdots \cup C_{k}
+    \]
+
+    tali che:
+    \begin{enumerate}[label = $\roman*)$]
+        \item $E=\left\{x \in C \times \mathbb{R} \mid f\left(x_{1}, x_{2}\right) \leq x_{3} \leq g\left(x_{1}, x_{2}\right)\right\}$ (in particolare $E$ è compatto);
+        
+        \item Ogni $C_{i}$ è la chiusura di un aperto $A_{i}$ la cui frontiera è una curva regolare a tratti;
+        
+        \item $C_{i} \cap C_{j}=\partial C_{i} \cap \partial C_{j}$ per ogni $i, j$ con $i \neq j$;
+        
+        \item Per ogni $i$, le funzioni $\left.f\right|_{A_{i}}$ e $\left.g\right|_{A_{i}}$ sono di classe $\mc C^{1}$;
+        
+        \item Il grafico di $f$ e il grafico di g hanno area finita.
+    \end{enumerate}
+
+    In modo del tutto analogo si definiscono gli insiemi $x_{1}$-semplici e gli insiemi $x_{2}$-semplici. Un sottoinsieme di $\mathbb{R}^{3}$ si dice \say{semplice} se esso è $x_{i}$-semplice per $i=1,2,3$. Infine chiameremo \say{insieme composto} ogni unione finita di insiemi semplici $E_{i}$ tali che $E_{i} \cap$ $E_{j}=\partial E_{i} \cap \partial E_{j}$ per ogni $i, j$ con $i \neq j$.
+\end{boxdef}
+
+% Osservazione 2.22.
+\begin{oss}
+    Se $E$ è un sottoinsieme composto di $\mathbb{R}^{2}$ (risp. $\mathbb{R}^{3}$ ), allora $\partial E$ è una curva (risp. superficie) regolare a tratti. Pertanto ogni funzione continua e limitata nelle parti interne dei tratti regolari di $\partial E$ risulta essere integrabile in $\partial E$.
+\end{oss}
+
+Possiamo finalmente enunciare e provare il teorema relativo alle formule di Gauss-Green in $\mathbb{R}^{3}$ (Teorema di Gauss della divergenza).
+
+% TeOrema $2.12\left({ }^{* *}\right)$. 
+\begin{shadedTheorem}[$**|\,$Gauss - Divergenza I]\label{thm: 2.12 Gauss 3D}
+    Sia $E$ un sottoinsieme composto di $\mathbb{R}^{3}$ e sia $\nu$ il campo di vettori normali esterni definito nelle parti interne dei tratti regolari di $\partial E$. Allora per ogni funzione $h: E \rightarrow \mathbb{R}$ di classe $C^{1}$ vale l'identità
+
+    \[
+    \int_{E} D_{i} h\ \d \mc{L}^{3}=\int_{\partial E} h \nu_{i}\ \d \mc{H}^{2} \quad(i=1,2,3) .
+    \]
+
+    Quindi, se $F: E \rightarrow \mathbb{R}^{3}$ è un campo vettoriale di classe $C^{1}$, si ha
+
+    \[
+    \int_{E} \operatorname{div} F\ \d \mc{L}^{3}=\int_{\partial E} F \cdot \nu\ \d \mc{H}^{2} .
+    \]
+
+    Poiché $(\partial E, \nu)$ è una superficie regolare a tratti orientata, quest'ultima identità si può riscrivere come segue:
+
+    \[
+    \int_{E} \operatorname{div} F\ \d \mc{L}^{3}=\int_{(\partial E, \nu)} F
+    \]
+\end{shadedTheorem}
+\begin{proof}\begin{itemize}
+    \item Supponiamo la prima parte e dimostriamo la seconda. \[\int_E \divv F \mc{L}^3 = \sum_{i \in \{1,2,3\}} \int_E D_i F_i d\mc{L}^3 = \sum_{i \in \{1,2,3\}} \int_{\partial E} (F_i \cdot \nu_i) d\mc{H}^2 = \int_{\partial E} (F \cdot \nu) d\mc{H}^2\]
+    \item Ora procediamo a dimostrare la prima parte. \begin{enumerate}
+        \item Supponiamo $E$ semplice e possiamo supporre $i=3$ senza perdita di generalità. Esistono dunque $f,g : C \to \R^2$ tali che $E = \{(x_1,x_2,x_3) | (x_1,x_2) \in C, f(x_1,x_2) \le x_3 \le g(x_1,x_2) \}$ con $C$ unione di insiemi $\{C_j\}$, vedere il disegno. 
+        \begin{center}
+            \begin{tikzpicture}
+                \node at (0,0){\includegraphics[width = 0.5\textwidth]{chapters/gauss-divergenza.pdf}};
+                \node at (4.4,2.2){$\color{corollarycolor}\mc G_f$};
+                \node at (4.4,0.4){$\color{magenta}\mc G_f$};
+                \node at (-4.2,-0.3){$\color{propositioncolor}E$};
+                \node at (1,1.1){$\color{lemmacolor} E_{(x_1,x_2)}$};
+                \node at (-1,-2){$C_1$};
+                \node at (1.8,-2.7){$C_2$};
+                \node at (1.8,-1.8){$\color{lemmacolor}(x_1,x_2)$};
+            \end{tikzpicture}
+        \end{center}
+        Dando un colpo di Fubini e sfruttando il teorema fondamentale del calcolo integrale (anche senza aver dimostrato la versione di Lebesgue, le nostre funzioni sono sufficientemente regolari da avere la compatibilità con Riemann) abbiamo 
+        \[\int_E \!\!\!D_3 h d\mc{L}^3 = \int_{C}\left(\int_{[f(x_1,x_2),g(x_1,x_2)]}\hspace{-2.3cm} D_3h(x_3) d\mc{L}^1(x_3)\right)d\mc{L}^2(x_1,x_2) = \int_C [h(x_1,x_2,g(x_1,x_2))-h(x_1,x_2,f(x_1,x_2))]d\mc{L}^2\]
+        Calcoliamo $\nu_{\mc G_g}$ dove esistono considerando le parametrizzazioni $\phi(x_1,x_2) = (x_1,x_2,g(x_1,x_2))$ e $\psi(x_1,x_2) = (x_1,x_2,f(x_1,x_2))$ (al fine di ottenere in entrambi i casi una normale esterna per $E$, cambieremo il segno di quella di $f$) e otteniamo \[\nu(x_1,x_2,g(x_1,x_2)) = \frac{D_1\phi \wedge D_2\phi}{\sqrt{1+\|\nabla g\|^2}} = \frac{(-D_1g,-D_2g,1)}{\sqrt{1+\|\nabla g\|^2}}\] I calcoli per $f$ sono analoghi, ora consideriamo come da ipotesi la terza componente per entrambe e abbiamo \[\nu_3(x_1,x_2,g(x_1,x_2)) = \frac{1}{\sqrt{1 + \|\nabla g\|^2}} = \frac{1}{J\phi},\quad \nu_3(x_1,x_2,f(x_1,x_2)) = \frac{-1}{\sqrt{1 + \|\nabla f\|^2}} = \frac{-1}{J\psi} \] Considerando $\partial E = \mc G_f \cup \mc G_g \cup L$ disgiunta $\mc{H}^2-$quasi ovunque, dove $L$ è la superficie laterale di $E$ e dunque $\nu_3|_L = 0$, e usando la formula del teorema della formula del teorema della formula dell'area, abbiamo 
+        \[\int_E h \nu_3 d\mc{H}^2 = \int_{ \mc G_g} \!\!\!\!h \nu_3 d\mc{H}^2 + \int_{\mc G_f} \!\!\!\!h \nu_3 d\mc{H}^2 = \int_C [h(x_1,x_2,g(x_1,x_2))-h(x_1,x_2,f(x_1,x_2))]d\mc{L}^2 = \int_E\!\! D_3 h d\mc{L}^3\]
+        \item Ora consideriamo $E$ come unione di ${E_k}$ semplici disgiunti a due a due tranne sulla frontiera. Procedendo per induzione poniamo \[G_k := \bigcup_{h=1}^k E_h, \quad P(k) := \left[\int_{G_k}D_ihd\mc{L}^3 = \int_{\partial G_k} h\nu_i^{(G_k)} \d \mc{H}^2 \right]\]. \begin{itemize}
+            \item $P(1)$ vale banalmente per lo step 1
+            \item Supponiamo $P(k)$ e dimostriamo $P(k+1)$. Sia $I = \partial G_k \cap \partial E_{k+1}$, $\partial^* G_k = G_k\backslash I$ e analogamente $\partial^* E_{k+1}$, dunque abbiamo $\partial G_{k+1} = \partial^* G_k \cup \partial ^* E_{k+1}$ e $\nu^{(G_k)}|_I = - \nu^{(E_{k+1})}|_I$. Combinando tutto otteniamo \[\int_{G_{k+1}} D_ih d\mc{L}^3 = \int_{\partial ^* G_{k}}h\nu_i^{(G_{k})} d\mc{H}^2+ \int_{\partial ^* E_{k+1}}h\nu_i^{(E_{k+1})} d\mc{H}^2\ = \int_{\partial G_{k+1} }h \nu_i^{(G_{k+1})} d\mc{H}^2\]
+        \end{itemize}
+    \end{enumerate}
+\end{itemize}
+\end{proof}
+
+    Lo stesso argomento prova anche il seguente teorema di Gauss-Green nel piano. Nell'enunciato $R: \mathbb{R}^{2} \rightarrow \mathbb{R}^{2}$ indica l'operatore di rotazione di $\pi / 2$ (radianti), i.e., $R\left(v_{1}, v_{2}\right):=\left(-v_{2}, v_{1}\right)$ per ogni $\left(v_{1}, v_{2}\right) \in \mathbb{R}^{2}$. In particolare osserviamo che se $\tau_E$ è il vettore tangente ad un tratto regolare di $\partial E$, allora $\nu_E = -R\tau_E$ è la normale esterna a $\partial E$.
+
+% Teorema $2.13\left(^{*}\right)$. 
+\begin{shadedTheorem}[$*|$\,Gauss - Divergenza II]\label{thm: 2.13 Gauss 2D}
+    Si consideri un sottoinsieme composto $E$ di $\mathbb{R}^{2}$. Sia $\tau_{E}$ il campo di vettori unitari tangenti a $\partial E$ continuo nelle parti interne dei tratti regolari di $\partial E$ e tale che $\nu_{E}=\left(\nu_{E, 1}, \nu_{E, 2}\right):=-R \tau_{E}$ sia il campo di vettori normali esterni a $\partial E$. Allora per ogni funzione $h: E \rightarrow \mathbb{R}$ di classe $C^{1}$ vale l'identità
+
+    \[
+    \int_{E} D_{i} h\ \d \mc{L}^{2}=\int_{\partial E} h \nu_{E, i}\ \d \mc{H}^{1} \quad(i=1,2)\tag{$i$}
+    \]
+
+    Quindi, se $F: E \rightarrow \mathbb{R}^{2}$ è un campo vettoriale di classe $C^{1}$, si ha
+
+    \[
+    \int_{E} \operatorname{div} F\ \d \mc{L}^{2}=\int_{\partial E} F \cdot \nu_{E}\ \d \mc{H}^{1}\tag{$ii$}
+    \]
+
+    Infine $\left(\partial E, \tau_{E}\right)$ è una curva regolare a tratti orientata e
+
+    \[
+    \int_{\left(\partial E, \tau_{E}\right)} F=\int_{E}\left(D_{1} F_{2}-D_{2} F_{1}\right)\ \d \mc{L}^{2}\tag{$iii$\,|\,Formula di Green}
+    \]
+\end{shadedTheorem}
+\begin{proof}
+   \begin{itemize}
+    \item Supponiamo inizialmente vera $(i)$ e proviamo $(ii)$:
+    \[\begin{aligned}
+        \int_E \operatorname{div} F\ \d \mc{L}^{2} &= \int_E \left(D_1 F_1 + D_2 F_2\right)\ \d \mc{L}^{2} \int_E D_1F_1d\mc L^2 +\int_E D_2F_2 d\mc{L}^2 = \int_{\partial E} F_1\nu_{E,1}d\mc H^1 + \int_{\partial E}D_2F_2\d \mc{H}^2 = \\ &= \int_{\partial E} F_1 \nu_{E,1}d\mc{H}^1 + \int_{\partial E} F_2\nu_{E,2}d\mc{H}^1 = \int_{\partial E }(F_1\nu_{E,1} + F_2\nu_{E,2})d\mc{H}^1 = \int_{\partial E} F\cdot \nu_{E}d\mc{H}^1.
+    \end{aligned}\]
+    \item Supponiamo ancora vera $(i)$ e proviamo $(iii)$:
+    \[\begin{aligned}
+        \int_{(\partial E, \tau_E)} F &= \int_{\partial E}F\cdot \tau_Ed\mc{H}^1 = \int_{\partial E} R(F)\cdot R(\tau_E)d\mc{H}^1 = \int_{\partial E}(-F_2,F_1)(-\nu(E))d\mc H^1 = \int_{\partial E}(F_2,F_1)\nu_Ed\mc{H}^1 =\\ &= \int_E \operatorname{div} (F_2,-F_1)d\mc{L}^2 = \int_E (D_1F_2 - D_2F_1)d\mc{L}^2.
+    \end{aligned}\]
+    Dove abbiamo potuto sostituire $F\cdot \tau E = R(F)\cdot R(\tau_E)$ in quanto $R$ è un operatore lineare.
+    \item Proviamo ora $(i)$. Anche in questo caso la dimostrazione è divisa in due step, ma il secondo è completamente analogo a quanto detto nella dimostrazione precedente, modulo adeguare le misure coinvolte, per cui evitiamo di ripeterlo.\\
+    \textbf{\underline{STEP 1.}\ }Senza perdita di generalità possiamo supporre $i=2$. Se $E$ è semplice, in particolare è $x_2$-semplice, ovvero esistono due funzioni $f,g\in \mc{C}^0([a,b])\cap\mc C^1(]a,b[)$ tali che $E=\bigl\{(x_1,x_2)\in\R\,|\,x_1\in [a,b]; f(x_1)\leq x_2\leq g(x_1)\bigr\}$
+    \begin{center}
+        \input{chapters/gauss-green-2.tex}
+    \end{center} 
+   \end{itemize} 
+   \textbf{N.B.:\ } Osserviamo che $\partial E = \mc \mc G_f\cup \mc \mc G_g \cup \Sigma_a \cup \Sigma b$, dove $\Sigma_a = \{a\}\times [f(a),g(a)]$ e $\Sigma_b = \{b\}\times [f(b),g(b)]$.
+
+    \tesi{\int_ED_2hd\mc L^2 =\int_{\partial E}h\nu_{E,2}d\mc H^2}\\
+    Per il teorema di Fubini per fibre verticali, applicando il teorema di compatibilità Riemann-Lebesgue e il Teorema Fondamentale del Calcolo
+    \[\begin{aligned}
+        \int_ED_2hd\mc L^2 &= \int_\R\left(\int_{E_{x_1}}\!\!\!\!D_2h(x_1,x_2)d\mc L^1(x_2)\right)d\mc L^1(x_1) = \int_{[a,b]}\left(\int_{[f(x_1),g(x_1)]}\hspace{-1.4 cm}D_2h(x_1,x_2)d\mc L^1(x_2)\right)d\mc L^1(x_1) = \\ &=\int_{[a,b]}\left(\int_{f(x)}^{g(x)}\hspace{-0.5 cm}D_2h(x_1,x_2)dx_2\right)d\mc L^1(x_1) \overset{\text{TFC}}{=} \int_{[a,b]}\left[ h(x_1,g(x_1)) - h(x_1,f(x_1)) \right] d\mc{L}^1(x_1).
+    \end{aligned}\]
+    Per il N.B., e poiché le intersezioni tra le curve hanno misura nulla, possiamo decomporre l'integrale in
+    \[\int_{\partial E}h \nu_{E,2}d\mc H^1 =\int_{\mc G_f}h \nu_{E,2}\d \mc{H}^1 + \int_{\mc G_g}h \nu_{E,2}\d \mc{H}^1\foreach \var in {{\Sigma_a}, {\Sigma_b}}{+\cancel{\int_{\var} h \nu_{E,2}d\mc H^1}}\]
+    Osserviamo ora che $\nu_{E,2}\big|_{\Sigma_a} \equiv 0$ e $\nu_{E,2}\big|_{\Sigma_b} \equiv 0$, quindi l'integrale si riduce ai soli primi due termini. Consideriamo ora la $(1,2)$-parametrizzazione regolare di $\mc{G}_f$ data da 
+    \[\funcdef{\phi}{[a,b]}{\R^2}{t}{(t,f(t)).}\]
+    Allora, per il Teorema della Formula dell'Area, si ha 
+    \[\begin{aligned}  \int_{\mc \mc G_f}h\nu_{E,2}d\mc H^1 &= \int_{[a,b]}\hspace{-0.4cm}h(\phi(t))\nu_{E,2}(\phi(t))\|\phi'(t)\|d\mc{L}^1(t) = \int_{[a,b]}\hspace{-0.4cm}h(t,f(t))\underbrace{\nu_{E,2}(t,F(t))(1+f'(t)^2)}_{-1}d\mc{L}^1(t) = \\ &= \int_{[a,b]}\hspace{-0.4cm}-h(t,f(t))d\mc{L}^1(t)\end{aligned}\]
+    in quanto è facile osservare che $\tau_E(t,f(t)) = \frac{(1,f'(t))}{\sqrt{1+f'(x)^2}}$, quindi $\nu_E(t,f(t)) = \frac{(f'(t),-1)}{\sqrt{1+f'(x)^2}}$. Analogamente per $\mc{G}_g$, definendo 
+    \[\funcdef{\psi}{[a,b]}{\R^2}{t}{(t,g(t)),}\]
+    e osservando che $\nu_E(t,g(t)) = \frac{(g'(t),1)}{\sqrt{1+g'(x)^2}}$, si ricava che 
+    \[\int_{\mc \mc G_g}h\nu_{E,2}d\mc H^1 = \int_{[a,b]}\hspace{-0.4cm}h(t,g(t))d\mc{L}^1(t).\]
+    da cui 
+    \[\begin{aligned}\int_{\partial E}h\nu_{E,2}d\mc H^1 &= \int_{\mc \mc G_f}h\nu_{E,2}d\mc H^1 + \int_{\mc \mc G_g}h\nu_{E,2}d\mc H^1 = \int_{[a,b]}\hspace{-0.4cm}-h(t,f(t))d\mc{L}^1(t) + \int_{[a,b]}\hspace{-0.4cm}h(t,g(t))d\mc{L}^1(t) \\ &= \int_{[a,b]}\hspace{-0.4cm}\bigl[h(t,g(t)) - h(t,f(t))\bigr]d\mc{L}^1(t).\end{aligned}\]
+    per uguagliando con quanto trovato in precedenza, si ha la tesi.
+\end{proof}
+
+% OsSERvazione 2.23.
+\begin{oss}\label{oss: premessa a Stokes}
+    Sia $\varphi: C \rightarrow \mathbb{R}^{3}$ una (2,3)-parametrizzazione regolare $(C=\bar{A}$, con la notazione di Definizione 2.8). Consideriamo un sottoinsieme composto $E$ (e quindi compatto) di $A$ e definiamo il campo vettoriale $\tau_{E}$ come in Teorema 2.13. Sappiamo allora che $\left(\partial E, \tau_{E}\right)$ è una curva regolare a tratti orientata. Sia $\left\{\gamma_{i}:\left[a_{i}, b_{i}\right] \rightarrow \mathbb{R}^{2} \mid i=1, \ldots, k\right\}$ una sua parametrizzazione e sia $(S, \nu)$ la superficie regolare orientata determinata da $\left.\varphi\right|_{E}$, i.e.,
+
+    \[
+    S:=\varphi(E), \quad \nu:=\nu_{\varphi} \circ\left(\left.\varphi\right|_{E}\right)^{-1}: S \rightarrow \mathbb{S}^{2}
+    \]
+
+    Osserviamo che ogni $\varphi \circ \gamma_{i}$ è una (1,3)-parametrizzazione regolare e la famiglia $\left\{\varphi \circ \gamma_{i}\right\}$ soddisfa le ipotesi di Definizione 2.10. Pertanto tale famiglia genera una curva regolare a tratti orientata $(\Gamma, \tau)$, dove (ricordando la notazione usata in Definizione 2.10)
+
+    \[
+    \Gamma=\bigcup_{i=1}^{k} \Gamma_{i}=\bigcup_{i=1}^{k}\left(\varphi \circ \gamma_{i}\right)\left(\left[a_{i}, b_{i}\right]\right)=\varphi\left(\bigcup_{i=1}^{k} \gamma_{i}\left(\left[a_{i}, b_{i}\right]\right)\right)=\varphi(\partial E)=\partial S
+    \]
+
+    e, per ogni $i=1, \ldots, k$
+
+    \[
+    \tau: \bigcup_{i=1}^{k} \Gamma_{i}^{*} \rightarrow \mathbb{S}^{2},\left.\quad \tau\right|_{\Gamma_{i}^{*}}:=\tau_{\varphi \circ \gamma_{i}} \circ\left(\left.\left(\varphi \circ \gamma_{i}\right)\right|_{\left(a_{i}, b_{i}\right)}\right)^{-1}
+    \]
+
+    soddisfa
+
+    \[
+    \tau \circ\left(\varphi \circ \gamma_{i}\right)(t)=\frac{\left(\varphi \circ \gamma_{i}\right)^{\prime}(t)}{\left|\left(\varphi \circ \gamma_{i}\right)^{\prime}(t)\right|}, \quad t \in\left(a_{i}, b_{i}\right)
+    \]
+\end{oss}
+
+Vale il seguente teorema di Stokes.
+
+% Teorema $2.14\left({ }^{* *}\right)$. 
+\begin{shadedTheorem}[$**|$\,Stokes]\label{thm: 2.14 Stokes}
+    Nelle ipotesi e con la notazione di Osservazione \ref{oss: premessa a Stokes}, se $U$ è un sottoinsieme aperto di $\mathbb{R}^{3}$ contenente $S$ e se $F \in C^{1}\left(U, \mathbb{R}^{3}\right)$ allora si ha
+    \[
+        \int_{(S, \nu)} \operatorname{rot} F=\int_{(\partial S, \tau)} F\tag{$i$}
+    \]
+    e quindi anche
+    \[
+        \int_{(S,-\nu)} \operatorname{rot} F=\int_{(\partial S,-\tau)} F\tag{$ii$}
+    \]
+\end{shadedTheorem}
+
+\begin{proof}
+    \begin{itemize}
+        \item Supponiamo $(i)$ e proviamo $(ii)$. Osserviamo innanzitutto che se $(S,\nu)$ è una superficie regolare orientabile anche $(S,\nu)$ lo è, e allo stesso modo se $(\partial S,\tau)$ è una curva regolare orientabile anche $(\partial S,\tau)$ lo è. A questo punto
+        \[\begin{aligned}\int_{(S,\-nu)}\rot F &= \int_{S}\rot F\cdot (-\nu)d\mc H^2 = -\int_{S}\rot F\cdot \nu d\mc H^2 = -\int_{(S,\nu)}\rot F \overset{(i)}{=} -\int_{(\partial S, \tau)}F  = \\ &= -\int_{\partial S}F\cdot \tau d\mc H^2 = \int_{\partial S}F\cdot (-\tau) d\mc H^2 = \int_{(\partial S, -\tau)} F.\end{aligned}\]
+        \item Proviamo ora $(i)$ nell'ipotesi in cui $\phi$ sia una parametrizzazione cartesiana, ovvero del tipo $\phi(\vec x)=(\vec x,f(\vec x))$, con $\vec x\in C\subset \R^2$. Per linearità del rotore, e senza perdita di generlità è sufficiente provare
+        
+        \tesi{\int_S \rot(F_1, 0,0)\cdot \nu\ d\mc H^2 = \int_{\partial S}F_1\tau_1\ d\mc H^1}\\
+        Calcoliamo innanzitutto il rotore di $F$:
+        \[\rot (F_1,0,0) = \det \begin{pmatrix}
+            i & j & k \\
+            D_1 & D_2 & D_3 \\
+            F_1 & 0 & 0
+        \end{pmatrix} = (0,D_3F_1, -D_2F_1).\]
+    \end{itemize}
+    A questo punto sviluppiamo il primo membro dell'uguaglianza:
+    \[\begin{aligned}
+        \int_S \rot (F_1, 0, 0) \cdot \nu\ \d\mc H^2 & = \int_S (0,D_3F_1, -D_2F_1) \cdot \nu \ d\mc H^2 = \int_S\bigl[ (D_3F_1)\nu_2-(D_2F_1)\nu_1 \bigr]d\mc H^2 \overset{\text{TFA}} =\\ &= \int_E\bigl[ (D_3F_1(\vec x, f(\vec x)))\nu_2(\vec x, f(\vec x))-(D_2F_1(\vec x, f(\vec x)))\nu_1(\vec x, f(\vec x)) \bigr]J\phi(\vec x)\ d\mc L^2 = (\ast)\\ 
+    \end{aligned}\]
+    Calcolamo ora il fattore di trasformazione $J\phi(\vec x) = \sqrt{1+\|\nabla f(\vec x)\|^2}$, e la normale
+    \[D_1\phi(\vec x) \wedge D_2\phi(\vec x) = \det \begin{pmatrix}
+        i & j & k\\
+        1 & 0 & D_1f(\vec x)\\
+        0 & 1 & D_2f(\vec x)
+    \end{pmatrix} = (-D_1f, -D_2f, 1)\]
+    quindi 
+    \[\nu(\phi(\vec x)) = \nu_\phi(\vec x) = \frac{D_1\phi(\vec x) \wedge D_2\phi(\vec x)}{\|D_1\phi(\vec x) \wedge D_2\phi(\vec x)\|} = \frac{(-D_1f, -D_2f, 1)}{\sqrt{1+\|\nabla f(\vec x)\|^2}}\]
+    da cui segue che 
+    \[\begin{aligned}(\ast) &= \int_E\bigl[ (D_3F_1(\vec x, f(\vec x)))\underbrace{\nu_2(\vec x, f(\vec x))\sqrt{1+\|\nabla f(\vec x)\|^2}}_{-D_2f(\vec x)}-(D_2F_1(\vec x, f(\vec x)))\underbrace{\nu_1(\vec x, f(\vec x))\sqrt{1+\|\nabla f(\vec x)\|^2}}_1 \bigr]\ d\mc L^2 = \\ &= -\int_E\bigl[ D_3F_1(\vec x, f(\vec x))D_2f(\vec x)+D_2F_1(\vec x, f(\vec x))\bigr]\ d\mc L^2 \overset{\substack{\text{Chain}\\\text{rule}}}=- \int_E D_2\left[ F_1(\vec x, f(\vec x)) \right]\ \d \mc{L}^2 =\\ &=
+    -\int_E \left(D_1 0-D_2\left[ F_1(\vec x, f(\vec x)) \right]\right)\ \d \mc{L}^2. \end{aligned} = \]
+    Applicando ora la formula di Green con $G=(0,F_1(\vec x, f(\vec x)))$ si ha che
+    \[\begin{split}\int_{\partial E}(F_1(\vec x, f(\vec x)),0)\cdot \tau _E(x)\ d\mc H^1 \overset{\text{TFA}}= \sum_{i=1}^k\int_{[a_i,b_i]}\Bigl(F_1\bigl(\gamma_i(t), f(\gamma_i(t))\bigr),0\Bigr)\cdot \gamma_i'(t)\ d\mc L^1(t) = \\ = \sum_{i=1}^k\int_{[a_i,b_i]}F_1\bigl(\gamma_i(t), f(\gamma_i(t))\bigr) \gamma_{i,1}'(t)\ d\mc L^1(t)\end{split}.\]
+    Concentriamoci ora sul secondo membro della tesi. Ricordiamo innanzitutto che $\partial S = \Gamma$ è parametrizzata da $\{\phi\circ \gamma_i\}_{i=1}^k$, con $\phi\circ \gamma_i: [a_i,b_i]\to \R^3$. Inoltre per ogni $t\in a_i,b_i[$, vale $\tau\circ(\phi\circ \gamma_i)(t) = \frac{(\phi\circ \gamma_i)'(t)}{\|(\phi\circ \gamma_i)'(t)\|}$. Da ciò segue che 
+    \[\tau\circ(\phi\circ \gamma_i)(t) \|(\phi\circ \gamma_i)'(t)\|= (\phi\circ \gamma_i)'(t)\]
+    e, in particolare per la prima componente si ha
+    \[(\tau\circ\phi\circ \gamma_i)_1(t) \|(\phi\circ \gamma_i)'(t)\|= (\phi\circ \gamma_i)'_1(t)= \gamma_{i_1}'\]
+    in quanto $(\phi\circ \gamma_i)(t)= (\gamma_i(t,f(\gamma_i(t))))$, quindi $(\phi\circ \gamma_i)(t) = \gamma_{i,1}'(t)$. Applicando questa considerazione al secondo membro, si ha 
+    \[\begin{aligned}
+        \int_{\partial S}F_1\tau_1\ d\mc H^1 &\overset{\text{TFA}}{=} \sum_{i=1}^{k}\int_{[a_i,b_i]}F_1\bigl(\phi\circ \gamma_i(t)\bigr)(\tau\circ\phi\circ \gamma_i)_1(t) \|(\phi\circ \gamma_i)'(t)\|\ d\mc L^1(t) = \\ & \ = \sum_{i=1}^{k}\int_{[a_i,b_i]}F_1\Bigl(\gamma_i(t), f\bigl(\gamma(t)\bigr)\Bigr)\gamma_i'(t)\ d\mc L^1(t).\qedhere
+    \end{aligned}\]
+\end{proof}
