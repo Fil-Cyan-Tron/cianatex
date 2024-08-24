@@ -93,8 +93,78 @@
         \begin{enumerate}
             \item Banale per definizione di misurabile.
             \item Sia $E$ tale che $\varphi(E) = 0$. Abbiamo che $0\leq \varphi(A\cap E)\leq \varphi(E)=0$ e quindi $\varphi(A) \leq \varphi(E) + \varphi(A \cap E^c)\leq \varphi(A)$.
+            \item Dimostriamo il caso con due insiemi, dato che l'intersezione finita è semplicemente un'intersezione binaria ripetuta. Siano $E,F \in \M_\varphi$ e sia $A \in 2^X$. Vale 
+            \[\varphi(A)\ge \varphi(A\cap E) + \varphi(A \cap E^c)\]
+            \[\varphi(A\cap E) \ge (A\cap E\cap F) + (A\cap E \cap F^c)\]
+            \[\varphi(A\cap E^c) \ge (A\cap E^c\cap F) + (A\cap E^c \cap F^c)\]
+            Quindi combinando il tutto otteniamo
+            \[\varphi(A) \ge \varphi(A\cap(E\cap F)) + \varphi(A\cap(E\cap F)^c)\]
             \item TODO
-            \item 
+            \item TODO
         \end{enumerate}
+    \end{proof}
+\end{theorem}
+
+\begin{remark}{}{famiglie numerabili di misurabili}
+    Posta una famiglia $\{E_i\}_{I\subset \N}$ di insiemi misurabili, possiamo ottenere una famiglia $\{E_i^*\}_{I\subset \N}$ di insiemi misurabili disgiunti ma con la stessa unione ponendo
+    \[E_1^* := E_1,\qquad E_i^*:= E_i \setminus \bigcup_{j=1}^{i-1} E_j\]
+    Un po' \textit{à la} ortonormalizzazione di Gram-Schmidt.\\
+    Così possiamo potenziare il punto 4 del teorema \ref{th:fondamentale sui misurabili} permettendo famiglie numerabili arbitrarie.
+\end{remark}
+
+\begin{definition}{$\sigma$-algebra}{sigma-algebra}
+    Sia $X$ un insieme e sia $\Sigma$ una famiglia non vuota di suoi sottoinsiemi tale che:\begin{itemize}
+        \item $\Sigma$ è chiusa rispetto al complementare
+        \item $\Sigma$ è chiusa rispetto all'unione numerabile
+    \end{itemize}
+    Allora $\Sigma$ si dice $\sigma$\bemph{-algebra} su $X$.
+\end{definition}
+
+\begin{remark}{}{}
+    Il secondo punto è equivalente al richiedere la chiusura per intersezione arbitraria.
+\end{remark}
+
+\begin{example}{Esempi di $\sigma$-algebre}{esempi di sigma-algebre}
+    Sia $X$ un insieme. Si ha che $\{\varnothing, X\}$ e $2^X$ sono entrambe $\sigma$-algebre, e per ogni $\sigma$-algebra $\Sigma$ si ha $\{\varnothing, X\} \subset \Sigma \subset 2^X$.
+\end{example}
+\begin{example}{$\sigma$-algebra dei numerabili/conumerabili}{sigma-algebra dei numerabili/conumerabili}
+    La famiglia $\Sigma := \{E \in \subset 2^\R : \# E \le \# \N \vee \# E^c \le \# \N \}$ è una $\sigma$-algebra.
+\end{example}
+\begin{example}{Non $\sigma$-algebra dei finiti/cofiniti}{non sigma-algebra dei finiti/cofiniti}
+    La famiglia $\Sigma := \{E \in \subset 2^\N : \# E \in \N \vee \# E^c \in \N \}$ è chiusa rispetto al complementare ma non è chiusa rispetto all'unione numerabile, basti pensare a $\{\{2n\}\}_\N$.
+\end{example}
+
+\begin{proposition}{° | $\sigma$-algebra dei misurabili}{sigma-algebra dei misurabili}
+    Combinando il teorema \ref{th:fondamentale sui misurabili}, l'osservazione \ref{rem:famiglie numerabili di misurabili} e la definizione \ref{def:sigma-algebra} è automatico osservare che $\M_\varphi$ è una $\sigma$-algebra.
+\end{proposition}
+
+\begin{theorem}{** | Continuità dal basso/alto}{continuità basso/alto}
+    Sia $X$ un insieme, $\varphi$ una misura esterna e siano $\{E_i\}_I$ e $\{F_j\}_J$ due famiglie numerabili di misurabili, rispettivamente crescenti e decrescenti con $\varphi(F_1)\in \R$. Valgono:
+    \[\varphi \left( \bigcup_{i \in I} E_i \right) = \sup_{i \in I} \varphi(E_i) \qquad \varphi \left( \bigcap_{j \in J} F_j \right) = \inf_{j \in J} \varphi(F_j)\]
+    \begin{proof}
+        La dimostrazione non è banale ed è lasciata a chi deciderà di studiarla come esercizio di ricerca in note più complete.
+    \end{proof}
+\end{theorem}
+\begin{remark}{Sulle ipotesi della continuità dall'alto}{sulle ipotesi della continuità dall'alto}
+    Se non assumiamo tra le ipotesi del teorema \ref{th:continuità basso/alto} che $\varphi(F_1)$ sia finita, la tesi potrebbe fallire. Poniamo $X = \N$ e $F_j := \N_{\ge j}$ per ogni $j$. Abbiamo che per ogni $j$, $\varphi(F_j) = +\infty$, ma l'intersezione di tutta la famiglia è $\varnothing$ che ha misura nulla.
+\end{remark}
+
+\section{Misure esterne metriche, Boreliane, Borel-regolari, di Radòn}
+
+\begin{definition}{Misura di CARATHÉODORY}{misura di CARATHÉODORY}
+    Sia $(X,d)$ uno spazio metrico e $\varphi$ una misura esterna. Questa si dice \bemph{misura di CARATHÉODORY} se è addittiva sugli insiemi con distanza maggiore di $0$, ovvero le coppie di insiemi tali che
+    \[d(A,B) = \inf_{x \in A, y \in B} d(x,y)> 0\]
+\end{definition}
+
+\begin{theorem}{*** | CARATHÉODORY}{CARATHÉODORY}
+    Sia $\varphi$ una misura esterna di CARATHÉODORY su $(X,d)$. Ogni sottoinsieme chiuso di $X$ è misurabile.
+    \begin{proof}
+        Supponiamo che $C\in 2^X$ sia chiuso e $A \in 2^X$ qualsiasi. Vogliamo dimostrare che $\varphi(A)\ge \varphi(A\cap C) + \varphi(A \cap C^c)$ dato che il $\le$ ce l'abbiamo per la subaddittività.\\
+        Se $\varphi(A) = +\infty$ la tesi è banale, dunque supponiamo che sia finita e per $h \in \N$ definiamo $C_h := \{x \in X : d(\{x\},C) \le 2^{-h}\}$: osserviamo che è chiuso, in quanto controimmagine di $[0,2^{-h}]$ per una funzione continua. Segue dunque che:
+        \[i)\: d(A\cap C , A\cap C_h^c) = 2^{-h}, \qquad ii)\: (A\cap C)\cup(A\cap C_h^c) \subset A\]
+        Dunque per la monotonia di $\varphi$ abbiamo $\varphi(A)\ge \varphi(A\cap C) + \varphi(A\cap C_h^c)$. Dobbiamo solamente dimostrare che con $h \to +\infty$, il nostro $C_h$ tende a $C$. innanzitutto osserviamo che il limite esiste per monotonia, e inoltre abbiamo che 
+        \[\forall h \in \N, C \subset C_{h+1} \subset C_h\]
+        E dunque per de Morgan
+        \[ \]
     \end{proof}
 \end{theorem}
