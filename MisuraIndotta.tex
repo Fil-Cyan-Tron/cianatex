@@ -9,10 +9,10 @@
 
 \maketitle
 
-\section{Misura indotta e $\sigma$-algebra finale}
+\section{Misure e $\sigma$-algebre indotte}
 
 \begin{definition}{$\sigma$-algebra finale}{sigma-algebra finale}
-    Sia $(X,\mc{A},\mu)$ uno spazio con misura, sia $Y$ un insieme e sia $f:X\to Y$ una funzione biettiva.\\
+    Sia $(X,\mc{A})$ uno spazio misurabile, sia $Y$ un insieme e sia $f:X\to Y$ una funzione biettiva.\\
     La $\sigma$\bemph{-algebra} finale indotta da $f$ rispetto a $\mc{A}$ è la famiglia
     \[f\mc{A} := \{E \in 2^Y : f^{-1}(E) \in \mc{A}\}\]
 \end{definition}
@@ -45,6 +45,8 @@
     \end{proof}
 \end{proposition}
 
+TODO: è possibile definire una duale $\sigma$-algebra iniziale e una misura iniziale, ma per la nostra trattazione è sufficiente la versione finale.
+
 \section{Integrazione indotta}
 
 La situazione che studiamo in questa sezione è la seguente
@@ -57,5 +59,18 @@ La situazione che studiamo in questa sezione è la seguente
 	\arrow["{g \circ f}"{description}, from=1-1, to=3-3]
 	\arrow["g"{description}, from=1-3, to=3-3]
 \end{tikzcd}\]
+
+\begin{theorem}{Integrazione indotta}{integrazione indotta}
+    Sia $(X,\mc{A},\mu)$ uno spazio con misura, sia $Y$ un insieme, sia $f:X\to Y$ una funzione biettiva e sia $g:(Y,f\mc{A},f\mu)\to (\R,\B(\R),\L^1)$ una funzione $f\mc{A}$-misurabile.\\
+    Allora $g$ è $f\mu$-integrabile se e solo se $g\circ f$ è $\mu$-integrabile, e vale l'identità
+    \[\int g \de f\mu = \int g\circ f \de \mu\]
+    \begin{proof}
+        Assumiamo che $g$ sia $f\mu$-integrabile. Allora vale
+        \[\int g \de f\mu = \int_* g \de f\mu = \sup\left\{I_{f\mu}(\varphi) : \varphi \in \Sigma_-(g)\right\}=\sup\left\{ \sum_i a_i f\mu(\varphi^{-1}(\{a_i\})) : \varphi \in \Sigma_-(g) \right\} =\]
+        \[ = \sup\left\{ \sum_i a_i \mu(f^{-1}(\varphi^{-1}(\{a_i\}))) : \varphi \in \Sigma_-(g) \right\} = \sup\left\{ \sum_i a_i \mu((\varphi \circ f)^{-1}(\{a_i\})) : \varphi \circ f \in \Sigma_-(g\circ f) \right\}\]
+        \[\text{con } \psi := \varphi \circ f, \quad \int_* g \de f\mu =\sup\left\{ I_\mu(\psi) : \psi \in \Sigma_-(g\circ f) \right\} = \int_* g \circ f \de \mu\]
+        La dimostrazione è assolutamente analoga per l'integrale superiore e nella direzione opposta assumendo l'integrabilità di $g\circ f$. Le varie uguaglianze seguono dalla biettività di $f$.
+    \end{proof}
+\end{theorem}
 
 \end{document}
