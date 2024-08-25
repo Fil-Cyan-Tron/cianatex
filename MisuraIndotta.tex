@@ -1,0 +1,61 @@
+\documentclass{article}
+\usepackage{cianatex}
+
+\title{TFA per cambiamenti di coordinate}
+\author{Filippo $\L$. Troncana}
+\date{A.A. 2023/2024}
+
+\begin{document}
+
+\maketitle
+
+\section{Misura indotta e $\sigma$-algebra finale}
+
+\begin{definition}{$\sigma$-algebra finale}{sigma-algebra finale}
+    Sia $(X,\mc{A},\mu)$ uno spazio con misura, sia $Y$ un insieme e sia $f:X\to Y$ una funzione biettiva.\\
+    La $\sigma$\bemph{-algebra} finale indotta da $f$ rispetto a $\mc{A}$ è la famiglia
+    \[f\mc{A} := \{E \in 2^Y : f^{-1}(E) \in \mc{A}\}\]
+\end{definition}
+\begin{remark}{}{}
+    La $\sigma$-algebra finale di $f$ rispetto a $\mc{A}$ è la più grande $\sigma$-algebra $\Sigma$ tale che $f : (X,\mc{A})\to (Y,\Sigma)$ sia misurabile.
+    \begin{proof}
+        Sia $\Sigma \subset 2^Y$ tale che $f : (X,\mc{A})\to (Y,\Sigma)$ sia misurabile. Per definizione di funzione misurabile, abbiamo che per ogni $E \in \Sigma$, abbiamo che $f^{-1}(E)\in \mc{A}$, dunque $\Sigma\subset f\mc{A}$.
+    \end{proof}
+\end{remark}
+
+\begin{definition}{Misura esterna indotta}{misura esterna indotta}
+    Siano $X$ e $Y$ due insiemi, sia $\mu$ una misura esterna su $X$ e sia $f:X\to Y$ una funzione biettiva.\\
+    La \bemph{misura indotta} da $f$ rispetto a $\mu$ è la funzione
+    \[f\mu : 2^Y \to [0,+\infty] \quad \text{con} \quad f\mu(E):= \mu(f^{-1}(E)) \]
+\end{definition}
+\begin{proposition}{}{misura esterna indotta}
+    $f\mu$ è una misura esterna su $Y$.
+    \begin{proof}
+        Dimostriamo i tre assiomi di misura esterna.\begin{enumerate}
+            \item $f^{-1}(\varnothing) = \varnothing \Rarr f\mu(\varnothing) = 0$.
+            \item Siano $E \subset F \subset Y$, allora $f^{-1}(E)\subset f^{-1}(F)$, dunque la monotonia di $f\mu$ segue dalla monotonia di $\mu$.
+            \item Siano $A,B \subset Y$, allora $f^{-1}(A\cup B)= f^{-1}(A) \cup f^{-1}(B) $ e la "disuguaglianza triangolare" segue da quella di $\mu$
+        \end{enumerate}
+    \end{proof}
+\end{proposition}
+\begin{proposition}{}{misurabili indotti}
+    Se $f\mu$ è la misura indotta da $f$ rispetto a $\mu$, allora $\M_{f\mu} = f \M_\mu$.
+    \begin{proof}
+        TODO
+    \end{proof}
+\end{proposition}
+
+\section{Integrazione indotta}
+
+La situazione che studiamo in questa sezione è la seguente
+
+\[\begin{tikzcd}
+	{(X,\mc{A},\mu)} && {(Y,f\mc{A},f\mu)} \\
+	\\
+	&& {(\R,\M_\L,\L)}
+	\arrow["f"{description}, from=1-1, to=1-3]
+	\arrow["{g \circ f}"{description}, from=1-1, to=3-3]
+	\arrow["g"{description}, from=1-3, to=3-3]
+\end{tikzcd}\]
+
+\end{document}
