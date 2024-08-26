@@ -12,7 +12,7 @@
 \section{Misure e $\sigma$-algebre indotte}
 
 \begin{definition}{$\sigma$-algebra finale}{sigma-algebra finale}
-    Sia $(X,\mc{A})$ uno spazio misurabile, sia $Y$ un insieme e sia $f:X\to Y$ una funzione biettiva.\\
+    Sia $(X,\mc{A})$ uno spazio misurabile, sia $Y$ un insieme e sia $f:X\to Y$ una funzione suriettiva.\\
     La $\sigma$\bemph{-algebra} finale indotta da $f$ rispetto a $\mc{A}$ è la famiglia
     \[f\mc{A} := \{E \in 2^Y : f^{-1}(E) \in \mc{A}\}\]
 \end{definition}
@@ -24,7 +24,7 @@
 \end{remark}
 
 \begin{definition}{Misura esterna indotta}{misura esterna indotta}
-    Siano $X$ e $Y$ due insiemi, sia $\mu$ una misura esterna su $X$ e sia $f:X\to Y$ una funzione biettiva.\\
+    Siano $X$ e $Y$ due insiemi, sia $\mu$ una misura esterna su $X$ e sia $f:X\to Y$ una funzione suriettiva.\\
     La \bemph{misura indotta} da $f$ rispetto a $\mu$ è la funzione
     \[f\mu : 2^Y \to [0,+\infty] \quad \text{con} \quad f\mu(E):= \mu(f^{-1}(E)) \]
 \end{definition}
@@ -45,7 +45,14 @@
     \end{proof}
 \end{proposition}
 
-TODO: è possibile definire una duale $\sigma$-algebra iniziale e una misura iniziale, ma per la nostra trattazione è sufficiente la versione finale.
+TODO: è possibile definire una duale $\sigma$-algebra iniziale e una misura iniziale richiedendo l'iniettività, ma per la nostra trattazione è sufficiente la versione finale.
+
+\begin{lemma}{Isomorfismo di $\sigma$-algebre indotte}{isomorfismo di sigma-algebre indotte}
+    Siano $(X,\mc{A})$ uno spazio misurabile, $Y$ un insieme e $f: (X,\mc{A})\to Y$ una funzione biettiva. Allora $F\mc{A} \cong \mc{A}$.
+    \begin{proof}
+        Banale dimostrazione di insiemistica.
+    \end{proof}
+\end{lemma}
 
 \section{Integrazione indotta}
 
@@ -83,17 +90,46 @@ La situazione che studiamo in questa sezione è la seguente
     In questo modo ci basta riuscire a far corrispondere $J_f \de \L^n$ a $\de f^{-1} \L^n$
 \end{remark}
 
+\section{Derivata di Radòn-Nikodym}
+
+\begin{theorem}{Teorema di Radòn-Nikodym}{Radòn-Nikodym}
+    Sia $(X,\mc{A})$ uno spazio misurabile e siano $\nu, \mu$ misure su $(X,\mc{A})$ tali che $\mu$ sia $\sigma$-finita e $\nu$ sia assolutamente continua rispetto a $\mu$. Allora esiste una funzione $\mc{A}$-misurabile $f: X \to X$ tale che per ogni $E \in \mc{A}$ si abbia
+    \[\nu(A) = \int_A f \de \mu \]
+    E per una funzione $\nu$-integrabile $g : (X,\mc{A},\nu)\to \R$ vale
+    \[\int g \de \nu = \int g \cdot f \de \mu\]
+\end{theorem}
+\begin{definition}{Derivata di Radòn-Nikodym}{derivata di Radòn-Nikodym}
+    Nella situazione precedente, la funzione $f$ si dice \bemph{derivata di Radòn-Nikodym} di $\nu$ rispetto a $\mu$ e si indica con
+    \[f = \frac{\de \nu}{\de \mu}\]
+\end{definition}
+
+\begin{proposition}{}{}
+    Sia $f : (X,\mc{A},\mu) \to [0,+\infty[$ una funzione misurabile 
+\end{proposition}
+
 \section{Il viaggio verso il TFA}
 
-Cercheremo di dimostrare il TFA per cambiamenti di coordinate \bemph{lineari} con la speranza di estendere questo ragionamento a cambiamenti di coordinate \bemph{differenziabili}, ovvero localmente lineari.
+Cercheremo di dimostrare il TFA per cambiamenti di coordinate \bemph{lineari} con la speranza di estendere questo ragionamento a cambiamenti di coordinate \bemph{differenziabili}, ovvero localmente lineari. Per fare questo, ci permetteremo di sostituire i plurirettangoli nella definizione della misura di Lebesgue ai pluriparallelogrammi
 
-\begin{lemma}{Cambiamenti di coordinate lineari e misura elementare dei plurirettangoli}{}
-    Sia $\mc{I} \subset 2^{\R^n}$ la famiglia degli $n$-plurirettangoli aperti, sia $e : \mc{I} \to \R_+$ la misura elementare e sia $f : \R^n \to \R^n$ una mappa lineare invertibile.\\
-    Allora $e(f(I)) = |\det f| \cdot e(I)$ per ogni $I \in \mc{I}$.
+\begin{lemma}{Misura indotta da un cambiamento di coordinate lineare}{misura indotta lineare}
+    Sia $F: (\R^n, \M_\L, \L^n) \to \R^n$ una mappa lineare invertibile.\\
+    Allora $F^{-1}\L^n = |\det F|\cdot \L^n$.
     \begin{proof}
-        Qualsiasi plurirettangolo $I$ è biunivocamente corrispondente a un segmento di $\R^n$ visto come spazio affine con la mappa
-        \[ ]a_[ \]
+        Sia $E \in F\M_\L$. Per definizione di misura indotta, abbiamo che $F^{-1}\L^n(E) = \L^n(F(E))$ e che, come visto nel corso di Geometria A è uguale a $|\det F|\cdot \L^n(E)$.
     \end{proof}
 \end{lemma}
+
+\begin{theorem}{TFA per cambiamenti di coordinate lineari}{}
+    Sia $F : \R^n \to \R^n$ una mappa lineare invertibile e sia $g: \R^n \to \R$ una funzione $\L^n$-integrabile. Vale il seguente fatto:
+    \[\int g \de \L^n = \int (g \circ F) \cdot |\det F| \de \L^n \] 
+\end{theorem}
+
+\begin{proposition}{Misura indotta da un diffeomorfismo}{}
+    Sia $\varphi : (\R^n, \M_\L, \L^n) \to \R^n$ un diffeomorfismo\footnote{Locale? Globale? Boh.}. Allora 
+    \[\varphi^{-1}\L^n(E) = \int_E |\det D_\varphi|\de \L^n\]
+    \begin{proof}
+        Sia 
+    \end{proof}
+\end{proposition}
 
 \end{document}
