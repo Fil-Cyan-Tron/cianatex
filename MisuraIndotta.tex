@@ -34,7 +34,7 @@
         Dimostriamo i tre assiomi di misura esterna.\begin{enumerate}
             \item $f^{-1}(\varnothing) = \varnothing \Rarr f\mu(\varnothing) = 0$.
             \item Siano $E \subset F \subset Y$, allora $f^{-1}(E)\subset f^{-1}(F)$, dunque la monotonia di $f\mu$ segue dalla monotonia di $\mu$.
-            \item Siano $A,B \subset Y$, allora $f^{-1}(A\cup B)= f^{-1}(A) \cup f^{-1}(B) $ e la "disuguaglianza triangolare" segue da quella di $\mu$
+            \item Siano $A,B \subset Y$, allora $f^{-1}(A\cup B)= f^{-1}(A) \cup f^{-1}(B) $ e la subaddittività segue da quella di $\mu$
         \end{enumerate}
     \end{proof}
 \end{proposition}
@@ -72,5 +72,28 @@ La situazione che studiamo in questa sezione è la seguente
         La dimostrazione è assolutamente analoga per l'integrale superiore e nella direzione opposta assumendo l'integrabilità di $g\circ f$. Le varie uguaglianze seguono dalla biettività di $f$.
     \end{proof}
 \end{theorem}
+
+\begin{remark}{Girotondone per il TFA}{}
+    L'obiettivo di questo scherzetto è dimostrare il TFA per cambiamenti di coordinate, ovvero
+    \[\int g \de \L^n = \int (g \circ f)\cdot J_f \de \L^n  \]
+    Ma c'è un problema: noi abbiamo dimostrato un risultato dalla forma leggermente diversa, ovvero 
+    \[\int g \de f\mu = \int g\circ f \de \mu \]
+    Osservando il TFA ci aspettiamo che la nostra $\de f\mu$ corrisponda a $J_f \de \L^n$, dunque dobbiamo fare un piccolo giretto usando la biettività di $f$:
+    \[\int g \de \lambda = \int g \circ f \circ f^{-1} \de \lambda = \int g \circ f \de f^{-1}\lambda\]
+    In questo modo ci basta riuscire a far corrispondere $J_f \de \L^n$ a $\de f^{-1} \L^n$
+\end{remark}
+
+\section{Il viaggio verso il TFA}
+
+Cercheremo di dimostrare il TFA per cambiamenti di coordinate \bemph{lineari} con la speranza di estendere questo ragionamento a cambiamenti di coordinate \bemph{differenziabili}, ovvero localmente lineari.
+
+\begin{lemma}{Cambiamenti di coordinate lineari e misura elementare dei plurirettangoli}{}
+    Sia $\mc{I} \subset 2^{\R^n}$ la famiglia degli $n$-plurirettangoli aperti, sia $e : \mc{I} \to \R_+$ la misura elementare e sia $f : \R^n \to \R^n$ una mappa lineare invertibile.\\
+    Allora $e(f(I)) = |\det f| \cdot e(I)$ per ogni $I \in \mc{I}$.
+    \begin{proof}
+        Qualsiasi plurirettangolo $I$ è biunivocamente corrispondente a un segmento di $\R^n$ visto come spazio affine con la mappa
+        \[ ]a_[ \]
+    \end{proof}
+\end{lemma}
 
 \end{document}
