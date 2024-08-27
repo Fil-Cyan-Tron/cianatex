@@ -1,6 +1,6 @@
 \documentclass{article}
 
-\usepackage[pastel]{cianatex}
+\usepackage[depression]{cianatex}
 
 \title{Formulario pazzo sperindio per Delladio}
 \author{Filippo $\L$. Troncana}
@@ -159,7 +159,7 @@
     Sia $\Gamma \subset \R^n$ l'immagine di una $(1,n)$-parametrizzazione regolare con campo vettoriale tangente $\tau$ e sia $F: \R^n \to \R^n$ un campo vettoriale (non so quali siano le ipotesi di regolarità ma di solito in esame sono carini). Definiamo l'\bemph{integrale del campo sulla curva}:
     \[\int_{(\Gamma,\tau)} F := \int_\Gamma F \cdot \tau \de \H^1\]   
     Analogamente, sia $\Sigma \subset \R^3$ l'immagine di una $(2,3)$-parametrizzazione regolare con campo vettoriale normale $\nu$ e sia $V : \R^3 \to \R^3$ un campo vettoriale. Definiamo l'\bemph{integrale del campo attraverso la superficie}:
-    \[\int_{\Sigma,\nu} V := \int_\Sigma V \cdot \nu \de \H^2\]
+    \[\int_{(\Sigma,\nu)} V := \int_\Sigma V \cdot \nu \de \H^2\]
 \end{definition}
 
 \begin{remark}{}{}
@@ -179,8 +179,9 @@
 \end{theorem}
 
 \begin{theorem}{Teorema di Gauss-Green nel piano}{}
-    Sia $E \subset \R^2$ un insieme tale che $(\partial E, \tau)$ sia una curva regolare orientata e $F : \R^2 \to \R^2$ un campo vettoriale $\mc{C}^1$. Vale
-    \[\int_E \nabla \cdot F \de \L^2 = \int_{(\partial E, \tau)} F = \int_{\partial E} F \cdot \tau \de \H^1 = \int_E D_xF_y - D_yF_x \de \L^2\]
+    Sia $E \subset \R^2$ un insieme tale che $(\partial E, \tau)$ sia una curva regolare orientata, con vettore normale $\nu = -R\tau = (\tau_y, -\tau_x)$ e $F : \R^2 \to \R^2$ un campo vettoriale $\mc{C}^1$. Valgono:
+    \[\int\limits_E \nabla\cdot F \de \L^2 = \int\limits_{\partial E}F \cdot \nu \de \H^1\]
+    \[\int_{(\partial E, \tau)} F = \int_{\partial E} F \cdot \tau \de \H^1 = \int_E D_xF_y - D_yF_x \de \L^2\]
 \end{theorem}
 
 \begin{definition}{Rotore di un campo vettoriale}{}
