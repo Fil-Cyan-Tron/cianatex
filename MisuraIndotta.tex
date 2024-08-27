@@ -12,9 +12,10 @@
 \section{Misure e $\sigma$-algebre indotte}
 
 \begin{definition}{$\sigma$-algebra finale}{sigma-algebra finale}
-    Sia $(X,\mc{A})$ uno spazio misurabile, sia $Y$ un insieme e sia $f:X\to Y$ una funzione suriettiva.\\
+    Sia $(X,\mc{A})$ uno spazio misurabile, sia $Y$ un insieme e sia $f:X\to Y$ una funzione.\\
     La $\sigma$\bemph{-algebra} finale indotta da $f$ rispetto a $\mc{A}$ è la famiglia
     \[f\mc{A} := \{E \in 2^Y : f^{-1}(E) \in \mc{A}\}\]
+    La struttura di $\sigma$-algebra segue banalmente dalla commutatività tra operatori insiemistici e preimmagine.
 \end{definition}
 \begin{remark}{}{}
     La $\sigma$-algebra finale di $f$ rispetto a $\mc{A}$ è la più grande $\sigma$-algebra $\Sigma$ tale che $f : (X,\mc{A})\to (Y,\Sigma)$ sia misurabile.
@@ -24,7 +25,7 @@
 \end{remark}
 
 \begin{definition}{Misura esterna indotta}{misura esterna indotta}
-    Siano $X$ e $Y$ due insiemi, sia $\mu$ una misura esterna su $X$ e sia $f:X\to Y$ una funzione suriettiva.\\
+    Siano $X$ e $Y$ due insiemi, sia $\mu$ una misura esterna su $X$ e sia $f:X\to Y$ una funzione.\\
     La \bemph{misura indotta} da $f$ rispetto a $\mu$ è la funzione
     \[f\mu : 2^Y \to [0,+\infty] \quad \text{con} \quad f\mu(E):= \mu(f^{-1}(E)) \]
 \end{definition}
@@ -39,16 +40,17 @@
     \end{proof}
 \end{proposition}
 \begin{proposition}{}{misurabili indotti}
-    Se $f\mu$ è la misura indotta da $f$ rispetto a $\mu$, allora $\M_{f\mu} = f \M_\mu$.
+    Se $f: (X,\mc{A},f\mu)\to Y$ è una funzione biettiva, allora $\M_{f\mu} = f \M_\mu$.
     \begin{proof}
-        TODO
+        Sia $E \in M_{f\mu}$ e sia $A \in 2^Y$.\\
+        Abbiamo che $f\mu(A) = f\mu(A\cap E)+ f\mu A\cap E^c = \mu(f^{-1}(A \cap E)) + \mu(f^{-1}(A\cap E^c)) = \mu(f^{-1}(A)\cap f^{-1}(E)) + \mu(f^{-1}(A)\cap f^{-1}(E^c))$ dunque posto $B:= f^{-1}(A)$ (possibile per ogni $B \in 2^X$ per biettività) vale che $f^{-1}(E) \in \M_\mu \Rarr E \in f\M_\mu$.
     \end{proof}
 \end{proposition}
 
-TODO: è possibile definire una duale $\sigma$-algebra iniziale e una misura iniziale richiedendo l'iniettività, ma per la nostra trattazione è sufficiente la versione finale.
+TODO: credo sia possibile definire una duale costruzione iniziale, ma per la nostra trattazione è sufficiente la versione finale.
 
 \begin{lemma}{Isomorfismo di $\sigma$-algebre indotte}{isomorfismo di sigma-algebre indotte}
-    Siano $(X,\mc{A})$ uno spazio misurabile, $Y$ un insieme e $f: (X,\mc{A})\to Y$ una funzione biettiva. Allora $F\mc{A} \cong \mc{A}$.
+    Siano $(X,\mc{A})$ uno spazio misurabile, $Y$ un insieme e $f: (X,\mc{A})\to Y$ una funzione biettiva. Allora $f\mc{A} \cong \mc{A}$.
     \begin{proof}
         Banale dimostrazione di insiemistica.
     \end{proof}
@@ -142,8 +144,8 @@ La situazione che studiamo in questa sezione è la seguente
 %     \end{proof}
 % \end{proposition}
 
-\begin{proposition}{}{}
-    Sia $(X,d,\mu)$ uno spazio metrico di dimensione $n \in \Z_+$ con una misura $\mu$ di Radòn (rispetto alla $\sigma$-algebra Boreliana indotta dalla metrica) invariante per traslazioni (ovvero, $\mu(B_r(x)) = \mu(B_r(y))$ per ogni $x,y$ in $X$) e sia $F:X \to X$ una funzione biettiva di Lipschitz con costante di Lipschitz $L>0$.\\
+\begin{proposition}{Derivata di R-N per Lipschitziane}{R-N-Lipschitz}
+    Sia $(X,d,\mu)$ uno spazio metrico di dimensione $n \in \Z_+$ con una misura $\mu$ di Radòn (rispetto alla $\sigma$-algebra Boreliana indotta dalla metrica) invariante per traslazioni (ovvero, $\mu(B_r(x)) = \mu(B_r(y))$ per ogni $x,y$ in $X$)\footnote{Onestamente non so se questa "uniformità" vada codificata come una proprietà dello spazio o della misura, dato che il nostro fine è quello di applicarlo alla misura di Lebesgue su $\R^n$ non ci poniamo troppi problemi in quanto $\R^n$ è tutto piatto e $\L^n$ è invariante per traslazioni.} e sia $F:X \to X$ una funzione biettiva di Lipschitz con costante di Lipschitz $L>0$.\\
     Allora $F^{-1}\mu \ll \mu$ e $L^n$ e la derivata di Radòn-Nikodym di $F^{-1}\mu$ rispetto a $\mu$ è maggiorata $\mu$-quasi ovunque da $L^n$.
     \begin{proof}
         È sufficiente dimostrarlo sulle palle aperte, dato che queste costituiscono una base della topologia e dunque della $\sigma$-algebra Boreliana.\\
@@ -172,13 +174,13 @@ Cercheremo di dimostrare il TFA per cambiamenti di coordinate \bemph{lineari} co
     \[\int\limits g \de \L^n = \int\limits (g \circ F) \cdot |\det F| \de \L^n \] 
 \end{theorem}
 
-\begin{lemma}{NON SO SE SERVA DAVVERO}{}
-    Sia $E\subset \R^n$ un insieme misurabile e per $r>0$ sia $\{B_r(x_i)\}_{i \in I_r}$ un suo ricoprimento numerabile di palle aperte. Vale
-    \[\L^n(E) \le \sum_{i \in I_r} \L^n(B_r(x_i)) \quad \text{e in particolare}\quad \L^n(E) = \lim_{r \to 0} \sum_{i \in I_r} \L^n(B_r(x_i))\]
-    \begin{proof}
-        Segue dal teorema di Lindelof e dalla compatibilità tra $\H^n$ e $\L^n$
-    \end{proof}
-\end{lemma}
+% \begin{lemma}{NON SO SE SERVA DAVVERO}{}
+%     Sia $E\subset \R^n$ un insieme misurabile e per $r>0$ sia $\{B_r(x_i)\}_{i \in I_r}$ un suo ricoprimento numerabile di palle aperte. Vale
+%     \[\L^n(E) \le \sum_{i \in I_r} \L^n(B_r(x_i)) \quad \text{e in particolare}\quad \L^n(E) = \lim_{r \to 0} \sum_{i \in I_r} \L^n(B_r(x_i))\]
+%     \begin{proof}
+%         Segue dal teorema di Lindelof e dalla compatibilità tra $\H^n$ e $\L^n$
+%     \end{proof}
+% \end{lemma}
 
 \begin{theorem}{Derivata R-N di una misura finale di diffeomorfismi}{R-N per misure finali di diffeomorfismi}
     Sia $\varphi : (\R^n, \M_\L, \L^n) \to \R^n$ un diffeomorfismo locale e sia $E \subset \R^n$ un aperto. Allora 
@@ -187,6 +189,7 @@ Cercheremo di dimostrare il TFA per cambiamenti di coordinate \bemph{lineari} co
     \[\frac{\de \varphi^{-1} \L^n}{\de \L^n} = |\det D_\varphi|\]
     Nel senso della definizione \ref{def:derivata di Radòn-Nikodym} della derivata di Radòn-Nikodym.
     \begin{proof}
+        Il fatto che $\varphi^{-1}\L^n \ll \L^n$ segue dalla proposizione \ref{prop:R-N-Lipschitz}, infatti se $\varphi$ è un diffeomorfismo è almeno localmente lipschitziana e in ogni insieme limitato $V$ ha costante di Lipschitz $\sup_V |\det D_\varphi|$.\\
         Poniamo $|\det D_\varphi(x)| =: J(x)$.\\
         Sia $E\subset \R^n$ un aperto. Localmente la trasformazione $\varphi$ agisce come una trasformazione lineare $D_\varphi$, dunque in intorni $V_i$ sufficientemente piccoli di punti $x_i\in E$ indicizzati su un insieme numerabile $I$ applichiamo il lemma \ref{lemma:misura indotta lineare} e abbiamo $\varphi^{-1} \L^n \sim D_\varphi \L^n = J(x)\cdot \L^n$. Dunque posti possiamo scrivere
         \[\varphi^{-1}\L^n(E) = \sum_{i \in I} \int\limits_{V_i} J(x_i)\de \L^n = \sum_{i \in I} \int\limits_E J(x_i) \chi_{V_i}(y)\de \L^n(y)\]
@@ -205,6 +208,6 @@ Cercheremo di dimostrare il TFA per cambiamenti di coordinate \bemph{lineari} co
 
 \section{Delirio categorico}
 
-Questa nostra costruzione può essere formalizzata come $\Phi : (X,\bullet) \times \catname{Sur}(X,\star) \to \catname{Meable}$ che mappa la coppia $((X,\mc{A}), f:X\to Y)$ in $(Y,f\mc{A})$, non credo sia più estensibile perchè è necessario che il supporto del primo spazio misurabile sia lo stesso insieme di partenza della suriezione
+Questa nostra costruzione può essere formalizzata come $\Phi : (X,\bullet) \times \mor(X,\star) \to \catname{Meable}$ che mappa la coppia $((X,\mc{A}), f:X\to Y)$ in $(Y,f\mc{A})$, non credo sia più estensibile perchè è necessario che il supporto del primo spazio misurabile sia lo stesso insieme di partenza della funzione.
 
 \end{document}
