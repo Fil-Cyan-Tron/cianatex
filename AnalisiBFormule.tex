@@ -86,6 +86,15 @@
     \end{itemize}
 \end{remark}
 
+\begin{remark}{Prodotto vettoriale come determinante formale}{}
+    Siano $v,w\in \R^3$, allora $v\wedge w$ si può calcolare come:
+    \[v \wedge w = \det \begin{pmatrix}
+        \hat{i} && \hat{j} && \hat{k}\\
+        v_i && v_j && v_k\\
+        w_i && w_j && w_k
+    \end{pmatrix}\]
+\end{remark}
+
 \begin{example}{Coordinate cilindriche (polari)}{}
     \[\text{Sia} \quad \gamma : [0,+\infty[ \times [0,2\pi] \times \R \quad \text{tale che} \quad \gamma (\rho,\phi, z) = \begin{pmatrix}  \rho\cos\phi \\  \rho\sin\phi \\  z \end{pmatrix}= \begin{pmatrix} x \\ y \\ z    \end{pmatrix}\]
     questa è una $(3,3)$-parametrizzazione regolari di $\R^3$ (oppure di $\R^2 \embin \R^3$ fissando $z$) che corrisponde al sistema di coordinate cilindriche (o polari)
@@ -189,6 +198,15 @@
     Si definisce \bemph{rotore} di $F$ il campo vettoriale $\nabla \wedge F : \R^3 \to \R^3$ definito come:
     \[\nabla \wedge F := \hat{x}\left(\frac{\partial F_z}{\partial y} - \frac{\partial F_y}{\partial z} \right) + \hat{y}\left( \frac{\partial F_x}{\partial z} - \frac{\partial F_z}{\partial x} \right) + \hat{z}\left(\frac{\partial F_y}{\partial x} - \frac{\partial F_x}{\partial y}\right)\]
 \end{definition}
+
+\begin{remark}{Rotore come determinante formale}{}
+    Alternativamente, il rotore di in campo $F : \R^3 \to \R^3$ si può calcolare come il prodotto vettoriale di $\nabla$ con $F$ visto come determinante formale come sopra:
+    \[\nabla \wedge F = \det \begin{pmatrix}
+        \hat{i} && \hat{j} && \hat{k}\\
+        D_x && D_y && D_z\\
+        F_x && F_y && F_z
+    \end{pmatrix}\]
+\end{remark}
 
 \begin{theorem}{Teorema di Stokes}{}
     Sia $(\Sigma,\nu)$ una superficie regolare orientata tale che $(\partial\Sigma,\tau)$ sia una curva regolare orientata e sia $F:\R^3 \to \R^3$ un campo vettoriale $\mc{C}^1$. Valgono:
