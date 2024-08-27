@@ -93,7 +93,7 @@ La situazione che studiamo in questa sezione è la seguente
 \section{Derivata di Radòn-Nikodym}
 
 \begin{theorem}{Teorema di Radòn-Nikodym}{Radòn-Nikodym}
-    Sia $(X,\mc{A})$ uno spazio misurabile e siano $\nu, \mu$ misure su $(X,\mc{A})$ tali che $\mu$ sia $\sigma$-finita e $\nu$ sia assolutamente continua rispetto a $\mu$. Allora esiste una funzione $\mc{A}$-misurabile $f: X \to X$ tale che per ogni $E \in \mc{A}$ si abbia
+    Sia $(X,\mc{A})$ uno spazio misurabile e siano $\nu, \mu$ misure su $(X,\mc{A})$ tali che $\mu$ sia $\sigma$-finita e $\nu$ sia assolutamente continua rispetto a $\mu$. Allora esiste una funzione $\mc{A}$-misurabile $f: X \to [0,+\infty[$ tale che per ogni $E \in \mc{A}$ si abbia
     \[\nu(A) = \int\limits_A f \de \mu \]
     E per una funzione $\nu$-integrabile $g : (X,\mc{A},\nu)\to \R$ vale
     \[\int\limits g \de \nu = \int\limits g \cdot f \de \mu\]
@@ -103,17 +103,56 @@ La situazione che studiamo in questa sezione è la seguente
     \[f = \frac{\de \nu}{\de \mu}\]
 \end{definition}
 
-\begin{corollary}{CONGETTURA Di Banach-Caccioppoli e Radòn-Nikodym}{}
-    Sia $(X,\mc{A},\mu, ||\cdot||)$ uno spazio di misura di Banach, sia $\mu$ una misura di Radòn invariante per isometrie e sia $f : (X,||\cdot||)\to(X,||\cdot||)$ una contrazione biettiva.\\
-    Allora $f^{-1}\mu$ soddifa le ipotesi del teorema \ref{th:Radòn-Nikodym} e $||f||$ è la sua derivata di R-N rispetto a $\mu$.
+% \begin{corollary}{CONGETTURA Di Banach-Caccioppoli e Radòn-Nikodym}{}
+%     Sia $(X,\mc{A},\mu, ||\cdot||)$ uno spazio di misura di Banach, sia $\mu$ una misura di Radòn invariante per isometrie e sia $f : (X,||\cdot||)\to(X,||\cdot||)$ una contrazione biettiva.\\
+%     Allora $f^{-1}\mu$ soddifa le ipotesi del teorema \ref{th:Radòn-Nikodym} e $||f||$ è la sua derivata di R-N rispetto a $\mu$.
+%     \begin{proof}
+%         Sia $0<L<1$ la costante di Lipschitz di $f$ e sia $A\in \mc{A}$ un insieme di misura nulla.\\
+%         Abbiamo che $f^{-1}\mu(A) = \mu(f(A))$. Osserviamo che $f(A)$ è isometricamente equivalente a un sottoinsieme di $A$, dunque $f(A)$ ha misura nulla per monotonia di $\mu$. Abbiamo dunque che esiste una funzione $\mu$-integrabile $g : X \to [0,+\infty]$  tale che 
+%         \[f^{-1}\mu(E) = \int\limits_E g\de \mu = \int g \chi_E \de \mu = \int_* g \chi_E \de \mu = \sup\left\{ I_\mu (\varphi) : \varphi \in \Sigma_-(g\chi_E)\right\}\]
+%         Combinando con la definizione di misura finale
+%         \[f^{-1}\mu(E) = \mu (f(E)) = \int\limits_{f(E)}\de\mu\]
+%     \end{proof}
+% \end{corollary}
+
+\begin{definition}{Funzioni R-N}{funzioni R-N}
+    Siano $(X,\mc{A},\mu)$ e $(Y,\mc{B},\nu)$ due spazi con misure $\sigma$-finite.\\
+    Una funzione $f:(X,\mc{A},\mu)\to(Y,\mc{B},\nu)$ si dice \bemph{funzione R-N} se:\begin{enumerate}
+        \item $f$ è misurabile
+        \item Per ogni $E \in \mc{B}$ tale che $\nu(E) = 0$ si ha $\mu(f^{-1}(E))=0$
+    \end{enumerate}    
+\end{definition}
+\begin{remark}{Categoria degli spazi con misure $\sigma$-finite e delle funzioni R-N}{}
+    La classe degli spazi con misure $\sigma$-finite con la classe delle funzioni R-N e l'usuale composizione di funzioni è una categoria, che chiamiamo $\catname{Mea}_{R-N}$.
     \begin{proof}
-        Sia $0<L<1$ la costante di Lipschitz di $f$ e sia $A\in \mc{A}$ un insieme di misura nulla.\\
-        Abbiamo che $f^{-1}\mu(A) = \mu(f(A))$. Osserviamo che $f(A)$ è isometricamente equivalente a un sottoinsieme di $A$, dunque $f(A)$ ha misura nulla per monotonia di $\mu$. Abbiamo dunque che esiste una funzione $\mu$-integrabile $g : X \to [0,+\infty]$  tale che 
-        \[f^{-1}\mu(E) = \int\limits_E g\de \mu = \int g \chi_E \de \mu = \int_* g \chi_E \de \mu = \sup\left\{ I_\mu (\varphi) : \varphi \in \Sigma_-(g\chi_E)\right\}\]
-        Combinando con la definizione di misura finale
-        \[f^{-1}\mu(E) = \mu (f(E)) = \int\limits_{f(E)}\de\mu\]
+        Controlliamo le varie proprietà:
+        \begin{itemize}
+            \item Sia $(X,\mc{A},\mu)$ uno spazio con misura $\sigma$-finita. La funzione identità $\id{X}$ è evidentemente una funzione R-N.
+            \item Siano $f:(X,\mc{A},\lambda)\to (Y,\mc{B},\mu)$ e $g:(Y,\mc{B},\mu)\to(Z,\mc{C},\nu)$ due funzioni R-N. Notiamo che per ogni $E \in \mc{C}$ tale che $\nu(E) = 0$ si ha $(g\circ f)^{-1} = f^{-1}(g^{-1}(E))$ e $\mu(g^{-1}(E)) = 0$, dunque $\lambda((g\circ f)^{-1}(E))=0$.
+            \item La composizione eredita l'associatività dalla composizione di funzioni in $\setcat$.
+        \end{itemize}
     \end{proof}
-\end{corollary}
+\end{remark}
+
+% \begin{proposition}{}{}
+%     Sia $(X,\mc{A},\mu)$ uno spazio con misura $\sigma$-finita e $f:(X,\mc{A},\mu)\to X$ tale che $f:(X,\mc{A},\mu)\to(X,f\mc{A},f\mu)$ sia una funzione R-N.
+%     \begin{proof}
+%         Applicando il teorema \ref{th:Radòn-Nikodym} sappiamo che esiste $g:(X,\mc{A},\mu)\to [0,+\infty[$ tale che
+%         \[f\mu(E) = \int\limits_E g \de \mu = \int\limits_{f^{-1}(E)}\de \mu\]
+%     \end{proof}
+% \end{proposition}
+
+\begin{proposition}{}{}
+    Sia $(X,d,\mu)$ uno spazio metrico di dimensione $n \in \Z_+$ con una misura $\mu$ di Radòn (rispetto alla $\sigma$-algebra Boreliana indotta dalla metrica) invariante per traslazioni (ovvero, $\mu(B_r(x)) = \mu(B_r(y))$ per ogni $x,y$ in $X$) e sia $F:X \to X$ una funzione biettiva di Lipschitz con costante di Lipschitz $L>0$.\\
+    Allora $F^{-1}\mu \ll \mu$ e $L^n$ e la derivata di Radòn-Nikodym di $F^{-1}\mu$ rispetto a $\mu$ è maggiorata $\mu$-quasi ovunque da $L^n$.
+    \begin{proof}
+        È sufficiente dimostrarlo sulle palle aperte, dato che queste costituiscono una base della topologia e dunque della $\sigma$-algebra Boreliana.\\
+        Per ogni $r>0$ e ogni $x \in X$ abbiamo che  $F(B_r(x)) \subset B_{Lr}(F(x))$ che implica $\mu(F(B_r(x)))\le \mu(B_{Lr}(F(x))) = L^n\mu(B_r(F(x)))$ il che implica che per ogni insieme, $F^{-1}(E) \le \mu(E)$, dunque sappiamo che deve esistere $g: (X,d,\mu)\to [0,+\infty[$ tale che
+        \[F^{-1}\mu(E) = \int\limits_E g \de \mu\]
+        Ancora una volta lavoriamo sulle palle
+        \[\forall r>0,\forall x \in X, 0\le \int\limits_{B_r(x)} g(y)\de \mu(y) \le \int_{B_r(x)} L^n \de\mu(y) \Rarr g \le_\mu L^n \]
+    \end{proof}
+\end{proposition}
 
 \section{Il viaggio verso il TFA}
 
@@ -141,7 +180,7 @@ Cercheremo di dimostrare il TFA per cambiamenti di coordinate \bemph{lineari} co
     \end{proof}
 \end{lemma}
 
-\begin{theorem}{Derivata R-N di una misura finale}{R-N per misure finali}
+\begin{theorem}{Derivata R-N di una misura finale di diffeomorfismi}{R-N per misure finali di diffeomorfismi}
     Sia $\varphi : (\R^n, \M_\L, \L^n) \to \R^n$ un diffeomorfismo locale e sia $E \subset \R^n$ un aperto. Allora 
     \[\varphi^{-1}\L^n(E) = \int\limits_E|\det D_\varphi|\de \L^n\]
     Equivalentemente
@@ -150,8 +189,8 @@ Cercheremo di dimostrare il TFA per cambiamenti di coordinate \bemph{lineari} co
     \begin{proof}
         Poniamo $|\det D_\varphi(x)| =: J(x)$.\\
         Sia $E\subset \R^n$ un aperto. Localmente la trasformazione $\varphi$ agisce come una trasformazione lineare $D_\varphi$, dunque in intorni $V_i$ sufficientemente piccoli di punti $x_i\in E$ indicizzati su un insieme numerabile $I$ applichiamo il lemma \ref{lemma:misura indotta lineare} e abbiamo $\varphi^{-1} \L^n \sim D_\varphi \L^n = J(x)\cdot \L^n$. Dunque posti possiamo scrivere
-        \[\varphi^{-1}\L^n(E) = \sum_{i \in I} \int\limits_{V_i} J(x_i)\de \L^n \sum_{i \in I} \int\limits_E J(x_i) \chi_{V_i}(y)\de \L^n(y)\]
-        Facendo una \textit{mossa alla Gottinga} riconosciamo una regolarità sufficiente ad applicare uno strano genere di integrale di Riemann rendendo sempre più piccoli i nostri intorni e otteniamo
+        \[\varphi^{-1}\L^n(E) = \sum_{i \in I} \int\limits_{V_i} J(x_i)\de \L^n = \sum_{i \in I} \int\limits_E J(x_i) \chi_{V_i}(y)\de \L^n(y)\]
+        Facendo una \textit{mossa alla Gottinga} riconosciamo una regolarità sufficiente ad applicare uno strano genere di integrale di Riemann rendendo sempre più piccoli i nostri intorni aumentando il loro numero e otteniamo
         \[\varphi^{-1}\L^n(E) = \int\limits_E J \de \L^n = \int\limits_E |\det D_\varphi|\de \L^n\]
     \end{proof} 
 \end{theorem}
