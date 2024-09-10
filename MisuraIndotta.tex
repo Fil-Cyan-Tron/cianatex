@@ -5,69 +5,190 @@
 \author{Filippo $\L$. Troncana}
 \date{A.A. 2023/2024}
 
+\renewcommand\A{\mc{A}}
+\renewcommand\F{\mc{F}}
+
 \begin{document}
 
 \maketitle
 
-\section{Misure e $\sigma$-algebre indotte}
+\begin{abstract}
+    Uno dei più importanti risultati della teoria geometrica della misura è la formula dell'area, strumento fondamentale per il calcolo delle misure di sottovarietà regolare di $\R^n$ e degli integrali su di esse.\\
+    La dimostrazione classica fa uso di diverse stime estremamente profonde e tecniche, ma è possibile affrontarla in modo meno traumatico con l'uso di strumenti di tipo categoriale
+\end{abstract}
 
-\begin{definition}{$\sigma$-algebra finale}{sigma-algebra finale}
-    Sia $(X,\mc{A})$ uno spazio misurabile, sia $Y$ un insieme e sia $f:X\to Y$ una funzione.\\
-    La $\sigma$\bemph{-algebra} finale indotta da $f$ rispetto a $\mc{A}$ è la famiglia
-    \[f\mc{A} := \{E \in 2^Y : f^{-1}(E) \in \mc{A}\}\]
-    La struttura di $\sigma$-algebra segue banalmente dalla commutatività tra operatori insiemistici e preimmagine.
+\begin{notation}
+    Useremo le seguenti convenzioni:\begin{itemize}
+        \item Dato un insieme $X$, indicheremo con $2^X$ il suo insieme delle parti $\{E : E\subset X\}$.
+        \item Dato un insieme $X$ e un sottoinsieme $E\subset X$, indicheremo con $E^c$ il suo complementare $X\setminus E$.
+        \item Dato un insieme $X$ e una sua famiglia di sottoinsiemi $\F \subset 2^X$, la notazione $\{A_i\}_{i \in I} \subset \F$ rappresenta una funzione $\varphi: I \to \F$ che a ciascun indice mappa un insieme di $\F$ e indichiamo:
+        \[\cup_I E_i := \bigcup_{i \in I} E_i \qquad, \qquad \cap_I E_i := \bigcap_{i \in I} E_i \qquad \text{e}\qquad \otimes_I E_i := \bigotimes_{i \in I} E_i \]
+        In particolare, quest'ultimo è definito se $I$ è finito (non ci occuperemo di spazi di dimensione infinita) e se $E_i = E_j= E $ per ogni $i,j$, allora $\otimes_I E_i := E^{\# I}$
+        \item Dato un campo $K$ e una successione di elementi del campo $\{a_i\}_{i \in I}\subset K$, indichiamo
+        \[\Sigma_I a_i := \sum_{i \in I} a_i \qquad\text{e} \qquad \Pi_I a_i := \prod_{i \in I} a_i \]
+        Almeno a livello formale, indipendentemente dalla loro definizione.
+    \end{itemize}
+\end{notation}
+
+\section{Teoria astratta della misura indotta}
+
+\subsection{Richiami di teoria della misura}
+
+\begin{definition}{$\sigma$-algebra}{sigma-algebra}
+    Sia $X$ un insieme. Una $\sigma$\bemph{-algebra} su $X$ è una famiglia $\Sigma \subset 2^X$ tale che:\begin{enumerate}
+        \item $X \in \Sigma$
+        \item $\forall E \in \Sigma, E^c \in \Sigma$.
+        \item Data $\{E_i\}_{i \in \N}$ una famiglia numerabile di insiemi di $\Sigma$, la loro unione $\cup_\N E_i$ appartiene a $\Sigma$.
+    \end{enumerate}
 \end{definition}
-\begin{remark}{}{}
-    La $\sigma$-algebra finale di $f$ rispetto a $\mc{A}$ è la più grande $\sigma$-algebra $\Sigma$ tale che $f : (X,\mc{A})\to (Y,\Sigma)$ sia misurabile.
+
+\begin{definition}{Spazio misurabile}{spazio misurabile}
+    Un insieme $X$ dotato di una $\sigma$-algebra $\Sigma$ si dice \bemph{spazio misurabile}
+\end{definition}
+
+\begin{definition}{Misura esterna}{misura esterna}
+    Sia $X$ un insieme e sia $\mu : 2^X\to [0, +\infty]$ una funzione tale che:\begin{enumerate}
+        \item $\mu(\varnothing) = 0$.
+        \item Per ogni $E \subset F \subset X$ vale $\mu(E)\le\mu(F)$.
+        \item Per ogni $A,B \subset X$ vale $\mu(A\cup B) \le \mu(A) + \mu(B)$.
+    \end{enumerate}
+    Allora $\mu$ si dice \bemph{misura esterna} su $X$.
+\end{definition}
+
+\begin{definition}{Insiemi misurabili}{insiemi misurabili}
+    Sia $X$ un insieme e sia $\mu: 2^X\to[0, + \infty]$ una misura esterna su $X$.\\
+    Si dice \bemph{sottoinsieme misurabile} di $X$ rispetto a $\mu$ un insieme $E$ tale che
+    \[\forall A \in 2^X, \mu(A) = \mu(A \cap E) + \mu(A\cap E^c)\]
+    La famiglia dei sottoinsiemi misurabili di $X$ rispetto a $\mu$ è indicata con $\M_\mu$ e ha una struttura di $\sigma$-algebra.
+\end{definition}
+
+\begin{definition}{Spazio con misura}{spazio con misura}
+    Sia $X$ un insieme, $\A \subset 2^X$ una $\sigma$-algebra e $\mu: \A \to [0, +\infty]$ una funzione tale che:\begin{enumerate}
+        \item $\mu(\varnothing) = 0$.
+        \item Per una famiglia di numerabile insiemi a due a due disgiunti $\{E_i\}_{i \in \N}\subset \A$ vale $\mu(\cup_\N E_i) = \Sigma_\N \mu(E_i)$.
+    \end{enumerate}
+    La terna $(X,\A,\mu)$ si dice \bemph{spazio con misura}.\\
+    Evidentemente, se $\mu$ è una misura esterna su $X$ allora $(X, \M_\mu, \mu|_{\M_\mu})$ è uno spazio con misura.
+\end{definition}
+
+\begin{definition}{Funzione misurabile}{funzione misurabile}
+    Siano $(X,\A)$ e $(Y,\B)$ due spazi misurabili.\\
+    Una funzione $f: (X,\A)\to (Y,\B)$ si dice \bemph{misurabile} se per ogni $E \in \B$ allora $f^{-1}(E) \in \A$.
+\end{definition}
+
+\subsection{$\sigma$-algebre indotte da funzioni}
+
+Analogamente alle costruzioni di topologia iniziale e finale, definiamo 
+
+\begin{definition}{$\sigma$-algebre indotte}{sigma-algebre indotte}
+    Siano $X$ e $Y$ due insiemi, sia $f : X \to Y$ una funzione, sia $\A$ una $\sigma$-algebra su $X$ e sia $\B$ una $\sigma$-algebra su $Y$.\\
+    Definiamo le seguenti famiglie:
+    \[f_\sharp \A := \{E \in 2^Y : f^{-1}(E)\in \A\}\qquad \text{e}\qquad f_\flat\B := \{f^{-1}(E) \in 2^X : E \in \B \}\]
+    Esse si dicono rispettivamente $\sigma$\bemph{-algebra finale e iniziale} di $f$ rispetto a $\A$ e $\B$.
+\end{definition}
+
+\begin{proposition}{}{}
+    Nella situazione della definizione \ref{def:sigma-algebre indotte}, $f_\sharp\A$ e $f_\flat\B$ sono $\sigma$-algebre.
     \begin{proof}
-        Sia $\Sigma \subset 2^Y$ tale che $f : (X,\mc{A})\to (Y,\Sigma)$ sia misurabile. Per definizione di funzione misurabile, abbiamo che per ogni $E \in \Sigma$, abbiamo che $f^{-1}(E)\in \mc{A}$, dunque $\Sigma\subset f\mc{A}$.
+        Segue banalmente dalla commutatività tra operatori insiemistici, immagine e preimmagine.
+    \end{proof}
+\end{proposition}
+
+\begin{remark}{}{}
+    La $\sigma$-algebra finale di $f$ rispetto a $\A$ è la più grande $\sigma$-algebra $\Sigma$ tale che $f : (X,\A)\to (Y,\Sigma)$ sia misurabile.\\
+    La $\sigma$-algebra iniziale di $f$ rispetto a $\B$ è la più piccola $\sigma$-algebra $\Sigma$ tale che $f : (X,\Sigma)\to (Y,\B)$ sia misurabile.
+    \begin{proof}
+        Sia $\Sigma \subset 2^Y$ tale che $f : (X,\A)\to (Y,\Sigma)$ sia misurabile. Per definizione di funzione misurabile, abbiamo che per ogni $E \in \Sigma$, abbiamo che $f^{-1}(E)\in \A$, dunque $\Sigma\subset f_\sharp\A$.\\
+        Sia $\Sigma \subset 2^X$ tale che $f : (X,\Sigma)\to (Y,\B)$ sia misurabile. Per definizione di funzione misurabile, abbiamo che per ogni $E \in f_\flat\B$ si ha che $E = f^{-1}(F)$ con $F \in B$ e quindi che $E \in \Sigma$, dunque $f_\flat\B\subset \Sigma$.
     \end{proof}
 \end{remark}
 
-\begin{definition}{Misura esterna indotta}{misura esterna indotta}
-    Siano $X$ e $Y$ due insiemi, sia $\mu$ una misura esterna su $X$ e sia $f:X\to Y$ una funzione.\\
-    La \bemph{misura indotta} da $f$ rispetto a $\mu$ è la funzione
-    \[f\mu : 2^Y \to [0,+\infty] \quad \text{con} \quad f\mu(E):= \mu(f^{-1}(E)) \]
+\begin{definition}{Misure esterne indotte}{misure esterne indotte}
+    Siano $X$ e $Y$ due insiemi, siano $\mu$ e $\nu$ due misure esterne rispettivamente su $X$ e su $Y$ e sia $f:X\to Y$ una funzione.\\
+    La \bemph{misura esterna finale} di $f$ rispetto a $\mu$ è la funzione
+    \[f_\sharp\mu : 2^Y \to [0,+\infty] \quad \text{con} \quad f_\sharp\mu(E):= \mu(f^{-1}(E)) \]
+    La \bemph{misura esterna iniziale} di $f$ rispetto a $\nu$ è la funzione
+    \[f_\flat\nu : 2^X \to [0,+\infty] \quad \text{con} \quad f_\flat\nu(E) := \nu(f(E))\]
 \end{definition}
-\begin{proposition}{}{misura esterna indotta}
-    $f\mu$ è una misura esterna su $Y$.
+\begin{proposition}{}{misura esterna finale}
+    Nella situazione della definizione \ref{def:misure esterne indotte}, $f_\sharp\mu$ è una misura esterna su $Y$ e $f_\flat\nu$ è una misura esterna su $X$.
     \begin{proof}
-        Dimostriamo i tre assiomi di misura esterna.\begin{enumerate}
-            \item $f^{-1}(\varnothing) = \varnothing \Rarr f\mu(\varnothing) = 0$.
-            \item Siano $E \subset F \subset Y$, allora $f^{-1}(E)\subset f^{-1}(F)$, dunque la monotonia di $f\mu$ segue dalla monotonia di $\mu$.
-            \item Siano $A,B \subset Y$, allora $f^{-1}(A\cup B)= f^{-1}(A) \cup f^{-1}(B) $ e la subaddittività segue da quella di $\mu$
+        Dimostriamo i tre assiomi di misura esterna per $f_\sharp\mu$:\begin{enumerate}
+            \item $f^{-1}(\varnothing) = \varnothing \Rarr f_\sharp\mu(\varnothing) = 0$.
+            \item Siano $E \subset F \subset Y$, allora $f^{-1}(E)\subset f^{-1}(F)$, dunque la monotonia di $f_\sharp\mu$ segue dalla monotonia di $\mu$.
+            \item Siano $A,B \subset Y$, allora $f^{-1}(A\cup B)= f^{-1}(A) \cup f^{-1}(B)$ e la subaddittività segue da quella di $\mu$
+        \end{enumerate}
+        Ora per $f_\flat\nu$:\begin{enumerate}
+            \item $f(\varnothing) = \varnothing \Rarr f_\flat(\varnothing) = 0$.
+            \item Siano $E \subset F \subset X$, allora $f(E)\subset f(F)$, dunque la monotonia di $f_\flat\nu$ segue dalla monotonia di $\nu$.
+            \item Siano $A,B \subset X$, allora $f(A \cup B) = f(A)\cup f(B)$ e la subaddittività segue da quella di $\nu$.
         \end{enumerate}
     \end{proof}
 \end{proposition}
-\begin{proposition}{}{misurabili indotti}
-    Se $f: (X,\mc{A},f\mu)\to Y$ è una funzione biettiva, allora $\M_{f\mu} = f \M_\mu$.
+
+\begin{remark}{TOCORRECT: Bidualità delle $\sigma$-algebre}{bidualità algebre}
+    Nella situazione della definizione \ref{def:sigma-algebre indotte}, $f_\flat f_\sharp \A = \A$ e $f_\sharp f_\flat \B = \B$ SONO INCLUSIONI NON UGUAGLIANZE PER L'UGUAGLIANZA VUOI INIETTIVITÀ E SURIETTIVITÀ.
     \begin{proof}
-        Sia $E \in M_{f\mu}$ e sia $A \in 2^Y$.\\
-        Abbiamo che $f\mu(A) = f\mu(A\cap E)+ f\mu A\cap E^c = \mu(f^{-1}(A \cap E)) + \mu(f^{-1}(A\cap E^c)) = \mu(f^{-1}(A)\cap f^{-1}(E)) + \mu(f^{-1}(A)\cap f^{-1}(E^c))$ dunque posto $B:= f^{-1}(A)$ (possibile per ogni $B \in 2^X$ per biettività) vale che $f^{-1}(E) \in \M_\mu \Rarr E \in f\M_\mu$.
+        Per definizione
+        \[f_\flat f_\sharp \A = \{ f^{-1}(E) \in 2^X : E \in f_\sharp \A\} = \{f^{-1}(E) \in 2^X : f^{-1}(E) \in \A\} = \{E \in 2^X : E \in \A\} = \A\]
+        Allo stesso modo
+        \[f_\sharp f_\flat \B = \{ E \in 2^Y : f^{-1}(E) \in f_\flat \B \} = \{ E \in 2^Y : E \in \B\} = \B\]
+    \end{proof}
+\end{remark}
+
+\begin{proposition}{Bidualità delle misure esterne indotte}{bidualità misure}
+    Nella situazione della definizione \ref{def:misure esterne indotte}, $f_\flat f_\sharp\mu \ge \mu$ e $f_\sharp f_\flat\nu \le \nu$. In particolare, se $f$ è iniettiva vale $f_\flat f_\sharp\mu = \mu$ e se $f$ è suriettiva vale $f_\sharp f_\flat\nu = \nu$
+    \begin{proof}
+        Abbiamo che $f_\flat f_\sharp\mu(E) = f_\sharp\mu(f(E)) = \mu(f^{-1}(f(E)))\ge \mu(E)$ per monotonia di $\mu$.\\
+        Allo stesso modo, $f_\sharp f_\flat\nu(E) = f_\flat\nu(f^{-1}(E)) = \nu(f(f^-1(E))) \le \nu(E)$\\
+        L'uguaglianza nei casi particolari segue banalmente.
+    \end{proof}
+\end{proposition}
+\begin{corollary}{}{}
+    Sotto le ipotesi della proposizione \ref{prop:bidualità misure}, se $f$ è una funzione biettiva vale l'uguaglianza.
+\end{corollary}
+
+Analogamente alle costruzioni topologiche, usiamo questa teoria per parlare di sottospazi misurabili
+
+\subsection{Sottospazi misurabili}
+
+\begin{definition}{Sottospazio misurabile}{sottospazio misurabile}
+    Sia $(X,\A)$ uno spazio misurabile e $Z\subset X$. Allora, definita la famiglia $\A|_Z := \{E\cap Z \in 2^X : E\in \A\}$, $(Z, \A|_Z)$ si dice \bemph{sottospazio misurabile} di $X$.
+\end{definition}
+\begin{remark}{}{sottospazio misurabile}
+    $(Z,\A|_Z)$ è effettivamente uno spazio misurabile.
+    \begin{proof}
+        La dimostrazione è banale.
+    \end{proof}
+\end{remark}
+
+\begin{proposition}{}{}
+    Sia $(X,\A)$ uno spazio misurabile, sia $Z\subset X$ un suo sottoinsieme e sia $i : Z \to X$ l'inclusione canonica.\\
+    Allora $\A|_Z = i_\flat \A$.
+    \begin{proof}
+        Per $E \in i_\flat \A$ vale se e solo se $E = i^{-1}(F)$ per qualche $F \in \A$, ma per ogni $F \in 2^X$ vale $i^{-1}(F) = F \cap Z$, dunque $E = F\cap Z$ per qualche $F \in \A$ e quindi $E \in \A|_Z$.
     \end{proof}
 \end{proposition}
 
-TODO: credo sia possibile definire una duale costruzione iniziale, ma per la nostra trattazione è sufficiente la versione finale.
+\section{Teoria dell'integrazione}
 
-\begin{lemma}{Isomorfismo di $\sigma$-algebre indotte}{isomorfismo di sigma-algebre indotte}
-    Siano $(X,\mc{A})$ uno spazio misurabile, $Y$ un insieme e $f: (X,\mc{A})\to Y$ una funzione biettiva. Allora $f\mc{A} \cong \mc{A}$.
-    \begin{proof}
-        Banale dimostrazione di insiemistica.
-    \end{proof}
-\end{lemma}
-
-\section{Integrazione indotta}
+\subsection{Integrazione indotta}
 
 La situazione che studiamo in questa sezione è la seguente
 
 \[\begin{tikzcd}
-	{(X,\mc{A},\mu)} && {(Y,f\mc{A},f\mu)} \\
+	{(X,\A,\mu)} && {(Y, f_\sharp\A, f_\sharp\mu)} && {(Y, \B, \nu)} && {(X, f_\flat\B, f_\flat\nu)} \\
 	\\
-	&& {(\R,\M_\L,\L)}
+	&& {(\R, \M_\L, \L)} && {(\R,\M_\L, \L)}
 	\arrow["f"{description}, from=1-1, to=1-3]
 	\arrow["{g \circ f}"{description}, from=1-1, to=3-3]
 	\arrow["g"{description}, from=1-3, to=3-3]
+	\arrow["g"{description}, from=1-5, to=3-5]
+	\arrow["f"{description}, from=1-7, to=1-5]
+	\arrow["{g \circ f}"{description}, from=1-7, to=3-5]
 \end{tikzcd}\]
+
+Dove $\L$ è la misura di Lebesgue sui numeri reali.
 
 \begin{theorem}{Integrazione indotta}{integrazione indotta}
     Sia $(X,\mc{A},\mu)$ uno spazio con misura, sia $Y$ un insieme, sia $f:X\to Y$ una funzione biettiva e sia $g:(Y,f\mc{A},f\mu)\to (\R,\B(\R),\L^1)$ una funzione $f\mc{A}$-misurabile.\\
