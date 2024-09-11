@@ -9,6 +9,9 @@
 
 \renewcommand\A{\mc{A}}
 \renewcommand\F{\mc{F}}
+\renewcommand\N{\mc{N}}
+\newcommand\Nat{\mathbb{N}}
+
 
 \begin{document}
 
@@ -17,7 +20,8 @@
 \begin{abstract}
     Uno dei più importanti risultati della teoria geometrica della misura è la formula dell'area, strumento fondamentale per il calcolo delle misure di sottovarietà regolare di $\R^n$ e degli integrali su di esse.\\
     La dimostrazione classica, ad esempio quella riportata in \cite{EvansGariepy1991} fa uso di diverse stime estremamente tecniche, ma credo\footnote{o meglio, spero} che fare un giro leggermente più largo possa portare a una dimostrazione meno traumatica.\\
-    Alcune fondamentali idee, come quella di considerare spazi misurabili "migliorati" (che noi chiameremo rinforzati), ovvero dotati di una famiglia di insiemi considerati trascurabili o nulli, per un'idea più "naturale" di equivalenza quasi ovunque vengono da \cite{Fremlin2000}.
+    Alcune fondamentali idee, come quella di considerare spazi misurabili "migliorati" (che noi chiameremo rinforzati), ovvero dotati di una famiglia di insiemi considerati trascurabili o nulli, per un'idea più "naturale" di equivalenza quasi ovunque vengono da \cite{Fremlin2000}.\\
+    In questa tesi vengono presentati dei risultati di teoria della misura sviluppati con un approccio simile a quello usato per lo studio della topologia generale e successivamente questi vengono applicati allo studio dell'integrale di funzioni composte e alla formula dell'area.
 \end{abstract}
 
 \tableofcontents
@@ -35,56 +39,18 @@
     \end{itemize}
 \end{notation}
 
+\pagebreak
 \section{Teoria astratta della misura indotta}
 
-\subsection{Richiami di teoria della misura}
-
-\begin{definition}{$\sigma$-algebra}{sigma-algebra}
-    Sia $X$ un insieme. Una $\sigma$\bemph{-algebra} su $X$ è una famiglia $\Sigma \subset 2^X$ tale che:\begin{enumerate}
-        \item $X \in \Sigma$
-        \item $\forall E \in \Sigma, E^c \in \Sigma$.
-        \item Data $\{E_i\}_{i \in \N}$ una famiglia numerabile di insiemi di $\Sigma$, la loro unione $\cup_\N E_i$ appartiene a $\Sigma$.
-    \end{enumerate}
-\end{definition}
-
-\begin{definition}{Spazio misurabile}{spazio misurabile}
-    Un insieme $X$ dotato di una $\sigma$-algebra $\Sigma$ si dice \bemph{spazio misurabile}
-\end{definition}
-
-\begin{definition}{Misura esterna}{misura esterna}
-    Sia $X$ un insieme e sia $\mu : 2^X\to [0, +\infty]$ una funzione tale che:\begin{enumerate}
-        \item $\mu(\varnothing) = 0$.
-        \item Per ogni $E \subset F \subset X$ vale $\mu(E)\le\mu(F)$.
-        \item Per ogni $A,B \subset X$ vale $\mu(A\cup B) \le \mu(A) + \mu(B)$.
-    \end{enumerate}
-    Allora $\mu$ si dice \bemph{misura esterna} su $X$.
-\end{definition}
-
-\begin{definition}{Insiemi misurabili}{insiemi misurabili}
-    Sia $X$ un insieme e sia $\mu: 2^X\to[0, + \infty]$ una misura esterna su $X$.\\
-    Si dice \bemph{sottoinsieme misurabile} di $X$ rispetto a $\mu$ un insieme $E$ tale che
-    \[\forall A \in 2^X, \mu(A) = \mu(A \cap E) + \mu(A\cap E^c)\]
-    La famiglia dei sottoinsiemi misurabili di $X$ rispetto a $\mu$ è indicata con $\M_\mu$ e ha una struttura di $\sigma$-algebra.
-\end{definition}
-
-\begin{definition}{Spazio con misura}{spazio con misura}
-    Sia $X$ un insieme, $\A \subset 2^X$ una $\sigma$-algebra e $\mu: \A \to [0, +\infty]$ una funzione tale che:\begin{enumerate}
-        \item $\mu(\varnothing) = 0$.
-        \item Per una famiglia di numerabile insiemi a due a due disgiunti $\{E_i\}_{i \in \N}\subset \A$ vale $\mu(\cup_\N E_i) = \Sigma_\N \mu(E_i)$.
-    \end{enumerate}
-    La terna $(X,\A,\mu)$ si dice \bemph{spazio con misura}.\\
-    Evidentemente, se $\mu$ è una misura esterna su $X$ allora $(X, \M_\mu, \mu|_{\M_\mu})$ è uno spazio con misura.
-\end{definition}
+Le definizioni di teoria della misura usate si riferiscono a quelle date in \cite{Delladio2023}, meno che alcune che riportiamo qui, con opportuna motivazione
 
 \begin{definition}{Funzione misurabile}{funzione misurabile}
-    Siano $(X,\A)$ e $(Y,\B)$ due spazi misurabili.\\
-    Una funzione $f: (X,\A)\to (Y,\B)$ si dice \bemph{misurabile} se per ogni $E \in \B$ allora $f^{-1}(E) \in \A$.
+    Siano $(X,\A)$ e $(Y,\B)$ due spazi misurabili e sia $f : X\to Y$ una funzione.\\
+    $f$ si dice \bemph{misurabile} se per ogni $E \in \B$ vale $f^{-1}(B) \in \A$.
 \end{definition}
 
-\begin{definition}{Validità $\mu$-quasi ovunque}{validità mu-quasi ovunque}
-    Sia $X$ un insieme e sia $\mu:2^X\to [0,+\infty]$.\\
-    Una proprietà $P$ sugli elementi di $X$ si dice \bemph{valida} $\mu$\bemph{-quasi ovunque} se $\mu(\{x \in X : \neg P(x)\}) = 0$
-\end{definition}
+In \cite{Delladio2023} le funzioni misurabili sono definite analogamente, ma l'ambiente di arrivo è uno spazio topologico e si richiede che la controimmagine di ogni aperto sia misurabile, in modo da poter usare alcuni strumenti di topologia dotando l'insieme di arrivo della $\sigma$-algebra Boreliana.\\
+Tuttavia, ai fini della nostra trattazione sarà meglio usare la definizione più generale riportata qui sopra, che quindi è quella che adottiamo.
 
 \subsection{$\sigma$-algebre e misure esterne indotte da funzioni}
 
@@ -160,6 +126,7 @@ Analogamente alle costruzioni di topologia iniziale e finale, definiamo
 
 Analogamente alle costruzioni topologiche, usiamo questa teoria per parlare di sottospazi misurabili
 
+\pagebreak
 \subsection{Sottospazi misurabili}
 
 \begin{definition}{Sottospazio misurabile}{sottospazio misurabile}
@@ -191,6 +158,24 @@ Notiamo che è effettivamente una misura esterna per la proposizione \ref{prop:m
     Nella situazione della definizione \ref{def:sottomisura esterna}, vale $i_\flat \mu = \mu|_{2^Z} = \mu \cdot \chi_Z$.
 \end{proposition}
 
+\pagebreak
+\subsection{Spazi misurabili prodotto}
+
+\begin{definition}{Spazio misurabile prodotto}{spazio misurabile prodotto}
+    Siano $(X,\A)$ e $(Y,\B)$ due spazi misurabili, $X\times Y$ il prodotto cartesiano dei due insiemi e $\pi_X : X\times Y \to X$ e $\pi_Y : X\times Y \to Y$ le proiezioni canoniche.\\
+    Lo \bemph{spazio misurabile prodotto} $(X,\A)\otimes (X,\B)$ è lo spazio $(X\times Y, \A \otimes \B)$ dove $\A \otimes\B$ è la più piccola $\sigma$-algebra che contenga gli insiemi della forma $A\times B$ con $A \in \A$ e $B \in \B$.
+\end{definition}
+\begin{remark}{}{}
+    Siano $(X,\A)$ e $(Y,\B)$ due spazi misurabili, $X\times Y$ il prodotto cartesiano dei due insiemi e $\pi_X : X\times Y \to X$ e $\pi_Y : X\times Y \to Y$ le proiezioni canoniche.\\
+    $\A \otimes \B$ è la più piccola $\sigma$-algebra che renda misurabili sia $\pi_X$ che $\pi_Y$.
+    \begin{proof}
+        Notiamo che la tesi può essere riscritta come $\A\otimes\B \subset \langle\pi_{X\flat} \A \cup \pi_{Y\flat} \B\rangle $, in quanto una $\sigma$-algebra che renda misurabili le proiezioni deve necessariamente contenere l'unione delle $\sigma$-algebre iniziali\footnote{Notiamo che $\pi_{X\flat}\A = \{A \times Y \in 2^{X\times Y} : A \in \A\}$}, ma quindi per l'ipotesi di minimalità di $\A\otimes\B$ possiamo semplicemente richiedere $\{A\times B : A \in \A, B \in \B\}\subset \langle\pi_{X\flat} \A \cup \pi_{Y\flat} \B\rangle$.\\
+        Notiamo che in generale, $A \times B = (A\times Y) \cap (X \times B)$, rispettivamente elementi di $\pi_{X\flat} \A$ e $\pi_{Y\flat} \B$, quindi deve appartenere alla $\sigma$-algebra generata dalla loro unione.
+    \end{proof}
+\end{remark}
+
+
+\pagebreak
 \subsection{Spazi misurabili rinforzati}
 
 Un concetto fondamentale in teoria della misura è quello proprietà valide $\mu$-quasi ovunque, ma sorge il problema della scelta di una misura. In realtà è possibile "indebolire" questo requisito, specificando la famiglia degli insiemi nulli di uno spazio misurabile e imponendo un requisito di "fedeltà" per le misure che vorremo definire su di esso.
@@ -199,18 +184,31 @@ Un concetto fondamentale in teoria della misura è quello proprietà valide $\mu
     Sia $X$ un insieme e $I \subset 2^X$ una famiglia di insiemi tale che:\begin{enumerate}
         \item $\varnothing \in I$.
         \item Se $N \in I$ e $M\subset N$ allora $M \in I$.
-        \item Se $\{N_i\}_{i \in \N}\subset I$ allora $\cup_\N N_i \in I$.
+        \item Se $\{N_i\}_{i \in \Nat}\subset I$ allora $\cup_\Nat N_i \in I$.
     \end{enumerate}
     Allora $I$ si dice $\sigma$\bemph{-ideale} su $X$. In particolare, se $X \notin I$, allora $I$ si dice $\sigma$-\bemph{ideale proprio}, altrimenti improprio\footnote{In quanto avremmo $I=2^X$, non particolarmente utile nel migliore dei casi.}.
 \end{definition}
 
-\begin{definition}{Spazio misurabile rinforzato}{spazio misurabile rinforzato}
-    Sia $X$ un insieme, $\A$ una $\sigma$-algebra su $X$ e $\mc{N}$ un $\sigma$-ideale su $X$ tale che $\mc{N}\subset \A$.\\
-    Allora $(X,A,\mc{N})$ si dice \bemph{spazio misurabile rinforzato} e gli insiemi di $\mc{N}$ si dicono \bemph{nulli} o trascurabili.
+\begin{definition}{Spazio fortemente misurabile}{spazio fortemente misurabile}
+    Sia $X$ un insieme, $\M$ una $\sigma$-algebra su $X$ e $\N$ un $\sigma$-ideale su $X$ tale che $\N\subset \M$.\\
+    Allora $(X,\M,\N)$ si dice \bemph{spazio fortemente misurabile} e gli insiemi di $\N$ si dicono \bemph{nulli} o trascurabili. La coppia $(\M,\N)$ è detta \bemph{struttura fortemente misurabile}.
 \end{definition}
 
+Ovviamente ogni spazio misurabile rinforzato è uno spazio misurabile e una misura esterna $\mu$ su un insieme $X$ induce su di esso una struttura fortemente misurabile allo stesso modo in cui induce una normale struttura misurabile, con la coppia $(\M_\mu, \N_\mu)$ dove $\N_\mu := \{E \in \M : \mu(E) = 0\}$.
 
+\begin{definition}{Validità quasi ovunque}{validità quasi ovunque}
+    Sia $(X,\M,\N)$ uno spazio fortemente misurabile.\\
+    Una proprietà $P$ sugli elementi di $X$ si dice \bemph{valida quasi ovunque} se $\{x \in X : \neg P(x)\}\in \N$ e scriviamo $\forall_\N x \in X, P(x)$.
+\end{definition}
 
+Notiamo che se $\N = \N_\mu$ per una misura $\mu$, questa diventa la definizione di validità $\mu$-quasi ovunque
+
+\begin{notation}
+    Sia $(X,\M,\N)$ uno spazio fortemente misurabile e siano $f, g : X \to \R$. Allora $=_\N$, $\ge_\N$, $>_\N$, $\le_\N$ e $<_\N$ si riferiscono alle stesse relazioni intese quasi ovunque.\\
+    Se $\N = \N_\mu$ per qualche misura esterna, invece di scrivere $\N$ al pedice scriveremo $\mu$.
+\end{notation}
+
+\pagebreak
 \section{Teoria dell'integrazione}
 
 \subsection{Integrazione indotta}
@@ -254,6 +252,7 @@ Dove $\L$ è la misura di Lebesgue sui numeri reali.
     In questo modo ci basta riuscire a far corrispondere $J_f \de \L^n$ a $\de f^{-1} \L^n$
 \end{remark}
 
+\pagebreak
 \section{Derivata di Radòn-Nikodym}
 
 \begin{theorem}{Teorema di Radòn-Nikodym}{Radòn-Nikodym}
@@ -318,6 +317,7 @@ Dove $\L$ è la misura di Lebesgue sui numeri reali.
     \end{proof}
 \end{proposition}
 
+\pagebreak
 \section{Il viaggio verso il TFA}
 
 Cercheremo di dimostrare il TFA per cambiamenti di coordinate \bemph{lineari} con la speranza di estendere questo ragionamento a cambiamenti di coordinate \bemph{differenziabili}, ovvero localmente lineari. Per fare questo, ci permetteremo di sostituire i plurirettangoli nella definizione della misura di Lebesgue ai pluriparallelogrammi
