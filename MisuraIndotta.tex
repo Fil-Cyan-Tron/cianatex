@@ -5,6 +5,8 @@
 \author{Filippo $\L$. Troncana}
 \date{A.A. 2023/2024}
 
+\addbibresource{MisuraIndotta.bib}
+
 \renewcommand\A{\mc{A}}
 \renewcommand\F{\mc{F}}
 
@@ -14,19 +16,22 @@
 
 \begin{abstract}
     Uno dei più importanti risultati della teoria geometrica della misura è la formula dell'area, strumento fondamentale per il calcolo delle misure di sottovarietà regolare di $\R^n$ e degli integrali su di esse.\\
-    La dimostrazione classica fa uso di diverse stime estremamente profonde e tecniche, ma è possibile affrontarla in modo meno traumatico con l'uso di strumenti di tipo categoriale
+    La dimostrazione classica, ad esempio quella riportata in \cite{EvansGariepy1991} fa uso di diverse stime estremamente tecniche, ma credo\footnote{o meglio, spero} che fare un giro leggermente più largo possa portare a una dimostrazione meno traumatica.\\
+    Alcune fondamentali idee, come quella di considerare spazi misurabili "migliorati" (che noi chiameremo rinforzati), ovvero dotati di una famiglia di insiemi considerati trascurabili o nulli, per un'idea più "naturale" di equivalenza quasi ovunque vengono da \cite{Fremlin2000}.
 \end{abstract}
+
+\tableofcontents
 
 \begin{notation}
     Useremo le seguenti convenzioni:\begin{itemize}
-        \item Dato un insieme $X$, indicheremo con $2^X$ il suo insieme delle parti $\{E : E\subset X\}$.
+        \item Dato un insieme $X$, indicheremo con $2^X$ il suo insieme delle parti.
         \item Dato un insieme $X$ e un sottoinsieme $E\subset X$, indicheremo con $E^c$ il suo complementare $X\setminus E$.
         \item Dato un insieme $X$ e una sua famiglia di sottoinsiemi $\F \subset 2^X$, la notazione $\{A_i\}_{i \in I} \subset \F$ rappresenta una funzione $\varphi: I \to \F$ che a ciascun indice mappa un insieme di $\F$ e indichiamo:
-        \[\cup_I E_i := \bigcup_{i \in I} E_i \qquad, \qquad \cap_I E_i := \bigcap_{i \in I} E_i \qquad \text{e}\qquad \otimes_I E_i := \bigotimes_{i \in I} E_i \]
-        In particolare, quest'ultimo è definito se $I$ è finito (non ci occuperemo di spazi di dimensione infinita) e se $E_i = E_j= E $ per ogni $i,j$, allora $\otimes_I E_i := E^{\# I}$
+        \[\cup_I E_i := \bigcup_{i \in I} E_i \qquad, \qquad \cap_I E_i := \bigcap_{i \in I} E_i \qquad \text{e}\qquad \Pi_I E_i := \prod_{i \in I} E_i \]
+        In particolare, quest'ultimo è definito se $I$ è finito (non ci occuperemo di prodotti cartesiani infiniti) e se $E_i = E_j= E $ per ogni $i,j$, allora $\Pi_I E_i := E^{\# I}$
         \item Dato un campo $K$ e una successione di elementi del campo $\{a_i\}_{i \in I}\subset K$, indichiamo
         \[\Sigma_I a_i := \sum_{i \in I} a_i \qquad\text{e} \qquad \Pi_I a_i := \prod_{i \in I} a_i \]
-        Almeno a livello formale, indipendentemente dalla loro definizione.
+        Almeno a livello formale, indipendentemente dalla loro esistenza o definizione.
     \end{itemize}
 \end{notation}
 
@@ -76,7 +81,12 @@
     Una funzione $f: (X,\A)\to (Y,\B)$ si dice \bemph{misurabile} se per ogni $E \in \B$ allora $f^{-1}(E) \in \A$.
 \end{definition}
 
-\subsection{$\sigma$-algebre indotte da funzioni}
+\begin{definition}{Validità $\mu$-quasi ovunque}{validità mu-quasi ovunque}
+    Sia $X$ un insieme e sia $\mu:2^X\to [0,+\infty]$.\\
+    Una proprietà $P$ sugli elementi di $X$ si dice \bemph{valida} $\mu$\bemph{-quasi ovunque} se $\mu(\{x \in X : \neg P(x)\}) = 0$
+\end{definition}
+
+\subsection{$\sigma$-algebre e misure esterne indotte da funzioni}
 
 Analogamente alle costruzioni di topologia iniziale e finale, definiamo 
 
@@ -95,10 +105,10 @@ Analogamente alle costruzioni di topologia iniziale e finale, definiamo
 \end{proposition}
 
 \begin{remark}{}{}
-    La $\sigma$-algebra finale di $f$ rispetto a $\A$ è la più grande $\sigma$-algebra $\Sigma$ tale che $f : (X,\A)\to (Y,\Sigma)$ sia misurabile.\\
+    La $\sigma$-algebra finale di $f$ rispetto a $\A$ è la più grande $\sigma$-algebra $\Omega$ tale che $f : (X,\A)\to (Y,\Sigma)$ sia misurabile.\\
     La $\sigma$-algebra iniziale di $f$ rispetto a $\B$ è la più piccola $\sigma$-algebra $\Sigma$ tale che $f : (X,\Sigma)\to (Y,\B)$ sia misurabile.
     \begin{proof}
-        Sia $\Sigma \subset 2^Y$ tale che $f : (X,\A)\to (Y,\Sigma)$ sia misurabile. Per definizione di funzione misurabile, abbiamo che per ogni $E \in \Sigma$, abbiamo che $f^{-1}(E)\in \A$, dunque $\Sigma\subset f_\sharp\A$.\\
+        Sia $\Omega \subset 2^Y$ tale che $f : (X,\A)\to (Y,\Omega)$ sia misurabile. Per definizione di funzione misurabile, abbiamo che per ogni $E \in \Omega$, abbiamo che $f^{-1}(E)\in \A$, dunque $\Omega\subset f_\sharp\A$.\\
         Sia $\Sigma \subset 2^X$ tale che $f : (X,\Sigma)\to (Y,\B)$ sia misurabile. Per definizione di funzione misurabile, abbiamo che per ogni $E \in f_\flat\B$ si ha che $E = f^{-1}(F)$ con $F \in B$ e quindi che $E \in \Sigma$, dunque $f_\flat\B\subset \Sigma$.
     \end{proof}
 \end{remark}
@@ -110,7 +120,7 @@ Analogamente alle costruzioni di topologia iniziale e finale, definiamo
     La \bemph{misura esterna iniziale} di $f$ rispetto a $\nu$ è la funzione
     \[f_\flat\nu : 2^X \to [0,+\infty] \quad \text{con} \quad f_\flat\nu(E) := \nu(f(E))\]
 \end{definition}
-\begin{proposition}{}{misura esterna finale}
+\begin{proposition}{}{misure esterne indotte}
     Nella situazione della definizione \ref{def:misure esterne indotte}, $f_\sharp\mu$ è una misura esterna su $Y$ e $f_\flat\nu$ è una misura esterna su $X$.
     \begin{proof}
         Dimostriamo i tre assiomi di misura esterna per $f_\sharp\mu$:\begin{enumerate}
@@ -162,13 +172,44 @@ Analogamente alle costruzioni topologiche, usiamo questa teoria per parlare di s
     \end{proof}
 \end{remark}
 
-\begin{proposition}{}{}
+\begin{proposition}{Misurabili iniziali rispetto all'inclusione}{misurabili iniziali inclusione}
     Sia $(X,\A)$ uno spazio misurabile, sia $Z\subset X$ un suo sottoinsieme e sia $i : Z \to X$ l'inclusione canonica.\\
     Allora $\A|_Z = i_\flat \A$.
     \begin{proof}
         Per $E \in i_\flat \A$ vale se e solo se $E = i^{-1}(F)$ per qualche $F \in \A$, ma per ogni $F \in 2^X$ vale $i^{-1}(F) = F \cap Z$, dunque $E = F\cap Z$ per qualche $F \in \A$ e quindi $E \in \A|_Z$.
     \end{proof}
 \end{proposition}
+
+\begin{definition}{Sottomisura esterna}{sottomisura esterna}
+    Sia $X$ un insieme, $Z\subset X$ un suo sottoinsieme, $i:Z\to X$ l'inclusione canonica e sia $\mu : 2^X \to [0,+\infty]$ una misura esterna su $X$.\\
+    Allora $i_\flat \mu$ si dice \bemph{sottomisura esterna} su $Z$ rispetto a $X$.
+\end{definition}
+
+Notiamo che è effettivamente una misura esterna per la proposizione \ref{prop:misure esterne indotte}, adesso specifichiamo 
+
+\begin{proposition}{Sottomisura esterna e restrizione}{sottomisura esterna}
+    Nella situazione della definizione \ref{def:sottomisura esterna}, vale $i_\flat \mu = \mu|_{2^Z} = \mu \cdot \chi_Z$.
+\end{proposition}
+
+\subsection{Spazi misurabili rinforzati}
+
+Un concetto fondamentale in teoria della misura è quello proprietà valide $\mu$-quasi ovunque, ma sorge il problema della scelta di una misura. In realtà è possibile "indebolire" questo requisito, specificando la famiglia degli insiemi nulli di uno spazio misurabile e imponendo un requisito di "fedeltà" per le misure che vorremo definire su di esso.
+
+\begin{definition}{$\sigma$-ideale}{sigma-ideale}
+    Sia $X$ un insieme e $I \subset 2^X$ una famiglia di insiemi tale che:\begin{enumerate}
+        \item $\varnothing \in I$.
+        \item Se $N \in I$ e $M\subset N$ allora $M \in I$.
+        \item Se $\{N_i\}_{i \in \N}\subset I$ allora $\cup_\N N_i \in I$.
+    \end{enumerate}
+    Allora $I$ si dice $\sigma$\bemph{-ideale} su $X$. In particolare, se $X \notin I$, allora $I$ si dice $\sigma$-\bemph{ideale proprio}, altrimenti improprio\footnote{In quanto avremmo $I=2^X$, non particolarmente utile nel migliore dei casi.}.
+\end{definition}
+
+\begin{definition}{Spazio misurabile rinforzato}{spazio misurabile rinforzato}
+    Sia $X$ un insieme, $\A$ una $\sigma$-algebra su $X$ e $\mc{N}$ un $\sigma$-ideale su $X$ tale che $\mc{N}\subset \A$.\\
+    Allora $(X,A,\mc{N})$ si dice \bemph{spazio misurabile rinforzato} e gli insiemi di $\mc{N}$ si dicono \bemph{nulli} o trascurabili.
+\end{definition}
+
+
 
 \section{Teoria dell'integrazione}
 
@@ -327,8 +368,6 @@ Cercheremo di dimostrare il TFA per cambiamenti di coordinate \bemph{lineari} co
     \end{proof}
 \end{theorem}
 
-\section{Delirio categorico}
-
-Questa nostra costruzione può essere formalizzata come $\Phi : (X,\bullet) \times \mor(X,\star) \to \catname{Meable}$ che mappa la coppia $((X,\mc{A}), f:X\to Y)$ in $(Y,f\mc{A})$, non credo sia più estensibile perchè è necessario che il supporto del primo spazio misurabile sia lo stesso insieme di partenza della funzione.
+\printbibliography
 
 \end{document}
