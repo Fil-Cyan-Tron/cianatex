@@ -28,6 +28,7 @@
 
 \begin{notation}
     Useremo le seguenti convenzioni:\begin{itemize}
+        \item Generalmente un insieme $X$ è assunto non vuoto.
         \item Dato un insieme $X$, indicheremo con $2^X$ il suo insieme delle parti.
         \item Dato un insieme $X$ e un sottoinsieme $E\subset X$, indicheremo con $E^c$ il suo complementare $X\setminus E$.
         \item Dato un insieme $X$ e una sua famiglia di sottoinsiemi $\F \subset 2^X$, la notazione $\{A_i\}_{i \in I} \subset \F$ rappresenta una funzione $\varphi: I \to \F$ che a ciascun indice mappa un insieme di $\F$ e indichiamo:
@@ -152,18 +153,23 @@ Analogamente alle costruzioni topologiche, usiamo questa teoria per parlare di s
     Allora $i_\flat \mu$ si dice \bemph{sottomisura esterna} su $Z$ rispetto a $X$.
 \end{definition}
 
-Notiamo che è effettivamente una misura esterna per la proposizione \ref{prop:misure esterne indotte}, adesso specifichiamo 
+Notiamo che è effettivamente una misura esterna per la proposizione \ref{prop:misure esterne indotte}, adesso curiamoci di trovare un modo di calcolarla magari
 
 \begin{proposition}{Sottomisura esterna e restrizione}{sottomisura esterna}
     Nella situazione della definizione \ref{def:sottomisura esterna}, vale $i_\flat \mu = \mu|_{2^Z} = \mu \cdot \chi_Z$.
+    \begin{proof}
+        Per definizione, per ogni $E\subset X$ si ha $i_\flat \mu(E) = \mu(i^{-1}(E)) = \mu(E\cap Z) = \mu(E) = \mu|_{2^Z}(E)$.
+    \end{proof}
 \end{proposition}
 
 \pagebreak
 \subsection{Spazi misurabili prodotto}
 
+A onor di completezza, sarebbe possibile trattare anche i prodotti da questo punto di vista, ma si tratta di costruzioni complesse e 
+
 \begin{definition}{Spazio misurabile prodotto}{spazio misurabile prodotto}
     Siano $(X,\A)$ e $(Y,\B)$ due spazi misurabili, $X\times Y$ il prodotto cartesiano dei due insiemi e $\pi_X : X\times Y \to X$ e $\pi_Y : X\times Y \to Y$ le proiezioni canoniche.\\
-    Lo \bemph{spazio misurabile prodotto} $(X,\A)\otimes (X,\B)$ è lo spazio $(X\times Y, \A \otimes \B)$ dove $\A \otimes\B$ è la più piccola $\sigma$-algebra che contenga gli insiemi della forma $A\times B$ con $A \in \A$ e $B \in \B$.
+    Lo \bemph{spazio misurabile prodotto} $(X,\A)\otimes (X,\B)$ è lo spazio $(X\times Y, \A \otimes \B)$ dove $\A \otimes\B$ è la più piccola $\sigma$-algebra che contenga gli insiemi della forma $A\times B$ con $A \in \A$ e $B \in \B$, in altre parole, definiamo in questo modo $\A\otimes\B := \langle\{A\times B \in 2^{X\times Y} : A \in \A, B\in \B\}\rangle$.
 \end{definition}
 \begin{remark}{}{}
     Siano $(X,\A)$ e $(Y,\B)$ due spazi misurabili, $X\times Y$ il prodotto cartesiano dei due insiemi e $\pi_X : X\times Y \to X$ e $\pi_Y : X\times Y \to Y$ le proiezioni canoniche.\\
@@ -174,6 +180,9 @@ Notiamo che è effettivamente una misura esterna per la proposizione \ref{prop:m
     \end{proof}
 \end{remark}
 
+\begin{definition}{Misura esterna prodotto}{misura esterna prodotto}
+    Siano $X,Y$ due insiemi rispettivamente con misure esterne $\mu : X \to [0,+\infty]$ e $\nu: Y \to [0,+\infty]$. Una \bemph{misura prodotto} di $\mu$ e $\nu$ è una misura esterna $\mu \otimes \nu$ su $X\times Y$ tale che $(\mu \otimes \nu)(A \times B) = \mu(A)\nu(B) $
+\end{definition}
 
 \pagebreak
 \subsection{Spazi misurabili rinforzati}
