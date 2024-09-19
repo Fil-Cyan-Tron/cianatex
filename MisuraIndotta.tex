@@ -241,23 +241,23 @@ Dove $\L$ è la misura di Lebesgue sui numeri reali.
 \begin{theorem}{Integrazione indotta}{integrazione indotta}
     Sia $(X,\mc{A},\mu)$ uno spazio con misura, sia $Y$ un insieme, sia $f:X\to Y$ una funzione biettiva e sia $g:(Y,f\mc{A},f\mu)\to (\R,\B(\R),\L^1)$ una funzione $f\mc{A}$-misurabile.\\
     Allora $g$ è $f\mu$-integrabile se e solo se $g\circ f$ è $\mu$-integrabile, e vale l'identità
-    \[\int\limits g \de f\mu = \int\limits g\circ f \de \mu\]
+    \[\intop g \de f\mu = \intop g\circ f \de \mu\]
     \begin{proof}
         Assumiamo che $g$ sia $f\mu$-integrabile. Allora vale
-        \[\int\limits g \de f\mu = \int\limits_* g \de f\mu = \sup\left\{I_{f\mu}(\varphi) : \varphi \in \Sigma_-(g)\right\}=\sup\left\{ \sum_i a_i f\mu(\varphi^{-1}(\{a_i\})) : \varphi \in \Sigma_-(g) \right\} =\]
+        \[\intop g \de f\mu = \intop_* g \de f\mu = \sup\left\{I_{f\mu}(\varphi) : \varphi \in \Sigma_-(g)\right\}=\sup\left\{ \sum_i a_i f\mu(\varphi^{-1}(\{a_i\})) : \varphi \in \Sigma_-(g) \right\} =\]
         \[ = \sup\left\{ \sum_i a_i \mu(f^{-1}(\varphi^{-1}(\{a_i\}))) : \varphi \in \Sigma_-(g) \right\} = \sup\left\{ \sum_i a_i \mu((\varphi \circ f)^{-1}(\{a_i\})) : \varphi \circ f \in \Sigma_-(g\circ f) \right\}\]
-        \[\text{con } \psi := \varphi \circ f, \quad \int\limits_* g \de f\mu =\sup\left\{ I_\mu(\psi) : \psi \in \Sigma_-(g\circ f) \right\} = \int\limits_* g \circ f \de \mu\]
+        \[\text{con } \psi := \varphi \circ f, \quad \intop_* g \de f\mu =\sup\left\{ I_\mu(\psi) : \psi \in \Sigma_-(g\circ f) \right\} = \intop_* g \circ f \de \mu\]
         La dimostrazione è assolutamente analoga per l'integrale superiore e nella direzione opposta assumendo l'integrabilità di $g\circ f$. Le varie uguaglianze seguono dalla biettività di $f$.
     \end{proof}
 \end{theorem}
 
 \begin{remark}{Girotondone per il TFA}{}
     L'obiettivo di questo scherzetto è dimostrare il TFA per cambiamenti di coordinate, ovvero
-    \[\int\limits g \de \L^n = \int\limits (g \circ f)\cdot J_f \de \L^n  \]
+    \[\intop g \de \L^n = \intop (g \circ f)\cdot J_f \de \L^n  \]
     Ma c'è un problema: noi abbiamo dimostrato un risultato dalla forma leggermente diversa, ovvero 
-    \[\int\limits g \de f\mu = \int\limits g\circ f \de \mu \]
+    \[\intop g \de f\mu = \intop g\circ f \de \mu \]
     Osservando il TFA ci aspettiamo che la nostra $\de f\mu$ corrisponda a $J_f \de \L^n$, dunque dobbiamo fare un piccolo giretto usando la biettività di $f$:
-    \[\int\limits g \de \lambda = \int\limits g \circ f \circ f^{-1} \de \lambda = \int\limits g \circ f \de f^{-1}\lambda\]
+    \[\intop g \de \lambda = \intop g \circ f \circ f^{-1} \de \lambda = \intop g \circ f \de f^{-1}\lambda\]
     In questo modo ci basta riuscire a far corrispondere $J_f \de \L^n$ a $\de f^{-1} \L^n$
 \end{remark}
 
@@ -266,9 +266,9 @@ Dove $\L$ è la misura di Lebesgue sui numeri reali.
 
 \begin{theorem}{Teorema di Radòn-Nikodym}{Radòn-Nikodym}
     Sia $(X,\mc{A})$ uno spazio misurabile e siano $\nu, \mu$ misure su $(X,\mc{A})$ tali che $\mu$ sia $\sigma$-finita e $\nu$ sia assolutamente continua rispetto a $\mu$. Allora esiste una funzione $\mc{A}$-misurabile $f: X \to [0,+\infty[$ tale che per ogni $E \in \mc{A}$ si abbia
-    \[\nu(A) = \int\limits_A f \de \mu \]
+    \[\nu(A) = \intop_A f \de \mu \]
     E per una funzione $\nu$-integrabile $g : (X,\mc{A},\nu)\to \R$ vale
-    \[\int\limits g \de \nu = \int\limits g \cdot f \de \mu\]
+    \[\intop g \de \nu = \intop g \cdot f \de \mu\]
 \end{theorem}
 \begin{definition}{Derivata di Radòn-Nikodym}{derivata di Radòn-Nikodym}
     Nella situazione precedente, la funzione $f$ si dice \bemph{derivata di Radòn-Nikodym} di $\nu$ rispetto a $\mu$ e si indica con
@@ -281,9 +281,9 @@ Dove $\L$ è la misura di Lebesgue sui numeri reali.
 %     \begin{proof}
 %         Sia $0<L<1$ la costante di Lipschitz di $f$ e sia $A\in \mc{A}$ un insieme di misura nulla.\\
 %         Abbiamo che $f^{-1}\mu(A) = \mu(f(A))$. Osserviamo che $f(A)$ è isometricamente equivalente a un sottoinsieme di $A$, dunque $f(A)$ ha misura nulla per monotonia di $\mu$. Abbiamo dunque che esiste una funzione $\mu$-integrabile $g : X \to [0,+\infty]$  tale che 
-%         \[f^{-1}\mu(E) = \int\limits_E g\de \mu = \int g \chi_E \de \mu = \int\limits_* g \chi_E \de \mu = \sup\left\{ I_\mu (\varphi) : \varphi \in \Sigma_-(g\chi_E)\right\}\]
+%         \[f^{-1}\mu(E) = \intop_E g\de \mu = \int g \chi_E \de \mu = \intop_* g \chi_E \de \mu = \sup\left\{ I_\mu (\varphi) : \varphi \in \Sigma_-(g\chi_E)\right\}\]
 %         Combinando con la definizione di misura finale
-%         \[f^{-1}\mu(E) = \mu (f(E)) = \int\limits_{f(E)}\de\mu\]
+%         \[f^{-1}\mu(E) = \mu (f(E)) = \intop_{f(E)}\de\mu\]
 %     \end{proof}
 % \end{corollary}
 
@@ -310,7 +310,7 @@ Dove $\L$ è la misura di Lebesgue sui numeri reali.
 %     Sia $(X,\mc{A},\mu)$ uno spazio con misura $\sigma$-finita e $f:(X,\mc{A},\mu)\to X$ tale che $f:(X,\mc{A},\mu)\to(X,f\mc{A},f\mu)$ sia una funzione R-N.
 %     \begin{proof}
 %         Applicando il teorema \ref{th:Radòn-Nikodym} sappiamo che esiste $g:(X,\mc{A},\mu)\to [0,+\infty[$ tale che
-%         \[f\mu(E) = \int\limits_E g \de \mu = \int\limits_{f^{-1}(E)}\de \mu\]
+%         \[f\mu(E) = \intop_E g \de \mu = \intop_{f^{-1}(E)}\de \mu\]
 %     \end{proof}
 % \end{proposition}
 
@@ -320,9 +320,9 @@ Dove $\L$ è la misura di Lebesgue sui numeri reali.
     \begin{proof}
         È sufficiente dimostrarlo sulle palle aperte, dato che queste costituiscono una base della topologia e dunque della $\sigma$-algebra Boreliana.\\
         Per ogni $r>0$ e ogni $x \in X$ abbiamo che  $F(B_r(x)) \subset B_{Lr}(F(x))$ che implica $\mu(F(B_r(x)))\le \mu(B_{Lr}(F(x))) = L^n\mu(B_r(F(x)))$ il che implica che per ogni insieme, $F^{-1}(E) \le \mu(E)$, dunque sappiamo che deve esistere $g: (X,d,\mu)\to [0,+\infty[$ tale che
-        \[F^{-1}\mu(E) = \int\limits_E g \de \mu\]
+        \[F^{-1}\mu(E) = \intop_E g \de \mu\]
         Ancora una volta lavoriamo sulle palle
-        \[\forall r>0,\forall x \in X, 0\le \int\limits_{B_r(x)} g(y)\de \mu(y) \le \int\limits_{B_r(x)} L^n \de\mu(y) \Rarr g \le_\mu L^n \]
+        \[\forall r>0,\forall x \in X, 0\le \intop_{B_r(x)} g(y)\de \mu(y) \le \intop_{B_r(x)} L^n \de\mu(y) \Rarr g \le_\mu L^n \]
     \end{proof}
 \end{proposition}
 
@@ -334,7 +334,7 @@ Cercheremo di dimostrare il TFA per cambiamenti di coordinate \bemph{lineari} co
 \begin{lemma}{Misura indotta da un cambiamento di coordinate lineare}{misura indotta lineare}
     Sia $F: (\R^n, \M_\L, \L^n) \to \R^n$ una mappa lineare invertibile.\\
     Allora $F^{-1}\L^n = |\det F|\cdot \L^n$ e dunque
-    \[F^{-1}\L^n(E) = \int\limits_E |\det F|\de \L^n\]
+    \[F^{-1}\L^n(E) = \intop_E |\det F|\de \L^n\]
     \begin{proof}
         Sia $E \in F\M_\L$. Per definizione di misura indotta, abbiamo che $F^{-1}\L^n(E) = \L^n(F(E))$ e che, come visto nel corso di Geometria A è uguale a $|\det F|\cdot \L^n(E)$.
     \end{proof}
@@ -342,7 +342,7 @@ Cercheremo di dimostrare il TFA per cambiamenti di coordinate \bemph{lineari} co
 
 \begin{theorem}{TFA per cambiamenti di coordinate lineari}{}
     Sia $F : \R^n \to \R^n$ una mappa lineare invertibile e sia $g: \R^n \to \R$ una funzione $\L^n$-integrabile. Vale il seguente fatto:
-    \[\int\limits g \de \L^n = \int\limits (g \circ F) \cdot |\det F| \de \L^n \] 
+    \[\intop g \de \L^n = \intop (g \circ F) \cdot |\det F| \de \L^n \] 
 \end{theorem}
 
 % \begin{lemma}{NON SO SE SERVA DAVVERO}{}
@@ -355,7 +355,7 @@ Cercheremo di dimostrare il TFA per cambiamenti di coordinate \bemph{lineari} co
 
 \begin{theorem}{Derivata R-N di una misura finale di diffeomorfismi}{R-N per misure finali di diffeomorfismi}
     Sia $\varphi : (\R^n, \M_\L, \L^n) \to \R^n$ un diffeomorfismo locale e sia $E \subset \R^n$ un aperto. Allora 
-    \[\varphi^{-1}\L^n(E) = \int\limits_E|\det D_\varphi|\de \L^n\]
+    \[\varphi^{-1}\L^n(E) = \intop_E|\det D_\varphi|\de \L^n\]
     Equivalentemente
     \[\frac{\de \varphi^{-1} \L^n}{\de \L^n} = |\det D_\varphi|\]
     Nel senso della definizione \ref{def:derivata di Radòn-Nikodym} della derivata di Radòn-Nikodym.
@@ -363,15 +363,15 @@ Cercheremo di dimostrare il TFA per cambiamenti di coordinate \bemph{lineari} co
         Il fatto che $\varphi^{-1}\L^n \ll \L^n$ segue dalla proposizione \ref{prop:R-N-Lipschitz}, infatti se $\varphi$ è un diffeomorfismo è almeno localmente lipschitziana e in ogni insieme limitato $V$ ha costante di Lipschitz $\sup_V |\det D_\varphi|$.\\
         Poniamo $|\det D_\varphi(x)| =: J(x)$.\\
         Sia $E\subset \R^n$ un aperto. Localmente la trasformazione $\varphi$ agisce come una trasformazione lineare $D_\varphi$, dunque in intorni $V_i$ sufficientemente piccoli di punti $x_i\in E$ indicizzati su un insieme numerabile $I$ applichiamo il lemma \ref{lemma:misura indotta lineare} e abbiamo $\varphi^{-1} \L^n \sim D_\varphi \L^n = J(x)\cdot \L^n$. Dunque posti possiamo scrivere
-        \[\varphi^{-1}\L^n(E) = \sum_{i \in I} \int\limits_{V_i} J(x_i)\de \L^n = \sum_{i \in I} \int\limits_E J(x_i) \chi_{V_i}(y)\de \L^n(y)\]
+        \[\varphi^{-1}\L^n(E) = \sum_{i \in I} \intop_{V_i} J(x_i)\de \L^n = \sum_{i \in I} \intop_E J(x_i) \chi_{V_i}(y)\de \L^n(y)\]
         Facendo una \textit{mossa alla Gottinga} riconosciamo una regolarità sufficiente ad applicare uno strano genere di integrale di Riemann rendendo sempre più piccoli i nostri intorni aumentando il loro numero e otteniamo
-        \[\varphi^{-1}\L^n(E) = \int\limits_E J \de \L^n = \int\limits_E |\det D_\varphi|\de \L^n\]
+        \[\varphi^{-1}\L^n(E) = \intop_E J \de \L^n = \intop_E |\det D_\varphi|\de \L^n\]
     \end{proof} 
 \end{theorem}
 
 \begin{theorem}{TFA}{}
     Sia $\varphi : \R^n \to \R^n$ un diffeomorfismo locale e $g : \R^n \to \R$ una funzione $\L^n$-integrabile. Vale
-    \[\int\limits g \de \L^n = \int (g \circ \varphi)\cdot |\det D_\varphi|\de \L^n\]
+    \[\intop g \de \L^n = \int (g \circ \varphi)\cdot |\det D_\varphi|\de \L^n\]
     \begin{proof}
         La dimostrazione è banale combinando i non banali teoremi \ref{th:integrazione indotta}, \ref{th:Radòn-Nikodym} e \ref{th:R-N per misure finali}.
     \end{proof}
