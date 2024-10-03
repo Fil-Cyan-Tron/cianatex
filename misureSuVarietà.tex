@@ -1,0 +1,34 @@
+\documentclass{article}
+\usepackage{cianatex}
+
+\title{Teoria della misura per la Geometria Algebrica}
+\date{A.A. 2024/2025}
+\author{Filippo $\L$ Troncana}
+
+\newcommand\spec{\operatorname{Spec}}
+\newcommand\spech{\spec _h}
+\newcommand\specm{\spec_m}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+    Durante lo studio della teoria della misura, generalmente si cercano misure $\sigma$-finite, boreliane, Borel-regolari, di Radon e così via, ma il problema è che la topologia di Zariski (o le topologie noetheriane in generale) non si comportano bene da questo punto di vista, in quanto tutti i sottoinsiemi sono compatti e tutti gli aperti sono densi, quindi i risultati di teoria della misura applicabili su queste topologie risultano... poco interessanti?
+\end{abstract}
+
+\begin{notation}
+    $\P^n$ sarà lo spazio proiettivo su $\C^{n+1}$.\\
+    $S$ sarà l'anello di $\C[x_0,...,x_n]$.
+    $\spec(S)$ è l'insieme degli ideali primi, $\spech(S)$ di quelli omogenei e $\specm(S)$ di quelli massimali in $S$.
+\end{notation}
+
+\section{Richiami di geometria algebrica e teoria della misura}
+
+\begin{definition}{Topologia di Zariski}{zariski top}
+    Sia $\zeta \subset 2^{\P^n}$ la famiglia definita da 
+    \[\zeta = \{X \subset \P^n : \exists I \in \spech(S) : X = Z(I)\}\]
+    Questa è la famiglia dei chiusi di una topologia (definita per chiusi) detta \bemph{topologia di Zariski}.
+\end{definition}
+
+\end{document}

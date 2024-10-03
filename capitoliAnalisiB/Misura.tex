@@ -158,13 +158,83 @@
 
 \begin{theorem}{*** | CARATHÉODORY}{CARATHÉODORY}
     Sia $\varphi$ una misura esterna di CARATHÉODORY su $(X,d)$. Ogni sottoinsieme chiuso di $X$ è misurabile.
+\end{theorem}
+
+\begin{remark}{}{}
+    In realtà per nel teorema \ref{th:CARATHÉODORY} vale anche il viceversa, una misura esterna su uno spazio metrico che misura i chiusi è necessariamente metrica.
+\end{remark}
+
+\begin{proposition}{$\sigma$-algebra generata}{sigma-algebra generata}
+    Sia $I \subset 2^X$ una famiglia di sottoinsiemi e sia $\mc{A}_I$ la famiglia delle $\sigma$-algebre in $X$ contenenti $I$, definiamo la $\sigma$\bemph{-algebra generata} da $I$ la famiglia
+    \[\Sigma(I) := \bigcap_{\Sigma \in \mc{A}_I} \Sigma \]
+    Essa è una $\sigma$-algebra, inoltre se $I \in \mc{A}_I$ allora $I = \Sigma(I)$ e la mappa $I \mapsto \Sigma(I)$ è monotona crescente per inclusione.
     \begin{proof}
-        Supponiamo che $C\in 2^X$ sia chiuso e $A \in 2^X$ qualsiasi. Vogliamo dimostrare che $\varphi(A)\ge \varphi(A\cap C) + \varphi(A \cap C^c)$ dato che il $\le$ ce l'abbiamo per la subaddittività.\\
-        Se $\varphi(A) = +\infty$ la tesi è banale, dunque supponiamo che sia finita e per $h \in \N$ definiamo $C_h := \{x \in X : d(\{x\},C) \le 2^{-h}\}$: osserviamo che è chiuso, in quanto controimmagine di $[0,2^{-h}]$ per una funzione continua. Segue dunque che:
-        \[i)\: d(A\cap C , A\cap C_h^c) = 2^{-h}, \qquad ii)\: (A\cap C)\cup(A\cap C_h^c) \subset A\]
-        Dunque per la monotonia di $\varphi$ abbiamo $\varphi(A)\ge \varphi(A\cap C) + \varphi(A\cap C_h^c)$. Dobbiamo solamente dimostrare che con $h \to +\infty$, il nostro $C_h$ tende a $C$. innanzitutto osserviamo che il limite esiste per monotonia, e inoltre abbiamo che 
-        \[\forall h \in \N, C \subset C_{h+1} \subset C_h\]
-        E dunque per de Morgan
-        \[ \]
+        Banalmente $\Sigma(I)$ è in $\mc{A}_I$ e per minimalità vale $\Sigma(I)\subset I \subset \Sigma(I)$.\\
+        Notiamo che se $I \subset J$ allora $\mc{A}_I \supset \mc{A}_J$, l'intersezione ribalta di nuovo l'inclusione e quindi segue la monotonia.
+    \end{proof}
+\end{proposition}
+
+\begin{proposition}{$\sigma$-algebra boreliana}{boreliani}
+    Sia $(X,\tau)$ uno spazio topologico, siano $F_\tau$ i chiusi di $X$ e $K_\tau$ i compatti. Valgono le seguenti: \begin{enumerate}
+        \item $\Sigma(\tau) = \Sigma(F_\tau)$.
+        \item Se $X$ è $T_2$, $\Sigma(K_\tau) \subset \Sigma(F_\tau)$.
+        \item Se $(X,d)$ è metrico e separabile, $\Sigma(K_\tau) = \Sigma(\tau)$.
+    \end{enumerate}
+    \begin{proof}
+        \begin{enumerate}
+            \item Banale, i chiusi sono tutti e soli i complementari degli aperti.
+            \item In uno spazio di Hausdorff i compatti sono chiusi, dunque l'inclusione segue dalla monotonia.
+            \item Dimostriamolo in $\R^n$. Dato che $(X,d)$ è di Hausdorff e vale il punto precedente,  dunque l'unica cosa che abbiamo bisogno di dimostrare è che $\tau \subset \Sigma(K_\tau)$.\\
+            Posto $G \in \tau$, indichiamo con $B_\Q$ la famiglia delle palle chiuse di raggio e centro razionali contenute in $G$ e notiamo che $\#B_\Q = \# \Q^n\times \Q_{>0} = \# \N$. Proviamo che $G = \cup B_\Q$, un'inclusione ($\cup B_\Q\subset G$) è banale quindi consideriamo l'altra.\\
+            Prendiamo $x \in G$, sappiamo che esiste $B_r(x)$ completamente contenuta in $G$, per densità di $\Q^n$ esiste $Q \in B_{r/3}(x) \cap \Q^n$ e $q \in ]r/3, r/2[\cap \Q$ tale che $G \supset \bar{B}_q(Q) \in B_\Q$, dunque tutti i punti di $G$ appartengono almeno a una palla razionale.\\
+            A questo punto notiamo che $\Sigma(\tau)$ è stabile per unione numerabile e dunque $G \in \Sigma(K_\tau)$.
+        \end{enumerate}
+\end{proof}
+\end{proposition}
+
+\begin{remark}{}{}
+    In uno spazio topologico non metrico e non separabile potrebbe non valere l'ultimo punto di proposizione \ref{prop:boreliani}, basta considerare $[0,1]$ con la topologia discreta, dove vale $\tau = \Sigma(\tau) = 2^{[0,1]}$, dove $K_\tau$ è la famiglia degli insiemi finiti e $\Sigma_0$ quella degli insiemi numerabili o conumerabili introdotta nell'esempio \ref{exmp:esempi di sigma-algebre} vale $\Sigma(K_\tau) \subset \Sigma_0 \subset 2^{[0,1]} \ne \Sigma_0$.
+\end{remark}
+
+\begin{definition}{Boreliani}{}
+    Sia $(X,\tau)$ uno spazio topologico e sia $\mu : 2^X \to [0,+\infty]$ una misura esterna. Allora:\begin{enumerate}
+        \item La $\sigma$-algebra $\Sigma(\tau)$ viene denotata con $\B(X)$ ed è detta dei \bemph{boreliani} di $X$.
+        \item Se $\B(X) \subset \M_\mu$, $\mu$ si dice \bemph{boreliana}.
+        \item Se $\mu$ è boreliana e per ogni insieme $S$ esiste un boreliano che contiene $S$ di misura uguale, questa si dice \bemph{Borel-regolare}.
+        \item Se $\mu$ è Borel-regolare e finita sui compatti, si dice \bemph{di Radòn}.
+    \end{enumerate}
+\end{definition}
+\begin{corollary}{Di CARATHÉODORY}{CARATHÉODORY}
+    Una misura esterna metrica è boreliana.
+\end{corollary}
+
+Valgono i seguenti due risultati senza dimostrazione:
+\begin{theorem}{}{}
+    Sia $\mu$ una misura esterna boreliana su uno spazio metrico $(X,d)$ e sia $B$ un boreliano. Valgono i seguenti fatti:\begin{enumerate}
+        \item Se la misura di $B$ è finita, per ogni $\varepsilon > 0$ esiste un chiuso $F$ contenuto in $B$ tale che $\mu(B\setminus F) \le \varepsilon$.
+        \item Se $B$ è contenuto in un'unione di insiemi aperti di misura finita, per ogni $\varepsilon > 0$ esiste un aperto $G$ contenente $B$ tale che $\mu(G\setminus B) \le \varepsilon$. 
+    \end{enumerate}
+\end{theorem}
+\begin{theorem}{}{}
+    Sia $\mu$ una misura esterna Borel-regolare su uno spazio metrico $(X,d)$ e sia $B$ un misurabile. Valgono i seguenti fatti:\begin{enumerate}
+        \item Se la misura di $B$ è finita, per ogni $\varepsilon > 0$ esiste un chiuso $F$ contenuto in $B$ tale che $\mu(B\setminus F) \le \varepsilon$.
+        \item Se $B$ è contenuto in un'unione di insiemi aperti di misura finita, per ogni $\varepsilon > 0$ esiste un aperto $G$ contenente $B$ tale che $\mu(G\setminus B) \le \varepsilon$. 
+    \end{enumerate}    
+\end{theorem}
+
+\subsection{Misura di Lebesgue}
+\begin{theorem}{Grande teorema di Lebesgue}{Lebesgue grosso}
+    Sia la funzione $\L^n : 2^{\R^n} \to [0,+\infty]$ definita da:
+    \[\L^n (E) = \begin{cases}
+        \inf\left\{ \sum_j v(I_j) : \{I_j\}_j \in \mc{R}(E)  \right\}& \text{se } E \neq \varnothing\\ 0 & \text{altrimenti}
+    \end{cases}\]
+    Dove $\mc{R}(E)$ è la famiglia dei ricoprimenti numerabili di intervalli aperti di $E$ e $v$ è la misura elementare di un intervallo. Allora $\L^n$ è una misura esterna metrica di Radòn.
+    \begin{proof}
+        Procediamo un punto alla volta
+        \begin{itemize}
+            \item $\L^n(\varnothing) = 0$ per definizione.
+            \item Supponiamo $0 \neq E \subset F \subset \R^n$, vale evidentemente che $\mc{R}(F) \subset \mc{R}(E)$ e quindi calcolando l'inf su un insieme più grosso otteniamo $\L^n(E) \le \L^n(F)$.
+            \item 
+        \end{itemize}
     \end{proof}
 \end{theorem}
