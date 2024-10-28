@@ -24,11 +24,10 @@
         \RequirePackage{phaistos}
 
     %Ambienti
-        %Teoremi
-            %\RequirePackage{amsthm}
         %Box colorate
             \RequirePackage[most]{tcolorbox}
             \tcbuselibrary{theorems}
+            \tcbuselibrary{skins}
 
     %Tabelle
         %Tabelle di base
@@ -260,16 +259,16 @@
                 fonttitle=\bfseries,
                 sharp corners
                 }{th}
-            \newtcolorbox{proofbox}{
-                enhanced,
-                breakable,
-                colback=white,
-                colframe=proofcolor, 
-                fonttitle=\bfseries, 
-                title=Dimostrazione,
-                sharp corners
-                }
-            \newenvironment{proof}{\proofbox}{\begin{flushright}$\square$\end{flushright}\endproofbox}
+            % \newtcolorbox{proofbox}{
+            %     enhanced,
+            %     breakable,
+            %     colback=white,
+            %     colframe=proofcolor, 
+            %     fonttitle=\bfseries, 
+            %     title=Dimostrazione,
+            %     sharp corners
+            %     }
+            % \newenvironment{proof}{\proofbox}{\begin{flushright}$\square$\end{flushright}\endproofbox}
             \newtcbtheorem[number within=section]{definition}{Definizione}{
                 enhanced,
                 breakable,
@@ -334,3 +333,17 @@
                 fonttitle=\bfseries,
                 sharp corners
                 }{conjecture}
+
+            \newcommand\proof{ \\ \tcblower \paragraph*{Dimostrazione.}}
+
+            \newtcbtheorem[number within=section]{Ptheorem}{Teorema}{
+                enhanced,
+                breakable,
+                colback=theoremcolor!5,
+                colframe=theoremcolor,
+                fonttitle=\bfseries,
+                sharp corners,
+                upperbox=visible,
+                segmentation hidden,
+                lowerbox=visible,
+                }{Pth}
