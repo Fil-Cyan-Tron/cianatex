@@ -242,13 +242,13 @@ Dove $\L$ è la misura di Lebesgue sui numeri reali.
     Sia $(X,\mc{A},\mu)$ uno spazio con misura, sia $Y$ un insieme, sia $f:X\to Y$ una funzione biettiva e sia $g:(Y,f\mc{A},f\mu)\to (\R,\B(\R),\L^1)$ una funzione $f\mc{A}$-misurabile.\\
     Allora $g$ è $f\mu$-integrabile se e solo se $g\circ f$ è $\mu$-integrabile, e vale l'identità
     \[\intop g \de f\mu = \intop g\circ f \de \mu\]
-    \begin{proof}
-        Assumiamo che $g$ sia $f\mu$-integrabile. Allora vale
-        \[\intop g \de f\mu = \intop_* g \de f\mu = \sup\left\{I_{f\mu}(\varphi) : \varphi \in \Sigma_-(g)\right\}=\sup\left\{ \sum_i a_i f\mu(\varphi^{-1}(\{a_i\})) : \varphi \in \Sigma_-(g) \right\} =\]
-        \[ = \sup\left\{ \sum_i a_i \mu(f^{-1}(\varphi^{-1}(\{a_i\}))) : \varphi \in \Sigma_-(g) \right\} = \sup\left\{ \sum_i a_i \mu((\varphi \circ f)^{-1}(\{a_i\})) : \varphi \circ f \in \Sigma_-(g\circ f) \right\}\]
-        \[\text{con } \psi := \varphi \circ f, \quad \intop_* g \de f\mu =\sup\left\{ I_\mu(\psi) : \psi \in \Sigma_-(g\circ f) \right\} = \intop_* g \circ f \de \mu\]
-        La dimostrazione è assolutamente analoga per l'integrale superiore e nella direzione opposta assumendo l'integrabilità di $g\circ f$. Le varie uguaglianze seguono dalla biettività di $f$.
-    \end{proof}
+    \proof
+    Assumiamo che $g$ sia $f\mu$-integrabile. Allora vale
+    \[\intop g \de f\mu = \intop_* g \de f\mu = \sup\left\{I_{f\mu}(\varphi) : \varphi \in \Sigma_-(g)\right\}=\sup\left\{ \sum_i a_i f\mu(\varphi^{-1}(\{a_i\})) : \varphi \in \Sigma_-(g) \right\} =\]
+    \[ = \sup\left\{ \sum_i a_i \mu(f^{-1}(\varphi^{-1}(\{a_i\}))) : \varphi \in \Sigma_-(g) \right\} = \sup\left\{ \sum_i a_i \mu((\varphi \circ f)^{-1}(\{a_i\})) : \varphi \circ f \in \Sigma_-(g\circ f) \right\}\]
+    \[\text{con } \psi := \varphi \circ f, \quad \intop_* g \de f\mu =\sup\left\{ I_\mu(\psi) : \psi \in \Sigma_-(g\circ f) \right\} = \intop_* g \circ f \de \mu\]
+    La dimostrazione è assolutamente analoga per l'integrale superiore e nella direzione opposta assumendo l'integrabilità di $g\circ f$. Le varie uguaglianze seguono dalla biettività di $f$.
+    \qed
 \end{theorem}
 
 \begin{remark}{Girotondone per il TFA}{}
