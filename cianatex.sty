@@ -235,9 +235,9 @@
 
         %Teoremi, proposizioni et cetera
         
-        \renewcommand\proof{\tcbsubtitle[before skip=\baselineskip]{Dimostrazione}}
+        \newcommand\proof{\tcbsubtitle[before skip=\baselineskip]{Dimostrazione}}
         \newcommand\solution{\tcbsubtitle[before skip=\baselineskip]{Soluzione}}
-        \renewcommand\qed{\begin{flushright}$\square$\end{flushright}}
+        \newcommand\qed{\begin{flushright}$\square$\end{flushright}}
         \newcommand\solved{\begin{flushright}\PHrosette\end{flushright}}
 
         \newtcbtheorem[number within=section]{theorem}{Teorema}{

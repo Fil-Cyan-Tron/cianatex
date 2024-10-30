@@ -26,7 +26,7 @@
 
 \tableofcontents
 
-\begin{notation}
+\begin{notation}{}{}
     Useremo le seguenti convenzioni:\begin{itemize}
         \item Generalmente un insieme $X$ è assunto non vuoto.
         \item Dato un insieme $X$, indicheremo con $2^X$ il suo insieme delle parti.
@@ -62,23 +62,21 @@ Analogamente alle costruzioni di topologia iniziale e finale, definiamo
     Definiamo le seguenti famiglie:
     \[f_\sharp \A := \{E \in 2^Y : f^{-1}(E)\in \A\}\qquad \text{e}\qquad f_\flat\B := \{f^{-1}(E) \in 2^X : E \in \B \}\]
     Esse si dicono rispettivamente $\sigma$\bemph{-algebra finale e iniziale} di $f$ rispetto a $\A$ e $\B$.
+    \proof 
+    La dimostrazione che queste siano effettivamente delle $\sigma$-algebre segue banalmente dalla commutatività tra operatori insiemistici, immagine e preimmagine.
+    \qed
 \end{definition}
 
-\begin{proposition}{}{}
-    Nella situazione della definizione \ref{def:sigma-algebre indotte}, $f_\sharp\A$ e $f_\flat\B$ sono $\sigma$-algebre.
-    \begin{proof}
-        Segue banalmente dalla commutatività tra operatori insiemistici, immagine e preimmagine.
-    \end{proof}
-\end{proposition}
+Valgono questi risultati che ci permettono di calcolare in modi più agevoli le nostre $\sigma$-algebre
 
-\begin{remark}{}{}
+\begin{proposition}{}{}
     La $\sigma$-algebra finale di $f$ rispetto a $\A$ è la più grande $\sigma$-algebra $\Omega$ tale che $f : (X,\A)\to (Y,\Sigma)$ sia misurabile.\\
     La $\sigma$-algebra iniziale di $f$ rispetto a $\B$ è la più piccola $\sigma$-algebra $\Sigma$ tale che $f : (X,\Sigma)\to (Y,\B)$ sia misurabile.
-    \begin{proof}
-        Sia $\Omega \subset 2^Y$ tale che $f : (X,\A)\to (Y,\Omega)$ sia misurabile. Per definizione di funzione misurabile, abbiamo che per ogni $E \in \Omega$, abbiamo che $f^{-1}(E)\in \A$, dunque $\Omega\subset f_\sharp\A$.\\
-        Sia $\Sigma \subset 2^X$ tale che $f : (X,\Sigma)\to (Y,\B)$ sia misurabile. Per definizione di funzione misurabile, abbiamo che per ogni $E \in f_\flat\B$ si ha che $E = f^{-1}(F)$ con $F \in B$ e quindi che $E \in \Sigma$, dunque $f_\flat\B\subset \Sigma$.
-    \end{proof}
-\end{remark}
+    \proof
+    Sia $\Omega \subset 2^Y$ tale che $f : (X,\A)\to (Y,\Omega)$ sia misurabile. Per definizione di funzione misurabile, abbiamo che per ogni $E \in \Omega$, abbiamo che $f^{-1}(E)\in \A$, dunque $\Omega\subset f_\sharp\A$.\\
+    Sia $\Sigma \subset 2^X$ tale che $f : (X,\Sigma)\to (Y,\B)$ sia misurabile. Per definizione di funzione misurabile, abbiamo che per ogni $E \in f_\flat\B$ si ha che $E = f^{-1}(F)$ con $F \in B$ e quindi che $E \in \Sigma$, dunque $f_\flat\B\subset \Sigma$.
+    \qed
+\end{proposition}
 
 \begin{definition}{Misure esterne indotte}{misure esterne indotte}
     Siano $X$ e $Y$ due insiemi, siano $\mu$ e $\nu$ due misure esterne rispettivamente su $X$ e su $Y$ e sia $f:X\to Y$ una funzione.\\
@@ -86,44 +84,29 @@ Analogamente alle costruzioni di topologia iniziale e finale, definiamo
     \[f_\sharp\mu : 2^Y \to [0,+\infty] \quad \text{con} \quad f_\sharp\mu(E):= \mu(f^{-1}(E)) \]
     La \bemph{misura esterna iniziale} di $f$ rispetto a $\nu$ è la funzione
     \[f_\flat\nu : 2^X \to [0,+\infty] \quad \text{con} \quad f_\flat\nu(E) := \nu(f(E))\]
+    \proof 
+    Dimostriamo che queste sono effettivamente misure esterne.\\
+    Verifichiamo i tre assiomi di misura esterna per $f_\sharp\mu$:\begin{enumerate}
+        \item $f^{-1}(\varnothing) = \varnothing \Rarr f_\sharp\mu(\varnothing) = 0$.
+        \item Siano $E \subset F \subset Y$, allora $f^{-1}(E)\subset f^{-1}(F)$, dunque la monotonia di $f_\sharp\mu$ segue dalla monotonia di $\mu$.
+        \item Siano $A,B \subset Y$, allora $f^{-1}(A\cup B)= f^{-1}(A) \cup f^{-1}(B)$ e la subaddittività segue da quella di $\mu$
+    \end{enumerate}
+    Ora per $f_\flat\nu$:\begin{enumerate}
+        \item $f(\varnothing) = \varnothing \Rarr f_\flat(\varnothing) = 0$.
+        \item Siano $E \subset F \subset X$, allora $f(E)\subset f(F)$, dunque la monotonia di $f_\flat\nu$ segue dalla monotonia di $\nu$.
+        \item Siano $A,B \subset X$, allora $f(A \cup B) = f(A)\cup f(B)$ e la subaddittività segue da quella di $\nu$.
+    \end{enumerate}
+    \qed
 \end{definition}
-\begin{proposition}{}{misure esterne indotte}
-    Nella situazione della definizione \ref{def:misure esterne indotte}, $f_\sharp\mu$ è una misura esterna su $Y$ e $f_\flat\nu$ è una misura esterna su $X$.
-    \begin{proof}
-        Dimostriamo i tre assiomi di misura esterna per $f_\sharp\mu$:\begin{enumerate}
-            \item $f^{-1}(\varnothing) = \varnothing \Rarr f_\sharp\mu(\varnothing) = 0$.
-            \item Siano $E \subset F \subset Y$, allora $f^{-1}(E)\subset f^{-1}(F)$, dunque la monotonia di $f_\sharp\mu$ segue dalla monotonia di $\mu$.
-            \item Siano $A,B \subset Y$, allora $f^{-1}(A\cup B)= f^{-1}(A) \cup f^{-1}(B)$ e la subaddittività segue da quella di $\mu$
-        \end{enumerate}
-        Ora per $f_\flat\nu$:\begin{enumerate}
-            \item $f(\varnothing) = \varnothing \Rarr f_\flat(\varnothing) = 0$.
-            \item Siano $E \subset F \subset X$, allora $f(E)\subset f(F)$, dunque la monotonia di $f_\flat\nu$ segue dalla monotonia di $\nu$.
-            \item Siano $A,B \subset X$, allora $f(A \cup B) = f(A)\cup f(B)$ e la subaddittività segue da quella di $\nu$.
-        \end{enumerate}
-    \end{proof}
-\end{proposition}
-
-\begin{remark}{TOCORRECT: Bidualità delle $\sigma$-algebre}{bidualità algebre}
-    Nella situazione della definizione \ref{def:sigma-algebre indotte}, $f_\flat f_\sharp \A = \A$ e $f_\sharp f_\flat \B = \B$ SONO INCLUSIONI NON UGUAGLIANZE PER L'UGUAGLIANZA VUOI INIETTIVITÀ E SURIETTIVITÀ.
-    \begin{proof}
-        Per definizione
-        \[f_\flat f_\sharp \A = \{ f^{-1}(E) \in 2^X : E \in f_\sharp \A\} = \{f^{-1}(E) \in 2^X : f^{-1}(E) \in \A\} = \{E \in 2^X : E \in \A\} = \A\]
-        Allo stesso modo
-        \[f_\sharp f_\flat \B = \{ E \in 2^Y : f^{-1}(E) \in f_\flat \B \} = \{ E \in 2^Y : E \in \B\} = \B\]
-    \end{proof}
-\end{remark}
 
 \begin{proposition}{Bidualità delle misure esterne indotte}{bidualità misure}
-    Nella situazione della definizione \ref{def:misure esterne indotte}, $f_\flat f_\sharp\mu \ge \mu$ e $f_\sharp f_\flat\nu \le \nu$. In particolare, se $f$ è iniettiva vale $f_\flat f_\sharp\mu = \mu$ e se $f$ è suriettiva vale $f_\sharp f_\flat\nu = \nu$
-    \begin{proof}
-        Abbiamo che $f_\flat f_\sharp\mu(E) = f_\sharp\mu(f(E)) = \mu(f^{-1}(f(E)))\ge \mu(E)$ per monotonia di $\mu$.\\
-        Allo stesso modo, $f_\sharp f_\flat\nu(E) = f_\flat\nu(f^{-1}(E)) = \nu(f(f^-1(E))) \le \nu(E)$\\
-        L'uguaglianza nei casi particolari segue banalmente.
-    \end{proof}
+    Nella situazione della definizione \ref{def:misure esterne indotte}, $f_\flat f_\sharp\mu \ge \mu$ e $f_\sharp f_\flat\nu \le \nu$. In particolare, se $f$ è iniettiva vale $f_\flat f_\sharp\mu = \mu$ e se $f$ è suriettiva vale $f_\sharp f_\flat\nu = \nu$ e se $f$ è biettiva valgono entrambe le uguaglianze.
+    \proof
+    Abbiamo che $f_\flat f_\sharp\mu(E) = f_\sharp\mu(f(E)) = \mu(f^{-1}(f(E)))\ge \mu(E)$ per monotonia di $\mu$.\\
+    Allo stesso modo, $f_\sharp f_\flat\nu(E) = f_\flat\nu(f^{-1}(E)) = \nu(f(f^-1(E))) \le \nu(E)$\\
+    L'uguaglianza nei casi particolari segue banalmente.
+    \qed
 \end{proposition}
-\begin{corollary}{}{}
-    Sotto le ipotesi della proposizione \ref{prop:bidualità misure}, se $f$ è una funzione biettiva vale l'uguaglianza.
-\end{corollary}
 
 Analogamente alle costruzioni topologiche, usiamo questa teoria per parlare di sottospazi misurabili
 
@@ -132,20 +115,17 @@ Analogamente alle costruzioni topologiche, usiamo questa teoria per parlare di s
 
 \begin{definition}{Sottospazio misurabile}{sottospazio misurabile}
     Sia $(X,\A)$ uno spazio misurabile e $Z\subset X$. Allora, definita la famiglia $\A|_Z := \{E\cap Z \in 2^X : E\in \A\}$, $(Z, \A|_Z)$ si dice \bemph{sottospazio misurabile} di $X$.
+    \proof 
+    Banalmente è uno spazio misurabile.
+    \qed
 \end{definition}
-\begin{remark}{}{sottospazio misurabile}
-    $(Z,\A|_Z)$ è effettivamente uno spazio misurabile.
-    \begin{proof}
-        La dimostrazione è banale.
-    \end{proof}
-\end{remark}
 
 \begin{proposition}{Misurabili iniziali rispetto all'inclusione}{misurabili iniziali inclusione}
     Sia $(X,\A)$ uno spazio misurabile, sia $Z\subset X$ un suo sottoinsieme e sia $i : Z \to X$ l'inclusione canonica.\\
     Allora $\A|_Z = i_\flat \A$.
-    \begin{proof}
-        Per $E \in i_\flat \A$ vale se e solo se $E = i^{-1}(F)$ per qualche $F \in \A$, ma per ogni $F \in 2^X$ vale $i^{-1}(F) = F \cap Z$, dunque $E = F\cap Z$ per qualche $F \in \A$ e quindi $E \in \A|_Z$.
-    \end{proof}
+    \proof
+    Per $E \in i_\flat \A$ vale se e solo se $E = i^{-1}(F)$ per qualche $F \in \A$, ma per ogni $F \in 2^X$ vale $i^{-1}(F) = F \cap Z$, dunque $E = F\cap Z$ per qualche $F \in \A$ e quindi $E \in \A|_Z$.
+    \qed
 \end{proposition}
 
 \begin{definition}{Sottomisura esterna}{sottomisura esterna}
@@ -153,13 +133,13 @@ Analogamente alle costruzioni topologiche, usiamo questa teoria per parlare di s
     Allora $i_\flat \mu$ si dice \bemph{sottomisura esterna} su $Z$ rispetto a $X$.
 \end{definition}
 
-Notiamo che è effettivamente una misura esterna per la proposizione \ref{prop:misure esterne indotte}, adesso curiamoci di trovare un modo di calcolarla magari
+Notiamo che è effettivamente una misura esterna come visto in \ref{def:misure esterne indotte}, adesso curiamoci di trovare un modo di calcolarla magari
 
 \begin{proposition}{Sottomisura esterna e restrizione}{sottomisura esterna}
     Nella situazione della definizione \ref{def:sottomisura esterna}, vale $i_\flat \mu = \mu|_{2^Z} = \mu \cdot \chi_Z$.
-    \begin{proof}
-        Per definizione, per ogni $E\subset X$ si ha $i_\flat \mu(E) = \mu(i^{-1}(E)) = \mu(E\cap Z) = \mu(E) = \mu|_{2^Z}(E)$.
-    \end{proof}
+    \proof
+    Per definizione, per ogni $E\subset X$ si ha $i_\flat \mu(E) = \mu(i^{-1}(E)) = \mu(E\cap Z) = \mu(E) = \mu|_{2^Z}(E)$.
+    \qed
 \end{proposition}
 
 \pagebreak
@@ -174,10 +154,10 @@ A onor di completezza, sarebbe possibile trattare anche i prodotti da questo pun
 \begin{remark}{}{}
     Siano $(X,\A)$ e $(Y,\B)$ due spazi misurabili, $X\times Y$ il prodotto cartesiano dei due insiemi e $\pi_X : X\times Y \to X$ e $\pi_Y : X\times Y \to Y$ le proiezioni canoniche.\\
     $\A \otimes \B$ è la più piccola $\sigma$-algebra che renda misurabili sia $\pi_X$ che $\pi_Y$.
-    \begin{proof}
-        Notiamo che la tesi può essere riscritta come $\A\otimes\B \subset \langle\pi_{X\flat} \A \cup \pi_{Y\flat} \B\rangle $, in quanto una $\sigma$-algebra che renda misurabili le proiezioni deve necessariamente contenere l'unione delle $\sigma$-algebre iniziali\footnote{Notiamo che $\pi_{X\flat}\A = \{A \times Y \in 2^{X\times Y} : A \in \A\}$}, ma quindi per l'ipotesi di minimalità di $\A\otimes\B$ possiamo semplicemente richiedere $\{A\times B : A \in \A, B \in \B\}\subset \langle\pi_{X\flat} \A \cup \pi_{Y\flat} \B\rangle$.\\
-        Notiamo che in generale, $A \times B = (A\times Y) \cap (X \times B)$, rispettivamente elementi di $\pi_{X\flat} \A$ e $\pi_{Y\flat} \B$, quindi deve appartenere alla $\sigma$-algebra generata dalla loro unione.
-    \end{proof}
+    \proof
+    Notiamo che la tesi può essere riscritta come $\A\otimes\B \subset \langle\pi_{X\flat} \A \cup \pi_{Y\flat} \B\rangle $, in quanto una $\sigma$-algebra che renda misurabili le proiezioni deve necessariamente contenere l'unione delle $\sigma$-algebre iniziali\footnote{Notiamo che $\pi_{X\flat}\A = \{A \times Y \in 2^{X\times Y} : A \in \A\}$}, ma quindi per l'ipotesi di minimalità di $\A\otimes\B$ possiamo semplicemente richiedere $\{A\times B : A \in \A, B \in \B\}\subset \langle\pi_{X\flat} \A \cup \pi_{Y\flat} \B\rangle$.\\
+    Notiamo che in generale, $A \times B = (A\times Y) \cap (X \times B)$, rispettivamente elementi di $\pi_{X\flat} \A$ e $\pi_{Y\flat} \B$, quindi deve appartenere alla $\sigma$-algebra generata dalla loro unione.
+    \qed
 \end{remark}
 
 \begin{definition}{Misura esterna prodotto}{misura esterna prodotto}
@@ -212,7 +192,7 @@ Ovviamente ogni spazio misurabile rinforzato è uno spazio misurabile e una misu
 
 Notiamo che se $\N = \N_\mu$ per una misura $\mu$, questa diventa la definizione di validità $\mu$-quasi ovunque
 
-\begin{notation}
+\begin{notation}{}{}
     Sia $(X,\M,\N)$ uno spazio fortemente misurabile e siano $f, g : X \to \R$. Allora $=_\N$, $\ge_\N$, $>_\N$, $\le_\N$ e $<_\N$ si riferiscono alle stesse relazioni intese quasi ovunque.\\
     Se $\N = \N_\mu$ per qualche misura esterna, invece di scrivere $\N$ al pedice scriveremo $\mu$.
 \end{notation}
@@ -296,14 +276,14 @@ Dove $\L$ è la misura di Lebesgue sui numeri reali.
 \end{definition}
 \begin{remark}{Categoria degli spazi con misure $\sigma$-finite e delle funzioni R-N}{}
     La classe degli spazi con misure $\sigma$-finite con la classe delle funzioni R-N e l'usuale composizione di funzioni è una categoria, che chiamiamo $\catname{Mea}_{R-N}$.
-    \begin{proof}
-        Controlliamo le varie proprietà:
-        \begin{itemize}
-            \item Sia $(X,\mc{A},\mu)$ uno spazio con misura $\sigma$-finita. La funzione identità $\id{X}$ è evidentemente una funzione R-N.
-            \item Siano $f:(X,\mc{A},\lambda)\to (Y,\mc{B},\mu)$ e $g:(Y,\mc{B},\mu)\to(Z,\mc{C},\nu)$ due funzioni R-N. Notiamo che per ogni $E \in \mc{C}$ tale che $\nu(E) = 0$ si ha $(g\circ f)^{-1} = f^{-1}(g^{-1}(E))$ e $\mu(g^{-1}(E)) = 0$, dunque $\lambda((g\circ f)^{-1}(E))=0$.
-            \item La composizione eredita l'associatività dalla composizione di funzioni in $\setcat$.
+    \proof
+    Controlliamo le varie proprietà:
+    \begin{itemize}
+        \item Sia $(X,\mc{A},\mu)$ uno spazio con misura $\sigma$-finita. La funzione identità $\id{X}$ è evidentemente una funzione R-N.
+        \item Siano $f:(X,\mc{A},\lambda)\to (Y,\mc{B},\mu)$ e $g:(Y,\mc{B},\mu)\to(Z,\mc{C},\nu)$ due funzioni R-N. Notiamo che per ogni $E \in \mc{C}$ tale che $\nu(E) = 0$ si ha $(g\circ f)^{-1} = f^{-1}(g^{-1}(E))$ e $\mu(g^{-1}(E)) = 0$, dunque $\lambda((g\circ f)^{-1}(E))=0$.
+        \item La composizione eredita l'associatività dalla composizione di funzioni in $\setcat$.
         \end{itemize}
-    \end{proof}
+    \qed
 \end{remark}
 
 % \begin{proposition}{}{}
@@ -317,13 +297,13 @@ Dove $\L$ è la misura di Lebesgue sui numeri reali.
 \begin{proposition}{Derivata di R-N per Lipschitziane}{R-N-Lipschitz}
     Sia $(X,d,\mu)$ uno spazio metrico di dimensione $n \in \Z_+$ con una misura $\mu$ di Radòn (rispetto alla $\sigma$-algebra Boreliana indotta dalla metrica) invariante per traslazioni (ovvero, $\mu(B_r(x)) = \mu(B_r(y))$ per ogni $x,y$ in $X$)\footnote{Onestamente non so se questa "uniformità" vada codificata come una proprietà dello spazio o della misura, dato che il nostro fine è quello di applicarlo alla misura di Lebesgue su $\R^n$ non ci poniamo troppi problemi in quanto $\R^n$ è tutto piatto e $\L^n$ è invariante per traslazioni.} e sia $F:X \to X$ una funzione biettiva di Lipschitz con costante di Lipschitz $L>0$.\\
     Allora $F^{-1}\mu \ll \mu$ e $L^n$ e la derivata di Radòn-Nikodym di $F^{-1}\mu$ rispetto a $\mu$ è maggiorata $\mu$-quasi ovunque da $L^n$.
-    \begin{proof}
-        È sufficiente dimostrarlo sulle palle aperte, dato che queste costituiscono una base della topologia e dunque della $\sigma$-algebra Boreliana.\\
-        Per ogni $r>0$ e ogni $x \in X$ abbiamo che  $F(B_r(x)) \subset B_{Lr}(F(x))$ che implica $\mu(F(B_r(x)))\le \mu(B_{Lr}(F(x))) = L^n\mu(B_r(F(x)))$ il che implica che per ogni insieme, $F^{-1}(E) \le \mu(E)$, dunque sappiamo che deve esistere $g: (X,d,\mu)\to [0,+\infty[$ tale che
-        \[F^{-1}\mu(E) = \intop_E g \de \mu\]
-        Ancora una volta lavoriamo sulle palle
-        \[\forall r>0,\forall x \in X, 0\le \intop_{B_r(x)} g(y)\de \mu(y) \le \intop_{B_r(x)} L^n \de\mu(y) \Rarr g \le_\mu L^n \]
-    \end{proof}
+    \proof
+    È sufficiente dimostrarlo sulle palle aperte, dato che queste costituiscono una base della topologia e dunque della $\sigma$-algebra Boreliana.\\
+    Per ogni $r>0$ e ogni $x \in X$ abbiamo che  $F(B_r(x)) \subset B_{Lr}(F(x))$ che implica $\mu(F(B_r(x)))\le \mu(B_{Lr}(F(x))) = L^n\mu(B_r(F(x)))$ il che implica che per ogni insieme, $F^{-1}(E) \le \mu(E)$, dunque sappiamo che deve esistere $g: (X,d,\mu)\to [0,+\infty[$ tale che
+    \[F^{-1}\mu(E) = \intop_E g \de \mu\]
+    Ancora una volta lavoriamo sulle palle
+    \[\forall r>0,\forall x \in X, 0\le \intop_{B_r(x)} g(y)\de \mu(y) \le \intop_{B_r(x)} L^n \de\mu(y) \Rarr g \le_\mu L^n \]
+    \qed
 \end{proposition}
 
 \pagebreak
@@ -335,9 +315,9 @@ Cercheremo di dimostrare il TFA per cambiamenti di coordinate \bemph{lineari} co
     Sia $F: (\R^n, \M_\L, \L^n) \to \R^n$ una mappa lineare invertibile.\\
     Allora $F^{-1}\L^n = |\det F|\cdot \L^n$ e dunque
     \[F^{-1}\L^n(E) = \intop_E |\det F|\de \L^n\]
-    \begin{proof}
-        Sia $E \in F\M_\L$. Per definizione di misura indotta, abbiamo che $F^{-1}\L^n(E) = \L^n(F(E))$ e che, come visto nel corso di Geometria A è uguale a $|\det F|\cdot \L^n(E)$.
-    \end{proof}
+    \proof
+    Sia $E \in F\M_\L$. Per definizione di misura indotta, abbiamo che $F^{-1}\L^n(E) = \L^n(F(E))$ e che, come visto nel corso di Geometria A è uguale a $|\det F|\cdot \L^n(E)$.
+    \qed
 \end{lemma}
 
 \begin{theorem}{TFA per cambiamenti di coordinate lineari}{}
@@ -359,22 +339,22 @@ Cercheremo di dimostrare il TFA per cambiamenti di coordinate \bemph{lineari} co
     Equivalentemente
     \[\frac{\de \varphi^{-1} \L^n}{\de \L^n} = |\det D_\varphi|\]
     Nel senso della definizione \ref{def:derivata di Radòn-Nikodym} della derivata di Radòn-Nikodym.
-    \begin{proof}
-        Il fatto che $\varphi^{-1}\L^n \ll \L^n$ segue dalla proposizione \ref{prop:R-N-Lipschitz}, infatti se $\varphi$ è un diffeomorfismo è almeno localmente lipschitziana e in ogni insieme limitato $V$ ha costante di Lipschitz $\sup_V |\det D_\varphi|$.\\
-        Poniamo $|\det D_\varphi(x)| =: J(x)$.\\
-        Sia $E\subset \R^n$ un aperto. Localmente la trasformazione $\varphi$ agisce come una trasformazione lineare $D_\varphi$, dunque in intorni $V_i$ sufficientemente piccoli di punti $x_i\in E$ indicizzati su un insieme numerabile $I$ applichiamo il lemma \ref{lemma:misura indotta lineare} e abbiamo $\varphi^{-1} \L^n \sim D_\varphi \L^n = J(x)\cdot \L^n$. Dunque posti possiamo scrivere
-        \[\varphi^{-1}\L^n(E) = \sum_{i \in I} \intop_{V_i} J(x_i)\de \L^n = \sum_{i \in I} \intop_E J(x_i) \chi_{V_i}(y)\de \L^n(y)\]
-        Facendo una \textit{mossa alla Gottinga} riconosciamo una regolarità sufficiente ad applicare uno strano genere di integrale di Riemann rendendo sempre più piccoli i nostri intorni aumentando il loro numero e otteniamo
-        \[\varphi^{-1}\L^n(E) = \intop_E J \de \L^n = \intop_E |\det D_\varphi|\de \L^n\]
-    \end{proof} 
+    \proof
+    Il fatto che $\varphi^{-1}\L^n \ll \L^n$ segue dalla proposizione \ref{prop:R-N-Lipschitz}, infatti se $\varphi$ è un diffeomorfismo è almeno localmente lipschitziana e in ogni insieme limitato $V$ ha costante di Lipschitz $\sup_V |\det D_\varphi|$.\\
+    Poniamo $|\det D_\varphi(x)| =: J(x)$.\\
+    Sia $E\subset \R^n$ un aperto. Localmente la trasformazione $\varphi$ agisce come una trasformazione lineare $D_\varphi$, dunque in intorni $V_i$ sufficientemente piccoli di punti $x_i\in E$ indicizzati su un insieme numerabile $I$ applichiamo il lemma \ref{lemma:misura indotta lineare} e abbiamo $\varphi^{-1} \L^n \sim D_\varphi \L^n = J(x)\cdot \L^n$. Dunque posti possiamo scrivere
+    \[\varphi^{-1}\L^n(E) = \sum_{i \in I} \intop_{V_i} J(x_i)\de \L^n = \sum_{i \in I} \intop_E J(x_i) \chi_{V_i}(y)\de \L^n(y)\]
+    Facendo una \textit{mossa alla Gottinga} riconosciamo una regolarità sufficiente ad applicare uno strano genere di integrale di Riemann rendendo sempre più piccoli i nostri intorni aumentando il loro numero e otteniamo
+    \[\varphi^{-1}\L^n(E) = \intop_E J \de \L^n = \intop_E |\det D_\varphi|\de \L^n\]
+    \qed 
 \end{theorem}
 
 \begin{theorem}{TFA}{}
     Sia $\varphi : \R^n \to \R^n$ un diffeomorfismo locale e $g : \R^n \to \R$ una funzione $\L^n$-integrabile. Vale
     \[\intop g \de \L^n = \int (g \circ \varphi)\cdot |\det D_\varphi|\de \L^n\]
-    \begin{proof}
-        La dimostrazione è banale combinando i non banali teoremi \ref{th:integrazione indotta}, \ref{th:Radòn-Nikodym} e \ref{th:R-N per misure finali}.
-    \end{proof}
+    \proof
+    La dimostrazione è banale combinando i non banali teoremi \ref{th:integrazione indotta}, \ref{th:Radòn-Nikodym} e \ref{th:R-N per misure finali}.
+    \qed
 \end{theorem}
 
 \printbibliography
