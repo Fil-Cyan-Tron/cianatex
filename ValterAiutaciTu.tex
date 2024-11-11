@@ -1,20 +1,202 @@
-\documentclass{article}
+\documentclass[annatarbolditalic, openany]{book}
 \usepackage{cianatex}
 
-\title{Fondamenti di Fisica Matematica I++}
-\author{Filippo $\mc{L}$. Troncana \\ dagli appunti di Matilde Calabri et al. delle lezioni del professor Moretti}
-\date{A.A. 2024/2025}
+\addbibresource{ValterAiutaciTu.bib}
+
+\renewcommand\V{\mathbb{V}}
 
 \begin{document}
 
-\maketitle
+\title{Meccanica Analitica}
+\author{Filippo $\mc{L}$. Troncana\\\small{si veda la premessa per ulteriori crediti}}
+\date{A.A. 2024/2025}
 
-\begin{abstract}
-    L'oscura divinità Valter Morets ha parlato e il suo responso è stato "fatelo a gennaio con i fisici o cacatevi in mano", noi ci adeguiamo con gratitudine e devozione procediamo illuminati dal profeta \Nick.
-\end{abstract}
+\maketitle
 
 \tableofcontents
 
-\section{Nozioni di Geometria Differenziale}
+\chapter*{Premessa}
+
+L'oscura divinità Valter Morets ha parlato, il suo oracolo è stato "ho troppi studenti, fatelo a gennaio coi fisici o cacatevi in mano" e noi obbediamo con devozione e gratitudine, sempre illuminati dal profeta Nick Drake.\\
+Stronzate a parte, queste note sono sostanzialmente una trascrizione in \LaTeX\ di quelle di Matilde Calabri (a cui rivolgo ringraziamenti di misura infinita) del corso di Fondamenti di Fisica Matematica modulo I per i matematici completate al programma di Meccanica Analitica per i fisici, necessario per lo scritto per noi povere anime che non vogliamo farlo con Pagani.\\
+Ovviamente la fonte principale è \cite{moretti2020}, di cui lascio in bibliografia la prima edizione ma del quale mi riferisco alla versione provvisoria della seconda edizione, resa disponibile gratuitamente dal professor Moretti per gli studenti dei suoi corsi.\\
+Trattandosi di un corso dotato di un'importante parte pratica\footnote{Per i fisici, sappiate che per noi matematici i problemi giocattolo sono già pratica, lasciamo stare gli esperimenti} mi sono permesso di aggiungere degli esempi o esercizi di tanto in tanto, per contestualizzare (ed effettivamente alleggerire rispetto alla generalità con cui viene presentato un risultato in teoria) le nozioni proposte, per mostrare come fare alcune cose \textit{con le mani}.\\
+Mi sono permesso anche di usare una notazione abbstanza diversa in molti casi, al fine di "snellire" quella (mi si consenta) terrificante scelta dal professor Moretti, in quanto ritengo che una notazione più "zen" sia fondamentale per una migliore comprensione e acquisizione dei contenuti.\\
+Le parti aggiuntive sono contrassegnate dal simbolo \Nick nel più piccolo ambiente che le contiene, non so quale sarà l'utilità di segnalarle nel lungo termine ma suppongo fungano a imperitura memoria di questo singolare appello di Gennaio 2025.
+
+\chapter{Introduzione}
+
+Qui trattiamo alcune nozioni preliminari di geometria, affine e differenziale.\\
+Più che presentare risultati, spendiamo un po' di tempo costruendo il linguaggio che useremo per il resto della nostra trattazione, "codificando" quelle che sono le nostre normali intuizioni geometriche attinenti alla vita di tutti i giorni e alla nostra esperienza "vivendo" nella meccanica classica.
+
+\section{Geometria affine}
+
+\begin{definition}{Trasformazione affine}{affinità}
+    Siano $\A_1^n$ e $\A_2^m$ due spazi affini con spazi vettoriali associati $V_1$ e $V_2$ rispettivamente.\\
+    Una mappa $\varphi : \A_1^n \to \A_2^m$ si dice \bemph{trasformazione affine} (affinità) se: \begin{itemize}
+        \item È invariante per traslazioni, ovvero $\varphi(P+v) - \varphi(Q+v) = \varphi(P) - \varphi(Q)$ per ogni $P,Q$ in $\A_1^n$ e per ogni $v$ in $V$.
+        \item La mappa $\de\varphi : (P-Q)\mapsto \varphi(P) - \varphi(Q)$ è lineare tra $V_1$ e $V_2$.
+    \end{itemize}
+    Se la mappa $\varphi$ è anche biettiva, si dice \bemph{isomorfismo affine}.
+\end{definition}
+
+\begin{proposition}{}{iniettiva iff suriettiva}
+    Se $\varphi : \A_1^n \to \A_2^n$ è affine, allora è iniettiva se e solo se è suriettiva (e dunque biettiva).
+\end{proposition}
+
+Consideriamo il seguente diagramma, dove $\varphi$ e $\psi$ sono sistemi di coordinate (isomorfismi vettoriali scelta un'origine) e $f$ una trasformazione affine 
+
+\[\begin{tikzcd}
+	{\A^n} && {\A^m} \\
+	\\
+	{\R^n} && {\R^m}
+	\arrow["f", from=1-1, to=1-3]
+	\arrow["\varphi"{description}, from=1-1, to=3-1]
+	\arrow["\psi"{description}, from=1-3, to=3-3]
+	\arrow["{\psi \circ f \circ \varphi^{-1}}"{description}, from=3-1, to=3-3]
+\end{tikzcd}\]
+
+Allora $\psi \circ f \circ \varphi^{-1}$ manda $\mathbf{x}$ in $\mathbf{x}'$ dove $\mathbf{\bar{x}} = \mathbf{c} + L \mathbf{x}$ dove $\mathbf{c}$ e $L$ sono rispettivamente un punto e una matrice che dipendono da $\varphi$, da $f$ e da $\psi$.
+
+\begin{definition}{Isometria}{isometria}
+    Siano $(X,d)$ e $(Y, e)$ due spazi metrici. Una mappa $f : X \to Y$ si dice \bemph{isometria} se $e(f(x),f(y)) = d(x,y)$.
+\end{definition}
+
+\begin{theorem}{Isometria di spazi euclidei}{isometria euclidea}
+    Siano $\E_1^n$ e $\E_2^n$ due spazi euclidei e $f : \E_1^n \to \E_2^n$ una mappa.\\
+    $f$ è un'isometria se e solo se è un'isometria affine.\\
+    Equivalentemente, se $\varphi_i : \E_i^n \to \R^n$ sono sistemi di coordinate ortonormali, allora $f$ è un'isometria se e solo se vale $\mathbf{\bar{x}}(f(p)) = \mathbf{c} + R \mathbf{x}(p)$ per qualche $R$ in $SO(n)$.
+\end{theorem}
+
+\begin{proposition}{}{}
+    L'insieme delle isometrie di $\E^3$ è un gruppo con l'operazione di composizione.
+\end{proposition}
+
+\section{Geometria differenziale}
+
+\begin{definition}{Carta locale}{carta locale}
+    Sia $(\M, \tau)$ uno spazio topologico, sia $U \in \tau$ e sia $V$ un aperto in $\R^n$.\\
+    Una \bemph{carta locale} di dimensione $n$ è un omeomorfismo $\varphi : U \to V$.
+\end{definition}
+
+\begin{definition}{$k$-compatibilità}{k-compatibilità}
+    Siano $(\M,\tau)$ uno spazio topologico e $\varphi$ e $\psi$ carte locali su $U$ e $V$ in $\tau$.\\
+    $\varphi$ e $\psi$ si dicono $k$\bemph{-compatibili} se in questo diagramma
+    \[\begin{tikzcd}
+	    U && {U\cap V} && V \\
+	    \\
+	    {\varphi(U)} & {\varphi(U \cap V)} && {\psi(U\cap V)} & {\psi(V)}
+	    \arrow[""{name=0, anchor=center, inner sep=0}, "\varphi"{description}, from=1-1, to=3-1]
+	    \arrow[""{name=1, anchor=center, inner sep=0}, "\varphi"{description}, from=1-3, to=3-2]
+	    \arrow[""{name=2, anchor=center, inner sep=0}, "\psi"{description}, from=1-3, to=3-4]
+	    \arrow[""{name=3, anchor=center, inner sep=0}, "\psi"{description}, from=1-5, to=3-5]
+	    \arrow["{\psi \circ \varphi^{-1}}"{description}, shift left=3, from=3-2, to=3-4]
+	    \arrow["{\varphi\circ\psi^{-1}}"{description}, shift left=3, from=3-4, to=3-2]
+	    \arrow["{|_{U\cap V}}"{description}, shorten <=12pt, shorten >=12pt, Rightarrow, from=0, to=1]
+	    \arrow["{|_{U\cap V}}"{description}, shorten <=13pt, shorten >=13pt, Rightarrow, from=3, to=2]
+    \end{tikzcd}\]
+    Le mappe $\varphi \circ \psi^{-1}$ e $\psi \circ \varphi^-1$, dette \bemph{funzioni di trasferimento}, sono differenziabili di classe $\mc{C}^k$ o se $V \cap U = \varnothing$.
+\end{definition}
+
+\begin{definition}{Spazio di Hausdorff o a base numerabile (secondo numerabile)}{Hausorff e SAN}
+    Sia $(\M,\tau)$ uno spazio topologico. Esso si dice:\begin{itemize}
+        \item \bemph{Di Hausdorff} se per ogni coppia di punti distinti $x$ e $y$ in $\M$ esistono due aperti disgiunti che li separano.
+        \item \bemph{A base numerabile} (o secondo numerabile o SAN) se $\tau$ ammette una base numerabile.
+    \end{itemize}
+\end{definition}
+
+\begin{definition}{Varietà differenziabile}{varietà differenziabile}
+    Sia $(\M,\tau)$ uno spazio topologico di Hausdorff a base numerabile.\\
+    Esso si dice \bemph{varietà differenziabile} di dimensione $n$ e classe $\mc{C}^k$ se ammette una \bemph{struttura differenziabile} $\mc{A}$, ovvero una famiglia di carte locali $\{U_i, \varphi_i\}_I$ di dimensione $n$ tali che:\begin{itemize}
+        \item $\cup_I U_i = \M$ e le carte locali sono $k$-compatibili a due a due, ovvero $\mc{A}$ è un \bemph{atlante} di dimensione $n$ e classe $\mc{C}^k$.
+        \item Se una carta locale $(U,\varphi)$ su $\M$ di dimensione $n$ è $k$-compatibile con tutte le carte di $\mc{A}$, allora questa appartiene ad $\mc{A}$, ovvero $\mc{A}$ è un atlante \bemph{massimale}.
+    \end{itemize}
+\end{definition}
+
+%TODO disegno
+
+\begin{remark}{Se prendo un atlante e ci aggiungo tutte le carte compatibili, ottengo un atlante massimale}{atlante->struttura}
+    Se $\mc{A}$ è un atlante esiste un unico atlante massimale $\mc{A}'$ che lo include, questa struttura differenziabile si dice \bemph{indotta} dall'atlante; in quanto la relazione di compatibilità è transitiva, posso completare in un unico modo un atlante a una struttura differenziabile e quindi in particolare per definire una struttura differenziabile mi basta assegnare un atlante.
+\end{remark}
+
+%TODO esempio circonferenza
+
+% \begin{example}{Circonferenza}{circonferenza}
+%     Sia $\S^1 \subset \R^2$ la circonferenza unitaria. Si definisca una struttura differenziabile per $\S^1$.
+%     \solution
+%     Consideriamo i seguenti aperti di $\S^1$:
+%     \[ N = \{ (x,y) \in \S^1 : y > 0\},\quad S = \{ (x,y) \in \S^1 : y < 0\},\quad O = \{ (x,y) \in \S^1 : x < 0\}, \quad E = \{ (x,y) \in \S^1 : x > 0\} \]
+%     A cui ci riferiremo rispettivamente con Nord, Sud, Ovest ed Est e consideriamo le mappe:
+%     \[ f_N : (x,y) \mapsto \frac{x}{y},\quad f_S : (x,y) \mapsto \frac{x}{y},\quad f_O : (x,y) \mapsto \frac{y}{x},\quad f_E : (x,y) \mapsto \frac{y}{x} \]
+%     Chiaramente $f_N$ e $f_S$ sono compatibili, vale lo stesso per $f_O$ e $f_E$, con un po' di trigonometria si verificano facilmente le altre compatibilità e il gioco è fatto. 
+%     \solved
+% \end{example}
+
+\begin{definition}{Diffeomorfismo}{diffeomorfismo}
+    Siano $f : \M_k^n \to \mc{N}_k^n$ una mappa tra varietà differenziabili di dimensione $n$ e classe $\mc{C}^k$.\\
+    $f$ si dice \bemph{diffeomorfismo} se è biettivo, differenziabile e con inversa differenziabile.
+\end{definition}
+
+\section{Lo spaziotempo della fisica classica}
+
+\epigraph{Hawking diceva che anche $\mc{C}^2$ era troppo e bisognava andare più in basso, ma tanto è morto e noi facciamo quello che vogliamo.}{\textit{Valter Moretti}}
+
+\begin{definition}{Spaziotempo della fisica classica}{spaziotempo della fisica classica}
+    Lo \bemph{spaziotempo della fisica classica} è una varietà differenziabile di dimensione $4$ che notiamo con $\V^4$. I punti di $\V^4$ sono detti \bemph{eventi}.\\
+    Essa è dotata di una funzione $T : \V^4 \to \R$ differenziabile, suriettiva e definita a meno di costanti additive detta \bemph{tempo assoluto} tale che ogni $\Sigma_t := T^{-1}(t)$, che chiameremo \bemph{spazio assoluto al tempo} $t$ abbia una struttura di spazio euclideo tridimensionale compatibile con quella di varietà differenziabile di $\V^4$.\\
+    Questo significa che per qualsiasi $t$ in $\R$ e $p$ in $\Sigma_t$ esiste una carta locale su $\V^4$ il cui dominio contiene $p = (t,x_1,x_2,x_3)$ tale che $(x_1,x_2,x_3)$ siano coordinate ortonormali in $\Sigma_t$.
+\end{definition}
+
+\begin{remark}{}{proprietà di V4}
+    Notiamo che dato che $T$ è suriettiva, $\Sigma_t$ è sempre non vuoto, inoltre tutti i $\Sigma_t$ sono disgiunti tra loro e per ogni evento $e$ di $\V^4$ esiste un $t$ reale tale che $e$ appartenga a $\Sigma_t$, ovvero
+    \[ \V^4 := \bigsqcup_{t \in \R}  \Sigma_t \]
+\end{remark}
+
+\begin{definition}{Linea di universo}{storia}
+    Una \bemph{linea di universo} (o storia) di un punto materiale è una curva $\gamma : I \to \V^4$, dove $I$ è un intervallo, tale che $T(\gamma(t)) = t + c_\gamma$ per ogni $t$, dove $c_\gamma$ è una costante.
+\end{definition}
+
+\begin{definition}{Sistema di riferimento}{sistema di riferimento}
+    Un \bemph{sistema di riferimento} $R$ è una coppia $(\pi_R, E_R)$ tale che $E_R$ sia uno spazio euclideo tridimensionale e $\pi_R : \V^4 \to E_R$ sia differenziabile, suriettiva e tale che la sua restrizione a ciascun $\Sigma_t$ sia un'isometria di spazi euclidei (affine, biettiva e conservante il prodotto scalare.)\\
+    $E_R$ si dice \bemph{spazio di quiete} di $R$ e i suoi elementi si dicono \bemph{punti in quiete} con $R$.
+\end{definition}
+
+\begin{proposition}{}{}
+    Sia $R$ un riferimento. La funzione $S_R : \V^4 \to \R \times E_R$ che manda $e$ in $(T(e), \pi_R(e))$ è biettiva.
+    \proof 
+    Dobbiamo dimostrare iniettività e suriettività:\begin{itemize}
+        \item Per l'iniettività, $e \neq e'$, allora abbiamo due casi:\begin{itemize}
+                \item Se $t \neq t'$ allora $S_R(e) \neq S_R(e')$.
+                \item Se $t=t'$ abbiamo $d(e,e') > 0$, dunque $d(\pi_R(e), \pi_R(e'))>0$ e quindi $S_R(e) \neq S_R(e')$.
+            \end{itemize}
+        \item Per la suriettività notiamo che è prodotto di funzioni suriettive e dunque è suriettiva.\footnote{Categorialmente parlando, faremmo seguire questo fatto dalla proprietà universale del prodotto applicato alla categoria degli insiemi.}
+    \end{itemize}
+    \qed
+\end{proposition}
+
+Infine, dopo tutto questo lavoraccio, finalmente arriviamo a dare quattro diavolo di numeri per individuare un evento.
+
+\begin{definition}{Sistema di coordinate cartesiane ortonormali solidale}{coordinate cartesiane normali solidali}
+    Sia $R$ un riferimento e $\psi : E_R \to \R^3$ un sistema di coordinate ortonormali.\\
+    Si dice \bemph{sistema di coordinate cartesiane ortonormali solidale}\footnote{Che al mercato mio padre comprò} a $R$ la mappa $\sigma : \V^4 \to \R^4$ che manda $e$ in $(T(e)+c, \psi\circ \pi_R(e))$ dove $c$ è una costante reale fissata.
+\end{definition}
+
+\chapter{Cinematica}
+
+Buckle up fuckers, iniziamo con le derivate e sarà molto, molto doloroso.
+
+\section{Cinematica assoluta del punto materiale}
+
+Introduciamo le tanto care grandezze a cui ci siamo abituati fin dalla seconda liceo e prepariamoci a vederle diventare mostri.
+
+\begin{definition}{Grandezze cinematiche elementari}{grandezze cinematiche elementari}
+    Consideriamo un riferimento $R$ e un punto materiale rapresentato da una linea di universo $\gamma : I \to \V^4$; per costruzione possiamo rappresentare $\gamma$ nello spazio di quiete di $R$ con una curva $\Gamma : t \mapsto \pi_R(\gamma(t))$, differenziabile per costruzione.\\
+    La curva $\Gamma$ è detta \bemph{legge oraria} di $\gamma$ in $R$, la \bemph{velocità} e l'accelerazione di $\gamma$ in $R$ all'istante $t_0$ sono i vettori
+    \[ v_\gamma|_R (t_0) := \frac{\de \Gamma}{\de t}(t_0), \qquad a_\gamma|_R(t_0) := \frac{\de^2 \Gamma}{\de t^2}(t_0) \]
+\end{definition}
+
+%TODO disegno
+
+\printbibliography
 
 \end{document}
