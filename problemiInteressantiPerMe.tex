@@ -1,28 +1,26 @@
-\documentclass{article}
+\documentclass[openany]{book}
 \usepackage{cianatex}
 
-\title{TFA per cambiamenti di coordinate}
-\author{Filippo $\L$. Troncana}
-\date{A.A. 2023/2024}
-
-\addbibresource{MisuraIndotta.bib}
+\title{Raccolta di problemi interessanti per il sottoscritto}
+\author{Filippo $\mc{L}$. Troncana}
+\date{A partire dall'A.A. 2024/2025}
 
 \begin{document}
 
 \maketitle
 
-\begin{abstract}
-    
-\end{abstract}
-
 \tableofcontents
+
+\section*{Introduzione}
+
+Non ha senso che io faccia un \LaTeX\ per ciascun problema mi sembri interessante, li raccolgo tutti qui e buona così.
 
 \begin{notation}{}{}
     Useremo le seguenti convenzioni:\begin{itemize}
         \item Generalmente un insieme $X$ è assunto non vuoto.
         \item Dato un insieme $X$, indicheremo con $2^X$ il suo insieme delle parti.
         \item Dato un insieme $X$ e un sottoinsieme $E\subset X$, indicheremo con $E^c$ il suo complementare $X\setminus E$.
-        \item Dato un insieme $X$ e una sua famiglia di sottoinsiemi $\F \subset 2^X$, la notazione $\{A_i\}_{i \in I} \subset \F$ rappresenta una funzione $\varphi: I \to \F$ che a ciascun indice mappa un insieme di $\F$ e indichiamo:
+        \item Dato un insieme $X$ e una sua famiglia di sottoinsiemi $\mc{F} \subset 2^X$, la notazione $\{A_i\}_{i \in I} \subset \F$ rappresenta una funzione $\varphi: I \to \F$ che a ciascun indice mappa un insieme di $\F$ e indichiamo:
         \[\cup_I E_i := \bigcup_{i \in I} E_i \qquad, \qquad \cap_I E_i := \bigcap_{i \in I} E_i \qquad \text{e}\qquad \Pi_I E_i := \prod_{i \in I} E_i \]
         In particolare, quest'ultimo è definito se $I$ è finito (non ci occuperemo di prodotti cartesiani infiniti) e se $E_i = E_j= E $ per ogni $i,j$, allora $\Pi_I E_i := E^{\# I}$
         \item Dato un campo $K$ e una successione di elementi del campo $\{a_i\}_{i \in I}\subset K$, indichiamo
@@ -31,17 +29,25 @@
     \end{itemize}
 \end{notation}
 
-\pagebreak
+\chapter{(APERTO) Dimostrazione più gentile della formula dell'area}
+
+\renewcommand\A{\mc{A}}
+
+Uno dei più importanti risultati della teoria geometrica della misura è la formula dell'area, strumento fondamentale per il calcolo delle misure di sottovarietà regolare di $\R^n$ e degli integrali su di esse.\\
+La dimostrazione classica, ad esempio quella riportata in cite{EvansGariepy1991} fa uso di diverse stime estremamente tecniche, ma credo\footnote{o meglio, spero} che fare un giro leggermente più largo possa portare a una dimostrazione meno traumatica.\\
+Alcune fondamentali idee, come quella di considerare spazi misurabili "migliorati" (che noi chiameremo rinforzati), ovvero dotati di una famiglia di insiemi considerati trascurabili o nulli, per un'idea più "naturale" di equivalenza quasi ovunque vengono da cite{Fremlin2000}.\\
+In questa tesi vengono presentati dei risultati di teoria della misura sviluppati con un approccio simile a quello usato per lo studio della topologia generale e successivamente questi vengono applicati allo studio dell'integrale di funzioni composte e alla formula dell'area.
+
 \section{Teoria astratta della misura indotta}
 
-Le definizioni di teoria della misura usate si riferiscono a quelle date in \cite{Delladio2023}, meno che alcune che riportiamo qui, con opportuna motivazione
+Le definizioni di teoria della misura usate si riferiscono a quelle date in cite{Delladio2023}, meno che alcune che riportiamo qui, con opportuna motivazione
 
 \begin{definition}{Funzione misurabile}{funzione misurabile}
     Siano $(X,\A)$ e $(Y,\B)$ due spazi misurabili e sia $f : X\to Y$ una funzione.\\
     $f$ si dice \bemph{misurabile} se per ogni $E \in \B$ vale $f^{-1}(B) \in \A$.
 \end{definition}
 
-In \cite{Delladio2023} le funzioni misurabili sono definite analogamente, ma l'ambiente di arrivo è uno spazio topologico e si richiede che la controimmagine di ogni aperto sia misurabile, in modo da poter usare alcuni strumenti di topologia dotando l'insieme di arrivo della $\sigma$-algebra Boreliana.\\
+In cite{Delladio2023} le funzioni misurabili sono definite analogamente, ma l'ambiente di arrivo è uno spazio topologico e si richiede che la controimmagine di ogni aperto sia misurabile, in modo da poter usare alcuni strumenti di topologia dotando l'insieme di arrivo della $\sigma$-algebra Boreliana.\\
 Tuttavia, ai fini della nostra trattazione sarà meglio usare la definizione più generale riportata qui sopra, che quindi è quella che adottiamo.
 
 \subsection{$\sigma$-algebre e misure esterne indotte da funzioni}
@@ -101,7 +107,6 @@ Valgono questi risultati che ci permettono di calcolare in modi più agevoli le 
 
 Analogamente alle costruzioni topologiche, usiamo questa teoria per parlare di sottospazi misurabili
 
-\pagebreak
 \subsection{Sottospazi misurabili}
 
 \begin{definition}{Sottospazio misurabile}{sottospazio misurabile}
@@ -133,7 +138,6 @@ Notiamo che è effettivamente una misura esterna come visto in \ref{def:misure e
     \qed
 \end{proposition}
 
-\pagebreak
 \subsection{Spazi misurabili prodotto}
 
 A onor di completezza, sarebbe possibile trattare anche i prodotti da questo punto di vista, ma si tratta di costruzioni complesse e 
@@ -155,7 +159,6 @@ A onor di completezza, sarebbe possibile trattare anche i prodotti da questo pun
     Siano $X,Y$ due insiemi rispettivamente con misure esterne $\mu : X \to [0,+\infty]$ e $\nu: Y \to [0,+\infty]$. Una \bemph{misura prodotto} di $\mu$ e $\nu$ è una misura esterna $\mu \otimes \nu$ su $X\times Y$ tale che $(\mu \otimes \nu)(A \times B) = \mu(A)\nu(B) $
 \end{definition}
 
-\pagebreak
 \subsection{Spazi misurabili rinforzati}
 
 Un concetto fondamentale in teoria della misura è quello proprietà valide $\mu$-quasi ovunque, ma sorge il problema della scelta di una misura. In realtà è possibile "indebolire" questo requisito, specificando la famiglia degli insiemi nulli di uno spazio misurabile e imponendo un requisito di "fedeltà" per le misure che vorremo definire su di esso.
@@ -164,31 +167,30 @@ Un concetto fondamentale in teoria della misura è quello proprietà valide $\mu
     Sia $X$ un insieme e $I \subset 2^X$ una famiglia di insiemi tale che:\begin{enumerate}
         \item $\varnothing \in I$.
         \item Se $N \in I$ e $M\subset N$ allora $M \in I$.
-        \item Se $\{N_i\}_{i \in \Nat}\subset I$ allora $\cup_\Nat N_i \in I$.
+        \item Se $\{N_i\}_{i \in \N}\subset I$ allora $\cup_\N N_i \in I$.
     \end{enumerate}
     Allora $I$ si dice $\sigma$\bemph{-ideale} su $X$. In particolare, se $X \notin I$, allora $I$ si dice $\sigma$-\bemph{ideale proprio}, altrimenti improprio\footnote{In quanto avremmo $I=2^X$, non particolarmente utile nel migliore dei casi.}.
 \end{definition}
 
 \begin{definition}{Spazio fortemente misurabile}{spazio fortemente misurabile}
-    Sia $X$ un insieme, $\M$ una $\sigma$-algebra su $X$ e $\N$ un $\sigma$-ideale su $X$ tale che $\N\subset \M$.\\
-    Allora $(X,\M,\N)$ si dice \bemph{spazio fortemente misurabile} e gli insiemi di $\N$ si dicono \bemph{nulli} o trascurabili. La coppia $(\M,\N)$ è detta \bemph{struttura fortemente misurabile}.
+    Sia $X$ un insieme, $\M$ una $\sigma$-algebra su $X$ e $\mc{N}$ un $\sigma$-ideale su $X$ tale che $\N\subset \M$.\\
+    Allora $(X,\M,\mc{N})$ si dice \bemph{spazio fortemente misurabile} e gli insiemi di $\mc{N}$ si dicono \bemph{nulli} o trascurabili. La coppia $(\M,\mc{N})$ è detta \bemph{struttura fortemente misurabile}.
 \end{definition}
 
-Ovviamente ogni spazio misurabile rinforzato è uno spazio misurabile e una misura esterna $\mu$ su un insieme $X$ induce su di esso una struttura fortemente misurabile allo stesso modo in cui induce una normale struttura misurabile, con la coppia $(\M_\mu, \N_\mu)$ dove $\N_\mu := \{E \in \M : \mu(E) = 0\}$.
+Ovviamente ogni spazio misurabile rinforzato è uno spazio misurabile e una misura esterna $\mu$ su un insieme $X$ induce su di esso una struttura fortemente misurabile allo stesso modo in cui induce una normale struttura misurabile, con la coppia $(\M_\mu, \mc{N}_\mu)$ dove $\mc{N}_\mu := \{E \in \M : \mu(E) = 0\}$.
 
 \begin{definition}{Validità quasi ovunque}{validità quasi ovunque}
-    Sia $(X,\M,\N)$ uno spazio fortemente misurabile.\\
-    Una proprietà $P$ sugli elementi di $X$ si dice \bemph{valida quasi ovunque} se $\{x \in X : \neg P(x)\}\in \N$ e scriviamo $\forall_\N x \in X, P(x)$.
+    Sia $(X,\M,\mc{N})$ uno spazio fortemente misurabile.\\
+    Una proprietà $P$ sugli elementi di $X$ si dice \bemph{valida quasi ovunque} se $\{x \in X : \neg P(x)\}\in \mc{N}$ e scriviamo $\forall_{\mc{N}} x \in X, P(x)$.
 \end{definition}
 
-Notiamo che se $\N = \N_\mu$ per una misura $\mu$, questa diventa la definizione di validità $\mu$-quasi ovunque
+Notiamo che se $\mc{N} = \mc{N}_\mu$ per una misura $\mu$, questa diventa la definizione di validità $\mu$-quasi ovunque
 
 \begin{notation}{}{}
-    Sia $(X,\M,\N)$ uno spazio fortemente misurabile e siano $f, g : X \to \R$. Allora $=_\N$, $\ge_\N$, $>_\N$, $\le_\N$ e $<_\N$ si riferiscono alle stesse relazioni intese quasi ovunque.\\
-    Se $\N = \N_\mu$ per qualche misura esterna, invece di scrivere $\N$ al pedice scriveremo $\mu$.
+    Sia $(X,\M,\mc{N})$ uno spazio fortemente misurabile e siano $f, g : X \to \R$. Allora $=_\N$, $\ge_{\mc{N}}$, $>_{\mc{N}}$, $\le_{\mc{N}}$ e $<_{\mc{N}}$ si riferiscono alle stesse relazioni intese quasi ovunque.\\
+    Se $\mc{N} = \mc{N}_\mu$ per qualche misura esterna, invece di scrivere $\mc{N}$ al pedice scriveremo $\mu$.
 \end{notation}
 
-\pagebreak
 \section{Teoria dell'integrazione}
 
 \subsection{Integrazione indotta}
@@ -232,7 +234,6 @@ Dove $\L$ è la misura di Lebesgue sui numeri reali.
     In questo modo ci basta riuscire a far corrispondere $J_f \de \L^n$ a $\de f^{-1} \L^n$
 \end{remark}
 
-\pagebreak
 \section{Derivata di Radòn-Nikodym}
 
 \begin{theorem}{Teorema di Radòn-Nikodym}{Radòn-Nikodym}
@@ -297,7 +298,6 @@ Dove $\L$ è la misura di Lebesgue sui numeri reali.
     \qed
 \end{proposition}
 
-\pagebreak
 \section{Il viaggio verso il TFA}
 
 Cercheremo di dimostrare il TFA per cambiamenti di coordinate \bemph{lineari} con la speranza di estendere questo ragionamento a cambiamenti di coordinate \bemph{differenziabili}, ovvero localmente lineari. Per fare questo, ci permetteremo di sostituire i plurirettangoli nella definizione della misura di Lebesgue ai pluriparallelogrammi
@@ -347,7 +347,5 @@ Cercheremo di dimostrare il TFA per cambiamenti di coordinate \bemph{lineari} co
     La dimostrazione è banale combinando i non banali teoremi \ref{th:integrazione indotta}, \ref{th:Radòn-Nikodym} e \ref{th:R-N per misure finali}.
     \qed
 \end{theorem}
-
-\printbibliography
 
 \end{document}
