@@ -1,0 +1,67 @@
+\documentclass{article}
+
+\usepackage{cianatex}
+
+\begin{document}
+
+\begin{center}
+    \huge\textbf{IL PIANO INCLINATO}
+\end{center}
+
+\definecolor{qqzzqq}{rgb}{0,0.6,0}
+\definecolor{ffxfqq}{rgb}{1,0.4980392156862745,0}
+\definecolor{ffqqqq}{rgb}{1,0,0}
+\definecolor{qqttcc}{rgb}{0,0.2,0.8}
+\definecolor{xfqqff}{rgb}{0.4980392156862745,0,1}
+\definecolor{wwttqq}{rgb}{0.4,0.2,0}
+\definecolor{wrwrwr}{rgb}{0.3803921568627451,0.3803921568627451,0.3803921568627451}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1cm,y=1cm]
+\clip(-9.385029515938607,-1.823687524596668) rectangle (9.243541912632814,8.785836284927441);
+\draw [line width=2pt] (-7,-1)-- (5,-1);
+\draw [line width=2pt] (-7,8)-- (-7,-1);
+\draw [line width=2pt] (1,2)-- (2.5,4);
+\draw [line width=2pt] (2.5,4)-- (-1.5,7);
+\draw [line width=2pt] (-1.5,7)-- (-3,5);
+\draw [shift={(5,-1)},line width=2pt]  plot[domain=2.498091544796509:3.141592653589793,variable=\t]({1*3*cos(\t r)+0*3*sin(\t r)},{0*3*cos(\t r)+1*3*sin(\t r)});
+\draw [line width=2pt] (-7,8)-- (-3,5);
+\draw [line width=2pt,dash pattern=on 2pt off 2pt,color=wwttqq] (-3,5)-- (1,2);
+\draw [line width=2pt] (1,2)-- (5,-1);
+\draw [->,line width=2pt,color=xfqqff] (-0.25,4.5) -- (-0.25,-0.75);
+\draw [->,line width=2pt,color=qqttcc] (-0.25,4.5) -- (-2.77,1.14);
+\draw [->,line width=2pt,color=ffqqqq] (-0.25,4.5) -- (2.27,2.61);
+\draw [->,line width=2pt,color=ffxfqq] (-0.25,4.5) -- (2.27,7.86);
+\draw [->,line width=2pt,color=qqzzqq] (-0.25,4.5) -- (-2.77,6.39);
+\draw [line width=1pt,dash pattern=on 3pt off 3pt] (-2.77,1.14)-- (-0.25,-0.75);
+\draw [line width=1pt,dash pattern=on 3pt off 3pt] (-0.25,-0.75)-- (2.27,2.61);
+\begin{scriptsize}
+\draw [fill=wrwrwr] (-0.25,4.5) circle (4.5pt);
+\draw[color=wrwrwr] (0.4,4.7) node {\huge $m$};
+\draw[color=black] (2.729256198347101,-0.13797323888233437) node {\huge $\vartheta$};
+\draw[color=wwttqq] (-2.0516961826052778,3.8810743801653986) node {\huge $\mu$};
+\draw[color=xfqqff] (0.44354191263281595,1.3667886658796131) node {\huge $\vec{F}_{\text{P}}$};
+\draw[color=qqttcc] (-2.7,2.4) node {\huge $\vec{F}_{\perp}$};
+\draw[color=ffqqqq] (1.5,3.9) node {\huge $\vec{F}_{\parallel}$};
+\draw[color=ffxfqq] (1.8,6.5) node {\huge $\vec{F}_{\text{v}}$};
+\draw[color=qqzzqq] (-1,5.7) node {\huge $\vec{F}_{\text{eq}}$};
+\end{scriptsize}
+\end{tikzpicture}
+
+Per le forze in gioco valgono queste relazioni (intendendo con $\vec{V}$ un vettore e con $V$ il suo modulo senza stare a scrivere $|\vec{V}|$ ogni volta) assumendo che il corpo sia in equilibrio, ovvero che la sua \bemph{accelerazione}, non necessariamente velocità, sia nulla (con $\vec{g}$ si intende l'accelerazione di gravità del pianeta, rivolta verso il basso):
+
+\[ \vec{F}_{\text{P}} = m \vec{g} \qquad \text{(definizione della forza peso)} \]
+\[ \vec{F}_{\text{P}} = \vec{F}_{\perp} + \vec{F}_{\parallel} \qquad F_{\parallel} =  F_{\text{P}} \sin\vartheta, \qquad F_{\perp} =  F_{\text{P}} \cos\vartheta \qquad \text{(scomposizione della forza peso)} \]
+\[ F_{\text{P}}^2 = F_{\perp}^2 + F_{\parallel}^2 \qquad \text{(teorema di Pitagora)} \]
+\[ \vec{F}_{\text{eq}} = -\vec{F}_{\parallel}, \qquad \vec{F}_{\text{v}} = -\vec{F}_{\perp} \qquad \text{(condizioni di equilibrio)} \]
+
+In base al problema, la $\vec{F}_{\text{eq}}$ potrebbe essere una forza d'attrito $\vec{F}_\mu$ con coefficiente di attrito statico $\mu>0$ o la forza elastica $\vec{F}_{\text{el}}$ di una qualche molla di coefficiente $k>0$ e lunghezza a riposo $L_0\ge 0$; in quei casi avremmo:
+\[ F_{\text{el}} = k \Delta L = k(L-L_0) \qquad \text{(definizione della forza elastica)} \]
+\[ \vec{F}_\mu = -\vec{F}_{\parallel}, \qquad \max(F_{\mu}) = \mu F_{\perp} \qquad \text{(forza d'attrito tra le superfici)} \]
+
+In particolare la definizione di $\mu$ salta fuori proprio da questo scenario! Infatti, se $\vartheta$ è l'angolo tale per cui il corpo inizia a scivolare, vale:
+\[ \mu := \tan\vartheta := \frac{\sin\vartheta}{\cos\vartheta} \qquad \text{(definizione del coefficiente di attrito statico)} \]
+
+Notiamo che tutte queste relazioni sono di tipo lineare, quindi è "facile" manipolarle ricordandosi semplicemente che, per ogni $a,b,c \in \R$ valgono:
+\[a = b \Rarr ac = bc, \qquad a = b \Rarr a+c = b+c, \qquad a = bc \Harr b = \frac{a}{c} \Harr c = \frac{a}{b} \]
+(Ovviamente, quando si divide per un valore bisogna ricordare che questo deve essere diverso da $0$!)
+
+\end{document}
