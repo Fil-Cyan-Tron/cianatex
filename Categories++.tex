@@ -1,0 +1,226 @@
+\documentclass{article}
+
+\usepackage{cianatex}
+
+\title{Categories and you}
+\author{Filippo $\mc{L}$ Troncana}
+\date{A.A. 2024/2025}
+
+\begin{document}
+
+\maketitle
+
+% \section*{Introduction}
+
+% Category Theory as a branch of mathematics stems from one simple observation: all math essentially consists of "thingies" with some sense of structure and arrows between them that respect that structure, so why not study the formal properties of arrows between thingies themselves?\\
+% The notion of a Category aims to be 
+
+\section{Fundamental notions}
+
+\subsection{Objects and morphisms}
+
+\begin{definition}{Category}{category}
+    A \bemph{category} $\mc{C}$ consists of two classes:\begin{itemize}
+        \item A class of \bemph{objects} denoted with $\ob\mc{C}$;
+        \item A class of \bemph{morphisms} (sometimes \emph{arrows} or \emph{maps}) denoted with $\hom\mc{C}$ such that:\begin{itemize}
+            \item For all morphisms $f$ there are two objects $x,y$ of $\mc{C}$ called \bemph{domain} and \bemph{codomain} of $f$, so that we will write $f: x\to y$;
+            \item For all morphisms $f : x\to y$ and $g: y \to z$ their \bemph{composition} $g\circ f: x\to z$ (often simply written as $gf$) is defined;
+            \item Composition of morphisms is associative, as to say, for all morphisms $f:w\to x$, $g: x\to y$ and $h: y\to z$ holds $h(gf) = (hg)f =: hgf: w\to z$;
+            \item For all objects $x$ there exists a morphism called \bemph{identity} of $x$ (easily shown to be unique) $\id_x : x\to x$ such that for all $f: x\to y$ and $g : y\to x$ hold $f\id_x = f$ and $\id_x g = g$.
+        \end{itemize}
+    \end{itemize}
+    \proof 
+    Suppose there are two identity morphisms $\id_x$ and $\id_x'$, in that case we would have $\id_x = \id_x\id_x' = \id_x'$.
+    \qed
+\end{definition}
+
+The notion of category unifies many familiar "workspaces" in mathematics: common examples are\begin{itemize}
+    \item The category $\setcat$ of sets and functions;
+    \item The category $\topcat$ of topological spaces and continuous functions;
+    \item The category $\grpcat$ of groups and group homomorphisms;
+    \item The category $\veccat\K$ of $\K$-vector spaces and $\K$-linear maps;
+    \item A partially ordered class $(A, \le)$ can be regarded as a category, its objects being the elements of $A$ and its morphisms given by the order relation ($x\to y$ corresponding to $x\le y$).
+\end{itemize}
+Remarkably, since $\ob\mc{C}$ is in bijection with the identities of $\hom\mc{C}$, one could do away with the entire notion of object and define a category purely from the class of its morphisms.\\
+We will now give some (rather unsurprising) terminology:
+
+\begin{definition}{Miscellaneous for morphisms}{miscmorphisms}
+    Let $\mc{C}$ be a category.\begin{itemize}
+        \item For all objects $x,y$ of $\mc{C}$, we will denote with $\hom(x,y)$ (or $\mc{C}(x,y)$ when there may be ambiguity in the choice of category) the class of $x\to y$ morphisms of $\mc{C}$.
+        \item if $\hom\mc{C}$ is a set, $\mc{C}$ is said to be \bemph{small}, otherwise it is said to be \bemph{large}; if for all objects $x,y$, $\hom(x,y)$ is a set, $\mc{C}$ is said to be \bemph{locally small}.
+        \item A morphism $f: x\to y$ is said to be a \bemph{monomorphism} (or \emph{monic}) if it admits a left inverse (a morphism $f': y\to x$ such that $f'f = \id_x$) and an \bemph{epimorphism} (or \emph{epic}) if it admits a right inverse (a morphism $f' : y\to x$ such that $ff' = \id_y$); we will write monomorphisms as $x\mono y$ and epimorphisms as $x \epi y$.
+        \item A morphism $f: x\to y$ that is both monic and epic is said to be an \bemph{isomorphism} and is sometimes denoted as $f: x\cong y$; its left and right inverses are easily shown to be equal and unique; in this case, objects $x$ and $y$ are said to be \bemph{isomorphic through} $f$ (almost always, we will simply say that $x$ and $y$ are \emph{isomorphic} and we will write $x\cong y$), we will write its inverse (which is also an isomorphism, obviously) as $f^{-1}$.
+        \item A morphism $f:x\to x$ is said to be an \bemph{endomorphism}, if it's also an isomorphism it's said to be an \bemph{automorphism}.
+        \item An automorphism $f : x\to x$ which is its own inverse is said to be an \bemph{involution} (or \emph{involutive}).
+    \end{itemize}
+    \proof 
+    Let $f: x\to y$ be an isomorphism and let $g, h : y\to x$ be respectively a left and right inverse: the following diagram commutes
+    \[\begin{tikzcd}
+	    x && x \\
+	    \\
+	    y && y
+	    \arrow["f"{description}, from=1-1, to=3-3]
+	    \arrow["{\id_x}"{description}, from=1-3, to=1-1]
+	    \arrow["h"{description}, from=3-1, to=1-1]
+	    \arrow["{\id_y}"{description}, from=3-1, to=3-3]
+	    \arrow["g"{description}, from=3-3, to=1-3]
+    \end{tikzcd}\]
+    Showing $g = h$; since all inverses can be seen as left or right inverses, the same diagram shows that the inverse is unique.
+    \qed
+\end{definition}
+
+\subsection{D\&D (Diagrams \& Duality)}
+
+The proof shown in \ref{def:misc} is an (extremely elementary) example of a proof by "diagram chasing" a common technique in Category Theory: the main idea is representing compositional equations as arrows in a directed graph (a graph whose edges have directions), the infamous \bemph{commutative diagrams}. Many proofs in Category Theory end up being a matter of drawing the right diagram(s) and simply\footnote{Your experience may vary} "following the arrows" to the desired conclusion.\\
+Of course there are a number of ways in which one can manipulate diagrams to prove all kinds of whacky lemmas and proposition, one example is by "gluing" diagrams along a common edge (here I didn't bother assigning a name to the objects nor the morphisms in each diagrams) in the same way that we can add linear combinations of its equations when working on a system; conversely, one can "cut" apart bigger diagrams to create more and smaller ones.
+
+\[\begin{tikzcd}
+	\bullet && \bullet & \bullet && \bullet && \bullet && \bullet && \bullet \\
+	&&&&& {} && {} \\
+	\bullet && \bullet & \bullet && \bullet && \bullet && \bullet && \bullet
+	\arrow[from=1-1, to=1-3]
+	\arrow[from=1-1, to=3-1]
+	\arrow[from=1-1, to=3-3]
+	\arrow[dashed, no head, from=1-3, to=1-4]
+	\arrow[""{name=0, anchor=center, inner sep=0}, "f"{description}, from=1-3, to=3-3]
+	\arrow[from=1-4, to=1-6]
+	\arrow[""{name=1, anchor=center, inner sep=0}, "f"{description}, from=1-4, to=3-4]
+	\arrow[from=1-6, to=3-6]
+	\arrow[from=1-8, to=1-10]
+	\arrow[from=1-8, to=3-8]
+	\arrow[from=1-8, to=3-10]
+	\arrow[from=1-10, to=1-12]
+	\arrow["f"{description}, from=1-10, to=3-10]
+	\arrow[from=1-12, to=3-12]
+	\arrow[Rightarrow, 2tail reversed, from=2-6, to=2-8]
+	\arrow[from=3-1, to=3-3]
+	\arrow[dashed, no head, from=3-3, to=3-4]
+	\arrow[from=3-4, to=1-6]
+	\arrow[from=3-4, to=3-6]
+	\arrow[from=3-8, to=3-10]
+	\arrow[from=3-10, to=1-12]
+	\arrow[from=3-10, to=3-12]
+	\arrow[shorten <=6pt, shorten >=6pt, dashed, no head, from=0, to=1]
+\end{tikzcd}\]
+
+In a sense that we'll make precise later, an entire category is just an enormous commutative diagram and the act of drawing a commutative diagram is just a way of "cutting" it up and looking at one of the pieces. One of the maxims of Category Theory is that "all diagrams commute", which doesn't mean "all diagrams we could wish to write" commute, but means "all diagrams we are allowed to write commute"; when are we allowed to write a diagram? Naturally, when it commutes. The following diagram for example is \bemph{not} a commutative diagram, since by following different paths we get different results
+
+\[\begin{tikzcd}
+	\R && \R \\
+	\\
+	\R && \R
+	\arrow["{x^2}"{description}, from=1-1, to=1-3]
+	\arrow["{-x}"{description}, from=1-1, to=3-1]
+	\arrow["{-x}"{description}, from=1-3, to=3-3]
+	\arrow["{x^2}"{description}, from=3-1, to=3-3]
+\end{tikzcd}\]
+
+Another extremely important concept in Category Theory (perhaps the most important) is "duality", a sort of "buy one, get one free" on theorems and definitions.
+
+\begin{definition}{Opposite category}{opposite category}
+    Let $\mc{C}$ be a category. Its \bemph{opposite} (or \emph{dual}) category is a (trivially, the) category $\mc{C}^\op$ such that:\begin{itemize}
+        \item $\ob\mc{C} = \ob\mc{C}^\op$;
+        \item $\hom\mc{C}$ and $\hom\mc{C}^\op$ are in a bijection that assigns $f: x\to y$ to $f^\op : y \to x$, such that:\begin{itemize}
+            \item Identities are preserved, as to say $\id_x^\op = \id_x$
+            \item Composition is reversed, as to say $(gf)^\op = f^\op g^\op$
+        \end{itemize}
+    \end{itemize}
+    Given a diagram $D$ in $\mc{C}$, its \bemph{dual} diagram $D^\op$ is the diagram in $\mc{C}^\op$ drawn by exchanging the morphisms of $D$ with their dual morphisms.
+    \proof 
+    Trivially, $-^\op$ is an involutive map, so the opposite category is unique.
+    \qed
+\end{definition}
+
+We can now state the duality principle\footnote{Admittedly, this is a "stricter" form of the duality principle that doesn't give justice to its real scope, but a discussion of the full duality principle is left to more model-theory-oriented minds.}
+
+\begin{theorem}{Duality principle}{duality}
+    A diagram $D$ in a category $\mc{C}$ commutes if and only if its dual diagram $D^\op$ commutes in $\mc{C}^\op$.
+    \proof 
+    This is definitionally true.
+    \qed
+\end{theorem}
+
+One question comes to mind: why should we care? Because, a priori, if we were struggling to prove a statement in $\mc{C}$ we have no reason to believe that proving its dual in $\mc{C}^\op$ is gonna be any easier. To shed some light on the usefulness of dual categories, we have to get our hands on some more machinery.
+
+\subsection{Functors and Naturality}
+
+% "But what about maps?"\\
+% "You've already had them."\\
+% "We've had maps between objects, yes. But what about maps between maps?"\\
+
+I'll stop you right here: there is no category of all categories, simply put, categories in general are too large to be "safely" put in a categorical structure, for example $\hom\setcat$ is the class of all functions between sets, which is a proper class and as such can't be an element of another class.\\
+Sure, we might consider $\catcat$, the category of small categories, but most familiar examples categories are large categories which are only locally small. There is a way to "safely" talk about maps between categories though.
+
+\begin{definition}{Functor}{functor}
+    Let $\mc{C}$ and $\mc{D}$ be categories. A \bemph{covariant functor} $F$ from $\mc{C}$ to $\mc{D}$ consists of mappings $F:\ob\mc{C}\to\ob\mc{D}$ and $F:\hom\mc{C}\to\hom\mc{D}$ such that the following diagrams commute for all $X,Y,Z \in \ob\mc{C}$ and for all $f: X\to Y$ and $g: Y\to Z$
+    \[\begin{tikzcd}
+	    X && Y && {F(X)} && {F(Y)} \\
+	    \\
+	    && Z &&&& {F(Z)}
+	    \arrow["{\id_X}"{description}, from=1-1, to=1-1, loop, in=55, out=125, distance=10mm]
+	    \arrow["f"{description}, from=1-1, to=1-3]
+	    \arrow["gf"{description}, from=1-1, to=3-3]
+	    \arrow["g"{description}, from=1-3, to=3-3]
+	    \arrow["{F(\id_X)}"{description}, from=1-5, to=1-5, loop, in=55, out=125, distance=10mm]
+	    \arrow["{F(f)}"{description}, from=1-5, to=1-7]
+	    \arrow["{F(gf)}"{description}, from=1-5, to=3-7]
+	    \arrow["{F(g)}"{description}, from=1-7, to=3-7]
+    \end{tikzcd}\]
+    Unsurprisingly, we write $F : \mc{C}\to \mc{D}$.\\
+    A \bemph{contravariant functor} $G$ from $\mc{C}$ to $\mc{D}$ is a covariant functor $G : \mc{C}^\op \to \mc{D}$.
+\end{definition}
+
+In the words of Saunders Mac Lane, functors arise everywhere! Just a few interesting examples:\begin{itemize}
+    \item The forgetful functor $U : \topcat \to \setcat$ that covariantly maps a topological space $(X,\tau)$ to the underlying set $X$ and a continuous function to itself but seen as a set function.
+    \item The direct and inverse image functors are respectively a covariant and contravariant functor $\setcat\to\setcat$; both of them map a set to its power set and a function to respectively its direct and inverse image functions.
+    \item The dual vector space $-^\vee : \veccat\K^\op \to \veccat\K$ is a contravariant functor that maps a $\K$-vector space $V$ to the $\K$-vector space $V^\vee := \hom(V,\K)$.
+    \item The fundamental group is a covariant functor $\pi_1 : \topcat_c^* \to \grpcat$, where $\topcat_c^*$ is the category of path-connected topological spaces with a fixed basepoint.
+    \item Let $(X, \zeta) \subseteq \C^n$ be an irreducible affine algebraic variety, where $\zeta$ is the Zariski topology; we can regard $(\zeta,\subseteq)$ as a poset and define the functor $\mc{O}_X : \zeta^\op \to \C\algcat$ that assigns an open set $U$ to the $\C$-algebra of regular functions on $U$ and set inclusions to function restrictions.
+\end{itemize}
+
+\begin{proposition}{Functor composition}{functor composition}
+    Let $F : \mc{C}\to \mc{D}$ and $G : \mc{D}\to\mc{E}$ be functors.\\
+    Their composition map $GF : \mc{C}\to \mc{E}$ is well-defined and functorial; also the variance of $GF$ is the product of the variances of $F$ and $G$.
+    \proof 
+    The following diagrams trivially commute for all $X,Y,Z \in \ob\mc{C}$
+    \[\begin{tikzcd}
+	    X && Y && {F(X)} && {F(Y)} && {GF(X)} && {GF(Y)} \\
+	    \\
+	    && Z &&&& {F(Z)} &&&& {GF(Z)}
+    	\arrow["f"{description}, from=1-1, to=1-3]
+	    \arrow["gf"{description}, from=1-1, to=3-3]
+    	\arrow["g"{description}, from=1-3, to=3-3]
+    	\arrow["Ff"{description}, from=1-5, to=1-7]
+    	\arrow["{F(gf)}"{description}, from=1-5, to=3-7]
+    	\arrow["Fg"{description}, from=1-7, to=3-7]
+    	\arrow["GFf"{description}, from=1-9, to=1-11]
+    	\arrow["{GF(gf)}"{description}, from=1-9, to=3-11]
+    	\arrow["GFg"{description}, from=1-11, to=3-11]
+    \end{tikzcd}\]
+    proving functoriality; with the following diagram we prove the statement about variance in the contravariant/contravariant case, the others follow (as) trivially:
+    \[\begin{tikzcd}
+	    & {F(Y)} && {F(X)} \\
+	    X &&&& {GF(X)} \\
+	    \\
+	    & Y && {GF(Y)}
+	    \arrow[""{name=0, anchor=center, inner sep=0}, "Ff"{description}, from=1-2, to=1-4]
+	    \arrow[""{name=1, anchor=center, inner sep=0}, "f"{description}, from=2-1, to=4-2]
+	    \arrow[""{name=2, anchor=center, inner sep=0}, "GFf"{description}, from=2-5, to=4-4]
+	    \arrow["G"{description}, shorten <=13pt, shorten >=13pt, Rightarrow, from=0, to=2]
+	    \arrow["F"{description}, shorten <=12pt, shorten >=12pt, Rightarrow, from=1, to=0]
+	    \arrow["GF"{description}, shorten <=21pt, shorten >=21pt, Rightarrow, from=1, to=2]
+    \end{tikzcd}\]
+\end{proposition}
+
+Now some more terminology
+
+\begin{definition}{Miscellaneous for functors}{miscfunctors}
+    Let $\mc{C},\mc{D}$ be locally small categories and $F:\mc{C}\to \mc{D}$ be a functor; For all pair of objects $X,Y$ in $\mc{C}$, let $F_{X,Y} : \mc{C}(X,Y)\to \mc{D}(FX,FY)$  be the induced mapping between hom-sets. $F$ is said to be:\begin{itemize}
+        \item \bemph{full} if $F_{X,Y}$ is surjective for all pairs of objects;
+        \item \bemph{faithful} if $F_{X,Y}$ is injective for all pairs of objects;
+        \item \bemph{fully faithful} if it's full and faithful;
+        \item \bemph{essentially surjective on objects} if for every object $Y$ of $\mc{D}$, $Y$ is isomorphic to $FX$ for some object $X$ of $\mc{C}$.
+    \end{itemize}
+\end{definition}
+
+\end{document}
