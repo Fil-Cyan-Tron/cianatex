@@ -47,7 +47,7 @@ We will now give some (rather unsurprising) terminology:
 \begin{definition}{Miscellaneous for morphisms}{miscmorphisms}
     Let $\mc{C}$ be a category.\begin{itemize}
         \item For all objects $x,y$ of $\mc{C}$, we will denote with $\hom(x,y)$ (or $\mc{C}(x,y)$ when there may be ambiguity in the choice of category) the class of $x\to y$ morphisms of $\mc{C}$.
-        \item if $\hom\mc{C}$ is a set, $\mc{C}$ is said to be \bemph{small}, otherwise it is said to be \bemph{large}; if for all objects $x,y$, $\hom(x,y)$ is a set, $\mc{C}$ is said to be \bemph{locally small}.
+        \item if $\hom\mc{C}$ is a set, $\mc{C}$ is said to be \bemph{small}, otherwise it is said to be \bemph{large}; if for all objects $x,y$, $\hom(x,y)$ is a set, $\mc{C}$ is said to be \bemph{locally small} and $\hom(x,y)$ is called \bemph{hom-set}.
         \item A morphism $f: x\to y$ is said to be a \bemph{monomorphism} (or \emph{monic}) if it admits a left inverse (a morphism $f': y\to x$ such that $f'f = \id_x$) and an \bemph{epimorphism} (or \emph{epic}) if it admits a right inverse (a morphism $f' : y\to x$ such that $ff' = \id_y$); we will write monomorphisms as $x\mono y$ and epimorphisms as $x \epi y$.
         \item A morphism $f: x\to y$ that is both monic and epic is said to be an \bemph{isomorphism} and is sometimes denoted as $f: x\cong y$; its left and right inverses are easily shown to be equal and unique; in this case, objects $x$ and $y$ are said to be \bemph{isomorphic through} $f$ (almost always, we will simply say that $x$ and $y$ are \emph{isomorphic} and we will write $x\cong y$), we will write its inverse (which is also an isomorphism, obviously) as $f^{-1}$.
         \item A morphism $f:x\to x$ is said to be an \bemph{endomorphism}, if it's also an isomorphism it's said to be an \bemph{automorphism}.
@@ -173,6 +173,7 @@ Sure, we might consider $\catcat$, the category of small categories, but most fa
 In the words of Saunders Mac Lane, functors arise everywhere! Just a few interesting examples:\begin{itemize}
     \item The forgetful functor $U : \topcat \to \setcat$ that covariantly maps a topological space $(X,\tau)$ to the underlying set $X$ and a continuous function to itself but seen as a set function.
     \item The direct and inverse image functors are respectively a covariant and contravariant functor $\setcat\to\setcat$; both of them map a set to its power set and a function to respectively its direct and inverse image functions.
+    \item In a locally small category $\mc{C}$, each object $A$ induces two functors: the covariant $\hom(A,-):\mc{C}\to\setcat$ and the contravariant $\hom(-,A):\mc{C}^\op\to\setcat$ that respectively map a morphism $f$ to $f\circ -$ and $-\circ f$. These are called \bemph{hom-functors}.
     \item The dual vector space $-^\vee : \veccat\K^\op \to \veccat\K$ is a contravariant functor that maps a $\K$-vector space $V$ to the $\K$-vector space $V^\vee := \hom(V,\K)$.
     \item The fundamental group is a covariant functor $\pi_1 : \topcat_c^* \to \grpcat$, where $\topcat_c^*$ is the category of path-connected topological spaces with a fixed basepoint.
     \item Let $(X, \zeta) \subseteq \C^n$ be an irreducible affine algebraic variety, where $\zeta$ is the Zariski topology; we can regard $(\zeta,\subseteq)$ as a poset and define the functor $\mc{O}_X : \zeta^\op \to \C\algcat$ that assigns an open set $U$ to the $\C$-algebra of regular functions on $U$ and set inclusions to function restrictions.
@@ -222,5 +223,25 @@ Now some more terminology
         \item \bemph{essentially surjective on objects} if for every object $Y$ of $\mc{D}$, $Y$ is isomorphic to $FX$ for some object $X$ of $\mc{C}$.
     \end{itemize}
 \end{definition}
+
+Lastly we have to introduce yet another layer of maps between maps: natural transformations.
+
+\begin{definition}{Natural transformation}{natural transformation}
+    Let $\mc{C},\mc{D}$ be two categories and $F : \mc{C}\to\mc{D}$ and $G:\mc{C}\to\mc{D}$ be two functors of the same variance.\\
+    A \bemph{natural transformation} between $F$ and $G$, written as $\varphi : F \to G$, is a collection $\{\varphi_X\}_{X \in \ob\mc{C}}$ of morphisms of $\mc{D}$ indicized by objects of $\mc{C}$ such that the following diagram commutes for all pairs of objects $X,Y$:
+    \[\begin{tikzcd}
+    	X && FX && GX \\
+    	\\
+    	Y && FY && GY
+    	\arrow["f"{description}, from=1-1, to=3-1]
+    	\arrow["{\varphi_X}"{description}, from=1-3, to=1-5]
+    	\arrow["Ff"{description}, from=1-3, to=3-3]
+    	\arrow["Gf"{description}, from=1-5, to=3-5]
+    	\arrow["{\varphi_Y}"{description}, from=3-3, to=3-5]
+    \end{tikzcd}\]
+    If for every object $X$ of $\mc{C}$ we have that $\varphi_X$ is an isomorphism, $\varphi$ is said to be a \bemph{natural isomorphism}.
+\end{definition}
+
+
 
 \end{document}
