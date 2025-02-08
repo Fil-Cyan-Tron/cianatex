@@ -25,24 +25,24 @@ Stabiliamo un pochino di linguaggio:
     \[\sum_{i=0}^n a_i \beta^i \qquad \text{con } a_i \in\{0,1\}\]
     Analogamente, un \bemph{polinomio binario} è un polinomio della forma
     \[\sum_{i=0}^n a_i x^i \qquad \text{con } a_i \in\{0,1\}\]
-    Definiremo $2[x]$ l'insieme dei polinomi binari nella variabile $x$.
+    Definiremo $\mathbf{2}[x]$ l'insieme dei polinomi binari nella variabile $x$.
 \end{definition}
 
 Possiamo vedere che quindi la congettura di Matilde riguarda i numeri $10$-binari; procediamo a dimostrare il
 
 \begin{theorem}{Teorema del treno per polinomi}{politreno}
-    Sia $p \in \N[x]$ di grado $d$ tale che $p^2 \in 2[x]$.\\
+    Sia $p \in \N[x]$ di grado $d$ tale che $p^2 \in \mathbf{2}[x]$.\\
     Allora $p = x^d$ se $d\ge 0$, altrimenti $p=0$.
     \proof 
     I casi $d\in\{-\infty, 0\}$ sono banali, assumiamo $d\ge 1$ e scriviamo per esteso $p$ e $p^2$:
     \[p = \sum_{i=0}^d a_i x^i, \qquad p^2 = \sum_{k=0}^{2d} b_k x^k \quad\text{dove}\quad b_k = \sum_{i=0}^k a_i a_{k-i} \quad\text{e}\quad \forall j > d, a_j=0\]
-    Dimostriamo prima che $p \in 2[x]$ (lemma della locomotiva) e successivamente che $p = x^d$ (lemma della ferrovia):\begin{itemize}
-        \item Dato che abbiamo assunto la binarietà di $p^2$, per ogni $k$ bisogna avere $b_k \in\{0,1\}$, dunque deve esistere al più un $i$ tale che $a_i a_{k-i} > 0$, poichè altrimenti $b_k$ sarebbe maggiore di $1$; inoltre, dato che l'unico caso in cui il prodotto di due numeri naturali è uguale a $1$ è quello in cui questi sono entrambi uno, deve valere $a_i = a_{k-i} = 1$, dunque per ogni $j$ deve valere $a_j \in \{0,1\}$ e dunque $p \in 2[x]$.
+    Dimostriamo prima che $p \in \mathbf{2}[x]$ (lemma della locomotiva) e successivamente che $p = x^d$ (lemma della ferrovia):\begin{itemize}
+        \item Dato che abbiamo assunto la binarietà di $p^2$, per ogni $k$ bisogna avere $b_k \in\{0,1\}$, dunque deve esistere al più un $i$ tale che $a_i a_{k-i} > 0$, poichè altrimenti $b_k$ sarebbe maggiore di $1$; inoltre, dato che l'unico caso in cui il prodotto di due numeri naturali è uguale a $1$ è quello in cui questi sono entrambi uno, deve valere $a_i = a_{k-i} = 1$, dunque per ogni $j$ deve valere $a_j \in \{0,1\}$ e dunque $p \in \mathbf{2}[x]$.
         \item Per l'unicità di $i$ vista nel punto precedente, deve valere anche $i = k-i$, ovvero $k = 2i$ e quindi $b_k$ può essere uguale a $1$ soltanto per $k$ pari. Scriviamo quindi
         \[ p^2 = \sum_{k=0}^d b_{2k} x^{2k} \quad \text{con}\quad b_{2k} = \sum_{i=0}^{2k}a_{i}a_{2k-i} \]
-        Notiamo che abbiamo "gratis" $b_{2d} = 1$ e $b_0 = a_0^2$ e supponiamo per assurdo che per un qualche $0<k'<d$ si abbia $b_{2k'}=1$; questo significherebbe che $a_{k'}=1$ e che quindi $b_{d+k'}\neq 0$, e in particolare
-        \[ b_{d+k'} = \sum_{i=0}^{d+k'} a_i a_{d+k'-i} = \underbrace{\sum_{i=0}^{k'-1} a_ia_{d+k'-i}}_{=0} + \underbrace{a_{k'}a_{d}}_{=1} + \underbrace{\sum_{i = k'+1}^{d-1} a_{i} a_{d+k'-i} }_{\ge 0} + \underbrace{a_{d}a_{k'}}_{=1} + \underbrace{\sum_{i=d+1}^{d+k'+1}a_i a_{d+k'-i}}_{\ge 0}\ge 2\]
-        assurdo per ipotesi di binarietà di $p^2$, dunque dobbiamo concludere che $b_{2k'} = 0$ per ogni $0<k'<d$ e perciò $p^2 = x^{2d} + a_0$, ma dato che $x^{2d} +1$ è irriducibile in $\R[x]$ chiaramente lo è anche in $\N[x]$ e ovviamente in $2[x]$ e quindi $a_0 = 0$.
+        Notiamo che abbiamo "gratis" $b_{2d} = 1$ e $b_0 = a_0^2$ e supponiamo per assurdo che per un qualche $0<h<d$ si abbia $b_{2h}=1$; questo significherebbe che $a_{h}=1$ e che quindi $b_{d+h}\neq 0$, e in particolare
+        \[ b_{d+h} = \sum_{i=0}^{d+h} a_i a_{d+h-i} = \underbrace{\sum_{i=0}^{h-1} a_ia_{d+h-i}}_{=0} + \underbrace{a_{h}a_{d}}_{=1} + \underbrace{\sum_{i = h+1}^{d-1} a_{i} a_{d+h-i} }_{\ge 0} + \underbrace{a_{d}a_{h}}_{=1} + \underbrace{\sum_{i=d+1}^{d+h+1}a_i a_{d+h-i}}_{\ge 0}\ge 2\]
+        assurdo per ipotesi di binarietà di $p^2$, dunque dobbiamo concludere che $b_{2h} = 0$ per ogni $0<h<d$ e perciò $p^2 = x^{2d} + a_0$, ma dato che $x^{2d} +1$ è irriducibile in $\R[x]$ chiaramente lo è anche in $\N[x]$ e ovviamente in $\mathbf{2}[x]$ e quindi $a_0 = 0$.
     \end{itemize}
     \qed
 \end{theorem}
@@ -51,7 +51,7 @@ Possiamo vedere che quindi la congettura di Matilde riguarda i numeri $10$-binar
     Sia $p$ un quadrato perfetto $\beta$-binario.\\ 
     Allora $p$ è della forma $\beta^{2n}$ per qualche $n\in \N$ oppure $p=0$.
     \proof 
-    Scriviamo $p$ in base $\beta$, vediamo le sue cifre come coefficienti di un polinomio $p(x) \in 2[x]$ e applichiamo il teorema del treno per polinomi, ottenendo che $p(x) = x^{2n}$ per qualche $n \in \N$ oppure $p(x)\equiv 0$.\\
+    Scriviamo $p$ in base $\beta$, vediamo le sue cifre come coefficienti di un polinomio $p(x) \in \mathbf{2}[x]$ e applichiamo il teorema del treno per polinomi, ottenendo che $p(x) = x^{2n}$ per qualche $n \in \N$ oppure $p(x)\equiv 0$.\\
     Valutiamo $p(\beta)$ per ottenere $p = \beta^{2n}$ oppure $p = 0$.
     \qed
 \end{corollary}
