@@ -375,13 +375,16 @@ Cercheremo di dimostrare il TFA per cambiamenti di coordinate \bemph{lineari} co
     \end{enumerate}
 \end{theorem}
 
-\chapter{(APERTO) Congettura di Calabri}
+\chapter{(RISOLTO) Congettura di Calabri}
 
 Qualche tempo fa, Matilde mi ha presentato un'interessante congettura:
 
 \begin{proposition}{Calabri 1}{calabri 1}
     Gli unici numeri della forma $a_0+10a_1+100a_2+...$ con $a_i \in \{0,1\}$ che sono quadrati perfetti sono della forma $10^{2k}$ per qualche $k \in \N$.
 \end{proposition}
+
+Dopo un infruttuoso attacco a forza di congurenze modulari, ho deciso di utilizzare tecniche a me più familiari, ovvero provare a ragionare in termini di polinomi.\\
+Stabiliamo un pochino di linguaggio:
 
 \begin{definition}{Numeri e polinomi binari}{binary}
     Un \bemph{numero binario in base} $\beta$, o numero $\beta$\bemph{-binario} è un numero della forma
@@ -391,25 +394,38 @@ Qualche tempo fa, Matilde mi ha presentato un'interessante congettura:
     Definiremo $2[x]$ l'insieme dei polinomi binari nella variabile $x$.
 \end{definition}
 
-Notiamo facilmente che un numero $\beta$-binario è un polinomio binario valutato in $x=\beta$.\\
-Quello che ho intenzione di fare per tentare di dimostrare la congettura di Calabri è dimostrare che se un polinomio binario ammette radice quadrata questa è binaria e che gli unici polinomi binari che ammettono un quadrato binario sono della forma desiderata.
+Possiamo vedere che quindi la congettura di Matilde riguarda i numeri $10$-binari; procediamo a dimostrare il
 
-\begin{lemma}{Lemma delle rotaie}{rotaie}
-    Sia $p \in 2[x]$ di grado $d$ tale che $p^2 \in 2[x]$.\\
-    Allora, $p=x^d$, con la convenzione che $\deg 0= -\infty$ e $x^{-\infty}=0$.
-    \proof
-    Assumiamo ovviamente $d\ge 1$ e $a_d=1$ e scriviamo per esteso $p$ e $p^2$ come da ipotesi:
-    \[ p = \sum_{i=0}^d a_i x^i, \qquad p^2 = \sum_{k=0}^{2d} b_k x^k \quad\text{dove}\quad b_k = \sum_{i=0}^k a_i a_{k-i} \quad\text{e}\quad \forall j > d, a_j=0\]
-    Notiamo che, dato che $b_k$ deve appartenere a $\{0,1\}$, per ogni $k$ esiste al più un $i$ tale che $a_i a_{k-i} = 1$, dato che altrimenti $b_k$ sarebbe maggiore di $1$; inoltre, dato che $a_i a_{k-1} = a_{k-1} a_{k-(k-i)}$ questo unico (se esistente) $i$ deve verificare $i = k-i$ e quindi $k=2i$, dunque per $k$ dispari, $b_k = 0$. Scriviamo quindi
-    \[ p^2 = \sum_{k=0}^d b_{2k} x^{2k} \quad \text{con}\quad b_{2k} = \sum_{i=0}^{k}a_{i}a_{2k-i} \]
-    Notiamo che abbiamo "gratis" $b_{2d} = 1$ e $b_0 = a_0^2$ e supponiamo per assurdo che per un qualche $0<k'<d$ si abbia $b_{2k'}=1$; questo significherebbe che $a_{k'}=1$ e che quindi $b_{d+k'}\neq 0$, e in particolare
-    \[ b_{d+k'} = \sum_{i=0}^{d+k'} a_i a_{d+k'-i} = \underbrace{\left(\sum_{i=0}^{k'-1} a_ia_{d+k'-i}\right)}_{=0} + \underbrace{a_{k'}a_{d}}_{=1} + \underbrace{\left(\sum_{i = k'+1}^{d-1} a_{i} a_{d+k'-i} \right)}_{\ge 0} + \underbrace{a_{d}a_{k'}}_{=1} + \underbrace{\left(\sum_{i=d+1}^{d+k'+1}a_i a_{d+k'-i}\right)}_{\ge 0}\ge 2\]
-    assurdo per ipotesi di binarietà di $p^2$, dunque dobbiamo concludere che $b_{2k'} = 0$ per ogni $0<k'<d$ e perciò $p^2 = x^{2d} + a_0$, ma dato che $x^{2d} +1$ è irriducibile in $\Q[x]$ chiaramente lo è anche in $2[x]$ e quindi $a_0 = 0$.
+\begin{theorem}{Teorema del treno per polinomi}{politreno}
+    Sia $p \in \N[x]$ di grado $d$ tale che $p^2 \in 2[x]$.\\
+    Allora $p = x^d$ se $d\ge 0$, altrimenti $p=0$.
+    \proof 
+    I casi $d\in\{-\infty, 0\}$ sono banali, assumiamo $d\ge 1$ e scriviamo per esteso $p$ e $p^2$:
+    \[p = \sum_{i=0}^d a_i x^i, \qquad p^2 = \sum_{k=0}^{2d} b_k x^k \quad\text{dove}\quad b_k = \sum_{i=0}^k a_i a_{k-i} \quad\text{e}\quad \forall j > d, a_j=0\]
+    Dimostriamo prima che $p \in 2[x]$ (lemma della locomotiva) e successivamente che $p = x^d$ (lemma della ferrovia):\begin{itemize}
+        \item Dato che abbiamo assunto la binarietà di $p^2$, per ogni $k$ bisogna avere $b_k \in\{0,1\}$, dunque deve esistere al più un $i$ tale che $a_i a_{k-i} > 0$, poichè altrimenti $b_k$ sarebbe maggiore di $1$; inoltre, dato che l'unico caso in cui il prodotto di due numeri naturali è uguale a $1$ è quello in cui questi sono entrambi uno, deve valere $a_i = a_{k-i} = 1$, dunque per ogni $j$ deve valere $a_j \in \{0,1\}$ e dunque $p \in 2[x]$.
+        \item Per l'unicità di $i$ vista nel punto precedente, deve valere anche $i = k-i$, ovvero $k = 2i$ e quindi $b_k$ può essere uguale a $1$ soltanto per $k$ pari. Scriviamo quindi
+        \[ p^2 = \sum_{k=0}^d b_{2k} x^{2k} \quad \text{con}\quad b_{2k} = \sum_{i=0}^{2k}a_{i}a_{2k-i} \]
+        Notiamo che abbiamo "gratis" $b_{2d} = 1$ e $b_0 = a_0^2$ e supponiamo per assurdo che per un qualche $0<k'<d$ si abbia $b_{2k'}=1$; questo significherebbe che $a_{k'}=1$ e che quindi $b_{d+k'}\neq 0$, e in particolare
+        \[ b_{d+k'} = \sum_{i=0}^{d+k'} a_i a_{d+k'-i} = \underbrace{\sum_{i=0}^{k'-1} a_ia_{d+k'-i}}_{=0} + \underbrace{a_{k'}a_{d}}_{=1} + \underbrace{\sum_{i = k'+1}^{d-1} a_{i} a_{d+k'-i} }_{\ge 0} + \underbrace{a_{d}a_{k'}}_{=1} + \underbrace{\sum_{i=d+1}^{d+k'+1}a_i a_{d+k'-i}}_{\ge 0}\ge 2\]
+        assurdo per ipotesi di binarietà di $p^2$, dunque dobbiamo concludere che $b_{2k'} = 0$ per ogni $0<k'<d$ e perciò $p^2 = x^{2d} + a_0$, ma dato che $x^{2d} +1$ è irriducibile in $\R[x]$ chiaramente lo è anche in $\N[x]$ e ovviamente in $2[x]$ e quindi $a_0 = 0$.
+    \end{itemize}
     \qed
-\end{lemma}
+\end{theorem}
 
-\chapter{(APERTISSIMO) Circuiti LRC come categorie}
+\begin{corollary}{Teorema del treno per numeri $\beta$-binari}{numetreno}
+    Sia $p$ un quadrato perfetto $\beta$-binario.\\ 
+    Allora $p$ è della forma $\beta^{2n}$ per qualche $n\in \N$ oppure $p=0$.
+    \proof 
+    Scriviamo $p$ in base $\beta$, vediamo le sue cifre come coefficienti di un polinomio $p(x) \in 2[x]$ e applichiamo il teorema del treno per polinomi, ottenendo che $p(x) = x^{2n}$ per qualche $n \in \N$ oppure $p(x)\equiv 0$.\\
+    Valutiamo $p(\beta)$ per ottenere $p = \beta^{2n}$ oppure $p = 0$.
+    \qed
+\end{corollary}
 
-
+\begin{corollary}{Calabri I}{}
+    Gli unici numeri della forma $a_0+10a_1+100a_2+...$ con $a_i \in \{0,1\}$ che sono quadrati perfetti sono della forma $10^{2k}$ per qualche $k \in \N$.
+    \proof 
+    Applichiamo il teorema del treno per numeri $\beta$-binari nel caso $\beta=10$.
+\end{corollary}
 
 \end{document}
