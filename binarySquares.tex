@@ -47,18 +47,38 @@ Possiamo vedere che quindi la congettura di Matilde riguarda i numeri $10$-binar
     \qed
 \end{theorem}
 
-Grazie al fatto che non solo il seguente diagramma commuta in $\setcat$, ma $V_\beta$ è anche un morfismo nella categoria $\catname{SemiRing}$, abbiamo i corollari
+Prima di essere certi di averlo dimostrato per i numeri, ci serve il seguente lemma:
 
-\[\begin{tikzcd}
-	{B_\beta \subset \N} && {\N[x]} \\
-	\\
-	{\{0,1\}^{\N}\subset \{0,...,\beta-1\}^{\N}} && {\mathbf{2}[x]}
-	\arrow[tail reversed, from=1-1, to=3-1]
-	\arrow["{V_\beta}"{description}, from=1-3, to=1-1]
-	\arrow[tail reversed, from=3-1, to=3-3]
-	\arrow["{V_\beta |_{\mathbf{2}[x]}}"{description}, tail reversed, from=3-3, to=1-1]
-	\arrow[hook, from=3-3, to=1-3]
-\end{tikzcd}\]
+\begin{lemma}{Corrispondenza biunivoca tra polinomi binari e numeri $\beta$-binari}{}
+    Sia $\beta \in \N_{\ge 2}$, sia  $V_\beta : \N[x]\to\N$ l'omomorfismo di semianelli che manda $p$ in $p(\beta)$. Allora:\begin{enumerate}
+        \item La restrizione $V_\beta : \mathbf{2}[x]\to B_\beta$ è una mappa biettiva di insiemi.
+        \item Un $n \in B_\beta$ è un quadrato in $\N$ se e solo se $p = V_\beta^{-1}(n)$ è un quadrato in $\N[x]$
+    \end{enumerate}
+    \proof 
+    \begin{enumerate}
+        \item Il seguente diagramma commuta in $\setcat$:
+            \[\begin{tikzcd}
+    	        {\N[x]} &&& \N \\
+        	    {\mathbf{2}[x]} && {B_\beta} \\
+        	    \\
+	            && {\{0,1\}^{\infty}} & {\{0,...,\beta-1\}^{\infty}}
+	            \arrow["{V_\beta}"{description}, from=1-1, to=1-4]
+	            \arrow[tail reversed, from=1-4, to=4-4]
+	            \arrow[hook, from=2-1, to=1-1]
+	            \arrow["{V_\beta}"{description}, from=2-1, to=2-3]
+	            \arrow[hook, from=2-3, to=1-4]
+	            \arrow[tail reversed, from=4-3, to=2-1]
+	            \arrow[tail reversed, from=4-3, to=2-3]
+	            \arrow[hook, from=4-3, to=4-4]
+            \end{tikzcd}\]
+            Dato che la restrizione di $V_\beta$ è uguale alla composizione di due biezioni (la scrittura in base $\beta$ e la sostituzione del simbolo $\beta$ col simbolo $x$), è una biezione.
+        \item Assumiamo che $p = q^2$, allora banalmente $n = p(\beta) = q^2(\beta) = (q(\beta))^2$.\\
+        Ora assumiamo che $n=p(\beta) = m^2$. Scriviamo $p$ 
+        \[ p = \sum_{i = 0}^{d} a_i x^i \]
+    \end{enumerate}
+\end{lemma}
+
+
 
 \begin{corollary}{Teorema del treno per numeri $\beta$-binari}{numetreno}
     Sia $p$ un quadrato perfetto $\beta$-binario.\\ 
