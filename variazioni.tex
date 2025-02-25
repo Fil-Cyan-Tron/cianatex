@@ -1,0 +1,77 @@
+\documentclass[openany]{book}
+\usepackage{cianatex}
+
+\title{Calcolo delle Variazioni}
+\author{Filippo $\mc{L}$ Troncana\\dalle lezioni del prof. Marco Bonacini dell'omonimo corso per il corso di laurea in Matematica}
+\date{A.A. 2024/2025}
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+\pagebreak
+
+%Lezione 25/02/2025
+
+\section*{Introduzione}
+
+Il calcolo delle variazioni è quella branca della matematica che affronta il problema di trovare in una data famiglia (di funzioni, superfici, curve...) l'oggetto o gli oggetti che minimizzano una certa grandezza ad essi associata, ad esempio il problema della brachistocrona è uno degli esempi più classici
+
+\subsection*{Esempi introduttivi}
+
+\subsubsection*{Metodi classici: funzioni reali}
+
+Supponiamo di avere una funzione $f:[a,b]\to\R$ della quale vogliamo trovare i punti di minimo. Se la nostra funzione è differenziabile su $]a,b[$ possiamo usare il teorema di Fermat che ci dà una condizione \textbf{necessaria ma non sufficiente} affinchè un punto $x_0 \in ]a,b[$ sia un punto di massimo, ovvero $f'(x_0) = 0$.\\
+Se la nostra funzione è doppiamente differenziabile, possiamo ottenere un'altra condizione necessaria, ovvero che $f'(x_0) = 0$ e che $f''(x_0) \ge 0$; inoltre sempre lavorando sulla derivata seconda otteniamo quella che è una condizione \textbf{sufficiente ma non necessaria}, ovvero che $f'(x_0) = 0$ e $f''(x_0) > 0$.\\
+Scartando l'ipotesi di doppia derivabilità, possiamo sostituirla con l'ipotesi di convessità, rendendo $f'(x_0) = 0$ una condizione sufficiente per la minimalità di $x_0$.\\
+I metodi classici (o indiretti) si basano sulla generalizzazione di questo approccio a spazi di funzioni, come vediamo ora.
+
+\subsubsection*{Metodi classici: integrale di Dirichlet}
+
+Sia $\Omega\subset\R^n$ un aperto a chiusura compatta con frontiera $\partial\Omega$ regolare e sia $g : \partial\Omega\to\R$ una funzione continua. Definiamo il nostro spazio $X$ e il nostro funzionale $F : X\to\R$ come:
+\[ X = \left\{ u \in \mc{C}^1(\bar{\Omega}) : u|_{\partial\Omega} = g \right\}, \qquad F(u) = \intop_\Omega \|\nabla u\|^2 \de \L^n, \qquad\text{inoltre assumiamo che esista } u_0 = \arg\min_{u \in X} F(u). \]
+Analogamente a quanto visto per le funzioni reali, quali condizioni necessarie o sufficienti possiamo identificare per il nostro punto di minimo $u_0$? Ragionando sull'approccio del teorema di Fermat, possiamo formulare la condizione al primo ordine della nostra funzione reale come 
+\[ 0 = f'(x_0) = \lim_{t\to 0} \frac{f(x_0+t) - f(x_0)}{t} \]
+Consideriamo lo spazio $\mc{C}^1_c(\Omega)$ delle funzioni differenziabili a supporto compatto contenuto in $\Omega$ e per una $\varphi \in \mc{C}^1_c(\Omega)$ e $t \in \R$ definiamo la funzione $u_t := u_0 + t\varphi$, che appartiene a $X$ per ogni $t \in \R$\footnote{Banalmente, in quanto $\varphi|_{\partial\Omega} \equiv 0$}. Usiamo la nostra $\varphi$ a mo' di "vettore della base canonica" come facevamo in $\R^n$:
+\[0 = \lim_{t\to 0} \frac{F(u_t) - F(u_0)}{t} = \lim_{t\to 0} \frac{1}{t} \left( \intop_\Omega \|\nabla u_t\|^2 \de \L^n - \intop_\Omega \|\nabla u_0\|^2 \de \L^n \right)\]
+Sviluppando i quadrati e usando la linearità dell'integrale otteniamo
+\[ \frac{1}{t} \left( \intop_\Omega \|\nabla u_t\|^2 \de \L^n - \intop_\Omega \|\nabla u_0\|^2 \de \L^n \right) =  \intop_\Omega \cancel{\frac{\|\nabla u_0\|^2}{t}} + \frac{2\cancel{t} \nabla u_0 \cdot \nabla \varphi}{\cancel{t}} + \frac{t^{\cancel{2}}\|\nabla \varphi\|^2}{\cancel{t}} -\cancel{\frac{\|\nabla u_0\|^2}{t}} \de \L^n \xrightarrow{t \to 0} 2\intop_\Omega \nabla u_0 \nabla \varphi \de\L^n.\]
+Battezziamo questa quantità che abbiamo trovato \bemph{variazione prima di} $F$ \bemph{rispetto a} $\varphi$ \bemph{in} $u_0$ e la indichiamo con $\delta F(u_0,\varphi)$, sarà analoga alla nostra derivata direzionale; inoltre, se avessimo qualche ragione di assumere che $u_0$ sia anche $\mc{C}^2(\bar{\Omega})$ potremmo usare il teorema della divergenza per scrivere anche
+\[ 0 = \delta F(u_0,\varphi) = \intop_{\Omega} \nabla u_0 \cdot \nabla\varphi \de\L^n = \intop_{\Omega}(-\Delta u)\varphi \de\L^n + \cancel{\intop_{\partial\Omega} \varphi \frac{\de u_0}{\de \nu} \de S } = 0\]
+Sfruttando il \href{lemma fondamentale cdv}{lemma fondamentale del calcolo delle variazioni} otteniamo che
+\[ \intop_{\Omega} (-\Delta u_0) \varphi \de\L^n = 0\ \forall \varphi \in \mc{C}^1_c(\Omega)  \Harr -\Delta u_0 = 0 \]
+Perbacco! Assumendo che il nostro punto di minimo esista, abbiamo ottenuto che questo deve soddisfare il problema di Dirichlet
+\[ \begin{cases} -\Delta u = 0 & \text{su }\Omega \\ u|_{\partial\Omega} = g \end{cases}\]
+Ci sono due criticità tuttavia: abbiamo assunto tante cose belle sulla nostra $u_0$ (in primo luogo, che questa esista) e siamo arrivati a scrivere una PDE, oggetti che in generale non sono di facilissima trattazione e figuriamoci risoluzione. Per questo nel ventesimo secolo si sono sviluppati i cosiddetti metodi diretti.
+
+\subsubsection*{Metodi diretti: teorema di Weierstrass}
+
+Tornando all'esempio della nostra funzione $f:[a,b]\to \R$, potremmo ricordarci che abbiamo un teorema che ci garantisce l'esistenza del minimo assumendo semplicemente la continuità di $f$, ovvero il teorema di Weierstrass, la cui dimostrazione si riassume in questi step:\begin{enumerate}
+    \item Sia $(x_n)_{n\in\N}$ una successione minimizzante, ovvero tale che $f(x_n)\to \inf_{[a,b]}f$
+    \item L'intervallo $[a,b]$ è compatto, dunque esiste una sottosuccessione $(x_{n_k})_{k \in \N}$ che converge a $\hat{x} \in [a,b]$.
+    \item Dato che $f$ è continua, $f(\hat{x}) = \inf_{[a,b]}f = \min_{[a,b]}f$.
+\end{enumerate}
+Notiamo che sarebbe bastata la semicontinuità inferiore di $f$, e che questo approccio dipende dalla topologia di $[a,b]$: i metodi diretti si basano proprio su questo, ovvero su una forma più generale del teorema di Weierstrass (sostituendo $[a,b]$ con uno spazio topologico sequenzialmente compatto) e scegliendo sulla nostra famiglia di oggetti la topologia adeguata.\\
+Chiaramente abbiamo un piccolo trade-off: se la nostra topologia è molto fine (= tanti aperti), è facile dimostrare la continuità del nostro funzionale ma è difficile avere la compattezza della nostra famiglia; al contrario, con topologie meno fini abbiamo una compattezza più semplice da dimostrare ma una continuità più difficile, per questo è utile ridurre le ipotesi (ad esempio con la semicontinuità inferiore invece della continuità).
+
+\begin{exercise}{Dimostrare che esiste una successione minimizzante}{successione minimizzante}
+    Sia $X$ un insieme non vuoto e sia $f : X\to \R$ una funzione.\\
+    Esiste una successione $(x_n)_{n \in \N}$ in $X$ tale che $f(x_n)\to \inf_{X} f$.
+    \proof 
+    Sia $y_0 \in f(X)$. Se $y_0 = \inf_X f$, prendiamo una qualsiasi successione in $f^{-1}(y_0)$; altrimenti, e per ogni $n \in \N_{>0}$ prendiamo\footnote{Probabilmente c'è un modo per aggirare l'utilizzo di scelta dipendente ma non ho davvero voglia di pensarci.} $y_{n+1} \in f(X) \cap ]-\infty, y_n[$, fermandoci se dovessimo arrivare a $\inf_X f$.\\
+    Per ogni $y_n$ scegliamo\footnote{Idem ma con scelta numerabile.} $x_n \in f^{-1}(y_n)$ e abbiamo ottenuto la nostra successione minimizzante.
+\end{exercise}
+
+\part{Metodi classici}
+
+\begin{theorem}{Lemma fondamentale del calcolo delle variazioni}{lemma fondamentale cdv}
+    
+\end{theorem}
+
+\part{Metodi diretti}
+
+
+
+\end{document}
