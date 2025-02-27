@@ -1,5 +1,7 @@
 \documentclass[openany]{book}
 \usepackage{cianatex}
+\addbibresource{variazioni.bib}
+
 
 \title{Calcolo delle Variazioni}
 \author{Filippo $\mc{L}$ Troncana\\dalle lezioni del prof. Marco Bonacini dell'omonimo corso per il corso di laurea in Matematica}
@@ -9,6 +11,7 @@
 
 \begin{document}
 
+\nocite{*}
 \maketitle
 
 \tableofcontents
@@ -42,7 +45,7 @@ Sviluppando i quadrati e usando la linearità dell'integrale otteniamo
 \[ \frac{1}{t} \left( \intop_\Omega \|\nabla u_t\|^2 \de \L^n - \intop_\Omega \|\nabla u_0\|^2 \de \L^n \right) =  \intop_\Omega \cancel{\frac{\|\nabla u_0\|^2}{t}} + \frac{2\cancel{t} \nabla u_0 \cdot \nabla \varphi}{\cancel{t}} + \frac{t^{\cancel{2}}\|\nabla \varphi\|^2}{\cancel{t}} -\cancel{\frac{\|\nabla u_0\|^2}{t}} \de \L^n \xrightarrow{t \to 0} 2\intop_\Omega \nabla u_0 \nabla \varphi \de\L^n.\]
 Battezziamo questa quantità che abbiamo trovato \bemph{variazione prima di} $F$ \bemph{rispetto a} $\varphi$ \bemph{in} $u_0$ e la indichiamo con $\delta F(u_0,\varphi)$, sarà analoga alla nostra derivata direzionale; inoltre, se avessimo qualche ragione di assumere che $u_0$ sia anche $\mc{C}^2(\bar{\Omega})$ potremmo usare il teorema della divergenza per scrivere anche
 \[ 0 = \delta F(u_0,\varphi) = \intop_{\Omega} \nabla u_0 \cdot \nabla\varphi \de\L^n = \intop_{\Omega}(-\Delta u)\varphi \de\L^n + \cancel{\intop_{\partial\Omega} \varphi \frac{\de u_0}{\de \nu} \de S } = 0\]
-Sfruttando il \href{lemma fondamentale cdv}{lem:lemma fondamentale del calcolo delle variazioni} otteniamo che
+Sfruttando il lemma \ref{lem:lemma fondamentale cdv} otteniamo che
 \[ \intop_{\Omega} (-\Delta u_0) \varphi \de\L^n = 0\ \forall \varphi \in \mc{C}^1_c(\Omega)  \Harr -\Delta u_0 = 0 \]
 Perbacco! Assumendo che il nostro punto di minimo esista, abbiamo ottenuto che questo deve soddisfare il problema di Dirichlet
 \[ \begin{cases} -\Delta u = 0 & \text{su }\Omega \\ u|_{\partial\Omega} = g \end{cases}\]
@@ -166,6 +169,6 @@ Allora possiamo applicare questo lemma alla relazione di prima per ottenere
 
 \chapter{Metodi diretti}
 
-
+\printbibliography[heading=bibintoc]
 
 \end{document}
