@@ -167,6 +167,32 @@ Allora possiamo applicare questo lemma alla relazione di prima per ottenere
     \solved
 \end{exercise}
 
+%Lezione 04/03/25
+
+\subsection{Lemma di Du Bois--Raymond}
+
+Poniamoci sempre nella situazione \ref{situazione E-L} e fissiamo un pochino di notazione:
+
+\[a(x) := f_s(x, u_0(x), u_0'(x)), \quad b(x) := f_p(x, u_0(x), u_0'(x)), \quad A(x) := \intop_a^x a(t)\de t \]
+
+Che ci permettono di riscrivere la forma debole delle equazioni di Eulero--Lagrange come
+
+\[\begin{aligned}
+    0 & = \intop_a^b a(x)\varphi(x) - b(x)\varphi'(x)\de x = \\ & = \cancel{[A(x)\varphi(x)]_a^b} - \intop_a^b A(x)\varphi'(x) \de x + \intop_a^b b(x)\varphi'(x) \de x = \\ & = \intop_a^b [b(x)-A(x)]\varphi'(x) \de x = 0 \qquad \forall \varphi \in \mc{C}_c^1([a,b]).
+\end{aligned}\]
+
+Ora sfoderiamo un lemmino dal cilindro, ovvero il 
+
+\begin{lemma}{Lemma di Du Bois--Raymond}{DB-R}
+    Sia $v \in \mc{C}^0([a,b])$ tale che 
+    \[ \intop_a^b v(x) \varphi'(x) \de x = 0 \qquad \forall \varphi \in \mc{C}_c^\infty([a,b]).\]
+    Allora $v$ è costante su $[a,b]$.
+    \proof 
+    
+\end{lemma}
+
+Applicandolo otteniamo che $b(x)-A(x) \equiv c \in \R$
+
 \chapter{Metodi diretti}
 
 \printbibliography[heading=bibintoc]
