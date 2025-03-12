@@ -94,10 +94,15 @@ Si veda l'esercizio \ref{exc:E-L per il moto}
 \chapter{Metodi classici}
 
 \section{Le equazioni di Eulero--Lagrange}
-La situazione che analizziamo adesso è questa:\label{situazione E-L}
-\[ X = \{u \in \mc{C}^1([a,b]):u(a)=\alpha, u(b)=\beta\} \qquad \text{con }a,b,\alpha,\beta \in \R, a<b, \]
-\[ F(u) = \intop_a^b f(x,u(x),u'(x))\de x \qquad \text{con } f \in \mc{C}^1([a,b]\times\R\times\R) .\]
-Supponiamo che $F$ ammetta un punto di minimo $u_0 \in X$, fissiamo una $\varphi \in \mc{C}_c^1(]a,b[)$ e definiamo per $t \in \R$ la funzione $u_t = u_0 + t\varphi$, che chiaramente appartiene a $X$ come visto nei primi esempi. Per ipotesi di minimalità, allora la funzione $g(t) := F(u_t)$ deve avere un punto stazionario in $t=0$. Se $g$ fosse $\mc{C}^1$ (cosa che vediamo sarà verificata grazie al prossimo teorema) potremmo applicare il teorema di Fermat per ottenere la condizione:
+La situazione che analizziamo adesso è questa:
+
+\begin{situation}{Eulero--Lagrange con estremi vincolati}{E-L estremi vincolati}
+    \[ X = \{u \in \mc{C}^1([a,b]):u(a)=\alpha, u(b)=\beta\} \qquad \text{con }a,b,\alpha,\beta \in \R, a<b, \]
+    \[ F(u) = \intop_a^b f(x,u(x),u'(x))\de x \qquad \text{con } f \in \mc{C}^1([a,b]\times\R\times\R)\]
+    Con $u_0 \in X$ punto di minimo per $F$.
+\end{situation}
+
+Fissiamo una $\varphi \in \mc{C}_c^1(]a,b[)$ e definiamo per $t \in \R$ la funzione $u_t = u_0 + t\varphi$, che chiaramente appartiene a $X$ come visto nei primi esempi. Per ipotesi di minimalità, allora la funzione $g(t) := F(u_t)$ deve avere un punto stazionario in $t=0$. Se $g$ fosse $\mc{C}^1$ (cosa che vediamo sarà verificata grazie al prossimo teorema) potremmo applicare il teorema di Fermat per ottenere la condizione:
 \[0 = g'(0) = \frac{\di}{\di t}F(u_0 + t \varphi)\bigg|_{t=0} = \frac{\di}{\di t} \intop_a^b f(x, u_0(x) + t\varphi(x), u_0'(x) + t\varphi'(x)) \de x \bigg|_{t=0}.\]
 
 \begin{theorem}{Derivazione sotto il segno di integrale}{deriva sotto integrale}
@@ -113,7 +118,7 @@ Supponiamo che $F$ ammetta un punto di minimo $u_0 \in X$, fissiamo una $\varphi
 Applicando il teorema alla nostra $h(x,t) = f(x,u_0(x)+t\varphi(x), u_0'(x) + t\varphi'(x))$ e facendo un po' di derivate otteniamo
 
 \begin{definition}{Variazione prima}{variazione prima}
-    Nella situazione \ref{situazione E-L}, la quantità
+    Nella situazione \ref{situaz:E-L estremi vincolati}, la quantità
     \[\delta F(u, \varphi) := \intop_a^b f_s(x,u(x),u'(x))\varphi(x) + f_p(x,u(x),u'(x))\varphi'(x)\de x \]
     è detta \bemph{variazione prima} in $u$ del funzionale $F$ lungo $\varphi$.
 \end{definition}
@@ -121,7 +126,7 @@ Applicando il teorema alla nostra $h(x,t) = f(x,u_0(x)+t\varphi(x), u_0'(x) + t\
 E quindi con quanto fatto finora abbiamo dimostrato 
 
 \begin{proposition}{Equazione di Eulero--Lagrange debole}{E-L debole}
-    Nella situazione \ref{situazione E-L}, se $u_0$ è un punto di minimo allora per ogni $\varphi \in \mc{C}_c^1(]a,b[)$ soddisfa l'\bemph{equazione di Eulero--Lagrange debole}:
+    Nella situazione \ref{situaz:E-L estremi vincolati}, se $u_0$ è un punto di minimo allora per ogni $\varphi \in \mc{C}_c^1(]a,b[)$ soddisfa l'\bemph{equazione di Eulero--Lagrange debole}:
     \[\delta F(u_0,\varphi) = 0 = \intop_a^b f_s(x,u(x),u'(x))\varphi(x) + f_p(x,u(x),u'(x))\varphi'(x)\de x\ .\]
     Una funzione che soddisfa l'equazione si dice \bemph{estremale}.
 \end{proposition}
@@ -129,7 +134,6 @@ E quindi con quanto fatto finora abbiamo dimostrato
 Adesso supponiamo anche di sapere\footnote{Per qualche motivo} che $f_p(x, u_0(x), u_0'(x))$ sia $\mc{C}^1([a,b])$ (ad esempio, se avessimo motivo di credere che $f$ e $u_0$ siano $\mc{C}^2$); integrando per parti otteniamo:
 \[ 0 = \delta F(u_0,\varphi) = \intop_a^b f_s(x,u_0(x),u_0'(x))\varphi(x)\de x + \cancel{[f_p(x,u_0(x),u_0'(x))\varphi(x)]_a^b} - \intop_a^b \frac{\partial}{\partial x} [f_p(x, u_0(x), u_0'(x))]\varphi(x)\de x = \]
 \[ = \intop_a^b \left[ f_s(x,u_0(x),u_0'(x)) - \frac{\partial}{\partial x} f_p(x, u_0(x), u_0'(x)) \right]\varphi(x)\de x = 0\ . \]
-
 Adesso useremo un piccolo lemma, ovvero:
 
 \begin{lemma}{Lemma fondamentale del calcolo delle variazioni}{lemma fondamentale cdv}
@@ -142,15 +146,20 @@ Adesso useremo un piccolo lemma, ovvero:
     assurdo, dunque $v \equiv 0$.
     \qed
 \end{lemma}
+\begin{remark}{Lemma fondamentale del Calcolo delle Variazioni super saiyan}{lemma fondamentale cdv super}
+    In realtà è sufficiente controllare le $\varphi$ in $\mc{C}_c^\infty$, anche se useremo questo risultato non lo dimostreremo.
+\end{remark}
 
 Allora possiamo applicare questo lemma alla relazione di prima per ottenere
 
-\begin{theorem}{Equazioni di Eulero--Lagrange}{equazioni di E-L}
-    Nella situazione \ref{situazione E-L}, vale la proposizione \ref{prop:E-L debole}.\\
+\begin{theorem}{Equazioni di Eulero--Lagrange I}{equazioni di E-L I}
+    Nella situazione \ref{situaz:E-L estremi vincolati}, vale la proposizione \ref{prop:E-L debole}.\\
     Inoltre, se $f_p \in \mc{C}^1([a,b]\times \R\times \R)$ vale anche
     \[ f_s(x,u_0(x),u_0'(x)) - \frac{\partial}{\partial x} f_p(x, u_0(x), u_0'(x)) = 0.\]
     Questa condizione si dice \bemph{equazione di Eulero--Lagrange forte}.
 \end{theorem}
+
+Vedremo nelle prossime pagine che in realtà queste ipotesi più forti ci sono sempre garantite.
 
 \begin{exercise}{Eulero--Lagrange per il moto}{E-L per il moto}
     Sia $\gamma : [t_a,t_b]\to \R^3$ la legge oraria della traiettoria di un punto materiale di massa $m>0$ sottoposto a un campo di forze $E : \R^3 \to \R^3$ conservativo, ovvero tale che esista $V : \R^3\to \R$ tale che $E = \nabla V$.\\ Sappiamo che $\gamma$ soddisfa le equazioni del moto
@@ -162,36 +171,96 @@ Allora possiamo applicare questo lemma alla relazione di prima per ottenere
     Risolveremo il caso unidimensionale, in quanto il caso tridimensionale è semplicemente un sistema di tre casi unidimensionali indipendenti tra loro.\\
     Supponiamo che $\gamma$ sia un minimo di $S$ e osserviamo che la lagrangiana di $S$ è data da:
     \[ f(x,s,p) = \frac{1}{2}m p^2 - V(s) \Rarr\begin{cases} f_s(x,s,p) = \nabla V(s) = E(s) \\ f_p(x,s,p)= m p\end{cases}. \]
-    Applicando il teorema \ref{th:equazioni di E-L} abbiamo dunque 
+    Applicando il teorema \ref{th:equazioni di E-L I} abbiamo dunque 
     \[ E(\gamma(t)) - \frac{\partial}{\partial t} m \gamma'(t) = 0 \Harr E(\gamma(t)) = m \gamma''(t). \]
     \solved
 \end{exercise}
+
+\begin{example}{TODO}{}
+    Poniamo
+    \[ F(u) := \intop_0^{2\pi} (u'(x))^2 - (u(x))^2 \de x, \qquad X := \{ u \in \mc{C}^1([0,2\pi]) : u(0)=u(2\pi)=0 \}. \]
+\end{example}
+
+\begin{example}{TODO}{}
+    Poniamo
+    \[ F(u) := \intop_{-1}^1 u^2(x)\cdot(2x-u'(x))^2 \de x, \qquad X := \{ u \in \mc{C}^1([-1,1]):u(-1) = 0, u(1) = 1 \}.\]
+\end{example}
 
 %Lezione 04/03/25
 
 \subsection{Lemma di Du Bois--Raymond}
 
-Poniamoci sempre nella situazione \ref{situazione E-L} e fissiamo un pochino di notazione:
+Poniamoci sempre nella situazione \ref{situaz:E-L estremi vincolati} e fissiamo un pochino di notazione:
 
 \[a(x) := f_s(x, u_0(x), u_0'(x)), \quad b(x) := f_p(x, u_0(x), u_0'(x)), \quad A(x) := \intop_a^x a(t)\de t \]
-
 Che ci permettono di riscrivere la forma debole delle equazioni di Eulero--Lagrange come
 
 \[\begin{aligned}
     0 & = \intop_a^b a(x)\varphi(x) - b(x)\varphi'(x)\de x = \\ & = \cancel{[A(x)\varphi(x)]_a^b} - \intop_a^b A(x)\varphi'(x) \de x + \intop_a^b b(x)\varphi'(x) \de x = \\ & = \intop_a^b [b(x)-A(x)]\varphi'(x) \de x = 0 \qquad \forall \varphi \in \mc{C}_c^1([a,b]).
 \end{aligned}\]
-
 Ora sfoderiamo un lemmino dal cilindro, ovvero il 
 
 \begin{lemma}{Lemma di Du Bois--Raymond}{DB-R}
     Sia $v \in \mc{C}^0([a,b])$ tale che 
-    \[ \intop_a^b v(x) \varphi'(x) \de x = 0 \qquad \forall \varphi \in \mc{C}_c^\infty([a,b]).\]
+    \[ \intop_a^b v(x) \varphi'(x) \de x = 0 \qquad \forall \varphi \in \mc{C}_c^\infty(]a,b[).\]
     Allora $v$ è costante su $[a,b]$.
     \proof 
-    
+    Sia $\varphi$ come da ipotesi e $\psi = \varphi'$: dato che $\varphi$ è nulla negli estremi di $[a,b]$, l'integrale di $\psi$ su $[a,b]$ è nullo; allo stesso modo, integrando una $\psi$ che abbia integrale nullo su $[a,b]$ da $a$ a $x$ possiamo recuperare una sua primitiva $\varphi$ che soddisfi le ipotesi del lemma, dunque possiamo riformulare l'ipotesi equivalentemente come:
+    \[ \intop_a^b v(x) \psi(x) \de x = 0 \qquad \forall \psi \in \mc{C}_c^\infty(]a,b[) : \intop_a^b \psi(x) \de x = 0\ . \]
+    Fissiamo una $w \in \mc{C}_c^\infty(]a,b[)$ tale che il suo integrale su $[a,b]$ sia $1$ e data $w \in \mc{C}_c^\infty(]a,b[)$ poniamo
+    \[ \psi(x) := \varphi(x) - w(x) \intop_a^b\varphi(t)\de t\ ,\]
+    Integrando per parti vediamo che $\psi$ soddisfa le nostre ipotesi, dunque analogamente vediamo che 
+    \[ 0 = \intop_a^b v(x)\psi(x)\de x = \intop_a^b v(x)\varphi(x) \de x- \intop_a^b v(x)w(x)\intop_a^b \varphi(t)\de t \de x = \intop_a^b \left[v(x) - \intop_a^b v(t)w(t)\de t \right]\varphi(x)\de x\ . \]
+    Infine applicando il lemma \ref{rem:lemma fondamentale cdv super} nella sua forma più forte, in quanto per l'arbitrarietà di $\varphi$ vale 
+    \[ v - \underbrace{\intop_a^b v(x)w(x) \de x}_{\in \R} \equiv 0 \Rarr v \equiv \intop_a^b v(x)w(x) \de x\ . \]
+    \qed
 \end{lemma}
 
-Applicandolo otteniamo che $b(x)-A(x) \equiv c \in \R$
+Applicandolo otteniamo che $b(x)-A(x) \equiv c \in \R$, dunque $f_p(x, u_0(x), u_0'(x)) = b(x) = c+A(x) \in \mc{C}^1([a,b])$, il che significa che abbiamo ottenuto "gratis" le ipotesi più forti per il teorema \ref{th:equazioni di E-L I}.
+
+%Lezione 05/03/25
+
+\subsection{Equazioni di Eulero--Lagrange con estremi liberi}
+
+Proviamo ad alleggerire la situazione \ref{situaz:E-L estremi vincolati} e lavoriamo con questa nuova situazione, ovvero:
+\[X = \mc{C}^1([a,b]), \qquad F(u) = \intop_a^b f(x,u(x),u'(x))\de x \qquad \text{con } f \in \mc{C}^1([a,b]\times\R\times\R) .\]
+Avendo reso più generale $X$, cosa dobbiamo richiedere su $F$ per poter usare ancora la tesi del teorema \ref{th:equazioni di E-L I}?
+Assumendo come al solito $u_0$ come minimo di $F$, definiamo per $\varphi \in \mc{C}^1([a,b])$\footnote{attenzione, non necessariamente a supporto compatto!} e $t \in\R$ la funzione $u_t = u_0 + t\varphi$ che ovviamente appartiene a $X$ e quindi $g(t) = F(u_t)$ che quindi ha minimo in $t=0$. Vediamo che:
+\[\begin{aligned}
+ 0 = g'(0) & = \intop_a^b f_s(x, u_0(x), u_0'(x))\varphi(x) - f_p(x,u_0(x),u_0'(x))\varphi'(x)\de x = \\
+ & = \intop_a^b \underbrace{f_s(x, u_0(x), u_0'(x))\varphi(x) - \left[\frac{\di}{\di x}f_p(x,u_0(x),u_0'(x))\right]\varphi(x)}_{=0\text{ per la tesi che vogliamo}} \de x + \left[ f_p(x,u_0(x),u_0'(x))\varphi(x) \right]_a^b = \\
+ & = f_p(b,u_0(b), u_0'(b))\varphi(b) - f_p(a,u_0(a), u_0'(a))\varphi(a)\qquad \forall \varphi \in X
+\end{aligned}\]
+Da ciò otteniamo delle cosiddette condizioni al bordo "naturali", ovvero:
+\[ \begin{cases}
+    f_p(b,u_0(b), u_0'(b))=0\\ f_p(a,u_0(a), u_0'(a)) = 0
+\end{cases}\]
+Che quindi andiamo a fissare in questa situazione:
+
+\begin{situation}{Eulero--Lagrange con estremi liberi}{E-L estremi liberi}
+    \[ X = \mc{C}^1([a,b]),\]
+    \[ F(u) = \intop_a^b f(x,u(x),u'(x))\de x \quad \text{con } f \in \mc{C}^1([a,b]\times\R\times\R) : \begin{cases}
+        f_p(b,u_0(b), u_0'(b))=0\\ f_p(a,u_0(a), u_0'(a)) = 0
+    \end{cases} \]
+    Con $u_0 \in X$ punto di minimo per $F$.
+\end{situation}
+
+Ecco dunque dimostrato:
+\begin{theorem}{Equazioni di Eulero--Lagrange II}{equazioni di E-L II}
+    La tesi del teorema \ref{th:equazioni di E-L I} vale anche nella situazione \ref{situaz:E-L estremi liberi}.
+\end{theorem}
+
+\section{Minimi locali}
+
+\begin{definition}{Norme e distanze per funzioni continue e differenziabili}{norma e distanza C0 e C1}
+    Siano $u,v \in \mc{C}^1([a,b])$, definiamo:\begin{itemize}
+        \item $\|u\|_{\mc{C}^0([a,b])} := \max_{x \in[a,b]} |u(x)|$;
+        \item $\dist_{\mc{C}^0([a,b])}(u,v) := \| v-u \|_{\mc{C}^0([a,b])}$;
+        \item $\| u \|_{\mc{C}^1([a,b])} := \max_{x \in[a,b]} |u(x)| + \max_{x \in[a,b]} |u'(x)|$;
+        \item $\dist_{\mc{C}^1([a,b])}(u,v) := \| v-u \|_{\mc{C}^1([a,b])}$.
+    \end{itemize}
+    Per alleggerire la notazione, nei casi dove non avremo timore di ambiguità scriveremo occasionalmente $\|u\|_0$ o anche solo $\|u\|$ e vale lo stesso per $\dist(u,v)$.
+\end{definition}
 
 \chapter{Metodi diretti}
 

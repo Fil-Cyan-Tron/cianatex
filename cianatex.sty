@@ -207,6 +207,7 @@
             \renewcommand\S{\mathbb{S}} %Sfera
             \newcommand\Loc{\operatorname{L}_{\text{loc}}}
             \newcommand\Twitter{\mathcal{X}}
+            \newcommand\dist{\operatorname{dist}}
         %Variabili aleatorie
             %Discrete
                 \newcommand\binva{\operatorname{bin}}
@@ -360,6 +361,17 @@
             leftrule=2pt,
             bottomrule=0pt,
         }{notaz}
+        \newtcbtheorem[number within=section]{situation}{Situazione}{
+            enhanced,
+            breakable,
+            colback=white,
+            colframe=notationcolor,
+            fonttitle=\bfseries,
+            sharp corners,
+            rightrule=0pt,
+            leftrule=2pt,
+            bottomrule=0pt,
+        }{situaz}
         \newtcbtheorem[number within=section]{lemma}{Lemma}{
             enhanced,
             breakable,
