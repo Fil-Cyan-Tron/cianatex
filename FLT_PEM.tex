@@ -1,0 +1,119 @@
+\documentclass{article}
+
+\usepackage{cianatex}
+
+\title{PEM}
+\author{F. Troncana, sotto la supervisione del prof. R. Zunino}
+\date{TBD}
+
+\renewcommand\C{\mc{C}}
+\newcommand\D{\mc{D}}
+
+\begin{document}
+
+\maketitle
+
+\subsection{Nozioni fondamentali}
+
+\begin{definition}{Categoria e dualità}{categoria}
+    Una \bemph{categoria} $\C$ è una struttura munita di due classi: $\ob\C$ e $\hom\C$, dette rispettivamente \bemph{oggetti} (o elementi) e \bemph{morfismi} (o mappe o freccie) tali che \begin{itemize}
+        \item Ogni morfismo $f \in \hom\C$ abbia associati due oggetti $A,B \in \ob\C$ detti rispettivamente \bemph{dominio} e \bemph{codominio} di $f$, che verrà indicato come $f : A\to B$.
+        \item Per ogni coppia di morfismi $f:A\to B$ e $g : B\to C$ sia definita la loro \bemph{composizione}, ovvero un morfismo $g\circ f : A \to C$ (spesso indicato solo con $gf$).
+        \item Per ogni oggetto $X \in \ob\C$ esista un morfismo $\id_X \in \hom\C$ detto \bemph{identità} di $X$ tale che per ogni morfismo $f:A\to B$ valga $\id_B f = f \id_A = f$.
+        \item Per ogni terna di morfismi componibili $f,g,h \in \hom\C$, valga $h(gf) = (hg)f =: hgf$, ovvero la composizione sia \bemph{associativa}.
+    \end{itemize}
+    Fissati due oggetti $A,B \in \ob\C$ denoteremo con $\hom(A,B)$ o $\C(A,B)$ la collezione dei morfismi $A\to B$ di $\hom\C$.\\
+    Per ogni categoria $\C$ è definita la sua \bemph{duale} (o opposta) $\C^\op$, i cui oggetti sono gli stessi di $\C$ e i cui morfismi sono quelli di $\C$ ma invertiti di direzione, ovvero ad ogni $f:A\to B$ in $\C$ corrisponde un $f^\op : B\to A$ in $\C^\op$.\\
+    Una categoria $\C$ si dice:\begin{itemize}
+        \item \bemph{Piccola} se la classe $\hom\C$ è un insieme.
+        \item \bemph{Grande} se non è piccola.
+        \item \bemph{Localmente piccola} se, una volta fissati due oggetti $X,Y \in \ob\C$, la classe $\hom(X,Y)$ è un insieme.
+    \end{itemize}
+\end{definition}
+\begin{remark}{}{}
+    Banalmente:\begin{itemize}
+        \item Le identià sono uniche.
+        \item La categoria duale è essenzialmente unica e vale $(\C^\op)^\op = \C$.
+        \item Dato che $\ob\C$ inietta sempre in $\hom\C$ con la mappa $X\mapsto \id_X$, in generale la classe degli oggetti di una categoria non è una buona misura della sua grandezza.
+    \end{itemize} 
+    \proof 
+    Dimostriamo solo l'ultimo punto con un esempio, gli altri sono banali. Sia $V$ la categoria formata da un unico oggetto $\bullet$ e la cui classe dei morfismi corrisponde alla classe dei cardinali, dove la composizione di due morfismi è data dalla loro somma come cardinali.
+\end{remark}
+
+Da ora in avanti, assumeremo sempre che le nostre categorie siano almeno localmente piccole per evitare \textit{troppi} problemi di fondazione (anche se come vedremo rimarranno delle grandi criticità)
+
+\begin{definition}{Sapori di morfismi}{morfismi}
+    Sia $\C$ una categoria e sia $f: A\to B$ un morfismo. Esso può dirsi:\begin{itemize}
+        \item \bemph{Monomorfismo} (o monico o mono) se la precomposizione è iniettiva, ovvero per ogni coppia di morfismi $g_1, g_2 : C\to A$ vale $fg_1 = fg_2 \Rarr g_1=g_2$.
+        \item \bemph{Epimorfismo} (o epico o epi) se la postcomposizione è iniettiva, ovvero se per ogni coppia di morfismi $g_1, g_2 : B\to C$ vale $g_1f = g_2f \Rarr g_1=g_2$.
+        \item \bemph{Endomorfismo} (o endo) se $A=B$.
+        \item \bemph{Sezione} (o split mono) se ha un'inversa sinistra, ovvero se esiste un morfismo $g:B\to A$ tale che $gf = \id_A$.
+        \item \bemph{Retrazione} (o split epi) se ha un'inversa destra, ovvero se esiste un morfismo $g:B\to A$ tale che $fg = \id_B$.
+        \item \bemph{Isomorfismo} (o iso) se ha un'inversa destra e sinistra. In particolare, $A$ e $B$ si dicono \bemph{isomorfi} (attraverso $f$) e li indicheremo con $f:A\cong_\C B$ omettendo usualmente $f$ o $\C$.
+        \item \bemph{Automorfismo} (o auto) se è iso e endo.
+    \end{itemize}    
+\end{definition}
+\begin{remark}{}{}
+    Valgono le seguenti:\begin{itemize}
+        \item Le sezioni sono mono.
+        \item Le retrazioni sono epi.
+        \item iso $\Harr$ split mono + epi $\Harr$ mono + split epi $\Rarr$ epi e mono,ma nell'ultimo caso non vale l'implicazione inversa.
+        \item Tutte le inverse sono uniche quando esistono.
+        \item Un mono è un epi nella categoria opposta e viceversa.
+    \end{itemize}
+    \proof 
+    Forniamo solo due esempi di morfismi che sono epici e monici ma non isomorfismi (le altre verifiche sono assolutamente automatiche):\begin{itemize}
+        \item Poniamoci nella categoria $\catname{Haus}$ degli spazi topologici di Hausdorff i cui morfismi sono le funzioni continue tra questi e consideriamo l'inclusione $\iota: [0,1]\cap \Q\inj[0,1]$ (entrambi con la topologia euclidea); questa è chiaramente mono in quanto iniettiva, ed è epi in quanto una funzione continua in $\catname{Haus}$ è completamente determinata dal suo valore su un sottospazio denso, ma non è iso dato che non è suriettiva.
+        \item Consideriamo la categoria
+        \[\begin{tikzcd}
+        	\bullet && \bullet
+    	    \arrow["\id", from=1-1, to=1-1, loop, in=145, out=215, distance=10mm]
+        	\arrow["f", from=1-1, to=1-3]
+    	    \arrow["\id", from=1-3, to=1-3, loop, in=325, out=35, distance=10mm]
+        \end{tikzcd}\]
+        Dato che a destra o sinistra possiamo comporre solo con l'identità, $f$ è sia mono che epi, ma non è iso in quanto non ha inversa.
+    \end{itemize}
+\end{remark}
+
+\begin{definition}{Funtore}{functor}
+    Siano $\C$ e $\D$ due categorie. Un \bemph{funtore covariante} $F: \C\to\D$ consiste in due mappe $F:\ob\C\to\ob\D$ e $F:\hom\C\to\hom\D$ che rispettino la composizione, ovvero:\begin{itemize}
+        \item Per ogni morfismo $f :X\to Y$ vale $Ff: FX \to FY$.
+        \item Per ogni oggetto $X \in \ob\C$ vale $F\id_X = \id_{FX}$.
+        \item Per ogni coppia di morfismi componibili $f,g\ in \hom\C$ vale $F(gf) = FgFf$.
+    \end{itemize}
+    Un \bemph{funtore controvariante} da $\C$ a $\D$ è un funtore covariante $F: \C^\op\to\D$.\\
+    Un funtore si dice:\begin{itemize}
+        \item \bemph{Fedele} se per ogni $X,Y \in \ob\C$ la sua restrizione $F_{X,Y}:\C(X,Y)\to \D(FX,FY)$ è iniettiva.
+        \item \bemph{Pieno} se per ogni $X,Y \in \ob\C$ la sua restrizione $F_{X,Y}:\C(X,Y)\to \D(FX,FY)$ è suriettiva.
+        \item \bemph{Pienamente fedele} se è pieno e fedele.
+        \item \bemph{Essenzialmente suriettivo sugli oggetti} se per ogni oggetto $Y \in \D$ esiste un oggetto $X \in \C$ tale che $FX\cong_\D Y$
+    \end{itemize}
+\end{definition}
+\begin{proposition}{}{riflessione di isomorfismi}
+    Sia $F:\C\to\D$ un funtore di qualsiasi varianza. Se $f:X\to Y$ è un isomorfismo, allora $Ff:FX\to FY$ è un isomorfismo.\\
+    Se $F$ è pienamente fedele, vale anche l'implicazione inversa.
+    \proof 
+    La prima implicazione è banale, dunque assumiamo che $F$ sia pienamente fedele e $g:FX\to FY$ sia un isomorfismo; dato che la mappa $\varphi := F_{X,Y} : \C(X,Y) \to \D(FX,FY)$ è una biezione, esiste $f: X\to Y$ tale che $\varphi(f) = g$, dunque definiamo $f' := \varphi^{-1}(g^{-1})$. Dato che $F$ è un funtore, vale
+    \[f'f = \varphi^{-1}(\varphi(f'f) )=\varphi^{-1}(\varphi(f')\varphi(f)) = \varphi^{-1}(g^{-1}g) = \varphi^{-1}(\id_{FX}) = \id_X\ ,\]
+    Dimostrare che $f'$ è anche l'inversa destra di $f$ è assolutamente analogo, così come il caso controvariante.
+    \qed
+\end{proposition}
+
+\section{Prodotti}
+
+\begin{definition}{Prodotto tramite proprietà universale}{prodotto pu}
+    Sia $\C$ una categoria e siano $X,Y \in \ob\C$ due oggetti.\\
+    Si dice \bemph{prodotto} di $X$ e $Y$ in $\C$ un oggetto $X\times Y$ munito di due morfismi $\pi_X : X\times Y\to X$ e $\pi_Y:X\times Y \to Y$ detti \bemph{proiezioni} tali che per ogni oggetto $Z$ e ogni coppia di morfismi $f:Z\to X$ e $g:Z\to Y$ esista un unico morfismo $f\times g: Z\to X\times Y$ tale che il seguente diagramma commuti:
+    \[\begin{tikzcd}
+	    && {X\times Y} \\
+    	X &&&& Y \\
+    	&& Z
+    	\arrow["{\pi_X}"{description}, from=1-3, to=2-1]
+    	\arrow["{\pi_Y}"{description}, from=1-3, to=2-5]
+    	\arrow["{f\times g}"{description}, from=3-3, to=1-3]
+    	\arrow["f"{description}, from=3-3, to=2-1]
+    	\arrow["g"{description}, from=3-3, to=2-5]
+    \end{tikzcd}\]
+\end{definition}
+
+\end{document}
