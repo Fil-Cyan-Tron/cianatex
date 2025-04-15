@@ -101,6 +101,9 @@ Da ora in avanti, assumeremo sempre che le nostre categorie siano almeno localme
 
 \section{Prodotti}
 
+Ci sono (almeno) tre definizioni (quasi) equivalenti del prodotto in una categoria. La prima
+
+\subsection{Proprietà universale}
 \begin{definition}{Prodotto tramite proprietà universale}{prodotto pu}
     Sia $\C$ una categoria e siano $X,Y \in \ob\C$ due oggetti.\\
     Si dice \bemph{prodotto} di $X$ e $Y$ in $\C$ un oggetto $X\times Y$ munito di due morfismi $\pi_X : X\times Y\to X$ e $\pi_Y:X\times Y \to Y$ detti \bemph{proiezioni} tali che per ogni oggetto $Z$ e ogni coppia di morfismi $f:Z\to X$ e $g:Z\to Y$ esista un unico morfismo $f\times g: Z\to X\times Y$ tale che il seguente diagramma commuti:
@@ -115,5 +118,36 @@ Da ora in avanti, assumeremo sempre che le nostre categorie siano almeno localme
     	\arrow["g"{description}, from=3-3, to=2-5]
     \end{tikzcd}\]
 \end{definition}
+
+\subsection{Categoria dei coni}
+
+\begin{definition}{Cono}{cono}
+    Sia $\C$ una categoria e sia $J$ un diagramma commutativo in $\C$.\\
+    Si dice \bemph{cono} su $J$ un oggetto $C \in \C$ con una collezione di morfismi $\{\rho_j : C \to j\}_{j \in J}$ tale che per ogni morfismo $f : X\to Y$ in $J$, il seguente diagramma commuti:
+    \[\begin{tikzcd}
+	    & C \\
+	    \\
+	    X && Y
+	    \arrow["{\rho_X}"{description}, from=1-2, to=3-1]
+	    \arrow["{\rho_Y}"{description}, from=1-2, to=3-3]
+	    \arrow["f"{description}, from=3-1, to=3-3]
+    \end{tikzcd}\]
+    La collezione dei coni su un diagramma $J$ e dei morfismi tra loro forma una categoria, detta $\cone(J)$: i suoi oggetti sono i coni $(C,\{\rho_j\}_{j \in J})$ e i suoi morfismi sono definiti da 
+    \[ \hom((C,\{\rho_j\}_{j \in J}), (C',\{\rho_j'\}_{j \in J})) = \{m : C\to C' : \forall j \in J, \rho_j = \rho_j' m\}\]
+    Questi sono detti morfismi \bemph{medianti}.
+\end{definition}
+
+\begin{definition}{Prodotto tramite coni}{prodotto coni}
+    Sia $\C$ una categoria e siano $X,Y \in \ob\C$ due oggetti.
+    Si dice \bemph{prodotto} di $X$ e $Y$ l'oggetto $X\times Y$ di $\C$ tale che $(X\times Y, \{\pi_X, \pi_Y\})$ sia l'oggetto iniziale di $\cone(\{X,Y\})$, ovvero della categoria dei coni sul diagramma discreto ${X,Y}$.
+\end{definition}
+
+\subsection{Aggiunzioni}
+
+\[\begin{aligned}
+    \underbrace{\hom_\C(A, B\times C)}_{\C^\op \times \C\times\C \to \setcat} & \cong_\setcat \hom_\C(A,B)\times \hom_\C(A,C)\\
+    & \cong_\setcat \hom_{\C^2}((A,A),(B,C))\\
+    & \cong_\setcat \hom_{\C^2}(\Delta A,(B,C))
+\end{aligned}\]
 
 \end{document}
