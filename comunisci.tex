@@ -1,0 +1,69 @@
+\documentclass{article}
+\usepackage{cianatex}
+
+\title{Comunicazione delle scienze, demo del progetto "Dungeons \& Definitions"}
+\author{Filippo Troncana}
+\date{A.A. 2024/2025}
+
+\begin{document}
+
+\maketitle 
+
+\section{Warlock}
+
+Il tema di questa sottoclasse per il Warlock sono alcune nozioni elementari di geometria affine e proiettiva (e il non così elementare teorema di Bezout), in particolare ho immaginato che lo spazio proiettivo (in particolare complesso) fosse un'entità arcana \textit{à la} Lovecraft, in grado di sfuggire alle capacità della mente umana e di portare chi dovesse comprenderla per un istante alla pazzia\footnote{Questo potrebbe essere stato vagamente ispirato da quella che è stata la mia esperienza preparando l'esame di Geometria del primo anno}.
+
+\subsection{Geometria affine}
+
+Il concetto di "forma lineare associata" ad una trasformazione di spazi affini deriva dalla definizione vera e propria di trasformazione affine e da un piccolo lemma:
+
+\begin{definition}{Affinità}{affinità}
+    Siano $A,B$ due spazi affini su spazi vettoriali $V,W$\\ 
+    Una mappa $f: A\to B$ si dice \bemph{affinità} (o traformazione affine) se esiste una mappa lineare $\phi: V\to W$ tale che $f(P)-f(Q) = \phi(P-Q)$ per ogni $P,Q \in A$.\\
+    La trasformazione $\phi$ si definisce \bemph{forma lineare associata} ad $f$
+\end{definition}
+\begin{lemma}{Fattorizzazione di affinità}{}
+    Siano $A,B$ due spazi affini su spazi vettoriali $V,W$ e sia $f: A\to B$ un'affinità con mappa lineare associata $\phi: V\to W$.\\
+    Allora esiste un unico vettore $v \in W$ tale che $f = L_v \circ \phi$, dove $L_v : B\to B$ indica la traslazione lungo $v$.
+\end{lemma}
+
+Dato che un tiro per colpire "assomiglia" sempre a un'affinità, ovvero è sempre della forma $1\di 20 +X$, dove $X$ è il bonus al tiro per colpire della creatura che effettua l'attacco, mi è sembrato per lo meno simpatica l'idea di un potere che trascurasse questa "traslazione" del tiro.
+
+\subsection{Lo spazio proiettivo}
+
+Lo spazio proiettivo complesso è definito come segue:
+
+\begin{definition}{Spazio proiettivo}{spazio proiettivo}
+    Sia $\K$ un campo e sia $V$ un $\K$-spazio vettoriale non banale.\\
+    Introduciamo su $V\setminus \{0\}$ la relazione di equivalenza $\sim$ definita da 
+    \[u\sim v \Harr \exists \lambda \in \K : u = \lambda v\]
+    Lo \bemph{spazio proiettivo} $\P V$ su $V$ è definito come il quoziente $V/\sim$. Se $V$ ha \bemph{dimensione} $n+1$ con $n \in \N$, la dimensione di $\P V$ è definita come $n$.\\
+    In particolare, quando $\K = \R, \C$ e consideriamo $V = \K^{n+1}$ con la canonica struttura di spazio vettoriale e $n\in \N$, parliamo rispettivamente di \bemph{spazio proiettivo reale o complesso di dimensione} $n$.
+\end{definition}
+
+Il concetto è notoriamente di ostica visualizzazione, soprattutto se pensiamo a spazi proiettivi complessi di alta dimensione, dunque ho pensato funzionasse bene col Warlock, tematicamente parlando.
+
+\subsection{Piano all'infinito}
+
+Prendiamo il caso di un punto sulla retta proiettiva reale, ovvero su $\P := \P(\R^2)$.\\
+Scelta una base per $\R^2$, scriviamo un vettore $v = (x,y)\neq(0,0)$ rispetto ad essa: la proiezione al quoziente di $v$ è la sua identificazione con il suo span, ovvero la retta passante per esso (meno l'origine ovviamente), dunque $[v] = [x,y] = [3x,3y]$ e così via; in questo modo possiamo scrivere $\P$ in questo modo:
+\[ \P(\R^2) = \{ [a,1] : a \in \R \}\cup \{ [0,1] \}\]
+Ovvero come una copia di $\R$, la retta reale, con "aggiunto" un punto "inaccessibile" muovendosi lungo di essa, il cosiddetto punto all'infinito. In dimensioni più alte questi punti diventano veri e propri spazi.\\
+L'idea dietro a questo potere dunque è quella di far "sparire" un nemico abbattuto in uno spazio inaccessibile al fine di trarne potere o un alleato a terra al fine di metterlo al sicuro, che è molto in linea con l'identità di un Warlock in D\&D.
+
+\subsection{Proiezione}
+
+L'idea dietro a questo potere\footnote{Che a onor del vero ho tratto dal videogioco \textit{The Legend of Zelda: a Link Between Worlds}.} è abbastanza autoesplicativa: la proiezione, ad esempio di una varietà su di un'altra a partire da un punto, è una trasformazione molto utilizzata in ogni branca della geometria e mi sembrava tematicamente adatta ad un attaccante a distanza come un Warlock, nonchè in grado di offrire molte opportunità di movimento "fuori dagli schemi" ai giocatori più creativi.
+
+\subsection{Chiusura proiettiva di Bezout}
+
+Questo privilegio è ispirato da quello che è uno dei teoremi più caratteristici del piano proiettivo complesso: il teorema di Bezout.
+
+\begin{theorem}{Teorema di Bezout}{bezout}
+    Siano $C, D$ due curve proiettive piane di grado $n,m\ge 1$ su un campo algebricamente chiuso $\K$.\\
+    Il numero di intersezioni contate con molteplicità di $C$ e $D$ è $n\cdot m$, a meno che esse non abbiano una componente in comune: in tal caso questo è infinito.
+\end{theorem}
+
+Dato che spesso le battaglie di D\&D vengono rappresentate come aventi luogo su di una superficie piana reale (il tavolo), l'idea è quella di interpretare la traiettoria di un attacco come una curva su questo piano, che il Warlock saprebbe trasformare in una proiettiva complessa al fine di farla passare per il punto desiderato, ovvero il bersaglio.
+
+\end{document}

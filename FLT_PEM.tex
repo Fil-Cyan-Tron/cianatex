@@ -144,10 +144,25 @@ Ci sono (almeno) tre definizioni (quasi) equivalenti del prodotto in una categor
 
 \subsection{Aggiunzioni}
 
+Prima di dare la prossima definizione, osserviamo che questa catena di biezioni è verificata (e naturale in $A$, $B$ e $C$)
 \[\begin{aligned}
     \underbrace{\hom_\C(A, B\times C)}_{\C^\op \times \C\times\C \to \setcat} & \cong_\setcat \hom_\C(A,B)\times \hom_\C(A,C)\\
     & \cong_\setcat \hom_{\C^2}((A,A),(B,C))\\
     & \cong_\setcat \hom_{\C^2}(\Delta A,(B,C))
 \end{aligned}\]
+Dove $\Delta:\C\to\C^2$ è il funtore diagonale, che manda un oggetto $A$ nell'oggetto $(A,A)$ e un morfismo $f$ nel morfismo $(f,f)$: abbiamo ottenuto dunque che $\hom_\C(A, B\times C) \cong_\setcat \hom(\Delta A, (B,C))$, ovvero che interpretando il prodotto come un funtore $\times: \C^2\to\C$ questo è aggiunto destro al funtore diagonale, ovvero $\Delta \dashv \times$, quindi definiamo
 
+\begin{definition}{Prodotto III}{prodotto adj}
+    Sia $\C$ una categoria e siano $X,Y \in \ob\C$ due oggetti. 
+    Si dice \bemph{prodotto} di $X$ e $Y$ l'immagine della coppia $(X,Y) \in \ob\C^2$ attraverso un funtore $\Pi$ aggiunto destro al funtore $\Delta$.
+\end{definition}
+
+Prima di procedere con questa definizione però dobbiamo dimostrare alcune cosine: innanzitutto ci serve che il prodotto sia almeno essenzialmente unico
+\begin{lemma}{Essenziale unicità degli aggiunti}{}
+    Siano $\C,\D$ due categorie e siano $F:\C\to\D$ e $G_1,G_2: \D\to\C$ funtori tali che $F\dashv G_1$ e $F\dashv G_2$ oppure $G_1\dashv F$ e $G_2\dashv F$.\\
+    Allora $G_1\cong G_2$.
+    \begin{proof}
+        
+    \end{proof}
+\end{lemma}
 \end{document}
