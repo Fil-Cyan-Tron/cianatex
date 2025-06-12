@@ -8,10 +8,17 @@
 
 \renewcommand\C{\mc{C}}
 \newcommand\D{\mc{D}}
+\newcommand\nat{\operatorname{Nat}}
 
 \begin{document}
 
 \maketitle
+
+\subsection*{Nota preliminare}
+
+Durante questa trattazione, noi faremo alcune cose leggermente inquietanti dal punto di vista "fondazionale", in particolare tratteremo classi proprie come insiemi, useremo versioni ultrapotenziate dell'assioma della scelta, avremo collezioni "piccole" di oggetti "grossi" che comunque tratteremo come insiemi, insomma, ne faremo di tutti i colori.\\
+Con un background di teoria dei tipi è possibile ben fondare tutto quello che faremo, ma ciò esula dagli scopi di questa trattazione: procederemo dunque con una fede incrollabile e un ottimismo completamente ingiustificato, come sempre d'altronde.\\
+Ogni tanto porterò io stesso l'attenzione ai fondamenti "scricchiolanti" della nostra trattazione con il carattere \PHcat.
 
 \subsection{Nozioni fondamentali}
 
@@ -37,10 +44,10 @@
         \item Dato che $\ob\C$ inietta sempre in $\hom\C$ con la mappa $X\mapsto \id_X$, in generale la classe degli oggetti di una categoria non è una buona misura della sua grandezza.
     \end{itemize} 
     \proof 
-    Dimostriamo solo l'ultimo punto con un esempio, gli altri sono banali. Sia $V$ la categoria formata da un unico oggetto $\bullet$ e la cui classe dei morfismi corrisponde alla classe dei cardinali, dove la composizione di due morfismi è data dalla loro somma come cardinali.
+    Dimostriamo solo l'ultimo punto con un esempio, gli altri sono banali. Sia $V$ la categoria formata da un unico oggetto $\bullet$ e la cui classe dei morfismi corrisponde alla classe dei cardinali, dove la composizione di due morfismi è data dalla loro somma come cardinali. Nonostante $\ob V$ sia la più piccola possibile, $\hom V$ è una classe propria, dunque $V$ non solo è grande, ma non è nemmeno localmente piccola.
 \end{remark}
 
-Da ora in avanti, assumeremo sempre che le nostre categorie siano almeno localmente piccole per evitare \textit{troppi} problemi di fondazione (anche se come vedremo rimarranno delle grandi criticità)
+Da ora in avanti, assumeremo sempre (anche senza specificarlo) che le nostre categorie siano almeno localmente piccole per evitare \textit{troppi} problemi di fondazione.
 
 \begin{definition}{Sapori di morfismi}{morfismi}
     Sia $\C$ una categoria e sia $f: A\to B$ un morfismo. Esso può dirsi:\begin{itemize}
@@ -57,13 +64,13 @@ Da ora in avanti, assumeremo sempre che le nostre categorie siano almeno localme
     Valgono le seguenti:\begin{itemize}
         \item Le sezioni sono mono.
         \item Le retrazioni sono epi.
-        \item iso $\Harr$ split mono + epi $\Harr$ mono + split epi $\Rarr$ epi e mono,ma nell'ultimo caso non vale l'implicazione inversa.
+        \item iso $\Harr$ (split mono $\wedge$ epi) $\Harr$ (mono $\wedge$ split epi) $\Rarr$ (epi $\wedge$ mono), ma nell'ultimo caso non vale l'implicazione inversa.
         \item Tutte le inverse sono uniche quando esistono.
         \item Un mono è un epi nella categoria opposta e viceversa.
     \end{itemize}
     \proof 
     Forniamo solo due esempi di morfismi che sono epici e monici ma non isomorfismi (le altre verifiche sono assolutamente automatiche):\begin{itemize}
-        \item Poniamoci nella categoria $\catname{Haus}$ degli spazi topologici di Hausdorff i cui morfismi sono le funzioni continue tra questi e consideriamo l'inclusione $\iota: [0,1]\cap \Q\inj[0,1]$ (entrambi con la topologia euclidea); questa è chiaramente mono in quanto iniettiva, ed è epi in quanto una funzione continua in $\catname{Haus}$ è completamente determinata dal suo valore su un sottospazio denso, ma non è iso dato che non è suriettiva.
+        \item Poniamoci nella categoria $\catname{Haus}$ degli spazi topologici $T_2$ i cui morfismi sono le funzioni continue tra questi e consideriamo l'inclusione $\iota: [0,1]\cap \Q\inj[0,1]$ (entrambi con la topologia euclidea); questa è chiaramente mono in quanto iniettiva, ed è epi in quanto una funzione continua in $\catname{Haus}$ è completamente determinata dal suo valore su un sottospazio denso, ma non è iso dato che non è suriettiva.
         \item Consideriamo la categoria
         \[\begin{tikzcd}
         	\bullet && \bullet
@@ -98,6 +105,87 @@ Da ora in avanti, assumeremo sempre che le nostre categorie siano almeno localme
     Dimostrare che $f'$ è anche l'inversa destra di $f$ è assolutamente analogo, così come il caso controvariante.
     \qed
 \end{proposition}
+\begin{definition}{Funtori aggiunti}{funtori aggiunti}
+    Siano $F:\C\to\D$ e $G:\D\to\C$ due funtori. Questi si dicono \bemph{aggiunti} (rispettivamente sinistro e destro all'altro) se esiste un isomorfismo:
+    \[ \D(Fc, d) \cong \C(c, Gd)\]
+    Naturale per ogni $c \in \C$ e $d \in \D$. Scriveremo $F\dashv G$ per indicare che $F$ è aggiunto sinistro a $G$ e che $G$ è aggiunto destro a $F$.
+\end{definition}
+\begin{lemma}{Essenziale unicità degli aggiunti}{}
+    Siano $\C,\D$ due categorie e siano $F:\C\to\D$ e $G_1,G_2: \D\to\C$ funtori tali che $F\dashv G_1$ e $F\dashv G_2$ oppure $G_1\dashv F$ e $G_2\dashv F$.\\
+    Allora $G_1\cong G_2$.
+    \begin{proof}
+        Siano $\mu_{c,d} : \D(Fc, d) \to \C(c,G_1 d)$ e $\nu_{c,d} : \D(Fc, d) \to \C(c,G_2 d)$ gli isomorfismi naturali garantiti dalle aggiunzioni: ponendo $\lambda_{c,d} := \mu_{c,d}^{-1}\circ \nu_{c,d} : \C(c,G_1 d) \to \C(c,G_2 d)$ otteniamo un isomorfismo naturale
+    \end{proof}
+\end{lemma}
+
+\subsection{Lemma e immersioni di Yoneda}
+
+\begin{definition}{Categoria dei funtori}{functor category}
+    Siano $\C,\D$ due categorie.\\
+    Definiamo la categoria $\D^\C$, che spesso denoteremo con $[\C,\D]$, la \bemph{categoria dei funtori} da $\C$ a $\D$, i cui oggetti sono i funtori covarianti e i cui morfismi sono le trasformazioni naturali con la \bemph{composizione verticale}: definiamo per $\mu:F\to G$ e $\nu:G\to H$ la loro composizione verticale $\nu\mu : F\to H$ col seguente diagramma:
+    \[\begin{tikzcd}
+    	X && {F(X)} && {G(X)} && {H(X)} \\
+    	\\
+    	Y && {F(Y)} && {G(Y)} && {H(Y)}
+    	\arrow["f"{description}, from=1-1, to=3-1]
+    	\arrow["{\mu_X}"{description}, from=1-3, to=1-5]
+    	\arrow["{(\nu\mu)_X}"{description}, curve={height=-24pt}, from=1-3, to=1-7]
+    	\arrow["Ff"{description}, from=1-3, to=3-3]
+    	\arrow["{\nu_X}"{description}, from=1-5, to=1-7]
+    	\arrow["Gf"{description}, from=1-5, to=3-5]
+    	\arrow["Hf"{description}, from=1-7, to=3-7]
+    	\arrow["{\mu_Y}"{description}, from=3-3, to=3-5]
+    	\arrow["{(\nu\mu)_Y}"{description}, curve={height=24pt}, from=3-3, to=3-7]
+    	\arrow["{\nu_Y}"{description}, from=3-5, to=3-7]
+    \end{tikzcd}\]
+    Spesso invece di scrivere $[\C,\D](F,G)$ o $\hom_{[\C,\D]}(F,G)$ scriveremo $\nat(F,G)$.
+\end{definition}
+
+\begin{definition}{$\hom$-funtore covariante e controvariante}{hom-functor}
+    Sia $\C$ una categoria e sia $A$ un oggetto di $\C$. Definiamo due funtori $h_A:\C\to\setcat$ e $h^A : \C^\op\to\setcat$, detti $\hom$\bemph{-funtori} (rispettivamente covariante e controvariante) nel seguente modo:
+    \[\begin{tikzcd}
+    	{\hom(A,X)} && X && {\hom(X,A)} \\
+    	\\
+    	{\hom(A,Y)} && Y && {\hom(Y,A)}
+    	\arrow["{f\circ -}"{description}, from=1-1, to=3-1]
+    	\arrow["{h_A}"{description}, from=1-3, to=1-1]
+    	\arrow["{h^A}"{description}, from=1-3, to=1-5]
+    	\arrow["f"{description}, from=1-3, to=3-3]
+    	\arrow["{-\circ f}"{description}, from=3-5, to=1-5]
+    	\arrow["{h_A}"{description}, from=3-3, to=3-1]
+    	\arrow["{h^A}"{description}, from=3-3, to=3-5]
+    \end{tikzcd}\]
+    Inoltre possiamo interpretare $\hom(-,-)$ come un bifuntore $\C^\op\times \C \to \setcat$.
+\end{definition}
+
+\begin{theorem}{Lemma di Yoneda covariante}{covariant yoneda lemma}
+    Sia $F:\C\to\setcat$ un funtore covariante. Allora esiste una biezione di insiemi\footnote{\PHcat\ Questi non sono insiemi! Una trasformazione naturale è una \textit{classe}, in generale una classe propria! È solo un caso che nel lato sinistro abbiamo una collezione "piccola" di oggetti "grandi", che però non è un insieme!}
+    \[ \mc{Y}: \nat (h_A, F) \cong F(A)\]
+    e questa è naturale in $A$ e $F$.
+    \proof 
+    Sia $\Phi \in \nat(h_A,F)$. Dato che è naturale, il seguente diagramma commuta: 
+    \[\begin{tikzcd}
+    	A && {h_A(A)} &&&& {F(A)} \\
+    	&&& {\id_A} && u \\
+    	\\
+    	&&& {f\circ \id_A = f} && {(Ff)(u)=\Phi_X(f)} \\
+    	X && {h_A(X)} &&&& {F(X)}
+    	\arrow["f"{description}, from=1-1, to=5-1]
+    	\arrow["{\Phi_A}"{description}, from=1-3, to=1-7]
+    	\arrow["{h_A(f)}"{description}, from=1-3, to=5-3]
+    	\arrow["{F(f)}"{description}, from=1-7, to=5-7]
+    	\arrow[color={theoremcolor}, maps to, from=2-4, to=2-6]
+    	\arrow[maps to, from=2-4, to=4-4]
+    	\arrow[maps to, from=2-6, to=4-6]
+    	\arrow[maps to, from=4-4, to=4-6]
+    	\arrow["{\Phi_X}"{description}, from=5-3, to=5-7]
+    \end{tikzcd}\]
+    Vediamo che ci basta specificare l'assegnazione blu per determinare univocamente tutto il resto:\begin{itemize}
+        \item Partendo da $\Phi \in \nat(h_A, F)$ ci basta specificare $\mc{Y}(\Phi) = u :=\Phi_A(\id_A)$ elemento di $F(A)$.
+        \item Partendo da $u \in F(A)$ possiamo costruire a ritroso $\Phi := \mc{Y}^{-1}(u)$ scorrendo su $X \in \C$ e assegnando $\Phi_X(f:A\to X) := Ff(u)$.
+    \end{itemize} 
+    \qed
+\end{theorem}
 
 \section{Prodotti}
 
@@ -158,11 +246,5 @@ Dove $\Delta:\C\to\C^2$ è il funtore diagonale, che manda un oggetto $A$ nell'o
 \end{definition}
 
 Prima di procedere con questa definizione però dobbiamo dimostrare alcune cosine: innanzitutto ci serve che il prodotto sia almeno essenzialmente unico
-\begin{lemma}{Essenziale unicità degli aggiunti}{}
-    Siano $\C,\D$ due categorie e siano $F:\C\to\D$ e $G_1,G_2: \D\to\C$ funtori tali che $F\dashv G_1$ e $F\dashv G_2$ oppure $G_1\dashv F$ e $G_2\dashv F$.\\
-    Allora $G_1\cong G_2$.
-    \begin{proof}
-        
-    \end{proof}
-\end{lemma}
+
 \end{document}
