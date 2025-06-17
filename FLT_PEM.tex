@@ -88,7 +88,7 @@ Da ora in avanti, assumeremo sempre (anche senza specificarlo) che le nostre cat
         \item Per ogni oggetto $X \in \ob\C$ vale $F\id_X = \id_{FX}$.
         \item Per ogni coppia di morfismi componibili $f,g\ in \hom\C$ vale $F(gf) = FgFf$.
     \end{itemize}
-    Un \bemph{funtore controvariante} da $\C$ a $\D$ è un funtore covariante $F: \C^\op\to\D$.\\
+    Un \bemph{funtore controvariante} da $\C$ a $\D$ è un funtore covariante $F: \C^\op\to\D$. Anche se l'espressione "un funtore controvariante $\C^\op\to\D$" tecnicamente indicherebbe un funtore covariante $\C\to\D$, la useremo quasi sempre per indicare un funtore controvariante $\C\to\D$, ovvero una controvarianza specificata due volte non farà una covarianza.\\
     Un funtore si dice:\begin{itemize}
         \item \bemph{Fedele} se per ogni $X,Y \in \ob\C$ la sua restrizione $F_{X,Y}:\C(X,Y)\to \D(FX,FY)$ è iniettiva.
         \item \bemph{Pieno} se per ogni $X,Y \in \ob\C$ la sua restrizione $F_{X,Y}:\C(X,Y)\to \D(FX,FY)$ è suriettiva.
@@ -159,8 +159,8 @@ Da ora in avanti, assumeremo sempre (anche senza specificarlo) che le nostre cat
 \end{definition}
 
 \begin{theorem}{Lemma di Yoneda covariante}{covariant yoneda lemma}
-    Sia $F:\C\to\setcat$ un funtore covariante. Allora esiste una biezione di insiemi\footnote{\PHcat\ Questi non sono insiemi! Una trasformazione naturale è una \textit{classe}, in generale una classe propria! È solo un caso che nel lato sinistro abbiamo una collezione "piccola" di oggetti "grandi", che però non è un insieme!}
-    \[ \mc{Y}: \nat (h_A, F) \cong F(A)\]
+    Sia $F:\C\to\setcat$ un funtore covariante. Allora esiste una biezione di insiemi \PHcat:
+    \[ \nat (h_A, F) \cong F(A)\]
     e questa è naturale in $A$ e $F$.
     \proof 
     Sia $\Phi \in \nat(h_A,F)$. Dato che è naturale, il seguente diagramma commuta: 
@@ -186,6 +186,55 @@ Da ora in avanti, assumeremo sempre (anche senza specificarlo) che le nostre cat
     \end{itemize} 
     \qed
 \end{theorem}
+
+\begin{corollary}{Lemma di Yoneda controvariante}{contravariant yoneda lemma}
+    Sia $F:\C^\op\to\setcat$ un funtore controvariante. Allora esiste una biezione di insiemi
+    \[ \nat (h^A, F) \cong F(A)\]
+    e questa è naturale in $A$ e $F$.
+    \proof 
+    Analoga a quella del teorema precedente
+\end{corollary}
+
+\begin{remark}{\PHcat: Yoneda non ci dà una biezione di insiemi!}{}
+    Questi non sono insiemi! Una trasformazione naturale è una \textit{classe}, in generale una classe propria! È solo un caso che nel lato sinistro abbiamo una collezione "piccola" di oggetti "grandi", che però non è un insieme! Vediamo un esempio:\\
+    Consideriamo $\C := \grpcat$ la categoria dei gruppi e degli omomorfismi tra gruppi con il funtore dimenticante $U : (G, \cdot )\mapsto G$. Yoneda ci dice che:
+    \[ \nat (h_G, U) \cong G \in \setcat \]
+    Vediamo però che ogni trasformazione naturale $\Phi : h_G \to U$ corrisponde a una classe $\{\Phi_X\}_{X\in\grpcat}$, che è una classe propria! Quindi noi abbiamo una classe di classi che però abbiamo specificato \textit{non} poter essere membri di altre classi. La teoria delle categorie è falsa e da buttare in toto dunque, dato che persino uno dei suoi risultati più fondamentali è contradditorio?\\
+    Ovviamente no, però ci mostra che la teoria degli insiemi di ZFC risulta inadeguata per trattare rigorosamente la teoria delle categorie (soprattutto quando si inizia a parlare di teoria delle categorie superiori, dove studiamo oggetti come la "metacategoria" $\CATcat$ delle categorie). Ci sono principalmente due approcci in qualche modo "duali" intrapresi da diversi autori:\begin{itemize}
+        \item L'approccio "alla teoria dei tipi": abbandonare ZFC e fondare la teoria delle categorie su varie teorie dei tipi che permettano di trattare oggetti "arbitrariamente" più "grossi".
+        \item L'approccio "alla teoria dei modelli": estendere ZFC con assiomi più o meno conservatori che permettano di "limitare" le delle categorie con degli opportuni cardinali.
+    \end{itemize}
+    I lettori più curiosi possono trovare più informazioni su questa pagina di \href{https://ncatlab.org/nlab/show/category+theory+and+foundations}{nLab}.
+\end{remark}
+
+Una delle più naturali applicazioni del lemma di Yoneda è l'embedding di Yoneda, fondamentale in gran parte della topologia e della geometria moderna: esso permette di identificare una categoria con una sottocategoria 
+
+\begin{theorem}{Embedding di Yoneda covariante}{covariant yoneda embedding}
+    Sia $\C$ una categoria. Questa è equivalente ad una sottocategoria piena di $[\C^\op, \setcat]$ tramite la mappa $\mc{Y} : \C \to [\C^\op, \setcat]$ definita da:
+    \[ \mc{Y}(f:A\to B) :=  (-\circ f):h^A\to h^B.\]
+    \proof
+    Applicando il corollario \ref{corol:contravariant yoneda lemma} con $F = h^B$ scorrendo su $B \in \ob\C$ otteniamo
+    \[\nat(h^A, h^B) \cong h^B(A) \text{, o equivalentemente, } \nat(h^A, h^B)\cong \hom(A,B).\]
+    Vediamo che dunque l'assegnazione $A\mapsto h^A$ definisce un funtore covariante $h^\bullet : \C\to [\C^\op,\setcat]$ pienamente fedele (ma non essenzialmente suriettivo sugli oggetti). Restringendo $h^\bullet$ all'immagine di $\C$ in $[\C^\op,\setcat]$, otteniamo un'equivalenza di categorie (dato che la restrizione all'immagine è tautologicamente suriettiva).
+    \qed
+\end{theorem}
+
+vediamo un esempio
+
+\begin{example}{Prefascio delle funzioni continue}{}
+    Sia $(X,\tau)$ uno spazio topologico. Consideriamo la sua topologia $\tau$ come una categoria piccola, dove una freccia $U\to V$ è data dall'inclusione insiemistica $U\subset V$. Per ogni aperto $U \in \tau$ consideriamo l'insieme $\C(U):=\C^0(U,\R)$ delle funzioni continue in $U$ a valore reale.\\
+    Abbiamo che la mappa $U \mapsto \C(U)$, con l'assegnazione $(f : V\to \R) \mapsto (f|_{U\subset V} : U\to\R)$ è un funtore controvariante $\C : \tau^\op \to \setcat$, detto \bemph{prefascio delle funzioni continue} su $(X,\tau)$.
+\end{example}
+
+Abbiamo dualmente la versione controvariante
+
+\begin{corollary}{Embedding di Yoneda controvariante}{contravariant yoneda embedding}
+    Sia $\C$ una categoria. Allora la sua categoria opposta $\C^\op$ è equivalente ad una sottocategoria piena di $[\C, \setcat]$ tramite la mappa $\mc{Y}' : \C^\op \to [\C, \setcat]$ definita da:
+    \[ \mc{Y}(f:A\to B) :=  (f\circ -):h_B\to h_A.\]
+    \proof 
+    Assolutamente analoga al teorema precedente.
+    \qed
+\end{corollary}
 
 \section{Prodotti}
 
