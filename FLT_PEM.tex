@@ -72,7 +72,7 @@ Da ora in avanti, assumeremo sempre (anche senza specificarlo) che le nostre cat
     \end{itemize}    
 \end{definition}
 
-\begin{remark}{}{}
+\begin{remark}{Sui morfismi}{sui morfismi}
     Valgono le seguenti:\begin{itemize}
         \item Le sezioni sono mono.
         \item Le retrazioni sono epi.
@@ -94,6 +94,17 @@ Da ora in avanti, assumeremo sempre (anche senza specificarlo) che le nostre cat
     \end{itemize}
     \qed
 \end{remark}
+
+\begin{definition}{Oggetti iniziali e finali}{Oggetti iniziali e finali}
+    Sia $\C$ una categoria e sia $I$ un oggetto.\\
+    $I$ si dice \bemph{oggetto iniziale} se per ogni oggetto $X$ di $\C$ esiste un unico morfismo $\iota_X:I\to X$\\
+    $I$ si dice \bemph{oggetto finale} se è l'oggetto iniziale di $\C^\op$, o equivalentemente se per ogni oggetto $X$ di $\C$ esiste un unico morfismo $\zeta_X : X\to I$.\\
+    Se $I$ è sia finale che iniziale, si dice \bemph{oggetto zero}.
+\end{definition}
+
+\begin{proposition}{Unicità di oggetti iniziali e finali}{unicità zero}
+    Se una categoria $\C$ ammette un oggetto iniziale (o finale o zero), questo è essenzialmente unico.
+\end{proposition}
 
 \begin{definition}{Funtore}{functor}
     Siano $\C$ e $\D$ due categorie. Un \bemph{funtore covariante} $F: \C\to\D$ consiste in due mappe $F:\ob\C\to\ob\D$ e $F:\hom\C\to\hom\D$ che rispettino la composizione, ovvero:\begin{itemize}
@@ -122,8 +133,8 @@ Da ora in avanti, assumeremo sempre (anche senza specificarlo) che le nostre cat
 
 \begin{definition}{Equivalenza di categorie}{equivalenza di categorie}
     Siano $\C$ e $\D$ due categorie e siano $F:\C\to\D$ e $G:\D\to\C$ due funtori.\\
-    La coppia $(F,G)$ si dice \bemph{equivalenza di categorie} tra $F$ e $G$ se esistono due trasformazioni naturali
-    \[ \id_\C \to GF \quad\text{e}\quad \id_\D \to FG .\]
+    La coppia $(F,G)$ si dice \bemph{equivalenza di categorie} tra $F$ e $G$ se esistono due isomorfismi naturali
+    \[ \id_\C \cong GF \quad\text{e}\quad \id_\D \cong FG .\]
 \end{definition}
 
 \begin{proposition}{Caratterizzazione per un'equivalenza di categorie}{equivalenza di categorie}
@@ -264,6 +275,7 @@ Ora grazie al lemma di Yoneda possiamo dimostrare un fatto che ci servirà più 
 Ci sono (almeno) tre definizioni (quasi) equivalenti del prodotto in una categoria. La prima
 
 \subsection{Proprietà universale}
+
 \begin{definition}{Prodotto tramite proprietà universale}{prodotto pu}
     Sia $\C$ una categoria e siano $X,Y \in \ob\C$ due oggetti.\\
     Si dice \bemph{prodotto} di $X$ e $Y$ in $\C$ un oggetto $X\times Y$ munito di due morfismi $\pi_X : X\times Y\to X$ e $\pi_Y:X\times Y \to Y$ detti \bemph{proiezioni} tali che per ogni oggetto $Z$ e ogni coppia di morfismi $f:Z\to X$ e $g:Z\to Y$ esista un unico morfismo $f\times g: Z\to X\times Y$ tale che il seguente diagramma commuti:
@@ -277,9 +289,24 @@ Ci sono (almeno) tre definizioni (quasi) equivalenti del prodotto in una categor
     	\arrow["f"{description}, from=3-3, to=3-1]
     	\arrow["g"{description}, from=3-3, to=3-5]
     \end{tikzcd}\]
+    Questo, se esiste, è essenzialmente unico.
+    \proof 
+    Siano $(A,\alpha_X,\alpha_Y)$ e $(B,\beta_X, \beta_Y)$ due prodotti di $X$ e $Y$. Il seguente diagramma commuta:
+    \[\begin{tikzcd}
+    	A &&&& Y \\
+    	\\
+    	\\
+    	\\
+    	X &&&& B
+    	\arrow["{\alpha_Y}"{description}, from=1-1, to=1-5]
+    	\arrow["{\alpha_X}"{description}, from=1-1, to=5-1]
+    	\arrow["{B(\alpha_X,\alpha_Y)}"{description}, curve={height=18pt}, from=1-1, to=5-5]
+    	\arrow["{A(\beta_X,\beta_Y)}"{description}, curve={height=18pt}, from=5-5, to=1-1]
+    	\arrow["{\beta_Y}"{description}, from=5-5, to=1-5]
+    	\arrow["{\beta_Y}"{description}, from=5-5, to=5-1]
+    \end{tikzcd}\]
+    Definendo automaticamente un isomorfismo.
 \end{definition}
-
-Proviamo a dimostrare che 
 
 \subsection{Categoria dei coni}
 
@@ -301,7 +328,7 @@ Proviamo a dimostrare che
 
 \begin{definition}{Prodotto tramite coni}{prodotto coni}
     Sia $\C$ una categoria e siano $X,Y \in \ob\C$ due oggetti.
-    Si dice \bemph{prodotto} di $X$ e $Y$ l'oggetto $X\times Y$ di $\C$ tale che $(X\times Y, \{\pi_X, \pi_Y\})$ sia l'oggetto iniziale di $\cone(\{X,Y\})$, ovvero della categoria dei coni sul diagramma discreto ${X,Y}$.
+    Si dice \bemph{prodotto} di $X$ e $Y$ l'oggetto $X\times Y$ di $\C$ tale che $(X\times Y, \{\pi_X, \pi_Y\})$ sia l'oggetto iniziale di $\cone(\{X,Y\})$, ovvero della categoria dei coni sul diagramma discreto $\{X,Y\}$.
 \end{definition}
 
 \subsection{Aggiunzioni}
@@ -325,6 +352,16 @@ Grazie al lemma \ref{lem:unicità degli aggiunti} abbiamo immediatamente che il 
 
 \begin{theorem}{Equivalenza di definizioni}{equivalenza definizioni prodotti}
     Le definizioni \ref{def:prodotto pu}, \ref{def:prodotto coni} e \ref{def:prodotto adj} sono essenzialmente equivalenti.
+    \proof 
+    \begin{itemize}
+        \item L'equivalenza di \ref{def:prodotto pu} e \ref{def:prodotto coni} è abbastanza evidente (in effetti si trattano entrambi di applicazioni del concetto di limite).
+        \item \PHcat : dimostrare che \ref{def:prodotto pu} e \ref{def:prodotto adj} sono equivalenti può sembrare abbastanza immediato, ma c'è un piccolo ostacolo preliminare: noi non abbiamo un \textit{unico} oggetto prodotto e un \textit{unico} funtore prodotto, ma ne abbiamo potenzialmente delle classi di equivalenza: il fatto di prendere dei rappresentanti da esse per dimostrare che queste effettivamente fanno ciò che vogliamo richiede l'utilizzo di un assioma molto potente:
+        \begin{axiom}{Scelta globale}{scelta globale}
+            Sia $\V$ la classe di tutti gli insiemi.\\
+            Esiste ed è non vuota la classe prodotto
+            \[ \mfk{V}:= \prod_{S \in \V} S\]
+        \end{axiom}
+    \end{itemize}
 \end{theorem}
 
 \end{document}
