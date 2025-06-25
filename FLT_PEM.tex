@@ -131,6 +131,16 @@ Da ora in avanti, assumeremo sempre (anche senza specificarlo) che le nostre cat
     \qed
 \end{proposition}
 
+Adesso faremo una cosa un po' buffa, ovvero definiremo il prodotto di categorie come definiremmo normalmente il prodotto cartesiano di insiemi e più tardi lo useremo per definire il prodotto in categorie generali.
+
+\begin{definition}{Categoria prodotto}{categoria prodotto}
+    Siano $\C$ e $\D$ due categorie. Definiamo la \bemph{categoria prodotto} $\C\times\D$ di $\C$ e $\D$ come la categoria i cui oggetti sono le coppie ordinate di un oggetto di $\C$ e uno di $\D$ e dove
+    \[ \hom((A,B),(C,D)) = \left\{ (f,g) : f \in \C(A,C), g \in \D(B,D) \right\}. \]
+    Una categoria prodotto è naturalmente munita di due funtori triviali $P_I : \C\times\D\to I$ con $I = \C,\D$ che mandano un oggetto $(A,B)$ rispettivamente in $A$ o $B$.
+\end{definition}
+
+Perchè "spostiamo" il prodotto cartesiano alle categorie? Perchè spesso quando lavoriamo in qualche categoria ci risulta più agevole una definizione più "intrinseca" di prodotto, oppure abbiamo prodotti diversi: nella categoria $\catname{Rel}$ i cui oggetti sono gli insiemi e i morfismi le relazioni tra loro, il prodotto "categorico" è dato dall'unione disgiunta, nonostante $\setcat$ sia una sua sottocategoria.
+
 \begin{definition}{Equivalenza di categorie}{equivalenza di categorie}
     Siano $\C$ e $\D$ due categorie e siano $F:\C\to\D$ e $G:\D\to\C$ due funtori.\\
     La coppia $(F,G)$ si dice \bemph{equivalenza di categorie} tra $F$ e $G$ se esistono due isomorfismi naturali
@@ -328,7 +338,7 @@ Ci sono (almeno) tre definizioni (quasi) equivalenti del prodotto in una categor
 
 \begin{definition}{Prodotto tramite coni}{prodotto coni}
     Sia $\C$ una categoria e siano $X,Y \in \ob\C$ due oggetti.
-    Si dice \bemph{prodotto} di $X$ e $Y$ l'oggetto $X\times Y$ di $\C$ tale che $(X\times Y, \{\pi_X, \pi_Y\})$ sia l'oggetto iniziale di $\cone(\{X,Y\})$, ovvero della categoria dei coni sul diagramma discreto $\{X,Y\}$.
+    Si dice \bemph{prodotto} di $X$ e $Y$ l'oggetto $X\times Y$ di $\C$ tale che $(X\times Y, \{\pi_X, \pi_Y\})$ sia l'oggetto finale di $\cone(\{X,Y\})$, ovvero della categoria dei coni sul diagramma discreto $\{X,Y\}$.
 \end{definition}
 
 \subsection{Aggiunzioni}
@@ -351,17 +361,34 @@ Grazie al lemma \ref{lem:unicità degli aggiunti} abbiamo immediatamente che il 
 \subsection{Equivalenza}
 
 \begin{theorem}{Equivalenza di definizioni}{equivalenza definizioni prodotti}
-    Le definizioni \ref{def:prodotto pu}, \ref{def:prodotto coni} e \ref{def:prodotto adj} sono essenzialmente equivalenti.
+    Le definizioni \ref{def:prodotto pu}, \ref{def:prodotto coni} e \ref{def:prodotto adj} sono essenzialmente equivalenti, ovvero un oggetto $P$ che rispetta una di esse rispetta automaticamente le altre due.
     \proof 
     \begin{itemize}
-        \item L'equivalenza di \ref{def:prodotto pu} e \ref{def:prodotto coni} è abbastanza evidente (in effetti si trattano entrambi di applicazioni del concetto di limite).
-        \item \PHcat : dimostrare che \ref{def:prodotto pu} e \ref{def:prodotto adj} sono equivalenti può sembrare abbastanza immediato, ma c'è un piccolo ostacolo preliminare: noi non abbiamo un \textit{unico} oggetto prodotto e un \textit{unico} funtore prodotto, ma ne abbiamo potenzialmente delle classi di equivalenza: il fatto di prendere dei rappresentanti da esse per dimostrare che queste effettivamente fanno ciò che vogliamo richiede l'utilizzo di un assioma molto potente:
-        \begin{axiom}{Scelta globale}{scelta globale}
-            Sia $\V$ la classe di tutti gli insiemi.\\
-            Esiste ed è non vuota la classe prodotto
-            \[ \mfk{V}:= \prod_{S \in \V} S\]
-        \end{axiom}
+        \item Sia $(P,\pi_X,\pi_Y) \in \cone(\{X,Y\})$ tale che rispetti \ref{def:prodotto pu} se visto come oggetto in $\C$ e sia $(Z,f_X,f_Y)$ un altro cono; per la proprietà universale di $P$, esiste un unico morfismo $h : Z\to P$ tale che $\pi_i\circ h = f_i$, dunque un unico morfismo mediante $\hat h : (Z,f_X,f_Y)\to (P,\pi_X,\pi_Y)$; l'altra equivalenza è evidente.
+        \item Sia $\Pi : \C^2 \to \C$ 
     \end{itemize}
 \end{theorem}
+
+\section{Categorie Cartesiane Chiuse}
+
+Ok, abbiamo definito i nostri prodotti, ma c'è un problema... esistono sempre? E come lavoriamo con questi prodotti? Per rispondere a queste domande dobbiamo porre qualche restrizione sulla definizione di categoria.
+
+\begin{definition}{Oggetto esponenziale}{esponenziale}
+    Sia $\C$ una categoria tale che ogni coppia di oggetti ammetta un prodotto e siano $Z$ e $Y$ due oggetti di $\C$.\\
+    Si dice \bemph{esponenziale} di $Z$ e $Y$ un oggetto $Z^Y$ dotato di un morfismo $e: Z^Y\times Y \to Z$ tale che per ogni morfismo $g : X\times Y \to Z$ esista un unico morfismo $\lambda g : X\to Z^Y$ tale che il seguente diagramma commuti:
+    \[\begin{tikzcd}
+    	{X\times Y} \\
+    	\\
+    	{Z^Y\times Y} && Z
+    	\arrow["{\lambda g\times \id_Y}"{description}, from=1-1, to=3-1]
+    	\arrow["g"{description}, from=1-1, to=3-3]
+    	\arrow["e"{description}, from=3-1, to=3-3]
+    \end{tikzcd}\]
+    Ovvero tale che l'assegnazione $g \mapsto \lambda g$ definisca un isomorfismo $\hom(X\times Y, Z)\cong \hom(X, Z^Y)$.
+\end{definition}
+
+\begin{definition}{Categoria Cartesiana Chiusa}{CCC}
+    
+\end{definition}
 
 \end{document}
