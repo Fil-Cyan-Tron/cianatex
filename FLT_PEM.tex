@@ -178,7 +178,7 @@ Abbiamo visto che i morfismi sono trasfotmazioni tra oggetti, mentre i funtori s
 
 \subsection{Lemma di Yoneda e conseguenze}
 
-\begin{definition}{Categoria dei funtori}{functor category}
+\begin{definition}{Categoria dei funtori}{categoria dei funtori}
     Siano $\C,\D$ due categorie.\\
     Definiamo la categoria $\D^\C$, che spesso denoteremo con $[\C,\D]$, la \bemph{categoria dei funtori} da $\C$ a $\D$, i cui oggetti sono i funtori covarianti e i cui morfismi sono le trasformazioni naturali con la \bemph{composizione verticale}: definiamo per $\mu:F\to G$ e $\nu:G\to H$ la loro composizione verticale $\nu\mu : F\to H$ col seguente diagramma:
     \[\begin{tikzcd}
@@ -199,7 +199,7 @@ Abbiamo visto che i morfismi sono trasfotmazioni tra oggetti, mentre i funtori s
     Spesso invece di scrivere $[\C,\D](F,G)$ o $\hom_{[\C,\D]}(F,G)$ scriveremo $\nat(F,G)$.
 \end{definition}
 
-\begin{definition}{$\hom$-funtore covariante e controvariante}{hom-functor}
+\begin{definition}{$\hom$-funtore covariante e controvariante}{hom-funtore}
     Sia $\C$ una categoria localmente piccola\footnote{È vero che abbiamo detto che lo avremmo sempre assunto, ma è importante specificarlo in questo caso.} e sia $A$ un oggetto di $\C$. Definiamo due funtori $h_A:\C\to\setcat$ e $h^A : \C^\op\to\setcat$, detti $\hom$\bemph{-funtori} (rispettivamente covariante e controvariante) nel seguente modo:
         \[\begin{tikzcd}
     	{\hom(A,X)} && X && {\hom(X,A)} \\
@@ -216,7 +216,7 @@ Abbiamo visto che i morfismi sono trasfotmazioni tra oggetti, mentre i funtori s
     Inoltre possiamo interpretare $\hom(-,-)$ come un bifuntore $\C^\op\times \C \to \setcat$.
 \end{definition}
 
-\begin{theorem}{Lemma di Yoneda covariante}{covariant yoneda lemma}
+\begin{theorem}{Lemma di Yoneda covariante}{lemma di yoneda covariante}
     Sia $\C$ una categoria localmente piccola e sia $F:\C\to\setcat$ un funtore covariante. Allora esiste una biezione di insiemi \PHcat:
     \[ \nat (h_A, F) \cong F(A)\]
     e questa è naturale in $A$ e $F$.
@@ -246,7 +246,9 @@ Abbiamo visto che i morfismi sono trasfotmazioni tra oggetti, mentre i funtori s
     \qed
 \end{theorem}
 
-\begin{corollary}{Lemma di Yoneda controvariante}{contravariant yoneda lemma}
+Abbiamo dualmente la versione controvariante:
+
+\begin{corollary}{Lemma di Yoneda controvariante}{lemma di yoneda controvariante}
     Sia $F:\C^\op\to\setcat$ un funtore controvariante. Allora esiste una biezione di insiemi
     \[ \nat (h^A, F) \cong F(A)\]
     e questa è naturale in $A$ e $F$.
@@ -263,7 +265,7 @@ Abbiamo visto che i morfismi sono trasfotmazioni tra oggetti, mentre i funtori s
 
 Una delle più naturali applicazioni del lemma di Yoneda è l'embedding di Yoneda, fondamentale in gran parte della topologia e della geometria moderna: esso permette di identificare una categoria $\C$ con una sottocategoria della cosiddetta \bemph{categoria dei prefasci su} $\C$, che è solo un altro nome per $[\C^\op,\setcat]$. Ad esempio se interpretiamo la topologia $\tau$ di uno spazio $(X,\tau)$ come una categoria, dove i morfismi sono dati dall'inclusione insiemistica, questa è completamente determinata dalle classi delle funzioni continue entranti nei (o uscenti dai) suoi aperti.
 
-\begin{theorem}{Embedding di Yoneda covariante}{covariant yoneda embedding}
+\begin{theorem}{Embedding di Yoneda covariante}{embedding di yoneda covariante}
     Sia $\C$ una categoria. Questa è equivalente ad una sottocategoria piena di $[\C^\op, \setcat]$ tramite la mappa $\mc{Y} : \C \to [\C^\op, \setcat]$ definita da questo diagramma (dove abbiamo morfismi $f:A\to B$ e $g:X\to Y$ di $\C$):
     \[\begin{tikzcd}
     	{\mc{Y}(A)(X) = h^A(X)} &&&& {\mc{Y}(B)(X) = h^B(X)} \\
@@ -282,15 +284,15 @@ Una delle più naturali applicazioni del lemma di Yoneda è l'embedding di Yoned
     \end{tikzcd}\]
     Dove un oggetto $A$ di $\C$ viene mandato nel funtore $h^A : \C^\op \to \setcat$ definito sopra e un morfismo $f:A\to B$ viene mandato nella sua postcomposizione, che è una trasformazione naturale da $h^A$ a $h^B$ come si vede nel diagramma.
     \proof
-    Applicando il corollario \ref{corol:contravariant yoneda lemma} con $F = h^B$ scorrendo su $B \in \ob\C$ otteniamo
+    Applicando il corollario \ref{corol:lemma di yoneda controvariante} con $F = h^B$ scorrendo su $B \in \ob\C$ otteniamo
     \[\nat(h^A, h^B) \cong h^B(A) \text{, o equivalentemente, } \nat(h^A, h^B)\cong \hom(A,B).\]
     Vediamo che dunque l'assegnazione $A\mapsto h^A$ definisce un funtore covariante $h^\bullet : \C\to [\C^\op,\setcat]$ pienamente fedele (ma non essenzialmente suriettivo sugli oggetti). Restringendo $h^\bullet$ all'immagine di $\C$ in $[\C^\op,\setcat]$, otteniamo un'equivalenza di categorie (dato che la restrizione all'immagine è tautologicamente suriettiva) per la proposizione \ref{prop:equivalenza di categorie}.
     \qed
 \end{theorem}
 
-Abbiamo dualmente la versione controvariante
+Abbiamo dualmente la versione controvariante:
 
-\begin{corollary}{Embedding di Yoneda controvariante}{contravariant yoneda embedding}
+\begin{corollary}{Embedding di Yoneda controvariante}{embedding di yoneda controvariante}
     Sia $\C$ una categoria. Allora la sua categoria opposta $\C^\op$ è equivalente ad una sottocategoria piena di $[\C, \setcat]$ tramite la mappa $\mc{Y}' : \C^\op \to [\C, \setcat]$ definita da questo diagramma (dove abbiamo morfismi $f:A\to B$ e $g:X\to Y$ di $\C$):
     \[\begin{tikzcd}
     	{\mc{Y}'(A)(X) = h_A(X)} &&&& {\mc{Y}'(B)(X) = h_B(X)} \\
@@ -318,7 +320,7 @@ Ora grazie al lemma di Yoneda possiamo dimostrare un fatto che ci servirà più 
     \proof 
     Scriviamo le aggiunzioni in termini degli $\hom$-funtori:
     \[ h^d(Fc) \cong h^{G_1 d}(c) \cong h^{G_2 d}(c) \]
-    Ottenendo dunque $\mc{Y}\circ G_1 \cong \mc{Y}\circ G_2$: dal teorema \ref{th:covariant yoneda embedding}, ovvero la piena fedeltà dell'embedding di Yoneda, segue la tesi.
+    Ottenendo dunque $\mc{Y}\circ G_1 \cong \mc{Y}\circ G_2$: dal teorema \ref{th:embedding di yoneda covariante}, ovvero la piena fedeltà dell'embedding di Yoneda, segue la tesi.
     \qed
 \end{lemma}
 
@@ -369,7 +371,7 @@ Questa definizione è evidentemente utile quando si parla di lavorare coi prodot
 \subsection{Categoria dei coni}
 
 \begin{definition}{Cono}{cono}
-    Sia $\C$ una categoria e sia $J$ un diagramma commutativo in $\C$.\\
+    Sia $\C$ una categoria e sia $J$ un diagramma in $\C$.\\
     Si dice \bemph{cono} su $J$ un oggetto $C \in \C$ con una collezione di morfismi $\{\rho_j : C \to j\}_{j \in J}$ tale che per ogni morfismo $f : X\to Y$ in $J$, il seguente diagramma commuti:
     \[\begin{tikzcd}
 	    & C \\
