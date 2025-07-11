@@ -9,6 +9,7 @@
 \renewcommand\C{\mc{C}}
 \newcommand\D{\mc{D}}
 \newcommand\nat{\operatorname{Nat}}
+\newcommand\J{\mc{J}}
 
 \begin{document}
 
@@ -37,6 +38,7 @@ Ogni tanto porterò io stesso l'attenzione ai fondamenti "scricchiolanti" della 
         \item \bemph{Piccola} se le classi $\hom\C$ e $\ob\C$ (anche se vedremo sotto che la grandezza della seconda è sempre limitata dalla prima) sono insiemi.
         \item \bemph{Grande} se non è piccola.
         \item \bemph{Localmente piccola} se, una volta fissati due oggetti $X,Y \in \ob\C$, la classe $\hom(X,Y)$ è un insieme.
+        \item \bemph{Finita} se è piccola e l'insieme dei morfismi è un insieme finito.
     \end{itemize}
 \end{definition}
 
@@ -57,8 +59,7 @@ Da ora in avanti, assumeremo sempre (anche senza specificarlo) che le nostre cat
     Siano $\C$ e $\D$ due categorie tali che $\ob\C \subset \ob\D$, $\hom\C \subset \hom\D$ e per ogni $f,g,h \in \hom C$ valga 
     \[h = f\circ_\C g = f\circ_\D g.\]
     Allora $\C$ si dice una \bemph{sottocategoria} di $\D$.\\
-    Se per ogni coppia di oggetti $X,Y \in \C$ vale $\C(X,Y)=\D(X,Y)$, allora $\C$ si dice \bemph{piena}.\\
-    Chiameremo \bemph{diagrammi} in $\C$ le sottocategorie \textit{piccole}\footnote{I diagrammi in $\C$ possono essere definiti in modo più generale come funtori (\ref{def:funtore}) da un grafo diretto che può essere visto come categoria "indice", ma per i nostri fini sarà sufficiente questa definizione.} di $\C$.
+    Se per ogni coppia di oggetti $X,Y \in \C$ vale $\C(X,Y)=\D(X,Y)$, allora $\C$ si dice \bemph{piena}.
 \end{definition}
 
 \begin{definition}{Sapori di morfismi}{morfismi}
@@ -324,7 +325,72 @@ Ora grazie al lemma di Yoneda possiamo dimostrare un fatto che ci servirà più 
     \qed
 \end{lemma}
 
+\subsection{Limiti}
+
+Uno dei concetti più importanti in teoria delle categorie è quello di limite. Per definire il concetto di limite dobbiamo dare la definizione formale di diagramma in una categoria, che generalizza il concetto di famiglia indicizzata in $\setcat$.
+
+\begin{definition}{Diagramma commutativo}{diagramma commutativo}
+    Siano $\J, \C$ due categorie.\\
+    Si dice \bemph{diagramma (commutativo)} in $\C$ di forma $\J$ un funtore $F:\J\to\C$; $\J$ si dice \bemph{forma} o \bemph{indice} del diagramma: se $\J$ è finita o piccola, il diagramma $F$ si dirà rispettivamente \bemph{finito} o \bemph{piccolo}.\\
+    La \bemph{categoria dei diagrammi} in $\C$ di forma $\J$ è la categoria dei funtori $[\J,\C]$.
+\end{definition}
+
+Se in teoria degli insiemi definiamo una famiglia di sottoinsiemi di un insieme $X$ indicizzata dall'insieme $J$ come un'applicazione $J\to \mc{P}(X)$, qui abbiamo bisogno di un'applicazione che rispetti la struttura di categoria, ovvero un funtore: intuitivamente oltre a indicizzare gli oggetti indicizziamo anche i morfismi in modo che la composizione sia rispettata. Per la prossima definizione ci servirà di considerare un diagramma particolare, il diagramma costante $K_N : \J\to \C$ (dove $N$ è un oggetto di $\C$) che manda ogni oggetto di $\J$ in $N$ e ogni morfismo in $\id_N$.
+
+\begin{definition}{Cono e cocono}{cono}
+    Sia $\C$ una categoria, sia $F: \J\to\C$ un diagramma e sia $N$ un oggetto di $\C$.\\
+    Si dice \bemph{cono} in $\C$ su $F$ con punta $N$ un morfismo $\psi : K_N \to F$ di $[\J,\C]$, ovvero una famiglia di morfismi \[\{\psi_X : N\to F(X)\}_{X \in \ob\J} \subset \hom\C\]
+    Tali che per ogni morfismo $f:X\to Y$ in $\J$ il seguente diagramma commuti:
+    \[\begin{tikzcd}
+    	& N \\
+    	\\
+    	{F(X)} && {F(Y)}
+    	\arrow["{\psi_X}"{description}, from=1-2, to=3-1]
+    	\arrow["{\psi_Y}"{description}, from=1-2, to=3-3]
+	    \arrow["{F(f)}"{description}, from=3-1, to=3-3]
+    \end{tikzcd}\]
+    Dualmente, si dice \bemph{cocono} su $F$ con punta $N$ un morfismo $\psi F \to K_N$, o equivalentemente un cono in $\C^\op$.\\
+    Definiamo la \bemph{categoria dei coni} in $\C$ su $F$ come la categoria i cui oggetti sono i coni intesi come coppia $(N, \psi^N: K_N \to F )$ e i cui morfismi sono i cosiddetti morfismi \bemph{medianti}, ovvero i morfismi $\alpha : N\to M$ di $\C$ tali per cui per ogni oggetto $X$ di $\J$ valga:
+    \[\psi^M_X\circ \alpha = \psi^N_X,\]
+    Denoteremo questa categoria come $\cone(\C,F)$.
+\end{definition}
+
+Ed eccoci pronti a definire i limiti.
+
+\begin{definition}{Limite e colimite}{limite}
+    Sia $F:\J\to\C$ un diagramma.\\
+    Si dice \bemph{limite} (o limite proiettivo) di $F$ in $\C$ l'oggetto terminale di $\cone(\C,F)$.\\
+    Si dice \bemph{colimite} (o limite induttivo) di $F$ in $\C$ il limite di $F$ in $\C^\op$, o equivalentemente l'oggetto iniziale di $\cone(\C,F)$.\\
+    Indichiamo rispettivamente limiti e colimiti di $F$ in $\C$ come
+    \[ \catlim F \quad \text{e}\quad\catcolim F.\]
+    Un limite si dice rispettivamente piccolo o finito se lo è $F$ come diagramma.
+\end{definition}
+
+Più esplicitamente\footnote{Ovvero scrivendo per esteso la definizione di oggetto terminale}, possiamo definire il limite di $F$ in $\C$ come il cono $(L,\psi^L)$ tale che per ogni altro cono $(N,\psi^N)$ esista un unico morfismo $\lambda_N : N\to L$ tale che il seguente diagramma commuti:
+
+\[\begin{tikzcd}
+	&& N \\
+	\\
+	&& L \\
+	\\
+	{F(X)} &&&& {F(Y)}
+	\arrow["{\lambda_N}"{description}, dashed, from=1-3, to=3-3]
+	\arrow["{\psi_X^N}"{description}, curve={height=12pt}, from=1-3, to=5-1]
+	\arrow["{\psi_Y^N}"{description}, curve={height=-12pt}, from=1-3, to=5-5]
+	\arrow["{\psi^L_X}"{description}, from=3-3, to=5-1]
+	\arrow["{\psi^L_X}"{description}, from=3-3, to=5-5]
+	\arrow["{F(f)}"{description}, from=5-1, to=5-5]
+\end{tikzcd}\]
+
+Vedremo che il concetto di limite è davvero il concetto centrale in teoria delle categorie, in quanto in effetti un altro concetto estremamente utile (quello di funtore aggiunto) non è altro che un esempio di limite (in effetti, è anche possibile definire i limiti in termini di funtori aggiunti, che è quello che andremo a fare più tardi in un caso specifico nel teorema \ref{th:equivalenza definizioni prodotti}):
+
+\begin{remark}{}{}
+    
+\end{remark}
+
 Dopo aver assemblato tutto questo apparato, procediamo a farci qualcosa.
+
+
 
 \pagebreak 
 
