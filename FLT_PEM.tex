@@ -139,11 +139,12 @@ Da ora in avanti, assumeremo sempre (anche senza specificarlo) che le nostre cat
 
 Adesso faremo una cosa un po' buffa, ovvero definiremo il prodotto di categorie come definiremmo normalmente il prodotto cartesiano di insiemi e più tardi lo useremo per definire il prodotto in categorie generali.
 
-\begin{definition}{Categoria prodotto}{categoria prodotto}
+\begin{definition}{Categoria prodotto e bifuntore}{categoria prodotto e bifuntore}
     Siano $\C$ e $\D$ due categorie. Definiamo la \bemph{categoria prodotto} $\C\times\D$ di $\C$ e $\D$ come la categoria i cui oggetti sono le coppie ordinate di un oggetto di $\C$ e uno di $\D$ e dove
     \[ \hom((A,B),(C,D)) = \left\{ (f,g) : f \in \C(A,C), g \in \D(B,D) \right\}. \]
     Una categoria prodotto è naturalmente munita di due funtori $P_I : \C\times\D\to I$ con $I = \C,\D$, detti \bemph{proiezioni}, tali che
-    \[ P_\C ((f,g):(A,B)\to(C,D)) = (f:A\to C) \quad\text{e}\quad P_\D ((f,g):(A,B)\to(C,D)) = (g:B\to D). \]
+    \[ P_\C ((f,g):(A,B)\to(C,D)) = (f:A\to C) \quad\text{e}\quad P_\D ((f,g):(A,B)\to(C,D)) = (g:B\to D).\]
+    Un funtore $F:\C\times\D\to \E$ si dice \bemph{bifuntore}.
 \end{definition}
 
 Perchè "spostiamo" il prodotto cartesiano alle categorie? Perchè spesso quando lavoriamo in qualche categoria ci risulta più agevole una definizione più "intrinseca" di prodotto, oppure abbiamo prodotti diversi: in $\catname{Rel}$\footnote{Categoria degli insiemi e delle relazioni} il prodotto "categorico" è dato dall'unione disgiunta, nonostante $\setcat$\footnote{Categoria degli insiemi e delle funzioni} sia una sua sottocategoria e in questa il prodotto sia l'usuale prodotto cartesiano.\\
@@ -387,7 +388,7 @@ Più esplicitamente\footnote{Ovvero scrivendo per esteso la definizione di ogget
 	\arrow["{F(f)}"{description}, from=5-1, to=5-5]
 \end{tikzcd}\]
 
-Vedremo che il concetto di limite è davvero il concetto centrale in teoria delle categorie, in quanto in effetti un altro concetto estremamente utile (quello di funtore aggiunto) non è altro che un esempio di limite (in effetti, è anche possibile definire i limiti in termini di funtori aggiunti, che è quello che andremo a fare più tardi in un caso specifico nel teorema \ref{th:equivalenza definizioni prodotti}).\\
+Vedremo che il concetto di limite è davvero il concetto centrale in teoria delle categorie, in quanto in effetti un altro concetto estremamente utile (quello di funtore aggiunto) non è altro che un esempio di limite (in effetti, è anche possibile definire i limiti in termini di funtori aggiunti).\\
 Talvolta diremo che una categoria "ammette/ha tutti i..." facendo riferimento a dei limiti definiti su una qualche classe di diagrammi: questo significa che ogni diagramma di quella classe ammette un limite in $\C$.
 
 \begin{remark}{Limiti e oggetti iniziali}{limiti e oggetti iniziali}
@@ -423,111 +424,41 @@ Presentiamo alcuni limiti di particolare importanza (in effetti delle classi di 
     Un pullback in $\C^\op$ si dice \bemph{pushout}.
 \end{definition}
 
-\pagebreak 
+Il pullback è una sorta di analogo categoriale delle equazioni: in molte categorie concrete\footnote{Informalmente, quelle i cui oggetti sono insiemi dotati di una qualche struttura e i cui morfismi sono funzioni insiemistiche che rispettano tale struttura.} il pullback di $\{ X\xrightarrow{f} Z \xleftarrow{g} Y \}$ è il sottoinsieme $\{ (x,y) | f(x) = g(y) \}$ di $X\times Y$ e i morfismi che lo accompagnano sono la restrizione delle proiezioni. Un altro esempio è quello del grafico di una funzione, che è il pullback del diagramma $\{ X\xrightarrow{f} Y \xleftarrow{\id_Y} Y \}$
 
-\section{Prodotti}
-
-Ci sono diverse definizioni di prodotto in una categoria, sono (quasi) equivalenti ma in base all'occasione alcune sono più utili di altre.
-
-\subsection{Proprietà universale}
-
-\begin{definition}{Prodotto tramite proprietà universale}{prodotto pu}
-    Sia $\C$ una categoria e siano $X,Y \in \ob\C$ due oggetti.\\
-    Si dice \bemph{prodotto} di $X$ e $Y$ in $\C$ un oggetto $X\times Y$ munito di due morfismi $\pi_X : X\times Y\to X$ e $\pi_Y:X\times Y \to Y$ detti \bemph{proiezioni} tali che per ogni oggetto $Z$ e ogni coppia di morfismi $f:Z\to X$ e $g:Z\to Y$ esista un unico morfismo $f\times g: Z\to X\times Y$ tale che il seguente diagramma commuti:
+\begin{definition}{Equalizzatore}{equalizzatore}
+    Sia $\C$ una categoria e sia $\J$ il diagramma 
     \[\begin{tikzcd}
-    	&& {X\times Y} \\
-    	\\
-    	X && Z && Y
-    	\arrow["{\pi_X}"{description}, from=1-3, to=3-1]
-    	\arrow["{\pi_Y}"{description}, from=1-3, to=3-5]
-    	\arrow["{f\times g}"{description}, from=3-3, to=1-3]
-    	\arrow["f"{description}, from=3-3, to=3-1]
-    	\arrow["g"{description}, from=3-3, to=3-5]
+    	X && Y
+    	\arrow["f"{description}, shift left=3, from=1-1, to=1-3]
+    	\arrow["g"{description}, shift right=3, from=1-1, to=1-3]
     \end{tikzcd}\]
-    Questo, se esiste, è essenzialmente unico.
-    \proof 
-    Siano $(A,\alpha_X,\alpha_Y)$ e $(B,\beta_X, \beta_Y)$ due prodotti di $X$ e $Y$. Il seguente diagramma commuta:
-    \[\begin{tikzcd}
-    	A &&&& Y \\
-    	\\
-    	\\
-    	\\
-    	X &&&& B
-    	\arrow["{\alpha_Y}"{description}, from=1-1, to=1-5]
-    	\arrow["{\alpha_X}"{description}, from=1-1, to=5-1]
-    	\arrow["{B(\alpha_X,\alpha_Y)}"{description}, curve={height=18pt}, from=1-1, to=5-5]
-    	\arrow["{A(\beta_X,\beta_Y)}"{description}, curve={height=18pt}, from=5-5, to=1-1]
-    	\arrow["{\beta_Y}"{description}, from=5-5, to=1-5]
-    	\arrow["{\beta_Y}"{description}, from=5-5, to=5-1]
-    \end{tikzcd}\]
-    Definendo automaticamente un isomorfismo.
+    Si dice \bemph{equalizzatore} di $f$ e $g$ il limite di $\J$ in $\C$.\\
+    Un equalizzatore in $\C^\op$ si dice \bemph{coequalizzatore}.
 \end{definition}
 
-Questa definizione è evidentemente utile quando si parla di lavorare coi prodotti nell'usuale pratica matematica, ad esempio è una definizione meno "pesante" di quella che si dà dei prodotti in $\topcat$\footnote{Categoria degli spazi topologici e delle funzioni continue} o $\mblecat$\footnote{Categoria di spazi e funzioni misurabili} nella maggior parte dei corsi introduttivi di topologia generale o teoria della misura. Allo stesso modo non dipende da scelte arbitrarie, come di una norma prodotto in $\catname{NormVec}\K$\footnote{Categoria dei $\K$-spazi vettoriali normati e delle mappe lineari continue} o di una misura prodotto in $\meascat$\footnote{Categoria degli spazi con misura e delle funzioni misurabili}.
+\subsection{Prodotti}
 
-\subsection{Categoria dei coni}
+Chiudiamo questa prima sezione con una discussione di una diversa caratterizzazione del prodotto di due oggetti in una categoria, che ci sarà utile nella sezione successiva.\\
+La definizione che abbiamo dato in \ref{def:prodotto limite} è evidentemente utile quando si parla di lavorare coi prodotti nell'usuale pratica matematica, ad esempio è una definizione meno "pesante" di quella che si dà dei prodotti in $\topcat$\footnote{Categoria degli spazi topologici e delle funzioni continue} o $\mblecat$\footnote{Categoria di spazi e funzioni misurabili} nella maggior parte dei corsi introduttivi di topologia generale o teoria della misura. Allo stesso modo non dipende da scelte arbitrarie, come di una norma prodotto in $\catname{NormVec}\K$\footnote{Categoria dei $\K$-spazi vettoriali normati e delle mappe lineari continue} o di una misura prodotto in $\meascat$\footnote{Categoria degli spazi con misura e delle funzioni misurabili}. Certo, può sembrare strana l'idea di lavorare col prodotto in modo completamente intrinseco, senza presentarlo esplicitamente, ma alla fine è analogo al lavorare con mappe lineari tra spazi vettoriali senza curarsi della loro rappresentazione come matrici in seguito a una scelta di base.
 
-\begin{definition}{Cono}{cono}
-    Sia $\C$ una categoria e sia $J$ un diagramma in $\C$.\\
-    Si dice \bemph{cono} su $J$ un oggetto $C \in \C$ con una collezione di morfismi $\{\rho_j : C \to j\}_{j \in J}$ tale che per ogni morfismo $f : X\to Y$ in $J$, il seguente diagramma commuti:
-    \[\begin{tikzcd}
-	    & C \\
-	    \\
-	    X && Y
-	    \arrow["{\rho_X}"{description}, from=1-2, to=3-1]
-	    \arrow["{\rho_Y}"{description}, from=1-2, to=3-3]
-	    \arrow["f"{description}, from=3-1, to=3-3]
-    \end{tikzcd}\]
-    La collezione dei coni su un diagramma $J$ e dei morfismi tra loro forma una categoria, detta $\cone(J)$: i suoi oggetti sono i coni $(C,\{\rho_j\}_{j \in J})$ e i suoi morfismi sono definiti da 
-    \[ \hom((C,\{\rho_j\}_{j \in J}), (C',\{\rho_j'\}_{j \in J})) = \{m : C\to C' : \forall j \in J, \rho_j = \rho_j' m\}\]
-    Ovvero i morfismi $m:C\to C'$ di $\C$ che fanno commutare il seguente diagramma per ogni morfismo $f:X\to Y$ di $J$:
-    \[\begin{tikzcd}
-	    C &&&& {C'} \\
-	    && X \\
-    	\\
-    	&& Y
-    	\arrow["m"{description}, from=1-1, to=1-5]
-    	\arrow["{\rho_X}"{description}, from=1-1, to=2-3]
-    	\arrow["{\rho_Y}"{description}, from=1-1, to=4-3]
-    	\arrow["{\rho_X'}"{description}, from=1-5, to=2-3]
-    	\arrow["{\rho_Y'}"{description}, from=1-5, to=4-3]
-	    \arrow["f"{description}, from=2-3, to=4-3]
-    \end{tikzcd}\]
-    Questi sono detti morfismi \bemph{medianti}.
-\end{definition}
-
-\begin{definition}{Prodotto tramite coni}{prodotto coni}
-    Sia $\C$ una categoria e siano $X,Y \in \ob\C$ due oggetti.
-    Si dice \bemph{prodotto} di $X$ e $Y$ l'oggetto $X\times Y$ di $\C$ tale che $(X\times Y, \{\pi_X, \pi_Y\})$ sia l'oggetto finale di $\cone(\{X,Y\})$, ovvero della categoria dei coni sul diagramma discreto $\{X,Y\}$.
-\end{definition}
-
-\subsection{Aggiunzioni}
-
-Prima di dare la prossima definizione, osserviamo che questa catena di biezioni è verificata (e naturale in $A$, $B$ e $C$)
-\[\begin{aligned}
-    \underbrace{\hom_\C(A, B\times C)}_{\C^\op \times \C\times\C \to \setcat} & \cong_\setcat \hom_\C(A,B)\times \hom_\C(A,C)\\
-    & \cong_\setcat \hom_{\C^2}((A,A),(B,C))\\
-    & \cong_\setcat \hom_{\C^2}(\Delta A,(B,C))
-\end{aligned}\]
-Dove $\Delta:\C\to\C^2$ è il funtore diagonale, che manda un oggetto $A$ nell'oggetto $(A,A)$ e un morfismo $f$ nel morfismo $(f,f)$: abbiamo ottenuto dunque che $\hom_\C(A, B\times C) \cong_\setcat \hom(\Delta A, (B,C))$, ovvero che interpretando il prodotto come un funtore $\times: \C^2\to\C$ questo è aggiunto destro al funtore diagonale, ovvero $\Delta \dashv \times$, quindi definiamo
-
-\begin{definition}{Prodotto III}{prodotto adj}
-    Sia $\C$ una categoria e siano $X,Y \in \ob\C$ due oggetti. 
-    Si dice \bemph{prodotto} di $X$ e $Y$ l'immagine della coppia $(X,Y) \in \ob\C^2$ attraverso un funtore $\Pi$ aggiunto destro al funtore $\Delta$.
-\end{definition}
-
-Grazie al lemma \ref{lem:unicità degli aggiunti} abbiamo immediatamente che il prodotto è essenzialmente unico. Questa definizione sarà la migliore più tardi, quando daremo più struttura alle categorie che trattiamo.
-
-\subsection{Equivalenza}
-
-\begin{theorem}{Equivalenza di definizioni}{equivalenza definizioni prodotti}
-    Le definizioni \ref{def:prodotto pu}, \ref{def:prodotto coni} e \ref{def:prodotto adj} sono essenzialmente equivalenti, ovvero un oggetto $P$ che rispetta una di esse rispetta automaticamente le altre due.
-    \proof 
-    \begin{itemize}
-        \item Sia $(P,\pi_X,\pi_Y) \in \cone(\{X,Y\})$ tale che rispetti \ref{def:prodotto pu} se visto come oggetto in $\C$ e sia $(Z,f_X,f_Y)$ un altro cono; per la proprietà universale di $P$, esiste un unico morfismo $h : Z\to P$ tale che $\pi_i\circ h = f_i$, dunque un unico morfismo mediante $\hat h : (Z,f_X,f_Y)\to (P,\pi_X,\pi_Y)$; l'altra equivalenza è evidente.
-        \item Sia $\Pi : \C^2 \to \C$ 
-    \end{itemize}
+\begin{theorem}{Caratterizzazione del prodotto binario}{prodotto binario come funtore}
+    Sia $\C$ una categoria localmente piccola e sia $\Delta :\C\to\C\times\C$ il funtore diagonale, ovvero l'applicazione
+    \[ \Delta( f:X\to Y ) = ((f,f):(X,X)\to(Y,Y)).\]
+    Se $\C$ ammette i prodotti binari, l'applicazione $\Pi : \C\times\C \to \C$ definita da
+    \[\Pi((f,g):(X,Y)\to(W,Z)) := (f\times g : X\times Y \to W\times Z) \]
+    definisce un funtore aggiunto destro a $\Delta$.
+    \proof
+    Osserviamo che dalle definizioni di categoria prodotto (definizione \ref{def:categoria prodotto e bifuntore}), di prodotto nella definizione \ref{def:prodotto limite} e assumendo che il prodotto in $\setcat$ sia l'usuale prodotto cartesiano\footnote{Dimostrazione lasciata per esercizio al lettore}, la seguente catena di biezioni è verificata in $\setcat$ per ogni $A,B$ e $C$ oggetti in $\C$:
+    \[\begin{aligned}
+        \hom_{\C^2}(\Delta A,(B,C)) & \cong_\setcat \hom_{\C^2}((A,A),(B,C))\\
+        & \cong_\setcat \hom_\C(A,B)\times \hom_\C(A,C)\\
+        & \cong_\setcat \underbrace{\hom_\C(A, B\times C)}_{\C^\op \times (\C\times\C) \to \setcat}
+    \end{aligned} \]
+    Abbiamo dimostrato che $\Pi$ è effettivamente un aggiunto destro\footnote{Dovremmo dimostrare la funtorialità, ma è banale e consiste semplicemente nell'applicare le proprietà universali dei prodotti}, essenzialmente unico per il lemma \ref{lem:unicità degli aggiunti}, a $\Delta$.
 \end{theorem}
+
+\pagebreak
 
 \section{Categorie Cartesiane Chiuse}
 
