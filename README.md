@@ -1,18 +1,24 @@
 # cianatex
 Il mio preambolo per LaTeX, richiede TexLive 2024 perchè è basato su alcuni pacchetti molto fichi e moderni come [quiver](https://q.uiver.app/) (quindi se usate Linux con una distro basata su Debian come me, il comando ```sudo apt-get install texlive-full``` non va bene, in quanto vi carica TexLive 2022)
 
+## Contenuti
+
+Questo comprende tre pacchetti:
+
+* ```cianatex.sty``` comprende i comandi di base e carica i pacchetti necessari per un dignitoso utilizzo del LaTeX.
+* ```cianacolors.sty``` definisce i colori che poi verranno usati da ```cianatheorems.sty``` con due opzioni alternative: ```zun``` e ```depression```, rispettivamente per avere un azzurro molto soft e un grigio print-friendly come colori (anche se per ora sono un poco buggate, non usatele)
+* ```cianatheorems.sty``` definisce gli ambienti dei teoremi et cetera: attenzione, la sintassi corretta è quella sotto: i campi possono essere lasciati in bianco ma vanno almeno incluse le ```{}```. L'opzione ```cianabook``` cambia la numerazione dei teoremi da interna alle sezioni a interna ai capitoli, l'opzione ```cianaenglish``` imposta i nomi in inglese.
+
+### Esempio di sintassi del teorema
+```
+\begin{theorem}{Titolo del teorema}{tag del teorema}{
+   [Enunciato del teorema]
+   \proof (se volete generare il cartellino della dimostrazione) 
+   [Dimostrazione del teorema]
+   \qed
+}
+```
+
 ## Compilazione assistita
 
-Per compilare includo il mio super-casalingo script ```compile.sh``` che va semplicemente chiamato nel terminale come ```./compile.sh FILENAME BIB``` e compila i file ```FILENAME.tex``` e se ```BIB == yesbib``` allora compila pure ```FILENAME.bib``` un paio di volte per sopprimere gli errori.
-
-### Debugging
-
-Ho incluso anche lo script ```debug.sh``` che va chiamato nel terminale come ```./debug.sh FILENAME BIB RECOMPILE``` che rimuove i file di supporto per pulire errori vari e nel caso in cui si abbia ```RECOMPILE == yesrecompile``` chiama ```./compile.sh FILENAME BIB```
-
-## Opzioni
-
-Il pacchetto supporta diverse opzioni per quanto riguarda la palette per gli ambienti, di default usa una palette dai colori accesi ma offre anche le opzioni ```pastel``` per avere dei colori pastello, ```depression``` per avere uniformemente grigio e ```zun``` per avere sempre il colore #c8d6fd.
-
-## Demo
-
-Il file ```categories.tex``` funge da demo per molti comandi, mentre il file ```provacolori.tex``` serve semplicemente per provare le palette.
+Per compilare includo il mio super-casalingo script ```compile.sh``` che va semplicemente chiamato nel terminale come ```./compile.sh FILENAME BIB``` e compila il file ```FILENAME.tex``` (e se ```BIB == yesbib``` allora compila pure ```FILENAME.bib```) un paio di volte per sopprimere gli errori.
