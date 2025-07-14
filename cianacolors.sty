@@ -1,0 +1,37 @@
+\ProvidesPackage{cianacolors}
+
+%Standard https://colorkit.co/palette/ff595e-ff924c-ffca3a-c5ca30-8ac926-52a675-1982c4-4267ac-6a4c93/
+    \definecolor{definitioncolor}{HTML}{ff595e} %Rosso
+    \definecolor{examplecolor}{HTML}{ff924c} %Arancio
+    \definecolor{propositioncolor}{HTML}{8ac926} %Verde
+    \definecolor{theoremcolor}{HTML}{1982c4} %Azzurro
+    \definecolor{remarkcolor}{HTML}{6a4c93} %Viola
+    \definecolor{notationcolor}{HTML}{404040} %Grigio
+    \definecolor{corollarycolor}{HTML}{52a675} %Verde cobalto
+    \definecolor{lemmacolor}{HTML}{4267ac} %Bluastro-ciano
+
+%Grigio depresso
+\DeclareOption{depression}{
+    \definecolor{theoremcolor}{HTML}{404040}
+    \definecolor{proofcolor}{HTML}{404040}
+    \definecolor{definitioncolor}{HTML}{404040}
+    \definecolor{propositioncolor}{HTML}{404040}
+    \definecolor{remarkcolor}{HTML}{404040}
+    \definecolor{examplecolor}{HTML}{404040}
+    \definecolor{notationcolor}{HTML}{404040}
+    \definecolor{corollarycolor}{HTML}{404040}
+    \definecolor{lemmacolor}{HTML}{404040}
+}
+
+%Zun
+\DeclareOption{zun}{
+    \definecolor{theoremcolor}{HTML}{C8D6FD}
+    \definecolor{proofcolor}{HTML}{C8D6FD}
+    \definecolor{definitioncolor}{HTML}{C8D6FD}
+    \definecolor{propositioncolor}{HTML}{C8D6FD}
+    \definecolor{remarkcolor}{HTML}{C8D6FD}
+    \definecolor{examplecolor}{HTML}{C8D6FD}
+    \definecolor{notationcolor}{HTML}{C8D6FD}
+}
+
+\ProcessOptions\relax

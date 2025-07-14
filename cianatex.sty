@@ -23,12 +23,6 @@
     %Disegnini di Drago
         \RequirePackage{phaistos}
 
-    %Ambienti
-        %Box colorate
-            \RequirePackage[most]{tcolorbox}
-            \tcbuselibrary{theorems}
-            \tcbuselibrary{skins}
-
     %Tabelle
         %Tabelle di base
             \RequirePackage{array}
@@ -83,46 +77,6 @@
             \RequirePackage{esint}
         %Elfico
             \RequirePackage{tengwarscript}
-
-%Opzioni
-
-    %Colorcoding
-    
-        %Standard https://colorkit.co/palette/ff595e-ff924c-ffca3a-c5ca30-8ac926-52a675-1982c4-4267ac-6a4c93/
-            \definecolor{definitioncolor}{HTML}{ff595e} %Rosso
-            \definecolor{examplecolor}{HTML}{ff924c} %Arancio
-            \definecolor{propositioncolor}{HTML}{8ac926} %Verde
-            \definecolor{theoremcolor}{HTML}{1982c4} %Azzurro
-            \definecolor{remarkcolor}{HTML}{6a4c93} %Viola
-            \definecolor{notationcolor}{HTML}{404040} %Grigio
-            \definecolor{corollarycolor}{HTML}{52a675} %Verde cobalto
-            \definecolor{lemmacolor}{HTML}{4267ac} %Bluastro-ciano
-
-        %Grigio depresso
-            \DeclareOption{depression}{
-                \definecolor{theoremcolor}{HTML}{404040}
-                \definecolor{proofcolor}{HTML}{404040}
-                \definecolor{definitioncolor}{HTML}{404040}
-                \definecolor{propositioncolor}{HTML}{404040}
-                \definecolor{remarkcolor}{HTML}{404040}
-                \definecolor{examplecolor}{HTML}{404040}
-                \definecolor{notationcolor}{HTML}{404040}
-                \definecolor{corollarycolor}{HTML}{404040}
-                \definecolor{lemmacolor}{HTML}{404040}
-            }
-
-        %Zun
-            \DeclareOption{zun}{
-                \definecolor{theoremcolor}{HTML}{C8D6FD}
-                \definecolor{proofcolor}{HTML}{C8D6FD}
-                \definecolor{definitioncolor}{HTML}{C8D6FD}
-                \definecolor{propositioncolor}{HTML}{C8D6FD}
-                \definecolor{remarkcolor}{HTML}{C8D6FD}
-                \definecolor{examplecolor}{HTML}{C8D6FD}
-                \definecolor{notationcolor}{HTML}{C8D6FD}
-            }
-
-\ProcessOptions\relax
 
 %Roba nuova per davvero
     %roba basic
@@ -193,9 +147,9 @@
         %Altro
             \newcommand\parti{\mathcal{P}} %Insieme delle parti
             \newcommand\B{\mathcal{B}} %Boreliani
-            \newcommand{\comp}{\mathcal{K}} %Compatti 
+            \newcommand\comp{\mathcal{K}} %Compatti 
             \newcommand\M{\mathcal{M}} %Misurabili 
-            \newcommand{\tribu}{\mathcal{F}} %Tribù in probabilità
+            \newcommand\tribu{\mathcal{F}} %Tribù in probabilità
             \newcommand{\bin}[2]{\begin{pmatrix} #1 \\ #2 \end{pmatrix}} %Coefficiente binomiale
             \newcommand\de{\text{ d}} %d per gli integrali
             \newcommand\di{\text{d}} %d per le derivate totali
@@ -252,157 +206,4 @@
             \newcommand\catcolim{\lim_{\rightarrow}}
 
             \newcommand\FLT{\mfk{F}\mc{L}\mbb{T}}
-    %Ambienti
 
-        %Teoremi, proposizioni et cetera
-        
-        \newcommand\proof{\tcbsubtitle[before skip=\baselineskip]{Dimostrazione}}
-        \newcommand\solution{\tcbsubtitle[before skip=\baselineskip]{Soluzione}}
-        \newcommand\qed{\begin{flushright}$\square$\end{flushright}}
-        \newcommand\solved{\begin{flushright}\PHrosette\end{flushright}}
-
-        \newtcbtheorem[number within=section]{theorem}{Teorema}{
-            enhanced,
-            breakable,
-            colback=white,
-            colframe=theoremcolor,
-            fonttitle=\bfseries,
-            subtitle style={boxrule=1pt, colback=theoremcolor!15!white, colupper=theoremcolor},
-            sharp corners,
-            upperbox=visible,
-            lowerbox=visible,
-            rightrule=0pt,
-            leftrule=2pt,
-            bottomrule=0pt,
-        }{th}
-        \newtcbtheorem[number within=section]{definition}{Definizione}{
-            enhanced,
-            breakable,
-            colback=white,
-            colframe=definitioncolor,
-            fonttitle=\bfseries,
-            subtitle style={boxrule=1pt, colback=definitioncolor!15!white, colupper=definitioncolor},
-            sharp corners,
-            upperbox=visible,
-            lowerbox=visible,
-            rightrule=0pt,
-            leftrule=2pt,
-            bottomrule=0pt,
-        }{def}
-        \newtcbtheorem[number within=section]{proposition}{Proposizione}{
-            enhanced,
-            breakable,
-            colback=white,
-            colframe=propositioncolor,
-            fonttitle=\bfseries,
-            subtitle style={boxrule=1pt, colback=propositioncolor!15!white, colupper=propositioncolor},
-            sharp corners,
-            upperbox=visible,
-            lowerbox=visible,
-            rightrule=0pt,
-            leftrule=2pt,
-            bottomrule=0pt,
-        }{prop}
-        \newtcbtheorem[number within=section]{remark}{Osservazione}{
-            enhanced,
-            breakable,
-            colback=white,
-            colframe=remarkcolor,
-            fonttitle=\bfseries,
-            subtitle style={boxrule=1pt, colback=remarkcolor!15!white, colupper=remarkcolor},
-            sharp corners,
-            upperbox=visible,
-            lowerbox=visible,
-            rightrule=0pt,
-            leftrule=2pt,
-            bottomrule=0pt,
-        }{rem}
-        \newtcbtheorem[number within=section]{example}{Esempio}{
-            enhanced,
-            breakable,
-            colback=white,
-            colframe=examplecolor,
-            fonttitle=\bfseries,
-            subtitle style={boxrule=1pt, colback=examplecolor!15!white, colupper=examplecolor},
-            sharp corners,
-            upperbox=visible,
-            lowerbox=visible,
-            rightrule=0pt,
-            leftrule=2pt,
-            bottomrule=0pt,
-        }{exmp}
-        \newtcbtheorem[number within=section]{exercise}{Esercizio}{
-            enhanced,
-            breakable,
-            colback=white,
-            colframe=examplecolor,
-            fonttitle=\bfseries,
-            subtitle style={boxrule=1pt, colback=examplecolor!15!white, colupper=examplecolor},
-            sharp corners,
-            upperbox=visible,
-            lowerbox=visible,
-            rightrule=0pt,
-            leftrule=2pt,
-            bottomrule=0pt,
-        }{exc}
-        \newtcbtheorem[number within=section]{corollary}{Corollario}{
-            enhanced,
-            breakable,
-            colback=white,
-            colframe=corollarycolor,
-            fonttitle=\bfseries,
-            subtitle style={boxrule=1pt, colback=corollarycolor!15!white, colupper=corollarycolor},
-            sharp corners,
-            upperbox=visible,
-            lowerbox=visible,
-            rightrule=0pt,
-            leftrule=2pt,
-            bottomrule=0pt,
-        }{corol}
-        \newtcbtheorem[number within=section]{notation}{Notazione}{
-            enhanced,
-            breakable,
-            colback=white,
-            colframe=notationcolor,
-            fonttitle=\bfseries,
-            sharp corners,
-            rightrule=0pt,
-            leftrule=2pt,
-            bottomrule=0pt,
-        }{notaz}
-        \newtcbtheorem[number within=section]{situation}{Situazione}{
-            enhanced,
-            breakable,
-            colback=white,
-            colframe=notationcolor,
-            fonttitle=\bfseries,
-            sharp corners,
-            rightrule=0pt,
-            leftrule=2pt,
-            bottomrule=0pt,
-        }{situaz}
-        \newtcbtheorem[number within=section]{lemma}{Lemma}{
-            enhanced,
-            breakable,
-            colback=white,
-            colframe=lemmacolor,
-            fonttitle=\bfseries,
-            subtitle style={boxrule=1pt, colback=lemmacolor!15!white, colupper=lemmacolor},
-            sharp corners,
-            upperbox=visible,
-            lowerbox=visible,
-            rightrule=0pt,
-            leftrule=2pt,
-            bottomrule=0pt,
-        }{lem}
-        \newtcbtheorem[number within=section]{axiom}{Assioma}{
-            enhanced,
-            breakable,
-            colback=white,
-            colframe=theoremcolor,
-            fonttitle=\bfseries,
-            sharp corners,
-            rightrule=0pt,
-            leftrule=2pt,
-            bottomrule=0pt,
-        }{ax}

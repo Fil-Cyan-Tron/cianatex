@@ -1,0 +1,556 @@
+\documentclass{article}
+
+\usepackage{cianatex}
+
+\usepackage{cianacolors}
+
+\usepackage[cianaenglish]{cianatheorems}
+
+\title{Introductory notes to Category Theory}
+\author{F. Troncana}
+\date{TBD}
+
+\renewcommand\C{\mc{C}}
+\newcommand\D{\mc{D}}
+\newcommand\nat{\operatorname{Nat}}
+\newcommand\J{\mc{J}}
+
+\begin{document}
+
+\maketitle
+
+\subsection*{Nota preliminare}
+
+Durante questa trattazione, noi faremo alcune cose leggermente inquietanti dal punto di vista "fondazionale", in particolare tratteremo classes proprie come sets, useremo versioni ultrapotenziate dell'assioma della scelta, avremo collezioni "piccole" di objects "grossi" che comunque tratteremo come sets, insomma, ne faremo di tutti i colori.\\
+È effettivamente possibile ben fondare tutto quello che faremo, ma ciò esula dagli scopi di questa trattazione: procederemo dunque con una fede incrollabile e un ottimismo completamente ingiustificato, come sempre d'altronde.\\
+Ogni tanto porterò io stesso l'attenzione ai fondamenti "scricchiolanti" della nostra trattazione con il carattere \PHcat.
+
+\section{Preliminars}
+
+\subsection{Fundamental notions}
+
+\begin{definition}{category e dualità}{category}
+    A \bemph{category} $\C$ is a structure made of two classes: $\ob\C$ and $\hom\C$, respectively called \bemph{objects} (or elements) and \bemph{morphisms} (or maps or arrows) such that \begin{itemize}
+        \item Every morphism $f \in \hom\C$ is associated to two objects $A,B \in \ob\C$ respectively called \bemph{domain} (or source) and \bemph{codomain} (or target) of $f$, which will be written as $f : A\to B$.
+        \item For all couples of morphisms $f:A\to B$ and $g : B\to C$ their \bemph{composition} is defined to be a morphism $g\circ f : A \to C$ (often written as $gf$).
+        \item For every object $X \in \ob\C$ there exists a morphism $\id_X \in \hom\C$ called \bemph{identity} of $X$ such that for all objects and morphisms $f:A\to B$ holds $\id_B \circ f = f\circ \id_A = f$.
+        \item For every triple of composable morphisms $f,g,h \in \hom\C$, holds $h\circ(g\circ f) = (h\circ g)\circ f =: h\circ g\circ f$, in other words composition has to be \bemph{associative}.
+    \end{itemize}
+    Fixed two objects $A,B \in \ob\C$, we will denote with $\hom(A,B)$ or $\C(A,B)$ the collection of $A\to B$ morphisms in $\hom\C$.\\
+    For every category $\C$ its \bemph{dual} (or opposite) category $\C^\op$ is defined, which objects are the same as $\C$ and which morphisms are those of $\C$ but "turned around", so that for all $f:A\to B$ in $\C$ there is one and only one $f^\op : B\to A$ in $\C^\op$.\\
+    A category $\C$ is called:\begin{itemize}
+        \item \bemph{Small} if the classes $\hom\C$ e $\ob\C$ (even if the objects are at most as many as the morphisms) are sets.
+        \item \bemph{Large} if it isn't small.
+        \item \bemph{Locally small} if, fixed two objects $X,Y \in \ob\C$, the class $\hom(X,Y)$ is a set.
+        \item \bemph{Finite} if it is small and the set of morphisms is a finite set.
+    \end{itemize}
+\end{definition}
+
+%QUA
+
+\begin{remark}{Sulle categorie}{grandezza}
+    Banalmente:\begin{itemize}
+        \item Le identity sono uniche.
+        \item La category duale è essenzialmente\footnote{A meno di equivalenza come definita in \ref{def:equivalenza di categorie}} unica e vale $(\C^\op)^\op = \C$.
+        \item Dato che $\ob\C$ inietta sempre in $\hom\C$ con la mappa $X\mapsto \id_X$, in generale la class dei morphisms può essere arbitrariamente più grande di quella degli objects, dunque la grandezza di una category è in generale indipendente dalla sua class degli objects.
+    \end{itemize} 
+    \proof 
+    Dimostriamo solo l'ultimo punto con un esempio, gli altri sono banali. Sia $V$ la category formata da un unico object $\bullet$ e la cui class dei morphisms corrisponde alla class dei cardinali in ZFC, dove la composizione di due morphisms è data dalla loro somma come cardinali. Nonostante $\ob V$ sia la più piccola possibile (al di là della category vuota), $\hom V$ è una class propria, dunque $V$ non solo è grande, ma non è nemmeno localmente piccola.
+    \qed
+\end{remark}
+
+Da ora in avanti, assumeremo sempre (anche senza specificarlo) che le nostre categorie siano almeno localmente piccole per evitare \textit{troppi} problemi di fondazione.
+
+\begin{definition}{Subcategory}{subcategory}
+    Siano $\C$ e $\D$ due categorie tali che $\ob\C \subset \ob\D$, $\hom\C \subset \hom\D$ e per ogni $f,g,h \in \hom C$ valga 
+    \[h = f\circ_\C g = f\circ_\D g.\]
+    Allora $\C$ si dice una \bemph{subcategory} di $\D$.\\
+    Se per ogni coppia di objects $X,Y \in \C$ vale $\C(X,Y)=\D(X,Y)$, allora $\C$ si dice \bemph{piena}.
+\end{definition}
+
+\begin{definition}{Sapori di morphisms}{morphisms}
+    Sia $\C$ una category e sia $f: A\to B$ un morphism. Esso può dirsi:\begin{itemize}
+        \item \bemph{Monomorphism} (o monico o mono) se la precomposizione è iniettiva, ovvero per ogni coppia di morphisms $g_1, g_2 : C\to A$ e ogni morphism postcomponibile $f$ vale $fg_1 = fg_2 \Rarr g_1=g_2$.
+        \item \bemph{Epimorphism} (o epico o epi) se la postcomposizione è iniettiva, ovvero se per ogni coppia di morphisms $g_1, g_2 : B\to C$ e ogni morphism precomponibile $f$ vale $g_1f = g_2f \Rarr g_1=g_2$.
+        \item \bemph{Endomorphism} (o endo) se $A=B$.
+        \item \bemph{Sezione} (o split mono) se ha un'inversa sinistra, ovvero se esiste un morphism $g:B\to A$ tale che $gf = \id_A$.
+        \item \bemph{Retrazione} (o split epi) se ha un'inversa destra, ovvero se esiste un morphism $g:B\to A$ tale che $fg = \id_B$.
+        \item \bemph{Isomorphism} (o iso) se ha un'inversa destra e sinistra. In particolare, $A$ e $B$ si dicono \bemph{isomorfi} (attraverso $f$) e li indicheremo con $f:A\cong_\C B$ omettendo usualmente $f$ o $\C$.
+        \item \bemph{Automorphism} (o auto) se è iso e endo.
+    \end{itemize}    
+\end{definition}
+
+\begin{remark}{Sui morphisms}{sui morphisms}
+    Valgono le seguenti:\begin{itemize}
+        \item Le sezioni sono mono.
+        \item Le retrazioni sono epi.
+        \item iso $\Harr$ (split mono $\wedge$ epi) $\Harr$ (mono $\wedge$ split epi) $\Rarr$ (epi $\wedge$ mono), ma nell'ultimo caso non vale l'implicazione inversa.
+        \item Tutte le inverse sono uniche quando esistono.
+        \item Un mono è un epi nella category opposta e viceversa.
+    \end{itemize}
+    \proof 
+    Forniamo solo due esempi di morphisms che sono epici e monici ma non isomorphisms (le altre verifiche sono assolutamente automatiche):\begin{itemize}
+        \item Consideriamo in $\catname{Haus}$\footnote{category degli spazi topologici di Hausdorff, ovvero $T_2$, e delle funzioni continue} l'inclusione $\iota: [0,1]\cap \Q\inj[0,1]$ (entrambi con la topologia euclidea); questa è chiaramente monica in quanto iniettiva, ed è epica in quanto una funzione continua in $\catname{Haus}$ è completamente determinata dal suo valore su un sottospazio denso, ma non è iso dato che non è suriettiva.
+        \item Consideriamo la category
+        \[\begin{tikzcd}
+        	\bullet && \bullet
+    	    \arrow["\id", from=1-1, to=1-1, loop, in=145, out=215, distance=10mm]
+        	\arrow["f", from=1-1, to=1-3]
+    	    \arrow["\id", from=1-3, to=1-3, loop, in=325, out=35, distance=10mm]
+        \end{tikzcd}\]
+        Dato che a destra o sinistra possiamo comporre solo con l'identity, $f$ è sia monico che epico, ma non è iso in quanto non ha inversa.
+    \end{itemize}
+    \qed
+\end{remark}
+
+\begin{definition}{objects iniziali e finali}{objects iniziali e finali}
+    Sia $\C$ una category e sia $I$ un object.\\
+    $I$ si dice \bemph{object iniziale} se per ogni object $X$ di $\C$ esiste un unico morphism $\iota_X:I\to X$\\
+    $I$ si dice \bemph{object finale} se è l'object iniziale di $\C^\op$, o equivalentemente se per ogni object $X$ di $\C$ esiste un unico morphism $\zeta_X : X\to I$.\\
+    Se $I$ è sia finale che iniziale, si dice \bemph{object zero}.
+\end{definition}
+
+\begin{proposition}{Unicità di objects iniziali e finali}{unicità zero}
+    Se una category $\C$ ammette un object iniziale (o finale o zero), questo è essenzialmente unico.
+\end{proposition}
+
+\begin{definition}{functor}{functor}
+    Siano $\C$ e $\D$ due categorie. Un \bemph{functor covariante} $F: \C\to\D$ consiste in due mappe $F:\ob\C\to\ob\D$ e $F:\hom\C\to\hom\D$ che rispettino la composizione, ovvero:\begin{itemize}
+        \item Per ogni morphism $f :X\to Y$ vale $Ff: FX \to FY$.
+        \item Per ogni object $X \in \ob\C$ vale $F\id_X = \id_{FX}$.
+        \item Per ogni coppia di morphisms componibili $f,g\ in \hom\C$ vale $F(gf) = FgFf$.
+    \end{itemize}
+    Un \bemph{functor controvariante} da $\C$ a $\D$ è un functor covariante $F: \C^\op\to\D$. Anche se l'espressione "un functor controvariante $\C^\op\to\D$" tecnicamente indicherebbe un functor covariante $\C\to\D$, la useremo quasi sempre per indicare un functor controvariante $\C\to\D$, ovvero una controvarianza specificata due volte non farà una covarianza.\\
+    Un functor si dice:\begin{itemize}
+        \item \bemph{Fedele} se per ogni $X,Y \in \ob\C$ la sua restrizione $F_{X,Y}:\C(X,Y)\to \D(FX,FY)$ è iniettiva.
+        \item \bemph{Pieno} se per ogni $X,Y \in \ob\C$ la sua restrizione $F_{X,Y}:\C(X,Y)\to \D(FX,FY)$ è suriettiva.
+        \item \bemph{Pienamente fedele} se è pieno e fedele.
+        \item \bemph{Essenzialmente suriettivo sugli objects} se per ogni object $Y \in \D$ esiste un object $X \in \C$ tale che $FX\cong_\D Y$
+    \end{itemize}
+    Se $F:\C\to\D$ e $G:\D\to\mc{E}$ sono due functors, la loro composizione $GF : \C\to\mc{E}$ è un functor
+\end{definition}
+
+\begin{proposition}{Riflessione di isomorphisms}{riflessione di isomorphisms}
+    Sia $F:\C\to\D$ un functor. Se $f:X\cong Y$, allora $Ff:FX\cong FY$.\\
+    Se $F$ è pienamente fedele e $g:FX\cong FY$, allora $X\cong Y$.
+    \proof 
+    La prima implicazione è banale, dunque assumiamo che $F$ sia pienamente fedele e $g:FX\cong FY$ sia un isomorphism; dato che la mappa $\varphi := F_{X,Y} : \C(X,Y) \to \D(FX,FY)$ è una biezione, esiste $f: X\to Y$ tale che $\varphi(f) = g$, dunque definiamo $f' := \varphi^{-1}(g^{-1})$ e dimostriamo che è un'inversa sinistra (dimostrare che è un'inversa destra è analogo). Dato che $F$ è un functor, vale
+    \[f'f = \varphi^{-1}(\varphi(f'f) )=\varphi^{-1}(\varphi(f')\varphi(f)) = \varphi^{-1}(g^{-1}g) = \varphi^{-1}(\id_{FX}) = \id_X\]
+    \qed
+\end{proposition}
+
+Adesso faremo una cosa un po' buffa, ovvero definiremo il prodotto di categorie come definiremmo normalmente il prodotto cartesiano di sets e più tardi lo useremo per definire il prodotto in categorie generali.
+
+\begin{definition}{category prodotto}{category prodotto}
+    Siano $\C$ e $\D$ due categorie. Definiamo la \bemph{category prodotto} $\C\times\D$ di $\C$ e $\D$ come la category i cui objects sono le coppie ordinate di un object di $\C$ e uno di $\D$ e dove
+    \[ \hom((A,B),(C,D)) = \left\{ (f,g) : f \in \C(A,C), g \in \D(B,D) \right\}. \]
+    Una category prodotto è naturalmente munita di due functors $P_I : \C\times\D\to I$ con $I = \C,\D$, detti \bemph{proiezioni}, tali che
+    \[ P_\C ((f,g):(A,B)\to(C,D)) = (f:A\to C) \quad\text{e}\quad P_\D ((f,g):(A,B)\to(C,D)) = (g:B\to D). \]
+\end{definition}
+
+Perchè "spostiamo" il prodotto cartesiano alle categorie? Perchè spesso quando lavoriamo in qualche category ci risulta più agevole una definizione più "intrinseca" di prodotto, oppure abbiamo prodotti diversi: in $\catname{Rel}$\footnote{category degli sets e delle relazioni} il prodotto "categorico" è dato dall'unione disgiunta, nonostante $\setcat$\footnote{category degli sets e delle funzioni} sia una sua subcategory e in questa il prodotto sia l'usuale prodotto cartesiano.\\
+Abbiamo visto che i morphisms sono trasfotmazioni tra objects, mentre i functors sono transformations tra morphisms. Introduciamo ora un ulteriore "livello" di frecce, le transformations natural, ovvero transformations tra functors.
+
+\begin{definition}{transformation natural}{transformation natural}
+    Siano $\C,\D$ categorie e siano $F,G : \C\to\D $ due functors.\\
+    Una \bemph{transformation natural} $\Phi:F\Rarr G$ è una class di morphisms $\{\Phi_X : F(X)\to G(X)\}_{X\in\ob\C}$ tali che per ogni $f:X\to Y$ in $\C$ il seguente diagram commuti:
+    \[\begin{tikzcd}
+    	X && {F(X)} && {G(X)} \\
+    	\\
+    	Y && {F(Y)} && {G(Y)}
+    	\arrow["f"{description}, from=1-1, to=3-1]
+    	\arrow["{\Phi_X}"{description}, from=1-3, to=1-5]
+    	\arrow["{F(f)}"{description}, from=1-3, to=3-3]
+    	\arrow["{G(f)}"{description}, from=1-5, to=3-5]
+	    \arrow["{\Phi_Y}"{description}, from=3-3, to=3-5]
+    \end{tikzcd}\]
+    Una transformation natural tale per cui tutti i morphisms $\Phi_X$ so isomorphisms si dice \bemph{isomorphism natural}.
+\end{definition}
+
+\begin{definition}{Equivalenza di categorie}{equivalenza di categorie}
+    Siano $\C$ e $\D$ due categorie e siano $F:\C\to\D$ e $G:\D\to\C$ due functors.\\
+    La coppia $(F,G)$ si dice \bemph{equivalenza di categorie} tra $F$ e $G$ se esistono due isomorphisms natural
+    \[ \id_\C \cong GF \quad\text{e}\quad \id_\D \cong FG .\]
+\end{definition}
+
+\begin{proposition}{Caratterizzazione per un'equivalenza di categorie}{equivalenza di categorie}
+    Sia $F : \C\to\D$ un functor. Questo definisce un'equivalenza di categorie se e solo se è pienamente fedele ed essenzialmente suriettivo sugli objects.
+\end{proposition}
+
+\begin{definition}{functors aggiunti}{functors aggiunti}
+    Siano $F:\C\to\D$ e $G:\D\to\C$ due functors. Questi si dicono \bemph{aggiunti} (rispettivamente sinistro e destro all'altro) se esiste un isomorphism:
+    \[ \D(Fc, d) \cong \C(c, Gd)\]
+    natural per ogni $c \in \C$ e $d \in \D$. Scriveremo $F\dashv G$ per indicare che $F$ è aggiunto sinistro a $G$ e che $G$ è aggiunto destro a $F$.
+\end{definition}
+
+\subsection{Lemma di Yoneda e conseguenze}
+
+\begin{definition}{category dei functors}{category dei functors}
+    Siano $\C,\D$ due categorie.\\
+    Definiamo la category $\D^\C$, che spesso denoteremo con $[\C,\D]$, la \bemph{category dei functors} da $\C$ a $\D$, i cui objects sono i functors covarianti e i cui morphisms sono le transformations natural con la \bemph{composizione verticale}: definiamo per $\mu:F\to G$ e $\nu:G\to H$ la loro composizione verticale $\nu\mu : F\to H$ col seguente diagram:
+    \[\begin{tikzcd}
+    	X && {F(X)} && {G(X)} && {H(X)} \\
+    	\\
+    	Y && {F(Y)} && {G(Y)} && {H(Y)}
+    	\arrow["f"{description}, from=1-1, to=3-1]
+    	\arrow["{\mu_X}"{description}, from=1-3, to=1-5]
+    	\arrow["{(\nu\mu)_X}"{description}, curve={height=-24pt}, from=1-3, to=1-7]
+    	\arrow["Ff"{description}, from=1-3, to=3-3]
+    	\arrow["{\nu_X}"{description}, from=1-5, to=1-7]
+    	\arrow["Gf"{description}, from=1-5, to=3-5]
+    	\arrow["Hf"{description}, from=1-7, to=3-7]
+    	\arrow["{\mu_Y}"{description}, from=3-3, to=3-5]
+    	\arrow["{(\nu\mu)_Y}"{description}, curve={height=24pt}, from=3-3, to=3-7]
+    	\arrow["{\nu_Y}"{description}, from=3-5, to=3-7]
+    \end{tikzcd}\]
+    Spesso invece di scrivere $[\C,\D](F,G)$ o $\hom_{[\C,\D]}(F,G)$ scriveremo $\nat(F,G)$.
+\end{definition}
+
+\begin{definition}{$\hom$-functor covariante e controvariante}{hom-functor}
+    Sia $\C$ una category localmente piccola\footnote{È vero che abbiamo detto che lo avremmo sempre assunto, ma è importante specificarlo in questo caso.} e sia $A$ un object di $\C$. Definiamo due functors $h_A:\C\to\setcat$ e $h^A : \C^\op\to\setcat$, detti $\hom$\bemph{-functors} (rispettivamente covariante e controvariante) nel seguente modo:
+        \[\begin{tikzcd}
+    	{\hom(A,X)} && X && {\hom(X,A)} \\
+    	\\
+    	{\hom(A,Y)} && Y && {\hom(Y,A)}
+    	\arrow["{h_A(f) = f\circ -}"{description}, from=1-1, to=3-1]
+    	\arrow["{h_A}"{description}, maps to, from=1-3, to=1-1]
+    	\arrow["{h^A}"{description}, maps to, from=1-3, to=1-5]
+    	\arrow["f"{description}, from=1-3, to=3-3]
+    	\arrow["{h_A}"{description}, maps to, from=3-3, to=3-1]
+    	\arrow["{h^A}"{description}, maps to, from=3-3, to=3-5]
+	    \arrow["{h^A(f) = -\circ f}"{description}, from=3-5, to=1-5]
+    \end{tikzcd}\]
+    Inoltre possiamo interpretare $\hom(-,-)$ come un bifunctor $\C^\op\times \C \to \setcat$.
+\end{definition}
+
+\begin{theorem}{Lemma di Yoneda covariante}{lemma di yoneda covariante}
+    Sia $\C$ una category localmente piccola e sia $F:\C\to\setcat$ un functor covariante. Allora esiste una biezione di sets \PHcat:
+    \[ \nat (h_A, F) \cong F(A)\]
+    e questa è natural in $A$ e $F$.
+    \proof 
+    Diamo uno sketch della dimostrazione, mancano alcuni dettagli come la dimostrazione della naturaltà in $A$ e $F$ ma l'importante è lo spirito della cosa.\\ 
+    Sia $\Phi \in \nat(h_A,F)$. Dato che questa è natural, il seguente diagram commuta: 
+    \[\begin{tikzcd}
+    	A && {h_A(A)} &&&& {F(A)} \\
+    	&&& {\id_A} && u \\
+    	\\
+    	&&& {f\circ \id_A = f} && {(Ff)(u)=\Phi_X(f)} \\
+    	X && {h_A(X)} &&&& {F(X)}
+    	\arrow["f"{description}, from=1-1, to=5-1]
+    	\arrow["{\Phi_A}"{description}, from=1-3, to=1-7]
+    	\arrow["{h_A(f)}"{description}, from=1-3, to=5-3]
+    	\arrow["{F(f)}"{description}, from=1-7, to=5-7]
+    	\arrow[color={theoremcolor}, maps to, from=2-4, to=2-6]
+    	\arrow[maps to, from=2-4, to=4-4]
+    	\arrow[maps to, from=2-6, to=4-6]
+    	\arrow[maps to, from=4-4, to=4-6]
+    	\arrow["{\Phi_X}"{description}, from=5-3, to=5-7]
+    \end{tikzcd}\]
+    Vediamo che ci basta specificare l'assegnazione blu per determinare univocamente tutto il resto:\begin{itemize}
+        \item Partendo da $\Phi \in \nat(h_A, F)$ ci basta specificare $\Phi \mapsto u :=\Phi_A(\id_A)$ elemento di $F(A)$.
+        \item Partendo da $u \in F(A)$ costruiamo la transformation natural $\Phi$ definendo per ogni $X \in \ob\C$ il morphism $\Phi_X(f:A\to X) := Ff(u)$.
+    \end{itemize} 
+    \qed
+\end{theorem}
+
+Abbiamo dualmente la versione controvariante:
+
+\begin{corollary}{Lemma di Yoneda controvariante}{lemma di yoneda controvariante}
+    Sia $F:\C^\op\to\setcat$ un functor controvariante. Allora esiste una biezione di sets
+    \[ \nat (h^A, F) \cong F(A)\]
+    e questa è natural in $A$ e $F$.
+\end{corollary}
+
+\begin{remark}{\PHcat: Yoneda non ci dà una biezione di sets}{}
+    Questi non sono sets! Una transformation natural è una \textit{class}, in generale una class propria, ovvero una class che non è un set; è solo un caso che nel lato sinistro abbiamo una collezione "piccola" di objects "grandi", che però non è un set. Vediamo un esempio:\\
+    Consideriamo $\C := \grpcat$\footnote{category dei gruppi e degli omomorphisms di gruppi} e il functor dimenticante $U : (G, \cdot )\mapsto G$. Yoneda ci dice che:
+    \[ \nat (h_G, U) \cong G \in \setcat \]
+    Vediamo però che ogni transformation natural $\Phi : h_G \to U$ è una class $\{\Phi_X\}_{X\in\grpcat}$ grande tanto quanto la class di tutti i gruppi. Quindi noi abbiamo una class di classes che però abbiamo specificato \textit{non} poter essere membri di altre classes. La teoria delle categorie è da buttare in quanto contradditoria?\\
+    Ovviamente no, però ci mostra che la teoria degli sets di ZFC risulta inadeguata per trattare rigorosamente la teoria delle categorie, principalmente perchè trattando strutture potenzialmente molto "grandi" si va a sbattere contro ostacoli di tipo fondazionale.\\
+    I lettori più curiosi possono trovare più informazioni su questa pagina di \href{https://ncatlab.org/nlab/show/category+theory+and+foundations}{nLab}.
+\end{remark}
+
+Una delle più natural applicazioni del lemma di Yoneda è l'embedding di Yoneda, fondamentale in gran parte della topologia e della geometria moderna: esso permette di identificare una category $\C$ con una subcategory della cosiddetta \bemph{category dei prefasci su} $\C$, che è solo un altro nome per $[\C^\op,\setcat]$. Ad esempio se interpretiamo la topologia $\tau$ di uno spazio $(X,\tau)$ come una category, dove i morphisms sono dati dall'inclusione setsstica, questa è completamente determinata dalle classes delle funzioni continue entranti nei (o uscenti dai) suoi aperti.
+
+\begin{theorem}{Embedding di Yoneda covariante}{embedding di yoneda covariante}
+    Sia $\C$ una category. Questa è equivalente ad una Subcategory piena di $[\C^\op, \setcat]$ tramite la mappa $\mc{Y} : \C \to [\C^\op, \setcat]$ definita da questo diagram (dove abbiamo morphisms $f:A\to B$ e $g:X\to Y$ di $\C$):
+    \[\begin{tikzcd}
+    	{\mc{Y}(A)(X) = h^A(X)} &&&& {\mc{Y}(B)(X) = h^B(X)} \\
+    	& {(X \xrightarrow{m\circ g} A)} && {(X \xrightarrow{f\circ m\circ g} B)} \\
+    	\\
+    	& {(Y \xrightarrow{m} A)} && {(Y \xrightarrow{f\circ m} B)} \\
+    	{\mc{Y}(A)(Y) = h^A(Y)} &&&& {\mc{Y}(B)(Y) = h^B(Y)}
+    	\arrow["{\mc{Y}(f)(X) = f\circ -}"{description}, from=1-1, to=1-5]
+    	\arrow[maps to, from=2-2, to=2-4]
+    	\arrow[maps to, from=4-2, to=2-2]
+    	\arrow[maps to, from=4-2, to=4-4]
+    	\arrow[maps to, from=4-4, to=2-4]
+    	\arrow["{\mc{Y}(A)(g) = -\circ g}"{description}, from=5-1, to=1-1]
+    	\arrow["{\mc{Y}(f)(Y) = f\circ -}"{description}, from=5-1, to=5-5]
+	    \arrow["{\mc{Y}(B)(g) = -\circ g}"{description}, from=5-5, to=1-5]
+    \end{tikzcd}\]
+    Dove un object $A$ di $\C$ viene mandato nel functor $h^A : \C^\op \to \setcat$ definito sopra e un morphism $f:A\to B$ viene mandato nella sua postcomposizione, che è una transformation natural da $h^A$ a $h^B$ come si vede nel diagram.
+    \proof
+    Applicando il corollario \ref{corol:lemma di yoneda controvariante} con $F = h^B$ scorrendo su $B \in \ob\C$ otteniamo
+    \[\nat(h^A, h^B) \cong h^B(A) \text{, o equivalentemente, } \nat(h^A, h^B)\cong \hom(A,B).\]
+    Vediamo che dunque l'assegnazione $A\mapsto h^A$ definisce un functor covariante $h^\bullet : \C\to [\C^\op,\setcat]$ pienamente fedele (ma non essenzialmente suriettivo sugli objects). Restringendo $h^\bullet$ all'immagine di $\C$ in $[\C^\op,\setcat]$, otteniamo un'equivalenza di categorie (dato che la restrizione all'immagine è tautologicamente suriettiva) per la proposizione \ref{prop:equivalenza di categorie}.
+    \qed
+\end{theorem}
+
+Abbiamo dualmente la versione controvariante:
+
+\begin{corollary}{Embedding di Yoneda controvariante}{embedding di yoneda controvariante}
+    Sia $\C$ una category. Allora la sua category opposta $\C^\op$ è equivalente ad una subcategory piena di $[\C, \setcat]$ tramite la mappa $\mc{Y}' : \C^\op \to [\C, \setcat]$ definita da questo diagram (dove abbiamo morphisms $f:A\to B$ e $g:X\to Y$ di $\C$):
+    \[\begin{tikzcd}
+    	{\mc{Y}'(A)(X) = h_A(X)} &&&& {\mc{Y}'(B)(X) = h_B(X)} \\
+    	& {(A \xrightarrow{m\circ f} X)} && {(B \xrightarrow{m} X)} \\
+    	\\
+    	& {(A \xrightarrow{g\circ m\circ f} Y)} && {(B \xrightarrow{g\circ m} Y)} \\
+    	{\mc{Y}'(A)(Y) = h_A(Y)} &&&& {\mc{Y}'(B)(Y) = h_B(Y)}
+    	\arrow["{\mc{Y}'(A)(g) = g\circ -}"{description}, from=1-1, to=5-1]
+    	\arrow["{\mc{Y}'(f)(X) = -\circ f}"{description}, from=1-5, to=1-1]
+    	\arrow["{\mc{Y}(B)(g) = g\circ -}"{description}, from=1-5, to=5-5]
+    	\arrow[maps to, from=2-2, to=4-2]
+    	\arrow[maps to, from=2-4, to=2-2]
+    	\arrow[maps to, from=2-4, to=4-4]
+	    \arrow[maps to, from=4-4, to=4-2]
+	    \arrow["{\mc{Y}'(f)(Y) = -\circ f}"{description}, from=5-5, to=5-1]
+    \end{tikzcd}\]
+    \qed
+\end{corollary}
+
+Ora grazie al lemma di Yoneda possiamo dimostrare un fatto che ci servirà più tardi:
+
+\begin{lemma}{Essenziale unicità degli aggiunti}{unicità degli aggiunti}
+    Siano $\C,\D$ due categorie e siano $F:\C\to\D$ e $G_1,G_2: \D\to\C$ functors tali che $F\dashv G_1$ e $F\dashv G_2$ oppure $G_1\dashv F$ e $G_2\dashv F$.\\
+    Allora $G_1\cong G_2$.
+    \proof 
+    Scriviamo le aggiunzioni in termini degli $\hom$-functors:
+    \[ h^d(Fc) \cong h^{G_1 d}(c) \cong h^{G_2 d}(c) \]
+    Ottenendo dunque $\mc{Y}\circ G_1 \cong \mc{Y}\circ G_2$: dal teorema \ref{th:embedding di yoneda covariante}, ovvero la piena fedeltà dell'embedding di Yoneda, segue la tesi.
+    \qed
+\end{lemma}
+
+\subsection{Limiti}
+
+Uno dei concetti più importanti in teoria delle categorie è quello di limite. Per definire il concetto di limite dobbiamo dare la definizione formale di diagram in una category, che generalizza il concetto di famiglia indicizzata in $\setcat$.
+
+\begin{definition}{diagram commutativo}{diagram commutativo}
+    Siano $\J, \C$ due categorie.\\
+    Si dice \bemph{diagram (commutativo)} in $\C$ di forma $\J$ un functor $F:\J\to\C$; $\J$ si dice \bemph{forma} o \bemph{indice} del diagram: se $\J$ è finita o piccola, il diagram $F$ si dirà rispettivamente \bemph{finito} o \bemph{piccolo}.\\
+    La \bemph{category dei diagrams} in $\C$ di forma $\J$ è la category dei functors $[\J,\C]$.
+\end{definition}
+
+Se in teoria degli sets definiamo una famiglia di sottosets di un set $X$ indicizzata dall'set $J$ come un'applicazione $J\to \mc{P}(X)$, qui abbiamo bisogno di un'applicazione che rispetti la struttura di category, ovvero un functor: intuitivamente oltre a indicizzare gli objects indicizziamo anche i morphisms in modo che la composizione sia rispettata. Per la prossima definizione ci servirà di considerare un diagram particolare, il diagram costante $K_N : \J\to \C$ (dove $N$ è un object di $\C$) che manda ogni object di $\J$ in $N$ e ogni morphism in $\id_N$.
+
+\begin{definition}{Cono e cocono}{cono}
+    Sia $\C$ una category, sia $F: \J\to\C$ un diagram e sia $N$ un object di $\C$.\\
+    Si dice \bemph{cono} in $\C$ su $F$ con punta $N$ un morphism $\psi : K_N \to F$ di $[\J,\C]$, ovvero una famiglia di morphisms \[\{\psi_X : N\to F(X)\}_{X \in \ob\J} \subset \hom\C\]
+    Tali che per ogni morphism $f:X\to Y$ in $\J$ il seguente diagram commuti:
+    \[\begin{tikzcd}
+    	& N \\
+    	\\
+    	{F(X)} && {F(Y)}
+    	\arrow["{\psi_X}"{description}, from=1-2, to=3-1]
+    	\arrow["{\psi_Y}"{description}, from=1-2, to=3-3]
+	    \arrow["{F(f)}"{description}, from=3-1, to=3-3]
+    \end{tikzcd}\]
+    Dualmente, si dice \bemph{cocono} su $F$ con punta $N$ un morphism $\psi : F \to K_N$, o equivalentemente un cono in $\C^\op$.\\
+    Definiamo la \bemph{category dei coni} in $\C$ su $F$ come la category i cui objects sono i coni intesi come coppia $(N, \psi^N: K_N \to F )$ e i cui morphisms sono i cosiddetti morphisms \bemph{medianti}, ovvero i morphisms $\alpha : N\to M$ di $\C$ tali per cui per ogni object $X$ di $\J$ valga:
+    \[\psi^M_X\circ \alpha = \psi^N_X,\]
+    Denoteremo questa category come $\cone(\C,F)$.
+\end{definition}
+
+Ed eccoci pronti a definire i limiti.
+
+\begin{definition}{Limite e colimite}{limite}
+    Sia $F:\J\to\C$ un diagram.\\
+    Si dice \bemph{limite} (o limite proiettivo) di $F$ in $\C$ l'object terminale di $\cone(\C,F)$.\\
+    Si dice \bemph{colimite} (o limite induttivo) di $F$ in $\C$ il limite di $F$ in $\C^\op$, o equivalentemente l'object iniziale di $\cone(\C,F)$.\\
+    Indichiamo rispettivamente limiti e colimiti di $F$ in $\C$ come
+    \[ \catlim F \quad \text{e}\quad\catcolim F.\]
+    Un limite si dice rispettivamente piccolo o finito se lo è $F$ come diagram.\\
+    Una category che ammette tutti i (co)limiti piccoli si dice \bemph{(co)completa}.
+\end{definition}
+
+Più esplicitamente\footnote{Ovvero scrivendo per esteso la definizione di object terminale}, possiamo definire il limite di $F$ in $\C$ come il cono $(L,\psi^L)$ tale che per ogni altro cono $(N,\psi^N)$ esista un unico morphism $\lambda_N : N\to L$ tale che il seguente diagram commuti:
+
+\[\begin{tikzcd}
+	&& N \\
+	\\
+	&& L \\
+	\\
+	{F(X)} &&&& {F(Y)}
+	\arrow["{\lambda_N}"{description}, dashed, from=1-3, to=3-3]
+	\arrow["{\psi_X^N}"{description}, curve={height=12pt}, from=1-3, to=5-1]
+	\arrow["{\psi_Y^N}"{description}, curve={height=-12pt}, from=1-3, to=5-5]
+	\arrow["{\psi^L_X}"{description}, from=3-3, to=5-1]
+	\arrow["{\psi^L_X}"{description}, from=3-3, to=5-5]
+	\arrow["{F(f)}"{description}, from=5-1, to=5-5]
+\end{tikzcd}\]
+
+Vedremo che il concetto di limite è davvero il concetto centrale in teoria delle categorie, in quanto in effetti un altro concetto estremamente utile (quello di functor aggiunto) non è altro che un esempio di limite (in effetti, è anche possibile definire i limiti in termini di functors aggiunti, che è quello che andremo a fare più tardi in un caso specifico nel teorema \ref{th:equivalenza definizioni prodotti}).\\
+Talvolta diremo che una category "ammette/ha tutti i..." facendo riferimento a dei limiti definiti su una qualche class di diagrams: questo significa che ogni diagram di quella class ammette un limite in $\C$.
+
+\begin{remark}{Limiti e objects iniziali}{limiti e objects iniziali}
+    Sia $F:\J\to\C$ un diagram.\begin{itemize}
+        \item Se $\J$ ammette un object iniziale $I$, allora $\catlim F = F(I)$.
+        \item Dualmente, se $\J$ ammette un object finale $Z$, allora $\catcolim F = F(Z)$.
+        \item Infine, se $\J$ ammette un object zero $0$, allora $\catlim F = \catcolim F = F(0)$.
+    \end{itemize}
+\end{remark}
+
+\subsection{Limiti notevoli}
+
+Presentiamo alcuni limiti di particolare importanza (in effetti delle classes di limiti) nella pratica matematica; in questa sezione, assumeremo per semplicità che $\J$ sia una subcategory (di forma opportunamente specificata) di $\C$ e $F : \J \inj \C$ sia il functor di inclusione: questo ci permetterà di dire semplicemente "Sia $\J$ un diagram" o parlare di $\catlim\J$.
+
+\begin{definition}{Prodotto}{prodotto limite}
+    Sia $\C$ una category e sia $\J$ un diagram discreto (ovvero i cui unici morphisms sono le identity).\\
+    Si dice \bemph{prodotto} di $\J$ in $\C$ il limite di $\J$ in $\C$, che indicheremo come
+    \[ \prod_{X\in\ob\J} X\quad\text{oppure, più semplicemente,}\quad \prod\J\ . \]
+    Un prodotto in $\C^\op$ si dice \bemph{coprodotto} in $\C$ e lo indicheremo come $\coprod \J$.\\
+    I morphisms $\pi_X : \prod\J\to X$ si dicono \bemph{proiezioni ai fattori}.
+\end{definition}
+
+\begin{remark}{Sui prodotti}{sui prodotti}
+    \begin{itemize}
+        \item Il prodotto sul diagram vuoto è (se esiste) l'object terminale di $\C$.
+        \item Sotto gli assiomi di ZF, $\setcat$ ammette tutti i prodotti piccoli\footnote{Ovvero quelli indicizzati da una category piccola} se e solo se vale l'assioma della scelta.
+    \end{itemize}
+\end{remark}
+
+\begin{definition}{Pullback o prodotto fibrato}{pullback o prodotto fibrato}
+    Sia $\C$ una category, e sia $\J$ il diagram $\{ X\xrightarrow{f} Z \xleftarrow{g} Y \}$, detto \bemph{cospan}\footnote{E ovviamente $\J^\op$ si dirà \bemph{span}}.\\
+    Il limite di $\J$ in $\C$ si dice \bemph{pullback} di $\J$, o anche \bemph{prodotto fibrato} di $X$ e $Y$ lungo (o su) $Z$.\\
+    Un pullback in $\C^\op$ si dice \bemph{pushout}.
+\end{definition}
+
+\pagebreak 
+
+\section{Prodotti}
+
+Ci sono diverse definizioni di prodotto in una category, sono (quasi) equivalenti ma in base all'occasione alcune sono più utili di altre.
+
+\subsection{Proprietà universale}
+
+\begin{definition}{Prodotto tramite proprietà universale}{prodotto pu}
+    Sia $\C$ una category e siano $X,Y \in \ob\C$ due objects.\\
+    Si dice \bemph{prodotto} di $X$ e $Y$ in $\C$ un object $X\times Y$ munito di due morphisms $\pi_X : X\times Y\to X$ e $\pi_Y:X\times Y \to Y$ detti \bemph{proiezioni} tali che per ogni object $Z$ e ogni coppia di morphisms $f:Z\to X$ e $g:Z\to Y$ esista un unico morphism $f\times g: Z\to X\times Y$ tale che il seguente diagram commuti:
+    \[\begin{tikzcd}
+    	&& {X\times Y} \\
+    	\\
+    	X && Z && Y
+    	\arrow["{\pi_X}"{description}, from=1-3, to=3-1]
+    	\arrow["{\pi_Y}"{description}, from=1-3, to=3-5]
+    	\arrow["{f\times g}"{description}, from=3-3, to=1-3]
+    	\arrow["f"{description}, from=3-3, to=3-1]
+    	\arrow["g"{description}, from=3-3, to=3-5]
+    \end{tikzcd}\]
+    Questo, se esiste, è essenzialmente unico.
+    \proof 
+    Siano $(A,\alpha_X,\alpha_Y)$ e $(B,\beta_X, \beta_Y)$ due prodotti di $X$ e $Y$. Il seguente diagram commuta:
+    \[\begin{tikzcd}
+    	A &&&& Y \\
+    	\\
+    	\\
+    	\\
+    	X &&&& B
+    	\arrow["{\alpha_Y}"{description}, from=1-1, to=1-5]
+    	\arrow["{\alpha_X}"{description}, from=1-1, to=5-1]
+    	\arrow["{B(\alpha_X,\alpha_Y)}"{description}, curve={height=18pt}, from=1-1, to=5-5]
+    	\arrow["{A(\beta_X,\beta_Y)}"{description}, curve={height=18pt}, from=5-5, to=1-1]
+    	\arrow["{\beta_Y}"{description}, from=5-5, to=1-5]
+    	\arrow["{\beta_Y}"{description}, from=5-5, to=5-1]
+    \end{tikzcd}\]
+    Definendo automaticamente un isomorphism.
+\end{definition}
+
+Questa definizione è evidentemente utile quando si parla di lavorare coi prodotti nell'usuale pratica matematica, ad esempio è una definizione meno "pesante" di quella che si dà dei prodotti in $\topcat$\footnote{category degli spazi topologici e delle funzioni continue} o $\mblecat$\footnote{category di spazi e funzioni misurabili} nella maggior parte dei corsi introduttivi di topologia generale o teoria della misura. Allo stesso modo non dipende da scelte arbitrarie, come di una norma prodotto in $\catname{NormVec}\K$\footnote{category dei $\K$-spazi vettoriali normati e delle mappe lineari continue} o di una misura prodotto in $\meascat$\footnote{category degli spazi con misura e delle funzioni misurabili}.
+
+\subsection{category dei coni}
+
+\begin{definition}{Cono}{cono}
+    Sia $\C$ una category e sia $J$ un diagram in $\C$.\\
+    Si dice \bemph{cono} su $J$ un object $C \in \C$ con una collezione di morphisms $\{\rho_j : C \to j\}_{j \in J}$ tale che per ogni morphism $f : X\to Y$ in $J$, il seguente diagram commuti:
+    \[\begin{tikzcd}
+	    & C \\
+	    \\
+	    X && Y
+	    \arrow["{\rho_X}"{description}, from=1-2, to=3-1]
+	    \arrow["{\rho_Y}"{description}, from=1-2, to=3-3]
+	    \arrow["f"{description}, from=3-1, to=3-3]
+    \end{tikzcd}\]
+    La collezione dei coni su un diagram $J$ e dei morphisms tra loro forma una category, detta $\cone(J)$: i suoi objects sono i coni $(C,\{\rho_j\}_{j \in J})$ e i suoi morphisms sono definiti da 
+    \[ \hom((C,\{\rho_j\}_{j \in J}), (C',\{\rho_j'\}_{j \in J})) = \{m : C\to C' : \forall j \in J, \rho_j = \rho_j' m\}\]
+    Ovvero i morphisms $m:C\to C'$ di $\C$ che fanno commutare il seguente diagram per ogni morphism $f:X\to Y$ di $J$:
+    \[\begin{tikzcd}
+	    C &&&& {C'} \\
+	    && X \\
+    	\\
+    	&& Y
+    	\arrow["m"{description}, from=1-1, to=1-5]
+    	\arrow["{\rho_X}"{description}, from=1-1, to=2-3]
+    	\arrow["{\rho_Y}"{description}, from=1-1, to=4-3]
+    	\arrow["{\rho_X'}"{description}, from=1-5, to=2-3]
+    	\arrow["{\rho_Y'}"{description}, from=1-5, to=4-3]
+	    \arrow["f"{description}, from=2-3, to=4-3]
+    \end{tikzcd}\]
+    Questi sono detti morphisms \bemph{medianti}.
+\end{definition}
+
+\begin{definition}{Prodotto tramite coni}{prodotto coni}
+    Sia $\C$ una category e siano $X,Y \in \ob\C$ due objects.
+    Si dice \bemph{prodotto} di $X$ e $Y$ l'object $X\times Y$ di $\C$ tale che $(X\times Y, \{\pi_X, \pi_Y\})$ sia l'object finale di $\cone(\{X,Y\})$, ovvero della category dei coni sul diagram discreto $\{X,Y\}$.
+\end{definition}
+
+\subsection{Aggiunzioni}
+
+Prima di dare la prossima definizione, osserviamo che questa catena di biezioni è verificata (e natural in $A$, $B$ e $C$)
+\[\begin{aligned}
+    \underbrace{\hom_\C(A, B\times C)}_{\C^\op \times \C\times\C \to \setcat} & \cong_\setcat \hom_\C(A,B)\times \hom_\C(A,C)\\
+    & \cong_\setcat \hom_{\C^2}((A,A),(B,C))\\
+    & \cong_\setcat \hom_{\C^2}(\Delta A,(B,C))
+\end{aligned}\]
+Dove $\Delta:\C\to\C^2$ è il functor diagonale, che manda un object $A$ nell'object $(A,A)$ e un morphism $f$ nel morphism $(f,f)$: abbiamo ottenuto dunque che $\hom_\C(A, B\times C) \cong_\setcat \hom(\Delta A, (B,C))$, ovvero che interpretando il prodotto come un functor $\times: \C^2\to\C$ questo è aggiunto destro al functor diagonale, ovvero $\Delta \dashv \times$, quindi definiamo
+
+\begin{definition}{Prodotto III}{prodotto adj}
+    Sia $\C$ una category e siano $X,Y \in \ob\C$ due objects. 
+    Si dice \bemph{prodotto} di $X$ e $Y$ l'immagine della coppia $(X,Y) \in \ob\C^2$ attraverso un functor $\Pi$ aggiunto destro al functor $\Delta$.
+\end{definition}
+
+Grazie al lemma \ref{lem:unicità degli aggiunti} abbiamo immediatamente che il prodotto è essenzialmente unico. Questa definizione sarà la migliore più tardi, quando daremo più struttura alle categorie che trattiamo.
+
+\subsection{Equivalenza}
+
+\begin{theorem}{Equivalenza di definizioni}{equivalenza definizioni prodotti}
+    Le definizioni \ref{def:prodotto pu}, \ref{def:prodotto coni} e \ref{def:prodotto adj} sono essenzialmente equivalenti, ovvero un object $P$ che rispetta una di esse rispetta automaticamente le altre due.
+    \proof 
+    \begin{itemize}
+        \item Sia $(P,\pi_X,\pi_Y) \in \cone(\{X,Y\})$ tale che rispetti \ref{def:prodotto pu} se visto come object in $\C$ e sia $(Z,f_X,f_Y)$ un altro cono; per la proprietà universale di $P$, esiste un unico morphism $h : Z\to P$ tale che $\pi_i\circ h = f_i$, dunque un unico morphism mediante $\hat h : (Z,f_X,f_Y)\to (P,\pi_X,\pi_Y)$; l'altra equivalenza è evidente.
+        \item Sia $\Pi : \C^2 \to \C$ 
+    \end{itemize}
+\end{theorem}
+
+\section{Categorie Cartesiane Chiuse}
+
+Ok, abbiamo definito i nostri prodotti, ma c'è un problema... esistono sempre? E come lavoriamo con questi prodotti? Per rispondere a queste domande dobbiamo porre qualche restrizione sulla definizione di category.
+
+\begin{definition}{object esponenziale}{esponenziale}
+    Sia $\C$ una category tale che ogni coppia di objects ammetta un prodotto e siano $Z$ e $Y$ due objects di $\C$.\\
+    Si dice \bemph{esponenziale} di $Z$ e $Y$ un object $Z^Y$ dotato di un morphism $e: Z^Y\times Y \to Z$ tale che per ogni morphism $g : X\times Y \to Z$ esista un unico morphism $\lambda g : X\to Z^Y$ tale che il seguente diagram commuti:
+    \[\begin{tikzcd}
+    	{X\times Y} \\
+    	\\
+    	{Z^Y\times Y} && Z
+    	\arrow["{\lambda g\times \id_Y}"{description}, from=1-1, to=3-1]
+    	\arrow["g"{description}, from=1-1, to=3-3]
+    	\arrow["e"{description}, from=3-1, to=3-3]
+    \end{tikzcd}\]
+    Ovvero tale che l'assegnazione $g \mapsto \lambda g$ definisca un isomorphism $\hom(X\times Y, Z)\cong \hom(X, Z^Y)$.
+\end{definition}
+
+\begin{definition}{category Cartesiana Chiusa}{CCC}
+    
+\end{definition}
+
+\end{document}

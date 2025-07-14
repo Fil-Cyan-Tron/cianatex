@@ -1,0 +1,197 @@
+\ProvidesPackage{cianatheorems}
+
+%Box colorate
+    \RequirePackage[most]{tcolorbox}
+    \tcbuselibrary{theorems}
+    \tcbuselibrary{skins}
+
+%Colori    
+%    \RequirePackage{cianacolors}
+
+\def\numberingvariable{section}
+\def\proofvariable{Dimostrazione}
+\def\solutionvariable{Soluzione}
+\def\theoremvariable{Teorema}
+\def\definitionvariable{Definizione}
+\def\propositionvariable{Proposizione}
+\def\remarkvariable{Osservazione}
+\def\examplevariable{Esempio}
+\def\exercisevariable{Esercizio}
+\def\corollaryvariable{Corollario}
+\def\notationvariable{Notazione}
+\def\situationvariable{Situazione}
+\def\axiomvariable{Assioma}
+
+\DeclareOption{cianabook}{
+    \def\numberingvariable{chapter}
+}
+\DeclareOption{cianaenglish}{
+    \def\proofvariable{Proof}
+    \def\solutionvariable{Solution}
+    \def\theoremvariable{Theorem}
+    \def\definitionvariable{Definition}
+    \def\propositionvariable{Proposition}
+    \def\remarkvariable{Remark}
+    \def\examplevariable{Example}
+    \def\exercisevariable{Exercise}
+    \def\corollaryvariable{Corollary}
+    \def\notationvariable{Notation}
+    \def\situationvariable{Situation}
+    \def\axiomvariable{Axiom}
+}
+\ProcessOptions\relax
+
+    %Ambienti
+
+        %Teoremi, proposizioni et cetera
+        
+        \newcommand\proof{\tcbsubtitle[before skip=\baselineskip]{\proofvariable}}
+        \newcommand\solution{\tcbsubtitle[before skip=\baselineskip]{\solutionvariable}}
+        \newcommand\qed{\begin{flushright}$\square$\end{flushright}}
+        \newcommand\solved{\begin{flushright}\PHrosette\end{flushright}}
+
+        \newtcbtheorem[number within=\numberingvariable]{theorem}{\theoremvariable}{
+            enhanced,
+            breakable,
+            colback=white,
+            colframe=theoremcolor,
+            fonttitle=\bfseries,
+            subtitle style={boxrule=1pt, colback=theoremcolor!15!white, colupper=theoremcolor},
+            sharp corners,
+            upperbox=visible,
+            lowerbox=visible,
+            rightrule=0pt,
+            leftrule=2pt,
+            bottomrule=0pt,
+        }{th}
+        \newtcbtheorem[number within=\numberingvariable]{definition}{\definitionvariable}{
+            enhanced,
+            breakable,
+            colback=white,
+            colframe=definitioncolor,
+            fonttitle=\bfseries,
+            subtitle style={boxrule=1pt, colback=definitioncolor!15!white, colupper=definitioncolor},
+            sharp corners,
+            upperbox=visible,
+            lowerbox=visible,
+            rightrule=0pt,
+            leftrule=2pt,
+            bottomrule=0pt,
+        }{def}
+        \newtcbtheorem[number within=\numberingvariable]{proposition}{\propositionvariable}{
+            enhanced,
+            breakable,
+            colback=white,
+            colframe=propositioncolor,
+            fonttitle=\bfseries,
+            subtitle style={boxrule=1pt, colback=propositioncolor!15!white, colupper=propositioncolor},
+            sharp corners,
+            upperbox=visible,
+            lowerbox=visible,
+            rightrule=0pt,
+            leftrule=2pt,
+            bottomrule=0pt,
+        }{prop}
+        \newtcbtheorem[number within=\numberingvariable]{remark}{\remarkvariable}{
+            enhanced,
+            breakable,
+            colback=white,
+            colframe=remarkcolor,
+            fonttitle=\bfseries,
+            subtitle style={boxrule=1pt, colback=remarkcolor!15!white, colupper=remarkcolor},
+            sharp corners,
+            upperbox=visible,
+            lowerbox=visible,
+            rightrule=0pt,
+            leftrule=2pt,
+            bottomrule=0pt,
+        }{rem}
+        \newtcbtheorem[number within=\numberingvariable]{example}{\examplevariable}{
+            enhanced,
+            breakable,
+            colback=white,
+            colframe=examplecolor,
+            fonttitle=\bfseries,
+            subtitle style={boxrule=1pt, colback=examplecolor!15!white, colupper=examplecolor},
+            sharp corners,
+            upperbox=visible,
+            lowerbox=visible,
+            rightrule=0pt,
+            leftrule=2pt,
+            bottomrule=0pt,
+        }{exmp}
+        \newtcbtheorem[number within=\numberingvariable]{exercise}{\exercisevariable}{
+            enhanced,
+            breakable,
+            colback=white,
+            colframe=examplecolor,
+            fonttitle=\bfseries,
+            subtitle style={boxrule=1pt, colback=examplecolor!15!white, colupper=examplecolor},
+            sharp corners,
+            upperbox=visible,
+            lowerbox=visible,
+            rightrule=0pt,
+            leftrule=2pt,
+            bottomrule=0pt,
+        }{exc}
+        \newtcbtheorem[number within=\numberingvariable]{corollary}{\corollaryvariable}{
+            enhanced,
+            breakable,
+            colback=white,
+            colframe=corollarycolor,
+            fonttitle=\bfseries,
+            subtitle style={boxrule=1pt, colback=corollarycolor!15!white, colupper=corollarycolor},
+            sharp corners,
+            upperbox=visible,
+            lowerbox=visible,
+            rightrule=0pt,
+            leftrule=2pt,
+            bottomrule=0pt,
+        }{corol}
+        \newtcbtheorem[number within=\numberingvariable]{notation}{\notationvariable}{
+            enhanced,
+            breakable,
+            colback=white,
+            colframe=notationcolor,
+            fonttitle=\bfseries,
+            sharp corners,
+            rightrule=0pt,
+            leftrule=2pt,
+            bottomrule=0pt,
+        }{notaz}
+        \newtcbtheorem[number within=\numberingvariable]{situation}{\situationvariable}{
+            enhanced,
+            breakable,
+            colback=white,
+            colframe=notationcolor,
+            fonttitle=\bfseries,
+            sharp corners,
+            rightrule=0pt,
+            leftrule=2pt,
+            bottomrule=0pt,
+        }{situaz}
+        \newtcbtheorem[number within=\numberingvariable]{lemma}{Lemma}{
+            enhanced,
+            breakable,
+            colback=white,
+            colframe=lemmacolor,
+            fonttitle=\bfseries,
+            subtitle style={boxrule=1pt, colback=lemmacolor!15!white, colupper=lemmacolor},
+            sharp corners,
+            upperbox=visible,
+            lowerbox=visible,
+            rightrule=0pt,
+            leftrule=2pt,
+            bottomrule=0pt,
+        }{lem}
+        \newtcbtheorem[number within=\numberingvariable]{axiom}{\axiomvariable}{
+            enhanced,
+            breakable,
+            colback=white,
+            colframe=theoremcolor,
+            fonttitle=\bfseries,
+            sharp corners,
+            rightrule=0pt,
+            leftrule=2pt,
+            bottomrule=0pt,
+        }{ax}
