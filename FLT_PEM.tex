@@ -349,7 +349,7 @@ Se in teoria degli insiemi definiamo una famiglia di sottoinsiemi di un insieme 
     	\arrow["{\psi_Y}"{description}, from=1-2, to=3-3]
 	    \arrow["{F(f)}"{description}, from=3-1, to=3-3]
     \end{tikzcd}\]
-    Dualmente, si dice \bemph{cocono} su $F$ con punta $N$ un morfismo $\psi F \to K_N$, o equivalentemente un cono in $\C^\op$.\\
+    Dualmente, si dice \bemph{cocono} su $F$ con punta $N$ un morfismo $\psi : F \to K_N$, o equivalentemente un cono in $\C^\op$.\\
     Definiamo la \bemph{categoria dei coni} in $\C$ su $F$ come la categoria i cui oggetti sono i coni intesi come coppia $(N, \psi^N: K_N \to F )$ e i cui morfismi sono i cosiddetti morfismi \bemph{medianti}, ovvero i morfismi $\alpha : N\to M$ di $\C$ tali per cui per ogni oggetto $X$ di $\J$ valga:
     \[\psi^M_X\circ \alpha = \psi^N_X,\]
     Denoteremo questa categoria come $\cone(\C,F)$.
@@ -363,7 +363,8 @@ Ed eccoci pronti a definire i limiti.
     Si dice \bemph{colimite} (o limite induttivo) di $F$ in $\C$ il limite di $F$ in $\C^\op$, o equivalentemente l'oggetto iniziale di $\cone(\C,F)$.\\
     Indichiamo rispettivamente limiti e colimiti di $F$ in $\C$ come
     \[ \catlim F \quad \text{e}\quad\catcolim F.\]
-    Un limite si dice rispettivamente piccolo o finito se lo è $F$ come diagramma.
+    Un limite si dice rispettivamente piccolo o finito se lo è $F$ come diagramma.\\
+    Una categoria che ammette tutti i (co)limiti piccoli si dice \bemph{(co)completa}.
 \end{definition}
 
 Più esplicitamente\footnote{Ovvero scrivendo per esteso la definizione di oggetto terminale}, possiamo definire il limite di $F$ in $\C$ come il cono $(L,\psi^L)$ tale che per ogni altro cono $(N,\psi^N)$ esista un unico morfismo $\lambda_N : N\to L$ tale che il seguente diagramma commuti:
@@ -382,15 +383,41 @@ Più esplicitamente\footnote{Ovvero scrivendo per esteso la definizione di ogget
 	\arrow["{F(f)}"{description}, from=5-1, to=5-5]
 \end{tikzcd}\]
 
-Vedremo che il concetto di limite è davvero il concetto centrale in teoria delle categorie, in quanto in effetti un altro concetto estremamente utile (quello di funtore aggiunto) non è altro che un esempio di limite (in effetti, è anche possibile definire i limiti in termini di funtori aggiunti, che è quello che andremo a fare più tardi in un caso specifico nel teorema \ref{th:equivalenza definizioni prodotti}):
+Vedremo che il concetto di limite è davvero il concetto centrale in teoria delle categorie, in quanto in effetti un altro concetto estremamente utile (quello di funtore aggiunto) non è altro che un esempio di limite (in effetti, è anche possibile definire i limiti in termini di funtori aggiunti, che è quello che andremo a fare più tardi in un caso specifico nel teorema \ref{th:equivalenza definizioni prodotti}).\\
+Talvolta diremo che una categoria "ammette/ha tutti i..." facendo riferimento a dei limiti definiti su una qualche classe di diagrammi: questo significa che ogni diagramma di quella classe ammette un limite in $\C$.
 
-\begin{remark}{}{}
-    
+\begin{remark}{Limiti e oggetti iniziali}{limiti e oggetti iniziali}
+    Sia $F:\J\to\C$ un diagramma.\begin{itemize}
+        \item Se $\J$ ammette un oggetto iniziale $I$, allora $\catlim F = F(I)$.
+        \item Dualmente, se $\J$ ammette un oggetto finale $Z$, allora $\catcolim F = F(Z)$.
+        \item Infine, se $\J$ ammette un oggetto zero $0$, allora $\catlim F = \catcolim F = F(0)$.
+    \end{itemize}
 \end{remark}
 
-Dopo aver assemblato tutto questo apparato, procediamo a farci qualcosa.
+\subsection{Limiti notevoli}
 
+Presentiamo alcuni limiti di particolare importanza (in effetti delle classi di limiti) nella pratica matematica; in questa sezione, assumeremo per semplicità che $\J$ sia una sottocategoria (di forma opportunamente specificata) di $\C$ e $F : \J \inj \C$ sia il funtore di inclusione: questo ci permetterà di dire semplicemente "Sia $\J$ un diagramma" o parlare di $\catlim\J$.
 
+\begin{definition}{Prodotto}{prodotto limite}
+    Sia $\C$ una categoria e sia $\J$ un diagramma discreto (ovvero i cui unici morfismi sono le identità).\\
+    Si dice \bemph{prodotto} di $\J$ in $\C$ il limite di $\J$ in $\C$, che indicheremo come
+    \[ \prod_{X\in\ob\J} X\quad\text{oppure, più semplicemente,}\quad \prod\J\ . \]
+    Un prodotto in $\C^\op$ si dice \bemph{coprodotto} in $\C$ e lo indicheremo come $\coprod \J$.\\
+    I morfismi $\pi_X : \prod\J\to X$ si dicono \bemph{proiezioni ai fattori}.
+\end{definition}
+
+\begin{remark}{Sui prodotti}{sui prodotti}
+    \begin{itemize}
+        \item Il prodotto sul diagramma vuoto è (se esiste) l'oggetto terminale di $\C$.
+        \item Sotto gli assiomi di ZF, $\setcat$ ammette tutti i prodotti piccoli\footnote{Ovvero quelli indicizzati da una categoria piccola} se e solo se vale l'assioma della scelta.
+    \end{itemize}
+\end{remark}
+
+\begin{definition}{Pullback o prodotto fibrato}{pullback o prodotto fibrato}
+    Sia $\C$ una categoria, e sia $\J$ il diagramma $\{ X\xrightarrow{f} Z \xleftarrow{g} Y \}$, detto \bemph{cospan}\footnote{E ovviamente $\J^\op$} si dirà \bemph{span}.\\
+    Il limite di $\J$ in $\C$ si dice \bemph{pullback} di $\J$, o anche \bemph{prodotto fibrato} di $X$ e $Y$ lungo (o su) $Z$.\\
+    Un pullback in $\C^\op$ si dice \bemph{pushout}.
+\end{definition}
 
 \pagebreak 
 
