@@ -14,6 +14,8 @@
 \newcommand\D{\mc{D}}
 \newcommand\nat{\operatorname{Nat}}
 \newcommand\J{\mc{J}}
+\newcommand\eq{\operatorname{eq}}
+\newcommand\cod{\operatorname{cod}}
 
 \begin{document}
 
@@ -388,6 +390,7 @@ Più esplicitamente\footnote{Ovvero scrivendo per esteso la definizione di ogget
 	\arrow["{F(f)}"{description}, from=5-1, to=5-5]
 \end{tikzcd}\]
 
+Diremo che una tale proprietà è detta \bemph{universalità}.\\
 Vedremo che il concetto di limite è davvero il concetto centrale in teoria delle categorie, in quanto in effetti un altro concetto estremamente utile (quello di funtore aggiunto) non è altro che un esempio di limite (in effetti, è anche possibile definire i limiti in termini di funtori aggiunti).\\
 Talvolta diremo che una categoria "ammette/ha tutti i..." facendo riferimento a dei limiti definiti su una qualche classe di diagrammi: questo significa che ogni diagramma di quella classe ammette un limite in $\C$.
 
@@ -433,9 +436,56 @@ Il pullback è una sorta di analogo categoriale delle equazioni: in molte catego
     	\arrow["f"{description}, shift left=3, from=1-1, to=1-3]
     	\arrow["g"{description}, shift right=3, from=1-1, to=1-3]
     \end{tikzcd}\]
-    Si dice \bemph{equalizzatore} di $f$ e $g$ il limite di $\J$ in $\C$.\\
+    Si dice \bemph{equalizzatore} di $f$ e $g$ il limite di $\J$ in $\C$, e lo indichiamo con $\eq(f,g)$,  come indichiamo l'unico morfismo "primitivo" del cono con $e_{f,g}:\eq(f,g)\to X$.\\
     Un equalizzatore in $\C^\op$ si dice \bemph{coequalizzatore}.
 \end{definition}
+
+\begin{theorem}{Esistenza dei limiti}{esistenza dei limiti}
+    Sia $\C$ una categoria.\\
+    $\C$ ammette tutti i prodotti piccoli ed equalizzatori per ogni coppia di morfismi se e solo $\C$ è una categoria completa.
+    \proof 
+    Se $\C$ è una categoria completa allora ammette ovviamente tutti i prodotti piccoli e tutti gli equalizzatori, in quanto questi sono casi di limite piccolo, dunque supponiamo che $\C$ ammetta tutti i prodotti piccoli e gli equalizzatori di coppie di morfismi.\\
+    Sia $F:\J\to\C$ un diagramma piccolo e consideriamo i seguenti prodotti: 
+    \[ S := \prod_{X \in\ob\J}F(X) \qquad\text{e}\qquad T:= \prod_{u \in \hom\J} F(\cod(u)) \]
+    Le cui proiezioni indicheremo rispettivamente con $\sigma_i$ e $\tau_i$.\\
+    Dato che per ogni $u \in \hom\J$ abbiamo ovviamente $\cod(u) \in \ob\J$, $S$ ammette mappe (precisamente le sue proiezioni) verso ogni $F(\cod(u))$, dunque per la proprietà universale del prodotto esiste ed è unica $f:S\to T$ tale che il seguente diagramma commuti per ogni $u \in \hom\J$:
+    \[\begin{tikzcd}
+    	& {F(\cod(u))} \\
+	    \\
+    	S && T
+    	\arrow["{\sigma_{F(\cod(u))}}"{description}, from=3-1, to=1-2]
+    	\arrow["f"{description}, dashed, from=3-1, to=3-3]
+    	\arrow["{\tau_{F(\cod(u))}}"{description}, from=3-3, to=1-2]
+    \end{tikzcd}\]
+    Analogamente, deve esistere ed essere unica una mappa $g: S\to T$ tale che il seguente diagramma commuti:
+        \[\begin{tikzcd}
+    	S && T \\
+    	\\
+    	{F(\dom(u))} && {F(\cod(u))}
+    	\arrow["g"{description}, dashed, from=1-1, to=1-3]
+    	\arrow["{\sigma_{F(\dom(u))}}"{description}, from=1-1, to=3-1]
+    	\arrow["{\tau_{F(\cod(u))}}"{description}, from=1-3, to=3-3]
+    	\arrow["{F(u)}"{description}, from=3-1, to=3-3]
+    \end{tikzcd}\]
+    Consideriamo dunque $L:=\eq(f,g)$ e la mappa $e_{f,g}: L \to S$ che equalizza $f$ e $g$: questo è il nostro candidato limite, dobbiamo prima controllare che sia un cono definendo le proiezioni su $F$, ma vediamo che basta definirle nel seguente modo dato qualsiasi $u:X\to Y$ di $\J$:
+    \[\begin{tikzcd}
+    	{L} \\
+    	\\
+    	&& S & T && {F(Y) = F(\cod(u))} \\
+    	\\
+    	&& {F(X)}
+    	\arrow["{e_{f,g}}"{description}, from=1-1, to=3-3]
+    	\arrow["{\psi_{F(Y)} := \tau_{F\cod(u)}\circ f \circ e_{f,g}=\tau_{F\cod(u)}\circ g \circ e_{f,g}}"{description}, curve={height=-30pt}, dashed, from=1-1, to=3-6]
+    	\arrow["{\psi_{F(X)} := \sigma_{F(X)}\circ e_{f,g}}"{description}, curve={height=30pt}, dashed, from=1-1, to=5-3]
+    	\arrow["f"{description}, shift left=3, from=3-3, to=3-4]
+    	\arrow["g"{description}, shift right=3, from=3-3, to=3-4]
+    	\arrow["{\sigma_{F(X)}}"{description}, from=3-3, to=5-3]
+    	\arrow["{\tau_{F(\cod(u))}}"{description}, from=3-4, to=3-6]
+    	\arrow["u"{description}, from=5-3, to=3-6]
+    \end{tikzcd}\]
+    Ora dobbiamo dimostrare che è effettivamente universale: considerando un altro cono $(N,\varphi)$, le sue $\varphi$ definiscono un'unica $h : N\to S$, ma dato che è un cono deve anche valere $f\circ h = g \circ h$, dunque $h$ è una mappa equalizzante e dunque deve esistere un'unica mappa $\eta : N\to L$ tale che $ h = e_{f,g} \circ \eta $.
+    \qed
+\end{theorem}
 
 \subsection{Prodotti}
 
