@@ -1,0 +1,76 @@
+\documentclass{article}
+\usepackage{cianatex}
+\usepackage{cianacolors}
+\usepackage{cianatheorems}
+
+\title{Domande Pagani FFM2}
+\author{Filippo Troncana}
+\date{A.A. 2024/2025}
+
+\renewcommand\C{\mc{C}}
+\newcommand\del{\partial}
+
+\begin{document}
+
+\maketitle
+
+\section{Classificazione delle PDE quasilineari del secondo ordine}
+
+Fissato $U \subset \R^2$ un aperto, si dice \bemph{equazione differenziale alle derivate parziali del secondo ordine quasilineare} con incognita $u \in \C^2(U)$ un'espressione della forma 
+
+\[ a\frac{\del^2 u}{\del x^2} + 2b\frac{\del^2 u}{\del x\del y} + c\frac{\del^2 u}{\del y^2} = d\]
+
+dove $a,b,c,d$ sono funzioni della forma $f(x,y,u,u_x,u_y)$. Consideriamo una curva regolare $\gamma : I \to U$ con $\gamma(s) = (x(s), y(s))$ e, con l'abuso di notazione $f|_\gamma := f \circ \gamma$, i dati iniziali 
+
+\[ u|_\gamma = h(s), \quad u_x|_\gamma  = \phi(x), \quad u_y|_\gamma = \psi(x)\]
+
+Con $h,\phi,\psi$ funzioni date. Queste devono rispettare certi vincoli, infatti applicando la regola della catena otteniamo
+
+\[ \frac{\di u|_\gamma}{\di s}= u_x|_\gamma \cdot x'+ u_y|_\gamma \cdot y' \Harr h' = \phi\cdot x' + \psi\cdot y' \]
+
+Assumendo che una soluzione $u$ esista e tutto sia sufficientemente regolare, consideriamo le sue derivate seconde
+
+\[ \frac{\di u_x|_\gamma}{\di s} = u_{xx}|_\gamma x' + u_{xy}|_\gamma y'=\phi',\quad \frac{\di u_y|_\gamma}{\di s} = u_{yx}|_\gamma x' + u_{yy}|_\gamma y'=\psi'\]
+
+Quindi ricordando l'equazione iniziale, gli assunti di regolarità e componendo con $\gamma$ otteniamo
+
+\[ a|_\gamma u_{xx}|_\gamma + 2b|_\gamma u_{xy}|_\gamma + c|_\gamma u_{yy}|_\gamma = d|_\gamma\]
+
+Otteniamo un sistema lineare nelle derivate seconde di $u$:
+
+\[\underbrace{\begin{pmatrix} a|_\gamma & 2b|_\gamma & c|_\gamma \\ x' & y' & 0 \\ 0 & x' & y' \end{pmatrix}}_{A} \underbrace{\begin{pmatrix} u_{xx}|_\gamma \\ u_{xy}|_\gamma \\ u_{yy}|_\gamma \end{pmatrix}}_{u''} = \underbrace{\begin{pmatrix} d|_\gamma \\ \phi' \\ \psi' \end{pmatrix}}_{k} \]
+
+Denotando con $\Delta(s) := \det A(s)$ otteniamo tre casi:\begin{itemize}
+    \item $\Delta \neq 0$ su tutta la curva, ovvero esiste ed è unico $u''(s)$ che soddisfa l'equazione.
+    \item $\Delta = 0$ su tutta la curva \bemph{in generale} non ci dà una soluzione, ma solamente se $\rk(A|k) = \rk(A)$, che comunque non ci garantisce l'unicità; in particolare, calcolando esplicitamente il determinante, vediamo che equivale a dire:
+    \[ a|_\gamma \cdot (y')^2 - 2b|_\gamma \cdot x' \cdot y' + c|_\gamma \cdot (x')^2=0  \]
+    E in questo caso si dice che la curva $\gamma$ è una \bemph{curva caratteristica}. In particolare, rinominando la variabile $s$ in $t$ e assumendo che  $(x(t),y(t)) = (t, f(t))$ ottengo 
+    \[ a|_\gamma \cdot (f')^2 - 2b|_\gamma \cdot f' + c|_\gamma =0 \Rarr f' = \frac{ 2b|_\gamma \pm \sqrt{(2b|_\gamma)^2 - 4 a|_\gamma \cdot c|_\gamma} }{2a|_\gamma} \]
+    Questa condizione ci divide in tre casi:\begin{itemize}
+        \item $(2b|_\gamma)^2 - 4 a|_\gamma \cdot c|_\gamma > 0$, detto \bemph{iperbolico}, dove ho due derivate distinte e dunque due famiglie di curve caratteristiche.
+        \item $(2b|_\gamma)^2 - 4 a|_\gamma \cdot c|_\gamma = 0$, detto \bemph{parabolico}, in cui ho una sola famiglia di derivate e dunque di curve caratteristiche.
+        \item $(2b|_\gamma)^2 - 4 a|_\gamma \cdot c|_\gamma > 0$, detto \bemph{ellittico}, in cui non ho curve caratteristiche
+    \end{itemize}
+    \item Negli altri casi coi nostri strumenti non abbiamo considerazioni interessanti dal punto di vista fisico.
+\end{itemize}
+
+\section{Superfici caratteristiche per PDC e teorema di Cauchy--Kovalevskaja}
+
+Assumendo che la curva caratteristica $\gamma$ della nostra equazione sia della forma $(t,f(t))$ (o simmetricamente della forma $(f(t),t)$), proviamo a descrivere $\gamma$ come luogo di zeri di una funzione $F(x,y)$. Sappiamo che 
+\[ a|_\gamma (f')^2 - 2b|_\gamma f' + c|_\gamma = 0 \]
+Supponendo che $F(t,f(t))=0$ posso derivare totalmente e ottengo:
+\[ \frac{\di F}{\di t} = F_x \cdot 1 + F_y f' \Rarr f' = - \frac{F_x}{F_y} \]
+E dunque la condizione di cui sopra diventa (moltiplicando per $(F_y)^2$ per eliminare i denominatori)
+\[ a|_\gamma (F_x)^2 + 2b|_\gamma F_x F_y + c|_\gamma (F_y)^2 = 0 \]
+Questa condizione vale per le curve, ma in realtà si generalizza abbastanza facilmente a quello delle (iper)superfici in $\R^{n+1}$ grazie al teorema di invertibilità locale. Generalizziamo la nostra equazione ad una scrittura della forma
+\[ \sum_{i,j = 1}^n a^{i,k} u_{i,j} = d \]
+Dove $a^{i,k}$ e $d$ sono funzioni in $(x_1,..., x_n, u_1, ... , u_n)$; posta $F(x_1,..., x_n)$ la funzione di cui ipotizziamo l'esistenza, otteniamo la condizione
+\[ \sum_{i,j=1}^n a^{i,k} F_i F_j = 0 \]
+E da questa una "trasmissione di regolarità" analoga a quanto visto per le curve.
+
+\begin{theorem}{Teorema di Cauchy--Kovalevskaja}{TdC--K}
+    Data una curva $\gamma : I \to \R^2$ regolare, $a,b,c$ e $d$ funzioni analitiche nelle variabili $x,y, u_x, u_y$ e dati $u|_\gamma, u_x|_\gamma$ e $u_y|_\gamma$ analitici, esiste ed è unica in un intorno del supporto di $\gamma$ una soluzione analitica $u$ dell'equazione:
+    \[ a\cdot \cdot u_{xx} + 2b \cdot u_{xy} + c \cdot  u_{yy} = d \]
+\end{theorem}
+
+\end{document}
