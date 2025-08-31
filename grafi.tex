@@ -1,0 +1,50 @@
+\documentclass{article}
+\usepackage[a4paper, landscape, margin = 1cm]{geometry}
+\usepackage{cianatex}
+\usepackage{cianacolors}
+\usepackage{cianatheorems}
+
+\begin{document}
+
+\section{Albero Genealogico}
+
+% https://q.uiver.app/#q=WzAsMjEsWzMsMCwiXFx0ZXh0e1BBVH0iXSxbNSwwLCJcXHRleHR7Qkt9Il0sWzQsMSwiXFx0ZXh0e1VOSVROfSJdLFsyLDEsIlxcdGV4dHtDR0lMfSJdLFs2LDEsIlxcdGV4dHtDQVJJVFJPfSJdLFsyLDIsIlxcaW50IFVcXGRlIFUiXSxbNiwyLCJcXHRleHR7Q2xlc2lvfSJdLFsxLDQsIlxcdGV4dHtVTklUaU59Il0sWzQsNiwiRlNQIl0sWzcsNiwiREciXSxbMCw2LCJEUyBcXGNvbmcgRCgxKSJdLFsyLDQsIlxcdGV4dHtTY2llbnphfV57XFxvcH0iXSxbMiw2LCJKQiJdLFs1LDUsIk1DX3thbH0iXSxbNiw2LCJEQiJdLFs4LDUsIlxcdGV4dHtQdWdsaWF9Il0sWzMsOCwiTUNfe2FzdH0iXSxbNSw4LCJBUFAiXSxbNCwzLCJcXHRleHR7Q0h9XzNcXHRleHR7Q0h9XzJcXHRleHR7T0h9Il0sWzMsNiwiRlxcTCBUIl0sWzEsNywiXFx0ZXh0e1NhcmRlZ25hfSJdLFswLDJdLFsxLDJdLFszLDVdLFsyLDVdLFsyLDZdLFs0LDZdLFs1LDcsIiIsMix7ImN1cnZlIjoxfV0sWzIsN10sWzUsOCwiIiwyLHsiY3VydmUiOi0xfV0sWzYsOV0sWzcsMTBdLFsxMSwxMF0sWzcsMTJdLFsxMSwxMl0sWzYsOCwiIiwyLHsiY3VydmUiOjJ9XSxbNiwxNF0sWzEzLDE0XSxbMTUsOV0sWzIsMTFdLFsxMiwxNl0sWzE0LDE2XSxbMTIsMTddLFsxNCwxN10sWzUsMTksIiIsMSx7ImN1cnZlIjotMX1dLFsxOCwxOV0sWzIwLDE2XV0=
+\[\begin{tikzcd}
+	&&& {\text{PAT}} && {\text{BK}} \\
+	&& {\text{CGIL}} && {\text{UNITN}} && {\text{CARITRO}} \\
+	&& {\int U\de U} &&&& {\text{Clesio}} \\
+	&&&& {\text{CH}_3\text{CH}_2\text{OH}} \\
+	& {\text{UNITiN}} & {\text{Scienza}^{\op}} \\
+	&&&&& {MC_{al}} &&& {\text{Puglia}} \\
+	{DS \cong D(1)} && JB & {F\L T} & FSP && DB & DG \\
+	& {\text{Sardegna}} \\
+	&&& {MC_{ast}} && APP
+	\arrow[from=1-4, to=2-5]
+	\arrow[from=1-6, to=2-5]
+	\arrow[from=2-3, to=3-3]
+	\arrow[from=2-5, to=3-3]
+	\arrow[from=2-5, to=3-7]
+	\arrow[from=2-5, to=5-2]
+	\arrow[from=2-5, to=5-3]
+	\arrow[from=2-7, to=3-7]
+	\arrow[curve={height=6pt}, from=3-3, to=5-2]
+	\arrow[curve={height=-6pt}, from=3-3, to=7-4]
+	\arrow[curve={height=-6pt}, from=3-3, to=7-5]
+	\arrow[curve={height=12pt}, from=3-7, to=7-5]
+	\arrow[from=3-7, to=7-7]
+	\arrow[from=3-7, to=7-8]
+	\arrow[from=4-5, to=7-4]
+	\arrow[from=5-2, to=7-1]
+	\arrow[from=5-2, to=7-3]
+	\arrow[from=5-3, to=7-1]
+	\arrow[from=5-3, to=7-3]
+	\arrow[from=6-6, to=7-7]
+	\arrow[from=6-9, to=7-8]
+	\arrow[from=7-3, to=9-4]
+	\arrow[from=7-3, to=9-6]
+	\arrow[from=7-7, to=9-4]
+	\arrow[from=7-7, to=9-6]
+	\arrow[from=8-2, to=9-4]
+\end{tikzcd}\]
+
+\end{document}
