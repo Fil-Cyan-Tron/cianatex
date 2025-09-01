@@ -75,6 +75,111 @@ E da questa una "trasmissione di regolarità" analoga a quanto visto per le curv
 
 \section{Ricavare da un modello fisico a scelta l'equazione delle onde. Scrivere la soluzione di d'Alembert per la retta e la semiretta con condizioni al bordo di Dirichlet e Von Neumann}
 
+\subsection{Derivazione (onde trasversali ad una corda tesa)}
+
+Procediamo a derivare l'equazione delle onde per le vibrazioni trasversali su una corda tesa tra due punti $(0,0)$ e $(L,0)$ nel piano $xu$. Assumiamo che la posizione di ciascun punto della corda vari ortogonalmente alla corda stessa, permettendoci di descrivere lo spostamento di un punto $x$ con la funzione $u = u(x,t)$, in modo che la curva $\gamma_t =(x, u(x,t))$ rappresenti la corda al momento $t$.\\
+Posti due punti $x_1, x_2$ sulla corda, la quantità di moto tra i due è diretta lungo il versore $\hat{e}_u$ trasversale alla corda ed è data da
+
+\[ \intop_{x_1}^{x_2} \rho(\xi) u_t(\xi, t)\de \xi \]
+
+Dove $\rho(\xi)$ è la densità della corda e $u_t(\xi,t)$ è la velocità del punto $\xi$ lungo $\hat{e}_u$ al tempo $t$.\\
+I versori tangenti alla corda nei due punti sono dati da:
+
+\[ T(x_i,t) = \frac{ \hat{e}_x + \hat{e}_u u_{x}(x_i,t) }{\sqrt{ 1+(u_{x}(x_i,t)) }} \]
+
+Possiamo fare tre considerazioni:\begin{enumerate}
+    \item Chiamando $A,B$ e $C$ i tratti della corda rispettivamente precedente $x_1$, compreso tra $x_1$ e $x_2$ e successivo a $x_2$ e assumendo che la tensione $\tau$ sia costante, abbiamo che:\begin{itemize}
+        \item La forza di $A$ su $B$ in $(x_1,t)$ è $-\tau T(x_1, t)$.
+        \item Analogamente, la forza di $C$ su $B$ in $(x_2,t)$ è $\tau T(x_2, t)$
+    \end{itemize} 
+    E dunque la forza agente su $B$ è $F(t) := \tau\left(T(x_2,t) - T(x_1,t)\right)$
+    \item Assumendo variazioni di piccola ampiezza, ovvero $u_x \ll 1$ abbiamo
+    \[ F(t) \approx \tau\left(u_x(x_2,t) - u_x(x_1,t)\right) e_u \]
+    \item Assumiamo che qualsiasi forza esterna agisca sulla corda lo faccia in $B$ e sia della forma $f(\xi,t)e_u$, dove $f$ indica la "densità lineare" di forza agente al tempo $t$. 
+\end{enumerate}
+Consideriamo l'intervallo di tempo $[t_1, t_2]$ e applichiamo la forma integrale della seconda legge di Newton\footnote{$\Delta p = \int F\de t $} per la variazione della quantità di moto $p$ del tratto $B$ nell'intervallo di tempo $[t_1,t_2]$:
+
+\[ \intop_{x_1}^{x_2} \rho(\xi) u_t(\xi, t_2)\de \xi - \intop_{x_1}^{x_2} \rho(\xi) u_t(\xi, t_1)\de \xi = \intop_{t_1}^{t_2} \tau\left(u_x(x_2,t) - u_x(x_1,t)\right) \de t + \intop_{t_1}^{t_2}\intop_{x_1}^{x_2} f(\xi,t) \de \xi \de t \]
+
+Definiamo le funzioni integrali
+
+\[ \intop_{t_1}^{t_2} u_{tt}(x, t) \de t = u_t(x,t_2) - u_t(x, t_1) ,\qquad \intop_{x_1}^{x_2} u_{xx}(x,t)\de t = u_x(x_2,t) - u_x(x_1, t) \]
+
+Per generalità di $[x_1,x_2]$ posso estendere le mie equazioni a tutto il dominio e sostituire ottenendo
+
+\[ \intop_{x_1}^{x_2}\intop_{t_1}^{t_2} \rho(\xi) u_{tt}(\xi,t) - \tau u_{xx}(\xi,t) - f(\xi,t) \de t \de \xi \equiv 0 \Harr \rho(x) u_{tt}(x,t) - \tau u_{xx}(x,t)\equiv f(x,t) \]
+
+Dividendo tutto per $\rho(x)$ e ponendo $a^2 := \frac{\tau}{\rho(x)}$, termine che corrisponde alla velocità di propagazione, otteniamo l'equazione
+
+\[ u_{tt}(x,t) - a^2 u_{xx}(x,t) = \frac{f(x,t)}{\rho(x,t)} \]
+
+Detta \bemph{equazione delle onde}, una PDE del secondo ordine quasilineare iperbolica.
+
+\subsection{Soluzioni}
+
+\subsubsection{Retta}
+
+Assumiamo una corda di lunghezza infinita, densità costante e con forze esterne nulle, otteniamo il problema:
+
+\[ \begin{cases}
+    u_{tt} - a^2 u_{xx} = 0 & \forall x,t \in \R\\
+    u(x,0) = \varphi(x) & \forall x \in \R\\
+    u_t(x,0) = \psi(x) & \forall x \in \R
+\end{cases} \]
+
+Questa equazione ha come soluzione (ricavata usando le curve caratteristiche $x = \pm at$ come assi) la \bemph{soluzione di D'Alembert}:
+
+\[ u(x,t) = \frac{\varphi(x+at) + \varphi(x-at) }{2} + \frac{1}{2a} \intop_{x-at}^{x+at} \psi(\xi)\de \xi\]
+
+\subsubsection{Semiretta, condizioni di Dirichlet}
+
+Consideriamo il problema definito sulla semiretta $\R_{\ge 0}$ con la condizione al bordo di Dirichlet
+
+\[ \begin{cases}
+    u_{tt} - a^2 u_{xx} = 0 & \forall t \in \R, \forall x \ge 0\\
+    u(x,0) = \varphi(x) & \forall x \ge 0\\
+    u_t(x,0) = \psi(x) & \forall x \ge 0\\
+    u(0,t) = 0 & \forall t \in \R
+\end{cases} \]
+
+Possiamo trattarlo come il problema definito sulla retta definendo i prolungamenti dispari delle condizioni, ignorando momentaneamente la condizione di Dirichlet:
+
+\[ \Phi(x) = \begin{cases} \varphi(x) & x\ge 0 \\ -\varphi(-x) & x<0\end{cases}, \quad \Psi(x) = \begin{cases}\psi(x) & x\ge 0 \\ -\psi(-x) & x<0\end{cases}\]
+
+E procedendo come sopra con la formula di D'Alembert 
+
+\[u(x,t) = \frac{\Phi(x+at) + \Phi(x-at) }{2} + \frac{1}{2a} \intop_{x-at}^{x+at} \Psi(\xi)\de \xi \]
+
+Valutando la soluzione in $(0,t)$, dato che sia $\Phi$ che $\Psi$ sono dispari, otteniamo
+
+\[ u(0,t) = \frac{\Phi(at) + \Phi(-at) }{2} + \frac{1}{2a} \intop_{-at}^{at} \Psi(\xi)\de \xi \equiv 0 \]
+
+\subsubsection{Semiretta, condizioni di Neumann}
+
+Consideriamo il problema definito sulla semiretta $\R_{\ge 0}$ con la condizione al bordo di Neumann
+
+\[ \begin{cases}
+    u_{tt} - a^2 u_{xx} = 0 & \forall t \in \R, \forall x \ge 0\\
+    u(x,0) = \varphi(x) & \forall x \ge 0\\
+    u_t(x,0) = \psi(x) & \forall x \ge 0\\
+    u_x(0,t) = 0 & \forall t \in \R
+\end{cases} \]
+
+Possiamo trattarlo come il problema definito sulla retta definendo i prolungamenti pari delle condizioni, ignorando momentaneamente la condizione di Neumann:
+
+\[ \Phi(x) = \begin{cases} \varphi(x) & x\ge 0 \\ \varphi(-x) & x<0\end{cases}, \quad \Psi(x) = \begin{cases}\psi(x) & x\ge 0 \\ \psi(-x) & x<0\end{cases}\]
+
+E procedendo come sopra con la formula di D'Alembert
+
+\[u(x,t) = \frac{\Phi(x+at) + \Phi(x-at) }{2} + \frac{1}{2a} \intop_{x-at}^{x+at} \Psi(\xi)\de \xi \]
+
+Adesso, deriviamo la soluzione:
+
+\[ u_x(x,t) = \frac{\Phi'(x+at) + \Phi'(x-at)}{2} + \frac{\Psi(x+at) - \Psi(x-at)}{2} \]
+
+Dato che $\Phi$ e $\Psi$ sono pari, dunque $\Phi'$ è dispari, otteniamo che valutando in $(0,t)$:
+
+\[ u_x(0,t) = \frac{\Phi'(at) + \Phi'(-at)}{2} + \frac{\Psi(at) - \Psi(-at)}{2} \equiv 0\]
 
 
 \end{document}
