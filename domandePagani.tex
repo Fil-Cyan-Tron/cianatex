@@ -14,6 +14,8 @@
 
 \maketitle
 
+\tableofcontents
+
 \section{Classificazione delle PDE quasilineari del secondo ordine}
 
 Fissato $U \subset \R^2$ un aperto, si dice \bemph{equazione differenziale alle derivate parziali del secondo ordine quasilineare} con incognita $u \in \C^2(U)$ un'espressione della forma 
@@ -94,8 +96,8 @@ Possiamo fare tre considerazioni:\begin{enumerate}
     \end{itemize} 
     E dunque la forza agente su $B$ è $F(t) := \tau\left(T(x_2,t) - T(x_1,t)\right)$
     \item Assumendo variazioni di piccola ampiezza, ovvero $u_x \ll 1$ abbiamo
-    \[ F(t) \approx \tau\left(u_x(x_2,t) - u_x(x_1,t)\right) e_u \]
-    \item Assumiamo che qualsiasi forza esterna agisca sulla corda lo faccia in $B$ e sia della forma $f(\xi,t)e_u$, dove $f$ indica la "densità lineare" di forza agente al tempo $t$. 
+    \[ F(t) \approx \tau\left(u_x(x_2,t) - u_x(x_1,t)\right) \hat{e}_u \]
+    \item Assumiamo che qualsiasi forza esterna agisca sulla corda lo faccia in $B$ e sia della forma $f(\xi,t)\hat{e}_u$, dove $f$ indica la "densità lineare" di forza agente al tempo $t$. 
 \end{enumerate}
 Consideriamo l'intervallo di tempo $[t_1, t_2]$ e applichiamo la forma integrale della seconda legge di Newton\footnote{$\Delta p = \int F\de t $} per la variazione della quantità di moto $p$ del tratto $B$ nell'intervallo di tempo $[t_1,t_2]$:
 
