@@ -51,7 +51,7 @@ Denotando con $\Delta(s) := \det A(s)$ otteniamo tre casi:\begin{itemize}
     Questa condizione ci divide in tre casi:\begin{itemize}
         \item $(2b|_\gamma)^2 - 4 a|_\gamma \cdot c|_\gamma > 0$, detto \bemph{iperbolico}, dove ho due derivate distinte e dunque due famiglie di curve caratteristiche.
         \item $(2b|_\gamma)^2 - 4 a|_\gamma \cdot c|_\gamma = 0$, detto \bemph{parabolico}, in cui ho una sola famiglia di derivate e dunque di curve caratteristiche.
-        \item $(2b|_\gamma)^2 - 4 a|_\gamma \cdot c|_\gamma > 0$, detto \bemph{ellittico}, in cui non ho curve caratteristiche
+        \item $(2b|_\gamma)^2 - 4 a|_\gamma \cdot c|_\gamma > 0$, detto \bemph{ellittico}, in cui non ho curve caratteristiche.
     \end{itemize}
     \item Negli altri casi coi nostri strumenti non abbiamo considerazioni interessanti dal punto di vista fisico.
 \end{itemize}
@@ -183,5 +183,35 @@ Dato che $\Phi$ e $\Psi$ sono pari, dunque $\Phi'$ è dispari, otteniamo che val
 
 \[ u_x(0,t) = \frac{\Phi'(at) + \Phi'(-at)}{2} + \frac{\Psi(at) - \Psi(-at)}{2} \equiv 0\]
 
+\section{Soluzione dell'equazione del calore sul segmento $[0,L]$ con assegnati dati iniziali e condizioni
+al bordo omogenee di Dirichlet; giustificare rigorosamente la serie formale che rappresenta la
+soluzione.}
+
+Consideriamo il problema di Dirichlet con condizioni al bordo omogenee per l'equazione del calore sul segmento $[0,L]$ con $L>0$:
+
+\[ \begin{cases} u_t - a^2 u_{xx} = 0 & \forall x \in (0,L), \forall t > 0 \\ u(x,0) = \varphi(x) & \forall x \in [0,L] \\ u(0,t) = u(L,t) = 0 & \forall t \ge 0 \end{cases}\]
+
+Assumendo sufficiente regolarità per il dato $\varphi(x)$, calcoliamo i suoi coefficienti di Fourier per ogni $n \in \Z^+$:
+
+\[ c_n := \frac{2}{L}\intop_0^L \varphi(\xi) \sin\left( \frac{\pi n}{L}\xi \right)\de\xi, \quad \varphi_n (x) := c_n \sin\left( \frac{\pi n}{L}x \right) \]
+
+Dunque possiamo scrivere la nostra soluzione come 
+
+\[ u(x,t) = \sum_{n\in \Z^{+}} u_n(x,t), \quad \text{dove}\quad u_n(x,t) := c_n e^{- a^2 \left( \frac{\pi n}{L}\right)^2 t }\sin \left( \frac{\pi n}{L}x \right)\]
+
+A priori questa serie è puramente formale, dobbiamo verificare che abbia effettivo senso: osserviamo che possiamo derivare due volte, dato che assumendo $t \ge t_0$ con $t_0$ arbitrariamente piccolo e $x \in (0,L)$ valgono le seguenti stime sfruttando il termine esponenziale:
+
+\[ \left|\frac{\partial u_n}{\partial t}(x,t)  \right| < |\varphi_n(x)| \left( \frac{\pi n}{L}x \right) e^{- a^2 \left( \frac{\pi n}{L}\right)^2 t_0 }, \quad \left|\frac{\partial^2 u_n}{\partial x^2}(x,t)  \right| < |\varphi_n(x)| \left( \frac{\pi n}{L}x \right) e^{- a^2 \left( \frac{\pi n}{L}\right)^2 t_0 } \]
+
+Possiamo assumere ragionevolmente che la temperatura iniziale non sia infinita e che quindi ogni $\varphi_n$ sia limitata da un qualche $2M > 0$, dunque otteniamo convergenza uniforme per le serie 
+
+\[ u_t(x,t) = \sum_{n\in \Z^+} \frac{\partial u_n}{\partial t}(x,t), \quad u_{xx}(x,t) = \sum_{n\in \Z^+} \frac{\partial^2 u_n}{\partial x^2}(x,t) \]
+
+Notiamo che le ipotesi di regolarità minime che abbiamo fatto su $\varphi$ sono sufficienti a garantire la convergenza per tutte le derivate di $u$ in $[0,L]\times [t_0, +\infty)$, infatti vediamo che vale
+
+\[ \left| \frac{\partial^{k+l}u_n}{\partial t^k \partial x^l}(x,t) \right| < 2M \left(\frac{\pi n}{L}\right)^{2k+l} a^{2k} e^{- a^2 \left( \frac{\pi n}{L}\right)^2 t_0 } \]
+
+Per l'arbitrarietà di $t_0$ inoltre posso estendere questa regolarità a tutto $[0,L]\times \R^+$.\\
+Infine dobbiamo controllare che $u$ sia continua: dato che $|u_n|$ è sempre maggiorata da $|\varphi_n|$, è sufficiente richiedere la continuità a tratti di $\varphi$ su $[0,L]$ e $\varphi(0)=\varphi(L) = 0$ per ottenere la continuità di $u$.
 
 \end{document}
