@@ -227,11 +227,13 @@ Consideriamo il problema non omogeneo (ovvero con una sorgente di calore) per l'
 
 \[ \begin{cases} u_t - a^2 u_{xx} = f(x,t) & \forall x \in (0,L), \forall t > 0 \\ u(x,0) = 0 & \forall x \in [0,L] \\ u(0,t) = u(L,t) = 0 & \forall t \ge 0 \end{cases}\]
 
-La soluzione è 
+La chiave è assumere che $u$ possa essere rappresentata in serie di Fourier come $f$ e sostanzialmente fare derivate usando l'equazione, notando che i coefficienti $u_n$ e $f_n$ sono funzioni in $t$, dunque otteniamo un'ODE per ciascun $u_n$ che ci da
+
+\[ u_n(t) = \intop_0^t e^{-a^2\left( \frac{\pi n}{L} \right)^2 (t-\tau)} f_n(\tau) \de\tau \]
+
+Riarrangiando e scambiando vari integrali e sommatorie otteniamo la soluzione
 
 \[ u(x,t) = \intop_0^t\intop_0^L G(x,t-\tau,\xi)f(\xi,\tau)\de\xi\de\tau \]
-
-Non ho davvero voglia di stare a scrivere la giustificazione.
 
 \subsection{Soluzione dell'equazione del calore con termine non omogeneo e temperatura iniziale non nulla sul segmento $[0,L]$.}
 
