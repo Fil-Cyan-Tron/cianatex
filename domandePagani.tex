@@ -212,7 +212,51 @@ Notiamo che le ipotesi di regolarità minime che abbiamo fatto su $\varphi$ sono
 
 \[ \left| \frac{\partial^{k+l}u_n}{\partial t^k \partial x^l}(x,t) \right| < 2M \left(\frac{\pi n}{L}\right)^{2k+l} a^{2k} e^{- a^2 \left( \frac{\pi n}{L}\right)^2 t_0 } \]
 
-Per l'arbitrarietà di $t_0$ inoltre posso estendere questa regolarità a tutto $[0,L]\times \R^+$.\\
-Infine dobbiamo controllare che $u$ sia continua: dato che $|u_n|$ è sempre maggiorata da $|\varphi_n|$, è sufficiente richiedere la continuità a tratti di $\varphi$ su $[0,L]$ e $\varphi(0)=\varphi(L) = 0$ per ottenere la continuità di $u$.
+Per l'arbitrarietà di $t_0$ inoltre posso estendere questa regolarità a tutto $[0,L]\times (0,+\infty)$.\\
+Infine dobbiamo controllare che $u$ sia continua: dato che $|u_n|$ è sempre maggiorata da $|\varphi_n|$, è sufficiente richiedere la continuità a tratti di $\varphi$ su $[0,L]$ e $\varphi(0)=\varphi(L) = 0$ per ottenere la continuità di $u$ su tutto $[0,L]\times [0,+\infty)$. Notiamo che definendo
+
+\[ G(x,t,\xi) := \frac{2}{L}\sum_{n \in \Z^+} \sin\left( \frac{\pi n}{L}\xi \right)\sin\left( \frac{\pi n}{L}x \right) e^{-a^2 \left( \frac{\pi n}{L} \right)^2 t}\] 
+
+Possiamo scrivere la nostra soluzione come 
+
+\[ u(x,t)=  \intop_0^L  G(x,t,\xi)\varphi(\xi) \de\xi \]
+
+\subsection{Determinare la soluzione dell'equazione del calore con termine non omogeneo e temperatura iniziale nulla sul segmento $[0,L]$.}
+
+Consideriamo il problema non omogeneo (ovvero con una sorgente di calore) per l'equazione del calore sul segmento $[0,L]$ con $L>0$ con temperatura iniziale nulla:
+
+\[ \begin{cases} u_t - a^2 u_{xx} = f(x,t) & \forall x \in (0,L), \forall t > 0 \\ u(x,0) = 0 & \forall x \in [0,L] \\ u(0,t) = u(L,t) = 0 & \forall t \ge 0 \end{cases}\]
+
+La soluzione è 
+
+\[ u(x,t) = \intop_0^t\intop_0^L G(x,t-\tau,\xi)f(\xi,\tau)\de\xi\de\tau \]
+
+Non ho davvero voglia di stare a scrivere la giustificazione.
+
+\subsection{Soluzione dell'equazione del calore con termine non omogeneo e temperatura iniziale non nulla sul segmento $[0,L]$.}
+
+Consideriamo il problema non omogeneo (ovvero con una sorgente di calore) per l'equazione del calore sul segmento $[0,L]$ con $L>0$ con temperatura iniziale assegnata:
+
+\[ \begin{cases} u_t - a^2 u_{xx} = f(x,t) & \forall x \in (0,L), \forall t > 0 \\ u(x,0) = \varphi(x) & \forall x \in [0,L] \\ u(0,t) = u(L,t) = 0 & \forall t \ge 0 \end{cases}\]
+
+Per risolverlo, consideriamo l'operatore differenziale:
+
+\[ D(u)(x,t) := \frac{\partial u}{\partial t}(x,t) - a^2 \frac{\partial^2 u}{\partial x^2}(x,t) \]
+
+Questo è lineare e ci permette di riscrivere il nostro problema come  
+
+\[ \begin{cases} D(u)(x,t) = f(x,t) & \forall x \in (0,L), \forall t > 0 \\ u(x,0) = \varphi(x) & \forall x \in [0,L] \\ u(0,t) = u(L,t) = 0 & \forall t \ge 0 \end{cases}\]
+
+Ora consideriamo $v,w$ soluzioni dei seguenti problemi:
+
+\[ \begin{cases} v_t - a^2 v_{xx} = 0 & \forall x \in (0,L), \forall t > 0 \\ v(x,0) = \varphi(x) & \forall x \in [0,L] \\ v(0,t) = u(L,t) = 0 & \forall t \ge 0 \end{cases}, \qquad \begin{cases} w_t - a^2 w_{xx} = f(x,t) & \forall x \in (0,L), \forall t > 0 \\ w(x,0) = 0 & \forall x \in [0,L] \\ w(0,t) = w(L,t) = 0 & \forall t \ge 0 \end{cases}\]
+
+Che abbiamo mostrato essere della forma (assumendo che $\varphi$ e $f$ ammettano serie di Fourier convergenti)
+
+\[v(x,t) = \intop_0^L G(x, t, \xi)\varphi(\xi)\de\xi\quad\text{e} \quad w(x,t) = \intop_0^t\intop_0^L G(x,t-\tau,\xi) f(\xi,\tau)\de\xi\de\tau  \]  
+
+Dunque mostriamo $u(x,t) = v(x,t)+w(x,t)$:
+
+\[ \begin{cases} D(v+w)(x,t) = \underbrace{D(v)(x,t)}_{=0} + \underbrace{D(w)(x,t)}_{=f(x,t)} = f(x,t) & \forall x \in (0,L), \forall t > 0 \\ \underbrace{v(x,0)}_{= \varphi(x)} + \underbrace{w(x,0)}_{=0}  = \varphi(x) & \forall x \in [0,L] \\ u(0,t) = u(L,t) = 0 & \forall t \ge 0 \end{cases}\]
 
 \end{document}
