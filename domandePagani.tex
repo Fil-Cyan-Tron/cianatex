@@ -183,8 +183,9 @@ Dato che $\Phi$ e $\Psi$ sono pari, dunque $\Phi'$ è dispari, otteniamo che val
 
 \[ u_x(0,t) = \frac{\Phi'(at) + \Phi'(-at)}{2} + \frac{\Psi(at) - \Psi(-at)}{2} \equiv 0\]
 
-\section{Soluzione dell'equazione del calore sul segmento $[0,L]$ con assegnati dati iniziali e condizioni
-al bordo omogenee di Dirichlet; giustificare rigorosamente la serie formale che rappresenta la
+\section{Calore}
+
+\subsection{Soluzione dell'equazione del calore sul segmento $[0,L]$ con assegnati dati iniziali e condizioni al bordo omogenee di Dirichlet; giustificare rigorosamente la serie formale che rappresenta la
 soluzione.}
 
 Consideriamo il problema di Dirichlet con condizioni al bordo omogenee per l'equazione del calore sul segmento $[0,L]$ con $L>0$:
@@ -201,7 +202,7 @@ Dunque possiamo scrivere la nostra soluzione come
 
 A priori questa serie è puramente formale, dobbiamo verificare che abbia effettivo senso: osserviamo che possiamo derivare due volte, dato che assumendo $t \ge t_0$ con $t_0$ arbitrariamente piccolo e $x \in (0,L)$ valgono le seguenti stime sfruttando il termine esponenziale:
 
-\[ \left|\frac{\partial u_n}{\partial t}(x,t)  \right| < |\varphi_n(x)| \left( \frac{\pi n}{L}x \right) e^{- a^2 \left( \frac{\pi n}{L}\right)^2 t_0 }, \quad \left|\frac{\partial^2 u_n}{\partial x^2}(x,t)  \right| < |\varphi_n(x)| \left( \frac{\pi n}{L}x \right) e^{- a^2 \left( \frac{\pi n}{L}\right)^2 t_0 } \]
+\[ \left| \frac{\partial u_n}{\partial t}(x,t) \right| < |\varphi_n(x)| \left(\frac{\pi n}{L}\right)^{2} a^{2} e^{- a^2 \left( \frac{\pi n}{L}\right)^2 t_0 }, \left| \frac{\partial^{2}u_n}{ \partial x^2}(x,t) \right| < |\varphi_n(x)| \left(\frac{\pi n}{L}\right)^{2} e^{- a^2 \left( \frac{\pi n}{L}\right)^2 t_0 } \]
 
 Possiamo assumere ragionevolmente che la temperatura iniziale non sia infinita e che quindi ogni $\varphi_n$ sia limitata da un qualche $2M > 0$, dunque otteniamo convergenza uniforme per le serie 
 
