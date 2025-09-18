@@ -1,0 +1,547 @@
+\documentclass{article}
+
+\usepackage{cianatex}
+
+\usepackage{cianacolors}
+
+\usepackage{cianatheorems}
+
+\title{Elementi di Teoria delle Categorie}
+\author{Seminario PEM di F. Troncana, sotto la supervisione del prof. R. Zunino}
+\date{A.A. 2025/2026}
+
+\renewcommand\C{\mc{C}}
+\newcommand\D{\mc{D}}
+\newcommand\nat{\operatorname{Nat}}
+\newcommand\J{\mc{J}}
+\newcommand\eq{\operatorname{eq}}
+\newcommand\cod{\operatorname{cod}}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+    La Teoria delle Categorie è un formalismo nato in seno alla Topologia e Geometria Algebrica per descrivere in modo generale la struttura delle varie teorie matematiche: laddove la Teoria degli Insiemi si fonda sui concetti primitivi di "insieme" e "elemento", quello della Teoria delle Categorie è un punto di vista più strutturale, basato sui concetti di "oggetto" e "morfismo", ovvero una relazione astratta tra due oggetti.\\
+    In questa trattazione forniremo un'elementare esposizione del linguaggio e di alcune costruzioni e risultati fondamentali nella Teoria delle Categorie in modo propedeutico alla pratica matematica generale ed evidenziando alcuni aspetti di tipo fondativo.
+\end{abstract}
+
+\subsection*{Estensioni di ZFC}
+
+Trattando strutture molto "grandi" in un senso che renderemo preciso in seguito, per fondare propriamente la Teoria delle Categorie è necessario estendere la Teoria degli Insiemi di Zermelo-Fraenkel più l'assioma della scelta (che assumeremo sempre). L'approccio che seguiremo è un approccio che in qualche modo "limiti" la grandezza delle nostre strutture, supponendo l'esistenza di un insieme "universo" che si sostituisca alla classe di tutti gli insiemi.
+
+\begin{definition}{Universo di Grothendieck}{universo di Grothendieck}
+    Sia $\G$ un insieme non vuoto. Questo si dice \bemph{universo di Grothendieck} se:\begin{itemize}
+        \item Se $x\in y$ e $y \in \G$ allora $x \in \G$, ovvero $\G$ è un insieme \bemph{transitivo}.
+        \item Se $x,y \in \G$ allora $\{x,y\}\in\G$.
+        \item Se $x \in \G$ allora $2^x \in \G$.
+        \item Se $I \in \G$, per ogni $f: I \to \G$ vale $\bigcup_{i \in I}f(i)\in \G$, ovvero $\G$ è chiuso per unioni indicizzate da un suo elemento.
+    \end{itemize}
+\end{definition}
+
+Si dimostrano immediatamente le seguenti proprietà:
+
+\begin{proposition}{Proprietà degli universi di Grothendieck più che numerabili}{proprietà degli universi di Grothendieck più che numerabili}
+    Sia $\G$ un universo di Grothendieck più che numerabile. Allora questo contiene:\begin{itemize}
+        \item Tutti i sottoinsiemi di ogni suo elemento (in particolare dunque l'insieme vuoto).
+        \item Tutti i singoletti contenenti i suoi elementi.
+        \item Tutti i prodotti, le unioni disgiunte e le intersezioni di famiglie di suoi elementi indicizzate da un suo elemento.
+        \item Tutte le funzioni tra due suoi elementi.
+        \item Tutti i suoi sottoinsiemi la cui cardinalità è un suo elemento.
+    \end{itemize}
+\end{proposition} 
+
+Da queste proprietà seguono due fatti strettamente correlati, ovvero che un universo di Grothendieck più che numerabile è un \bemph{modello} per ZFC e che l'esistenza di un universo di Grothendieck più che numerabile è indipendente da ZFC. Intuitivamente, il seguente assioma ci permette di trattare un universo di Grothendieck come "sostituto" della classe di tutti gli insiemi, sicuri del fatto che questo "limiti" tutta la pratica matematica "usuale".
+
+\begin{axiom}{Esistenza di un universo di Grothendieck più che numerabile}{esistenza di un universo di Grothendieck più che numerabile}
+    Esiste un universo di Grothendieck più che numerabile $\G$. Tutti gli elementi di $\G$ si dicono \bemph{piccoli}, mentre gli altri insiemi si dicono \bemph{grandi}.
+\end{axiom}
+
+\section{Nozioni fondamentali}
+
+\begin{definition}{Categoria e dualità}{categoria}
+    Una \bemph{categoria} $\C$ è una struttura munita di due insiemi: $\ob\C$ e $\hom\C$, detti rispettivamente \bemph{oggetti} (o elementi) e \bemph{morfismi} (o mappe o frecce) tali che \begin{itemize}
+        \item Ogni morfismo $f \in \hom\C$ abbia associati due oggetti $A,B \in \ob\C$ detti rispettivamente \bemph{dominio} e \bemph{codominio} di $f$, che verrà indicato come $f : A\to B$.
+        \item Per ogni coppia di morfismi $f:A\to B$ e $g : B\to C$ sia definita la loro \bemph{composizione}, ovvero un morfismo $g\circ f : A \to C$ (spesso indicato solo con $gf$).
+        \item Per ogni oggetto $X \in \ob\C$ esista un morfismo $\id_X \in \hom\C$ detto \bemph{identità} di $X$ tale che per ogni morfismo $f:A\to B$ valga $\id_B f = f \id_A = f$.
+        \item Per ogni terna di morfismi componibili $f,g,h \in \hom\C$, valga $h(gf) = (hg)f =: hgf$, ovvero la composizione sia \bemph{associativa}.
+    \end{itemize}
+    Fissati due oggetti $A,B \in \ob\C$ denoteremo con $\hom(A,B)$ o $\C(A,B)$ l'insieme dei morfismi $A\to B$ di $\hom\C$.\\
+    Per ogni categoria $\C$ è definita la sua \bemph{duale} (o opposta) $\C^\op$, i cui oggetti sono gli stessi di $\C$ e i cui morfismi sono quelli di $\C$ ma invertiti di direzione, ovvero ad ogni $f:A\to B$ in $\C$ corrisponde un $f^\op : B\to A$ in $\C^\op$.\\
+    Una categoria $\C$ si dice:\begin{itemize}
+        \item \bemph{Piccola} se gli insiemi $\hom\C$ e $\ob\C$ (anche se vedremo sotto che la grandezza della seconda è sempre limitata dalla prima) sono insiemi piccoli.
+        \item \bemph{Grande} se non è piccola.
+        \item \bemph{Localmente piccola} se, una volta fissati due oggetti $X,Y \in \ob\C$, l'insieme $\hom(X,Y)$ è un insieme piccolo.
+        \item \bemph{Finita} se è piccola e l'insieme dei morfismi è un insieme finito.
+    \end{itemize}
+\end{definition}
+
+\begin{remark}{Sulle categorie}{grandezza}
+    Banalmente:\begin{itemize}
+        \item Le identità sono uniche.
+        \item La categoria duale è essenzialmente\footnote{A meno di equivalenza come definita in \ref{def:equivalenza di categorie}} unica e vale $(\C^\op)^\op = \C$.
+        \item Dato che $\ob\C$ inietta sempre in $\hom\C$ con la mappa $X\mapsto \id_X$, in generale l'insieme dei morfismi può essere arbitrariamente più grande di quello degli oggetti, dunque la grandezza di una categoria è in generale indipendente dal suo insieme degli oggetti.
+    \end{itemize} 
+    \proof 
+    Dimostriamo solo l'ultimo punto con un esempio, gli altri sono banali. Sia $V$ la categoria formata da un unico oggetto $\bullet$ e il cui insieme dei morfismi corrisponde all'insieme dei cardinali minori della cardinalità di $\G$, dove la composizione di due morfismi è data dalla loro somma come cardinali. Nonostante $\ob V$ sia il più piccolo possibile (al di là della categoria vuota), $\hom V$ è un insieme grande, dunque $V$ non solo è grande, ma non è nemmeno localmente piccola.
+    \qed
+\end{remark}
+
+Da ora in avanti, assumeremo sempre (anche senza specificarlo) che le nostre categorie siano almeno localmente piccole per evitare problemi di fondazione.\\
+Inoltre quando faremo riferimento ad alcune categorie specifiche, ad esempio $\setcat$, assumeremo sempre di intendere non la categoria di tutti gli insiemi con le funzioni tra di loro\footnote{Che non sarebbe affatto una categoria per come le abbiamo definite} ma della categoria di tutti gli insiemi piccoli con le funzioni tra di loro\footnote{Possiamo farlo in quanto $\G$ contiene automaticamente tutti gli insiemi costruiti a partire dall'insieme vuoto e iterando operazioni di unione, intersezione e passaggio alle parti, dunque di fatto tutti gli insiemi che si usano nella normale pratica matematica}, e allo stesso modo intenderemo per esempio gli spazi topologici piccoli, o i gruppi piccoli e così via.
+
+\begin{definition}{Sottocategoria}{sottocategoria}
+    Siano $\C$ e $\D$ due categorie tali che $\ob\C \subset \ob\D$, $\hom\C \subset \hom\D$ e per ogni $f,g,h \in \hom C$ valga 
+    \[h = f\circ_\C g = f\circ_\D g.\]
+    Allora $\C$ si dice una \bemph{sottocategoria} di $\D$.\\
+    Se per ogni coppia di oggetti $X,Y \in \C$ vale $\C(X,Y)=\D(X,Y)$, allora $\C$ si dice \bemph{piena}.
+\end{definition}
+
+\begin{definition}{Sapori di morfismi}{morfismi}
+    Sia $\C$ una categoria e sia $f: A\to B$ un morfismo. Esso può dirsi:\begin{itemize}
+        \item \bemph{Monomorfismo} (o monico o mono) se la precomposizione è iniettiva, ovvero per ogni coppia di morfismi $g_1, g_2 : C\to A$ e ogni morfismo postcomponibile $f$ vale $fg_1 = fg_2 \Rarr g_1=g_2$.
+        \item \bemph{Epimorfismo} (o epico o epi) se la postcomposizione è iniettiva, ovvero se per ogni coppia di morfismi $g_1, g_2 : B\to C$ e ogni morfismo precomponibile $f$ vale $g_1f = g_2f \Rarr g_1=g_2$.
+        \item \bemph{Endomorfismo} (o endo) se $A=B$.
+        \item \bemph{Sezione} (o split mono) se ha un'inversa sinistra, ovvero se esiste un morfismo $g:B\to A$ tale che $gf = \id_A$.
+        \item \bemph{Retrazione} (o split epi) se ha un'inversa destra, ovvero se esiste un morfismo $g:B\to A$ tale che $fg = \id_B$.
+        \item \bemph{Isomorfismo} (o iso) se ha un'inversa destra e sinistra. In particolare, $A$ e $B$ si dicono \bemph{isomorfi} (attraverso $f$) e li indicheremo con $f:A\cong_\C B$ omettendo usualmente $f$ o $\C$.
+        \item \bemph{Automorfismo} (o auto) se è iso e endo.
+    \end{itemize}    
+\end{definition}
+
+\begin{remark}{Sui morfismi}{sui morfismi}
+    Valgono le seguenti:\begin{itemize}
+        \item Le sezioni sono mono.
+        \item Le retrazioni sono epi.
+        \item iso $\Harr$ (split mono $\wedge$ epi) $\Harr$ (mono $\wedge$ split epi) $\Rarr$ (epi $\wedge$ mono), ma nell'ultimo caso non vale l'implicazione inversa.
+        \item Tutte le inverse sono uniche quando esistono.
+        \item Un mono è un epi nella categoria opposta e viceversa.
+    \end{itemize}
+    \proof 
+    Forniamo solo due esempi di morfismi che sono epici e monici ma non isomorfismi (le altre verifiche sono assolutamente automatiche):\begin{itemize}
+        \item Consideriamo in $\catname{Haus}$\footnote{Categoria degli spazi topologici di Hausdorff, ovvero $T_2$, e delle funzioni continue} l'inclusione $\iota: [0,1]\cap \Q\inj[0,1]$ (entrambi con la topologia euclidea); questa è chiaramente monica in quanto iniettiva, ed è epica in quanto una funzione continua in $\catname{Haus}$ è completamente determinata dal suo valore su un sottospazio denso, ma non è iso dato che non è suriettiva.
+        \item Consideriamo la categoria
+        \[\begin{tikzcd}
+        	\bullet && \bullet
+    	    \arrow["\id", from=1-1, to=1-1, loop, in=145, out=215, distance=10mm]
+        	\arrow["f", from=1-1, to=1-3]
+    	    \arrow["\id", from=1-3, to=1-3, loop, in=325, out=35, distance=10mm]
+        \end{tikzcd}\]
+        Dato che a destra o sinistra possiamo comporre solo con l'identità, $f$ è sia monico che epico, ma non è iso in quanto non ha inversa.
+    \end{itemize}
+    \qed
+\end{remark}
+
+\begin{definition}{Oggetti iniziali e finali}{Oggetti iniziali e finali}
+    Sia $\C$ una categoria e sia $I$ un oggetto.\\
+    $I$ si dice \bemph{oggetto iniziale} se per ogni oggetto $X$ di $\C$ esiste un unico morfismo $\iota_X:I\to X$\\
+    $I$ si dice \bemph{oggetto finale} se è l'oggetto iniziale di $\C^\op$, o equivalentemente se per ogni oggetto $X$ di $\C$ esiste un unico morfismo $\zeta_X : X\to I$.\\
+    Se $I$ è sia finale che iniziale, si dice \bemph{oggetto zero}.
+\end{definition}
+
+\begin{proposition}{Unicità di oggetti iniziali e finali}{unicità zero}
+    Se una categoria $\C$ ammette un oggetto iniziale (o finale o zero), questo è essenzialmente unico.
+\end{proposition}
+
+\begin{definition}{Funtore}{funtore}
+    Siano $\C$ e $\D$ due categorie. Un \bemph{funtore covariante} $F: \C\to\D$ consiste in due mappe $F:\ob\C\to\ob\D$ e $F:\hom\C\to\hom\D$ che rispettino la composizione, ovvero:\begin{itemize}
+        \item Per ogni morfismo $f :X\to Y$ vale $Ff: FX \to FY$.
+        \item Per ogni oggetto $X \in \ob\C$ vale $F\id_X = \id_{FX}$.
+        \item Per ogni coppia di morfismi componibili $f,g\ in \hom\C$ vale $F(gf) = FgFf$.
+    \end{itemize}
+    Un \bemph{funtore controvariante} da $\C$ a $\D$ è un funtore covariante $F: \C^\op\to\D$. Anche se l'espressione "un funtore controvariante $\C^\op\to\D$" tecnicamente indicherebbe un funtore covariante $\C\to\D$, la useremo quasi sempre per indicare un funtore controvariante $\C\to\D$, ovvero una controvarianza specificata due volte non farà una covarianza.\\
+    Un funtore si dice:\begin{itemize}
+        \item \bemph{Fedele} se per ogni $X,Y \in \ob\C$ la sua restrizione $F_{X,Y}:\C(X,Y)\to \D(FX,FY)$ è iniettiva.
+        \item \bemph{Pieno} se per ogni $X,Y \in \ob\C$ la sua restrizione $F_{X,Y}:\C(X,Y)\to \D(FX,FY)$ è suriettiva.
+        \item \bemph{Pienamente fedele} se è pieno e fedele.
+        \item \bemph{Essenzialmente suriettivo sugli oggetti} se per ogni oggetto $Y \in \D$ esiste un oggetto $X \in \C$ tale che $FX\cong_\D Y$
+    \end{itemize}
+    Se $F:\C\to\D$ e $G:\D\to\mc{E}$ sono due funtori, la loro composizione $GF : \C\to\mc{E}$ è un funtore
+\end{definition}
+
+\begin{proposition}{Riflessione di isomorfismi}{riflessione di isomorfismi}
+    Sia $F:\C\to\D$ un funtore. Se $f:X\cong Y$, allora $Ff:FX\cong FY$.\\
+    Se $F$ è pienamente fedele e $g:FX\cong FY$, allora $X\cong Y$.
+    \proof 
+    La prima implicazione è banale, dunque assumiamo che $F$ sia pienamente fedele e $g:FX\cong FY$ sia un isomorfismo; dato che la mappa $\varphi := F_{X,Y} : \C(X,Y) \to \D(FX,FY)$ è una biezione, esiste $f: X\to Y$ tale che $\varphi(f) = g$, dunque definiamo $f' := \varphi^{-1}(g^{-1})$ e dimostriamo che è un'inversa sinistra (dimostrare che è un'inversa destra è analogo). Dato che $F$ è un funtore, vale
+    \[f'f = \varphi^{-1}(\varphi(f'f) )=\varphi^{-1}(\varphi(f')\varphi(f)) = \varphi^{-1}(g^{-1}g) = \varphi^{-1}(\id_{FX}) = \id_X\]
+    \qed
+\end{proposition}
+
+Adesso faremo una cosa un po' buffa, ovvero definiremo il prodotto di categorie come definiremmo normalmente il prodotto cartesiano di insiemi e più tardi lo useremo per definire il prodotto in categorie generali.
+
+\begin{definition}{Categoria prodotto e bifuntore}{categoria prodotto e bifuntore}
+    Siano $\C$ e $\D$ due categorie. Definiamo la \bemph{categoria prodotto} $\C\times\D$ di $\C$ e $\D$ come la categoria i cui oggetti sono le coppie ordinate di un oggetto di $\C$ e uno di $\D$ e dove
+    \[ \hom((A,B),(C,D)) = \left\{ (f,g) : f \in \C(A,C), g \in \D(B,D) \right\}. \]
+    Una categoria prodotto è naturalmente munita di due funtori $P_I : \C\times\D\to I$ con $I = \C,\D$, detti \bemph{proiezioni}, tali che
+    \[ P_\C ((f,g):(A,B)\to(C,D)) = (f:A\to C) \quad\text{e}\quad P_\D ((f,g):(A,B)\to(C,D)) = (g:B\to D).\]
+    Un funtore $F:\C\times\D\to \E$ si dice \bemph{bifuntore}.
+\end{definition}
+
+Perchè "spostiamo" il prodotto cartesiano alle categorie? Perchè spesso quando lavoriamo in qualche categoria ci risulta più agevole una definizione più "intrinseca" di prodotto, oppure abbiamo prodotti diversi: in $\catname{Rel}$\footnote{Categoria degli insiemi e delle relazioni} il prodotto "categorico" è dato dall'unione disgiunta, nonostante $\setcat$ sia una sua sottocategoria e in questa il prodotto sia l'usuale prodotto cartesiano.\\
+Abbiamo visto che i morfismi sono trasformazioni tra oggetti, mentre i funtori sono trasformazioni tra morfismi. Introduciamo ora un ulteriore "livello" di frecce, le trasformazioni naturali, ovvero trasformazioni tra funtori.
+
+\begin{definition}{Trasformazione naturale}{trasformazione naturale}
+    Siano $\C,\D$ categorie e siano $F,G : \C\to\D $ due funtori.\\
+    Una \bemph{trasformazione naturale} $\Phi:F\Rarr G$ è un insieme di morfismi $\{\Phi_X : F(X)\to G(X)\}_{X\in\ob\C}$ tali che per ogni $f:X\to Y$ in $\C$ il seguente diagramma commuti:
+    \[\begin{tikzcd}
+    	X && {F(X)} && {G(X)} \\
+    	\\
+    	Y && {F(Y)} && {G(Y)}
+    	\arrow["f"{description}, from=1-1, to=3-1]
+    	\arrow["{\Phi_X}"{description}, from=1-3, to=1-5]
+    	\arrow["{F(f)}"{description}, from=1-3, to=3-3]
+    	\arrow["{G(f)}"{description}, from=1-5, to=3-5]
+	    \arrow["{\Phi_Y}"{description}, from=3-3, to=3-5]
+    \end{tikzcd}\]
+    Una trasformazione naturale tale per cui tutti i morfismi $\Phi_X$ so isomorfismi si dice \bemph{isomorfismo naturale}.
+\end{definition}
+
+\begin{definition}{Equivalenza di categorie}{equivalenza di categorie}
+    Siano $\C$ e $\D$ due categorie e siano $F:\C\to\D$ e $G:\D\to\C$ due funtori.\\
+    La coppia $(F,G)$ si dice \bemph{equivalenza di categorie} tra $F$ e $G$ se esistono due isomorfismi naturali
+    \[ \id_\C \cong GF \quad\text{e}\quad \id_\D \cong FG .\]
+\end{definition}
+
+\begin{proposition}{Caratterizzazione per un'equivalenza di categorie}{equivalenza di categorie}
+    Sia $F : \C\to\D$ un funtore. Questo definisce un'equivalenza di categorie se e solo se è pienamente fedele ed essenzialmente suriettivo sugli oggetti.
+\end{proposition}
+
+\begin{definition}{Funtori aggiunti}{funtori aggiunti}
+    Siano $F:\C\to\D$ e $G:\D\to\C$ due funtori. Questi si dicono \bemph{aggiunti} (rispettivamente sinistro e destro all'altro) se esiste un isomorfismo:
+    \[ \D(Fc, d) \cong \C(c, Gd)\]
+    Naturale per ogni $c \in \C$ e $d \in \D$. Scriveremo $F\dashv G$ per indicare che $F$ è aggiunto sinistro a $G$ e che $G$ è aggiunto destro a $F$.
+\end{definition}
+
+\section{Lemma di Yoneda e conseguenze}
+
+Un risultato assolutamente centrale in Teoria delle Categorie è il lemma di Yoneda, una versione "categoriale" del teorema di Cayley in Teoria dei Gruppi\footnote{E in effetti, il teorema di Cayley può essere ridotto ad un caso particolare del lemma di Yoneda}.
+
+\begin{definition}{Categoria dei funtori}{categoria dei funtori}
+    Siano $\C,\D$ due categorie.\\
+    Definiamo la categoria $\D^\C$, che spesso denoteremo con $[\C,\D]$, la \bemph{categoria dei funtori} da $\C$ a $\D$, i cui oggetti sono i funtori covarianti e i cui morfismi sono le trasformazioni naturali con la \bemph{composizione verticale}: definiamo per $\mu:F\to G$ e $\nu:G\to H$ la loro composizione verticale $\nu\mu : F\to H$ col seguente diagramma:
+    \[\begin{tikzcd}
+    	X && {F(X)} && {G(X)} && {H(X)} \\
+    	\\
+    	Y && {F(Y)} && {G(Y)} && {H(Y)}
+    	\arrow["f"{description}, from=1-1, to=3-1]
+    	\arrow["{\mu_X}"{description}, from=1-3, to=1-5]
+    	\arrow["{(\nu\mu)_X}"{description}, curve={height=-24pt}, from=1-3, to=1-7]
+    	\arrow["Ff"{description}, from=1-3, to=3-3]
+    	\arrow["{\nu_X}"{description}, from=1-5, to=1-7]
+    	\arrow["Gf"{description}, from=1-5, to=3-5]
+    	\arrow["Hf"{description}, from=1-7, to=3-7]
+    	\arrow["{\mu_Y}"{description}, from=3-3, to=3-5]
+    	\arrow["{(\nu\mu)_Y}"{description}, curve={height=24pt}, from=3-3, to=3-7]
+    	\arrow["{\nu_Y}"{description}, from=3-5, to=3-7]
+    \end{tikzcd}\]
+    Spesso invece di scrivere $[\C,\D](F,G)$ o $\hom_{[\C,\D]}(F,G)$ scriveremo $\nat(F,G)$.
+\end{definition}
+
+\begin{definition}{$\hom$-funtore covariante e controvariante}{hom-funtore}
+    Sia $\C$ una categoria localmente piccola\footnote{È vero che abbiamo detto che lo avremmo sempre assunto, ma è importante specificarlo in questo caso.} e sia $A$ un oggetto di $\C$. Definiamo due funtori $h_A:\C\to\setcat$ e $h^A : \C^\op\to\setcat$, detti $\hom$\bemph{-funtori} (rispettivamente covariante e controvariante) nel seguente modo:
+        \[\begin{tikzcd}
+    	{\hom(A,X)} && X && {\hom(X,A)} \\
+    	\\
+    	{\hom(A,Y)} && Y && {\hom(Y,A)}
+    	\arrow["{h_A(f) = f\circ -}"{description}, from=1-1, to=3-1]
+    	\arrow["{h_A}"{description}, maps to, from=1-3, to=1-1]
+    	\arrow["{h^A}"{description}, maps to, from=1-3, to=1-5]
+    	\arrow["f"{description}, from=1-3, to=3-3]
+    	\arrow["{h_A}"{description}, maps to, from=3-3, to=3-1]
+    	\arrow["{h^A}"{description}, maps to, from=3-3, to=3-5]
+	    \arrow["{h^A(f) = -\circ f}"{description}, from=3-5, to=1-5]
+    \end{tikzcd}\]
+    Inoltre possiamo interpretare $\hom(-,-)$ come un bifuntore $\C^\op\times \C \to \setcat$.
+\end{definition}
+
+\begin{theorem}{Lemma di Yoneda covariante}{lemma di yoneda covariante}
+    Sia $\C$ una categoria localmente piccola e sia $F:\C\to\setcat$ un funtore covariante. Allora esiste una biezione di insiemi:
+    \[ \nat (h_A, F) \cong F(A)\]
+    e questa è naturale in $A$ e $F$.
+    \proof 
+    Diamo uno sketch della dimostrazione, mancano alcuni dettagli come la dimostrazione della naturalità in $A$ e $F$ ma l'importante è lo spirito della cosa.\\ 
+    Sia $\Phi \in \nat(h_A,F)$. Dato che questa è naturale, il seguente diagramma commuta: 
+    \[\begin{tikzcd}
+    	A && {h_A(A)} &&&& {F(A)} \\
+    	&&& {\id_A} && u \\
+    	\\
+    	&&& {f\circ \id_A = f} && {(Ff)(u)=\Phi_X(f)} \\
+    	X && {h_A(X)} &&&& {F(X)}
+    	\arrow["f"{description}, from=1-1, to=5-1]
+    	\arrow["{\Phi_A}"{description}, from=1-3, to=1-7]
+    	\arrow["{h_A(f)}"{description}, from=1-3, to=5-3]
+    	\arrow["{F(f)}"{description}, from=1-7, to=5-7]
+    	\arrow[color={theoremcolor}, maps to, from=2-4, to=2-6]
+    	\arrow[maps to, from=2-4, to=4-4]
+    	\arrow[maps to, from=2-6, to=4-6]
+    	\arrow[maps to, from=4-4, to=4-6]
+    	\arrow["{\Phi_X}"{description}, from=5-3, to=5-7]
+    \end{tikzcd}\]
+    Vediamo che ci basta specificare l'assegnazione blu per determinare univocamente tutto il resto:\begin{itemize}
+        \item Partendo da $\Phi \in \nat(h_A, F)$ ci basta specificare $\Phi \mapsto u :=\Phi_A(\id_A)$ elemento di $F(A)$.
+        \item Partendo da $u \in F(A)$ costruiamo la trasformazione naturale $\Phi$ definendo per ogni $X \in \ob\C$ il morfismo $\Phi_X(f:A\to X) := Ff(u)$.
+    \end{itemize} 
+    \qed
+\end{theorem}
+
+Abbiamo dualmente la versione controvariante:
+
+\begin{corollary}{Lemma di Yoneda controvariante}{lemma di yoneda controvariante}
+    Sia $F:\C^\op\to\setcat$ un funtore controvariante. Allora esiste una biezione di insiemi
+    \[ \nat (h^A, F) \cong F(A)\]
+    e questa è naturale in $A$ e $F$.
+\end{corollary}
+
+\begin{remark}{Lemma di Yoneda e grandezza}{lemma di Yoneda e grandezza}
+    In generale la biezione dataci da \ref{th:lemma di yoneda covariante} non è una biezione tra insiemi piccoli, in quanto gli elementi di $\nat(h_A,F)$ non sono in generale insiemi piccoli. Prendiamo ad esempio il funtore dimenticante $U$ da $\grpcat$\footnote{Categoria dei gruppi con gli omomorfismi di gruppo} a $\setcat$, che ad un gruppo $(G,\cdot)$ associa l'insieme $G$: noi abbiamo che $\nat(h_G,U)$ è in biezione con $G$, ma gli elementi di $\nat(h_G,U)$ sono indicizzati dall'insieme di tutti i gruppi (piccoli), che non è un insieme piccolo e dunque questi non sono insiemi piccoli, nonostante l'insieme che li contenga sia in biezione con un insieme piccolo.
+\end{remark}
+
+Una delle più naturali applicazioni del lemma di Yoneda è l'embedding di Yoneda, fondamentale in gran parte della topologia e della geometria moderna: esso permette di identificare una categoria $\C$ con una sottocategoria della cosiddetta \bemph{categoria dei prefasci su} $\C$, che è solo un altro nome per $[\C^\op,\setcat]$. Ad esempio se interpretiamo la topologia $\tau$ di uno spazio $(X,\tau)$ come una categoria, dove i morfismi sono dati dall'inclusione insiemistica, questa è completamente determinata dalle classi delle funzioni continue entranti nei (o uscenti dai) suoi aperti.
+
+\begin{theorem}{Embedding di Yoneda covariante}{embedding di yoneda covariante}
+    Sia $\C$ una categoria. Questa è equivalente ad una sottocategoria piena di $[\C^\op, \setcat]$ tramite la mappa $\mc{Y} : \C \to [\C^\op, \setcat]$ definita da questo diagramma (dove abbiamo morfismi $f:A\to B$ e $g:X\to Y$ di $\C$):
+    \[\begin{tikzcd}
+    	{\mc{Y}(A)(X) = h^A(X)} &&&& {\mc{Y}(B)(X) = h^B(X)} \\
+    	& {(X \xrightarrow{m\circ g} A)} && {(X \xrightarrow{f\circ m\circ g} B)} \\
+    	\\
+    	& {(Y \xrightarrow{m} A)} && {(Y \xrightarrow{f\circ m} B)} \\
+    	{\mc{Y}(A)(Y) = h^A(Y)} &&&& {\mc{Y}(B)(Y) = h^B(Y)}
+    	\arrow["{\mc{Y}(f)(X) = f\circ -}"{description}, from=1-1, to=1-5]
+    	\arrow[maps to, from=2-2, to=2-4]
+    	\arrow[maps to, from=4-2, to=2-2]
+    	\arrow[maps to, from=4-2, to=4-4]
+    	\arrow[maps to, from=4-4, to=2-4]
+    	\arrow["{\mc{Y}(A)(g) = -\circ g}"{description}, from=5-1, to=1-1]
+    	\arrow["{\mc{Y}(f)(Y) = f\circ -}"{description}, from=5-1, to=5-5]
+	    \arrow["{\mc{Y}(B)(g) = -\circ g}"{description}, from=5-5, to=1-5]
+    \end{tikzcd}\]
+    Dove un oggetto $A$ di $\C$ viene mandato nel funtore $h^A : \C^\op \to \setcat$ definito sopra e un morfismo $f:A\to B$ viene mandato nella sua postcomposizione, che è una trasformazione naturale da $h^A$ a $h^B$ come si vede nel diagramma.
+    \proof
+    Applicando il corollario \ref{corol:lemma di yoneda controvariante} con $F = h^B$ scorrendo su $B \in \ob\C$ otteniamo
+    \[\nat(h^A, h^B) \cong h^B(A) \text{, o equivalentemente, } \nat(h^A, h^B)\cong \hom(A,B).\]
+    Vediamo che dunque l'assegnazione $A\mapsto h^A$ definisce un funtore covariante $h^\bullet : \C\to [\C^\op,\setcat]$ pienamente fedele (ma non essenzialmente suriettivo sugli oggetti). Restringendo $h^\bullet$ all'immagine di $\C$ in $[\C^\op,\setcat]$, otteniamo un'equivalenza di categorie (dato che la restrizione all'immagine è tautologicamente suriettiva) per la proposizione \ref{prop:equivalenza di categorie}.
+    \qed
+\end{theorem}
+
+Abbiamo dualmente la versione controvariante:
+
+\begin{corollary}{Embedding di Yoneda controvariante}{embedding di yoneda controvariante}
+    Sia $\C$ una categoria. Allora la sua categoria opposta $\C^\op$ è equivalente ad una sottocategoria piena di $[\C, \setcat]$ tramite la mappa $\mc{Y}' : \C^\op \to [\C, \setcat]$ definita da questo diagramma (dove abbiamo morfismi $f:A\to B$ e $g:X\to Y$ di $\C$):
+    \[\begin{tikzcd}
+    	{\mc{Y}'(A)(X) = h_A(X)} &&&& {\mc{Y}'(B)(X) = h_B(X)} \\
+    	& {(A \xrightarrow{m\circ f} X)} && {(B \xrightarrow{m} X)} \\
+    	\\
+    	& {(A \xrightarrow{g\circ m\circ f} Y)} && {(B \xrightarrow{g\circ m} Y)} \\
+    	{\mc{Y}'(A)(Y) = h_A(Y)} &&&& {\mc{Y}'(B)(Y) = h_B(Y)}
+    	\arrow["{\mc{Y}'(A)(g) = g\circ -}"{description}, from=1-1, to=5-1]
+    	\arrow["{\mc{Y}'(f)(X) = -\circ f}"{description}, from=1-5, to=1-1]
+    	\arrow["{\mc{Y}(B)(g) = g\circ -}"{description}, from=1-5, to=5-5]
+    	\arrow[maps to, from=2-2, to=4-2]
+    	\arrow[maps to, from=2-4, to=2-2]
+    	\arrow[maps to, from=2-4, to=4-4]
+	    \arrow[maps to, from=4-4, to=4-2]
+	    \arrow["{\mc{Y}'(f)(Y) = -\circ f}"{description}, from=5-5, to=5-1]
+    \end{tikzcd}\]
+    \qed
+\end{corollary}
+
+Ora grazie al lemma di Yoneda possiamo dimostrare un fatto che ci servirà più tardi:
+
+\begin{lemma}{Essenziale unicità degli aggiunti}{unicità degli aggiunti}
+    Siano $\C,\D$ due categorie e siano $F:\C\to\D$ e $G_1,G_2: \D\to\C$ funtori tali che $F\dashv G_1$ e $F\dashv G_2$ oppure $G_1\dashv F$ e $G_2\dashv F$.\\
+    Allora $G_1\cong G_2$.
+    \proof 
+    Scriviamo le aggiunzioni in termini degli $\hom$-funtori:
+    \[ h^d(Fc) \cong h^{G_1 d}(c) \cong h^{G_2 d}(c) \]
+    Ottenendo dunque $\mc{Y}\circ G_1 \cong \mc{Y}\circ G_2$: dal teorema \ref{th:embedding di yoneda covariante}, ovvero la piena fedeltà dell'embedding di Yoneda, segue la tesi.
+    \qed
+\end{lemma}
+
+\section{Limiti}
+
+Uno dei concetti più importanti in Teoria delle Categorie è quello di limite. Per definire il concetto di limite dobbiamo dare la definizione formale di diagramma in una categoria, che generalizza il concetto di famiglia indicizzata in $\setcat$.
+
+\begin{definition}{Diagramma commutativo}{diagramma commutativo}
+    Siano $\J, \C$ due categorie.\\
+    Si dice \bemph{diagramma (commutativo)} in $\C$ di forma $\J$ un funtore $F:\J\to\C$; $\J$ si dice \bemph{forma} o \bemph{indice} del diagramma: se $\J$ è finita o piccola, il diagramma $F$ si dirà rispettivamente \bemph{finito} o \bemph{piccolo}.\\
+    La \bemph{categoria dei diagrammi} in $\C$ di forma $\J$ è la categoria dei funtori $[\J,\C]$.
+\end{definition}
+
+Se in Teoria degli Insiemi definiamo una famiglia di sottoinsiemi di un insieme $X$ indicizzata dall'insieme $J$ come un'applicazione $J\to \mc{P}(X)$, qui abbiamo bisogno di un'applicazione che rispetti la struttura di categoria, ovvero un funtore: intuitivamente oltre a indicizzare gli oggetti indicizziamo anche i morfismi in modo che la composizione sia rispettata. Per la prossima definizione ci servirà di considerare un diagramma particolare, il diagramma costante $K_N : \J\to \C$ (dove $N$ è un oggetto di $\C$) che manda ogni oggetto di $\J$ in $N$ e ogni morfismo in $\id_N$.
+
+\begin{definition}{Cono e cocono}{cono}
+    Sia $\C$ una categoria, sia $F: \J\to\C$ un diagramma e sia $N$ un oggetto di $\C$.\\
+    Si dice \bemph{cono} in $\C$ su $F$ con punta $N$ un morfismo $\psi : K_N \to F$ di $[\J,\C]$, ovvero una famiglia di morfismi \[\{\psi_X : N\to F(X)\}_{X \in \ob\J} \subset \hom\C\]
+    Tali che per ogni morfismo $f:X\to Y$ in $\J$ il seguente diagramma commuti:
+    \[\begin{tikzcd}
+    	& N \\
+    	\\
+    	{F(X)} && {F(Y)}
+    	\arrow["{\psi_X}"{description}, from=1-2, to=3-1]
+    	\arrow["{\psi_Y}"{description}, from=1-2, to=3-3]
+	    \arrow["{F(f)}"{description}, from=3-1, to=3-3]
+    \end{tikzcd}\]
+    Dualmente, si dice \bemph{cocono} su $F$ con punta $N$ un morfismo $\psi : F \to K_N$, o equivalentemente un cono in $\C^\op$.\\
+    Definiamo la \bemph{categoria dei coni} in $\C$ su $F$ come la categoria i cui oggetti sono i coni intesi come coppia $(N, \psi^N: K_N \to F )$ e i cui morfismi sono i cosiddetti morfismi \bemph{medianti}, ovvero i morfismi $\alpha : N\to M$ di $\C$ tali per cui per ogni oggetto $X$ di $\J$ valga:
+    \[\psi^M_X\circ \alpha = \psi^N_X,\]
+    Denoteremo questa categoria come $\cone(\C,F)$.
+\end{definition}
+
+Ed eccoci pronti a definire i limiti.
+
+\begin{definition}{Limite e colimite}{limite}
+    Sia $F:\J\to\C$ un diagramma.\\
+    Si dice \bemph{limite} (o limite proiettivo) di $F$ in $\C$ l'oggetto terminale di $\cone(\C,F)$.\\
+    Si dice \bemph{colimite} (o limite induttivo) di $F$ in $\C$ il limite di $F$ in $\C^\op$, o equivalentemente l'oggetto iniziale di $\cone(\C,F)$.\\
+    Indichiamo rispettivamente limiti e colimiti di $F$ in $\C$ come
+    \[ \catlim F \quad \text{e}\quad\catcolim F.\]
+    Un limite si dice rispettivamente piccolo o finito se lo è $F$ come diagramma.\\
+    Una categoria che ammette tutti i (co)limiti piccoli si dice \bemph{(co)completa}.
+\end{definition}
+
+Più esplicitamente\footnote{Ovvero scrivendo per esteso la definizione di oggetto terminale}, possiamo definire il limite di $F$ in $\C$ come il cono $(L,\psi^L)$ tale che per ogni altro cono $(N,\psi^N)$ esista un unico morfismo $\lambda_N : N\to L$ tale che il seguente diagramma commuti:
+
+\[\begin{tikzcd}
+	&& N \\
+	\\
+	&& L \\
+	\\
+	{F(X)} &&&& {F(Y)}
+	\arrow["{\lambda_N}"{description}, dashed, from=1-3, to=3-3]
+	\arrow["{\psi_X^N}"{description}, curve={height=12pt}, from=1-3, to=5-1]
+	\arrow["{\psi_Y^N}"{description}, curve={height=-12pt}, from=1-3, to=5-5]
+	\arrow["{\psi^L_X}"{description}, from=3-3, to=5-1]
+	\arrow["{\psi^L_X}"{description}, from=3-3, to=5-5]
+	\arrow["{F(f)}"{description}, from=5-1, to=5-5]
+\end{tikzcd}\]
+
+Diremo che una tale proprietà è detta \bemph{universalità}.\\
+Il concetto di limite è uno dei concetti centrali della Teoria delle Categorie: analogamente a come sia possibile definire equivalentemente aperti, chiusi, intorni, chiusura, interno e così via in Topologia Generale, è possibile definire i funtori aggiunti in termini di limiti, i limiti in termini di funtori aggiunti ed equivalentemente tante altre costruzioni in Teoria delle Categorie.\\
+Talvolta diremo che una categoria "ammette/ha tutti i..." facendo riferimento a dei limiti definiti su una qualche classe di diagrammi: questo significa che ogni diagramma di quella classe ammette un limite in $\C$.
+
+\begin{remark}{Limiti e oggetti iniziali}{limiti e oggetti iniziali}
+    Sia $F:\J\to\C$ un diagramma.\begin{itemize}
+        \item Se $\J$ ammette un oggetto iniziale $I$, allora $\catlim F = F(I)$.
+        \item Dualmente, se $\J$ ammette un oggetto finale $Z$, allora $\catcolim F = F(Z)$.
+        \item Infine, se $\J$ ammette un oggetto zero $0$, allora $\catlim F = \catcolim F = F(0)$.
+    \end{itemize}
+\end{remark}
+
+\subsection{Limiti notevoli}
+
+Presentiamo alcuni limiti di particolare importanza (in effetti delle classi di limiti) nella pratica matematica; in questa sezione, assumeremo per semplicità che $\J$ sia una sottocategoria (di forma opportunamente specificata) di $\C$ e $F : \J \inj \C$ sia il funtore di inclusione: questo ci permetterà di dire semplicemente "Sia $\J$ un diagramma" o parlare di $\catlim\J$.
+
+\begin{definition}{Prodotto}{prodotto limite}
+    Sia $\C$ una categoria e sia $\J$ un diagramma discreto (ovvero i cui unici morfismi sono le identità).\\
+    Si dice \bemph{prodotto} di $\J$ in $\C$ il limite di $\J$ in $\C$, che indicheremo come
+    \[ \prod_{X\in\ob\J} X\quad\text{oppure, più semplicemente,}\quad \prod\J\ . \]
+    Un prodotto in $\C^\op$ si dice \bemph{coprodotto} in $\C$ e lo indicheremo come $\coprod \J$.\\
+    I morfismi $\pi_X : \prod\J\to X$ si dicono \bemph{proiezioni ai fattori}.
+\end{definition}
+
+\begin{remark}{Sui prodotti}{sui prodotti}
+    \begin{itemize}
+        \item Il prodotto sul diagramma vuoto è (se esiste) l'oggetto terminale di $\C$.
+        \item Sotto gli assiomi di ZF, $\setcat$ ammette tutti i prodotti piccoli\footnote{Ovvero quelli indicizzati da una categoria piccola} se e solo se vale l'assioma della scelta.
+    \end{itemize}
+\end{remark}
+
+\begin{definition}{Pullback o prodotto fibrato}{pullback o prodotto fibrato}
+    Sia $\C$ una categoria, e sia $\J$ il diagramma $\{ X\xrightarrow{f} Z \xleftarrow{g} Y \}$, detto \bemph{cospan}\footnote{E ovviamente $\J^\op$ si dirà \bemph{span}}.\\
+    Il limite di $\J$ in $\C$ si dice \bemph{pullback} di $\J$, o anche \bemph{prodotto fibrato} di $X$ e $Y$ lungo (o su) $Z$.\\
+    Un pullback in $\C^\op$ si dice \bemph{pushout}.
+\end{definition}
+
+Il pullback è una sorta di analogo categoriale delle equazioni: in molte categorie concrete\footnote{Informalmente, quelle i cui oggetti sono insiemi dotati di una qualche struttura e i cui morfismi sono funzioni insiemistiche che rispettano tale struttura.} il pullback di $\{ X\xrightarrow{f} Z \xleftarrow{g} Y \}$ è il sottoinsieme $\{ (x,y) | f(x) = g(y) \}$ di $X\times Y$ e i morfismi che lo accompagnano sono la restrizione delle proiezioni. Un altro esempio è quello del grafico di una funzione, che è il pullback del diagramma $\{ X\xrightarrow{f} Y \xleftarrow{\id_Y} Y \}$
+
+\begin{definition}{Equalizzatore}{equalizzatore}
+    Sia $\C$ una categoria e sia $\J$ il diagramma 
+    \[\begin{tikzcd}
+    	X && Y
+    	\arrow["f"{description}, shift left=3, from=1-1, to=1-3]
+    	\arrow["g"{description}, shift right=3, from=1-1, to=1-3]
+    \end{tikzcd}\]
+    Si dice \bemph{equalizzatore} di $f$ e $g$ il limite di $\J$ in $\C$, e lo indichiamo con $\eq(f,g)$,  come indichiamo l'unico morfismo "primitivo" del cono con $e_{f,g}:\eq(f,g)\to X$.\\
+    Un equalizzatore in $\C^\op$ si dice \bemph{coequalizzatore}.
+\end{definition}
+
+\subsection{Esistenza dei limiti}
+
+Considerando l'ubiquità del concetto di (co)limite, è importante essere in grado di dimostrare che le categorie in cui si sta lavorando siano (co)complete, ma può sembrare difficile dimostrare l'esistenza del (co)limite per diagrammi piccoli di forma arbitraria. Fortunatamente il prossimo risultato ci dà una condizione necessaria e sufficiente per la (co)completezza di una categoria e ci mostra che in realtà ogni limite si può costruire "facendo prodotti e risolvendo equazioni".
+
+\begin{theorem}{Esistenza dei limiti}{esistenza dei limiti}
+    Sia $\C$ una categoria.\\
+    $\C$ ammette tutti i prodotti piccoli ed equalizzatori per ogni coppia di morfismi se e solo $\C$ è una categoria completa.
+    \proof 
+    Se $\C$ è una categoria completa allora ammette ovviamente tutti i prodotti piccoli e tutti gli equalizzatori, in quanto questi sono casi di limite piccolo, dunque supponiamo che $\C$ ammetta tutti i prodotti piccoli e gli equalizzatori di coppie di morfismi.\\
+    Sia $F:\J\to\C$ un diagramma piccolo e consideriamo i seguenti prodotti: 
+    \[ S := \prod_{X \in\ob\J}F(X) \qquad\text{e}\qquad T:= \prod_{u \in \hom\J} F(\cod(u)) \]
+    Le cui proiezioni indicheremo rispettivamente con $\sigma_i$ e $\tau_i$.\\
+    Dato che per ogni $u \in \hom\J$ abbiamo ovviamente $\cod(u) \in \ob\J$, $S$ ammette mappe (precisamente le sue proiezioni) verso ogni $F(\cod(u))$, dunque per la proprietà universale del prodotto esiste ed è unica $f:S\to T$ tale che il seguente diagramma commuti per ogni $u \in \hom\J$:
+    \[\begin{tikzcd}
+    	& {F(\cod(u))} \\
+	    \\
+    	S && T
+    	\arrow["{\sigma_{F(\cod(u))}}"{description}, from=3-1, to=1-2]
+    	\arrow["f"{description}, dashed, from=3-1, to=3-3]
+    	\arrow["{\tau_{F(\cod(u))}}"{description}, from=3-3, to=1-2]
+    \end{tikzcd}\]
+    Analogamente, deve esistere ed essere unica una mappa $g: S\to T$ tale che il seguente diagramma commuti:
+        \[\begin{tikzcd}
+    	S && T \\
+    	\\
+    	{F(\dom(u))} && {F(\cod(u))}
+    	\arrow["g"{description}, dashed, from=1-1, to=1-3]
+    	\arrow["{\sigma_{F(\dom(u))}}"{description}, from=1-1, to=3-1]
+    	\arrow["{\tau_{F(\cod(u))}}"{description}, from=1-3, to=3-3]
+    	\arrow["{F(u)}"{description}, from=3-1, to=3-3]
+    \end{tikzcd}\]
+    Consideriamo dunque $L:=\eq(f,g)$ e la mappa $e_{f,g}: L \to S$ che equalizza $f$ e $g$: questo è il nostro candidato limite, dobbiamo prima controllare che sia un cono definendo le proiezioni su $F$, ma vediamo che basta definirle nel seguente modo dato qualsiasi $u:X\to Y$ di $\J$:
+    \[\begin{tikzcd}
+    	{L} \\
+    	\\
+    	&& S & T && {F(Y) = F(\cod(u))} \\
+    	\\
+    	&& {F(X)}
+    	\arrow["{e_{f,g}}"{description}, from=1-1, to=3-3]
+    	\arrow["{\psi_{F(Y)} := \tau_{F\cod(u)}\circ f \circ e_{f,g}=\tau_{F\cod(u)}\circ g \circ e_{f,g}}"{description}, curve={height=-30pt}, dashed, from=1-1, to=3-6]
+    	\arrow["{\psi_{F(X)} := \sigma_{F(X)}\circ e_{f,g}}"{description}, curve={height=30pt}, dashed, from=1-1, to=5-3]
+    	\arrow["f"{description}, shift left=3, from=3-3, to=3-4]
+    	\arrow["g"{description}, shift right=3, from=3-3, to=3-4]
+    	\arrow["{\sigma_{F(X)}}"{description}, from=3-3, to=5-3]
+    	\arrow["{\tau_{F(\cod(u))}}"{description}, from=3-4, to=3-6]
+    	\arrow["u"{description}, from=5-3, to=3-6]
+    \end{tikzcd}\]
+    Ora dobbiamo dimostrare che è effettivamente universale: considerando un altro cono $(N,\varphi)$, le sue $\varphi$ definiscono un'unica $h : N\to S$, ma dato che è un cono deve anche valere $f\circ h = g \circ h$, dunque $h$ è una mappa equalizzante e dunque deve esistere un'unica mappa $\eta : N\to L$ tale che $ h = e_{f,g} \circ \eta $.
+    \qed
+\end{theorem}
+
+\begin{corollary}{Esistenza dei colimiti}{esistenza dei colimiti}
+    Sia $\C$ una categoria.\\
+    $\C$ ammette tutti i coprodotti piccoli e coequalizzatori per ogni coppia di morfismi se e solo $\C$ è una categoria cocompleta.
+\end{corollary}
+
+\subsection{Prodotti}
+
+Chiudiamo con una discussione di una diversa caratterizzazione del prodotto di due oggetti in una categoria.\\
+La definizione che abbiamo dato in \ref{def:prodotto limite} è evidentemente utile quando si parla di lavorare coi prodotti nell'usuale pratica matematica, ad esempio è una definizione meno "pesante" di quella che si dà dei prodotti in $\topcat$\footnote{Categoria degli spazi topologici e delle funzioni continue} o $\mblecat$\footnote{Categoria di spazi e funzioni misurabili} nella maggior parte dei corsi introduttivi di Topologia Generale o Teoria della Misura. Allo stesso modo non dipende da scelte arbitrarie, come di una norma prodotto in $\catname{NormVec}\K$\footnote{Categoria dei $\K$-spazi vettoriali normati e delle mappe lineari continue} o di una misura prodotto in $\meascat$\footnote{Categoria degli spazi con misura e delle funzioni misurabili}.\\
+Tuttavia in altre applicazioni della Teoria delle Categorie, ad esempio in Topologia Algebrica o informatica teorica, può essere agevole considerare il prodotto di due oggetti non come definito intrinsecamente tramite proprietà universale, ma come un bifuntore.
+
+\begin{theorem}{Caratterizzazione del prodotto binario}{prodotto binario come funtore}
+    Sia $\C$ una categoria localmente piccola e sia $\Delta :\C\to\C\times\C$ il funtore diagonale, ovvero l'applicazione
+    \[ \Delta( f:X\to Y ) = ((f,f):(X,X)\to(Y,Y)).\]
+    Se $\C$ ammette i prodotti binari, l'applicazione $\Pi : \C\times\C \to \C$ definita da
+    \[\Pi((f,g):(X,Y)\to(W,Z)) := (f\times g : X\times Y \to W\times Z) \]
+    definisce un funtore aggiunto destro a $\Delta$.
+    \proof
+    Osserviamo che dalle definizioni di categoria prodotto (definizione \ref{def:categoria prodotto e bifuntore}), di prodotto nella definizione \ref{def:prodotto limite} e assumendo che il prodotto in $\setcat$ sia l'usuale prodotto cartesiano\footnote{Dimostrazione lasciata per esercizio al lettore}, la seguente catena di biezioni è verificata in $\setcat$ per ogni $A,B$ e $C$ oggetti in $\C$:
+    \[\begin{aligned}
+        \hom_{\C^2}(\Delta A,(B,C)) & \cong_\setcat \hom_{\C^2}((A,A),(B,C))\\
+        & \cong_\setcat \hom_\C(A,B)\times \hom_\C(A,C)\\
+        & \cong_\setcat \underbrace{\hom_\C(A, B\times C)}_{\C^\op \times (\C\times\C) \to \setcat}
+    \end{aligned} \]
+    Abbiamo dimostrato che $\Pi$ è effettivamente un aggiunto destro\footnote{Dovremmo dimostrare la funtorialità, ma è banale e consiste semplicemente nell'applicare le proprietà universali dei prodotti}, essenzialmente unico per il lemma \ref{lem:unicità degli aggiunti}, a $\Delta$.
+\end{theorem}
+
+\end{document}
