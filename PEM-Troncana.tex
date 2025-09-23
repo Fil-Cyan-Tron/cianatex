@@ -6,6 +6,8 @@
 
 \usepackage{cianatheorems}
 
+\addbibresource{PEM-Troncana.bib}
+
 \title{Elementi di Teoria delle Categorie}
 \author{Seminario PEM di F. Troncana, sotto la supervisione del prof. R. Zunino}
 \date{A.A. 2025/2026}
@@ -47,15 +49,24 @@ Si dimostrano immediatamente le seguenti proprietà:
         \item Tutti i singoletti contenenti i suoi elementi.
         \item Tutti i prodotti, le unioni disgiunte e le intersezioni di famiglie di suoi elementi indicizzate da un suo elemento.
         \item Tutte le funzioni tra due suoi elementi.
+        \item Tutte le cardinalità strettamente minori della sua.
         \item Tutti i suoi sottoinsiemi la cui cardinalità è un suo elemento.
     \end{itemize}
 \end{proposition} 
 
 Da queste proprietà seguono due fatti strettamente correlati, ovvero che un universo di Grothendieck più che numerabile è un \bemph{modello} per ZFC e che l'esistenza di un universo di Grothendieck più che numerabile è indipendente da ZFC. Intuitivamente, il seguente assioma ci permette di trattare un universo di Grothendieck come "sostituto" della classe di tutti gli insiemi, sicuri del fatto che questo "limiti" tutta la pratica matematica "usuale".
 
-\begin{axiom}{Esistenza di un universo di Grothendieck più che numerabile}{esistenza di un universo di Grothendieck più che numerabile}
-    Esiste un universo di Grothendieck più che numerabile $\G$. Tutti gli elementi di $\G$ si dicono \bemph{piccoli}, mentre gli altri insiemi si dicono \bemph{grandi}.
+\begin{axiom}{Assioma di Universo debole}{assioma di universo debole}
+    Esiste un universo di Grothendieck più che numerabile $\G$. Tutti gli elementi di $\G$ si dicono \bemph{piccoli}, mentre gli altri insiemi si dicono \bemph{grandi}. I sottoinsiemi di $\G$, piccoli o grandi che siano, si dicono \bemph{moderati}.
 \end{axiom}
+
+\begin{remark}{Sull'assioma di Universo debole}{sull'assioma di universo debole}
+    In realtà l'assioma \ref{ax:assioma di universo debole} è\footnote{Come si potrebbe intuire dal nome} più spesso assunto in una sua versione più forte, ovvero:
+    \begin{axiom}{Assioma di Universo}{assioma di universo}
+        Per ogni insieme $x$ esiste un universo di Grothendieck $U$ tale che $x \in U$
+    \end{axiom}
+    Questo implica l'esistenza di tutta una gerarchia di  è utile per trattare la Teoria delle Categorie Superiori, ma per una trattazione più elementare è sufficiente assumere l'esistenza di un solo universo, si veda \cite{MacLane1969}.
+\end{remark}
 
 \section{Nozioni fondamentali}
 
@@ -69,7 +80,7 @@ Da queste proprietà seguono due fatti strettamente correlati, ovvero che un uni
     Fissati due oggetti $A,B \in \ob\C$ denoteremo con $\hom(A,B)$ o $\C(A,B)$ l'insieme dei morfismi $A\to B$ di $\hom\C$.\\
     Per ogni categoria $\C$ è definita la sua \bemph{duale} (o opposta) $\C^\op$, i cui oggetti sono gli stessi di $\C$ e i cui morfismi sono quelli di $\C$ ma invertiti di direzione, ovvero ad ogni $f:A\to B$ in $\C$ corrisponde un $f^\op : B\to A$ in $\C^\op$.\\
     Una categoria $\C$ si dice:\begin{itemize}
-        \item \bemph{Piccola} se gli insiemi $\hom\C$ e $\ob\C$ (anche se vedremo sotto che la grandezza della seconda è sempre limitata dalla prima) sono insiemi piccoli.
+        \item \bemph{Piccola} se gli insiemi $\hom\C$ e $\ob\C$ (anche se vedremo sotto che la grandezza del secondo è sempre limitata dal primo) sono insiemi piccoli.
         \item \bemph{Grande} se non è piccola.
         \item \bemph{Localmente piccola} se, una volta fissati due oggetti $X,Y \in \ob\C$, l'insieme $\hom(X,Y)$ è un insieme piccolo.
         \item \bemph{Finita} se è piccola e l'insieme dei morfismi è un insieme finito.
@@ -83,7 +94,7 @@ Da queste proprietà seguono due fatti strettamente correlati, ovvero che un uni
         \item Dato che $\ob\C$ inietta sempre in $\hom\C$ con la mappa $X\mapsto \id_X$, in generale l'insieme dei morfismi può essere arbitrariamente più grande di quello degli oggetti, dunque la grandezza di una categoria è in generale indipendente dal suo insieme degli oggetti.
     \end{itemize} 
     \proof 
-    Dimostriamo solo l'ultimo punto con un esempio, gli altri sono banali. Sia $V$ la categoria formata da un unico oggetto $\bullet$ e il cui insieme dei morfismi corrisponde all'insieme dei cardinali minori della cardinalità di $\G$, dove la composizione di due morfismi è data dalla loro somma come cardinali. Nonostante $\ob V$ sia il più piccolo possibile (al di là della categoria vuota), $\hom V$ è un insieme grande, dunque $V$ non solo è grande, ma non è nemmeno localmente piccola.
+    Dimostriamo solo l'ultimo punto con un esempio, gli altri sono banali. Sia $\V$ la categoria formata da un unico oggetto $\bullet$ e il cui insieme dei morfismi corrisponde all'insieme dei cardinali appartenenti a $\G$, dove la composizione di due morfismi è data dalla loro somma come cardinali. Nonostante $\ob \V$ sia il più piccolo possibile (al di là della categoria vuota), $\hom \V$ è (dimostrabilmente) un insieme grande, dunque $\V$ non solo è grande, ma non è nemmeno localmente piccola.
     \qed
 \end{remark}
 
@@ -543,5 +554,9 @@ Tuttavia in altre applicazioni della Teoria delle Categorie, ad esempio in Topol
     \end{aligned} \]
     Abbiamo dimostrato che $\Pi$ è effettivamente un aggiunto destro\footnote{Dovremmo dimostrare la funtorialità, ma è banale e consiste semplicemente nell'applicare le proprietà universali dei prodotti}, essenzialmente unico per il lemma \ref{lem:unicità degli aggiunti}, a $\Delta$.
 \end{theorem}
+
+
+\nocite{*}
+\printbibliography
 
 \end{document}
