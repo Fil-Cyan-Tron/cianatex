@@ -1,0 +1,66 @@
+\documentclass{article}
+
+\usepackage{cianatex}
+
+\usepackage{cianacolors}
+
+\usepackage{cianatheorems}
+
+\usepackage{setspace}
+\usepackage{pbox}
+
+\renewcommand*{\DefaultOptionsofRadio}{print,radio, radiosymbol=6, width=\baselineskip, bordercolor={black}, borderwidth=0pt}
+\renewcommand*{\DefaultOptionsofText}{print,bordercolor={black}, backgroundcolor=white, borderwidth=0pt}
+
+\renewcommand{\LayoutTextField}[2]{% label, field
+\setbox0=\hbox{#1\unskip}\ifdim\wd0=0pt
+\setbox1=\hbox{#2\unskip}\ifdim\ht1>3ex
+% Multiline
+\begin{tikzpicture}[every node/.style={inner sep=0,outer sep=0}]
+  \node[anchor=west] (TextFieldNode) at (0cm,0cm) {#2};
+  \draw [thick] (current bounding box.south west) rectangle (current bounding box.north east);
+\end{tikzpicture}%
+\else
+% Inline field, lowered a little bit to be better integrated into the text
+\raisebox{-3.2pt}{\begin{tikzpicture}[every node/.style={inner sep=0,outer sep=0}]
+  \node[anchor=west] (TextFieldNode) at (0cm,0cm) {#2};
+  \draw[thick] ([yshift=-0.3ex]TextFieldNode.south west) -- ([yshift=-0.3ex]TextFieldNode.south east);
+\end{tikzpicture}}%
+\fi
+\else
+% Field with label below it
+\begin{tikzpicture}[every node/.style={inner sep=0,outer sep=0}]
+    \node[anchor=west] (TextFieldNode) at (0cm,2ex) {#2};
+    \draw[thick] ([yshift=-0.3ex]TextFieldNode.south west) -- ([yshift=-0.3ex]TextFieldNode.south east);
+    \node[anchor=west,font=\footnotesize] at (0cm,-0.9ex) {#1};
+\end{tikzpicture}%
+\fi
+}
+\newcommand{\field}[2]{\TextField[width=#2]{#1}}
+\newcommand{\fieldinline}[2]{\TextField[width=#2,name=#1]{}}
+
+\newcommand{\radiosize}{0.33cm}
+\newcommand{\yesnoticks}[1]{%
+\raisebox{-3.2pt}{\begin{tikzpicture}[every node/.style={inner sep=0,outer sep=0}]
+  \node[anchor=west,style={inner sep=2px}] (FieldYes) at (0cm,0cm) {\ChoiceMenu[radio=true,name=#1,width=\radiosize,height=\radiosize]{}{=Yes}};
+  \node[anchor=west] (LabelYes) at ([xshift=0.7ex]FieldYes.east) {Yes};
+  \node[anchor=west,style={inner sep=2px}] (FieldNo) at ([xshift=1ex]LabelYes.east) {\ChoiceMenu[radio=true,name=#1,width=\radiosize,height=\radiosize]{}{=No}};
+  \node[anchor=west] (LabelNo) at ([xshift=0.7ex]FieldNo.east) {No};
+  \draw [thick] ([xshift=-(\radiosize+0.15cm),yshift=-(\radiosize+0.15cm)]FieldYes.north east) rectangle (FieldYes.north east);
+  \draw [thick] ([xshift=-(\radiosize+0.15cm),yshift=-(\radiosize+0.15cm)]FieldNo.north east) rectangle (FieldNo.north east);
+\end{tikzpicture}}%
+}
+\newcommand{\yesno}[2]{\pbox{0.7\textwidth}{\setstretch{1}#1}\hfill\yesnoticks{#2}}
+
+\begin{document}
+    \section*{\centering Richiesta di temporanea concessione dell'Infinito Potere di Antiorsi\texttrademark}
+    \begin{Form}
+        Il sottoscritto \fieldinline{nome e cognome}{0.3\linewidth}, nato a \fieldinline{comune di nascita}{0.2\linewidth} (\fieldinline{provincia di nascita}{0.02\linewidth}),\\ residente in \fieldinline{indirizzo di residenza}{0.25\linewidth} presso il comune di \fieldinline{comune di residenza}{0.2\linewidth} (\fieldinline{provincia di residenza}{0.02\linewidth}) con CAP \fieldinline{CAP di residenza}{0.1\linewidth}\\ e domiciliato in \fieldinline{indirizzo di domicilio}{0.25\linewidth} presso il comune di \fieldinline{comune di domicilio}{0.2\linewidth} (\fieldinline{provincia di residenza}{0.02\linewidth}) con CAP \fieldinline{CAP di domicilio}{0.1\linewidth};\\
+        Chiede di poter utilizzare l'Infinito Potere di Antiorsi
+
+        \yesno{I like Pets}{pets}
+
+        \yesno{This is a very long sentence to show what happens if it does not fit in one line.}{lines}
+
+    \end{Form}
+\end{document}

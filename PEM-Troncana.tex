@@ -25,12 +25,12 @@
 
 \begin{abstract}
     La Teoria delle Categorie è un formalismo nato in seno alla Topologia e Geometria Algebrica per descrivere in modo generale la struttura delle varie teorie matematiche: laddove la Teoria degli Insiemi si fonda sui concetti primitivi di "insieme" e "elemento", quello della Teoria delle Categorie è un punto di vista più strutturale, basato sui concetti di "oggetto" e "morfismo", ovvero una relazione astratta tra due oggetti.\\
-    In questa trattazione forniremo un'elementare esposizione del linguaggio e di alcune costruzioni e risultati fondamentali nella Teoria delle Categorie in modo propedeutico alla pratica matematica generale ed evidenziando alcuni aspetti di tipo fondativo.
+    In questa trattazione forniremo un'elementare esposizione del linguaggio e di alcune costruzioni e risultati fondamentali nella Teoria delle Categorie in modo propedeutico alla pratica matematica generale, evidenziando alcuni aspetti di tipo fondativo tramite l'estensione della Teoria degli Insiemi di ZFC con un opportuno assioma di universo.
 \end{abstract}
 
-\subsection*{Estensioni di ZFC}
+\section*{Fondamenti assiomatici}
 
-Trattando strutture molto "grandi" in un senso che renderemo preciso in seguito, per fondare propriamente la Teoria delle Categorie è necessario estendere la Teoria degli Insiemi di Zermelo-Fraenkel più l'assioma della scelta (che assumeremo sempre). L'approccio che seguiremo è un approccio che in qualche modo "limiti" la grandezza delle nostre strutture, supponendo l'esistenza di un insieme "universo" che si sostituisca alla classe di tutti gli insiemi.
+Trattando strutture molto "grandi" in un senso che renderemo preciso in seguito, per fondare propriamente la Teoria delle Categorie è necessario estendere la Teoria degli Insiemi di Zermelo-Fraenkel più l'assioma della scelta, che assumeremo sempre\footnote{Potremmo essere tentati di limitare l'assioma della scelta a famiglie piccole o almeno moderate di insiemi (nel senso specificato in \ref{ax:assioma di universo}), ma ai fini della nostra trattazione lo assumeremo sempre nella sua forma completa.}. L'approccio che seguiremo è un approccio che in qualche modo "limiti" la grandezza delle nostre strutture, supponendo l'esistenza di un insieme "universo" che si sostituisca alla classe di tutti gli insiemi.
 
 \begin{definition}{Universo di Grothendieck}{universo di Grothendieck}
     Sia $\G$ un insieme non vuoto. Questo si dice \bemph{universo di Grothendieck} se:\begin{itemize}
@@ -54,7 +54,8 @@ Si dimostrano immediatamente le seguenti proprietà:
     \end{itemize}
 \end{proposition} 
 
-Da queste proprietà seguono due fatti strettamente correlati, ovvero che un universo di Grothendieck più che numerabile è un \bemph{modello} per ZFC e che l'esistenza di un universo di Grothendieck più che numerabile è indipendente da ZFC. Intuitivamente, il seguente assioma ci permette di trattare un universo di Grothendieck come "sostituto" della classe di tutti gli insiemi, sicuri del fatto che questo "limiti" tutta la pratica matematica "usuale".
+Da queste proprietà seguono due fatti strettamente correlati, ovvero che un universo di Grothendieck più che numerabile è un \bemph{modello} per ZFC e che l'esistenza di un universo di Grothendieck più che numerabile è indipendente da ZFC.\\
+Intuitivamente, il seguente assioma ci permette di trattare un universo di Grothendieck come "sostituto" della classe di tutti gli insiemi, sicuri del fatto che questo "limiti" tutta la pratica matematica "usuale".
 
 \begin{axiom}{Assioma di Universo debole}{assioma di universo debole}
     Esiste un universo di Grothendieck più che numerabile $\G$. Tutti gli elementi di $\G$ si dicono \bemph{piccoli}, mentre gli altri insiemi si dicono \bemph{grandi}. I sottoinsiemi di $\G$, piccoli o grandi che siano, si dicono \bemph{moderati}.
@@ -65,7 +66,7 @@ Da queste proprietà seguono due fatti strettamente correlati, ovvero che un uni
     \begin{axiom}{Assioma di Universo}{assioma di universo}
         Per ogni insieme $x$ esiste un universo di Grothendieck $U$ tale che $x \in U$
     \end{axiom}
-    Questo implica l'esistenza di tutta una gerarchia di  è utile per trattare la Teoria delle Categorie Superiori, ma per una trattazione più elementare è sufficiente assumere l'esistenza di un solo universo, si veda \cite{MacLane1969}.
+    Questo implica l'esistenza di tutta una gerarchia di universi ciascuno "inaccessibile" da quello precedente, utile per trattare la Teoria delle Categorie Superiori, ma per una trattazione più elementare è sufficiente assumere l'esistenza di un solo universo, si veda \cite{MacLane1969}.
 \end{remark}
 
 \section{Nozioni fondamentali}
@@ -305,7 +306,9 @@ Abbiamo dualmente la versione controvariante:
 \end{corollary}
 
 \begin{remark}{Lemma di Yoneda e grandezza}{lemma di Yoneda e grandezza}
-    In generale la biezione dataci da \ref{th:lemma di yoneda covariante} non è una biezione tra insiemi piccoli, in quanto gli elementi di $\nat(h_A,F)$ non sono in generale insiemi piccoli. Prendiamo ad esempio il funtore dimenticante $U$ da $\grpcat$\footnote{Categoria dei gruppi con gli omomorfismi di gruppo} a $\setcat$, che ad un gruppo $(G,\cdot)$ associa l'insieme $G$: noi abbiamo che $\nat(h_G,U)$ è in biezione con $G$, ma gli elementi di $\nat(h_G,U)$ sono indicizzati dall'insieme di tutti i gruppi (piccoli), che non è un insieme piccolo e dunque questi non sono insiemi piccoli, nonostante l'insieme che li contenga sia in biezione con un insieme piccolo.
+    In generale la biezione dataci da \ref{th:lemma di yoneda covariante} non è una biezione tra insiemi piccoli, in quanto gli elementi di $\nat(h_A,F)$ non sono in generale insiemi piccoli.\\
+    Prendiamo ad esempio il funtore identità $\id$ da $\setcat$ in sè stessa: noi abbiamo che $\nat(h_S,\id)$ è in biezione con $S$, ma gli elementi di $\nat(h_S,\id)$ sono indicizzati da $\G$, che non è affatto un insieme piccolo.\\
+    Avendo l'assioma \ref{ax:assioma di universo debole} non incorriamo in problemi di tipo logico o fondativo, ma se non avessimo limitato in questo modo la grandezza delle nostre categorie dovremmo gestire in qualche modo la collezione $\nat(h_S,\id)$, che per quanto ci sia garantito debba essere "grande quanto" un insieme, sarebbe una collezione di elementi classicamente considerati come classi proprie, ovvero classi che non possono appartenere ad altre classi.
 \end{remark}
 
 Una delle più naturali applicazioni del lemma di Yoneda è l'embedding di Yoneda, fondamentale in gran parte della topologia e della geometria moderna: esso permette di identificare una categoria $\C$ con una sottocategoria della cosiddetta \bemph{categoria dei prefasci su} $\C$, che è solo un altro nome per $[\C^\op,\setcat]$. Ad esempio se interpretiamo la topologia $\tau$ di uno spazio $(X,\tau)$ come una categoria, dove i morfismi sono dati dall'inclusione insiemistica, questa è completamente determinata dalle classi delle funzioni continue entranti nei (o uscenti dai) suoi aperti.
@@ -447,24 +450,19 @@ Presentiamo alcuni limiti di particolare importanza (in effetti delle classi di 
     Sia $\C$ una categoria e sia $\J$ un diagramma discreto (ovvero i cui unici morfismi sono le identità).\\
     Si dice \bemph{prodotto} di $\J$ in $\C$ il limite di $\J$ in $\C$, che indicheremo come
     \[ \prod_{X\in\ob\J} X\quad\text{oppure, più semplicemente,}\quad \prod\J\ . \]
-    Un prodotto in $\C^\op$ si dice \bemph{coprodotto} in $\C$ e lo indicheremo come $\coprod \J$.\\
-    I morfismi $\pi_X : \prod\J\to X$ si dicono \bemph{proiezioni ai fattori}.
+    Un prodotto in $\C^\op$ si dice \bemph{coprodotto} in $\C$ e lo indicheremo come $\coprod \J$, mentre prodotti e coprodotti binari verranno indicati (nel caso in cui sia chiara la categoria ambiente) rispettivamente come $A\times B$ e $A+B$.\\
+    I morfismi $\pi_X : \prod\J\to X$ si dicono \bemph{proiezioni}, mentre i morfismi $\iota_X: X\to\coprod\J$ si dicono \bemph{inclusioni}.
 \end{definition}
 
-\begin{remark}{Sui prodotti}{sui prodotti}
-    \begin{itemize}
-        \item Il prodotto sul diagramma vuoto è (se esiste) l'oggetto terminale di $\C$.
-        \item Sotto gli assiomi di ZF, $\setcat$ ammette tutti i prodotti piccoli\footnote{Ovvero quelli indicizzati da una categoria piccola} se e solo se vale l'assioma della scelta.
-    \end{itemize}
-\end{remark}
+È immediato osservare che se $\C$ ammette un oggetto terminale, questo è il prodotto del diagramma vuoto.
 
 \begin{definition}{Pullback o prodotto fibrato}{pullback o prodotto fibrato}
     Sia $\C$ una categoria, e sia $\J$ il diagramma $\{ X\xrightarrow{f} Z \xleftarrow{g} Y \}$, detto \bemph{cospan}\footnote{E ovviamente $\J^\op$ si dirà \bemph{span}}.\\
-    Il limite di $\J$ in $\C$ si dice \bemph{pullback} di $\J$, o anche \bemph{prodotto fibrato} di $X$ e $Y$ lungo (o su) $Z$.\\
+    Il limite di $\J$ in $\C$ si dice \bemph{pullback} di $\J$, o anche \bemph{prodotto fibrato} di $X$ e $Y$ lungo (o su) $Z$ e si può indicare con $X\times_Z Y$.\\
     Un pullback in $\C^\op$ si dice \bemph{pushout}.
 \end{definition}
 
-Il pullback è una sorta di analogo categoriale delle equazioni: in molte categorie concrete\footnote{Informalmente, quelle i cui oggetti sono insiemi dotati di una qualche struttura e i cui morfismi sono funzioni insiemistiche che rispettano tale struttura.} il pullback di $\{ X\xrightarrow{f} Z \xleftarrow{g} Y \}$ è il sottoinsieme $\{ (x,y) | f(x) = g(y) \}$ di $X\times Y$ e i morfismi che lo accompagnano sono la restrizione delle proiezioni. Un altro esempio è quello del grafico di una funzione, che è il pullback del diagramma $\{ X\xrightarrow{f} Y \xleftarrow{\id_Y} Y \}$
+Il pullback è una sorta di analogo categoriale delle equazioni: è facile dimostrare che in $\setcat$ e nelle categorie concrete\footnote{Informalmente, quelle i cui oggetti sono insiemi dotati di una qualche struttura e i cui morfismi sono funzioni insiemistiche che rispettano tale struttura; formalmente, quelle che ammettono un funtore fedele a valori in $\setcat$.} il pullback di $\{ X\xrightarrow{f} Z \xleftarrow{g} Y \}$ è il sottoinsieme $\{ (x,y) | f(x) = g(y) \}$ di $X\times Y$ e i morfismi che lo accompagnano sono la restrizione delle proiezioni. Un altro esempio è quello del grafico di una funzione, che è il pullback del diagramma $\{ X\xrightarrow{f} Y \xleftarrow{\id_Y} Y \}$.
 
 \begin{definition}{Equalizzatore}{equalizzatore}
     Sia $\C$ una categoria e sia $\J$ il diagramma 
@@ -552,9 +550,17 @@ Tuttavia in altre applicazioni della Teoria delle Categorie, ad esempio in Topol
         & \cong_\setcat \hom_\C(A,B)\times \hom_\C(A,C)\\
         & \cong_\setcat \underbrace{\hom_\C(A, B\times C)}_{\C^\op \times (\C\times\C) \to \setcat}
     \end{aligned} \]
-    Abbiamo dimostrato che $\Pi$ è effettivamente un aggiunto destro\footnote{Dovremmo dimostrare la funtorialità, ma è banale e consiste semplicemente nell'applicare le proprietà universali dei prodotti}, essenzialmente unico per il lemma \ref{lem:unicità degli aggiunti}, a $\Delta$.
+    Abbiamo dimostrato che $\Pi$ è effettivamente una mappa aggiunta destra alla mappa diagonale; dovremmo dimostrare la funtorialità, ma è banale e consiste semplicemente nell'applicare le proprietà universali dei prodotti.\\
+    Applicando il lemma \ref{lem:unicità degli aggiunti}, otteniamo l'essenziale unicità, concludendo.
+    \qed
 \end{theorem}
 
+\begin{corollary}{Caratterizzazione del coprodotto binario}{caratterizzazione del coprodotto binario}
+    Sia $\C$ una categoria localmente piccola e sia $\Delta :\C\to\C\times\C$ il funtore diagonale.\\
+    Se $\C$ ammette i coprodotti binari, l'applicazione $\amalg : \C\times\C \to \C$ definita da
+    \[\amalg ((f,g):(X,Y)\to(W,Z)) := (f + g : X + Y \to W + Z) \]
+    definisce un funtore aggiunto sinistro a $\Delta$.
+\end{corollary}
 
 \nocite{*}
 \printbibliography
