@@ -8,7 +8,7 @@
 
 \addbibresource{PEM-Troncana.bib}
 
-\title{Elementi di Teoria delle Categorie}
+\title{Elementi di Teoria delle Categorie\\ {\small\it Categories for the Learning Mathematician}}
 \author{Seminario PEM di F. Troncana, sotto la supervisione del prof. R. Zunino}
 \date{A.A. 2025/2026}
 
@@ -61,13 +61,13 @@ Intuitivamente, il seguente assioma ci permette di trattare un universo di Groth
     Esiste un universo di Grothendieck più che numerabile $\G$. Tutti gli elementi di $\G$ si dicono \bemph{piccoli}, mentre gli altri insiemi si dicono \bemph{grandi}. I sottoinsiemi di $\G$, piccoli o grandi che siano, si dicono \bemph{moderati}.
 \end{axiom}
 
-\begin{remark}{Sull'assioma di Universo debole}{sull'assioma di universo debole}
-    In realtà l'assioma \ref{ax:assioma di universo debole} è\footnote{Come si potrebbe intuire dal nome} più spesso assunto in una sua versione più forte, ovvero:
-    \begin{axiom}{Assioma di Universo}{assioma di universo}
-        Per ogni insieme $x$ esiste un universo di Grothendieck $U$ tale che $x \in U$
-    \end{axiom}
-    Questo implica l'esistenza di tutta una gerarchia di universi ciascuno "inaccessibile" da quello precedente, utile per trattare la Teoria delle Categorie Superiori, ma per una trattazione più elementare è sufficiente assumere l'esistenza di un solo universo, si veda \cite{MacLane1969}.
-\end{remark}
+In realtà l'assioma \ref{ax:assioma di universo debole} è\footnote{Come si potrebbe intuire dal nome} più spesso assunto in una sua versione più forte, ovvero:
+
+\begin{axiom}{Assioma di Universo}{assioma di universo}
+    Per ogni insieme $x$ esiste un universo di Grothendieck $U$ tale che $x \in U$
+\end{axiom}
+
+Questo implicherebbe l'esistenza di tutta una gerarchia di universi ciascuno "inaccessibile" (nel senso della Teoria degli Insiemi) da quello precedente, utile per fare Teoria delle Categorie Superiori, ma per una trattazione più elementare è sufficiente assumere l'esistenza di un solo universo, si veda \cite{MacLane1969}.
 
 \section{Nozioni fondamentali}
 
@@ -88,14 +88,16 @@ Intuitivamente, il seguente assioma ci permette di trattare un universo di Groth
     \end{itemize}
 \end{definition}
 
+Uno degli aspetti più vantaggiosi della Teoria delle Categorie è il \bemph{principio di dualità},molto informalmente un "paghi uno prendi due": ogni teorema in Teoria delle Categorie ha un equivalente che si dimostra "gratuitamente" passando alla categoria opposta, ne vedremo alcuni esempi.
+
 \begin{remark}{Sulle categorie}{grandezza}
     Banalmente:\begin{itemize}
         \item Le identità sono uniche.
-        \item La categoria duale è essenzialmente\footnote{A meno di equivalenza come definita in \ref{def:equivalenza di categorie}} unica e vale $(\C^\op)^\op = \C$.
+        \item La categoria duale è unica e vale $(\C^\op)^\op = \C$.
         \item Dato che $\ob\C$ inietta sempre in $\hom\C$ con la mappa $X\mapsto \id_X$, in generale l'insieme dei morfismi può essere arbitrariamente più grande di quello degli oggetti, dunque la grandezza di una categoria è in generale indipendente dal suo insieme degli oggetti.
     \end{itemize} 
     \proof 
-    Dimostriamo solo l'ultimo punto con un esempio, gli altri sono banali. Sia $\V$ la categoria formata da un unico oggetto $\bullet$ e il cui insieme dei morfismi corrisponde all'insieme dei cardinali appartenenti a $\G$, dove la composizione di due morfismi è data dalla loro somma come cardinali. Nonostante $\ob \V$ sia il più piccolo possibile (al di là della categoria vuota), $\hom \V$ è (dimostrabilmente) un insieme grande, dunque $\V$ non solo è grande, ma non è nemmeno localmente piccola.
+    Forniamo un esempio dell'ultimo punto, gli altri sono banali. Sia $\V$ la categoria formata da un unico oggetto $\bullet$ e il cui insieme dei morfismi corrisponde all'insieme dei cardinali appartenenti a $\G$, dove la composizione di due morfismi è data dalla loro somma come cardinali. Nonostante $\ob\V$ sia il più piccolo possibile (al di là della categoria vuota), $\hom \V$ è (dimostrabilmente) un insieme grande, dunque $\V$ non solo è grande, ma non è nemmeno localmente piccola.
     \qed
 \end{remark}
 
@@ -111,12 +113,12 @@ Inoltre quando faremo riferimento ad alcune categorie specifiche, ad esempio $\s
 
 \begin{definition}{Sapori di morfismi}{morfismi}
     Sia $\C$ una categoria e sia $f: A\to B$ un morfismo. Esso può dirsi:\begin{itemize}
-        \item \bemph{Monomorfismo} (o monico o mono) se la precomposizione è iniettiva, ovvero per ogni coppia di morfismi $g_1, g_2 : C\to A$ e ogni morfismo postcomponibile $f$ vale $fg_1 = fg_2 \Rarr g_1=g_2$.
-        \item \bemph{Epimorfismo} (o epico o epi) se la postcomposizione è iniettiva, ovvero se per ogni coppia di morfismi $g_1, g_2 : B\to C$ e ogni morfismo precomponibile $f$ vale $g_1f = g_2f \Rarr g_1=g_2$.
+        \item \bemph{Monomorfismo} (o monico o mono) se la precomposizione è iniettiva, ovvero per ogni coppia di morfismi postcomponibili $g_1, g_2 : C\to A$ vale $fg_1 = fg_2 \Rarr g_1=g_2$.
+        \item \bemph{Epimorfismo} (o epico o epi) se la postcomposizione è iniettiva, ovvero se per ogni coppia di morfismi precomponibili $g_1, g_2 : B\to C$ vale $g_1f = g_2f \Rarr g_1=g_2$.
         \item \bemph{Endomorfismo} (o endo) se $A=B$.
-        \item \bemph{Sezione} (o split mono) se ha un'inversa sinistra, ovvero se esiste un morfismo $g:B\to A$ tale che $gf = \id_A$.
-        \item \bemph{Retrazione} (o split epi) se ha un'inversa destra, ovvero se esiste un morfismo $g:B\to A$ tale che $fg = \id_B$.
-        \item \bemph{Isomorfismo} (o iso) se ha un'inversa destra e sinistra. In particolare, $A$ e $B$ si dicono \bemph{isomorfi} (attraverso $f$) e li indicheremo con $f:A\cong_\C B$ omettendo usualmente $f$ o $\C$.
+        \item \bemph{Sezione} (o split mono) se ha un inverso sinistro, ovvero se esiste un morfismo $g:B\to A$ tale che $gf = \id_A$.
+        \item \bemph{Retrazione} (o split epi) se ha un inverso destro, ovvero se esiste un morfismo $g:B\to A$ tale che $fg = \id_B$.
+        \item \bemph{Isomorfismo} (o iso) se ha un inverso destra e sinistro. In particolare, $A$ e $B$ si dicono \bemph{isomorfi} (attraverso $f$) e li indicheremo con $f:A\cong_\C B$ omettendo usualmente $f$ o $\C$.
         \item \bemph{Automorfismo} (o auto) se è iso e endo.
     \end{itemize}    
 \end{definition}
@@ -125,21 +127,21 @@ Inoltre quando faremo riferimento ad alcune categorie specifiche, ad esempio $\s
     Valgono le seguenti:\begin{itemize}
         \item Le sezioni sono mono.
         \item Le retrazioni sono epi.
+        \item Mono ed epi sono concetti duali, allo stesso modo lo sono sezioni e retrazioni.
         \item iso $\Harr$ (split mono $\wedge$ epi) $\Harr$ (mono $\wedge$ split epi) $\Rarr$ (epi $\wedge$ mono), ma nell'ultimo caso non vale l'implicazione inversa.
         \item Tutte le inverse sono uniche quando esistono.
-        \item Un mono è un epi nella categoria opposta e viceversa.
     \end{itemize}
     \proof 
     Forniamo solo due esempi di morfismi che sono epici e monici ma non isomorfismi (le altre verifiche sono assolutamente automatiche):\begin{itemize}
         \item Consideriamo in $\catname{Haus}$\footnote{Categoria degli spazi topologici di Hausdorff, ovvero $T_2$, e delle funzioni continue} l'inclusione $\iota: [0,1]\cap \Q\inj[0,1]$ (entrambi con la topologia euclidea); questa è chiaramente monica in quanto iniettiva, ed è epica in quanto una funzione continua in $\catname{Haus}$ è completamente determinata dal suo valore su un sottospazio denso, ma non è iso dato che non è suriettiva.
         \item Consideriamo la categoria
         \[\begin{tikzcd}
-        	\bullet && \bullet
-    	    \arrow["\id", from=1-1, to=1-1, loop, in=145, out=215, distance=10mm]
-        	\arrow["f", from=1-1, to=1-3]
-    	    \arrow["\id", from=1-3, to=1-3, loop, in=325, out=35, distance=10mm]
+        	1 && 2
+    	    \arrow["1\le 1", from=1-1, to=1-1, loop, in=145, out=215, distance=10mm]
+        	\arrow["1\le 2", from=1-1, to=1-3]
+    	    \arrow["2\le 2", from=1-3, to=1-3, loop, in=325, out=35, distance=10mm]
         \end{tikzcd}\]
-        Dato che a destra o sinistra possiamo comporre solo con l'identità, $f$ è sia monico che epico, ma non è iso in quanto non ha inversa.
+        Dato che a destra o sinistra possiamo comporre solo con l'identità, $1\le 2$ è sia monico che epico, ma non è iso in quanto non ha inverso.
     \end{itemize}
     \qed
 \end{remark}
@@ -155,11 +157,13 @@ Inoltre quando faremo riferimento ad alcune categorie specifiche, ad esempio $\s
     Se una categoria $\C$ ammette un oggetto iniziale (o finale o zero), questo è essenzialmente unico.
 \end{proposition}
 
+Introduciamo quello che può essere considerato un morfismo di categorie (e in effetti lo è in Teoria delle Categorie Superiori), ovvero il concetto di funtore. Di fatto la Teoria delle Categorie è nata per studiare i funtori, di cui l'esempio motivante è il gruppo fondamentale in Topologia Algebrica.
+
 \begin{definition}{Funtore}{funtore}
     Siano $\C$ e $\D$ due categorie. Un \bemph{funtore covariante} $F: \C\to\D$ consiste in due mappe $F:\ob\C\to\ob\D$ e $F:\hom\C\to\hom\D$ che rispettino la composizione, ovvero:\begin{itemize}
         \item Per ogni morfismo $f :X\to Y$ vale $Ff: FX \to FY$.
         \item Per ogni oggetto $X \in \ob\C$ vale $F\id_X = \id_{FX}$.
-        \item Per ogni coppia di morfismi componibili $f,g\ in \hom\C$ vale $F(gf) = FgFf$.
+        \item Per ogni coppia di morfismi componibili $f,g \in \hom\C$ vale $F(g\circ f) = Fg\circ Ff$.
     \end{itemize}
     Un \bemph{funtore controvariante} da $\C$ a $\D$ è un funtore covariante $F: \C^\op\to\D$. Anche se l'espressione "un funtore controvariante $\C^\op\to\D$" tecnicamente indicherebbe un funtore covariante $\C\to\D$, la useremo quasi sempre per indicare un funtore controvariante $\C\to\D$, ovvero una controvarianza specificata due volte non farà una covarianza.\\
     Un funtore si dice:\begin{itemize}
@@ -180,14 +184,14 @@ Inoltre quando faremo riferimento ad alcune categorie specifiche, ad esempio $\s
     \qed
 \end{proposition}
 
-Adesso faremo una cosa un po' buffa, ovvero definiremo il prodotto di categorie come definiremmo normalmente il prodotto cartesiano di insiemi e più tardi lo useremo per definire il prodotto in categorie generali.
+Adesso faremo una cosa un po' buffa, ovvero definiremo il prodotto di categorie come definiremmo normalmente il prodotto cartesiano di insiemi e più tardi lo useremo per definire il prodotto di oggetti in categorie generali.
 
 \begin{definition}{Categoria prodotto e bifuntore}{categoria prodotto e bifuntore}
     Siano $\C$ e $\D$ due categorie. Definiamo la \bemph{categoria prodotto} $\C\times\D$ di $\C$ e $\D$ come la categoria i cui oggetti sono le coppie ordinate di un oggetto di $\C$ e uno di $\D$ e dove
-    \[ \hom((A,B),(C,D)) = \left\{ (f,g) : f \in \C(A,C), g \in \D(B,D) \right\}. \]
+    \[ \hom((A,B),(C,D)) = \left\{ (f,g) : f \in \C(A,C), g \in \D(B,D) \right\} = \hom(A,C)\times \hom(B,D). \]
     Una categoria prodotto è naturalmente munita di due funtori $P_I : \C\times\D\to I$ con $I = \C,\D$, detti \bemph{proiezioni}, tali che
     \[ P_\C ((f,g):(A,B)\to(C,D)) = (f:A\to C) \quad\text{e}\quad P_\D ((f,g):(A,B)\to(C,D)) = (g:B\to D).\]
-    Un funtore $F:\C\times\D\to \E$ si dice \bemph{bifuntore}.
+    Un funtore $F:\C\times\D\to \mc{E}$ si dice \bemph{bifuntore}.
 \end{definition}
 
 Perchè "spostiamo" il prodotto cartesiano alle categorie? Perchè spesso quando lavoriamo in qualche categoria ci risulta più agevole una definizione più "intrinseca" di prodotto, oppure abbiamo prodotti diversi: in $\catname{Rel}$\footnote{Categoria degli insiemi e delle relazioni} il prodotto "categorico" è dato dall'unione disgiunta, nonostante $\setcat$ sia una sua sottocategoria e in questa il prodotto sia l'usuale prodotto cartesiano.\\
@@ -206,7 +210,7 @@ Abbiamo visto che i morfismi sono trasformazioni tra oggetti, mentre i funtori s
     	\arrow["{G(f)}"{description}, from=1-5, to=3-5]
 	    \arrow["{\Phi_Y}"{description}, from=3-3, to=3-5]
     \end{tikzcd}\]
-    Una trasformazione naturale tale per cui tutti i morfismi $\Phi_X$ so isomorfismi si dice \bemph{isomorfismo naturale}.
+    Una trasformazione naturale tale per cui tutti i morfismi $\Phi_X$ sono isomorfismi si dice \bemph{isomorfismo naturale}.
 \end{definition}
 
 \begin{definition}{Equivalenza di categorie}{equivalenza di categorie}
@@ -214,6 +218,8 @@ Abbiamo visto che i morfismi sono trasformazioni tra oggetti, mentre i funtori s
     La coppia $(F,G)$ si dice \bemph{equivalenza di categorie} tra $F$ e $G$ se esistono due isomorfismi naturali
     \[ \id_\C \cong GF \quad\text{e}\quad \id_\D \cong FG .\]
 \end{definition}
+
+Useremo questa caratterizzazione\footnote{Senza assumere l'assioma della scelta in realtà si avrebbe solo un'implicazione} per le equivalenze di categorie, di cui omettiamo la dimostrazione in quanto più lunga e laboriosa che profonda.
 
 \begin{proposition}{Caratterizzazione per un'equivalenza di categorie}{equivalenza di categorie}
     Sia $F : \C\to\D$ un funtore. Questo definisce un'equivalenza di categorie se e solo se è pienamente fedele ed essenzialmente suriettivo sugli oggetti.
@@ -247,7 +253,7 @@ Un risultato assolutamente centrale in Teoria delle Categorie è il lemma di Yon
     	\arrow["{(\nu\mu)_Y}"{description}, curve={height=24pt}, from=3-3, to=3-7]
     	\arrow["{\nu_Y}"{description}, from=3-5, to=3-7]
     \end{tikzcd}\]
-    Spesso invece di scrivere $[\C,\D](F,G)$ o $\hom_{[\C,\D]}(F,G)$ scriveremo $\nat(F,G)$.
+    Se le categorie sono chiare dal contesto, invece di scrivere $[\C,\D](F,G)$ o $\hom_{[\C,\D]}(F,G)$ scriveremo $\nat(F,G)$.
 \end{definition}
 
 \begin{definition}{$\hom$-funtore covariante e controvariante}{hom-funtore}
@@ -264,7 +270,8 @@ Un risultato assolutamente centrale in Teoria delle Categorie è il lemma di Yon
     	\arrow["{h^A}"{description}, maps to, from=3-3, to=3-5]
 	    \arrow["{h^A(f) = -\circ f}"{description}, from=3-5, to=1-5]
     \end{tikzcd}\]
-    Inoltre possiamo interpretare $\hom(-,-)$ come un bifuntore $\C^\op\times \C \to \setcat$.
+    Inoltre possiamo interpretare $\hom(-,-)$ come un bifuntore $\C^\op\times \C \to \setcat$.\\
+    Un funtore covariante o controvariante $F$ a valori in $\setcat$ si dice \bemph{rappresentabile} se esiste una \bemph{rappresentazione} di $F$, ovvero un oggetto $A$ di $\C$ e un isomorfismo naturale $\Phi:h_A\to F$ nel caso covariante, $\Phi: h^A\to F$ nel caso controvariante.
 \end{definition}
 
 \begin{theorem}{Lemma di Yoneda covariante}{lemma di yoneda covariante}
@@ -307,8 +314,8 @@ Abbiamo dualmente la versione controvariante:
 
 \begin{remark}{Lemma di Yoneda e grandezza}{lemma di Yoneda e grandezza}
     In generale la biezione dataci da \ref{th:lemma di yoneda covariante} non è una biezione tra insiemi piccoli, in quanto gli elementi di $\nat(h_A,F)$ non sono in generale insiemi piccoli.\\
-    Prendiamo ad esempio il funtore identità $\id$ da $\setcat$ in sè stessa: noi abbiamo che $\nat(h_S,\id)$ è in biezione con $S$, ma gli elementi di $\nat(h_S,\id)$ sono indicizzati da $\G$, che non è affatto un insieme piccolo.\\
-    Avendo l'assioma \ref{ax:assioma di universo debole} non incorriamo in problemi di tipo logico o fondativo, ma se non avessimo limitato in questo modo la grandezza delle nostre categorie dovremmo gestire in qualche modo la collezione $\nat(h_S,\id)$, che per quanto ci sia garantito debba essere "grande quanto" un insieme, sarebbe una collezione di elementi classicamente considerati come classi proprie, ovvero classi che non possono appartenere ad altre classi.
+    Prendiamo ad esempio il funtore identità $\mathbf{Id}$ da $\setcat$ in sè stessa: noi abbiamo che $\nat(h_S,\mathbf{Id})$ è in biezione con $S$, ma gli elementi di $\nat(h_S,\mathbf{Id})$ sono indicizzati da $\G$, che non è affatto un insieme piccolo.\\
+    Avendo l'assioma \ref{ax:assioma di universo debole} non incorriamo in problemi di tipo logico o fondativo, ma se non avessimo limitato in questo modo la grandezza delle nostre categorie dovremmo gestire in qualche modo la collezione $\nat(h_S,\mathbf{Id})$, che per quanto ci sia garantito debba essere "grande quanto" un insieme, sarebbe una collezione di elementi classicamente considerati come classi proprie, ovvero classi che non possono appartenere ad altre classi.
 \end{remark}
 
 Una delle più naturali applicazioni del lemma di Yoneda è l'embedding di Yoneda, fondamentale in gran parte della topologia e della geometria moderna: esso permette di identificare una categoria $\C$ con una sottocategoria della cosiddetta \bemph{categoria dei prefasci su} $\C$, che è solo un altro nome per $[\C^\op,\setcat]$. Ad esempio se interpretiamo la topologia $\tau$ di uno spazio $(X,\tau)$ come una categoria, dove i morfismi sono dati dall'inclusione insiemistica, questa è completamente determinata dalle classi delle funzioni continue entranti nei (o uscenti dai) suoi aperti.
@@ -520,7 +527,7 @@ Considerando l'ubiquità del concetto di (co)limite, è importante essere in gra
     	\arrow["g"{description}, shift right=3, from=3-3, to=3-4]
     	\arrow["{\sigma_{F(X)}}"{description}, from=3-3, to=5-3]
     	\arrow["{\tau_{F(\cod(u))}}"{description}, from=3-4, to=3-6]
-    	\arrow["u"{description}, from=5-3, to=3-6]
+    	\arrow["F(u)"{description}, from=5-3, to=3-6]
     \end{tikzcd}\]
     Ora dobbiamo dimostrare che è effettivamente universale: considerando un altro cono $(N,\varphi)$, le sue $\varphi$ definiscono un'unica $h : N\to S$, ma dato che è un cono deve anche valere $f\circ h = g \circ h$, dunque $h$ è una mappa equalizzante e dunque deve esistere un'unica mappa $\eta : N\to L$ tale che $ h = e_{f,g} \circ \eta $.
     \qed
@@ -548,7 +555,7 @@ Tuttavia in altre applicazioni della Teoria delle Categorie, ad esempio in Topol
     \[\begin{aligned}
         \hom_{\C^2}(\Delta A,(B,C)) & \cong_\setcat \hom_{\C^2}((A,A),(B,C))\\
         & \cong_\setcat \hom_\C(A,B)\times \hom_\C(A,C)\\
-        & \cong_\setcat \underbrace{\hom_\C(A, B\times C)}_{\C^\op \times (\C\times\C) \to \setcat}
+        & \cong_\setcat \underbrace{\hom_\C(A, B\times C)}_{\C^\op \times (\C\times\C) \to \setcat} = \hom_{C}(A,\Pi(B,C))
     \end{aligned} \]
     Abbiamo dimostrato che $\Pi$ è effettivamente una mappa aggiunta destra alla mappa diagonale; dovremmo dimostrare la funtorialità, ma è banale e consiste semplicemente nell'applicare le proprietà universali dei prodotti.\\
     Applicando il lemma \ref{lem:unicità degli aggiunti}, otteniamo l'essenziale unicità, concludendo.
