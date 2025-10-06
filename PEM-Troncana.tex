@@ -41,7 +41,7 @@ Trattando strutture molto "grandi" in un senso che renderemo preciso in seguito,
     \end{itemize}
 \end{definition}
 
-Si dimostrano immediatamente le seguenti proprietà:
+Si dimostrano immediatamente le seguenti proprietà (si veda \cite{SGA4}):
 
 \begin{proposition}{Proprietà degli universi di Grothendieck più che numerabili}{proprietà degli universi di Grothendieck più che numerabili}
     Sia $\G$ un universo di Grothendieck più che numerabile. Allora questo contiene:\begin{itemize}
@@ -49,7 +49,6 @@ Si dimostrano immediatamente le seguenti proprietà:
         \item Tutti i singoletti contenenti i suoi elementi.
         \item Tutti i prodotti, le unioni disgiunte e le intersezioni di famiglie di suoi elementi indicizzate da un suo elemento.
         \item Tutte le funzioni tra due suoi elementi.
-        \item Tutte le cardinalità strettamente minori della sua.
         \item Tutti i suoi sottoinsiemi la cui cardinalità è un suo elemento.
     \end{itemize}
 \end{proposition} 
@@ -93,7 +92,7 @@ Uno degli aspetti più vantaggiosi della Teoria delle Categorie è il \bemph{pri
 \begin{remark}{Sulle categorie}{grandezza}
     Banalmente:\begin{itemize}
         \item Le identità sono uniche.
-        \item La categoria duale è unica e vale $(\C^\op)^\op = \C$.
+        \item Passando da $\C$ a $\C^\op$ la composizione dei morfimsi viene "ribaltata" a sua volta, infatti $(g\circ f)^\op = f^\op\circ g^\op$; vale inoltre $(\C^\op)^\op = \C$.
         \item Dato che $\ob\C$ inietta sempre in $\hom\C$ con la mappa $X\mapsto \id_X$, in generale l'insieme dei morfismi può essere arbitrariamente più grande di quello degli oggetti, dunque la grandezza di una categoria è in generale indipendente dal suo insieme degli oggetti.
     \end{itemize} 
     \proof 
@@ -101,8 +100,7 @@ Uno degli aspetti più vantaggiosi della Teoria delle Categorie è il \bemph{pri
     \qed
 \end{remark}
 
-Da ora in avanti, assumeremo sempre (anche senza specificarlo) che le nostre categorie siano almeno localmente piccole per evitare problemi di fondazione.\\
-Inoltre quando faremo riferimento ad alcune categorie specifiche, ad esempio $\setcat$, assumeremo sempre di intendere non la categoria di tutti gli insiemi con le funzioni tra di loro\footnote{Che non sarebbe affatto una categoria per come le abbiamo definite} ma della categoria di tutti gli insiemi piccoli con le funzioni tra di loro\footnote{Possiamo farlo in quanto $\G$ contiene automaticamente tutti gli insiemi costruiti a partire dall'insieme vuoto e iterando operazioni di unione, intersezione e passaggio alle parti, dunque di fatto tutti gli insiemi che si usano nella normale pratica matematica}, e allo stesso modo intenderemo per esempio gli spazi topologici piccoli, o i gruppi piccoli e così via.
+Da ora in avanti, assumeremo sempre (anche senza specificarlo) che le nostre categorie siano almeno localmente piccole per comodità.
 
 \begin{definition}{Sottocategoria}{sottocategoria}
     Siano $\C$ e $\D$ due categorie tali che $\ob\C \subset \ob\D$, $\hom\C \subset \hom\D$ e per ogni $f,g,h \in \hom C$ valga 
@@ -133,7 +131,7 @@ Inoltre quando faremo riferimento ad alcune categorie specifiche, ad esempio $\s
     \end{itemize}
     \proof 
     Forniamo solo due esempi di morfismi che sono epici e monici ma non isomorfismi (le altre verifiche sono assolutamente automatiche):\begin{itemize}
-        \item Consideriamo in $\catname{Haus}$\footnote{Categoria degli spazi topologici di Hausdorff, ovvero $T_2$, e delle funzioni continue} l'inclusione $\iota: [0,1]\cap \Q\inj[0,1]$ (entrambi con la topologia euclidea); questa è chiaramente monica in quanto iniettiva, ed è epica in quanto una funzione continua in $\catname{Haus}$ è completamente determinata dal suo valore su un sottospazio denso, ma non è iso dato che non è suriettiva.
+        \item Consideriamo in $\catname{Haus}$ (\ref{def:setcat e categorie concrete}) l'inclusione $\iota: [0,1]\cap \Q\inj[0,1]$ (entrambi con la topologia euclidea); questa è chiaramente monica in quanto iniettiva, ed è epica in quanto una funzione continua in $\catname{Haus}$ è completamente determinata dal suo valore su un sottospazio denso, ma non è iso dato che non è suriettiva.
         \item Consideriamo la categoria
         \[\begin{tikzcd}
         	1 && 2
@@ -175,6 +173,20 @@ Introduciamo quello che può essere considerato un morfismo di categorie (e in e
     Se $F:\C\to\D$ e $G:\D\to\mc{E}$ sono due funtori, la loro composizione $GF : \C\to\mc{E}$ è un funtore
 \end{definition}
 
+Ora possiamo definire una categoria assolutamente centrale, di fatto la categoria ambiente per tutta la pratica matematica "tradizionale" e che ci permette di definire una certa classe di sue "sottocategorie":
+
+\begin{definition}{La categoria degli insiemi piccoli e categorie concrete}{setcat e categorie concrete}
+    Indichiamo con $\setcat$ la categoria degli insiemi piccoli, ovvero elementi di $\G$ (\ref{ax:assioma di universo debole}), e delle funzioni tra di loro con l'usuale composizione di funzioni insiemistiche.\\
+    Una categoria $\C$ si dice \bemph{concreta} se è munita di un funtore fedele $U:\C\to\setcat$, detto \bemph{dimenticante}: informalmente, le categorie concrete sono quelle i cui oggetti sono insiemi (piccoli) dotati di una certa struttura e i cui morfismi sono funzioni insiemistiche che rispettano questa struttura. Alcune categorie concrete sono:\begin{itemize}
+        \item $\topcat$ degli spazi topologici e delle funzioni continue;
+        \item $\catname{Haus}$ degli spazi topologici $T_2$ e delle funzioni continue tra loro;
+        \item $\mblecat$ degli spazi e delle funzioni misurabili;
+        \item $\meascat$ degli spazi con misura e delle funzioni misurabili fra loro;
+        \item $\veccat\K$ dei $\K$-spazi vettoriali e delle mappe lineari;
+        \item $\catname{NormVec}\K$ dei $\K$-spazi vettoriali normati e delle mappe lineari e continue
+    \end{itemize}
+\end{definition}
+
 \begin{proposition}{Riflessione di isomorfismi}{riflessione di isomorfismi}
     Sia $F:\C\to\D$ un funtore. Se $f:X\cong Y$, allora $Ff:FX\cong FY$.\\
     Se $F$ è pienamente fedele e $g:FX\cong FY$, allora $X\cong Y$.
@@ -194,7 +206,7 @@ Adesso faremo una cosa un po' buffa, ovvero definiremo il prodotto di categorie 
     Un funtore $F:\C\times\D\to \mc{E}$ si dice \bemph{bifuntore}.
 \end{definition}
 
-Perchè "spostiamo" il prodotto cartesiano alle categorie? Perchè spesso quando lavoriamo in qualche categoria ci risulta più agevole una definizione più "intrinseca" di prodotto, oppure abbiamo prodotti diversi: in $\catname{Rel}$\footnote{Categoria degli insiemi e delle relazioni} il prodotto "categorico" è dato dall'unione disgiunta, nonostante $\setcat$ sia una sua sottocategoria e in questa il prodotto sia l'usuale prodotto cartesiano.\\
+Perchè "spostiamo" il prodotto cartesiano alle categorie? Perchè spesso quando lavoriamo in qualche categoria ci risulta più agevole una definizione più "intrinseca" di prodotto, oppure abbiamo prodotti diversi: in $\catname{Rel}$\footnote{Categoria degli insiemi piccoli e delle relazioni tra loro} il prodotto "categorico" è dato dall'unione disgiunta, nonostante $\setcat$ sia una sua sottocategoria e in questa il prodotto sia l'usuale prodotto cartesiano.\\
 Abbiamo visto che i morfismi sono trasformazioni tra oggetti, mentre i funtori sono trasformazioni tra morfismi. Introduciamo ora un ulteriore "livello" di frecce, le trasformazioni naturali, ovvero trasformazioni tra funtori.
 
 \begin{definition}{Trasformazione naturale}{trasformazione naturale}
@@ -314,7 +326,7 @@ Abbiamo dualmente la versione controvariante:
 
 \begin{remark}{Lemma di Yoneda e grandezza}{lemma di Yoneda e grandezza}
     In generale la biezione dataci da \ref{th:lemma di yoneda covariante} non è una biezione tra insiemi piccoli, in quanto gli elementi di $\nat(h_A,F)$ non sono in generale insiemi piccoli.\\
-    Prendiamo ad esempio il funtore identità $\mathbf{Id}$ da $\setcat$ in sè stessa: noi abbiamo che $\nat(h_S,\mathbf{Id})$ è in biezione con $S$, ma gli elementi di $\nat(h_S,\mathbf{Id})$ sono indicizzati da $\G$, che non è affatto un insieme piccolo.\\
+    Prendiamo ad esempio il funtore identità $\mathbf{Id}$ da $\setcat$ (ricordiamo la definizione \ref{def:setcat e categorie concrete}) in sè stessa: noi abbiamo che $\nat(h_S,\mathbf{Id})$ è in biezione con $S$, ma gli elementi di $\nat(h_S,\mathbf{Id})$ sono indicizzati da $\G$, che non è affatto un insieme piccolo.\\
     Avendo l'assioma \ref{ax:assioma di universo debole} non incorriamo in problemi di tipo logico o fondativo, ma se non avessimo limitato in questo modo la grandezza delle nostre categorie dovremmo gestire in qualche modo la collezione $\nat(h_S,\mathbf{Id})$, che per quanto ci sia garantito debba essere "grande quanto" un insieme, sarebbe una collezione di elementi classicamente considerati come classi proprie, ovvero classi che non possono appartenere ad altre classi.
 \end{remark}
 
@@ -469,7 +481,7 @@ Presentiamo alcuni limiti di particolare importanza (in effetti delle classi di 
     Un pullback in $\C^\op$ si dice \bemph{pushout}.
 \end{definition}
 
-Il pullback è una sorta di analogo categoriale delle equazioni: è facile dimostrare che in $\setcat$ e nelle categorie concrete\footnote{Informalmente, quelle i cui oggetti sono insiemi dotati di una qualche struttura e i cui morfismi sono funzioni insiemistiche che rispettano tale struttura; formalmente, quelle che ammettono un funtore fedele a valori in $\setcat$.} il pullback di $\{ X\xrightarrow{f} Z \xleftarrow{g} Y \}$ è il sottoinsieme $\{ (x,y) | f(x) = g(y) \}$ di $X\times Y$ e i morfismi che lo accompagnano sono la restrizione delle proiezioni. Un altro esempio è quello del grafico di una funzione, che è il pullback del diagramma $\{ X\xrightarrow{f} Y \xleftarrow{\id_Y} Y \}$.
+Il pullback è una sorta di analogo categoriale delle equazioni: è facile dimostrare che in $\setcat$ e nelle categorie concrete il pullback di $\{ X\xrightarrow{f} Z \xleftarrow{g} Y \}$ è il sottoinsieme $\{ (x,y) | f(x) = g(y) \}$ di $X\times Y$ e i morfismi che lo accompagnano sono la restrizione delle proiezioni. Un altro esempio è quello del grafico di una funzione, che è il pullback del diagramma $\{ X\xrightarrow{f} Y \xleftarrow{\id_Y} Y \}$.
 
 \begin{definition}{Equalizzatore}{equalizzatore}
     Sia $\C$ una categoria e sia $\J$ il diagramma 
@@ -541,7 +553,7 @@ Considerando l'ubiquità del concetto di (co)limite, è importante essere in gra
 \subsection{Prodotti}
 
 Chiudiamo con una discussione di una diversa caratterizzazione del prodotto di due oggetti in una categoria.\\
-La definizione che abbiamo dato in \ref{def:prodotto limite} è evidentemente utile quando si parla di lavorare coi prodotti nell'usuale pratica matematica, ad esempio è una definizione meno "pesante" di quella che si dà dei prodotti in $\topcat$\footnote{Categoria degli spazi topologici e delle funzioni continue} o $\mblecat$\footnote{Categoria di spazi e funzioni misurabili} nella maggior parte dei corsi introduttivi di Topologia Generale o Teoria della Misura. Allo stesso modo non dipende da scelte arbitrarie, come di una norma prodotto in $\catname{NormVec}\K$\footnote{Categoria dei $\K$-spazi vettoriali normati e delle mappe lineari continue} o di una misura prodotto in $\meascat$\footnote{Categoria degli spazi con misura e delle funzioni misurabili}.\\
+La definizione che abbiamo dato in \ref{def:prodotto limite} è evidentemente utile quando si parla di lavorare coi prodotti nell'usuale pratica matematica, ad esempio è una definizione meno "pesante" di quella che si dà dei prodotti in $\topcat$ o $\mblecat$ nella maggior parte dei corsi introduttivi di Topologia Generale o Teoria della Misura. Allo stesso modo non dipende da scelte arbitrarie, come di una norma prodotto in $\catname{NormVec}\K$ o di una misura prodotto in $\meascat$.\\
 Tuttavia in altre applicazioni della Teoria delle Categorie, ad esempio in Topologia Algebrica o informatica teorica, può essere agevole considerare il prodotto di due oggetti non come definito intrinsecamente tramite proprietà universale, ma come un bifuntore.
 
 \begin{theorem}{Caratterizzazione del prodotto binario}{prodotto binario come funtore}
