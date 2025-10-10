@@ -6,10 +6,10 @@
 
 \usepackage{cianatheorems}
 
-\addbibresource{PEM-Troncana.bib}
+\addbibresource{ElementiTeoCat.bib}
 
 \title{Elementi di Teoria delle Categorie\\ {\small\it Categories for the Learning Mathematician}}
-\author{Seminario PEM di F. Troncana, sotto la supervisione del prof. R. Zunino}
+\author{Filippo Troncana, sotto la supervisione del prof. R. Zunino}
 \date{A.A. 2025/2026}
 
 \renewcommand\C{\mc{C}}
@@ -28,7 +28,7 @@
     In questa trattazione forniremo un'elementare esposizione del linguaggio e di alcune costruzioni e risultati fondamentali nella Teoria delle Categorie in modo propedeutico alla pratica matematica generale, evidenziando alcuni aspetti di tipo fondativo tramite l'estensione della Teoria degli Insiemi di ZFC con un opportuno assioma di universo.
 \end{abstract}
 
-\section*{Fondamenti assiomatici}
+\section*{Fondamenti}
 
 Trattando strutture molto "grandi" in un senso che renderemo preciso in seguito, per fondare propriamente la Teoria delle Categorie è necessario estendere la Teoria degli Insiemi di Zermelo-Fraenkel più l'assioma della scelta, che assumeremo sempre\footnote{Potremmo essere tentati di limitare l'assioma della scelta a famiglie piccole o almeno moderate di insiemi (nel senso specificato in \ref{ax:assioma di universo}), ma ai fini della nostra trattazione lo assumeremo sempre nella sua forma completa.}. L'approccio che seguiremo è un approccio che in qualche modo "limiti" la grandezza delle nostre strutture, supponendo l'esistenza di un insieme "universo" che si sostituisca alla classe di tutti gli insiemi.
 
@@ -449,9 +449,9 @@ Più esplicitamente\footnote{Ovvero scrivendo per esteso la definizione di ogget
 	\arrow["{F(f)}"{description}, from=5-1, to=5-5]
 \end{tikzcd}\]
 
-Diremo che una tale proprietà è detta \bemph{universalità}.\\
+Chiameremo una tale proprietà\footnote{Ovvero essere il cono terminale/iniziale su un qualche diagramma} \bemph{universalità}.\\
 Il concetto di limite è uno dei concetti centrali della Teoria delle Categorie: analogamente a come sia possibile definire equivalentemente aperti, chiusi, intorni, chiusura, interno e così via in Topologia Generale, è possibile definire i funtori aggiunti in termini di limiti, i limiti in termini di funtori aggiunti ed equivalentemente tante altre costruzioni in Teoria delle Categorie.\\
-Talvolta diremo che una categoria "ammette/ha tutti i..." facendo riferimento a dei limiti definiti su una qualche classe di diagrammi: questo significa che ogni diagramma di quella classe ammette un limite in $\C$.
+Talvolta diremo che una categoria "ammette/ha tutti i..." facendo riferimento a dei (co)limiti definiti su una qualche classe di diagrammi: questo significa che ogni diagramma di quella classe ammette un (co)limite in $\C$.
 
 \begin{remark}{Limiti e oggetti iniziali}{limiti e oggetti iniziali}
     Sia $F:\J\to\C$ un diagramma.\begin{itemize}
