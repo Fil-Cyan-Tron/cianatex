@@ -44,7 +44,7 @@ Trattando strutture molto "grandi" in un senso che renderemo preciso in seguito,
 Si dimostrano immediatamente le seguenti proprietà (si veda \cite{SGA4}):
 
 \begin{proposition}{Proprietà degli universi di Grothendieck più che numerabili}{proprietà degli universi di Grothendieck più che numerabili}
-    Sia $\G$ un universo di Grothendieck più che numerabile. Allora questo contiene:\begin{itemize}
+    Sia $\G$ un universo di Grothendieck. Allora questo contiene:\begin{itemize}
         \item Tutti i sottoinsiemi di ogni suo elemento (in particolare dunque l'insieme vuoto).
         \item Tutti i singoletti contenenti i suoi elementi.
         \item Tutti i prodotti, le unioni disgiunte e le intersezioni di famiglie di suoi elementi indicizzate da un suo elemento.
@@ -116,7 +116,7 @@ Da ora in avanti, assumeremo sempre (anche senza specificarlo) che le nostre cat
         \item \bemph{Endomorfismo} (o endo) se $A=B$.
         \item \bemph{Sezione} (o split mono) se ha un inverso sinistro, ovvero se esiste un morfismo $g:B\to A$ tale che $gf = \id_A$.
         \item \bemph{Retrazione} (o split epi) se ha un inverso destro, ovvero se esiste un morfismo $g:B\to A$ tale che $fg = \id_B$.
-        \item \bemph{Isomorfismo} (o iso) se ha un inverso destra e sinistro. In particolare, $A$ e $B$ si dicono \bemph{isomorfi} (attraverso $f$) e li indicheremo con $f:A\cong_\C B$ omettendo usualmente $f$ o $\C$.
+        \item \bemph{Isomorfismo} (o iso) se ha un inverso destro e sinistro. In particolare, $A$ e $B$ si dicono \bemph{isomorfi} (attraverso $f$) e li indicheremo con $f:A\cong_\C B$ omettendo usualmente $f$ o $\C$.
         \item \bemph{Automorfismo} (o auto) se è iso e endo.
     \end{itemize}    
 \end{definition}
@@ -131,7 +131,7 @@ Da ora in avanti, assumeremo sempre (anche senza specificarlo) che le nostre cat
     \end{itemize}
     \proof 
     Forniamo solo due esempi di morfismi che sono epici e monici ma non isomorfismi (le altre verifiche sono assolutamente automatiche):\begin{itemize}
-        \item Consideriamo in $\catname{Haus}$ (\ref{def:setcat e categorie concrete}) l'inclusione $\iota: [0,1]\cap \Q\inj[0,1]$ (entrambi con la topologia euclidea); questa è chiaramente monica in quanto iniettiva, ed è epica in quanto una funzione continua in $\catname{Haus}$ è completamente determinata dal suo valore su un sottospazio denso, ma non è iso dato che non è suriettiva.
+        \item Consideriamo in $\catname{Haus}$ (\ref{exmp:setcat e categorie concrete}) l'inclusione $\iota: [0,1]\cap \Q\inj[0,1]$ (entrambi con la topologia euclidea); questa è chiaramente monica in quanto iniettiva, ed è epica in quanto una funzione continua in $\catname{Haus}$ è completamente determinata dal suo valore su un sottospazio denso, ma non è iso dato che non è suriettiva.
         \item Consideriamo la categoria
         \[\begin{tikzcd}
         	1 && 2
@@ -168,14 +168,14 @@ Introduciamo quello che può essere considerato un morfismo di categorie (e in e
         \item \bemph{Fedele} se per ogni $X,Y \in \ob\C$ la sua restrizione $F_{X,Y}:\C(X,Y)\to \D(FX,FY)$ è iniettiva.
         \item \bemph{Pieno} se per ogni $X,Y \in \ob\C$ la sua restrizione $F_{X,Y}:\C(X,Y)\to \D(FX,FY)$ è suriettiva.
         \item \bemph{Pienamente fedele} se è pieno e fedele.
-        \item \bemph{Essenzialmente suriettivo sugli oggetti} se per ogni oggetto $Y \in \D$ esiste un oggetto $X \in \C$ tale che $FX\cong_\D Y$
+        \item \bemph{Essenzialmente suriettivo sugli oggetti} se per ogni oggetto $Y \in \D$ esiste un oggetto $X \in \C$ tale che $FX\cong_\D Y$.
     \end{itemize}
-    Se $F:\C\to\D$ e $G:\D\to\mc{E}$ sono due funtori, la loro composizione $GF : \C\to\mc{E}$ è un funtore
+    Se $F:\C\to\D$ e $G:\D\to\mc{E}$ sono due funtori, la loro composizione $GF : \C\to\mc{E}$ è un funtore.
 \end{definition}
 
 Ora possiamo definire una categoria assolutamente centrale, di fatto la categoria ambiente per tutta la pratica matematica "tradizionale" e che ci permette di definire una certa classe di sue "sottocategorie":
 
-\begin{definition}{La categoria degli insiemi piccoli e categorie concrete}{setcat e categorie concrete}
+\begin{example}{La categoria degli insiemi piccoli e categorie concrete}{setcat e categorie concrete}
     Indichiamo con $\setcat$ la categoria degli insiemi piccoli, ovvero elementi di $\G$ (\ref{ax:assioma di universo debole}), e delle funzioni tra di loro con l'usuale composizione di funzioni insiemistiche.\\
     Una categoria $\C$ si dice \bemph{concreta} se è munita di un funtore fedele $U:\C\to\setcat$, detto \bemph{dimenticante}: informalmente, le categorie concrete sono quelle i cui oggetti sono insiemi (piccoli) dotati di una certa struttura e i cui morfismi sono funzioni insiemistiche che rispettano questa struttura. Alcune categorie concrete sono:\begin{itemize}
         \item $\topcat$ degli spazi topologici e delle funzioni continue;
@@ -185,16 +185,16 @@ Ora possiamo definire una categoria assolutamente centrale, di fatto la categori
         \item $\veccat\K$ dei $\K$-spazi vettoriali e delle mappe lineari;
         \item $\catname{NormVec}\K$ dei $\K$-spazi vettoriali normati e delle mappe lineari e continue
     \end{itemize}
-\end{definition}
+\end{example}
 
-\begin{proposition}{Riflessione di isomorfismi}{riflessione di isomorfismi}
+\begin{lemma}{Riflessione di isomorfismi}{riflessione di isomorfismi}
     Sia $F:\C\to\D$ un funtore. Se $f:X\cong Y$, allora $Ff:FX\cong FY$.\\
     Se $F$ è pienamente fedele e $g:FX\cong FY$, allora $X\cong Y$.
     \proof 
     La prima implicazione è banale, dunque assumiamo che $F$ sia pienamente fedele e $g:FX\cong FY$ sia un isomorfismo; dato che la mappa $\varphi := F_{X,Y} : \C(X,Y) \to \D(FX,FY)$ è una biezione, esiste $f: X\to Y$ tale che $\varphi(f) = g$, dunque definiamo $f' := \varphi^{-1}(g^{-1})$ e dimostriamo che è un'inversa sinistra (dimostrare che è un'inversa destra è analogo). Dato che $F$ è un funtore, vale
     \[f'f = \varphi^{-1}(\varphi(f'f) )=\varphi^{-1}(\varphi(f')\varphi(f)) = \varphi^{-1}(g^{-1}g) = \varphi^{-1}(\id_{FX}) = \id_X\]
     \qed
-\end{proposition}
+\end{lemma}
 
 Adesso faremo una cosa un po' buffa, ovvero definiremo il prodotto di categorie come definiremmo normalmente il prodotto cartesiano di insiemi e più tardi lo useremo per definire il prodotto di oggetti in categorie generali.
 
@@ -270,7 +270,7 @@ Un risultato assolutamente centrale in Teoria delle Categorie è il lemma di Yon
 
 \begin{definition}{$\hom$-funtore covariante e controvariante}{hom-funtore}
     Sia $\C$ una categoria localmente piccola\footnote{È vero che abbiamo detto che lo avremmo sempre assunto, ma è importante specificarlo in questo caso.} e sia $A$ un oggetto di $\C$. Definiamo due funtori $h_A:\C\to\setcat$ e $h^A : \C^\op\to\setcat$, detti $\hom$\bemph{-funtori} (rispettivamente covariante e controvariante) nel seguente modo:
-        \[\begin{tikzcd}
+    \[\begin{tikzcd}
     	{\hom(A,X)} && X && {\hom(X,A)} \\
     	\\
     	{\hom(A,Y)} && Y && {\hom(Y,A)}
@@ -326,14 +326,14 @@ Abbiamo dualmente la versione controvariante:
 
 \begin{remark}{Lemma di Yoneda e grandezza}{lemma di Yoneda e grandezza}
     In generale la biezione dataci da \ref{th:lemma di yoneda covariante} non è una biezione tra insiemi piccoli, in quanto gli elementi di $\nat(h_A,F)$ non sono in generale insiemi piccoli.\\
-    Prendiamo ad esempio il funtore identità $\mathbf{Id}$ da $\setcat$ (ricordiamo la definizione \ref{def:setcat e categorie concrete}) in sè stessa: noi abbiamo che $\nat(h_S,\mathbf{Id})$ è in biezione con $S$, ma gli elementi di $\nat(h_S,\mathbf{Id})$ sono indicizzati da $\G$, che non è affatto un insieme piccolo.\\
-    Avendo l'assioma \ref{ax:assioma di universo debole} non incorriamo in problemi di tipo logico o fondativo, ma se non avessimo limitato in questo modo la grandezza delle nostre categorie dovremmo gestire in qualche modo la collezione $\nat(h_S,\mathbf{Id})$, che per quanto ci sia garantito debba essere "grande quanto" un insieme, sarebbe una collezione di elementi classicamente considerati come classi proprie, ovvero classi che non possono appartenere ad altre classi.
+    Prendiamo ad esempio il funtore identità $\mathbf{Id}$ da $\setcat$ (ricordiamo la definizione \ref{exmp:setcat e categorie concrete}) in sè stessa: noi abbiamo che $\nat(h_S,\mathbf{Id})$ è in biezione con $S$, ma gli elementi di $\nat(h_S,\mathbf{Id})$ sono indicizzati da $\G$, che non è affatto un insieme piccolo.\\
+    Avendo l'assioma \ref{ax:assioma di universo debole} non incorriamo in problemi di tipo logico o fondativo, ma se non avessimo limitato in questo modo la grandezza delle nostre categorie dovremmo gestire in qualche modo la collezione $\nat(h_S,\mathbf{Id})$, che per quanto ci sia garantito debba essere "grande quanto" un insieme, sarebbe una collezione di elementi normalmente considerati come classi proprie, ovvero classi che non possono appartenere ad altre classi.
 \end{remark}
 
 Una delle più naturali applicazioni del lemma di Yoneda è l'embedding di Yoneda, fondamentale in gran parte della topologia e della geometria moderna: esso permette di identificare una categoria $\C$ con una sottocategoria della cosiddetta \bemph{categoria dei prefasci su} $\C$, che è solo un altro nome per $[\C^\op,\setcat]$. Ad esempio se interpretiamo la topologia $\tau$ di uno spazio $(X,\tau)$ come una categoria, dove i morfismi sono dati dall'inclusione insiemistica, questa è completamente determinata dalle classi delle funzioni continue entranti nei (o uscenti dai) suoi aperti.
 
 \begin{theorem}{Embedding di Yoneda covariante}{embedding di yoneda covariante}
-    Sia $\C$ una categoria. Questa è equivalente ad una sottocategoria piena di $[\C^\op, \setcat]$ tramite la mappa $\mc{Y} : \C \to [\C^\op, \setcat]$ definita da questo diagramma (dove abbiamo morfismi $f:A\to B$ e $g:X\to Y$ di $\C$):
+    Sia $\C$ una categoria. Questa è equivalente ad una sottocategoria piena di $[\C^\op, \setcat]$ tramite la mappa $\mc{Y} : \C \to [\C^\op, \setcat]$ definita da questo diagramma:
     \[\begin{tikzcd}
     	{\mc{Y}(A)(X) = h^A(X)} &&&& {\mc{Y}(B)(X) = h^B(X)} \\
     	& {(X \xrightarrow{m\circ g} A)} && {(X \xrightarrow{f\circ m\circ g} B)} \\
