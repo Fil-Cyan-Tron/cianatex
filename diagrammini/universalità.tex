@@ -1,0 +1,19 @@
+\documentclass{standalone}
+
+\usepackage{/home/ciana/Documents/Codice/LaTeX/cianatex/cianatex}
+
+\begin{document}
+\begin{tikzcd}
+	&& N \\
+	\\
+	&& L \\
+	\\
+	{F(X)} &&&& {F(Y)}
+	\arrow["{\lambda_N}"{description}, dashed, from=1-3, to=3-3]
+	\arrow["{\psi_X^N}"{description}, curve={height=12pt}, from=1-3, to=5-1]
+	\arrow["{\psi_Y^N}"{description}, curve={height=-12pt}, from=1-3, to=5-5]
+	\arrow["{\psi^L_X}"{description}, from=3-3, to=5-1]
+	\arrow["{\psi^L_X}"{description}, from=3-3, to=5-5]
+	\arrow["{F(f)}"{description}, from=5-1, to=5-5]
+\end{tikzcd}
+\end{document}

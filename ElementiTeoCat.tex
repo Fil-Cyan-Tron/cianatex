@@ -385,7 +385,7 @@ Ora grazie al lemma di Yoneda possiamo dimostrare un fatto che ci servirà più 
     Siano $\C,\D$ due categorie e siano $F:\C\to\D$ e $G_1,G_2: \D\to\C$ funtori tali che $F\dashv G_1$ e $F\dashv G_2$ oppure $G_1\dashv F$ e $G_2\dashv F$.\\
     Allora $G_1\cong G_2$.
     \proof 
-    Scriviamo le aggiunzioni in termini degli $\hom$-funtori:
+    Dimostriamo il caso destro, il caso sinistro segue per dualità; scriviamo le aggiunzioni in termini degli $\hom$-funtori:
     \[ h^d(Fc) \cong h^{G_1 d}(c) \cong h^{G_2 d}(c) \]
     Ottenendo dunque $\mc{Y}\circ G_1 \cong \mc{Y}\circ G_2$: dal teorema \ref{th:embedding di yoneda covariante}, ovvero la piena fedeltà dell'embedding di Yoneda, segue la tesi.
     \qed
@@ -404,7 +404,8 @@ Uno dei concetti più importanti in Teoria delle Categorie è quello di limite. 
 Se in Teoria degli Insiemi definiamo una famiglia di sottoinsiemi di un insieme $X$ indicizzata dall'insieme $J$ come un'applicazione $J\to \mc{P}(X)$, qui abbiamo bisogno di un'applicazione che rispetti la struttura di categoria, ovvero un funtore: intuitivamente oltre a indicizzare gli oggetti indicizziamo anche i morfismi in modo che la composizione sia rispettata. Per la prossima definizione ci servirà di considerare un diagramma particolare, il diagramma costante $K_N : \J\to \C$ (dove $N$ è un oggetto di $\C$) che manda ogni oggetto di $\J$ in $N$ e ogni morfismo in $\id_N$.
 
 \begin{definition}{Cono e cocono}{cono}
-    Sia $\C$ una categoria, sia $F: \J\to\C$ un diagramma e sia $N$ un oggetto di $\C$.\\
+    Sia $\C$ una categoria, sia $F: \J\to\C$ un diagramma e sia $N$ un oggetto di $\C$ e sia $K_N:\J\to\C$ il funtore costante, ovvero il funtore 
+    \[K_N(f:X\to Y) = (\id_N:N\to N).\]
     Si dice \bemph{cono} in $\C$ su $F$ con punta $N$ un morfismo $\psi : K_N \to F$ di $[\J,\C]$, ovvero una famiglia di morfismi \[\{\psi_X : N\to F(X)\}_{X \in \ob\J} \subset \hom\C\]
     Tali che per ogni morfismo $f:X\to Y$ in $\J$ il seguente diagramma commuti:
     \[\begin{tikzcd}
@@ -493,6 +494,7 @@ Il pullback è una sorta di analogo categoriale delle equazioni: è facile dimos
     Si dice \bemph{equalizzatore} di $f$ e $g$ il limite di $\J$ in $\C$, e lo indichiamo con $\eq(f,g)$,  come indichiamo l'unico morfismo "primitivo" del cono con $e_{f,g}:\eq(f,g)\to X$.\\
     Un equalizzatore in $\C^\op$ si dice \bemph{coequalizzatore}.
 \end{definition}
+
 
 \subsection{Esistenza dei limiti}
 
