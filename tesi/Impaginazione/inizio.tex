@@ -1,0 +1,60 @@
+
+\Universita{University of Trento}
+\Dipartimento{Department of Mathematics}
+\CorsoDiLaurea{Bachelor's Degree in Mathematics}
+\AnnoAccademico{Academic Year 2025--2026}
+\Titolo{Titolo}
+\Relatore{Prof. Roberto \textsc{Zunino}}
+\RelatoreLabel{Supervisor}
+\CandidatoLabel{Bachelor's Student}
+
+\Candidato{Filippo \textsc{Troncana}} 
+\Matricola{235628}
+\DataEsame{\today}
+\Logo{Impaginazione/logo_rosso.png}
+\LogoWidth{4.5cm} %optional, default: 3cm
+\LogoPosition{top}
+\LogoSfondo{Impaginazione/logo_bn.png}
+\opacitaSfondo{0.05}
+
+\begin{titlepage}
+    \newgeometry{left=3cm, right=3cm, bottom=2cm, top =3cm} 
+    \pagestyle{empty}
+    \makefrontpage
+    \restoregeometry
+\end{titlepage}
+
+\newpage
+\thispagestyle{empty}
+\mbox{}  % This ensures an empty page
+\newpage
+
+
+\frontmatter
+% dedica
+\null\vspace{\stretch{1}}
+\begin{flushright}
+    \textit{Dedica}
+\end{flushright}
+\vspace{\stretch{2}}\null
+
+%ringraziamenti
+\chapter*{Acknowledgments}
+
+\begin{abstract}
+    Qui va l'abstract
+\end{abstract}
+
+\tableofcontents
+
+\printglossaries
+\addcontentsline{toc}{chapter}{Glossary}
+
+\printnomenclature
+\addcontentsline{toc}{chapter}{Nomenclature list}
+
+\mainmatter
+\chapter*{Introduction}
+\markboth{\MakeUppercase{Introduction}}{}
+\addcontentsline{toc}{chapter}{Introduction}
+\input{capitoli/intro}
