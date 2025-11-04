@@ -30,7 +30,8 @@
 
 \section*{Fondamenti}
 
-Trattando strutture molto "grandi" in un senso che renderemo preciso in seguito, per fondare propriamente la Teoria delle Categorie è necessario estendere la Teoria degli Insiemi di Zermelo-Fraenkel più l'assioma della scelta, che assumeremo sempre\footnote{Potremmo essere tentati di limitare l'assioma della scelta a famiglie piccole o almeno moderate di insiemi (nel senso specificato in \ref{ax:assioma di universo}), ma ai fini della nostra trattazione lo assumeremo sempre nella sua forma completa.}. L'approccio che seguiremo è un approccio che in qualche modo "limiti" la grandezza delle nostre strutture, supponendo l'esistenza di alcuni insiemi "universo" che si sostituiscano alla classe di tutti gli insiemi.
+Trattando strutture molto "grandi" in un senso che renderemo preciso in seguito, per fondare propriamente la Teoria delle Categorie è necessario estendere la Teoria degli Insiemi di Zermelo-Fraenkel più l'assioma della scelta, che assumeremo sempre\footnote{Potremmo essere tentati di limitare l'assioma della scelta a famiglie piccole o almeno moderate di insiemi (nel senso specificato in \ref{ax:assioma di universo}), ma ai fini della nostra trattazione lo assumeremo sempre nella sua forma completa.}. L'approccio che seguiremo è un approccio che in qualche modo "limiti" la grandezza delle nostre strutture, supponendo l'esistenza di alcuni insiemi "universo" che si sostituiscano alla classe di tutti gli insiemi.\\
+Questa sezione è interamente basata sull'\textit{expose} I.0 di \cite{SGA4}.
 
 \begin{definition}{Universo di Grothendieck}{universo di Grothendieck}
     Sia $\G$ un insieme non vuoto. Questo si dice \bemph{universo di Grothendieck} se:\begin{itemize}
@@ -41,16 +42,17 @@ Trattando strutture molto "grandi" in un senso che renderemo preciso in seguito,
     \end{itemize}
 \end{definition}
 
-Si dimostrano immediatamente le seguenti proprietà (si veda \cite{SGA4}):
+Si dimostrano immediatamente le seguenti proprietà:
 
-\begin{proposition}{Proprietà degli universi di Grothendieck più che numerabili}{proprietà degli universi di Grothendieck più che numerabili}
-    Sia $\G$ un universo di Grothendieck. Allora questo contiene:\begin{itemize}
+\begin{proposition}{Proprietà degli universi di Grothendieck}{proprietà degli universi di Grothendieck più che numerabili}
+    Sia $U$ un universo di Grothendieck. Allora questo contiene:\begin{itemize}
         \item Tutti i sottoinsiemi di ogni suo elemento (in particolare dunque l'insieme vuoto).
         \item Tutti i singoletti contenenti i suoi elementi.
         \item Tutti i prodotti, le unioni disgiunte e le intersezioni di famiglie di suoi elementi indicizzate da un suo elemento.
         \item Tutte le funzioni tra due suoi elementi.
         \item Tutti i suoi sottoinsiemi la cui cardinalità è un suo elemento.
     \end{itemize}
+    Inoltre l'intersezione di una famiglia di universi è un'universo.
 \end{proposition} 
 
 Da queste proprietà seguono due fatti strettamente correlati, ovvero che un universo di Grothendieck più che numerabile è un \bemph{modello} per ZFC e che l'esistenza di un universo di Grothendieck più che numerabile è indipendente da ZFC.\\
@@ -64,19 +66,33 @@ Intuitivamente, il seguente assioma ci permette di trattare un universo di Groth
 
 \begin{axiom}{Assioma di Universo}{assioma di universo}
     Per ogni insieme $x$ esiste un universo di Grothendieck $U$ tale che $x \in U$.\\
-    Consideriamo nella classe $\mathbb{G}$ degli universi di Grothendieck la famiglia $\{\G_\alpha\}_{\alpha \le \omega}$, dove $\omega$ è il più piccolo ordinale infinito, definita come segue:
-    \[ \G_0 := \min \left\{ U \in \mathbb{G} : \varnothing \in U \right\} = \bigcap \left\{ U \in \mathbb{G} : \varnothing \in U \right\} \]
+    Consideriamo nella classe $\mathbb{G}$ degli universi di Grothendieck\footnote{Ben ordinata per inclusione, come visto in \ref{prop:proprietà degli universi di Grothendieck più che numerabili}} la famiglia $\{\G_\alpha\}_{\alpha \le \omega}$, dove $\omega$ è il più piccolo ordinale infinito, definita come segue:
+    \[ \G_0 := \min \mathbb{G}=\bigcap\mathbb{G} \]
     \[ \G_{\alpha+1} := \min \left\{ U \in \mathbb{G} : \G_\alpha \in U \right\} = \bigcap \left\{ U \in \mathbb{G} : \G_\alpha \in U \right\}\]
     \[ \G_\omega := \min \left\{ U \in \mathbb{G} : \forall \alpha \in \omega, \G_\alpha \in U \right\} = \bigcap \left\{  U \in \mathbb{G} : \forall \alpha \in \omega, \G_\alpha \in U  \right\} \]
-    Diremo gli elementi di $\G_\alpha$ insiemi $\alpha$\bemph{-piccoli} e i suoi sottoinsiemi $\alpha$\bemph{-moderati}; gli elementi di $\G_\beta\setminus\G_\alpha$ per qualche $\beta > \alpha$ si dicono $\alpha$\bemph{-grandi}.
+    Diremo gli elementi di $\G_\alpha$ insiemi $\alpha$\bemph{-piccoli} e i suoi sottoinsiemi $\alpha$\bemph{-moderati}; gli elementi di $\G_\beta\setminus\G_\alpha$ per qualche $\beta > \alpha$ si dicono $\alpha$\bemph{-grandi}.\\
+    Diremo in generale \bemph{piccoli} gli insiemi $\alpha$-piccoli per un qualche $\alpha <\omega$, \bemph{moderati} gli insiemi $\omega$-moderati e \bemph{grandi} gli insiemi $\omega$-grandi.
 \end{axiom}
 
-\begin{remark}{Sugli insiemi $0$-piccoli, modelli di ZFC}{insiemi 0-piccoli, modelli di ZFC}
-    L'insieme $\G_0$ è in biezione con $\N$ e corrisponde alla classe degli insiemi ereditariamente finiti, ovvero degli insiemi finiti i cui membri sono insiemi ereditariamente finiti.\\
-    L'esistenza di ciascun $\G_\alpha$ per $\alpha>0$ è indipendente da ZFC e ognuno di essi costituisce un modello per ZFC.
+\begin{remark}{Sugli insiemi $\alpha$-piccoli}{insiemi alpha-piccoli, modelli di ZFC}
+    L'insieme $\G_0$ è numerabile e corrisponde alla classe degli insiemi ereditariamente finiti, ovvero degli insiemi finiti i cui elementi sono insiemi ereditariamente finiti.\\
+    Gli insiemi $\alpha$-moderati sono $\alpha+1$-piccoli.
 \end{remark}
 
-Intuitivamente, $\G_1$ è già sufficiente per tutta la pratica matematica "ordinaria", e appunto è già un candidato per la "classe di tutti gli insiemi" in ZFC costituendone un modello, ma 
+Intuitivamente, $\G_1$ è già sufficiente per la pratica matematica "ordinaria", contenendo tutte le costruzioni usuali, e appunto è già un candidato per la "classe di tutti gli insiemi" in ZFC costituendone un modello. 
+
+\begin{theorem}{Modelli per ZFC in $\{\G_\alpha\}_{\alpha\le\omega}$}{modelli per ZFC}
+    L'esistenza di $\G_0$ è indipendente dalla teoria degli insiemi di ZF meno l'assioma di infinito e questo ne costituisce un modello; in particolare, l'esistenza di $\G_0$ in questa teoria è equivalente all'assioma di infinito.\\
+    L'esistenza di $\G_\alpha$ per $\alpha>0$ è indipendente dalla teoria degli insiemi di ZFC e questo ne costituisce un modello.\\
+    La relazione di appartenenza $\in$ rende ogni $\G_\alpha$ ben ordinato.
+\end{theorem}
+
+Vale inoltre un teorema molto importante che stabilisce una corrispondenza tra universi di Grothendieck e cardinali fortemente inaccessibili in ZFC:
+
+\begin{theorem}{Universi di Grothendieck e cardinali inaccessibili}{}
+    Sia $U$ un universo di Grothendieck più che numerabile.\\
+    Il cardinale $|U|$ è fortemente inaccessibile.
+\end{theorem}
 
 % Questo implicherebbe l'esistenza di tutta una gerarchia di universi ciascuno "inaccessibile" (nel senso della Teoria degli Insiemi) da quello precedente, utile per fare Teoria delle Categorie Superiori, ma per una trattazione più elementare è sufficiente assumere l'esistenza di un solo universo, si veda \cite{MacLane1969}.
 
