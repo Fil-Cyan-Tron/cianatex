@@ -223,7 +223,7 @@ Ora possiamo definire una categoria assolutamente centrale, di fatto la categori
     \end{itemize}
     Per $\alpha <\omega$, $\setcat_\alpha$ è piccola, ma $\setcat_\omega$ non lo è nemmeno localmente: due controesempi sono dati dagli insiemi
     \[ \hom\left(1,\bigcup_{\alpha < \omega}\G_\alpha\right), \qquad \hom\left(\bigcup_{\alpha < \omega}\G_\alpha, 2 \right)\]
-    entrambi con cardinalità strettamente maggiore di qualsiasi $\G_\alpha$.
+    entrambi con cardinalità strettamente maggiore di qualsiasi $\G_\alpha$.\\
     Per qualsiasi $\alpha \le \omega$, $\setcat_\alpha$ ha un unico oggetto iniziale, l'insieme vuoto $0$, ed essenzialmente un'unico oggetto terminale, l'insieme $1$.
 \end{example}
 
@@ -711,7 +711,7 @@ Seguendo questa intuizione, ci si potrebbe chiedere se la categoria degli spazi 
 \end{theorem}
 
 \newcommand\percat{\catname{PER}}
-\newcommand\pfn{\catname{pfn}}
+\newcommand\pf{\catname{pf}}
 \newcommand\grf{\catname{grf}}
 \newcommand\prf{\catname{prf}}
 
@@ -722,7 +722,7 @@ Seguendo questa intuizione, ci si potrebbe chiedere se la categoria degli spazi 
 Consideriamo la seguente categoria:
 
 \begin{definition}{}{}
-    Sia $\pfn(\N)$ la categoria i cui oggetti sono potenze finite di $\N$, compreso $\N^0 = 1$, e i cui morfismi sono le \bemph{funzioni parziali} su $\N$, ovvero dove un morfismo $f:\N^n\to \N^m$ è dato da una funzione $f: D\to\N^m$, dove $D\subset \N^k$ può essere anche vuoto.\\
+    Sia $\pf(\N)$ la categoria i cui oggetti sono potenze finite di $\N$, compreso $\N^0 = 1$, e i cui morfismi sono le \bemph{funzioni parziali} su $\N$, ovvero dove un morfismo $f:\N^n\to \N^m$ è dato da una funzione $f: D\to\N^m$, dove $D\subset \N^k$ può essere anche vuoto.\\
     I morfismi identità corrispondono alle funzioni identità e la composizione $g\circ f$ è data dalla funzione $g|_{\dom f} \circ f$
 \end{definition}
 
@@ -731,19 +731,19 @@ Consideriamo la seguente categoria:
 \end{remark}
 
 \begin{remark}{}{}
-    Mentre l'insieme $\ob\pfn(\N)$ è numerabile, $\hom\pfn(\N)$ ha cardinalità del continuo.
+    Mentre l'insieme $\ob\pf(\N)$ è numerabile, $\hom\pf(\N)$ ha cardinalità del continuo.
     \proof 
     Dato che le funzioni totali sono casi particolari di funzioni parziali, e le funzioni parziali sono casi particolari di relazioni (che sono semplicemente sottoinsiemi del prodotto cartesiano), valgono le seguenti inclusioni:
-    \[ \hom_\setcat(\N^n, \N^m) \subset \hom_\pfn(\N^n,\N^m) \subset \mc{P}(\N^n\times \N^m) \]
-    Dunque passando alle cardinalità per $n,m \ge 1$ possiamo concludere che $\hom_\pfn(\N^n,\N^m)$ abbia cardinalità del continuo; a questo punto basta osservare che
-    \[ \hom\pfn(\N) = \bigcup_{n\in \N, m\in \N} \hom_\pfn(\N^n,\N^m) \]
+    \[ \hom_\setcat(\N^n, \N^m) \subset \hom_\pf(\N^n,\N^m) \subset \mc{P}(\N^n\times \N^m) \]
+    Dunque passando alle cardinalità per $n,m \ge 1$ possiamo concludere che $\hom_\pf(\N^n,\N^m)$ abbia cardinalità del continuo; a questo punto basta osservare che
+    \[ \hom\pf(\N) = \bigcup_{n\in \N, m\in \N} \hom_\pf(\N^n,\N^m) \]
     Dato che è un'unione numerabile di insiemi che hanno al più cardinalità del continuo e quasi sempre la raggiungono, possiamo concludere che abbia cardinalità del continuo.
 \end{remark}
 
 \renewcommand\R{\mc{R}}
 
 \begin{definition}{}{grf e prf}
-    Consideriamo la sottocategoria $\grf(\N)$ di $\pfn(\N)$ definita da $\ob\grf(\N) = \ob\pfn(\N)$ e il cui insieme dei morfismi $\R$ è definito come il minimo sottoinsieme di $\hom\pfn(\N)$ tale che:\begin{enumerate}
+    Consideriamo la sottocategoria $\grf(\N)$ di $\pf(\N)$ definita da $\ob\grf(\N) = \ob\pf(\N)$ e il cui insieme dei morfismi $\R$ è definito come il minimo sottoinsieme di $\hom\pf(\N)$ tale che:\begin{enumerate}
         \item Le funzioni zero $z_n : \N^n \to \N^0$ appartengono a $\R$ per ogni $n \in \N$.
         \item La funzione successore $s: \N \to \N$ appartiene a $\R$.
         \item Le proiezioni $\pi_i : \N^n \to \N$ appartengono a $\R$; notiamo che questo include la funzione $\pi_0: 1\to \N$ di scelta di un elemento.
@@ -753,7 +753,7 @@ Consideriamo la seguente categoria:
             f(\mathbf{x}) & \text{se }y=0 \\ g(\mathbf{x},y-1,y) & \text{altrimenti}
         \end{cases}\]
         appartiene a $\R$.
-        \item Se $f\in \hom_{\pfn}(\N^{k+1},\N)$, allora la funzione definita da
+        \item Se $f\in \hom_{\pf}(\N^{k+1},\N)$, allora la funzione definita da
         \[ \mu_f(\mathbf{x}) = \min\{ y \in \N : f(\mathbf{x}, y) = 0 \} \]
         dove questo minimo esiste, indefinita altrimenti, appartiene a $\R$
     \end{enumerate}
