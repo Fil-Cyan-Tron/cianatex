@@ -31,7 +31,7 @@
 \section*{Fondamenti}
 
 Trattando strutture molto "grandi" in un senso che renderemo preciso in seguito, per fondare propriamente la Teoria delle Categorie è necessario estendere la Teoria degli Insiemi di Zermelo-Fraenkel più l'assioma della scelta, che assumeremo sempre\footnote{Potremmo essere tentati di limitare l'assioma della scelta a famiglie piccole o almeno moderate di insiemi (nel senso specificato in \ref{ax:assioma di universo}), ma ai fini della nostra trattazione lo assumeremo sempre nella sua forma completa.}. L'approccio che seguiremo è un approccio che in qualche modo "limiti" la grandezza delle nostre strutture, supponendo l'esistenza di alcuni insiemi "universo" che si sostituiscano alla classe di tutti gli insiemi.\\
-Questa sezione è interamente basata sull'\textit{expose} I.0 di \cite{SGA4}.
+Questa sezione è quasi interamente basata sull'\textit{expose} I.0 di \cite{SGA4}. Assumeremo inoltre che ogni insieme sia un insieme puro.
 
 \begin{definition}{Universo di Grothendieck}{universo di Grothendieck}
     Sia $\G$ un insieme non vuoto. Questo si dice \bemph{universo di Grothendieck} se:\begin{itemize}
@@ -45,13 +45,13 @@ Questa sezione è interamente basata sull'\textit{expose} I.0 di \cite{SGA4}.
 Si dimostrano immediatamente le seguenti proprietà:
 
 \begin{proposition}{Proprietà degli universi di Grothendieck}{proprietà degli universi di Grothendieck più che numerabili}
-    Sia $U$ un universo di Grothendieck. Allora questo contiene:\begin{itemize}
+    Sia $U$ un universo di Grothendieck. Allora questo contiene:\begin{enumerate}
         \item Tutti i sottoinsiemi di ogni suo elemento (in particolare dunque l'insieme vuoto).
         \item Tutti i singoletti contenenti i suoi elementi.
         \item Tutti i prodotti, le unioni disgiunte e le intersezioni di famiglie di suoi elementi indicizzate da un suo elemento.
         \item Tutte le funzioni tra due suoi elementi.
         \item Tutti i suoi sottoinsiemi la cui cardinalità è un suo elemento.
-    \end{itemize}
+    \end{enumerate}
     Inoltre l'intersezione di una famiglia di universi è un'universo.
 \end{proposition} 
 
@@ -66,25 +66,27 @@ Intuitivamente, il seguente assioma ci permette di trattare un universo di Groth
 
 \begin{axiom}{Assioma di Universo}{assioma di universo}
     Per ogni insieme $x$ esiste un universo di Grothendieck $U$ tale che $x \in U$.\\
-    Consideriamo nella classe $\mathbb{G}$ degli universi di Grothendieck\footnote{Ben ordinata per inclusione, come visto in \ref{prop:proprietà degli universi di Grothendieck più che numerabili}} la famiglia $\{\G_\alpha\}_{\alpha \le \omega}$, dove $\omega$ è il più piccolo ordinale infinito, definita come segue:
-    \[ \G_0 := \min \mathbb{G}=\bigcap\mathbb{G} \]
-    \[ \G_{\alpha+1} := \min \left\{ U \in \mathbb{G} : \G_\alpha \in U \right\} = \bigcap \left\{ U \in \mathbb{G} : \G_\alpha \in U \right\}\]
-    \[ \G_\omega := \min \left\{ U \in \mathbb{G} : \forall \alpha \in \omega, \G_\alpha \in U \right\} = \bigcap \left\{  U \in \mathbb{G} : \forall \alpha \in \omega, \G_\alpha \in U  \right\} \]
+    Consideriamo nella classe $\mathbb{G}$ degli universi di Grothendieck la famiglia $\{\G_\alpha\}_{\alpha \le \omega}$, dove $\omega$ è il più piccolo ordinale infinito, definita come segue:
+    \[ \G_0 := \min_{\subset} \mathbb{G}=\bigcap\mathbb{G} \]
+    \[ \G_{\alpha+1} := \min_{\subset} \left\{ U \in \mathbb{G} : \G_\alpha \in U \right\} = \bigcap \left\{ U \in \mathbb{G} : \G_\alpha \in U \right\}\]
+    \[ \G_\omega := \min_{\subset}\left\{ U \in \mathbb{G} : \bigcup_{\alpha < \omega} \G_\alpha \in U\right\} = \bigcap\left\{ U \in \mathbb{G} : \forall \alpha < \omega, \G_\alpha \in U \right\} \]
     Diremo gli elementi di $\G_\alpha$ insiemi $\alpha$\bemph{-piccoli} e i suoi sottoinsiemi $\alpha$\bemph{-moderati}; gli elementi di $\G_\beta\setminus\G_\alpha$ per qualche $\beta > \alpha$ si dicono $\alpha$\bemph{-grandi}.\\
-    Diremo in generale \bemph{piccoli} gli insiemi $\alpha$-piccoli per un qualche $\alpha <\omega$, \bemph{moderati} gli insiemi $\omega$-moderati e \bemph{grandi} gli insiemi $\omega$-grandi.
+    Diremo in generale \bemph{piccoli} gli insiemi che sono $\alpha$-piccoli per un qualche $\alpha <\omega$, \bemph{moderati} gli insiemi $\omega$-moderati e \bemph{grandi} gli insiemi $\omega$-grandi.
 \end{axiom}
 
-\begin{remark}{Sugli insiemi $\alpha$-piccoli}{insiemi alpha-piccoli, modelli di ZFC}
+La costruzione di $\G_\lambda$ può essere facilmente generalizzata a qualsiasi ordinale $\lambda$ sia nel caso di un ordinale successore che nel caso di un ordinale limite, ma per i nostri scopi è sufficiente fermarci al primo ordinale infinito.
+
+\begin{remark}{Su $\{\G_\alpha\}_{\alpha \in \omega}$}{insiemi alpha-piccoli, modelli di ZFC}
     L'insieme $\G_0$ è numerabile e corrisponde alla classe degli insiemi ereditariamente finiti, ovvero degli insiemi finiti i cui elementi sono insiemi ereditariamente finiti.\\
-    Gli insiemi $\alpha$-moderati sono $\alpha+1$-piccoli.
+    Gli insiemi $\alpha$-moderati per un qualche $\alpha <\omega$ sono $\alpha+1$-piccoli.\\
+    $\{\G_\omega\}_{\alpha \le \omega}$ è ben ordinata per inclusione.
 \end{remark}
 
 Intuitivamente, $\G_1$ è già sufficiente per la pratica matematica "ordinaria", contenendo tutte le costruzioni usuali, e appunto è già un candidato per la "classe di tutti gli insiemi" in ZFC costituendone un modello. 
 
 \begin{theorem}{Modelli per ZFC in $\{\G_\alpha\}_{\alpha\le\omega}$}{modelli per ZFC}
     L'esistenza di $\G_0$ è indipendente dalla teoria degli insiemi di ZF meno l'assioma di infinito e questo ne costituisce un modello; in particolare, l'esistenza di $\G_0$ in questa teoria è equivalente all'assioma di infinito.\\
-    L'esistenza di $\G_\alpha$ per $\alpha>0$ è indipendente dalla teoria degli insiemi di ZFC e questo ne costituisce un modello.\\
-    La relazione di appartenenza $\in$ rende ogni $\G_\alpha$ ben ordinato.
+    L'esistenza di $\G_\alpha$ per $\alpha>0$ è indipendente dalla teoria degli insiemi di ZFC e questo ne costituisce un modello.
 \end{theorem}
 
 Vale inoltre un teorema molto importante che stabilisce una corrispondenza tra universi di Grothendieck e cardinali fortemente inaccessibili in ZFC:
@@ -108,12 +110,14 @@ Vale inoltre un teorema molto importante che stabilisce una corrispondenza tra u
     Fissati due oggetti $A,B \in \ob\C$ denoteremo con $\hom(A,B)$ o $\C(A,B)$ l'insieme dei morfismi $A\to B$ di $\hom\C$.\\
     Per ogni categoria $\C$ è definita la sua \bemph{duale} (o opposta) $\C^\op$, i cui oggetti sono gli stessi di $\C$ e i cui morfismi sono quelli di $\C$ ma invertiti di direzione, ovvero ad ogni $f:A\to B$ in $\C$ corrisponde un $f^\op : B\to A$ in $\C^\op$.\\
     Una categoria $\C$ si dice:\begin{itemize}
-        \item \bemph{$\alpha$-piccola} se gli insiemi $\hom\C$ e $\ob\C$ (anche se vedremo sotto che la grandezza del secondo è sempre limitata dal primo) sono insiemi $\alpha$-piccoli.
-        \item \bemph{$\alpha$-grande} se non è $\alpha$-piccola.
-        \item \bemph{Localmente $\alpha$-piccola} se, una volta fissati due oggetti $X,Y \in \ob\C$, l'insieme $\hom(X,Y)$ è un insieme $\alpha$-piccolo.
-        \item \bemph{Finita} se è piccola e l'insieme dei morfismi è un insieme finito.
+        \item \bemph{($\alpha$-)piccola} se gli insiemi $\hom\C$ e $\ob\C$ (anche se vedremo sotto che la grandezza del secondo è sempre limitata dal primo) sono insiemi ($\alpha$-)piccoli.
+        \item \bemph{($\alpha$-)grande} se non è ($\alpha$-)piccola.
+        \item \bemph{Localmente ($\alpha$-)piccola} se, una volta fissati due oggetti $X,Y \in \ob\C$, l'insieme $\hom(X,Y)$ è un insieme ($\alpha$-)piccolo.
+        \item \bemph{($\alpha$-)finita} se è ($\alpha$-)piccola e l'insieme dei morfismi è un insieme finito.
     \end{itemize}
 \end{definition}
+
+In \cite{MacLane1978} viene data una definizione meno estensiva di grandezza, assumendo l'esistenza di un solo universo per la trattazione generale e lasciando al lettore la libertà di "ingrandirlo" rimpiazzandolo con uno maggiore laddove questi si trovasse a trattare categorie troppo grandi. Qui abbiamo semplicemente qualificato e chiarito meglio l'operazione di scelta di universi più grandi: ci siamo limitati ad una gerarchia di $\omega$ universi, ma nulla impedisce di estendere la stessa operazione a ordinali arbitrari.
 
 Uno degli aspetti più vantaggiosi della Teoria delle Categorie è il \bemph{principio di dualità},molto informalmente un "paghi uno prendi due": ogni teorema in Teoria delle Categorie ha un equivalente che si dimostra "gratuitamente" passando alla categoria opposta, ne vedremo alcuni esempi.
 
@@ -124,7 +128,8 @@ Uno degli aspetti più vantaggiosi della Teoria delle Categorie è il \bemph{pri
         \item Dato che $\ob\C$ inietta sempre in $\hom\C$ con la mappa $X\mapsto \id_X$, in generale l'insieme dei morfismi può essere arbitrariamente più grande di quello degli oggetti, dunque la grandezza di una categoria è in generale indipendente dal suo insieme degli oggetti.
     \end{itemize} 
     \proof 
-    Forniamo un esempio dell'ultimo punto, gli altri sono banali. Sia $\V$ la categoria formata da un unico oggetto $\bullet$ e il cui insieme dei morfismi corrisponde all'insieme dei cardinali appartenenti a $\G_\omega$, dove la composizione di due morfismi è data dalla loro somma come cardinali. Nonostante $\ob\V$ sia il più piccolo possibile (al di là della categoria vuota), $\hom \V$ è (dimostrabilmente) un insieme grande, dunque $\V$ non solo è grande, ma non è nemmeno localmente piccola.
+    Forniamo un esempio dell'ultimo punto, gli altri sono banali.\\
+    Sia $\V$ la categoria con $\ob\V := \{\varnothing\}$ e $(\hom\V, \circ) \cong (\G_\omega,\cup)$: l'insieme degli oggetti di $\V$ è il più piccolo non vuoto possibile, mentre l'insieme dei morfismi di $\V$ è un insieme grande, dunque $\V$ non è solo grande, ma non è nemmeno localmente piccola.
     \qed
 \end{remark}
 
@@ -159,7 +164,7 @@ Da ora in avanti, assumeremo sempre (anche senza specificarlo) che le nostre cat
     \end{itemize}
     \proof 
     Forniamo solo due esempi di morfismi che sono epici e monici ma non isomorfismi (le altre verifiche sono assolutamente automatiche):\begin{itemize}
-        \item Consideriamo in $\catname{Haus}$ (\ref{exmp:setcat e categorie concrete}) l'inclusione $\iota: [0,1]\cap \Q\inj[0,1]$ (entrambi con la topologia euclidea); questa è chiaramente monica in quanto iniettiva, ed è epica in quanto una funzione continua in $\catname{Haus}$ è completamente determinata dal suo valore su un sottospazio denso, ma non è iso dato che non è suriettiva.
+        \item Consideriamo in $\catname{Haus}$ (\ref{exmp:setcat e categorie concrete}) l'inclusione $\iota: [0,1]\cap \Q\inj[0,1]$ (entrambi con la topologia euclidea); questa è chiaramente monica in quanto iniettiva, ed è epica in quanto una funzione continua in $\catname{Haus}$ è completamente determinata dal suo valore su un sottospazio denso, ma non è isomorfismo dato che non è suriettiva.
         \item Consideriamo la categoria
         \[\begin{tikzcd}
         	1 && 2
@@ -167,23 +172,26 @@ Da ora in avanti, assumeremo sempre (anche senza specificarlo) che le nostre cat
         	\arrow["1\le 2", from=1-1, to=1-3]
     	    \arrow["2\le 2", from=1-3, to=1-3, loop, in=325, out=35, distance=10mm]
         \end{tikzcd}\]
-        Dato che a destra o sinistra possiamo comporre solo con l'identità, $1\le 2$ è sia monico che epico, ma non è iso in quanto non ha inverso.
+        Dato che a destra o sinistra possiamo comporre solo con l'identità, $1\le 2$ è sia monico che epico, ma non è isomorfismo in quanto non ha inverso.
     \end{itemize}
     \qed
 \end{remark}
 
-\begin{definition}{Oggetti iniziali e finali}{Oggetti iniziali e finali}
+\begin{definition}{Oggetti iniziali e terminali}{Oggetti iniziali e terminali}
     Sia $\C$ una categoria e sia $I$ un oggetto.\\
     $I$ si dice \bemph{oggetto iniziale} se per ogni oggetto $X$ di $\C$ esiste un unico morfismo $\iota_X:I\to X$\\
-    $I$ si dice \bemph{oggetto finale} se è l'oggetto iniziale di $\C^\op$, o equivalentemente se per ogni oggetto $X$ di $\C$ esiste un unico morfismo $\zeta_X : X\to I$.\\
-    Se $I$ è sia finale che iniziale, si dice \bemph{oggetto zero}.
+    $I$ si dice \bemph{oggetto terminale} se è l'oggetto iniziale di $\C^\op$, o equivalentemente se per ogni oggetto $X$ di $\C$ esiste un unico morfismo $\zeta_X : X\to I$.\\
+    Se $I$ è sia terminale che iniziale, si dice \bemph{oggetto zero}.
 \end{definition}
 
-\begin{proposition}{Unicità di oggetti iniziali e finali}{unicità zero}
-    Se una categoria $\C$ ammette un oggetto iniziale (o finale o zero), questo è essenzialmente unico.
+\begin{proposition}{Unicità di oggetti iniziali e terminali}{unicità zero}
+    Se una categoria $\C$ ammette un oggetto iniziale (o terminale o zero), questo è unico a meno di unico isomorfismo.
+    \proof 
+    Siano $I, I'$ oggetti iniziali di $\C$; per definizione di oggetto iniziale, per ogni oggetto $X$ di $\C$ deve valere $\iota_X = \iota'_X \circ \iota_{I'}$, dunque ponendo $X=I$ otteniamo $\iota_I = \id_I = \iota'_I\circ \iota_{I'}$; analogamente otteniamo l'altro lato dell'inversione.
+    \qed
 \end{proposition}
 
-Introduciamo quello che può essere considerato un morfismo di categorie (e in effetti lo è in Teoria delle Categorie Superiori), ovvero il concetto di funtore. Di fatto la Teoria delle Categorie è nata per studiare i funtori, di cui l'esempio motivante è il gruppo fondamentale in Topologia Algebrica.
+Introduciamo quello che può essere considerato un morfismo di categorie (e in effetti lo è in Teoria delle Categorie Superiori), ovvero il concetto di funtore. Di fatto la Teoria delle Categorie è nata per studiare i funtori, di cui l'esempio motivante è il gruppo fondamentale in Topologia Algebrica, e le trasformazioni naturali tra di essi.
 
 \begin{definition}{Funtore}{funtore}
     Siano $\C$ e $\D$ due categorie. Un \bemph{funtore covariante} $F: \C\to\D$ consiste in due mappe $F:\ob\C\to\ob\D$ e $F:\hom\C\to\hom\D$ che rispettino la composizione, ovvero:\begin{itemize}
@@ -201,18 +209,22 @@ Introduciamo quello che può essere considerato un morfismo di categorie (e in e
     Se $F:\C\to\D$ e $G:\D\to\mc{E}$ sono due funtori, la loro composizione $GF : \C\to\mc{E}$ è un funtore.
 \end{definition}
 
-Ora possiamo definire una categoria assolutamente centrale, di fatto la categoria ambiente per tutta la pratica matematica "tradizionale" e che ci permette di definire una certa classe di sue "sottocategorie":
+Ora possiamo definire una categoria assolutamente centrale, di fatto la categoria ambiente per tutta la pratica matematica "tradizionale" e che ci permette di definire una certa classe di sue "sottocategorie" in un senso più ampio e di un insieme di sue sovracategorie che permetta una trattazione adeguata della teoria generale:
 
-\begin{example}{La categoria degli insiemi piccoli e categorie concrete}{setcat e categorie concrete}
-    Indichiamo con $\setcat$ la categoria degli insiemi piccoli, ovvero elementi di $\G$ (\ref{ax:assioma di universo debole}), e delle funzioni tra di loro con l'usuale composizione di funzioni insiemistiche.\\
+\begin{example}{La categoria degli insiemi ($\alpha$-)piccoli e categorie concrete}{setcat e categorie concrete}
+    Per $\alpha \le \omega$, indichiamo con $\setcat_\alpha$ la categoria i cui oggetti sono insiemi $\alpha$-piccoli, ovvero elementi di $\G_\alpha$, e i cui morfismi sono le funzioni tra di loro con l'usuale composizione di funzioni insiemistiche; indicheremo semplicemente con $\setcat$ la categoria $\setcat_\omega$.\\
     Una categoria $\C$ si dice \bemph{concreta} se è munita di un funtore fedele $U:\C\to\setcat$, detto \bemph{dimenticante}: informalmente, le categorie concrete sono quelle i cui oggetti sono insiemi (piccoli) dotati di una certa struttura e i cui morfismi sono funzioni insiemistiche che rispettano questa struttura. Alcune categorie concrete sono:\begin{itemize}
         \item $\topcat$ degli spazi topologici e delle funzioni continue;
         \item $\catname{Haus}$ degli spazi topologici $T_2$ e delle funzioni continue tra loro;
         \item $\mblecat$ degli spazi e delle funzioni misurabili;
         \item $\meascat$ degli spazi con misura e delle funzioni misurabili fra loro;
         \item $\veccat\K$ dei $\K$-spazi vettoriali e delle mappe lineari;
-        \item $\catname{NormVec}\K$ dei $\K$-spazi vettoriali normati e delle mappe lineari e continue
+        \item $\catname{NormVec}\K$ dei $\K$-spazi vettoriali normati e delle mappe lineari e continue.
     \end{itemize}
+    Per $\alpha <\omega$, $\setcat_\alpha$ è piccola, ma $\setcat_\omega$ non lo è nemmeno localmente: due controesempi sono dati dagli insiemi
+    \[ \hom\left(1,\bigcup_{\alpha < \omega}\G_\alpha\right), \qquad \hom\left(\bigcup_{\alpha < \omega}\G_\alpha, 2 \right)\]
+    entrambi con cardinalità strettamente maggiore di qualsiasi $\G_\alpha$.
+    Per qualsiasi $\alpha \le \omega$, $\setcat_\alpha$ ha un unico oggetto iniziale, l'insieme vuoto $0$, ed essenzialmente un'unico oggetto terminale, l'insieme $1$.
 \end{example}
 
 \begin{lemma}{Riflessione di isomorfismi}{riflessione di isomorfismi}
@@ -256,19 +268,22 @@ Abbiamo visto che i morfismi sono trasformazioni tra oggetti, mentre i funtori s
 \begin{definition}{Equivalenza di categorie}{equivalenza di categorie}
     Siano $\C$ e $\D$ due categorie e siano $F:\C\to\D$ e $G:\D\to\C$ due funtori.\\
     La coppia $(F,G)$ si dice \bemph{equivalenza di categorie} tra $F$ e $G$ se esistono due isomorfismi naturali
-    \[ \id_\C \cong GF \quad\text{e}\quad \id_\D \cong FG .\]
+    \[ \id_\C \cong GF \quad\text{e}\quad \id_\D \cong FG\]
 \end{definition}
 
 Useremo questa caratterizzazione\footnote{Senza assumere l'assioma della scelta in realtà si avrebbe solo un'implicazione} per le equivalenze di categorie, di cui omettiamo la dimostrazione in quanto più lunga e laboriosa che profonda.
 
 \begin{proposition}{Caratterizzazione per un'equivalenza di categorie}{equivalenza di categorie}
-    Sia $F : \C\to\D$ un funtore. Questo definisce un'equivalenza di categorie se e solo se è pienamente fedele ed essenzialmente suriettivo sugli oggetti.
+    Sia $F : \C\to\D$ un funtore.\\
+    Questo definisce un'equivalenza di categorie se e solo se è pienamente fedele ed essenzialmente suriettivo sugli oggetti.
 \end{proposition}
 
 \begin{definition}{Funtori aggiunti}{funtori aggiunti}
-    Siano $F:\C\to\D$ e $G:\D\to\C$ due funtori. Questi si dicono \bemph{aggiunti} (rispettivamente sinistro e destro all'altro) se esiste un isomorfismo:
+    Siano $\C,\D$ due categorie localmente piccole e $F:\C\to\D$ e $G:\D\to\C$ due funtori.\\
+    Questi si dicono \bemph{aggiunti} se esiste un isomorfismo in $\setcat$
     \[ \D(Fc, d) \cong \C(c, Gd)\]
-    Naturale per ogni $c \in \C$ e $d \in \D$. Scriveremo $F\dashv G$ per indicare che $F$ è aggiunto sinistro a $G$ e che $G$ è aggiunto destro a $F$.
+    naturale per ogni $c \in \C$ e $d \in \D$, ovvero sia come trasformazione naturale $\D(F(-),d)\to \C(-,G(d))$ sia come trasformazione naturale $\D(F(c),-)\to \C(c,G(-))$.\\
+    Scriveremo $F\dashv G$ per indicare che $F$ è aggiunto sinistro a $G$ e che $G$ è aggiunto destro a $F$.
 \end{definition}
 
 \section{Lemma di Yoneda e conseguenze}
@@ -297,7 +312,8 @@ Un risultato assolutamente centrale in Teoria delle Categorie è il lemma di Yon
 \end{definition}
 
 \begin{definition}{$\hom$-funtore covariante e controvariante}{hom-funtore}
-    Sia $\C$ una categoria localmente piccola\footnote{È vero che abbiamo detto che lo avremmo sempre assunto, ma è importante specificarlo in questo caso.} e sia $A$ un oggetto di $\C$. Definiamo due funtori $h_A:\C\to\setcat$ e $h^A : \C^\op\to\setcat$, detti $\hom$\bemph{-funtori} (rispettivamente covariante e controvariante) nel seguente modo:
+    Sia $\C$ una categoria localmente piccola\footnote{È vero che abbiamo detto che lo avremmo sempre assunto, ma è importante specificarlo in questo caso.} e sia $A$ un oggetto di $\C$.\\
+    Definiamo due funtori $h_A:\C\to\setcat$ e $h^A : \C^\op\to\setcat$, detti $\hom$\bemph{-funtori} (rispettivamente covariante e controvariante) nel seguente modo:
     \[\begin{tikzcd}
     	{\hom(A,X)} && X && {\hom(X,A)} \\
     	\\
@@ -315,9 +331,9 @@ Un risultato assolutamente centrale in Teoria delle Categorie è il lemma di Yon
 \end{definition}
 
 \begin{theorem}{Lemma di Yoneda covariante}{lemma di yoneda covariante}
-    Sia $\C$ una categoria localmente piccola e sia $F:\C\to\setcat$ un funtore covariante. Allora esiste una biezione di insiemi:
+    Sia $\C$ una categoria localmente piccola e sia $F:\C\to\setcat$ un funtore covariante.\\ Allora esiste un isomorfismo in $\setcat$
     \[ \nat (h_A, F) \cong F(A)\]
-    e questa è naturale in $A$ e $F$.
+    naturale in $A$ e $F$, ovvero sia se visto come trasformazione naturale $\nat(h_\bullet, F)\to F$ sia come trasformazione naturale $\nat(h_A,-)\to -(A)$.
     \proof 
     Diamo uno sketch della dimostrazione, mancano alcuni dettagli come la dimostrazione della naturalità in $A$ e $F$ ma l'importante è lo spirito della cosa.\\ 
     Sia $\Phi \in \nat(h_A,F)$. Dato che questa è naturale, il seguente diagramma commuta: 
@@ -347,15 +363,16 @@ Un risultato assolutamente centrale in Teoria delle Categorie è il lemma di Yon
 Abbiamo dualmente la versione controvariante:
 
 \begin{corollary}{Lemma di Yoneda controvariante}{lemma di yoneda controvariante}
-    Sia $F:\C^\op\to\setcat$ un funtore controvariante. Allora esiste una biezione di insiemi
+    Sia $\C$ una categoria localmente piccola e sia $F:\C^\op\to\setcat$ un funtore controvariante.\\
+    Allora esiste un isomorfismo in $\setcat$
     \[ \nat (h^A, F) \cong F(A)\]
-    e questa è naturale in $A$ e $F$.
+    naturale in $A$ e $F$.
 \end{corollary}
 
 \begin{remark}{Lemma di Yoneda e grandezza}{lemma di Yoneda e grandezza}
-    In generale la biezione dataci da \ref{th:lemma di yoneda covariante} non è una biezione tra insiemi piccoli, in quanto gli elementi di $\nat(h_A,F)$ non sono in generale insiemi piccoli.\\
+    In generale l'isomorfismo datoci da \ref{th:lemma di yoneda covariante} non è una biezione tra insiemi piccoli, in quanto gli elementi di $\nat(h_A,F)$ non sono in generale insiemi piccoli.\\
     Prendiamo ad esempio il funtore identità $\mathbf{Id}$ da $\setcat$ (ricordiamo la definizione \ref{exmp:setcat e categorie concrete}) in sè stessa: noi abbiamo che $\nat(h_S,\mathbf{Id})$ è in biezione con $S$, ma gli elementi di $\nat(h_S,\mathbf{Id})$ sono indicizzati da $\G$, che non è affatto un insieme piccolo.\\
-    Avendo l'assioma \ref{ax:assioma di universo debole} non incorriamo in problemi di tipo logico o fondativo, ma se non avessimo limitato in questo modo la grandezza delle nostre categorie dovremmo gestire in qualche modo la collezione $\nat(h_S,\mathbf{Id})$, che per quanto ci sia garantito debba essere "grande quanto" un insieme, sarebbe una collezione di elementi normalmente considerati come classi proprie, ovvero classi che non possono appartenere ad altre classi.
+    Avendo l'assioma \ref{ax:assioma di universo} non incorriamo in problemi di tipo logico o fondativo, ma se non avessimo limitato in questo modo la grandezza delle nostre categorie dovremmo gestire in qualche modo la collezione $\nat(h_S,\mathbf{Id})$, che per quanto ci sia garantito debba essere "grande quanto" un insieme, sarebbe una collezione di elementi normalmente considerati come classi proprie, ovvero classi che non possono appartenere ad altre classi.
 \end{remark}
 
 Una delle più naturali applicazioni del lemma di Yoneda è l'embedding di Yoneda, fondamentale in gran parte della topologia e della geometria moderna: esso permette di identificare una categoria $\C$ con una sottocategoria della cosiddetta \bemph{categoria dei prefasci su} $\C$, che è solo un altro nome per $[\C^\op,\setcat]$. Ad esempio se interpretiamo la topologia $\tau$ di uno spazio $(X,\tau)$ come una categoria, dove i morfismi sono dati dall'inclusione insiemistica, questa è completamente determinata dalle classi delle funzioni continue entranti nei (o uscenti dai) suoi aperti.
@@ -410,7 +427,7 @@ Abbiamo dualmente la versione controvariante:
 Ora grazie al lemma di Yoneda possiamo dimostrare un fatto che ci servirà più tardi:
 
 \begin{lemma}{Essenziale unicità degli aggiunti}{unicità degli aggiunti}
-    Siano $\C,\D$ due categorie e siano $F:\C\to\D$ e $G_1,G_2: \D\to\C$ funtori tali che $F\dashv G_1$ e $F\dashv G_2$ oppure $G_1\dashv F$ e $G_2\dashv F$.\\
+    Siano $\C,\D$ due categorie localmente piccole e siano $F:\C\to\D$ e $G_1,G_2: \D\to\C$ funtori tali che $F\dashv G_1$ e $F\dashv G_2$ oppure $G_1\dashv F$ e $G_2\dashv F$.\\
     Allora $G_1\cong G_2$.
     \proof 
     Dimostriamo il caso destro, il caso sinistro segue per dualità; scriviamo le aggiunzioni in termini degli $\hom$-funtori:
@@ -485,7 +502,7 @@ Talvolta diremo che una categoria "ammette/ha tutti i..." facendo riferimento a 
 \begin{remark}{Limiti e oggetti iniziali}{limiti e oggetti iniziali}
     Sia $F:\J\to\C$ un diagramma.\begin{itemize}
         \item Se $\J$ ammette un oggetto iniziale $I$, allora $\catlim F = F(I)$.
-        \item Dualmente, se $\J$ ammette un oggetto finale $Z$, allora $\catcolim F = F(Z)$.
+        \item Dualmente, se $\J$ ammette un oggetto terminale $Z$, allora $\catcolim F = F(Z)$.
         \item Infine, se $\J$ ammette un oggetto zero $0$, allora $\catlim F = \catcolim F = F(0)$.
     \end{itemize}
 \end{remark}
@@ -610,6 +627,253 @@ Tuttavia in altre applicazioni della Teoria delle Categorie, ad esempio in Topol
     \[\amalg ((f,g):(X,Y)\to(W,Z)) := (f + g : X + Y \to W + Z) \]
     definisce un funtore aggiunto sinistro a $\Delta$.
 \end{corollary}
+
+\newcommand\eval{\operatorname{eval}}
+
+\section{Categorie Cartesiane Chiuse}
+
+\begin{definition}{}{}
+    Sia $\C$ una categoria e siano $X,Y$ oggetti di $\C$ che abbiano un prodotto in $\C$.\\
+    Si dice \bemph{esponenziale} di $Z$ e $Y$ in $\C$ un oggetto, indicato con $Z^Y$, munito di un morfismo $\eval_{Y,Z} : Z^Y\times Y \to Z$ tale che per ogni morfismo $f:X\times Y \to Z$ esista un unico $\lambda f: X\to Z^Y$ tale che il seguente diagramma commuti:
+    \[\begin{tikzcd}
+    	{X\times Y} \\
+    	\\
+    	{Z^Y\times Y} && Z
+    	\arrow["{\lambda f\times \id_Y}"{description}, from=1-1, to=3-1]
+    	\arrow["f"{description}, from=1-1, to=3-3]
+    	\arrow["{\eval_{Y,Z}}"{description}, from=3-1, to=3-3]
+    \end{tikzcd}\]
+    Inoltre l'assegnazione $f\mapsto \lambda f$ deve definire una biezione
+    \[ \hom(X\times Y, Z) \cong \hom{X, Z^Y} \]
+\end{definition}
+
+\begin{definition}{Categoria Cartesiana Chiusa}{CCC}
+    Sia $\C$ una categoria. Questa si dice \bemph{cartesiana chiusa} se soddisfa le seguenti condizioni:\begin{enumerate}
+        \item $\C$ ammette un oggetto terminale $1$;
+        \item $\C$ ammette tutti i prodotti binari;
+        \item $\C$ ammette tutti gli esponenziali.
+    \end{enumerate}
+    Le condizioni (1) e (2) possono essere combinate richiedendo che $\C$ ammetta tutti i prodotti finiti, dove l'oggetto terminale è il prodotto della famiglia vuota.
+\end{definition}
+
+\begin{example}{$\setcat_\alpha$ è cartesiana chiusa}{set è ccc}
+    La categoria $\setcat_\alpha$ è cartesiana chiusa per ogni $\alpha \le \omega$.
+    \proof 
+    Controlliamo le tre condizioni:\begin{enumerate}
+        \item L'oggetto terminale è l'insieme singoletto $1$;
+        \item Il prodotto è dato dal prodotto cartesiano;
+        \item L'esponenziale è dato da $Z^Y = \hom(Y,Z)$ e i morfismi sono definiti dal seguente diagramma:
+        \[\begin{tikzcd}
+        	& {X\times Y} \\
+        	{X\times Y} & {(x,y)} \\
+        	&&&& Z \\
+        	& {(\lambda f(x): Y \to Z, y)} && {\lambda f(x)(y) = f(x,y)} \\
+        	{Z^Y\times Y} &&&& Z
+        	\arrow["f"{description}, from=1-2, to=3-5]
+        	\arrow[equals, from=2-1, to=1-2]
+        	\arrow["{\lambda f\times \id_Y}"{description}, from=2-1, to=5-1]
+        	\arrow[maps to, from=2-2, to=4-2]
+        	\arrow[maps to, from=2-2, to=4-4]
+        	\arrow[equals, from=3-5, to=5-5]
+        	\arrow[maps to, from=4-2, to=4-4]
+        	\arrow["{\eval_{Y,Z}}"{description}, from=5-1, to=5-5]
+        \end{tikzcd}\]
+    \end{enumerate}
+    \qed
+\end{example}
+
+\begin{lemma}{CCC e oggetti zero}{ccc e oggetti zero}
+    Sia $\C$ una categoria cartesiana chiusa con oggetto terminale $1$.\\
+    Se $\C$ ammette un oggetto zero $0 \cong 1$, allora ogni coppia di oggetti in $\C$ è isomorfa tramite un unico isomorfismo.
+    \proof 
+    Per ogni coppia di oggetti $X,Y$ è verificata la seguente catena di biezioni:
+    \[ \hom(X,Y) \cong \hom(1\times X, Y) \cong \hom(1, Y^X) \cong \hom(0, Y^X) = \{\zeta_{Y^X}: 0 \to Y^X\} \]
+    analogamente vale per $\hom(Y,X)$, segue la tesi.
+    \qed
+\end{lemma}
+
+L'intuizione sugli oggetti esponenziali come analoghi agli spazi di funzioni nel caso di $\setcat$ ci suggerisce di cercare esempi di categorie cartesiane chiuse, almeno nel caso concreto, in categorie che abbiano i prodotti e dove l'hom-set tra due oggetti abbia la struttura di un oggetto in sè.\\
+Seguendo questa intuizione, ci si potrebbe chiedere se la categoria degli spazi vettoriali su $\R$, magari di dimensione finita, sia cartesiana chiusa: d'altronde ha un oggetto terminale nello spazio vettoriale banale $\{0\}$, ha il prodotti binario nel prodotto cartesiano e in effetti $\hom(V,W)$ ha una struttura di spazio vettoriale su $\R$; tuttavia il lemma che abbiamo visto impedisce non solo agli spazi vettoriali, ma ai moduli in generale, di formare una categoria cartesiana chiusa.
+
+\begin{example}{$R\modcat$ non è cartesiana chiusa}{rmod non è ccc}
+    Per qualsiasi anello $R$, la categoria $R\modcat$ non è cartesiana chiusa; in particolare dunque, per qualsiasi campo $\K$, la categoria $\veccat(\K)$ non è cartesiana chiusa.
+    \proof 
+    $R\modcat$ ha un oggetto zero $\{0\}$, il modulo banale, ma dunque se fosse cartesiana chiusa tutti i moduli sarebbero isomorfi per il lemma \ref{lem:ccc e oggetti zero}; dato che questo non è vero, $R\modcat$ non può essere cartesiana chiusa.
+    \qed
+\end{example}
+
+\begin{theorem}{}{}
+    Sia $\C$ una categoria localmente piccola con prodotti binari \textit{specificati}.\\
+    Questa è cartesiana chiusa se e solo se i seguenti funtori hanno degli \textit{specifici} aggiunti destri per ogni oggetto $B$:
+    \[ 0 : \C \ni (f:X\to Y) \mapsto (\id_0 : 0 \to 0) \in \mathbf{1} \]
+    \[ \Delta : \C \ni (f:X\to Y)\mapsto ((f,f): (X,X)\to(Y,Y)) \in \C^2\]
+    \[ -\times B : \C \ni (f:X\to Y) \mapsto (f\times \id_B : X\times B \to Y\times B )\in \C\]
+\end{theorem}
+
+\newcommand\percat{\catname{PER}}
+\newcommand\pfn{\catname{pfn}}
+\newcommand\grf{\catname{grf}}
+\newcommand\prf{\catname{prf}}
+
+\section{La categoria $\percat(\N)$}
+
+\subsection{Computabilità}
+
+Consideriamo la seguente categoria:
+
+\begin{definition}{}{}
+    Sia $\pfn(\N)$ la categoria i cui oggetti sono potenze finite di $\N$, compreso $\N^0 = 1$, e i cui morfismi sono le \bemph{funzioni parziali} su $\N$, ovvero dove un morfismo $f:\N^n\to \N^m$ è dato da una funzione $f: D\to\N^m$, dove $D\subset \N^k$ può essere anche vuoto.\\
+    I morfismi identità corrispondono alle funzioni identità e la composizione $g\circ f$ è data dalla funzione $g|_{\dom f} \circ f$
+\end{definition}
+
+\begin{remark}{}{}
+    Per ogni $n,m \in \N$, la funzione vuota $\varnothing$ definisce un valido morfismo $\N^n\to \N^m$.
+\end{remark}
+
+\begin{remark}{}{}
+    Mentre l'insieme $\ob\pfn(\N)$ è numerabile, $\hom\pfn(\N)$ ha cardinalità del continuo.
+    \proof 
+    Dato che le funzioni totali sono casi particolari di funzioni parziali, e le funzioni parziali sono casi particolari di relazioni (che sono semplicemente sottoinsiemi del prodotto cartesiano), valgono le seguenti inclusioni:
+    \[ \hom_\setcat(\N^n, \N^m) \subset \hom_\pfn(\N^n,\N^m) \subset \mc{P}(\N^n\times \N^m) \]
+    Dunque passando alle cardinalità per $n,m \ge 1$ possiamo concludere che $\hom_\pfn(\N^n,\N^m)$ abbia cardinalità del continuo; a questo punto basta osservare che
+    \[ \hom\pfn(\N) = \bigcup_{n\in \N, m\in \N} \hom_\pfn(\N^n,\N^m) \]
+    Dato che è un'unione numerabile di insiemi che hanno al più cardinalità del continuo e quasi sempre la raggiungono, possiamo concludere che abbia cardinalità del continuo.
+\end{remark}
+
+\renewcommand\R{\mc{R}}
+
+\begin{definition}{}{grf e prf}
+    Consideriamo la sottocategoria $\grf(\N)$ di $\pfn(\N)$ definita da $\ob\grf(\N) = \ob\pfn(\N)$ e il cui insieme dei morfismi $\R$ è definito come il minimo sottoinsieme di $\hom\pfn(\N)$ tale che:\begin{enumerate}
+        \item Le funzioni zero $z_n : \N^n \to \N^0$ appartengono a $\R$ per ogni $n \in \N$.
+        \item La funzione successore $s: \N \to \N$ appartiene a $\R$.
+        \item Le proiezioni $\pi_i : \N^n \to \N$ appartengono a $\R$; notiamo che questo include la funzione $\pi_0: 1\to \N$ di scelta di un elemento.
+        \item Se $f:\N^l\to \N^n$ e $g: \N^n\to \N^m$ appartengono a $\R$, allora la loro composizione $g\circ f$ appartiene a $\R$.
+        \item Se $f: \N^k \to \N^n$ e $g : \N^{k+2}\to\N^n$ appartengono a $\R$, allora la funzione $h:\N^{k+1}\to\N^n$ definita per induzione da
+        \[ h(\mathbf{x},y) = \begin{cases}
+            f(\mathbf{x}) & \text{se }y=0 \\ g(\mathbf{x},y-1,y) & \text{altrimenti}
+        \end{cases}\]
+        appartiene a $\R$.
+        \item Se $f\in \hom_{\pfn}(\N^{k+1},\N)$, allora la funzione definita da
+        \[ \mu_f(\mathbf{x}) = \min\{ y \in \N : f(\mathbf{x}, y) = 0 \} \]
+        dove questo minimo esiste, indefinita altrimenti, appartiene a $\R$
+    \end{enumerate}
+    Questa è detta categoria delle \bemph{funzioni ricorsive generali}; omettendo il requisito $6$ si ottiene la categoria delle \bemph{funzioni ricorsive primitive} $\prf(\N)$.
+\end{definition}
+
+\begin{theorem}{Tesi di Church-Turing}{}
+    L'insieme $\hom\grf(\N)$ è esattamente l'insieme delle funzioni calcolabili da un linguaggio di programmazione imperativo Turing-completo.\\
+    L'insieme $\hom\prf(\N)$ è esattamente l'insieme delle funzioni calcolabili da un linguaggio di programmazione imperativo Turing-completo ammettendo loop di lunghezza predeterminata.
+    \proof 
+    Dimostriamo per induzione che le funzioni in $\hom\grf(\N)$ sono calcolabili da python; assumeremo che tutti i parametri passati siano come specificati in \ref{def:grf e prf}:\begin{enumerate}
+        \item \begin{verbatim}
+            def zero(x):
+                return 0
+        \end{verbatim}
+        \item \begin{verbatim}
+            def succ(n):
+                return n+1
+        \end{verbatim}
+        \item \begin{verbatim}
+            def proj(i, x):
+                return x[i]
+        \end{verbatim}
+        \item \begin{verbatim}
+            def comp(g, f, x):
+                return g(f(x))
+        \end{verbatim}
+        \item Abbiamo due versioni equivalenti, la prima è più elegante mentre la seconda mostra come venga rispettato il requisito di avere loop di lunghezza predeterminata:\begin{enumerate}
+            \item \begin{verbatim}
+                def ric(g, f, x, y):
+                    if y == 0:
+                        return f(x)
+                    else:
+                        return g(x, y-1, ric(g, f, x, y-1))
+            \end{verbatim}
+            \item \begin{verbatim}
+                def ric(g, f, x, y):
+                    values = [f(x)]
+                    for n in range(1, y+1):
+                        values.append(g(x, n-1, n))
+                    return values[y]
+            \end{verbatim}
+        \end{enumerate}
+        \item \begin{verbatim}
+            def minimalize(f, x):
+                y = 0
+                while f(x, y) > 0:
+                    y = y+1
+                return y
+        \end{verbatim}
+    \end{enumerate}
+    L'altra inclusione è più complicata e ci penso dopo
+\end{theorem}
+
+\begin{corollary}{}{}
+    L'insieme $\hom\grf(\N)$ è numerabile.
+    \proof
+    Dato che ogni funzione in $\hom\grf(\N)$ è calcolabile da un programma, ovvero una sequenza finita di simboli tratti da un alfabeto finito $\Gamma$ e per ogni numero naturale $n$ abbiamo la funzione $\id_n : \N^n\to \N^n$, vediamo che 
+    \[ \left|\N\right| \le \left| \hom\grf(\N) \right| \le \left| \bigsqcup_{n \in \N} \Gamma^n \right| = \sum_{n \in \N}\left|\Gamma\right|^n = \left|\N\right| \]
+    \qed
+\end{corollary}
+
+\subsection{Teorema $s-m-n$}
+
+\begin{definition}{Enumerazione standard di $\hom\grf(\N)$}{enumerazione standard}
+    Fissiamo una biezione $\Phi : \N \to \hom\grf(\N)$ che diremo \bemph{enumerazione standard} di $\hom\grf(\N)$.\\
+    Indicheremo con $\phi_i(x)$ la funzione $\Phi(i)(x)$
+\end{definition}
+
+\begin{theorem}{Teorema $s-m-n$}{}
+    Sia $\phi_i: \N^{n+m} \to \N$ in $\hom\grf(\N)$.\\
+    Esiste una funzione $s_m^n: \N^{1+n} \to \N$ in $\hom\prf(\N)$ tale che per ogni $\mathbf{x} \in \N^n$ e $\mathbf{y}\in \N^m$ si abbia
+    \[ \phi_i(\mathbf{x},\mathbf{y}) = \phi_{s_m^n(i,\mathbf{x})}(\mathbf{y})\]
+    In più, $s_m^n$ è univocamente determinata da $m$ e $n$
+    \proof 
+    La seguente funzione di python esibisce la tesi.\\
+    Gli input sono:\begin{itemize}
+        \item la stringa $f$ che definisce $\phi_i : \N^{n+m} \to \N$ nelle variabili $a \in \N^n$ e $b\in\N^m$;
+        \item il numero $n \in \N$, che dipende dalla $f$ ma esplicitiamo per comodità;
+        \item un punto $x \in \N^n$;
+    \end{itemize} 
+    l'output è la stringa che definisce la funzione $\phi_{s_m^n(i,x)} : \N^m \to \N$ della tesi rimpiazzando ogni istanza di $a_i$ con il valore di $x_i$.
+    \begin{verbatim}
+        def smn(f, n, x):
+            for i in range(n):
+                F = f.split("a["+str(i)+"]")
+                t = str(x[i])
+                f = t.join(F)
+            return f
+        \end{verbatim}
+    Dato che $s$ non calcola effettivamente $f$, ma semplicemente parte da una \textit{qualsiasi} stringa e restituisce in un numero predeterminato di iterazioni un'altra stringa, appartiene a $\hom\prf(\N)$.
+    \qed
+\end{theorem}
+
+\subsection{Relazioni di equivalenza parziali}
+
+\begin{definition}{Relazione di equivalenza parziale}{per}
+    Sia $A$ un insieme.\\
+    Una \bemph{relazione di equivalenza parziale} su $A$ è una relazione $R\subset A\times A$ che rispetti la proprietà transitiva e simmetrica, ma non necessariamente quella riflessiva.\\
+    Definiamo come $\dom R$ l'insieme dei punti $x \in A$ che sono in relazione con sè stessi (o equivalentemente con un qualsiasi altro punto) e definiamo l'insieme $A/R$ come $(\dom R/R) \sqcup (A\setminus \dom R)$.
+\end{definition}
+
+Intuitivamente possiamo pensare a $A/R$ come ad una partizione di $A$ in $R$-classi di equivalenza e una "zona d'ombra" che $R$ non vede; equivalentemente, potremmo estendere $R$ ad una relazione di equivalenza completa $\cap{R}$ che identifichi i punti fuori dal dominio di $R$ in una nuova classe. 
+
+\begin{definition}{La categoria $\percat(\N)$}{}
+    Definiamo la categoria $\percat(\N)$ come la categoria i cui oggetti sono le relazioni di equivalenza parziali su $\N$ identificate con i loro quozienti $\N/R$ e i cui morfismi sono dati dalle mappe $f:\N/R\to\N/S$ "tracciate" da un qualche $i \in \N$, ovvero da una mappa $\varphi_i \in \hom_\grf(\N,\N)$ definita sul dominio di $R$ tale che 
+    \[ xRy \Rarr \phi_i(x)S\phi_i(y) \]
+    O equivalentemente 
+    \[f([x]_R) =[\phi_i(x)]_S\]
+\end{definition}
+
+\begin{remark}{}{}
+    Nella definizione dei morfismi di $\percat(\N)$ non è richiesto nè che $i$ sia unico nè che $\phi_i$ si comporti in qualsiasi modo prestabilito nella "zona d'ombra" di $R$
+\end{remark}
+
+\begin{lemma}{}{}
+    Ogni relazione $T$ con un'unica classe di equivalenza non vuota $\dom T$ è un oggetto terminale di $\percat(\N)$.
+    \proof 
+    Prendiamo $T := \N^2$ e notiamo che per qualsiasi  funzione costante $\phi_i$ traccia un unico morfismo $R\to T$
+\end{lemma}
 
 \nocite{*}
 \printbibliography
