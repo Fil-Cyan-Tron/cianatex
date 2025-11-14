@@ -717,7 +717,7 @@ Seguendo questa intuizione, ci si potrebbe chiedere se la categoria degli spazi 
 
 \section{La categoria $\percat(\N)$}
 
-\subsection{Computabilità}
+\subsection{Funzioni ricorsive generali}
 
 Consideriamo la seguente categoria:
 
@@ -760,27 +760,43 @@ Consideriamo la seguente categoria:
     Questa è detta categoria delle \bemph{funzioni ricorsive generali}; omettendo il requisito $6$ si ottiene la categoria delle \bemph{funzioni ricorsive primitive} $\prf(\N)$.
 \end{definition}
 
-\begin{theorem}{Tesi di Church-Turing}{}
-    L'insieme $\hom\grf(\N)$ è esattamente l'insieme delle funzioni calcolabili da un linguaggio di programmazione imperativo Turing-completo.\\
-    L'insieme $\hom\prf(\N)$ è esattamente l'insieme delle funzioni calcolabili da un linguaggio di programmazione imperativo Turing-completo ammettendo loop di lunghezza predeterminata.
+\newcommand\imp{\catname{IMP}}
+\newcommand\stimp{\imp^{(\to)}}
+\newcommand\T{\mathcal{T}}
+\subsection{Il linguaggio $\stimp$}
+
+Definiamo un linguaggio di programmazione "giocattolo" che chiameremo $\stimp$, o $\imp$ semplicemente tipato, ma che dimostreremo essere sufficientemente potente da calcolare tutte (e sole) le funzioni in $\hom\grf(\N)$. È basato sul linguaggio $\imp$ definito in CITAZUN, ma permettiamo che le variabili attingano da un sistema di tipi più ampio:
+
+\begin{definition}{Sistema di tipi e sintassi di $\stimp$}{}
+    Sia $\Gamma$ un alfabeto e $^*$ la stella di Kleene, definiamo il sistema di tipi $\T$ per induzione tramite le seguenti regole:
+    \[ \frac{}{\Gamma^*}\qquad \frac{}{\N} \qquad \frac{\N^n}{\N^{n+1}}(n \in \N)\qquad \frac{\tau \qquad \sigma}{\tau \to \sigma} \]
+    Per indicare che un termine $x$ ha tipo $T$, scriveremo $x:T$.\\
+    Estendiamo la sintassi delle espressioni per la valutazione di funzioni, la concatenazione di stringhe:
+    \[ \frac{e:S\quad f:S\to T }{f(e):T}\qquad \frac{e_1:\Gamma^*\quad e_2:\Gamma^*}{e_1e_2 : \Gamma^*} \]
+
+\end{definition}
+
+\begin{example}{Esempio di un programma in $\imp$ e in $\stimp$}{}
+    Un semplice programma in $\imp$
+\end{example}
+
+\begin{theorem}{Tesi di Church-Turing per $\stimp$}{}
+    Una funzione $f:\N^m\to\N^n$ appartiene a $\hom\grf(\N)$ se e solo se esiste un programma di $\stimp$ che la calcola.\\
+    Una funzione $f:\N^m\to\N^n$ appartiene a $\hom\prf(\N)$ se e solo se esiste un programma di $\stimp$ che la calcola con cicli while di lunghezza al più predeterminata.
     \proof 
-    Dimostriamo per induzione che le funzioni in $\hom\grf(\N)$ sono calcolabili da python; assumeremo che tutti i parametri passati siano come specificati in \ref{def:grf e prf}:\begin{enumerate}
-        \item \begin{verbatim}
-            def zero(x):
-                return 0
-        \end{verbatim}
-        \item \begin{verbatim}
-            def succ(n):
-                return n+1
-        \end{verbatim}
-        \item \begin{verbatim}
-            def proj(i, x):
-                return x[i]
-        \end{verbatim}
+    Dimostriamo per induzione che le funzioni in $\hom\grf(\N)$ sono calcolabili da $\stimp$; specificheremo sempre il tipo delle espressioni coinvolte:\begin{enumerate}
+        \item Sia $\sigma(x):\N^n$ per un qualche $n \in \N$; la funzione zero viene calcolata da
+            \[ \texttt{Zero}(x:\N^n) = \left(x := 0:\N \right) \]
+        \item Sia $\sigma(x):\N$; la funzione successore viene calcolata dal programma
+            \[ \texttt{Succ}(x:\N) = \left( x:= x+1:\N \right) \]
+        \item Siano $\sigma(x):\N$, $\sigma(X):\N^n$ per qualche $n \in \N$ e sia $\sigma(i):\N$ tale che $\sigma(i)<n$; la funzione proiezione viene calcolata dal programma
+            \[ \texttt{Proj}(X:\N^n, i:\N) = \left( x := X(i):\N \right) \]
         \item \begin{verbatim}
             def comp(g, f, x):
                 return g(f(x))
         \end{verbatim}
+        La composizione di due funzioni calcolabili $f:\N^l\to\N^m$ e $g:\N^m\to\N^n$ è semplicemente la loro composizione come programmi $\texttt{F}$ e $\texttt{G}$
+            \[ \texttt{G}\circ\texttt{F}(x:\N^l)  = \left(\texttt{F}(x:\N^l);\texttt{G}(x:\N^m) : \N^n\right) \]
         \item Abbiamo due versioni equivalenti, la prima è più elegante mentre la seconda mostra come venga rispettato il requisito di avere loop di lunghezza predeterminata:\begin{enumerate}
             \item \begin{verbatim}
                 def ric(g, f, x, y):
@@ -789,6 +805,7 @@ Consideriamo la seguente categoria:
                     else:
                         return g(x, y-1, ric(g, f, x, y-1))
             \end{verbatim}
+            \[ \texttt{H}(\texttt{G}(a:\N^n,b:\N,c:\N):\N, \texttt{F}(r):\N^n\to\N, x:\N^n, y:\N ) = \left( \text{if}\ y=0\ \text{then}\ \texttt{F}(x)\ \text{else}  \right) \]
             \item \begin{verbatim}
                 def ric(g, f, x, y):
                     values = [f(x)]
@@ -874,6 +891,8 @@ Intuitivamente possiamo pensare a $A/R$ come ad una partizione di $A$ in $R$-cla
     \proof 
     Prendiamo $T := \N^2$ e notiamo che per qualsiasi  funzione costante $\phi_i$ traccia un unico morfismo $R\to T$
 \end{lemma}
+
+\section{Appendice: Definizione completa di $\stimp$}
 
 \nocite{*}
 \printbibliography
