@@ -375,9 +375,9 @@ Abbiamo dualmente la versione controvariante:
     Avendo l'assioma \ref{ax:assioma di universo} non incorriamo in problemi di tipo logico o fondativo, ma se non avessimo limitato in questo modo la grandezza delle nostre categorie dovremmo gestire in qualche modo la collezione $\nat(h_S,\mathbf{Id})$, che per quanto ci sia garantito debba essere "grande quanto" un insieme, sarebbe una collezione di elementi normalmente considerati come classi proprie, ovvero classi che non possono appartenere ad altre classi.
 \end{remark}
 
-Una delle più naturali applicazioni del lemma di Yoneda è l'embedding di Yoneda, fondamentale in gran parte della topologia e della geometria moderna: esso permette di identificare una categoria $\C$ con una sottocategoria della cosiddetta \bemph{categoria dei prefasci su} $\C$, che è solo un altro nome per $[\C^\op,\setcat]$. Ad esempio se interpretiamo la topologia $\tau$ di uno spazio $(X,\tau)$ come una categoria, dove i morfismi sono dati dall'inclusione insiemistica, questa è completamente determinata dalle classi delle funzioni continue entranti nei (o uscenti dai) suoi aperti.
+Una delle più naturali applicazioni del lemma di Yoneda è la rappresentazione di Yoneda, fondamentale in gran parte della topologia e della geometria moderna: essa permette di identificare una categoria $\C$ con una sottocategoria della cosiddetta \bemph{categoria dei prefasci su} $\C$, che è solo un altro nome per $[\C^\op,\setcat]$. Ad esempio se interpretiamo la topologia $\tau$ di uno spazio $(X,\tau)$ come una categoria, dove i morfismi sono dati dall'inclusione insiemistica, questa è completamente determinata dalle classi delle funzioni continue entranti nei (o uscenti dai) suoi aperti.
 
-\begin{theorem}{Embedding di Yoneda covariante}{embedding di yoneda covariante}
+\begin{theorem}{Rappresentazione di Yoneda covariante}{rappresentazione di yoneda covariante}
     Sia $\C$ una categoria. Questa è equivalente ad una sottocategoria piena di $[\C^\op, \setcat]$ tramite la mappa $\mc{Y} : \C \to [\C^\op, \setcat]$ definita da questo diagramma:
     \[\begin{tikzcd}
     	{\mc{Y}(A)(X) = h^A(X)} &&&& {\mc{Y}(B)(X) = h^B(X)} \\
@@ -404,7 +404,7 @@ Una delle più naturali applicazioni del lemma di Yoneda è l'embedding di Yoned
 
 Abbiamo dualmente la versione controvariante:
 
-\begin{corollary}{Embedding di Yoneda controvariante}{embedding di yoneda controvariante}
+\begin{corollary}{Rappresentazione di Yoneda controvariante}{rappresentazione di yoneda controvariante}
     Sia $\C$ una categoria. Allora la sua categoria opposta $\C^\op$ è equivalente ad una sottocategoria piena di $[\C, \setcat]$ tramite la mappa $\mc{Y}' : \C^\op \to [\C, \setcat]$ definita da questo diagramma (dove abbiamo morfismi $f:A\to B$ e $g:X\to Y$ di $\C$):
     \[\begin{tikzcd}
     	{\mc{Y}'(A)(X) = h_A(X)} &&&& {\mc{Y}'(B)(X) = h_B(X)} \\
@@ -432,7 +432,7 @@ Ora grazie al lemma di Yoneda possiamo dimostrare un fatto che ci servirà più 
     \proof 
     Dimostriamo il caso destro, il caso sinistro segue per dualità; scriviamo le aggiunzioni in termini degli $\hom$-funtori:
     \[ h^d(Fc) \cong h^{G_1 d}(c) \cong h^{G_2 d}(c) \]
-    Ottenendo dunque $\mc{Y}\circ G_1 \cong \mc{Y}\circ G_2$: dal teorema \ref{th:embedding di yoneda covariante}, ovvero la piena fedeltà dell'embedding di Yoneda, segue la tesi.
+    Ottenendo dunque $\mc{Y}\circ G_1 \cong \mc{Y}\circ G_2$: dal teorema \ref{th:rappresentazione di yoneda covariante}, ovvero la piena fedeltà della rappresentazione di Yoneda, segue la tesi.
     \qed
 \end{lemma}
 
@@ -664,19 +664,19 @@ Tuttavia in altre applicazioni della Teoria delle Categorie, ad esempio in Topol
         \item Il prodotto è dato dal prodotto cartesiano;
         \item L'esponenziale è dato da $Z^Y = \hom(Y,Z)$ e i morfismi sono definiti dal seguente diagramma:
         \[\begin{tikzcd}
-        	& {X\times Y} \\
-        	{X\times Y} & {(x,y)} \\
-        	&&&& Z \\
-        	& {(\lambda f(x): Y \to Z, y)} && {\lambda f(x)(y) = f(x,y)} \\
-        	{Z^Y\times Y} &&&& Z
-        	\arrow["f"{description}, from=1-2, to=3-5]
-        	\arrow[equals, from=2-1, to=1-2]
-        	\arrow["{\lambda f\times \id_Y}"{description}, from=2-1, to=5-1]
-        	\arrow[maps to, from=2-2, to=4-2]
-        	\arrow[maps to, from=2-2, to=4-4]
-        	\arrow[equals, from=3-5, to=5-5]
-        	\arrow[maps to, from=4-2, to=4-4]
-        	\arrow["{\eval_{Y,Z}}"{description}, from=5-1, to=5-5]
+        	{X\times Y} && {X\times Y} \\
+	        & {(x,y)} \\
+	        &&&& Z \\
+	        & {(\lambda f(x):Y\to Z,y)} && {\lambda f(x)(y)=f(x,y)} \\
+	        {Z^Y\times Y} &&&& Z
+        	\arrow[equals, from=1-1, to=1-3]
+	        \arrow["{\lambda f\times \id_Y}"{description}, from=1-1, to=5-1]
+	        \arrow["f"{description}, from=1-3, to=3-5]
+	        \arrow[maps to, from=2-2, to=4-2]
+	        \arrow[maps to, from=2-2, to=4-4]
+	        \arrow[maps to, from=4-2, to=4-4]
+	        \arrow["{\eval_{Y,Z}}"{description}, from=5-1, to=5-5]
+	        \arrow[equals, from=5-5, to=3-5]
         \end{tikzcd}\]
     \end{enumerate}
     \qed
@@ -702,12 +702,108 @@ Seguendo questa intuizione, ci si potrebbe chiedere se la categoria degli spazi 
     \qed
 \end{example}
 
+\renewcommand\int{\operatorname{int}}
+\begin{example}{}{}
+    Sia $(X,\tau)$ uno spazio topologico e consideriamo la categoria $T_\tau$ i cui oggetti sono gli aperti di $\tau$ e i cui morfismi sono le inclusioni $x\inj y$. Allora $T_\tau$ è una categoria cartesiana chiusa nel seguente modo:
+    \begin{enumerate}
+        \item L'oggetto terminale è $X$.
+        \item Il prodotto $a\times b$ è dato da $a\cap b$.
+        \item L'esponenziale $a^b$ è dato da $\int((X\setminus a)\cup b)$, infatti vediamo che 
+        \[ \hom(a\cap b, c) \cong \hom(a, \int((X\setminus b)\cup c) ) \]
+        o equivalentemente 
+        \[ a\cap b\subset c\ \Harr\ a\subset \int((X\setminus b)\cup c) \]
+    \end{enumerate}
+    \proof 
+    Le verifiche di (1) e (2) sono banali, dimostriamo (3):\begin{itemize}
+        \item Assumiamo che $a\cap b \subset c$ e sia $p \in a$. Allora \begin{itemize}
+            \item Se $p \in a\cap b$ e dunque per ipotesi appartiene a $c$ allora appartiene a $\int((X\setminus b)\cup c)$ in quanto
+            \[\int(X\setminus b)\cup \int(c) = \int(X\setminus b)\cup c \subset \int((X\setminus b)\cup c)\]
+            \item Se $p \in a \setminus b $ vediamo che vale 
+            \[ a\setminus b = (a\cap \partial b) \cup \int (a \setminus b) \subset (a\cap \partial b) \cup \int(X\setminus b) \]
+        \end{itemize} 
+    \end{itemize}
+\end{example}
+
 \begin{theorem}{}{}
     Sia $\C$ una categoria localmente piccola con prodotti binari \textit{specificati}.\\
     Questa è cartesiana chiusa se e solo se i seguenti funtori hanno degli \textit{specifici} aggiunti destri per ogni oggetto $B$:
     \[ 0 : \C \ni (f:X\to Y) \mapsto (\id_0 : 0 \to 0) \in \mathbf{1} \]
     \[ \Delta : \C \ni (f:X\to Y)\mapsto ((f,f): (X,X)\to(Y,Y)) \in \C^2\]
     \[ -\times B : \C \ni (f:X\to Y) \mapsto (f\times \id_B : X\times B \to Y\times B )\in \C\]
+\end{theorem}
+
+\subsection{Topos elementari}
+
+\begin{definition}{Suboggetto}{}
+    Sia $\C$ una categoria.\\
+    Definiamo un funtore $M : \C \to \CATcat$ che manda un'oggetto $X$ di $\C$ nella categoria $M(X)$ i cui oggetti sono i monomorfismi in $\C$ con codominio $X$ e in cui un morfismo $x\to y$ è un morfismo di $\C$ che fa commutare il seguente diagramma:
+    \[\begin{tikzcd}
+    	x && y \\
+	    \\
+	    & X
+	    \arrow[from=1-1, to=1-3]
+	    \arrow[hook, from=1-1, to=3-2]
+	    \arrow[hook, from=1-3, to=3-2]
+    \end{tikzcd}\]
+    Definiamo la \bemph{categoria dei suboggetti} di $X$ come lo scheletro della categoria $M(X)$ e la indichiamo con $S(X)$.
+\end{definition}
+
+\begin{proposition}{}{}
+    \begin{enumerate}
+        \item La categoria $M(X)$ ammette un oggetto terminale in $\id_X : X\to X$ e la sua classe di isomorfismo lo è in $S(X)$.
+        \item Se $\C$ ammette un oggetto iniziale $0$, il monomorfismo $0\to X$ è iniziale in $M(X)$ e la sua classe di isomorfismo lo è in $S(X)$.
+        \item La relazione $x\le y \Harr \exists x\to y$ definisce un preordine in $M(X)$ e un ordine in $S(X)$.
+        \item Per $x\inj X$ e $y\inj X$ definiamo $x\wedge y \inj X$ come il loro pullback, quando esiste; se $\C$ ammette questo induce una struttura di reticolo su $S(X)$.
+    \end{enumerate}
+    \proof 
+    \begin{enumerate}
+        \item In quanto isomorfismo, l'identità è sicuramente monica; notiamo inoltre che per ogni mono $x \inj X$ l'unico morfismo che fa commutare il diagramma è $x\inj X$ stesso. 
+        \item Notiamo che il seguente diagramma commuta sempre:
+        \[\begin{tikzcd}
+        	0 && y \\
+	        \\
+	        x && X
+        	\arrow[from=1-1, to=1-3]
+	        \arrow[from=1-1, to=3-1]
+	        \arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=1-1, to=3-3]
+	        \arrow[hook, from=1-3, to=3-3]
+	        \arrow[hook, from=3-1, to=3-3]
+        \end{tikzcd}\]
+        \item Dobbiamo dimostrare che $\le$ è riflessiva e transitiva:\begin{itemize}
+            \item Sicuramente $\id_x : x\to x$ è un valido morfismo in $M(X)$, dunque $x\le x$;
+            \item Per definizione di $\le$ segue automaticamente dalla struttura di categoria.
+        \end{itemize}
+        Assumiamo dunque che $[x]\le[y]$ e $[y]\le[x]$. Dobbiamo dimostrare che $\le$ è ben definita sulle classi di isomorfismo e che è antisimmetrica:\begin{itemize}
+            \item Notiamo che per ogni coppia di isomorfismi $x'\cong x$ e $y\cong y'$ e ogni freccia $x\to y$ esiste una freccia $x'\to y'$ che faccia commutare il diagramma:
+            \[\begin{tikzcd}
+            	x && y \\
+	            \\
+	            {x'} && {y'}
+	            \arrow[from=1-1, to=1-3]
+	            \arrow[shift left=2, curve={height=-6pt}, from=1-1, to=3-1]
+	            \arrow[shift left=2, curve={height=-6pt}, from=1-3, to=3-3]
+	            \arrow[shift right=2, curve={height=6pt}, from=1-3, to=3-3]
+	            \arrow[shift left=2, curve={height=-6pt}, from=3-1, to=1-1]
+	            \arrow[from=3-1, to=3-3]
+            \end{tikzcd}\]
+            Dunque la definizione di $\le$ non dipende dai rappresentanti delle classi.
+            \item Dato che gli oggetti di $M(X)$ sono monomorfismi, $x\le y$ e $y\le x$ implicano $x\cong y$ e dunque $[x]=[y]$.
+        \end{itemize}
+    \end{enumerate}
+\end{proposition}
+
+
+\subsection{Chiusura cartesiana di una categoria}
+
+Ha senso porsi la domanda di come "chiudere" una categoria cartesiana $\C$ 
+
+\subsubsection{"Gruppo generato"}
+
+\begin{theorem}{Gruppo libero}{}
+    Sia $U:\grpcat\to\setcat$ il funtore dimenticante che manda un gruppo $(G,\cdot)$ nell'insieme $G$.\\
+    Il funtore $U$ possiede un aggiunto sinistro $F\dashv U$.
+    \proof 
+    Sia $X$ un insieme e sia 
 \end{theorem}
 
 \newcommand\percat{\catname{PER}}
@@ -723,11 +819,11 @@ Consideriamo la seguente categoria:
 
 \begin{definition}{}{}
     Sia $\pf(\N)$ la categoria i cui oggetti sono potenze finite di $\N$, compreso $\N^0 = 1$, e i cui morfismi sono le \bemph{funzioni parziali} su $\N$, ovvero dove un morfismo $f:\N^n\to \N^m$ è dato da una funzione $f: D\to\N^m$, dove $D\subset \N^k$ può essere anche vuoto.\\
-    I morfismi identità corrispondono alle funzioni identità e la composizione $g\circ f$ è data dalla funzione $g|_{\dom f} \circ f$
+    I morfismi identità corrispondono alle funzioni identità e la composizione $g\circ f$ è data dalla funzione $g|_{D} \circ f$, dove $D$ è il dominio\footnote{Inteso in senso insiemistico, non in senso categoriale} di $f$.
 \end{definition}
 
 \begin{remark}{}{}
-    Per ogni $n,m \in \N$, la funzione vuota $\varnothing$ definisce un valido morfismo $\N^n\to \N^m$.
+    Per ogni $n,m \in \N$, la funzione vuota definisce un valido morfismo $\N^n\to \N^m$.
 \end{remark}
 
 \begin{remark}{}{}
@@ -746,7 +842,8 @@ Consideriamo la seguente categoria:
     Consideriamo la sottocategoria $\grf(\N)$ di $\pf(\N)$ definita da $\ob\grf(\N) = \ob\pf(\N)$ e il cui insieme dei morfismi $\R$ è definito come il minimo sottoinsieme di $\hom\pf(\N)$ tale che:\begin{enumerate}
         \item Le funzioni zero $z_n : \N^n \to \N^0$ appartengono a $\R$ per ogni $n \in \N$.
         \item La funzione successore $s: \N \to \N$ appartiene a $\R$.
-        \item Le proiezioni $\pi_i : \N^n \to \N$ appartengono a $\R$; notiamo che questo include la funzione $\pi_0: 1\to \N$ di scelta di un elemento.
+        \item Le proiezioni $\pi_i : \N^n \to \N$ appartengono a $\R$; notiamo che questo include la famiglia di funzioni $\sigma_k: 1\to \N$ di scelta di un elemento $k$.
+        \item Se $f:\N^n\to\N^a$ e $g: \N^n\to \N^b$ appartengono a $\R$, allora la funzione $h:\N^n\to\N^{a+b}$ data da $h(\mathbf{x}) = (f(\mathbf{x}),g(\mathbf{x}))$ appartiene a $\R$
         \item Se $f:\N^l\to \N^n$ e $g: \N^n\to \N^m$ appartengono a $\R$, allora la loro composizione $g\circ f$ appartiene a $\R$.
         \item Se $f: \N^k \to \N^n$ e $g : \N^{k+2}\to\N^n$ appartengono a $\R$, allora la funzione $h:\N^{k+1}\to\N^n$ definita per induzione da
         \[ h(\mathbf{x},y) = \begin{cases}
@@ -757,70 +854,81 @@ Consideriamo la seguente categoria:
         \[ \mu_f(\mathbf{x}) = \min\{ y \in \N : f(\mathbf{x}, y) = 0 \} \]
         dove questo minimo esiste, indefinita altrimenti, appartiene a $\R$
     \end{enumerate}
-    Questa è detta categoria delle \bemph{funzioni ricorsive generali}; omettendo il requisito $6$ si ottiene la categoria delle \bemph{funzioni ricorsive primitive} $\prf(\N)$.
+    Questa è detta categoria delle \bemph{funzioni ricorsive generali}; omettendo il requisito $7$ si ottiene la categoria delle \bemph{funzioni ricorsive primitive} $\prf(\N)$.
 \end{definition}
+
+\begin{remark}{Su $\prf(\N)$ e $\grf(\N)$}{su prf e grf}
+    \begin{itemize}
+        \item Le funzioni ricorsive primitive sono funzioni totali, dunque la categoria $\prf(\N)$ è una sottocategoria di $\setcat$.
+        \item Sia $\prf(\N)$ che $\grf(\N)$ sono categorie cartesiane.
+    \end{itemize}
+    \proof 
+    Dimostriamo la cartesianità, il primo punto segue dal teorema di ricorsione.
+    \begin{itemize}
+        \item Per entrambe le categorie, l'oggetto terminale è dato da $1 = \N^0$ con morfismi dati dalle funzioni $\mathbf{x}\mapsto 0$.
+        \item Il cono del prodotto per $\N^a\times \N^b := \N^{a+b}$ è definito dal seguente diagramma:
+        \[\begin{tikzcd}
+        	&& {\N^{a+b}} \\
+        	\\
+        	{\N^a} && {\N^n} && {\N^b}
+    	    \arrow["{(\pi_1,...,\pi_a)}"{description}, from=1-3, to=3-1]
+        	\arrow["{(\pi_{a+1},..,\pi_{a+b})}"{description}, from=1-3, to=3-5]
+        	\arrow["{(f,g)}"{description}, from=3-3, to=1-3]
+        	\arrow["f"{description}, from=3-3, to=3-1]
+    	    \arrow["g"{description}, from=3-3, to=3-5]
+        \end{tikzcd}\]
+        La cui commutatività è data dal requisito 4 nella definizione.
+    \end{itemize}
+\end{remark}
 
 \newcommand\imp{\catname{IMP}}
 \newcommand\stimp{\imp^{(\to)}}
-\newcommand\T{\mathcal{T}}
-\subsection{Il linguaggio $\stimp$}
+\newcommand\nimp{\N\imp}
+\subsection{Il linguaggio $\nimp$}
 
-Definiamo un linguaggio di programmazione "giocattolo" che chiameremo $\stimp$, o $\imp$ semplicemente tipato, ma che dimostreremo essere sufficientemente potente da calcolare tutte (e sole) le funzioni in $\hom\grf(\N)$. È basato sul linguaggio $\imp$ definito in CITAZUN, ma permettiamo che le variabili attingano da un sistema di tipi più ampio:
-
-\begin{definition}{Sistema di tipi e sintassi di $\stimp$}{}
-    Sia $\Gamma$ un alfabeto e $^*$ la stella di Kleene, definiamo il sistema di tipi $\T$ per induzione tramite le seguenti regole:
-    \[ \frac{}{\Gamma^*}\qquad \frac{}{\N} \qquad \frac{\N^n}{\N^{n+1}}(n \in \N)\qquad \frac{\tau \qquad \sigma}{\tau \to \sigma} \]
-    Per indicare che un termine $x$ ha tipo $T$, scriveremo $x:T$.\\
-    Estendiamo la sintassi delle espressioni per la valutazione di funzioni, la concatenazione di stringhe:
-    \[ \frac{e:S\quad f:S\to T }{f(e):T}\qquad \frac{e_1:\Gamma^*\quad e_2:\Gamma^*}{e_1e_2 : \Gamma^*} \]
-
-\end{definition}
-
-\begin{example}{Esempio di un programma in $\imp$ e in $\stimp$}{}
+\begin{example}{Esempio di un programma in $\imp$ e in }{}
     Un semplice programma in $\imp$
 \end{example}
 
-\begin{theorem}{Tesi di Church-Turing per $\stimp$}{}
-    Una funzione $f:\N^m\to\N^n$ appartiene a $\hom\grf(\N)$ se e solo se esiste un programma di $\stimp$ che la calcola.\\
-    Una funzione $f:\N^m\to\N^n$ appartiene a $\hom\prf(\N)$ se e solo se esiste un programma di $\stimp$ che la calcola con cicli while di lunghezza al più predeterminata.
+\begin{definition}{Il linguaggio $\nimp$}{}
+    Modifichiamo leggermente la sintassi di $\imp$ per comodità:\begin{itemize}
+        \item Invece di permettere che le variabili di tipo numerico siano elementi di $\Z$, permettiamo che siano elementi di $\N$.
+        \item Ammettiamo variabili di tipo array, che definiamo l'insieme 
+        \[ Arr = \bigcup_{n \in \N_{>0}} Var^n\times \{n\} \]
+        Dove $(X,n) \in Arr$ è indicato come $X^{n} = (x_1,...,x_n)$.
+        \item Analogamente, ammettiamo anche variabili di tipo stringa come array di caratteri da un alfabeto $\Gamma$, ovvero definendo 
+        \[Str = \bigcup_{n \in \N_{>0}} \Gamma^n\times\{n\}\]
+    \end{itemize}
+    Estendiamo dunque in modo appropriato anche la sintassi e semantica delle espressioni:
+    \[ \frac{X^n\qquad i}{X(i)}(X^n \in Arr, i \in Var) \qquad \frac{\langle A^n,\sigma \rangle \to_e X \in \N^*\qquad \langle i, \sigma \rangle \to_e n \in \N}{\langle A^n(i),\sigma \rangle\to_e X(n)} \]
+    Inoltre, per pura chiarezza notazionale, quando un comando \texttt{T} dipende da o modifica lo stato di una $n$-upla di variabili o array di variabili $(x_1,...,x_n)$ scriveremo $\texttt{T}(x_1,...,x_n)$. Per convenzione scriveremo inoltre \\
+    Infine assumiamo per convenzione che un comando $\texttt{T}(x)$ sia naturalmente esteso ad un comando $\texttt{T}(X^n)$ definito nel modo seguente:
+    \[ \texttt{T}(X^n) = \left( i := 1\ ;\ \text{while}\ i \le n\ \text{do}\ \left( x := X(i)\ ;\ \texttt{T}(x)\ ;\ X(i) := x\ ;\ i := i+1 \right)\right)\]
+\end{definition}
+
+\begin{theorem}{Tesi di Church-Turing per $\imp$}{}
+    Una funzione $f:\N^m\to\N^n$ appartiene a $\hom\grf(\N)$ se e solo se esiste un programma di $\nimp$ che la calcola.\\
+    Una funzione $f:\N^m\to\N^n$ appartiene a $\hom\prf(\N)$ se e solo se esiste un programma di $\nimp$ che la calcola con cicli $while$ di lunghezza al più predeterminata.
     \proof 
     Dimostriamo per induzione che le funzioni in $\hom\grf(\N)$ sono calcolabili da $\stimp$; specificheremo sempre il tipo delle espressioni coinvolte:\begin{enumerate}
-        \item Sia $\sigma(x):\N^n$ per un qualche $n \in \N$; la funzione zero viene calcolata da
-            \[ \texttt{Zero}(x:\N^n) = \left(x := 0:\N \right) \]
-        \item Sia $\sigma(x):\N$; la funzione successore viene calcolata dal programma
-            \[ \texttt{Succ}(x:\N) = \left( x:= x+1:\N \right) \]
-        \item Siano $\sigma(x):\N$, $\sigma(X):\N^n$ per qualche $n \in \N$ e sia $\sigma(i):\N$ tale che $\sigma(i)<n$; la funzione proiezione viene calcolata dal programma
-            \[ \texttt{Proj}(X:\N^n, i:\N) = \left( x := X(i):\N \right) \]
-        \item \begin{verbatim}
-            def comp(g, f, x):
-                return g(f(x))
-        \end{verbatim}
-        La composizione di due funzioni calcolabili $f:\N^l\to\N^m$ e $g:\N^m\to\N^n$ è semplicemente la loro composizione come programmi $\texttt{F}$ e $\texttt{G}$
-            \[ \texttt{G}\circ\texttt{F}(x:\N^l)  = \left(\texttt{F}(x:\N^l);\texttt{G}(x:\N^m) : \N^n\right) \]
-        \item Abbiamo due versioni equivalenti, la prima è più elegante mentre la seconda mostra come venga rispettato il requisito di avere loop di lunghezza predeterminata:\begin{enumerate}
-            \item \begin{verbatim}
-                def ric(g, f, x, y):
-                    if y == 0:
-                        return f(x)
-                    else:
-                        return g(x, y-1, ric(g, f, x, y-1))
-            \end{verbatim}
-            \[ \texttt{H}(\texttt{G}(a:\N^n,b:\N,c:\N):\N, \texttt{F}(r):\N^n\to\N, x:\N^n, y:\N ) = \left( \text{if}\ y=0\ \text{then}\ \texttt{F}(x)\ \text{else}  \right) \]
-            \item \begin{verbatim}
-                def ric(g, f, x, y):
-                    values = [f(x)]
-                    for n in range(1, y+1):
-                        values.append(g(x, n-1, n))
-                    return values[y]
-            \end{verbatim}
+        \item La funzione zero viene calcolata dal valore di $x$ nel programma
+            \[ \texttt{Zero}(x) = \left(x := 0\right) \]
+        \item Sia $\sigma(x)\in \N$; la funzione successore viene calcolata dal valore di $x$ nel programma
+            \[ \texttt{Succ}(x) = \left( x:= x+1 \right) \]
+        \item La funzione proiezione viene calcolata dal valore di $x$ nel programma
+            \[ \texttt{Proj}(x, X^n, i) = \left( x := X^n(i) \right) \]
+            Notiamo che nel caso in cui $i\ge n$ questa è di fatto la funzione zero; la funzione di scelta di un elemento è una semplice assegnazione.
+        \item La composizione di due funzioni calcolabili $f:\N^l\to\N^m$ e $g:\N^m\to\N^n$ è semplicemente la loro composizione come programmi $\texttt{F}(Y^m, X^l)$ e $\texttt{G}(Y^n, X^m)$, dove assumiamo che $Y^m$ e $Y^n$ servano solo a conservare rispettivamente i valori di $f$ e $g$ e dunque è calcolata dal valore di $Y^n$ nel programma:
+            \[ \texttt{G}\circ\texttt{F}(Y^n, X^l)  = \left(\texttt{F}(Y^m, X^l)\ ;\ X^m := Y^m\ ;\ \texttt{G}(Y^n, X^m)\right) \]
+        \item Assumiamo per le nostre $f: \N^n \to \N$ e $g: \N^{n+2} \to \N$ di avere programmi $\texttt{F}(x, X^n)$ e $\texttt{G}(x, X^n, y, z)$, dove la variabile $x$ serva solo a conservare i valori di $f$ e di $g$; la funzione ricorsiva $h:\N^{n+1}\to\N$ è calcolata dal valore di $x$ nei programmi:\begin{enumerate}
+            \item \[ \texttt{H}(x, X^n,y) = \left( \text{if}\ y=0\ \text{then}\ \texttt{F}(x, X^n)\ \text{else}\left( y := y-1\ ;\ \text{H}(x,X^n,y)\ ;\ z:= x\ ;\ \texttt{G}(x, X^n, y, z) \right) \right) \]
+            \item \[ \texttt{H}(x, X^n,y) = \left(N := y+1 \ ;\ \texttt{F}(x, X^n)\ ;\ n:=2\ ;\ \text{while}\ n \le N\ \text{do}\ \texttt{Step} \right) \]
+            dove $\texttt{Step}$ è definito da 
+            \[ \texttt{Step} = \left( y := n-1\ ;\ z := n\ ;\ \texttt{G}(x,X^n,y,z)\ ;\ n := n+1 \right) \]
         \end{enumerate}
-        \item \begin{verbatim}
-            def minimalize(f, x):
-                y = 0
-                while f(x, y) > 0:
-                    y = y+1
-                return y
-        \end{verbatim}
+        La formulazione (a) è più in linea con la definizione che abbiamo dato in \ref{def:grf e prf}, mentre la formulazione (b) rende più evidente il fatto che sia calcolabile da un ciclo di lunghezza predeterminata.
+        \item Assumendo che $f : \N^{n+1}\to\N$ sia calcolabile dal programma $\texttt{F}(x,X^n,y)$ dove la variabile $x$ serva solo a conservare il valore di $f$, la funzione $\mu_f$ viene calcolata dal valore di $y$ nel programma:
+        \[ \texttt{muf}(y,X^n) = \left( y:= 0\ ;\ \texttt{F}(x,X^n,y)\ ;\ \text{while}\ x>0\ \text{do}\ \left( y:= y+1\ ;\ \texttt{F}(x,X^n,y) \right) \right) \]
     \end{enumerate}
     L'altra inclusione è più complicata e ci penso dopo
 \end{theorem}
@@ -833,18 +941,38 @@ Definiamo un linguaggio di programmazione "giocattolo" che chiameremo $\stimp$, 
     \qed
 \end{corollary}
 
+\newcommand\pair{\operatorname{pair}}
+\newcommand\smnk{\catname{Smnk}}
+
 \subsection{Teorema $s-m-n$}
 
-\begin{definition}{Enumerazione standard di $\hom\grf(\N)$}{enumerazione standard}
-    Fissiamo una biezione $\Phi : \N \to \hom\grf(\N)$ che diremo \bemph{enumerazione standard} di $\hom\grf(\N)$.\\
-    Indicheremo con $\phi_i(x)$ la funzione $\Phi(i)(x)$
+\begin{definition}{Appaiamento standard di $\N^n$}{appaiamento standard}
+    Fissiamo una biezione ricorsiva  $(a,b) \mapsto \langle a, b\rangle$ tra $\N^2$ e $\N$; notiamo anche che questa definisce ricorsivamente una biezione $\N^n\to \N$, dove
+        \[ \langle x_1,...,x_{n+1} \rangle = \langle \langle x_1,...,x_n \rangle, x_{n+1}\rangle \]
+    che chiameremo \bemph{appaiamento standard} di $\N^n$ e lo indicheremo come $\pair_n$
 \end{definition}
 
+Un esempio di appaiamento è l'appaiamento di Cantor dato da
+\[ \langle x, y \rangle = \frac{x^2+x+2xy+3y+y^2}{2} \]
+Che è una funzione ricorsiva primitiva.
+
+\begin{remark}{}{}
+    L'usuale definizione di funzione ricorsiva primitiva o generale è leggermente diversa da quella che abbiamo dato in \ref{def:grf e prf}: generalmente questa viene data molto "con le mani" per funzioni $\N^n\to\N$, intendendo una funzione $\N^n\to\N^m$ come una $m$-upla di funzioni $\N^n\to\N$
+\end{remark}
+
+\begin{definition}{Enumerazione standard di $\hom\grf(\N)$}{enumerazione standard}
+    Fissiamo una biezione $\Phi : \N \to \hom\grf(\N)$ che diremo \bemph{enumerazione standard} di $\hom\grf(\N)$ tale che
+    \[ \Phi^{-1}(\pair_{k+1}) = \pair(\Phi^{-1}(\pair_k),\Phi^{-1}(\pair_{1}))\]
+    Per $i \in \N$ indicheremo con $\phi_i$ la funzione $\Phi(i)$
+\end{definition}
+
+Notiamo che una tale biezione esiste perchè entrambi gli insiemi sono numerabili.
+
 \begin{theorem}{Teorema $s-m-n$}{}
-    Sia $\phi_i: \N^{n+m} \to \N$ in $\hom\grf(\N)$.\\
-    Esiste una funzione $s_m^n: \N^{1+n} \to \N$ in $\hom\prf(\N)$ tale che per ogni $\mathbf{x} \in \N^n$ e $\mathbf{y}\in \N^m$ si abbia
-    \[ \phi_i(\mathbf{x},\mathbf{y}) = \phi_{s_m^n(i,\mathbf{x})}(\mathbf{y})\]
-    In più, $s_m^n$ è univocamente determinata da $m$ e $n$
+    Sia $\phi_i: \N^{m+n} \to \N$ in $\hom\grf(\N)$.\\
+    Esiste una funzione $s_{m,n}: \N^{1+n} \to \N$ in $\hom\prf(\N)$ tale che per ogni $\mathbf{x} \in \N^n$ e $\mathbf{y}\in \N^m$ si abbia
+    \[ \phi_i(\mathbf{x},\mathbf{y}) = \phi_{s_{m,n}(i,\mathbf{x})}(\mathbf{y})\]
+    In più, $s_{m,n}$ è univocamente determinata da $m$ e $n$.
     \proof 
     La seguente funzione di python esibisce la tesi.\\
     Gli input sono:\begin{itemize}
@@ -865,6 +993,55 @@ Definiamo un linguaggio di programmazione "giocattolo" che chiameremo $\stimp$, 
     \qed
 \end{theorem}
 
+\begin{corollary}{Teorema $s-m-n-k$}{}
+    Sia $\phi_i: \N^{m+n} \to \N^{k}$ in $\hom\grf(\N)$.\\
+    Esiste una funzione $s_{m,n}^k: \N^{1+n} \to \N^k$ in $\hom\prf(\N)$ tale che per ogni $\mathbf{x} \in \N^n$ e $\mathbf{y}\in \N^m$ si abbia
+    \[ \phi_i(\mathbf{x},\mathbf{y}) = \phi_{s_{m,n}^k(i,\mathbf{x})}(\mathbf{y})\]
+    In più, $s_{m,n}^k$ è univocamente determinata da $m$, $n$ e $k$ e per $k=1$ si ha $s_{m,n}^k(i,\mathbf{x}) = s_{m,n}(i,\mathbf{x})$.
+    \proof
+    Notiamo che ogni funzione $\phi_i :\N^{m+n}\to\N^k$ è definita da $k$ funzioni $\phi_{i_j} :  \N^{m+n}\to\N$, dunque applicando il teorema $s-m-n$ a ciascuna $\phi_{ij}$ otteniamo
+    \[  \phi_i(\mathbf{x},\mathbf{y}) = (\phi_{s_{m,n}(i_1,\mathbf{x})}(\mathbf{y}),...,\phi_{s_{m,n}(i_k,\mathbf{x})}(\mathbf{y}) ) \]
+    Dunque definiamo 
+    \[s_{m,n}^k(i,\mathbf{x}) := (\pair_k^{-1}\circ\pair_k)(s_{m,n}(i_1,\mathbf{x}),...,s_{m,n}(i_1,\mathbf{x})) \]
+    In quanto composizione di funzioni computabili per ipotesi è computabile, inoltre per 
+\end{corollary}
+
+
+\begin{theorem}{Teorema $\smnk$}{}
+    Siano $m,n,k\in \N_{>0}$.\\
+    Esiste una funzione $s_{m,n}^k: \N^{1+m}\to \N^k$ in $\hom\prf(\N)$ tale che per ogni $\phi_I:\N^{m+n}\to\N$ in $\hom\grf(\N)$ si abbia 
+    \[ \phi_{s_{m,n}^k(I,\mathbf{x})}(\mathbf{y}) \equiv \phi_I(\mathbf{x},\mathbf{y})\]
+    \proof 
+    Procediamo per induzione forte su $k$ e assumiamo che valga per ogni $k \le K$; dimostriamo che vale per $K+1$.\\
+    Abbiamo che una funzione $\phi_i : \N^{m+n}\to \N^{K+1}$ consiste in $K+1$ funzioni $\phi_{i,j}:\N^{m+n}\to\N$, e che quindi:
+    \[ \phi_i = \pair_{K+1}^{-1}(\pair_{K+1}(\phi_{i,1}(\mathbf{x},\mathbf{y}),...,\phi_{i,K}(\mathbf{x},\mathbf{y}),\phi_{i,K+1}(\mathbf{x},\mathbf{y}))) \]
+    Ma dato che per definizione $\pair_{K+1}(x_1,...,x_K, x_{K+1}) = \pair(\pair_K(x_1,...,x_K),x_{K+1})$ segue che
+    \[\phi_i(\mathbf{x},\mathbf{y}) = \pair_{K+1}^{-1}(\pair(\pair_K(\phi_{i,1}(\mathbf{x},\mathbf{y}),...,\phi_{i,K}(\mathbf{x},\mathbf{y})),\phi_{i,K+1}(\mathbf{x},\mathbf{y}))) \]
+    
+\end{theorem}
+
+\begin{theorem}{}{}
+    Un'enumerazione dei morfismi di $\prf(\N)$ e $\grf(\N)$ indce su di loro una struttura di categoria cartesiana chiusa.
+    \proof 
+    Abbiamo già dimostrato la struttura di categoria cartesiana in \ref{rem:su prf e grf}, dimostriamo la chiusura tramite l'esistenza di oggetti esponenziali. Supponiamo di avere oggetti $\N^a$, $\N^b$ e $\N^c$ e un morfismo $\phi_i : \N^a\times\N^b\to\N^c$. L'esponenziale $(\N^a)^{(\N^b)}$ è l'oggetto $\N$ e le mappe $\phi_i\mapsto \lambda\phi_i$ e $\eval$ sono definite dal seguente diagramma:
+    \[\begin{tikzcd}
+    	{\N^a\times \N^b} && {\N^{a+b}} \\
+    	& {(x,y)} \\
+    	&&&& {\N^c} \\
+    	& {(s_{a,b}^c(i,x),y)} && {\phi_{s_{a,b}^c(i,x)}(y) = \phi_i(x,y)} \\
+    	{(\N^a)^{(\N^b)}\times \N^b = \N\times\N^b} &&&& {\N^c}
+    	\arrow[equals, from=1-1, to=1-3]
+    	\arrow["{\lambda\phi_i\times \id_b}"{description}, from=1-1, to=5-1]
+    	\arrow["{\phi_i}"{description}, from=1-3, to=3-5]
+    	\arrow[maps to, from=2-2, to=4-2]
+    	\arrow[maps to, from=2-2, to=4-4]
+    	\arrow[maps to, from=4-2, to=4-4]
+    	\arrow["\eval"{description}, from=5-1, to=5-5]
+    	\arrow[equals, from=5-5, to=3-5]
+    \end{tikzcd}\] 
+    
+\end{theorem}
+
 \subsection{Relazioni di equivalenza parziali}
 
 \begin{definition}{Relazione di equivalenza parziale}{per}
@@ -876,20 +1053,20 @@ Definiamo un linguaggio di programmazione "giocattolo" che chiameremo $\stimp$, 
 Intuitivamente possiamo pensare a $A/R$ come ad una partizione di $A$ in $R$-classi di equivalenza e una "zona d'ombra" che $R$ non vede; equivalentemente, potremmo estendere $R$ ad una relazione di equivalenza completa $\cap{R}$ che identifichi i punti fuori dal dominio di $R$ in una nuova classe. 
 
 \begin{definition}{La categoria $\percat(\N)$}{}
-    Definiamo la categoria $\percat(\N)$ come la categoria i cui oggetti sono le relazioni di equivalenza parziali su $\N$ identificate con i loro quozienti $\N/R$ e i cui morfismi sono dati dalle mappe $f:\N/R\to\N/S$ "tracciate" da un qualche $i \in \N$, ovvero da una mappa $\varphi_i \in \hom_\grf(\N,\N)$ definita sul dominio di $R$ tale che 
+    Definiamo la categoria $\percat(\N)$ come la categoria i cui oggetti sono le relazioni di equivalenza parziali su $\N$ identificate con i loro quozienti $\N/R$ e i cui morfismi sono dati dalle mappe $f:\N/R\to\N/S$ "tracciate" da una qualche $i \in \N$, ovvero da una mappa $\varphi_i \in \hom_\grf(\N,\N)$ definita sul dominio di $R$ tale che 
     \[ xRy \Rarr \phi_i(x)S\phi_i(y) \]
     O equivalentemente 
     \[f([x]_R) =[\phi_i(x)]_S\]
 \end{definition}
 
 \begin{remark}{}{}
-    Nella definizione dei morfismi di $\percat(\N)$ non è richiesto nè che $i$ sia unico nè che $\phi_i$ si comporti in qualsiasi modo prestabilito nella "zona d'ombra" di $R$
+    Nella definizione dei morfismi di $\percat(\N)$ non è richiesto nè che $i$ sia unico nè che $\phi_i$ si comporti in qualsiasi modo stabilito a priori nella "zona d'ombra" di $R$.
 \end{remark}
 
 \begin{lemma}{}{}
     Ogni relazione $T$ con un'unica classe di equivalenza non vuota $\dom T$ è un oggetto terminale di $\percat(\N)$.
     \proof 
-    Prendiamo $T := \N^2$ e notiamo che per qualsiasi  funzione costante $\phi_i$ traccia un unico morfismo $R\to T$
+    Sia $R$ un oggetto in $\percat(\N)$ e sia $T := \N^2$ la relazione banale. Dimostriamo che esiste un unico morfismo $f: R\to T$: 
 \end{lemma}
 
 \section{Appendice: Definizione completa di $\stimp$}
