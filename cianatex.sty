@@ -20,6 +20,9 @@
     %Disegnini di Drago
         \RequirePackage{phaistos}
 
+    %Commenti
+        \RequirePackage{pdfcomment}
+
     %Tabelle
         %Tabelle di base
             \RequirePackage{array}
@@ -206,3 +209,5 @@
 
             \newcommand\FLT{\mfk{F}\mc{L}\mbb{T}}
 
+        %Commenti
+            \newcommand{\cref}[1]{\pdftooltip{\ref{#1}}{#1}}

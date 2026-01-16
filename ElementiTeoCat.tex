@@ -30,7 +30,7 @@
 
 \section*{Fondamenti}
 
-Trattando strutture molto "grandi" in un senso che renderemo preciso in seguito, per fondare propriamente la Teoria delle Categorie è necessario estendere la Teoria degli Insiemi di Zermelo-Fraenkel più l'assioma della scelta, che assumeremo sempre\footnote{Potremmo essere tentati di limitare l'assioma della scelta a famiglie piccole o almeno moderate di insiemi (nel senso specificato in \ref{ax:assioma di universo}), ma ai fini della nostra trattazione lo assumeremo sempre nella sua forma completa.}. L'approccio che seguiremo è un approccio che in qualche modo "limiti" la grandezza delle nostre strutture, supponendo l'esistenza di alcuni insiemi "universo" che si sostituiscano alla classe di tutti gli insiemi.\\
+Trattando strutture molto "grandi" in un senso che renderemo preciso in seguito, per fondare propriamente la Teoria delle Categorie è necessario estendere la Teoria degli Insiemi di Zermelo-Fraenkel più l'assioma della scelta, che assumeremo sempre\footnote{Potremmo essere tentati di limitare l'assioma della scelta a famiglie piccole o almeno moderate di insiemi (nel senso specificato in \cref{ax:assioma di universo}), ma ai fini della nostra trattazione lo assumeremo sempre nella sua forma completa.}. L'approccio che seguiremo è un approccio che in qualche modo "limiti" la grandezza delle nostre strutture, supponendo l'esistenza di alcuni insiemi "universo" che si sostituiscano alla classe di tutti gli insiemi.\\
 Questa sezione è quasi interamente basata sull'\textit{expose} I.0 di \cite{SGA4}. Assumeremo inoltre che ogni insieme sia un insieme puro.
 
 \begin{definition}{Universo di Grothendieck}{universo di Grothendieck}
@@ -62,7 +62,7 @@ Intuitivamente, il seguente assioma ci permette di trattare un universo di Groth
 %     Esiste un universo di Grothendieck più che numerabile $\G$. Tutti gli elementi di $\G$ si dicono \bemph{piccoli}, mentre gli altri insiemi si dicono \bemph{grandi}. I sottoinsiemi di $\G$, piccoli o grandi che siano, si dicono \bemph{moderati}.
 % \end{axiom}
 
-% In realtà l'assioma \ref{ax:assioma di universo debole} è\footnote{Come si potrebbe intuire dal nome} più spesso assunto in una sua versione più forte, ovvero:
+% In realtà l'assioma \cref{ax:assioma di universo debole} è\footnote{Come si potrebbe intuire dal nome} più spesso assunto in una sua versione più forte, ovvero:
 
 \begin{axiom}{Assioma di Universo}{assioma di universo}
     Per ogni insieme $x$ esiste un universo di Grothendieck $U$ tale che $x \in U$.\\
@@ -164,7 +164,7 @@ Da ora in avanti, assumeremo sempre (anche senza specificarlo) che le nostre cat
     \end{itemize}
     \proof 
     Forniamo solo due esempi di morfismi che sono epici e monici ma non isomorfismi (le altre verifiche sono assolutamente automatiche):\begin{itemize}
-        \item Consideriamo in $\catname{Haus}$ (\ref{exmp:setcat e categorie concrete}) l'inclusione $\iota: [0,1]\cap \Q\inj[0,1]$ (entrambi con la topologia euclidea); questa è chiaramente monica in quanto iniettiva, ed è epica in quanto una funzione continua in $\catname{Haus}$ è completamente determinata dal suo valore su un sottospazio denso, ma non è isomorfismo dato che non è suriettiva.
+        \item Consideriamo in $\catname{Haus}$ (\cref{exmp:setcat e categorie concrete}) l'inclusione $\iota: [0,1]\cap \Q\inj[0,1]$ (entrambi con la topologia euclidea); questa è chiaramente monica in quanto iniettiva, ed è epica in quanto una funzione continua in $\catname{Haus}$ è completamente determinata dal suo valore su un sottospazio denso, ma non è isomorfismo dato che non è suriettiva.
         \item Consideriamo la categoria
         \[\begin{tikzcd}
         	1 && 2
@@ -370,9 +370,9 @@ Abbiamo dualmente la versione controvariante:
 \end{corollary}
 
 \begin{remark}{Lemma di Yoneda e grandezza}{lemma di Yoneda e grandezza}
-    In generale l'isomorfismo datoci da \ref{th:lemma di yoneda covariante} non è una biezione tra insiemi piccoli, in quanto gli elementi di $\nat(h_A,F)$ non sono in generale insiemi piccoli.\\
-    Prendiamo ad esempio il funtore identità $\mathbf{Id}$ da $\setcat$ (ricordiamo la definizione \ref{exmp:setcat e categorie concrete}) in sè stessa: noi abbiamo che $\nat(h_S,\mathbf{Id})$ è in biezione con $S$, ma gli elementi di $\nat(h_S,\mathbf{Id})$ sono indicizzati da $\G$, che non è affatto un insieme piccolo.\\
-    Avendo l'assioma \ref{ax:assioma di universo} non incorriamo in problemi di tipo logico o fondativo, ma se non avessimo limitato in questo modo la grandezza delle nostre categorie dovremmo gestire in qualche modo la collezione $\nat(h_S,\mathbf{Id})$, che per quanto ci sia garantito debba essere "grande quanto" un insieme, sarebbe una collezione di elementi normalmente considerati come classi proprie, ovvero classi che non possono appartenere ad altre classi.
+    In generale l'isomorfismo datoci da \cref{th:lemma di yoneda covariante} non è una biezione tra insiemi piccoli, in quanto gli elementi di $\nat(h_A,F)$ non sono in generale insiemi piccoli.\\
+    Prendiamo ad esempio il funtore identità $\mathbf{Id}$ da $\setcat$ (ricordiamo la definizione \cref{exmp:setcat e categorie concrete}) in sè stessa: noi abbiamo che $\nat(h_S,\mathbf{Id})$ è in biezione con $S$, ma gli elementi di $\nat(h_S,\mathbf{Id})$ sono indicizzati da $\G$, che non è affatto un insieme piccolo.\\
+    Avendo l'assioma \cref{ax:assioma di universo} non incorriamo in problemi di tipo logico o fondativo, ma se non avessimo limitato in questo modo la grandezza delle nostre categorie dovremmo gestire in qualche modo la collezione $\nat(h_S,\mathbf{Id})$, che per quanto ci sia garantito debba essere "grande quanto" un insieme, sarebbe una collezione di elementi normalmente considerati come classi proprie, ovvero classi che non possono appartenere ad altre classi.
 \end{remark}
 
 Una delle più naturali applicazioni del lemma di Yoneda è la rappresentazione di Yoneda, fondamentale in gran parte della topologia e della geometria moderna: essa permette di identificare una categoria $\C$ con una sottocategoria della cosiddetta \bemph{categoria dei prefasci su} $\C$, che è solo un altro nome per $[\C^\op,\setcat]$. Ad esempio se interpretiamo la topologia $\tau$ di uno spazio $(X,\tau)$ come una categoria, dove i morfismi sono dati dall'inclusione insiemistica, questa è completamente determinata dalle classi delle funzioni continue entranti nei (o uscenti dai) suoi aperti.
@@ -396,9 +396,9 @@ Una delle più naturali applicazioni del lemma di Yoneda è la rappresentazione 
     \end{tikzcd}\]
     Dove un oggetto $A$ di $\C$ viene mandato nel funtore $h^A : \C^\op \to \setcat$ definito sopra e un morfismo $f:A\to B$ viene mandato nella sua postcomposizione, che è una trasformazione naturale da $h^A$ a $h^B$ come si vede nel diagramma.
     \proof
-    Applicando il corollario \ref{corol:lemma di yoneda controvariante} con $F = h^B$ scorrendo su $B \in \ob\C$ otteniamo
+    Applicando il corollario \cref{corol:lemma di yoneda controvariante} con $F = h^B$ scorrendo su $B \in \ob\C$ otteniamo
     \[\nat(h^A, h^B) \cong h^B(A) \text{, o equivalentemente, } \nat(h^A, h^B)\cong \hom(A,B).\]
-    Vediamo che dunque l'assegnazione $A\mapsto h^A$ definisce un funtore covariante $h^\bullet : \C\to [\C^\op,\setcat]$ pienamente fedele (ma non essenzialmente suriettivo sugli oggetti). Restringendo $h^\bullet$ all'immagine di $\C$ in $[\C^\op,\setcat]$, otteniamo un'equivalenza di categorie (dato che la restrizione all'immagine è tautologicamente suriettiva) per la proposizione \ref{prop:equivalenza di categorie}.
+    Vediamo che dunque l'assegnazione $A\mapsto h^A$ definisce un funtore covariante $h^\bullet : \C\to [\C^\op,\setcat]$ pienamente fedele (ma non essenzialmente suriettivo sugli oggetti). Restringendo $h^\bullet$ all'immagine di $\C$ in $[\C^\op,\setcat]$, otteniamo un'equivalenza di categorie (dato che la restrizione all'immagine è tautologicamente suriettiva) per la proposizione \cref{prop:equivalenza di categorie}.
     \qed
 \end{theorem}
 
@@ -432,7 +432,7 @@ Ora grazie al lemma di Yoneda possiamo dimostrare un fatto che ci servirà più 
     \proof 
     Dimostriamo il caso destro, il caso sinistro segue per dualità; scriviamo le aggiunzioni in termini degli $\hom$-funtori:
     \[ h^d(Fc) \cong h^{G_1 d}(c) \cong h^{G_2 d}(c) \]
-    Ottenendo dunque $\mc{Y}\circ G_1 \cong \mc{Y}\circ G_2$: dal teorema \ref{th:rappresentazione di yoneda covariante}, ovvero la piena fedeltà della rappresentazione di Yoneda, segue la tesi.
+    Ottenendo dunque $\mc{Y}\circ G_1 \cong \mc{Y}\circ G_2$: dal teorema \cref{th:rappresentazione di yoneda covariante}, ovvero la piena fedeltà della rappresentazione di Yoneda, segue la tesi.
     \qed
 \end{lemma}
 
@@ -600,7 +600,7 @@ Considerando l'ubiquità del concetto di (co)limite, è importante essere in gra
 \subsection{Prodotti}
 
 Chiudiamo con una discussione di una diversa caratterizzazione del prodotto di due oggetti in una categoria.\\
-La definizione che abbiamo dato in \ref{def:prodotto limite} è evidentemente utile quando si parla di lavorare coi prodotti nell'usuale pratica matematica, ad esempio è una definizione meno "pesante" di quella che si dà dei prodotti in $\topcat$ o $\mblecat$ nella maggior parte dei corsi introduttivi di Topologia Generale o Teoria della Misura. Allo stesso modo non dipende da scelte arbitrarie, come di una norma prodotto in $\catname{NormVec}\K$ o di una misura prodotto in $\meascat$.\\
+La definizione che abbiamo dato in \cref{def:prodotto limite} è evidentemente utile quando si parla di lavorare coi prodotti nell'usuale pratica matematica, ad esempio è una definizione meno "pesante" di quella che si dà dei prodotti in $\topcat$ o $\mblecat$ nella maggior parte dei corsi introduttivi di Topologia Generale o Teoria della Misura. Allo stesso modo non dipende da scelte arbitrarie, come di una norma prodotto in $\catname{NormVec}\K$ o di una misura prodotto in $\meascat$.\\
 Tuttavia in altre applicazioni della Teoria delle Categorie, ad esempio in Topologia Algebrica o informatica teorica, può essere agevole considerare il prodotto di due oggetti non come definito intrinsecamente tramite proprietà universale, ma come un bifuntore.
 
 \begin{theorem}{Caratterizzazione del prodotto binario}{prodotto binario come funtore}
@@ -610,14 +610,14 @@ Tuttavia in altre applicazioni della Teoria delle Categorie, ad esempio in Topol
     \[\Pi((f,g):(X,Y)\to(W,Z)) := (f\times g : X\times Y \to W\times Z) \]
     definisce un funtore aggiunto destro a $\Delta$.
     \proof
-    Osserviamo che dalle definizioni di categoria prodotto (definizione \ref{def:categoria prodotto e bifuntore}), di prodotto nella definizione \ref{def:prodotto limite} e assumendo che il prodotto in $\setcat$ sia l'usuale prodotto cartesiano\footnote{Dimostrazione lasciata per esercizio al lettore}, la seguente catena di biezioni è verificata in $\setcat$ per ogni $A,B$ e $C$ oggetti in $\C$:
+    Osserviamo che dalle definizioni di categoria prodotto (definizione \cref{def:categoria prodotto e bifuntore}), di prodotto nella definizione \cref{def:prodotto limite} e assumendo che il prodotto in $\setcat$ sia l'usuale prodotto cartesiano\footnote{Dimostrazione lasciata per esercizio al lettore}, la seguente catena di biezioni è verificata in $\setcat$ per ogni $A,B$ e $C$ oggetti in $\C$:
     \[\begin{aligned}
         \hom_{\C^2}(\Delta A,(B,C)) & \cong_\setcat \hom_{\C^2}((A,A),(B,C))\\
         & \cong_\setcat \hom_\C(A,B)\times \hom_\C(A,C)\\
         & \cong_\setcat \underbrace{\hom_\C(A, B\times C)}_{\C^\op \times (\C\times\C) \to \setcat} = \hom_{C}(A,\Pi(B,C))
     \end{aligned} \]
     Abbiamo dimostrato che $\Pi$ è effettivamente una mappa aggiunta destra alla mappa diagonale; dovremmo dimostrare la funtorialità, ma è banale e consiste semplicemente nell'applicare le proprietà universali dei prodotti.\\
-    Applicando il lemma \ref{lem:unicità degli aggiunti}, otteniamo l'essenziale unicità, concludendo.
+    Applicando il lemma \cref{lem:unicità degli aggiunti}, otteniamo l'essenziale unicità, concludendo.
     \qed
 \end{theorem}
 
@@ -698,7 +698,7 @@ Seguendo questa intuizione, ci si potrebbe chiedere se la categoria degli spazi 
 \begin{example}{$R\modcat$ non è cartesiana chiusa}{rmod non è ccc}
     Per qualsiasi anello $R$, la categoria $R\modcat$ non è cartesiana chiusa; in particolare dunque, per qualsiasi campo $\K$, la categoria $\veccat(\K)$ non è cartesiana chiusa.
     \proof 
-    $R\modcat$ ha un oggetto zero $\{0\}$, il modulo banale, ma dunque se fosse cartesiana chiusa tutti i moduli sarebbero isomorfi per il lemma \ref{lem:ccc e oggetti zero}; dato che questo non è vero, $R\modcat$ non può essere cartesiana chiusa.
+    $R\modcat$ ha un oggetto zero $\{0\}$, il modulo banale, ma dunque se fosse cartesiana chiusa tutti i moduli sarebbero isomorfi per il lemma \cref{lem:ccc e oggetti zero}; dato che questo non è vero, $R\modcat$ non può essere cartesiana chiusa.
     \qed
 \end{example}
 
@@ -926,7 +926,7 @@ Consideriamo la seguente categoria:
             dove $\texttt{Step}$ è definito da 
             \[ \texttt{Step} = \left( y := n-1\ ;\ z := n\ ;\ \texttt{G}(x,X^n,y,z)\ ;\ n := n+1 \right) \]
         \end{enumerate}
-        La formulazione (a) è più in linea con la definizione che abbiamo dato in \ref{def:grf e prf}, mentre la formulazione (b) rende più evidente il fatto che sia calcolabile da un ciclo di lunghezza predeterminata.
+        La formulazione (a) è più in linea con la definizione che abbiamo dato in \cref{def:grf e prf}, mentre la formulazione (b) rende più evidente il fatto che sia calcolabile da un ciclo di lunghezza predeterminata.
         \item Assumendo che $f : \N^{n+1}\to\N$ sia calcolabile dal programma $\texttt{F}(x,X^n,y)$ dove la variabile $x$ serva solo a conservare il valore di $f$, la funzione $\mu_f$ viene calcolata dal valore di $y$ nel programma:
         \[ \texttt{muf}(y,X^n) = \left( y:= 0\ ;\ \texttt{F}(x,X^n,y)\ ;\ \text{while}\ x>0\ \text{do}\ \left( y:= y+1\ ;\ \texttt{F}(x,X^n,y) \right) \right) \]
     \end{enumerate}
@@ -957,7 +957,7 @@ Un esempio di appaiamento è l'appaiamento di Cantor dato da
 Che è una funzione ricorsiva primitiva.
 
 \begin{remark}{}{}
-    L'usuale definizione di funzione ricorsiva primitiva o generale è leggermente diversa da quella che abbiamo dato in \ref{def:grf e prf}: generalmente questa viene data molto "con le mani" per funzioni $\N^n\to\N$, intendendo una funzione $\N^n\to\N^m$ come una $m$-upla di funzioni $\N^n\to\N$
+    L'usuale definizione di funzione ricorsiva primitiva o generale è leggermente diversa da quella che abbiamo dato in \cref{def:grf e prf}: generalmente questa viene data molto "con le mani" per funzioni $\N^n\to\N$, intendendo una funzione $\N^n\to\N^m$ come una $m$-upla di funzioni $\N^n\to\N$
 \end{remark}
 
 \begin{definition}{Enumerazione standard di $\hom\grf(\N)$}{enumerazione standard}
@@ -1023,7 +1023,7 @@ Notiamo che una tale biezione esiste perchè entrambi gli insiemi sono numerabil
 \begin{theorem}{}{}
     Un'enumerazione dei morfismi di $\prf(\N)$ e $\grf(\N)$ indce su di loro una struttura di categoria cartesiana chiusa.
     \proof 
-    Abbiamo già dimostrato la struttura di categoria cartesiana in \ref{rem:su prf e grf}, dimostriamo la chiusura tramite l'esistenza di oggetti esponenziali. Supponiamo di avere oggetti $\N^a$, $\N^b$ e $\N^c$ e un morfismo $\phi_i : \N^a\times\N^b\to\N^c$. L'esponenziale $(\N^a)^{(\N^b)}$ è l'oggetto $\N$ e le mappe $\phi_i\mapsto \lambda\phi_i$ e $\eval$ sono definite dal seguente diagramma:
+    Abbiamo già dimostrato la struttura di categoria cartesiana in \cref{rem:su prf e grf}, dimostriamo la chiusura tramite l'esistenza di oggetti esponenziali. Supponiamo di avere oggetti $\N^a$, $\N^b$ e $\N^c$ e un morfismo $\phi_i : \N^a\times\N^b\to\N^c$. L'esponenziale $(\N^a)^{(\N^b)}$ è l'oggetto $\N$ e le mappe $\phi_i\mapsto \lambda\phi_i$ e $\eval$ sono definite dal seguente diagramma:
     \[\begin{tikzcd}
     	{\N^a\times \N^b} && {\N^{a+b}} \\
     	& {(x,y)} \\

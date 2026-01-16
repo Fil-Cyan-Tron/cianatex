@@ -10,6 +10,8 @@
 *.blg
 *.dvi
 *.txt
+*.upa
+*.upb
 risposte*
 Dragon*
 contratto*
