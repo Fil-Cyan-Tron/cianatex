@@ -22,6 +22,8 @@
 
 \section{Fondamenti della meccanica classica}
 
+\subsubsection*{Spaziotempo della meccanica classica}
+
 \begin{definition}{Assiomi per lo spaziotempo}{spaziotempo}
     Chiamiamo $\V_4$ lo \bemph{spaziotempo della meccanica classica}. Esso rispetta i seguenti assiomi:\begin{enumerate}
         \item $\V_4$ è uno spazio topologico omeomorfo a $\R^4$.
@@ -43,6 +45,10 @@
 \begin{remark}{}{}
     Per $t\neq t'$ non esiste un isomorfismo \textit{canonico} $\Sigma_t\cong \Sigma_{t'}$.
 \end{remark}
+
+\subsection{Cinematica}
+
+\subsubsection*{Sistemi di riferimento, velocità angolare e formule di Poisson}
 
 \begin{definition}{Sistemi di riferimento}{sistemi di riferimento}
     Una terna materiale\footnote{Quattro punti materiali linearmente indipendenti.} $(O,e_1,e_2,e_3)$ determina con la sua vita in $\V_4$ un evento $t\mapsto O(t)$ detto \bemph{riferimento} e tre versori $e_i(t)$. che si dicono \bemph{solidali} al riferimento.\\
@@ -79,8 +85,124 @@
     \begin{align*}
         \omega_{\I'/\I} \wedge e'_i & = \left[\frac{1}{2} \sum_{k=1}^3 \left( e'_k \wedge \frac{\di}{\di t}\bigg|_\I e'_k \right)\right]\wedge e'_i = e'_i\wedge\left[ \frac{1}{2}\sum_{k=1}^3\left( \frac{\di}{\di t}\bigg|_\I e'_k \right)\wedge e'_k \right] = \\
         & = \frac{1}{2}\sum_{k=1}^3\left[ \underbrace{(e'_i\cdot e'_k)}_{\delta_{i,k}} \frac{\di}{\di t}\bigg|_\I e'_k - \left( e'_i\cdot \frac{\di}{\di t}\bigg|_\I e'_k \right) e'_k \right] = \\
-        & = \frac{1}{2} \frac{\di}{\di t}\bigg|_\I e'_i +\frac{1}{2}\sum_{k=1}^3 \left[ \underbrace{\frac{\di}{\di t}\bigg|_\I ( e'_i\cdot e'_k)}_{0} -  \right]
+        & = \frac{1}{2} \frac{\di}{\di t}\bigg|_\I e'_i -\frac{1}{2}\sum_{k=1}^3 \left[ \underbrace{\frac{\di}{\di t}\bigg|_\I ( e'_i\cdot e'_k)}_{0} - \left(\left(\frac{\di}{\di t}\bigg|_\I  e'_i \right)\cdot e'_k \right) e'_k \right] = \\
+        & = \frac{1}{2} \frac{\di}{\di t}\bigg|_\I e'_i + \frac{1}{2}\sum_{k=1}^3 \left[ \left(\left(\frac{\di}{\di t}\bigg|_\I  e'_i \right)\cdot e'_k \right) e'_k \right] = \frac{1}{2} \frac{\di}{\di t}\bigg|_\I e'_i + \frac{1}{2} \frac{\di}{\di t}\bigg|_\I e'_i = \frac{\di}{\di t}\bigg|_\I e'_i
     \end{align*}
 \end{theorem}
+
+\begin{corollary}{Linearità della formula di Poisson}{poisson lineare}
+    Per linearità del prodotto vettoriale segue che 
+    \[ \frac{\di}{\di t}\bigg|_\I v'(t) = \omega_{\I'/\I} \wedge v'(t) \]
+\end{corollary}
+
+\subsubsection{Posizione, velocità e accelerazione rispetto a riferimenti}
+
+\begin{definition}{}{}
+    Sia $P:\R\to\V^4$ la sezione corrispondente alla vita di un punto materiale e due sistemi di riferimento $\I$ e $\I'$ con rispettive origini le sezioni $O:\R\to\V^4$ e $O':\R\to\V^4$.\\
+    Definiamo la \bemph{posizione} di $P$ rispetto a $\I$ all'istante $t$ come il vettore di $V_t$ 
+    \[ x_{P,\I}(t) := P(t)-O(t) \]
+    E vediamo facilmente che $x_{P,\I}(t) = x_{P,\I'}(t) + (O'(t)-O(t)) = x_{P,\I'}(t) + x_{O',\I}(t) $.\\
+    Definiamo allo stesso modo la \bemph{velocità} di $P$ rispetto a $\I$ come il vettore di $V_t$
+    \[ v_{P,\I}(t) := \frac{\di}{\di t}\bigg|_\I x_{P,\I}(t) \]
+    Si dimostra con qualche conto che 
+    \[ v_{P,\I}(t) = v_{P,\I'}(t) + \omega_{\I'/\I}(t)\wedge x_{P,\I'}(t) + v_{O',\I}(t) \]
+    Infine definiamo l'\bemph{accelerazione} similmente
+    \[ a_{P,\I} := \frac{\di}{\di t}\bigg|_\I v_{P,\I}(t) \]
+    E si dimostra con altrettanti conti che 
+    \[ a_{P,\I} = a_{P,\I'} + 2\omega_{\I'/\I}\wedge v_{P,\I'}+ \left(\frac{\di}{\di t}\bigg|_\I \omega_{\I'/\I} \right)\wedge x_{P,\I'}+ \omega_{\I'/\I}\wedge\left(\omega_{\I'/\I}\wedge x_{P,\I'}\right) + a_{O',\I} \]
+\end{definition}
+
+\begin{proposition}{Composizione di velocità}{composizione di velocità}
+    Sia $P:\R\to\V^4$ la sezione corrispondente alla vita di un punto materiale e tre sistemi di riferimento $\I$, $\I'$ e $\I''$ con rispettive origini le sezioni $O:\R\to\V^4$, $O':\R\to\V^4$ e $O'':\R\to\V^4$.\\
+    Ancora una volta con tanti contacci terribili si dimostra che 
+    \[ v_{P,\I} = v_{P,\I''} + \left( \omega_{\I''/\I'} + \omega{\I'/\I}  \right)\wedge x_{P,\I''} + v_{O'',\I} \]
+\end{proposition}
+
+\newcommand\SO{\operatorname{SO}}
+\newcommand\GL{\operatorname{GL}}
+
+\subsubsection{Angoli di Eulero}
+
+Una trasformazione di sistemi di riferimento è individuata da una traslazione $O\mapsto O'$ e da una rotazione $\{e_1,e_2,e_3\}\mapsto \{e'_1, e'_2, e'_3\}$ determinata da una matrice $R \in \SO(3)$, in particolare richiedere che una matrice di $R \in \GL_\R(3)$ mandi terne ortonormali in terne ortonormali è equivalente a richiedere che questa sia simmetrica, ovvero che $RR^T = I_3$.\\
+Questa condizione pone sei vincoli indipendenti sulle entrate della matrice $R$, dunque questa è individuata da tre parametri\footnote{In altri termini, $\SO(3)$ è un gruppo di Lie di dimensione $3$.}.\\
+Una possibile scelta di questi parametri sono gli angoli di Eulero $(\varphi,\vartheta,\psi)$, definiti nel seguente modo:
+
+\begin{theorem}{Angoli di Eulero}{angoli di eulero}
+    Siano $\{ e_1,e_2,e_3 \}$ e $\{ e'''_1, e'''_2, e'''_3\}$ due terne ortonormali.\\
+    La matrice $R: e_i \mapsto e'''_i$ è scomponibile come $R = R_\psi R_\vartheta R \varphi$, dove:\begin{itemize}
+        \item La matrice $R_\varphi : e_i \mapsto e'_i$ che fissa $e'_3 = e_3$ come asse ed esprime una rotazione di $\varphi \in [0,2\pi]$ radianti, detto \bemph{angolo di precessione}, rispetto ad esso.
+        \item La matrice $R_\vartheta: e'_i\mapsto e''_i$ che fissa $e''_1 = e'_1$ come asse ed esprime una rotazione di $\vartheta \in ]0,\pi[ $ radianti, detto \bemph{angolo di nutazione}, rispetto ad esso.
+        \item La matrice $R_\psi: e''_i\mapsto e'''_i$ che fissa $e'''_3 = e''_3$ come asse ed esprime una rotazione di $\psi \in [0,2\pi]$ radianti, detto \bemph{angolo di rotazione propria}, rispetto ad esso.
+    \end{itemize}
+    Si ha allora 
+    \[ \begin{cases}
+        \omega_{\I'/\I} = \dot\varphi e_3 = \dot\varphi e'_3 \\
+        \omega_{\I''/\I'} = \dot\vartheta e'_1 = \dot\vartheta e''_1 \\
+        \omega_{\I'''/\I''} = \dot\psi e''_3 = \dot\psi e'''_3
+    \end{cases} \Rarr \Omega_{\I'''/\I} = \dot\varphi e_3 + \dot\vartheta e'_1 + \dot\psi e''_3 \]
+    Questa quantità può essere rappresentata in termini degli angoli sulla terna ${e'''_1,e'''_2,e'''_3}$ come
+    \[ \Omega_{\I'''/\I} = \dot\varphi (\sin\vartheta\sin\psi e'''_1 + \sin\vartheta\cos\psi e'''_2 + \cos\vartheta e'''_3) + \dot\vartheta (\cos\psi e'''_1 - \sin\psi e'''_2) + \dot\psi e'''_3 \]
+\end{theorem}
+
+\subsection{Elementi di meccanica del corpo rigido}
+
+\begin{remark}{Distribuzione delle velocità dei punti di un corpo rigido}{distribuzione delle velocità dei punti di un corpo rigido}
+    Sia $\beta$ un corpo rigido, $\I$ un sistema di riferimento inzerziale e $\I'$ un sistema di riferimento solidale a $\beta$ con origine la sezione $Q:\R\to\V^4$.\\
+    Allora per ogni $P \in \beta$ vale $v_{P,\I'}=0$ e 
+    \[ v_{P,\I} = \omega_{\I'/\I}\wedge x_{P,\I'} + v_{Q,\I} \]
+\end{remark}
+
+\subsubsection{Momento della quantità di moto di un corpo rigido}
+
+\begin{definition}{Momento della quantità di moto di un corpo rigido}{momento della quantità di moto di un corpo rigido }
+    Sia $\beta$ un corpo rigido come nell'osservazione precedente e sia $A:\R\to\V^4$ una sezione che diremo \bemph{polo}.\\
+    Definiamo il \bemph{momento angolare in $\I$ della quantità di moto di $\beta$ rispetto ad $A$} all'istante $t$ il vettore di $V_t$ definito da
+    \[ L_{A,\I}(t) := \intop_\beta (P(t)-A(t))\wedge v_{P,\I} \de m(P) \]
+    Dove, interpretando $\Sigma_t$ come $\R^3$ abbiamo la misura della massa
+    \[ m(U) = \intop_U m \de\L^3 \]
+\end{definition}
+
+Specializziamo la definizione in due casi, omettendo la dipendenza da $\I$ e quella temporale:
+\paragraph{$A$ appartiene a $\beta$:} in questo caso, l'espressione di sopra diventa 
+\[ L_A = m(\beta)(G-A)\wedge v_A + I_A(\omega) \qquad\text{con}\qquad I_A(\omega) = \intop_\beta (P-A)\wedge(\omega\wedge(P-A))\de m(P) \]
+Dove $G$ è il centro di massa del corpo. Questo segue dall'osservazione \ref{rem:distribuzione delle velocità dei punti di un corpo rigido}.
+\paragraph{$A$ non appartiene a $\beta$:} in questo caso invece l'espressione di sopra diventa 
+\[ L_A = m(\beta)(G-A)\wedge v_G + I_G(\omega) \qquad\text{con}\qquad I_G(\omega) = \intop_\beta (P-G)\wedge(\omega\wedge(P-G))\de m(P) \]
+
+\subsubsection{Operatori e matrici d'inerzia}
+
+Nelle definizioni del momento angolare sono coinvolti i due operatori lineari $I_A,I_G:V_t\to V_t$ detti \bemph{operatori lineari d'inerzia di $\beta$ rispetto ad $A$ o a $G$}.\\
+Dato che $V_t$ eredita la struttura di spazio euclideo da $\Sigma_t$, ha senso porsi la domanda della loro simmetria.
+
+\begin{proposition}{Simmetria degli operatori d'inerzia}{simmetria degli operatori d'inerzia}
+    $I_A$ e $I_G$ sono operatori lineari simmetrici definiti positivi.
+    \proof 
+    Per dimostrare la simmetria, prendiamo $v,w \in V_t$. Allora 
+    \[ v\cdot I_a(w) = v\cdot\intop_\beta (P-A)\wedge(w\wedge(P-A))\de m(P) = \intop_\beta v\cdot[(P-A)\wedge(w\wedge(P-A)) ] \]
+    Ma usando il fatto che $a\cdot(b\wedge c) = (a\wedge b)\cdot c$ otteniamo
+    \[ v\cdot I_a(w) = \intop_\beta [v\wedge (P-A)]\cdot[w\wedge (P-A)]\de m(P) \]
+    Che è un'espressione simmetrica in $v$ e $w$.\\
+    Per dimostrare la positività prendiamo un versore $u$ e notiamo che 
+    \[ u\cdot I_A(u) = \intop_\beta [u\wedge(P-A)]^2\de m(P) = \intop_\beta \| u \wedge(P-A) \|^2\de m(P) \ge 0 \]
+    In realtà abbiamo dimostrato che sono semidefiniti positivi, in effetti sono definiti positivi a meno di corpi rigidi puntiformi o filiformi rettilinei.
+    \qed
+\end{proposition}
+
+%SALTO AVANTI PERCHÈ MI STO ROMPENDO IL CAZZO
+
+\section{Calcolo tensoriale}
+
+Siano $V,W$ due $\K$-spazi vettoriali di dimensioni finite $n, m$ e duali $V^\vee, W^\vee$.\\
+Notiamo che (scelte basi $\{e_i\}$ e $f_i$) una mappa bilineare $\eta : V\times W\to \K$ è definita da $nm$ numeri $\eta(e_k, f_a) := \eta_{ka}$, infatti si ha che 
+\[\eta(v,w) = \eta(v^k e_k, w^a f_a ) = v^k w^a \eta(e_k, f_a) = v^k w^a \eta_{ka}\]
+
+\begin{definition}{Prodotto tensoriale}{prodotto tensoriale}
+    Definiamo il \bemph{prodotto tensoriale} $V^\vee \otimes W^\vee$ come l'insieme $\{ \eta : V\times W\to \K : \eta\text{ bilineare} \}$ dotato della naturale struttura di spazio vettoriale.\\
+    I suoi elementi sono detti \bemph{tensori}. Consideriamo $\varphi := \varphi_ke^{\vee k} \in V^\vee$ e $\psi := \psi_a f^{\vee a} \in W^\vee$. Il loro prodotto tensoriale è il funzionale bilineare
+    \[ (\varphi\otimes\psi): (v,w )\mapsto \varphi(v)\psi(w) \in \K\]
+    Notiamo che il prodotto tensoriale è un operatore bilineare $V^*\times W^* \to V^*\otimes W^*$.
+\end{definition}
+
+
 
 \end{document}
