@@ -12,6 +12,8 @@
 \author{Filippo Troncana, dalle note di Erica}
 \date{A.A. 2025/2026}
 
+\renewcommand\V{\mathbb{V}}
+
 \begin{document}
 
 \maketitle
@@ -20,8 +22,65 @@
 
 \section{Fondamenti della meccanica classica}
 
-\begin{definition}{}{}
-    Sia $\V_4$ 
+\begin{definition}{Assiomi per lo spaziotempo}{spaziotempo}
+    Chiamiamo $\V_4$ lo \bemph{spaziotempo della meccanica classica}. Esso rispetta i seguenti assiomi:\begin{enumerate}
+        \item $\V_4$ è uno spazio topologico omeomorfo a $\R^4$.
+        \item $\V_4$ è un fibrato su $\R$, ovvero esiste una mappa $T:\V_4\to\R$ continua e suriettiva detta \bemph{tempo assoluto} tale che per ogni $t \in \R$ il seguente diagramma commuti:
+        \[\begin{tikzcd}
+    	    {\Sigma_t := T^{-1}(\{t\})} && {\{t\}\times \E^3} \\
+	        \\
+        	{\{t\}}
+	        \arrow["\sim"{description}, from=1-1, to=1-3]
+	        \arrow["T"{description}, from=1-1, to=3-1]
+	        \arrow["{\pi_1}"{description}, from=1-3, to=3-1]
+        \end{tikzcd}\]
+        Le fibre $\Sigma_t$ si dicono \bemph{spazio (di simultaneità) al tempo $t$}. La \bemph{vita} di un punto materiale $P$ è una curva continua e iniettiva $t\mapsto P(t)$.
+        \item L'isomorfismo $\Sigma_t \cong \E^3$ è anche un isomorfismo di spazi euclidei orientati, e a ciascun $\Sigma_t$ è associato uno spazio vettoriale modellatore $V_t$
+    \end{enumerate}
+    Chiamiamo \bemph{vettore funzione del tempo} $v$ una mappa $t\mapsto v(t) \in V_t$. 
 \end{definition}
+
+\begin{remark}{}{}
+    Per $t\neq t'$ non esiste un isomorfismo \textit{canonico} $\Sigma_t\cong \Sigma_{t'}$.
+\end{remark}
+
+\begin{definition}{Sistemi di riferimento}{sistemi di riferimento}
+    Una terna materiale\footnote{Quattro punti materiali linearmente indipendenti.} $(O,e_1,e_2,e_3)$ determina con la sua vita in $\V_4$ un evento $t\mapsto O(t)$ detto \bemph{riferimento} e tre versori $e_i(t)$. che si dicono \bemph{solidali} al riferimento.\\
+    L'introduzione di un sistema di riferimento determina una famiglia di isomorfismi $\Sigma_t \cong \Sigma_{t'}$ e un'operazione di \bemph{derivazione temporale} $\frac{\di}{\di t}\big|_O$ \textit{non canonica} di versori dipendenti dal tempo che soddisfa i seguenti assiomi:\begin{enumerate}
+        \item Linearità, ovvero \[ \frac{\di}{\di t}\bigg|_O(\lambda v + \mu w ) = \lambda\frac{\di}{\di t}\bigg|_O v + \mu\frac{\di}{\di t}\bigg|_O w \]
+        \item Regola di Leibniz, ovvero \[ \frac{\di}{\di t}\bigg|_O (v \wedge w) = v\wedge\frac{\di}{\di t}\bigg|_O w + \frac{\di}{\di t}\bigg|_O v \wedge w\]
+        \item Costanza sui versori, ovvero \[ \frac{\di}{\di t}\bigg|_O e_1 = \frac{\di}{\di t}\bigg|_O e_2 = \frac{\di}{\di t}\bigg|_O e_3 = 0 \]
+    \end{enumerate}
+    Estendiamo anche questa derivazione a funzioni scalari con: \[ \frac{\di}{\di t}\bigg|_O f := f' \]
+    E dunque scrivendo $v(t) = v^i(t)e_i(t)$ otteniamo \[ \frac{\di}{\di t}\bigg|_O v(t) = \frac{\di}{\di t}\bigg|_O(v^i(t) e_i(t)) = \left( \frac{\di}{\di t}\bigg|_O v^i(t) \right) e_i(t) \]
+\end{definition}
+
+\newcommand\I{\mc{I}}
+\newcommand\J{\mc{J}}
+
+\begin{proposition}{Cambiamento di coordinate}{cambiamento di coordinate}
+    Siano $\I, \I'$ due sistemi di riferimento con le rispettive terne $(e_i(t))_i$ e $(e'_i(t))_i$ e mappa di cambiamento di coordinate $R(t) : V_t \to V_t$ vale 
+    \[ e'_i(t) = \sum_{k=1}^3 R_{ik}(t) e_k(t)\quad\text{e dunque}\quad \frac{\di}{\di t}\bigg|_I e'_i(t) = \sum_{k=1}^3\left(\frac{\di}{\di t}\bigg|_\I R_{ik}(t) \right) e_k(t) \] 
+\end{proposition}
+
+\begin{definition}{Velocità angolare}{velocità angolare}
+    Siano $\I,\I'$ due sistemi di riferimento con le rispettive terne $(e_i(t))_i$ e $(e'_i(t))_i$.\\
+    Definiamo la \bemph{velocità angolare di $\I'$ rispetto a $\I$} il vettore
+    \[ \omega_{\I'/\I} = \frac{1}{2} \sum_{i=1}^3 \left( e'_i(t) \wedge \frac{\di}{\di t}\bigg|_\I e'_i(t) \right) \]
+\end{definition}
+
+\begin{theorem}{Formule di Poisson}{formule di poisson}
+    Nella situazione della definizione \ref{def:velocità angolare} vale la relazione
+    \[ \frac{\di}{\di t}\bigg|_\I e'_i(t) = \omega_{\I'/\I} \wedge e'_i(t)\]
+    \proof 
+    Useremo i seguenti fatti:
+    \[ a\wedge(b\wedge c) = (a\cdot c)b - (a\cdot b)c, \qquad e_i(t)\cdot e_k(t) = \delta_{i,k}\]
+    E dunque omettendo le dipendenze temporali
+    \begin{align*}
+        \omega_{\I'/\I} \wedge e'_i & = \left[\frac{1}{2} \sum_{k=1}^3 \left( e'_k \wedge \frac{\di}{\di t}\bigg|_\I e'_k \right)\right]\wedge e'_i = e'_i\wedge\left[ \frac{1}{2}\sum_{k=1}^3\left( \frac{\di}{\di t}\bigg|_\I e'_k \right)\wedge e'_k \right] = \\
+        & = \frac{1}{2}\sum_{k=1}^3\left[ \underbrace{(e'_i\cdot e'_k)}_{\delta_{i,k}} \frac{\di}{\di t}\bigg|_\I e'_k - \left( e'_i\cdot \frac{\di}{\di t}\bigg|_\I e'_k \right) e'_k \right] = \\
+        & = \frac{1}{2} \frac{\di}{\di t}\bigg|_\I e'_i +\frac{1}{2}\sum_{k=1}^3 \left[ \underbrace{\frac{\di}{\di t}\bigg|_\I ( e'_i\cdot e'_k)}_{0} -  \right]
+    \end{align*}
+\end{theorem}
 
 \end{document}
