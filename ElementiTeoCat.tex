@@ -64,28 +64,31 @@ Intuitivamente, il seguente assioma ci permette di trattare un universo di Groth
 
 % In realtà l'assioma \cref{ax:assioma di universo debole} è\footnote{Come si potrebbe intuire dal nome} più spesso assunto in una sua versione più forte, ovvero:
 
+\newcommand\Ord{\catname{Ord}}
+
 \begin{axiom}{Assioma di Universo}{assioma di universo}
     Per ogni insieme $x$ esiste un universo di Grothendieck $U$ tale che $x \in U$.\\
-    Consideriamo nella classe $\mathbb{G}$ degli universi di Grothendieck la famiglia $\{\G_\alpha\}_{\alpha \le \omega}$, dove $\omega$ è il più piccolo ordinale infinito, definita come segue:
+    Consideriamo nella classe $\mathbb{G}$ degli universi di Grothendieck la famiglia $\{\G_\alpha\}_{\alpha \in \Ord}$, definita per induzione come segue:
     \[ \G_0 := \min_{\subset} \mathbb{G}=\bigcap\mathbb{G} \]
     \[ \G_{\alpha+1} := \min_{\subset} \left\{ U \in \mathbb{G} : \G_\alpha \in U \right\} = \bigcap \left\{ U \in \mathbb{G} : \G_\alpha \in U \right\}\]
-    \[ \G_\omega := \min_{\subset}\left\{ U \in \mathbb{G} : \bigcup_{\alpha < \omega} \G_\alpha \in U\right\} = \bigcap\left\{ U \in \mathbb{G} : \forall \alpha < \omega, \G_\alpha \in U \right\} \]
+    Se invece $\lambda$ è un ordinale limite definiamo
+    \[ \G_\lambda := \min_{\subset}\left\{ U \in \mathbb{G} : \bigcup_{\alpha < \lambda} \G_\alpha \in U\right\} = \bigcap\left\{ U \in \mathbb{G} : \forall \alpha < \lambda, \G_\alpha \in U \right\} \]
     Diremo gli elementi di $\G_\alpha$ insiemi $\alpha$\bemph{-piccoli} e i suoi sottoinsiemi $\alpha$\bemph{-moderati}; gli elementi di $\G_\beta\setminus\G_\alpha$ per qualche $\beta > \alpha$ si dicono $\alpha$\bemph{-grandi}.\\
-    Diremo in generale \bemph{piccoli} gli insiemi che sono $\alpha$-piccoli per un qualche $\alpha <\omega$, \bemph{moderati} gli insiemi $\omega$-moderati e \bemph{grandi} gli insiemi $\omega$-grandi.
+    Fissato $\omega$ il più piccolo ordinale infinito, diremo in generale \bemph{piccoli} gli insiemi che sono $\alpha$-piccoli per un qualche $\alpha <\omega$, \bemph{moderati} gli insiemi $\omega$-moderati e \bemph{grandi} gli insiemi $\omega$-grandi.
 \end{axiom}
 
-La costruzione di $\G_\lambda$ può essere facilmente generalizzata a qualsiasi ordinale $\lambda$ sia nel caso di un ordinale successore che nel caso di un ordinale limite, ma per i nostri scopi è sufficiente fermarci al primo ordinale infinito.
+La scelta di dove fissare il confine tra "piccolo" e "grande" è meno arbitraria di quanto possa sembrare: sebbene sia abbastanza irrilevante quale ordinale \textit{limite} si scelga, il fatto di scegliere un ordinale limite permette di formulare più agilmente i teoremi tra le cui ipotesi c'è una limitazione di dimensione, come vedremo più avanti.\\
+In \cite{MacLane1978} viene data una definizione meno estensiva di grandezza, supponendo di trovarsi in un qualche universo lasciandosi la libertà di "ingrandirlo" rimpiazzandolo con uno maggiore laddove ci si trovasse a trattare categorie troppo grandi. Qui abbiamo semplicemente qualificato e chiarito meglio l'operazione di scelta di universi più grandi.
 
-\begin{remark}{Su $\{\G_\alpha\}_{\alpha \in \omega}$}{insiemi alpha-piccoli, modelli di ZFC}
+\begin{remark}{Su $\{\G_\alpha\}_{\alpha}$}{insiemi alpha-piccoli, modelli di ZFC}
     L'insieme $\G_0$ è numerabile e corrisponde alla classe degli insiemi ereditariamente finiti, ovvero degli insiemi finiti i cui elementi sono insiemi ereditariamente finiti.\\
-    Gli insiemi $\alpha$-moderati per un qualche $\alpha <\omega$ sono $\alpha+1$-piccoli.\\
-    $\{\G_\omega\}_{\alpha \le \omega}$ è ben ordinata per inclusione.
+    Gli insiemi $\alpha$-moderati sono $\alpha+1$-piccoli.\\
 \end{remark}
 
-Intuitivamente, $\G_1$ è già sufficiente per la pratica matematica "ordinaria", contenendo tutte le costruzioni usuali, e appunto è già un candidato per la "classe di tutti gli insiemi" in ZFC costituendone un modello. 
+Intuitivamente, $\G_1$ è già sufficiente per la pratica matematica "ordinaria", contenendo tutte le costruzioni usuali, e appunto è già un candidato per la "classe di tutti gli insiemi" in ZFC costituendone un \bemph{modello}. 
 
-\begin{theorem}{Modelli per ZFC in $\{\G_\alpha\}_{\alpha\le\omega}$}{modelli per ZFC}
-    L'esistenza di $\G_0$ è indipendente dalla teoria degli insiemi di ZF meno l'assioma di infinito e questo ne costituisce un modello; in particolare, l'esistenza di $\G_0$ in questa teoria è equivalente all'assioma di infinito.\\
+\begin{theorem}{Modelli per ZFC in $\{\G_\alpha\}_{\alpha}$}{modelli per ZFC}
+    L'esistenza di $\G_0$ è indipendente dalla teoria degli insiemi di ZF meno l'assioma di infinito e questo ne costituisce un modello; in particolare, postulare l'esistenza di $\G_0$ in questa teoria è equivalente all'assioma di infinito.\\
     L'esistenza di $\G_\alpha$ per $\alpha>0$ è indipendente dalla teoria degli insiemi di ZFC e questo ne costituisce un modello.
 \end{theorem}
 
@@ -101,7 +104,7 @@ Vale inoltre un teorema molto importante che stabilisce una corrispondenza tra u
 \section{Nozioni fondamentali}
 
 \begin{definition}{Categoria e dualità}{categoria}
-    Una \bemph{categoria} $\C$ è una struttura munita di due insiemi: $\ob\C$ e $\hom\C$, detti rispettivamente \bemph{oggetti} (o elementi) e \bemph{morfismi} (o mappe o frecce) tali che \begin{itemize}
+    Una \bemph{categoria} $\C$ è una struttura munita di due insiemi: $\ob\C$ e $\hom\C$, detti rispettivamente \bemph{oggetti} (o elementi) e \bemph{morfismi} (o mappe o frecce) tali che: \begin{itemize}
         \item Ogni morfismo $f \in \hom\C$ abbia associati due oggetti $A,B \in \ob\C$ detti rispettivamente \bemph{dominio} e \bemph{codominio} di $f$, che verrà indicato come $f : A\to B$.
         \item Per ogni coppia di morfismi $f:A\to B$ e $g : B\to C$ sia definita la loro \bemph{composizione}, ovvero un morfismo $g\circ f : A \to C$ (spesso indicato solo con $gf$).
         \item Per ogni oggetto $X \in \ob\C$ esista un morfismo $\id_X \in \hom\C$ detto \bemph{identità} di $X$ tale che per ogni morfismo $f:A\to B$ valga $\id_B f = f \id_A = f$.
@@ -117,8 +120,6 @@ Vale inoltre un teorema molto importante che stabilisce una corrispondenza tra u
     \end{itemize}
 \end{definition}
 
-In \cite{MacLane1978} viene data una definizione meno estensiva di grandezza, assumendo l'esistenza di un solo universo per la trattazione generale e lasciando al lettore la libertà di "ingrandirlo" rimpiazzandolo con uno maggiore laddove questi si trovasse a trattare categorie troppo grandi. Qui abbiamo semplicemente qualificato e chiarito meglio l'operazione di scelta di universi più grandi: ci siamo limitati ad una gerarchia di $\omega$ universi, ma nulla impedisce di estendere la stessa operazione a ordinali arbitrari.
-
 Uno degli aspetti più vantaggiosi della Teoria delle Categorie è il \bemph{principio di dualità},molto informalmente un "paghi uno prendi due": ogni teorema in Teoria delle Categorie ha un equivalente che si dimostra "gratuitamente" passando alla categoria opposta, ne vedremo alcuni esempi.
 
 \begin{remark}{Sulle categorie}{grandezza}
@@ -129,11 +130,11 @@ Uno degli aspetti più vantaggiosi della Teoria delle Categorie è il \bemph{pri
     \end{itemize} 
     \proof 
     Forniamo un esempio dell'ultimo punto, gli altri sono banali.\\
-    Sia $\V$ la categoria con $\ob\V := \{\varnothing\}$ e $(\hom\V, \circ) \cong (\G_\omega,\cup)$: l'insieme degli oggetti di $\V$ è il più piccolo non vuoto possibile, mentre l'insieme dei morfismi di $\V$ è un insieme grande, dunque $\V$ non è solo grande, ma non è nemmeno localmente piccola.
+    Sia $\V$ la categoria con $\ob\V := \{\varnothing\}$ e $(\hom\V, \circ) = (\G_\omega,\cup)$: l'insieme degli oggetti di $\V$ è il più piccolo non vuoto possibile, mentre l'insieme dei morfismi di $\V$ è un insieme grande, dunque $\V$ non solo è grande ma non è nemmeno localmente piccola.
     \qed
 \end{remark}
 
-Da ora in avanti, assumeremo sempre (anche senza specificarlo) che le nostre categorie siano almeno localmente piccole per comodità.
+Da ora in avanti, assumeremo sempre (anche senza specificarlo) che le nostre categorie siano almeno localmente piccole per comodità, ma lo specificheremo comunque nei casi in cui si tratti di un'ipotesi cruciale.
 
 \begin{definition}{Sottocategoria}{sottocategoria}
     Siano $\C$ e $\D$ due categorie tali che $\ob\C \subset \ob\D$, $\hom\C \subset \hom\D$ e per ogni $f,g,h \in \hom C$ valga 
@@ -199,20 +200,21 @@ Introduciamo quello che può essere considerato un morfismo di categorie (e in e
         \item Per ogni oggetto $X \in \ob\C$ vale $F\id_X = \id_{FX}$.
         \item Per ogni coppia di morfismi componibili $f,g \in \hom\C$ vale $F(g\circ f) = Fg\circ Ff$.
     \end{itemize}
-    Un \bemph{funtore controvariante} da $\C$ a $\D$ è un funtore covariante $F: \C^\op\to\D$. Anche se l'espressione "un funtore controvariante $\C^\op\to\D$" tecnicamente indicherebbe un funtore covariante $\C\to\D$, la useremo quasi sempre per indicare un funtore controvariante $\C\to\D$, ovvero una controvarianza specificata due volte non farà una covarianza.\\
+    Un \bemph{funtore controvariante} da $\C$ a $\D$ è un funtore covariante $F: \C^\op\to\D$.\\
     Un funtore si dice:\begin{itemize}
         \item \bemph{Fedele} se per ogni $X,Y \in \ob\C$ la sua restrizione $F_{X,Y}:\C(X,Y)\to \D(FX,FY)$ è iniettiva.
         \item \bemph{Pieno} se per ogni $X,Y \in \ob\C$ la sua restrizione $F_{X,Y}:\C(X,Y)\to \D(FX,FY)$ è suriettiva.
         \item \bemph{Pienamente fedele} se è pieno e fedele.
         \item \bemph{Essenzialmente suriettivo sugli oggetti} se per ogni oggetto $Y \in \D$ esiste un oggetto $X \in \C$ tale che $FX\cong_\D Y$.
     \end{itemize}
-    Se $F:\C\to\D$ e $G:\D\to\mc{E}$ sono due funtori, la loro composizione $GF : \C\to\mc{E}$ è un funtore.
+    Se $F:\C\to\D$ e $G:\D\to\mc{E}$ sono due funtori, la loro composizione $GF : \C\to\mc{E}$ è un funtore: in particolare, la composizione di due funtori della stessa varianza è covariante, mentre la composizione di due funtori di varianza diversa è controvariante.
 \end{definition}
 
+Anche se l'espressione "un funtore controvariante $\C^\op\to\D$" tecnicamente indicherebbe un funtore covariante $\C\to\D$, la useremo quasi sempre per indicare un funtore controvariante $\C\to\D$, ovvero una controvarianza specificata due volte non farà una covarianza.\\
 Ora possiamo definire una categoria assolutamente centrale, di fatto la categoria ambiente per tutta la pratica matematica "tradizionale" e che ci permette di definire una certa classe di sue "sottocategorie" in un senso più ampio e di un insieme di sue sovracategorie che permetta una trattazione adeguata della teoria generale:
 
 \begin{example}{La categoria degli insiemi ($\alpha$-)piccoli e categorie concrete}{setcat e categorie concrete}
-    Per $\alpha \le \omega$, indichiamo con $\setcat_\alpha$ la categoria i cui oggetti sono insiemi $\alpha$-piccoli, ovvero elementi di $\G_\alpha$, e i cui morfismi sono le funzioni tra di loro con l'usuale composizione di funzioni insiemistiche; indicheremo semplicemente con $\setcat$ la categoria $\setcat_\omega$.\\
+    Per $\alpha \in \Ord$, indichiamo con $\setcat_\alpha$ la categoria i cui oggetti sono insiemi $\alpha$-piccoli, ovvero elementi di $\G_\alpha$, e i cui morfismi sono le funzioni tra di loro con l'usuale composizione di funzioni insiemistiche; indicheremo semplicemente con $\setcat$ la categoria $\setcat_\omega$ degli insiemi piccoli.\\
     Una categoria $\C$ si dice \bemph{concreta} se è munita di un funtore fedele $U:\C\to\setcat$, detto \bemph{dimenticante}: informalmente, le categorie concrete sono quelle i cui oggetti sono insiemi (piccoli) dotati di una certa struttura e i cui morfismi sono funzioni insiemistiche che rispettano questa struttura. Alcune categorie concrete sono:\begin{itemize}
         \item $\topcat$ degli spazi topologici e delle funzioni continue;
         \item $\catname{Haus}$ degli spazi topologici $T_2$ e delle funzioni continue tra loro;
@@ -222,9 +224,9 @@ Ora possiamo definire una categoria assolutamente centrale, di fatto la categori
         \item $\catname{NormVec}\K$ dei $\K$-spazi vettoriali normati e delle mappe lineari e continue.
     \end{itemize}
     Per $\alpha <\omega$, $\setcat_\alpha$ è piccola, ma $\setcat_\omega$ non lo è nemmeno localmente: due controesempi sono dati dagli insiemi
-    \[ \hom\left(1,\bigcup_{\alpha < \omega}\G_\alpha\right), \qquad \hom\left(\bigcup_{\alpha < \omega}\G_\alpha, 2 \right)\]
+    \[ \hom\left(1,\bigcup_{\alpha < \omega}\G_\alpha\right)\qquad \text{e} \qquad \hom\left(\bigcup_{\alpha < \omega}\G_\alpha, 2 \right)\]
     entrambi con cardinalità strettamente maggiore di qualsiasi $\G_\alpha$.\\
-    Per qualsiasi $\alpha \le \omega$, $\setcat_\alpha$ ha un unico oggetto iniziale, l'insieme vuoto $0$, ed essenzialmente un'unico oggetto terminale, l'insieme $1$.
+    Per qualsiasi ordinale $\alpha$, $\setcat_\alpha$ ha un unico oggetto iniziale, l'insieme vuoto $0:= \varnothing$, ed essenzialmente un'unico oggetto terminale, l'insieme $1:= \{0\}$.
 \end{example}
 
 \begin{lemma}{Riflessione di isomorfismi}{riflessione di isomorfismi}
@@ -279,8 +281,8 @@ Useremo questa caratterizzazione\footnote{Senza assumere l'assioma della scelta 
 \end{proposition}
 
 \begin{definition}{Funtori aggiunti}{funtori aggiunti}
-    Siano $\C,\D$ due categorie localmente piccole e $F:\C\to\D$ e $G:\D\to\C$ due funtori.\\
-    Questi si dicono \bemph{aggiunti} se esiste un isomorfismo in $\setcat$
+    Siano $\C,\D$ due categorie localmente $\alpha$-piccole e $F:\C\to\D$ e $G:\D\to\C$ due funtori.\\
+    Questi si dicono \bemph{aggiunti} se esiste un isomorfismo in $\setcat_{\alpha+1}$
     \[ \D(Fc, d) \cong \C(c, Gd)\]
     naturale per ogni $c \in \C$ e $d \in \D$, ovvero sia come trasformazione naturale $\D(F(-),d)\to \C(-,G(d))$ sia come trasformazione naturale $\D(F(c),-)\to \C(c,G(-))$.\\
     Scriveremo $F\dashv G$ per indicare che $F$ è aggiunto sinistro a $G$ e che $G$ è aggiunto destro a $F$.
@@ -329,6 +331,8 @@ Un risultato assolutamente centrale in Teoria delle Categorie è il lemma di Yon
     Inoltre possiamo interpretare $\hom(-,-)$ come un bifuntore $\C^\op\times \C \to \setcat$.\\
     Un funtore covariante o controvariante $F$ a valori in $\setcat$ si dice \bemph{rappresentabile} se esiste una \bemph{rappresentazione} di $F$, ovvero un oggetto $A$ di $\C$ e un isomorfismo naturale $\Phi:h_A\to F$ nel caso covariante, $\Phi: h^A\to F$ nel caso controvariante.
 \end{definition}
+
+Gli $\hom$-funtori sono l'esempio prototipico di \bemph{endoprofuntori}: un profuntore da $\C$ a $\D$ è un funtore $\D^\op\times\C\to\setcat$, 
 
 \begin{theorem}{Lemma di Yoneda covariante}{lemma di yoneda covariante}
     Sia $\C$ una categoria localmente piccola e sia $F:\C\to\setcat$ un funtore covariante.\\ Allora esiste un isomorfismo in $\setcat$
