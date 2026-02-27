@@ -1,0 +1,218 @@
+\documentclass{book}
+
+\usepackage{cianatex}
+
+\usepackage{cianacolors}
+
+\usepackage[cianabook]{cianatheorems}
+
+\addbibresource{MeccanicaAnaliticaSchenkel.bib}
+
+\newcommand\iso{\xrightarrow{\sim}}
+\newcommand\GL{\operatorname{GL}}
+\newcommand\affcat{\catname{Aff}}
+\renewcommand\C{\mc{C}}
+\renewcommand\A{\mc{A}}
+
+\title{Fondamenti di Fisica Matematica 1}
+\author{F. Troncana, dalle note del prof. A. Schenkel}
+\date{A.A. 2025/2026}
+
+\begin{document}
+
+\chapter{Geometria}
+
+\section{Aspetti fondamentali della Geometria}
+
+Esistono diversi tipi di spazi che svolgono un ruolo importante nella meccanica classica, ad esempio:\begin{itemize}
+    \item Spazi vettoriali;
+    \item Spazi affini;
+    \item Spazi topologici;
+    \item Varietà
+\end{itemize}
+In questa prima sezione ci ricorderemo alcuni fatti su spazi con cui il lettore dovrebbe essere già familiare e ne introdurremo di nuovi che useremo in seguito.
+\paragraph{Nota bene:} tutti gli spazi considerati saranno definiti sul campo $\R$ dei numeri reali ai fini delle applicazioni alla meccanica classica. 
+
+\subsection{Spazi vettoriali}
+
+Assumiamo che il lettore abbia già familiarità con il concetto \bemph{($\R$-)spazio vettoriale}\footnote{Ovvero, un gruppo abeliano dotato di un'azione canonica di $\R$ compatibile con la struttura di gruppo.} e di morfismi tra spazi vettoriali, ovvero le \bemph{mappe lineari}. Ricordiamo alcuni fatti che useremo più avanti:
+
+\begin{example}{Lo spazio di dimensione finita $\R^n$}{}
+    L'esempio standard di spazio vettoriale è $\R^n$, con $n \in \N$.\\
+    Per ogni $n, m \in \N$ esiste\footnote{una volta scelta una base} una biezione $\M_{n\times m}(\R) \iso \hom(\R^m,\R^n)$ che associa una matrice $M$ alla mappa lineare $f_M : \mathbf{v}\mapsto M\mathbf{v}$
+\end{example}
+
+Notiamo che se $V$ è uno spazio vettoriale di dimensione $n \in \N$, esiste un\footnote{non unico!} isomorfismo $\R^n \iso V$.\\
+Infatti scegliendo una base $\{e_i\in V\}_{1\le i \le n}$ un isomorfismo lineare può essere definito da 
+\[ e: \mathbf{v} = \begin{pmatrix} v^1 \\ \vdots \\ v^n \end{pmatrix}\mapsto \sum_{i=1}^n v^i e_i  \]
+In particolare, dato che per due basi $\{e_i\}_i$, $\{e'_i\}_i$ esiste una matrice $B = (B_i^j)$ in $\GL(n)$ tale che 
+\[ e_i = \sum_{j = 1}^n B^j_i e'_i \]
+Otteniamo un automorfismo lineare
+\[\begin{tikzcd}
+	& V & \\
+	{\R^n} && {\R^n}
+	\arrow["e"{description}, from=2-1, to=1-2]
+	\arrow["B"{description}, from=2-1, to=2-3]
+	\arrow["{e'}"{description}, from=2-3, to=1-2]
+\end{tikzcd}\]
+Nel contesto della fisica interpretiamo $e$ come una \bemph{scelta di coordinate lineari} per $V$ e $B$ come un \bemph{cambiamento di coordinate}.\\
+Potremmo essere tentati di pensare che lo spaziotempo della fisica classica sia descritto da spazi vettoriali $V \cong \R^{3+1}$, con tre dimensioni spaziali e una temporale, ma non è così in quanto ogni spazio vettoriale ha un punto privilegiato, l'origine $0$: "dimenticare" questa origine ci porta al concetto di spazio affine.
+
+\subsection{Spazi affini}
+
+\begin{definition}{Spazio affine}{spazio affine}
+    Si dice \bemph{spazio affine} su uno spazio vettoriale $V$ una coppia $(A,+)$, dove $A$ è un insieme e $+:A\times V\to A$ una mappa tale che:\begin{enumerate}
+        \item $+$ è un'azione destra di $V$ su $A$, ovvero tale che per ogni $P\in A$ e $v,w\in V$ valgano \[ (P+v)+w = P+(v+w),\qquad P+0=P \]
+        \item L'azione è libera, ovvero $P+v = P$ se e solo se $v=0$.
+        \item L'azione è transitiva, ovvero per ogni $P,Q \in A$ esiste un vettore $v \in V$ tale che $P = Q+v$, lo indicheremo con $v = P-Q$.
+    \end{enumerate}
+    Un morfismo di spazi affini $A,A'$ è una mappa $\psi: A\to A'$ tale che esista una mappa lineare $\di\psi : V\to V'$ tale che per ogni $P \in A$ e $v \in V$ valga 
+    \[ \psi(P+v) = \psi(P)+\di\psi(v) \]
+\end{definition}
+
+\begin{remark}{}{}
+    \begin{enumerate}
+        \item È facile dimostrare che esiste una mappa $- : A\times A \to V$ che manda $(P,Q)$ in $v = P-Q$. È possibile dare una definizione equivalente di spazio affine in termini degli assiomi che deve rispettare questa mappa.
+        \item La mappa lineare $\di\psi$ è determinata univocamente dalla mappa $\psi$: infatti vediamo che se $\delta\psi$ fosse un'altra mappa lineare che soddisfi gli assiomi, varrebbe
+        \[ \psi(P+v) = \psi(P)+ \delta\psi(v) = \left(\psi(P)+ \di\psi(v)\right) + \left(\delta\psi(v) - \di\psi(v)\right) \]
+        Che implica $\delta\psi(v) \equiv \di\psi(v)$
+    \end{enumerate}
+\end{remark}
+
+\begin{example}{Struttura affine dello spazio vettoriale}{}
+    Notiamo che munendo $V$ dell'azione canonica destra su sè stesso data dalla somma di vettori $(v)+w = (v+w)$, questo assume una struttura di spazio affine: in particolare ogni ogni mappa lineare $L:V\to V'$ definisce una mappa affine tale che $\di L = L$.\\
+    Non tutte le mappe affini $\psi:V\to V'$ tuttavia hanno questa forma: per definizione abbiamo
+    \[ \psi(v) = \psi(0+v) = \psi(0) + \di\psi(v) \]
+    Dunque notiamo che abbiamo una biezione $\hom_\affcat(V,V') \iso V'\times\hom_\veccat(V,V') $ che manda una mappa affine $\psi$ nella coppia $(\psi(0),\di\psi)$.\\
+    In parole povere, una mappa affine è data da una traslazione e una mappa lineare: la mappa $\psi$ è lineare se e solo se $\psi(0) = 0'$.
+\end{example}
+
+\begin{proposition}{Isomorfismo con lo spazio sottostante}{}
+    Sia $A$ uno spazio affine su $V$ e muniamo $V$ della sua struttura canonica di spazio affine: allora esiste un\footnote{non unico} isomorfismo di spazi affini $V\iso A$.
+    \proof 
+    Scegliamo un punto $P_0 \in A$ e definiamo la mappa $\psi: v\mapsto P_0+v$ e notiamo che è invertibile con inversa data da $\psi^{-1}(P) = P-P_0$.\\
+    La mappa $\psi$ è evidentemente affine, come lo è $\psi^{-1}$, segue la tesi.
+    \qed 
+\end{proposition}
+
+Come conseguenza diretta della proposizione precedente, ogni spazio affine $A$ di dimensione $n\in \N$ è dotato di un\footnote{non unico} isomorfismo affine con $\R^n$: scegliendo un punto base $P_0 \in A$ e una base $\{e_i\}_i$ di $V$ questo è dato da
+\[ (P_0,e): \mathbf{v} = \begin{pmatrix} v^1\\\vdots\\v^n \end{pmatrix}\mapsto P_0 + \sum_{i=1}^n v^ie_i\]
+In particolare, considerando due punti $P_0,P_0' \in A$ e dato che per due basi $\{e_i\}_i$, $\{e'_i\}_i$ esiste una matrice $B = (B_i^j)$ in $\GL(n)$ tale che 
+\[ e_i = \sum_{j = 1}^n B^j_i e'_i \]
+Otteniamo un automorfismo affine 
+\[\begin{tikzcd}
+	& A & \\
+	{\R^n} && {\R^n}
+	\arrow["{(P_0,e)}"{description}, from=2-1, to=1-2]
+	\arrow["{(P_0'-P_0, B)}"{description}, from=2-1, to=2-3]
+	\arrow["{(P'_0,e')}"{description}, from=2-3, to=1-2]
+\end{tikzcd}\]
+Gli spazi affini possono essere modelli utili per alcuni fenomeni fisici.\\
+Modellando il tempo come uno spazio $A^1$ di dimensione $1$ e lo spazio come uno spazio $A^3$ di dimensione $3$, le mappe affini $\psi: A^1\to A^3$ descrivono il moto uniforme di una particella su rette affini: infatti scegliendo qualsiasi coordinate, queste mappe assumono la forma esplicita
+\[\begin{tikzcd}
+	{A^1} && {A^3} \\
+	{\R^1} && {\R^3} \\
+	t && {\mathbf{x} + \mathbf{v}t}
+	\arrow["\psi"{description}, from=1-1, to=1-3]
+	\arrow[from=2-1, to=1-1]
+	\arrow[from=2-1, to=2-3]
+	\arrow[from=2-3, to=1-3]
+	\arrow[maps to, from=3-1, to=3-3]
+\end{tikzcd}\]
+Dove $\mathbf{v}$ è la velocità dela particella e $\mathbf{x}_0$ la sua posizione al tempo $t=0$.\\
+Tuttavia, per descrivere moti più interessanti (ad esempio quando le particelle sono sottoposte a delle forze) è necessario passare ad un formalismo ancora più generale.
+
+\subsection{Varietà lisce}
+
+Per ottenere un formalismo geometrico più potente e flessibile, introduciamo il concetto di \bemph{varietà liscia}. Rinfreschiamoci la memoria su alcuni concetti preliminari:
+
+\begin{definition}{Spazio topologico}{}
+    Si dice \bemph{spazio topologico} un insieme $X$ dotato di un \bemph{frame} di suoi sottoinsiemi $\tau\subset\P(X)$, detto \bemph{topologia} su $X$, ovvero una famiglia di suoi sottoinsiemi detti \bemph{aperti} tale che:\begin{enumerate}
+        \item $\varnothing \in \tau$ e $X\in \tau$;
+        \item Data una qualsiasi sottofamiglia $\{U_i\}_i$ di $\tau$, la sua unione $\bigcup_i U_i$ appartiene a $\tau$;
+        \item Data una sottofamiglia \textit{finita} $\{U_i\}_i$ di $\tau$, la sua intersezione $\bigcap_i U_i$ appartiene a $\tau$.
+    \end{enumerate}
+    Un morfismo di spazi topologici $f: (X,\tau)\to(Y,\xi)$ è dato da una mappa di insiemi $f:X\to Y$ tale che la sua immagine inversa $f^{-1}: \P(Y)\to\P(X)$ si restringa ad una mappa di frame $\xi\to\tau$, ovvero tale che la controimmagine di un aperto $U \in xi$ sia un aperto di $\tau$.\\
+    Un isomorfismo di spazi topologici si dice omeomorfismo.
+\end{definition}
+
+Indicheremo la topologia euclidea su $\R^n$ con $\tau_e^n$ e assumeremo che $\R^n$ e i suoi sottospazi ne siano sempre dotati.
+
+\begin{definition}{Funzione liscia nel caso reale}{}
+    Una funzione $f: U\to W$, dove $U\in \tau_e^n$ e $W \in \tau_e^m$ con $n,m \in \N$ si dice \bemph{liscia} o $\C^\infty$ se è differenziabile infinite volte.
+\end{definition}
+
+Assumiamo che il lettore abbia familiarità con alcuni concetti di topologia generale dal primo modulo del corso Geometria B
+
+\begin{definition}{Varietà topologica, differenziabile e liscia}{varietà}
+    Sia $(M,\mu)$ uno spazio topologico di Hausdorff\footnote{Ogni coppia di punti è contenuta in due aperti disgiunti} a base numerabile\footnote{Esiste una sottofamiglia numerabile $B$ di aperti tale che ogni aperto di $mu$ sia unione di aperti di $B$}. \begin{enumerate}
+        \item Dato un aperto $U \in \mu$, una \bemph{carta locale $n$-dimensionale} su $U$ è una mappa $\phi: U \to \R^n$ tale che $\phi(U)$ sia un aperto di $\R^n$ e la restrizione $\psi: U\iso\phi(U)$ sia un omeomorfismo.
+        \item Due carte locali $n$-dimensionali $(U,\phi)$ e $(V,\psi)$ si dicono $\C^k$-compatibili per $k \in \N\cup\{\infty\}$ se le \bemph{mappe di trasferimento} $\psi \circ \phi^{-1}: \phi(U\cap V)\to\psi(U\cap V)$ e $\phi\circ\psi^{-1}:\psi(U\cap V)\to\phi(U\cap V)$ sono entrambe $\C^k$.
+        \item Un \bemph{atlante di classe $\C^k$ di dimensione $n$} su $M$ è una famiglia di carte $n$-dimensionali $\{(U_i,\psi_i)\}_i$ tale che $\{U_i\}_i$ sia un ricoprimento di $M$ e le carte siano tutte $\C^k$-compatibili a due a due; questo si dice \bemph{massimale} se contiene ogni carta compatibile a ogni sua carta.
+    \end{enumerate}
+    $M$ si dice \bemph{varietà topologica, differenziabile di classe $\C^k$ o liscia di dimensione $n$} se possiede un atlante massimale rispettivamente di classe $\C^0$, $\C^k$ con $k \in \N_{>0}$ o $\C^\infty$ di dimensione $n$.\\
+    Un morfismo di varietà di classe $\C^k$ $f:(M,\A)\to (M',\A')$ di dimensioni $n,n' \in\N$ è dato da una mappa continua $f:M\to N$ tale che per ogni $(U,\phi)\in \A$ e $(U',\phi') \in \A'$ tale che $f(U)\subset U'$, la composizione definita dal diagramma sia $\C^k$
+    \[\begin{tikzcd}
+    	& {M\ni U} && {U'\in M'} & \\
+	    \\
+	    {\R^n\ni \phi(U)} &&&& {\phi'(U')\in\R^{n'}}
+	    \arrow["f"{description}, from=1-2, to=1-4]
+	    \arrow["\phi"{description}, from=1-2, to=3-1]
+	    \arrow["{\phi'}"{description}, from=1-4, to=3-5]
+	    \arrow["{\phi'\circ f\circ \phi^{-1}}"{description}, from=3-1, to=3-5]
+    \end{tikzcd}\]
+\end{definition}
+
+In immagini, la situazione descritta sopra appare così
+%TODO:IMMAGINE VARIETÀ
+Una carta locale $(U,\phi)$ definisce su $M$ delle \bemph{coordinate locali} date dall'immagine di un punto in $U$ attraverso $\phi$
+\[ \phi(P) = \begin{pmatrix} \phi^1(P)\\ \vdots \\ \phi^n(P) \end{pmatrix} \]
+Queste ci permettono di definire un concetto di differenziazione locale su $M$\footnote{limitato dalla classe di differenziabilità di $M$ ovviamente}, invariante per transizione a qualsiasi altra carta compatibile.\\
+Un atlante massimale di dimensione $n$ per $M$ in generale contiene una quantità mostruosa di carte, comparabile alla cardinalità di $\R^n$, ma nella pratica è sufficiente esibirne molte di meno per descrivere un unico atlante massimale, come vediamo nel prossimo risultato.
+
+\begin{proposition}{Unicità dell'atlante massimale}{}
+    Sia $\A$ un atlante su $M$ di dimensione $n \in \N$ di classe $\C^k$ con $k \in \N\cup\{\infty\}$. Questo è contenuto in un unico atlante massimale $\bar\A$, detto \bemph{atlante massimale indotto} da $\A$.
+    \proof 
+    Definiamo $\bar\A$ come l'insieme delle carte locali su $\M$ compatibili con tutte le carte locali di $\A$: chiaramente $\A\subset\bar\A$ e contiene per definizione tutte le carte compatibili a quelle di $\A$; l'unica cosa da dimostrare è che le carte di $\bar\A$ sono compatibili tra loro\footnote{ovvero che la compatibilità è una relazione transitiva}.\\
+    Siano $(U,\phi)$ e $(V,\psi)$ due carte di $\bar\A$. Se $U\cap V=\varnothing$ non abbiamo nulla da dimostrare, dunque assumiamo che non sia vuoto. Per ogni $p \in U\cap V$ esiste dunque una qualche carta $(W,\chi)$ di $\A$ che lo contiene. La restrizione 
+    \[\begin{tikzcd}
+    	{\phi(U\cap V\cap W)} && {\psi(U\cap V \cap W)} \\
+	    \\
+	    & {\chi(U\cap V\cap W)}
+	    \arrow["{\psi\circ\phi^{-1}}"{description}, from=1-1, to=1-3]
+	    \arrow["{\chi\circ\phi^{-1}}"{description}, from=1-1, to=3-2]
+	    \arrow["{\psi\circ\chi^{-1}}"{description}, from=3-2, to=1-3]
+    \end{tikzcd}\]
+    è differenziabile per compatibilità con $(W,\chi)$, dunque procedendo per esaustione sui punti di $U\cap V$ otteniamo la compatibilità delle due carte.\\
+    L'unicità segue dalla massimalità.
+    \qed
+\end{proposition}
+
+Vediamo che è sufficiente controllare la differenziabilità su un atlante non massimale:
+
+\begin{proposition}{}{}
+    Sia $f:M\to M'$ una mappa continua e siano $\B,\B'$ due atlanti di classe $\C^k$ e dimensioni $n,n'$, non necessariamente massimali, che inducano le strutture differenziabili $\A := \bar\B$ e $\A':=\bar\B'$.\\
+    Se la mappa definita dal diagramma della definizione \ref{varietà} è $\C^k$ per ogni coppia di carte in $\B,\B'$ che ne soddisfino le ipotesi, allora lo è anche per ogni coppia di carte in $\A,\A'$ che ne soddisfino le ipotesi, ovvero $f$ è un morfismo di varietà $\C^k$.
+    \proof 
+    Presa una coppia di carte $(U,\phi)$ e $(U',\phi')$ con $f(U)\subset U'$, la dimostrazione segue per esaustione sui punti di $U$ restringendo a intersezioni con carte $(V,\psi)$ e $(V',\psi')$ di $\B$ e $\B'$ analogamente alla proposizione precedente.
+    \qed
+\end{proposition}
+
+Vediamo che sia gli spazi vettoriali che gli spazi affini sono esempi di varietà lisce:
+
+\begin{example}{Spazio vettoriale come varietà liscia}{}
+    Come visto sopra, posto uno spazio vettoriale $V$ di dimensione $n$ la scelta di una base $\{e_i\}_i$ induce un isomorfismo $e:\R^n\iso V$: possiamo usarlo per trasferire la topologia euclidea di $\R^n$ su $V$, ovvero l'unica topologia su $V$ tale che $e$ sia anche un omeomorfismo; la mappa $e^{-1}:V\iso \R^n$ definisce dunque una carta \bemph{globale} $(V,e^{-1})$ e quindi definisce da sola un atlante massimale.\\
+    Banalmente, una mappa lineare $L:V\to V'$ definisce un morfismo di varietà lisce in quanto le mappe lineari $\R^n\to\R^{n'}$ sono lisce, ma non tutti i morfismi $f$ di varietà lisce sono dati da mappe lineari, dato che si richiede semplicemente che $e'\circ f\circ e^{-1}$ sia una mappa liscia, non necessariamente lineare.\\
+\end{example}
+
+L'esempio si generalizza immediatamente agli spazi affini di dimensione finita con lo stesso caveat, ma il concetto di varietà è molto più generale: esempi di varietà liscie sono anche le sfere $\mathbb{S}^n$, le varietà algebriche non singolari, gli spazi proiettivi, le immagini di aperti di $\R^n$ attraverso mappe lisce e i loro grafici e moltissimi altri.
+
+\subsubsection{Teoria delle categorie}
+
+Nel linguaggio della teoria delle categorie, per il quale rimandiamo il lettore a \cite{Riehl2017}, possiamo esprimere elegantemente quanto detto sopra: per ogni $k \in \N_{>0}$ la seguente catena di funtori dimenticanti\footnote{Ovvero fedeli, intuitivamente un analogo dell'iniettività per i funtori.} che esibisce ciascuna di queste come categoria concreta\footnote{Moralmente, una categoria i cui oggetti sono insiemi dotati di una qualche struttura e i cui morfismi sono funzioni insiemistiche che rispettano questa struttura}:
+\[ \catname{finVec}(\R) \to \catname{finAff} \to \C^\infty\catname{Man} \to \topcat \to \setcat \]
+Attraverso la quale uno spazio vettoriale (dotato di una strutture di spazio affine, la topologia ereditata da $\R^n$ e la sua struttura liscia) $V$ $\left( V,0,+,\tau_e,\left\{(V, e^{-1})\right\}\right)$ perde progressivamente "pezzi" di struttura, così come le mappe che lo coinvolgono come dominio o codominio.
+
+\section{}
+
+\end{document}
