@@ -8,7 +8,6 @@
 
 \addbibresource{MeccanicaAnaliticaSchenkel.bib}
 
-\newcommand\iso{\xrightarrow{\sim}}
 \newcommand\GL{\operatorname{GL}}
 \newcommand\affcat{\catname{Aff}}
 \renewcommand\C{\mc{C}}
@@ -73,14 +72,10 @@ Potremmo essere tentati di pensare che lo spaziotempo della fisica classica sia 
     \[ \psi(P+v) = \psi(P)+\di\psi(v) \]
 \end{definition}
 
-\begin{remark}{}{}
-    \begin{enumerate}
-        \item È facile dimostrare che esiste una mappa $- : A\times A \to V$ che manda $(P,Q)$ in $v = P-Q$. È possibile dare una definizione equivalente di spazio affine in termini degli assiomi che deve rispettare questa mappa, come in \cite{Moretti2024}.
-        \item La mappa lineare $\di\psi$ è determinata univocamente dalla mappa $\psi$: infatti vediamo che se $\delta\psi$ fosse un'altra mappa lineare che soddisfi gli assiomi, varrebbe
-        \[ \psi(P+v) = \psi(P)+ \delta\psi(v) = \left(\psi(P)+ \di\psi(v)\right) + \left(\delta\psi(v) - \di\psi(v)\right) \]
-        Che implica $\delta\psi(v) \equiv \di\psi(v)$
-    \end{enumerate}
-\end{remark}
+È facile dimostrare che esiste una mappa $- : A\times A \to V$ che manda $(P,Q)$ in $v = P-Q$. È possibile dare una definizione equivalente di spazio affine in termini degli assiomi che deve rispettare questa mappa, come in \cite{Moretti2024}.\\
+Notiamo anche che la mappa lineare $\di\psi$ è determinata univocamente dalla mappa $\psi$: infatti vediamo che se $\delta\psi$ fosse un'altra mappa lineare che soddisfi gli assiomi, varrebbe
+\[ \psi(P+v) = \psi(P)+ \delta\psi(v) = \left(\psi(P)+ \di\psi(v)\right) + \left(\delta\psi(v) - \di\psi(v)\right) \]
+Che implica $\delta\psi(v) \equiv \di\psi(v)$.
 
 \begin{example}{Struttura affine dello spazio vettoriale}{}
     Notiamo che munendo $V$ dell'azione canonica destra su sè stesso data dalla somma di vettori $(v)+w = (v+w)$, questo assume una struttura di spazio affine: in particolare ogni ogni mappa lineare $L:V\to V'$ definisce una mappa affine tale che $\di L = L$.\\
@@ -254,8 +249,10 @@ Dotare uno spazio di un prodotto scalare permette di definire una nuova categori
 
 Notiamo che su ogni spazio euclideo $(E,s)$ si può definire una \bemph{metrica}, o \bemph{distanza}, naturale $d: E\times E\to \R$ data da 
 \[ d(P,Q) := \|P-Q\| = \sqrt{ s(P-Q, P-Q) }\]
-Immediatamente si verificano gli assiomi di spazio metrico su $(E,d)$, ovvero simmetria, positività per punti distinti e disuguaglianza triangolare; inoltre, la distanza tra due punti è invariante per l'azione di $V$, cioè $d(P+v,Q+v)\equiv d(P,Q)$.\\
-Notiamo anche che una mappa affine $\psi : E\to E'$ è un'isometria se e solo se preserva le distanze, ovvero $d(P,Q) \equiv d'(\psi(P),\psi(Q))$.
+Immediatamente si verificano gli assiomi di spazio metrico su $(E,d)$, ovvero simmetria, positività per punti distinti e disuguaglianza triangolare; inoltre, la distanza tra due punti è invariante per l'azione di $V$, cioè 
+\[d(P+v,Q+v)\equiv d(P,Q)\]
+Notiamo anche che una mappa affine $\psi : E\to E'$ è un'isometria se e solo se preserva le distanze, ovvero 
+\[d(P,Q) \equiv d'(\psi(P),\psi(Q))\]
 
 \renewcommand\O{\operatorname{O}}
 \newcommand\SO{\operatorname{SO}}
@@ -317,7 +314,9 @@ Nel caso orientato, siamo forzati a scegliere $a=1$ e $L \in \SO(3)$, il sottogr
 \subsection{Fibrati}
 
 Inizialmente potremmo pensare ancora una volta a una soluzione \naif per la struttura del nostro spaziotempo unificato, ovvero il prodotto $E^1\times E^3$ del tempo e dello spazio, ma ancora una volta la realtà dei fatti decide di rovinarci la festa e ci costringe a lavorare di più: questa descrizione ingenua presumerebbe un prodotto in qualche modo "privilegiato", di cui non c'è evidenza nella natura.\\
-Qualcosa che ha senso definire \textit{nel contesto della meccanica classica} è la mappa di proiezione sul tempo $\pi_{E^1}: E^1\times E^3 \to E^1$ che manda il punto $(t,P)$ nel suo tempo $t$, che fisicamente interpretiamo come il \bemph{tempo assoluto}.\\
+Qualcosa che ha senso definire \textit{nel contesto della meccanica classica} è la mappa di proiezione sul tempo 
+\[\pi_{E^1}: E^1\times E^3 \to E^1\] 
+che manda il punto $(t,P)$ nel suo tempo $t$, che fisicamente interpretiamo come il \bemph{tempo assoluto}.\\
 Seguendo \cite{Moretti2024}, formuleremo il nostro concetto di spaziotempo in modo indipendente da coordinate usando il linguaggio delle varietà, per il quale avremo bisogno di alcuni strumenti di geometria differenziale.
 
 \begin{definition}{Sommersione}{sommersione}
@@ -331,10 +330,10 @@ Ed ora, finalmente
 
 \begin{definition}{Spaziotempo della fisica classica}{spaziotempo}
     Uno \bemph{spaziotempo della fisica classica} è una varietà liscia $\V^4$ di dimensione $4$ dotata delle seguenti strutture:\begin{itemize}
-        \item Una sommersione suriettiva $T:\V^4\to \E^1$ detta \bemph{tempo assoluto};
+        \item Una sommersione suriettiva $T:\V^4\to E^1$ detta \bemph{tempo assoluto};
         \item Per ogni $t \in E^1$, una struttura di spazio euclideo di dimensione $3$ sulla fibra $\Sigma_t := T^{-1}(\{t\})$ detta \bemph{spazio assoluto al tempo} $t$.
     \end{itemize} 
-    Queste strutture formano un \bemph{fibrato} $T:\V^4\to\E^1$, ovvero sono soggette alla seguente condizione di compatibilità: per ogni $t \in E^1$ deve esistere un intorno aperto $I$ di $t$ e un diffeomorfismo\footnote{isomorfismo di varietà lisce} $F: T^{-1}(I)\iso I\times E^3$ tale che:\begin{itemize}
+    Queste strutture formano un \bemph{fibrato} $T:\V^4\to E^1$, ovvero sono soggette alla seguente condizione di compatibilità: per ogni $t \in E^1$ deve esistere un intorno aperto $I$ di $t$ e un diffeomorfismo\footnote{isomorfismo di varietà lisce} $F: T^{-1}(I)\iso I\times E^3$ tale che:\begin{itemize}
         \item Il seguente diagramma commuti 
             \[\begin{tikzcd}
         	    {T^{-1}(I)} &&&& {I\times E^3} \\
@@ -352,7 +351,7 @@ Ed ora, finalmente
 Si noti però che abbiamo scritto \bemph{uno}\footnote{Il lettore esasperato potrebbe essere comprensibilmente tentato dal lanciare un grido di frustrazione e decidere di dedicarsi a passatempi più edificanti, come il curling o la transumanza sull'Appennino abruzzese, ma lo assicuriamo che ormai siamo in dirittura d'arrivo} spaziotempo, in linea di principio potrebbero essercene uno come dieci, cento, mille, numerabili, qualche cardinale inaccessibile, una classe propria... Ma vengono in nostro aiuto degli strumenti più avanzati.
 
 \begin{definition}{Isomorfismo di spaziotempi}{}
-    Un \bemph{isomorfismo} tra due spaziotempi $T:\V^4\to E^1$ e $T':\V'^4 \to \E'^1$ è una coppia $(F,f)$ composta da un diffeomorfismo $F:\V^4\iso\V'^4$ e un'isometria affine $f: E^1\iso E'^1$ tale che il seguente diagramma commuti 
+    Un \bemph{isomorfismo} tra due spaziotempi $T:\V^4\to E^1$ e $T':\V'^4 \to E'^1$ è una coppia $(F,f)$ composta da un diffeomorfismo $F:\V^4\iso\V'^4$ e un'isometria affine $f: E^1\iso E'^1$ tale che il seguente diagramma commuti 
     \[\begin{tikzcd}
     	{\V^4} && {\V'^4} \\
 	    \\

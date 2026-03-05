@@ -1,10 +1,10 @@
-\documentclass{article}
+\documentclass{book}
 
 \usepackage{cianatex}
 
 \usepackage{cianacolors}
 
-\usepackage{cianatheorems}
+\usepackage[cianabook]{cianatheorems}
 
 \addbibresource{ElementiTeoCat.bib}
 
@@ -23,15 +23,13 @@
 
 \maketitle
 
-\begin{abstract}
-    La Teoria delle Categorie è un formalismo nato in seno alla Topologia e Geometria Algebrica per descrivere in modo generale la struttura delle varie teorie matematiche: laddove la Teoria degli Insiemi si fonda sui concetti primitivi di "insieme" e "elemento", quello della Teoria delle Categorie è un punto di vista più strutturale, basato sui concetti di "oggetto" e "morfismo", ovvero una relazione astratta tra due oggetti.\\
-    In questa trattazione forniremo un'elementare esposizione del linguaggio e di alcune costruzioni e risultati fondamentali nella Teoria delle Categorie in modo propedeutico alla pratica matematica generale, evidenziando alcuni aspetti di tipo fondativo tramite l'estensione della Teoria degli Insiemi di ZFC con un opportuno assioma di universo.
-\end{abstract}
+\tableofcontents
 
-\section*{Fondamenti}
+\chapter{Teoria delle categorie elementare}
 
-Trattando strutture molto "grandi" in un senso che renderemo preciso in seguito, per fondare propriamente la Teoria delle Categorie è necessario estendere la Teoria degli Insiemi di Zermelo-Fraenkel più l'assioma della scelta, che assumeremo sempre\footnote{Potremmo essere tentati di limitare l'assioma della scelta a famiglie piccole o almeno moderate di insiemi (nel senso specificato in \cref{ax:assioma di universo}), ma ai fini della nostra trattazione lo assumeremo sempre nella sua forma completa.}. L'approccio che seguiremo è un approccio che in qualche modo "limiti" la grandezza delle nostre strutture, supponendo l'esistenza di alcuni insiemi "universo" che si sostituiscano alla classe di tutti gli insiemi.\\
-Questa sezione è quasi interamente basata sull'\textit{expose} I.0 di \cite{SGA4}. Assumeremo inoltre che ogni insieme sia un insieme puro.
+\section{Fondamenti insiemistici}
+
+Trattando strutture molto "grandi" in un senso che renderemo preciso in seguito, per fondare propriamente la Teoria delle Categorie sulla Teoria degli Insiemi è necessario estendere gli assiomi di Zermelo-Fraenkel più l'assioma della scelta, che assumeremo sempre. L'approccio che seguiremo è un approccio che in qualche modo "limiti" la grandezza delle nostre strutture, supponendo l'esistenza di alcuni insiemi "universo" che si sostituiscano alla classe di tutti gli insiemi.
 
 \begin{definition}{Universo di Grothendieck}{universo di Grothendieck}
     Sia $\G$ un insieme non vuoto. Questo si dice \bemph{universo di Grothendieck} se:\begin{itemize}
@@ -78,13 +76,7 @@ Intuitivamente, il seguente assioma ci permette di trattare un universo di Groth
 \end{axiom}
 
 La scelta di dove fissare il confine tra "piccolo" e "grande" è meno arbitraria di quanto possa sembrare: sebbene sia abbastanza irrilevante quale ordinale \textit{limite} si scelga, il fatto di scegliere un ordinale limite permette di formulare più agilmente i teoremi tra le cui ipotesi c'è una limitazione di dimensione, come vedremo più avanti.\\
-In \cite{MacLane1978} viene data una definizione meno estensiva di grandezza, supponendo di trovarsi in un qualche universo lasciandosi la libertà di "ingrandirlo" rimpiazzandolo con uno maggiore laddove ci si trovasse a trattare categorie troppo grandi. Qui abbiamo semplicemente qualificato e chiarito meglio l'operazione di scelta di universi più grandi.
-
-\begin{remark}{Su $\{\G_\alpha\}_{\alpha}$}{insiemi alpha-piccoli, modelli di ZFC}
-    L'insieme $\G_0$ è numerabile e corrisponde alla classe degli insiemi ereditariamente finiti, ovvero degli insiemi finiti i cui elementi sono insiemi ereditariamente finiti.\\
-    Gli insiemi $\alpha$-moderati sono $\alpha+1$-piccoli.\\
-\end{remark}
-
+Si osserva facilmente che l'insieme $\G_0$ è numerabile e corrisponde alla classe degli insiemi ereditariamente finiti, ovvero degli insiemi finiti i cui elementi sono insiemi ereditariamente finiti, e che in generale gli insiemi $\alpha$-moderati sono $\alpha+1$-piccoli.\\
 Intuitivamente, $\G_1$ è già sufficiente per la pratica matematica "ordinaria", contenendo tutte le costruzioni usuali, e appunto è già un candidato per la "classe di tutti gli insiemi" in ZFC costituendone un \bemph{modello}. 
 
 \begin{theorem}{Modelli per ZFC in $\{\G_\alpha\}_{\alpha}$}{modelli per ZFC}
@@ -92,12 +84,15 @@ Intuitivamente, $\G_1$ è già sufficiente per la pratica matematica "ordinaria"
     L'esistenza di $\G_\alpha$ per $\alpha>0$ è indipendente dalla teoria degli insiemi di ZFC e questo ne costituisce un modello.
 \end{theorem}
 
-Vale inoltre un teorema molto importante che stabilisce una corrispondenza tra universi di Grothendieck e cardinali fortemente inaccessibili in ZFC:
+Vale inoltre un teorema molto importante, che enunciamo senza dimostrazione, che stabilisce una corrispondenza tra universi di Grothendieck e cardinali fortemente inaccessibili in ZFC:
 
 \begin{theorem}{Universi di Grothendieck e cardinali inaccessibili}{}
-    Sia $U$ un universo di Grothendieck più che numerabile.\\
-    Il cardinale $|U|$ è fortemente inaccessibile.
+    Se un insieme $U$ è un universo di Grothendieck più che numerabile, la sua cardinalità è fortemente inaccessibile.\\
+    Inoltre, se $\kappa$ è un cardinale fortemente inaccessibile, lo stadio $V_\kappa$ dell'universo di Von Neumann è un universo di Grothendieck.
 \end{theorem}
+
+Nel reame degli assiomi che introducono cosiddetti "grandi cardinali", l'esistenza di una classe propria di cardinali fortemente inaccessibili è uno più deboli ed è considerato standard per fondare sulla teoria degli insiemi la teoria delle categorie, approccio seguito ad esempio da \cite{SGA4}.\\
+Volendo è possibile indebolire questo assioma in moltissimi casi: come suggerito da \cite{MacLane1978}: l'idea generale è di assumere l'assioma di universo, fissare un universo $U$ e passare a uno più grande ogni volta che se ne ha necessità, per poi sostituire a posteriori l'assioma di universo "forte" con l'esistenza dell'universo più grande utilizzato. Non ci preoccupiamo di seguire questo schema.
 
 % Questo implicherebbe l'esistenza di tutta una gerarchia di universi ciascuno "inaccessibile" (nel senso della Teoria degli Insiemi) da quello precedente, utile per fare Teoria delle Categorie Superiori, ma per una trattazione più elementare è sufficiente assumere l'esistenza di un solo universo, si veda \cite{MacLane1969}.
 
@@ -120,21 +115,16 @@ Vale inoltre un teorema molto importante che stabilisce una corrispondenza tra u
     \end{itemize}
 \end{definition}
 
-Uno degli aspetti più vantaggiosi della Teoria delle Categorie è il \bemph{principio di dualità},molto informalmente un "paghi uno prendi due": ogni teorema in Teoria delle Categorie ha un equivalente che si dimostra "gratuitamente" passando alla categoria opposta, ne vedremo alcuni esempi.
+Uno degli aspetti più vantaggiosi della Teoria delle Categorie è il \bemph{principio di dualità},molto informalmente un "paghi uno prendi due": ogni teorema in Teoria delle Categorie ha un equivalente che si dimostra "gratuitamente" passando alla categoria opposta, ne vedremo alcuni esempi.\\
+Si osserva banalmente che le identità sono uniche e che passando alla categoria opposta la composizione viene ribaltata, ovvero vale l'identità $(g\circ f)^\op = f^\op\circ g^\op$. Inoltre, l'operazione di passaggio alla categoria opposta è chiaramente involutiva, che significa che $(\C^\op)^\op = \C$.\\
+La definizione di grandezza è in qualche modo più sottile di quanto possa suggerire l'intuizione: dato che la mappa $X\mapsto \id_X$ è sempre iniettiva ma molto raramente suriettiva, la grandezza di una categoria è in generale indipendente da quella del suo insieme degli oggetti, anche a livello locale: vediamone un esempio.
 
-\begin{remark}{Sulle categorie}{grandezza}
-    Banalmente:\begin{itemize}
-        \item Le identità sono uniche.
-        \item Passando da $\C$ a $\C^\op$ la composizione dei morfimsi viene "ribaltata" a sua volta, infatti $(g\circ f)^\op = f^\op\circ g^\op$; vale inoltre $(\C^\op)^\op = \C$.
-        \item Dato che $\ob\C$ inietta sempre in $\hom\C$ con la mappa $X\mapsto \id_X$, in generale l'insieme dei morfismi può essere arbitrariamente più grande di quello degli oggetti, dunque la grandezza di una categoria è in generale indipendente dal suo insieme degli oggetti.
-    \end{itemize} 
-    \proof 
-    Forniamo un esempio dell'ultimo punto, gli altri sono banali.\\
-    Sia $\V$ la categoria con $\ob\V := \{\varnothing\}$ e $(\hom\V, \circ) = (\G_\omega,\cup)$: l'insieme degli oggetti di $\V$ è il più piccolo non vuoto possibile, mentre l'insieme dei morfismi di $\V$ è un insieme grande, dunque $\V$ non solo è grande ma non è nemmeno localmente piccola.
-    \qed
-\end{remark}
+\begin{example}{Monoide degli insiemi}{}
+    Un monoide $\M = (M,1,\cdot)$ può essere letto come una categoria dotata di un solo oggetto e i cui morfismi sono rappresentati dagli elementi del monoide, dove la composizione è data dall'operazione del monoide; concretamente, è semplicemente vedere l'operazione di $\M$ come la sua azione sul suo insieme sottostante.\\
+    Fissiamo un qualche ordinale limite $\lambda\ge \omega$ e sia $\V := (\G_\lambda, \varnothing, \cup)$ il monoide abeliano definito dall'unione di insiemi: come categoria, sebbene il suo insieme degli oggetti sia un singoletto non è solo una categoria grande, ma addirittura non è nemmeno localmente piccola.
+\end{example}
 
-Da ora in avanti, assumeremo sempre (anche senza specificarlo) che le nostre categorie siano almeno localmente piccole per comodità, ma lo specificheremo comunque nei casi in cui si tratti di un'ipotesi cruciale.
+%Da ora in avanti, assumeremo sempre (anche senza specificarlo) che le nostre categorie siano almeno localmente piccole per comodità, ma lo specificheremo comunque nei casi in cui si tratti di un'ipotesi cruciale.
 
 \begin{definition}{Sottocategoria}{sottocategoria}
     Siano $\C$ e $\D$ due categorie tali che $\ob\C \subset \ob\D$, $\hom\C \subset \hom\D$ e per ogni $f,g,h \in \hom C$ valga 
@@ -143,6 +133,8 @@ Da ora in avanti, assumeremo sempre (anche senza specificarlo) che le nostre cat
     Se per ogni coppia di oggetti $X,Y \in \C$ vale $\C(X,Y)=\D(X,Y)$, allora $\C$ si dice \bemph{piena}.
 \end{definition}
 
+Introduciamo ora alcune proprietà che possono essere soddisfatte da un morfismo in una categoria.
+
 \begin{definition}{Sapori di morfismi}{morfismi}
     Sia $\C$ una categoria e sia $f: A\to B$ un morfismo. Esso può dirsi:\begin{itemize}
         \item \bemph{Monomorfismo} (o monico o mono) se la precomposizione è iniettiva, ovvero per ogni coppia di morfismi postcomponibili $g_1, g_2 : C\to A$ vale $fg_1 = fg_2 \Rarr g_1=g_2$.
@@ -150,45 +142,44 @@ Da ora in avanti, assumeremo sempre (anche senza specificarlo) che le nostre cat
         \item \bemph{Endomorfismo} (o endo) se $A=B$.
         \item \bemph{Sezione} (o split mono) se ha un inverso sinistro, ovvero se esiste un morfismo $g:B\to A$ tale che $gf = \id_A$.
         \item \bemph{Retrazione} (o split epi) se ha un inverso destro, ovvero se esiste un morfismo $g:B\to A$ tale che $fg = \id_B$.
-        \item \bemph{Isomorfismo} (o iso) se ha un inverso destro e sinistro. In particolare, $A$ e $B$ si dicono \bemph{isomorfi} (attraverso $f$) e li indicheremo con $f:A\cong_\C B$ omettendo usualmente $f$ o $\C$.
+        \item \bemph{Isomorfismo} (o iso) se ha un inverso destro e sinistro. In particolare, $A$ e $B$ si dicono \bemph{isomorfi} (attraverso $f$) e li indicheremo con $f:A\iso_\C B$ omettendo usualmente $\C$; quando non vogliamo specificare nemmeno $f$ scriviamo $A\cong B$.
         \item \bemph{Automorfismo} (o auto) se è iso e endo.
     \end{itemize}    
 \end{definition}
 
-\begin{remark}{Sui morfismi}{sui morfismi}
-    Valgono le seguenti:\begin{itemize}
-        \item Le sezioni sono mono.
-        \item Le retrazioni sono epi.
-        \item Mono ed epi sono concetti duali, allo stesso modo lo sono sezioni e retrazioni.
-        \item iso $\Harr$ (split mono $\wedge$ epi) $\Harr$ (mono $\wedge$ split epi) $\Rarr$ (epi $\wedge$ mono), ma nell'ultimo caso non vale l'implicazione inversa.
-        \item Tutte le inverse sono uniche quando esistono.
-    \end{itemize}
-    \proof 
-    Forniamo solo due esempi di morfismi che sono epici e monici ma non isomorfismi (le altre verifiche sono assolutamente automatiche):\begin{itemize}
-        \item Consideriamo in $\catname{Haus}$ (\cref{exmp:setcat e categorie concrete}) l'inclusione $\iota: [0,1]\cap \Q\inj[0,1]$ (entrambi con la topologia euclidea); questa è chiaramente monica in quanto iniettiva, ed è epica in quanto una funzione continua in $\catname{Haus}$ è completamente determinata dal suo valore su un sottospazio denso, ma non è isomorfismo dato che non è suriettiva.
-        \item Consideriamo la categoria
-        \[\begin{tikzcd}
-        	1 && 2
-    	    \arrow["1\le 1", from=1-1, to=1-1, loop, in=145, out=215, distance=10mm]
-        	\arrow["1\le 2", from=1-1, to=1-3]
-    	    \arrow["2\le 2", from=1-3, to=1-3, loop, in=325, out=35, distance=10mm]
-        \end{tikzcd}\]
-        Dato che a destra o sinistra possiamo comporre solo con l'identità, $1\le 2$ è sia monico che epico, ma non è isomorfismo in quanto non ha inverso.
-    \end{itemize}
-    \qed
-\end{remark}
+Si nota immediatamente che le sezioni sono moniche e le retrazioni epiche, anche perchè c'è un'evidente dualità tra monomorfismi ed epimorfismi come tra sezioni e retrazioni.\\
+È anche facile dimostrare che un morfismo $f$ è un isomorfismo se e solo se è una sezione epica (o dualmente una retrazione monica) e che dunque è sia monico che epico; per analogia al caso insiemistico, in cui i monomorfismi sono le funzioni iniettive e gli epimorfismi sono quelle suriettive, si potrebbe pensare che valga anche il contrario, ma vediamo due esempi di morfismi monici ed epici che non sono isomorfismi: il primo un po' più "furbo" per dimostrare che questa intuizione fallisce anche in un caso "concreto", il secondo leggermente più "banale" ma ugualmente illustrativo.
 
-\begin{definition}{Oggetti iniziali e terminali}{Oggetti iniziali e terminali}
-    Sia $\C$ una categoria e sia $I$ un oggetto.\\
-    $I$ si dice \bemph{oggetto iniziale} se per ogni oggetto $X$ di $\C$ esiste un unico morfismo $\iota_X:I\to X$\\
-    $I$ si dice \bemph{oggetto terminale} se è l'oggetto iniziale di $\C^\op$, o equivalentemente se per ogni oggetto $X$ di $\C$ esiste un unico morfismo $\zeta_X : X\to I$.\\
+\begin{example}{L'inclusione $\Q\inj \R$}{mono ed epi ma non iso in haus}
+    Consideriamo nella categoria $\catname{Haus}$ i cui oggetti sono gli spazi topologici $T_2$ e i cui morfismi sono le mappe continue tra di loro l'inclusione $\iota: [0,1]\cap \Q\inj[0,1]$ (entrambi con la topologia euclidea); questa è chiaramente monica in quanto iniettiva, ed è epica in quanto una funzione continua in $\catname{Haus}$ è completamente determinata dal suo valore su un sottospazio denso, ma non può esssere un isomorfismo dato che non è suriettiva.
+\end{example}
+
+\begin{example}{La categoria $2$}{mono ed epi ma non iso scimmia}
+    Consideriamo la categoria $2$ definita dal seguente diagramma
+        \[\begin{tikzcd}
+        	0 && 1
+    	    \arrow["0\le 0", from=1-1, to=1-1, loop, in=145, out=215, distance=10mm]
+        	\arrow["0\le 1", from=1-1, to=1-3]
+    	    \arrow["1\le 1", from=1-3, to=1-3, loop, in=325, out=35, distance=10mm]
+        \end{tikzcd}\]
+    Dato che a destra o sinistra possiamo comporre solo con l'identità $i\le i$, $0\le 1$ è sia monico che epico, ma non è isomorfismo in quanto non ha inverso.
+\end{example}
+
+Alcune categorie sono dotate di oggetti privilegiati, la cui esistenza ha alcune importanti conseguenze formali che vedremo in seguito.
+
+\begin{definition}{Oggetti iniziali e terminali}{oggetti iniziali e terminali}
+    Sia $\C$ una categoria .\\
+    Un oggetto $0$ si dice \bemph{iniziale} se per ogni oggetto $X$ di $\C$ esiste un unico morfismo $\iota_X:0\to X$\\
+    Un oggetto $1$ si dice \bemph{terminale} se è l'oggetto iniziale di $\C^\op$, o equivalentemente se per ogni oggetto $X$ di $\C$ esiste un unico morfismo $\zeta_X : X\to 1$.\\
     Se $I$ è sia terminale che iniziale, si dice \bemph{oggetto zero}.
 \end{definition}
+
+In particolare ha senso parlare di essenzialmente un unico oggetto iniziale, terminale o zero:
 
 \begin{proposition}{Unicità di oggetti iniziali e terminali}{unicità zero}
     Se una categoria $\C$ ammette un oggetto iniziale (o terminale o zero), questo è unico a meno di unico isomorfismo.
     \proof 
-    Siano $I, I'$ oggetti iniziali di $\C$; per definizione di oggetto iniziale, per ogni oggetto $X$ di $\C$ deve valere $\iota_X = \iota'_X \circ \iota_{I'}$, dunque ponendo $X=I$ otteniamo $\iota_I = \id_I = \iota'_I\circ \iota_{I'}$; analogamente otteniamo l'altro lato dell'inversione.
+    Siano $0, 0'$ oggetti iniziali di $\C$; per definizione di oggetto iniziale, per ogni oggetto $X$ di $\C$ deve valere $\iota_X = \iota'_X \circ \iota_{0'}$, dunque ponendo $X=0$ otteniamo $\iota_0 = \id_0 = \iota'_0\circ \iota_{0'}$; analogamente otteniamo l'altro lato dell'inversione.
     \qed
 \end{proposition}
 
@@ -217,7 +208,7 @@ Ora possiamo definire una categoria assolutamente centrale, di fatto la categori
     Per $\alpha \in \Ord$, indichiamo con $\setcat_\alpha$ la categoria i cui oggetti sono insiemi $\alpha$-piccoli, ovvero elementi di $\G_\alpha$, e i cui morfismi sono le funzioni tra di loro con l'usuale composizione di funzioni insiemistiche; indicheremo semplicemente con $\setcat$ la categoria $\setcat_\omega$ degli insiemi piccoli.\\
     Una categoria $\C$ si dice \bemph{concreta} se è munita di un funtore fedele $U:\C\to\setcat$, detto \bemph{dimenticante}: informalmente, le categorie concrete sono quelle i cui oggetti sono insiemi (piccoli) dotati di una certa struttura e i cui morfismi sono funzioni insiemistiche che rispettano questa struttura. Alcune categorie concrete sono:\begin{itemize}
         \item $\topcat$ degli spazi topologici e delle funzioni continue;
-        \item $\catname{Haus}$ degli spazi topologici $T_2$ e delle funzioni continue tra loro;
+        \item La sottocategoria $\catname{Haus}$ di $\topcat$ che abbiamo visto nell'esempio \cref{exmp:mono ed epi ma non iso in haus}
         \item $\mblecat$ degli spazi e delle funzioni misurabili;
         \item $\meascat$ degli spazi con misura e delle funzioni misurabili fra loro;
         \item $\veccat\K$ dei $\K$-spazi vettoriali e delle mappe lineari;
@@ -229,11 +220,13 @@ Ora possiamo definire una categoria assolutamente centrale, di fatto la categori
     Per qualsiasi ordinale $\alpha$, $\setcat_\alpha$ ha un unico oggetto iniziale, l'insieme vuoto $0:= \varnothing$, ed essenzialmente un'unico oggetto terminale, l'insieme $1:= \{0\}$.
 \end{example}
 
+Come "categorificazione" degli omomorfismi per le usuali strutture algebriche, ci aspettiamo che i funtori preservino gli isomorfismi ed in effetti è così, ma sotto opportune ipotesi otteniamo anche la cosiddetta "riflessione" degli isomorfismi.
+
 \begin{lemma}{Riflessione di isomorfismi}{riflessione di isomorfismi}
-    Sia $F:\C\to\D$ un funtore. Se $f:X\cong Y$, allora $Ff:FX\cong FY$.\\
-    Se $F$ è pienamente fedele e $g:FX\cong FY$, allora $X\cong Y$.
+    Sia $F:\C\to\D$ un funtore. Se $f:X\iso Y$, allora $Ff:FX\iso FY$.\\
+    Se $F$ è pienamente fedele e $g:FX\iso FY$, allora $X\cong Y$.
     \proof 
-    La prima implicazione è banale, dunque assumiamo che $F$ sia pienamente fedele e $g:FX\cong FY$ sia un isomorfismo; dato che la mappa $\varphi := F_{X,Y} : \C(X,Y) \to \D(FX,FY)$ è una biezione, esiste $f: X\to Y$ tale che $\varphi(f) = g$, dunque definiamo $f' := \varphi^{-1}(g^{-1})$ e dimostriamo che è un'inversa sinistra (dimostrare che è un'inversa destra è analogo). Dato che $F$ è un funtore, vale
+    La prima implicazione è banale, dunque assumiamo che $F$ sia pienamente fedele e $g:FX\iso FY$ sia un isomorfismo; dato che la mappa $\varphi := F_{X,Y} : \C(X,Y) \to \D(FX,FY)$ è una biezione, esiste $f: X\to Y$ tale che $\varphi(f) = g$, dunque definiamo $f' := \varphi^{-1}(g^{-1})$ e dimostriamo che è un'inversa sinistra (dimostrare che è un'inversa destra è analogo). Dato che $F$ è un funtore, vale
     \[f'f = \varphi^{-1}(\varphi(f'f) )=\varphi^{-1}(\varphi(f')\varphi(f)) = \varphi^{-1}(g^{-1}g) = \varphi^{-1}(\id_{FX}) = \id_X\]
     \qed
 \end{lemma}
@@ -267,18 +260,24 @@ Abbiamo visto che i morfismi sono trasformazioni tra oggetti, mentre i funtori s
     Una trasformazione naturale tale per cui tutti i morfismi $\Phi_X$ sono isomorfismi si dice \bemph{isomorfismo naturale}.
 \end{definition}
 
+Le trasformazioni naturali ci permettono di dare una nozione di equivalenza più appropriata al contesto della Teoria delle Categorie rispetto a quella di isomorfismo, troppo stringente per risultare interessante. 
+
 \begin{definition}{Equivalenza di categorie}{equivalenza di categorie}
     Siano $\C$ e $\D$ due categorie e siano $F:\C\to\D$ e $G:\D\to\C$ due funtori.\\
     La coppia $(F,G)$ si dice \bemph{equivalenza di categorie} tra $F$ e $G$ se esistono due isomorfismi naturali
     \[ \id_\C \cong GF \quad\text{e}\quad \id_\D \cong FG\]
 \end{definition}
 
-Useremo questa caratterizzazione\footnote{Senza assumere l'assioma della scelta in realtà si avrebbe solo un'implicazione} per le equivalenze di categorie, di cui omettiamo la dimostrazione in quanto più lunga e laboriosa che profonda.
+Un principio "filosofico" importante per la Teoria delle Categorie è il cosiddetto "principio di equivalenza", ovvero l'idea che tutte le costruzioni portate avanti e le proprietà dimostrate in Teoria delle Categorie debbano essere invarianti per equivalenza di categorie, ovvero che oggetti isomorfi debbano essere in qualche modo "indistinguibili": in un certo senso lo abbiamo già rotto con diverse delle nostre definizioni, ad esempio quando invochiamo l'uguaglianza estensionale per due insiemi invece di limitarci alla biezione.\\
+Di fatto nella pratica matematica il principio di equivalenza è uno slogan più che una legge, ma risulta estremamente importante quando si discute della possibilità di fondare la matematica sulla teoria delle categorie, o di fondare la teoria delle categorie su teorie alternative a quella degli insiemi di ZFC che non contengano ad esempio l'assioma di estensionalità.\\
+Useremo spesso (attraverso un altro risultato che vedremo dopo) questa caratterizzazione\footnote{Senza assumere l'assioma della scelta in realtà si avrebbe solo un'implicazione} per le equivalenze di categorie, di cui omettiamo la dimostrazione in quanto più lunga e laboriosa che profonda.
 
 \begin{proposition}{Caratterizzazione per un'equivalenza di categorie}{equivalenza di categorie}
     Sia $F : \C\to\D$ un funtore.\\
     Questo definisce un'equivalenza di categorie se e solo se è pienamente fedele ed essenzialmente suriettivo sugli oggetti.
 \end{proposition}
+
+Il ruolo dell'assioma della scelta sta nell'essenziale suriettività: per ottenere un'equivalenza di categorie da un funtore pienamente fedele ed essenzialmente suriettivo sugli oggetti dovremmo appunto scegliere un oggetto $x$ per ogni classe di isomorfismo $[Fx]$, possibile solo in alcuni casi senza l'assioma della scelta.
 
 \begin{definition}{Funtori aggiunti}{funtori aggiunti}
     Siano $\C,\D$ due categorie localmente $\alpha$-piccole e $F:\C\to\D$ e $G:\D\to\C$ due funtori.\\
@@ -290,7 +289,7 @@ Useremo questa caratterizzazione\footnote{Senza assumere l'assioma della scelta 
 
 \section{Lemma di Yoneda e conseguenze}
 
-Un risultato assolutamente centrale in Teoria delle Categorie è il lemma di Yoneda, una versione "categoriale" del teorema di Cayley in Teoria dei Gruppi\footnote{E in effetti, il teorema di Cayley può essere ridotto ad un caso particolare del lemma di Yoneda}.
+Un risultato assolutamente centrale in Teoria delle Categorie è il lemma di Yoneda, una versione "categoriale" del teorema di Cayley in Teoria dei Gruppi\footnote{E in effetti, il teorema di Cayley può essere ridotto ad un caso particolare del lemma di Yoneda}. Prima di presentarlo dobbiamo introdurre alcune costruzioni e nozioni importanti per formularlo.
 
 \begin{definition}{Categoria dei funtori}{categoria dei funtori}
     Siano $\C,\D$ due categorie.\\
@@ -332,15 +331,15 @@ Un risultato assolutamente centrale in Teoria delle Categorie è il lemma di Yon
     Un funtore covariante o controvariante $F$ a valori in $\setcat$ si dice \bemph{rappresentabile} se esiste una \bemph{rappresentazione} di $F$, ovvero un oggetto $A$ di $\C$ e un isomorfismo naturale $\Phi:h_A\to F$ nel caso covariante, $\Phi: h^A\to F$ nel caso controvariante.
 \end{definition}
 
-Gli $\hom$-funtori sono l'esempio prototipico di \bemph{endoprofuntori}: un profuntore da $\C$ a $\D$ è un funtore $\D^\op\times\C\to\setcat$, 
+Gli $\hom$-funtori sono l'esempio prototipico di \bemph{endoprofuntori}: un profuntore da $\C$ a $\D$ è un funtore $\D^\op\times\C\to\setcat$, a livello intuitivo una sorta di "categorificazione" di un tensore.
 
 \begin{theorem}{Lemma di Yoneda covariante}{lemma di yoneda covariante}
     Sia $\C$ una categoria localmente piccola e sia $F:\C\to\setcat$ un funtore covariante.\\ Allora esiste un isomorfismo in $\setcat$
     \[ \nat (h_A, F) \cong F(A)\]
     naturale in $A$ e $F$, ovvero sia se visto come trasformazione naturale $\nat(h_\bullet, F)\to F$ sia come trasformazione naturale $\nat(h_A,-)\to -(A)$.
     \proof 
-    Diamo uno sketch della dimostrazione, mancano alcuni dettagli come la dimostrazione della naturalità in $A$ e $F$ ma l'importante è lo spirito della cosa.\\ 
-    Sia $\Phi \in \nat(h_A,F)$. Dato che questa è naturale, il seguente diagramma commuta: 
+    Dimostriamo solamente l'esistenza della biezione, la dimostrazione della naturalità è ancora una volta più lunga e laboriosa che illuminante.
+    Sia $\Phi \in \nat(h_A,F)$. Per definizione di trasformazione naturale, il seguente diagramma commuta: 
     \[\begin{tikzcd}
     	A && {h_A(A)} &&&& {F(A)} \\
     	&&& {\id_A} && u \\
@@ -358,8 +357,8 @@ Gli $\hom$-funtori sono l'esempio prototipico di \bemph{endoprofuntori}: un prof
     	\arrow["{\Phi_X}"{description}, from=5-3, to=5-7]
     \end{tikzcd}\]
     Vediamo che ci basta specificare l'assegnazione blu per determinare univocamente tutto il resto:\begin{itemize}
-        \item Partendo da $\Phi \in \nat(h_A, F)$ ci basta specificare $\Phi \mapsto u :=\Phi_A(\id_A)$ elemento di $F(A)$.
-        \item Partendo da $u \in F(A)$ costruiamo la trasformazione naturale $\Phi$ definendo per ogni $X \in \ob\C$ il morfismo $\Phi_X(f:A\to X) := Ff(u)$.
+        \item Per ciascuna $\Phi \in \nat(h_A, F)$ ci basta specificare $\Phi \mapsto u :=\Phi_A(\id_A)$ elemento di $F(A)$.
+        \item Per ciascun $u \in F(A)$ costruiamo la trasformazione naturale $\Phi$ definendo per ogni $X \in \ob\C$ il morfismo $\Phi_X(f:A\to X) := Ff(u)$.
     \end{itemize} 
     \qed
 \end{theorem}
@@ -373,13 +372,10 @@ Abbiamo dualmente la versione controvariante:
     naturale in $A$ e $F$.
 \end{corollary}
 
-\begin{remark}{Lemma di Yoneda e grandezza}{lemma di Yoneda e grandezza}
-    In generale l'isomorfismo datoci da \cref{th:lemma di yoneda covariante} non è una biezione tra insiemi piccoli, in quanto gli elementi di $\nat(h_A,F)$ non sono in generale insiemi piccoli.\\
-    Prendiamo ad esempio il funtore identità $\mathbf{Id}$ da $\setcat$ (ricordiamo la definizione \cref{exmp:setcat e categorie concrete}) in sè stessa: noi abbiamo che $\nat(h_S,\mathbf{Id})$ è in biezione con $S$, ma gli elementi di $\nat(h_S,\mathbf{Id})$ sono indicizzati da $\G$, che non è affatto un insieme piccolo.\\
-    Avendo l'assioma \cref{ax:assioma di universo} non incorriamo in problemi di tipo logico o fondativo, ma se non avessimo limitato in questo modo la grandezza delle nostre categorie dovremmo gestire in qualche modo la collezione $\nat(h_S,\mathbf{Id})$, che per quanto ci sia garantito debba essere "grande quanto" un insieme, sarebbe una collezione di elementi normalmente considerati come classi proprie, ovvero classi che non possono appartenere ad altre classi.
-\end{remark}
-
-Una delle più naturali applicazioni del lemma di Yoneda è la rappresentazione di Yoneda, fondamentale in gran parte della topologia e della geometria moderna: essa permette di identificare una categoria $\C$ con una sottocategoria della cosiddetta \bemph{categoria dei prefasci su} $\C$, che è solo un altro nome per $[\C^\op,\setcat]$. Ad esempio se interpretiamo la topologia $\tau$ di uno spazio $(X,\tau)$ come una categoria, dove i morfismi sono dati dall'inclusione insiemistica, questa è completamente determinata dalle classi delle funzioni continue entranti nei (o uscenti dai) suoi aperti.
+In generale l'isomorfismo datoci da \cref{th:lemma di yoneda covariante} non è una biezione tra insiemi piccoli, in quanto gli elementi di $\nat(h_A,F)$ non sono in generale insiemi piccoli.\\
+Prendiamo ad esempio il funtore identità $\mathbf{Id}$ da $\setcat$ (ricordiamo la definizione \cref{exmp:setcat e categorie concrete}) in sè stessa: noi abbiamo che $\nat(h_S,\mathbf{Id})$ è in biezione con l'insieme sì piccolo $S$, ma gli elementi di $\nat(h_S,\mathbf{Id})$ sono indicizzati da $\G$, che non è affatto un insieme piccolo. Analogamente a come in generale la grandezza dell'insieme dei suoi oggetti limita solo inferiormente la grandezza di una categoria, in generale la cardinalità di un insieme limita solo inferiormente la sua grandezza.\\
+Avendo l'assioma \cref{ax:assioma di universo} non incorriamo in problemi di tipo logico o fondativo, ma se non avessimo limitato in questo modo la grandezza delle nostre categorie dovremmo gestire in qualche modo la collezione $\nat(h_S,\mathbf{Id})$, che per quanto ci sia garantito debba essere "grande quanto" un insieme, sarebbe una collezione di elementi normalmente considerati come classi proprie, ovvero classi che non possono appartenere ad altre classi.\\
+Una delle più importanti applicazioni del lemma di Yoneda è la rappresentazione\footnote{In inglese \textit{embedding}, abbiamo deciso di tradurlo con "rappresentazione" per l'analogia al teorema e alla rappresentazione di Cayley.} di Yoneda, fondamentale in gran parte della topologia e della geometria moderna: essa permette di identificare una categoria $\C$ con una sottocategoria della cosiddetta \bemph{categoria dei prefasci su} $\C$, che è solo un altro nome per $[\C^\op,\setcat]$. Ad esempio se interpretiamo la topologia $\tau$ di uno spazio $(X,\tau)$ come una categoria, dove i morfismi sono dati dall'inclusione insiemistica, questa è completamente determinata dalle classi delle funzioni continue entranti nei (o uscenti dai) suoi aperti.
 
 \begin{theorem}{Rappresentazione di Yoneda covariante}{rappresentazione di yoneda covariante}
     Sia $\C$ una categoria. Questa è equivalente ad una sottocategoria piena di $[\C^\op, \setcat]$ tramite la mappa $\mc{Y} : \C \to [\C^\op, \setcat]$ definita da questo diagramma:
@@ -440,9 +436,11 @@ Ora grazie al lemma di Yoneda possiamo dimostrare un fatto che ci servirà più 
     \qed
 \end{lemma}
 
+In generale la categoria $[\C^\op,\setcat]$ è mostruosamente più grande di $\C$, quindi cercare oggetti particolari di $\C$ in $[\C^\op,\setcat]$ attraverso la rappresentazione di Yoneda potrebbe sembrare un modo per trasformare dei problemi semplici in problemi più complicati, ma in molti casi (come quello appena visto) risulta più facile confrontare 
+
 \section{Limiti}
 
-Uno dei concetti più importanti in Teoria delle Categorie è quello di limite. Per definire il concetto di limite dobbiamo dare la definizione formale di diagramma in una categoria, che generalizza il concetto di famiglia indicizzata in $\setcat$.
+Uno dei concetti più importanti in Teoria delle Categorie è quello di limite. Per definire propriamente i limiti dobbiamo dare la definizione formale di diagramma in una categoria, che categorifica il concetto di famiglia indicizzata in $\setcat$.
 
 \begin{definition}{Diagramma commutativo}{diagramma commutativo}
     Siano $\J, \C$ due categorie.\\
@@ -484,7 +482,6 @@ Ed eccoci pronti a definire i limiti.
 \end{definition}
 
 Più esplicitamente\footnote{Ovvero scrivendo per esteso la definizione di oggetto terminale}, possiamo definire il limite di $F$ in $\C$ come il cono $(L,\psi^L)$ tale che per ogni altro cono $(N,\psi^N)$ esista un unico morfismo $\lambda_N : N\to L$ tale che il seguente diagramma commuti:
-
 \[\begin{tikzcd}
 	&& N \\
 	\\
@@ -498,10 +495,9 @@ Più esplicitamente\footnote{Ovvero scrivendo per esteso la definizione di ogget
 	\arrow["{\psi^L_X}"{description}, from=3-3, to=5-5]
 	\arrow["{F(f)}"{description}, from=5-1, to=5-5]
 \end{tikzcd}\]
-
 Chiameremo una tale proprietà\footnote{Ovvero essere il cono terminale/iniziale su un qualche diagramma} \bemph{universalità}.\\
-Il concetto di limite è uno dei concetti centrali della Teoria delle Categorie: analogamente a come sia possibile definire equivalentemente aperti, chiusi, intorni, chiusura, interno e così via in Topologia Generale, è possibile definire i funtori aggiunti in termini di limiti, i limiti in termini di funtori aggiunti ed equivalentemente tante altre costruzioni in Teoria delle Categorie.\\
-Talvolta diremo che una categoria "ammette/ha tutti i..." facendo riferimento a dei (co)limiti definiti su una qualche classe di diagrammi: questo significa che ogni diagramma di quella classe ammette un (co)limite in $\C$.
+Il limite è uno dei concetti centrali della Teoria delle Categorie: analogamente a come sia possibile definire equivalentemente aperti, chiusi, intorni, chiusura, interno e così via in Topologia Generale, è possibile definire i funtori aggiunti in termini di limiti, i limiti in termini di funtori aggiunti ed equivalentemente tante altre costruzioni in Teoria delle Categorie.\\
+Talvolta diremo che una categoria "ammette/ha tutti i..." facendo riferimento a dei (co)limiti definiti su una qualche forma di diagrammi: questo significa che ogni diagramma di quella forma ammette un (co)limite in $\C$.
 
 \begin{remark}{Limiti e oggetti iniziali}{limiti e oggetti iniziali}
     Sia $F:\J\to\C$ un diagramma.\begin{itemize}
@@ -513,7 +509,7 @@ Talvolta diremo che una categoria "ammette/ha tutti i..." facendo riferimento a 
 
 \subsection{Limiti notevoli}
 
-Presentiamo alcuni limiti di particolare importanza (in effetti delle classi di limiti) nella pratica matematica; in questa sezione, assumeremo per semplicità che $\J$ sia una sottocategoria (di forma opportunamente specificata) di $\C$ e $F : \J \inj \C$ sia il funtore di inclusione: questo ci permetterà di dire semplicemente "Sia $\J$ un diagramma" o parlare di $\catlim\J$.
+Presentiamo alcune forme di diagramma che hanno limiti di particolare importanza nella pratica matematica; in questa sezione, assumeremo per semplicità che $\J$ sia una sottocategoria (di forma opportunamente specificata) di $\C$ e $F : \J \inj \C$ sia il funtore di inclusione: questo ci permetterà di dire semplicemente "Sia $\J$ un diagramma" o parlare di $\catlim\J$.
 
 \begin{definition}{Prodotto}{prodotto limite}
     Sia $\C$ una categoria e sia $\J$ un diagramma discreto (ovvero i cui unici morfismi sono le identità).\\
@@ -523,7 +519,7 @@ Presentiamo alcuni limiti di particolare importanza (in effetti delle classi di 
     I morfismi $\pi_X : \prod\J\to X$ si dicono \bemph{proiezioni}, mentre i morfismi $\iota_X: X\to\coprod\J$ si dicono \bemph{inclusioni}.
 \end{definition}
 
-È immediato osservare che se $\C$ ammette un oggetto terminale, questo è il prodotto del diagramma vuoto.
+È immediato osservare che se $\C$ ammette un oggetto terminale $1$, il prodotto del diagramma vuoto esiste ed è $1$.
 
 \begin{definition}{Pullback o prodotto fibrato}{pullback o prodotto fibrato}
     Sia $\C$ una categoria, e sia $\J$ il diagramma $\{ X\xrightarrow{f} Z \xleftarrow{g} Y \}$, detto \bemph{cospan}\footnote{E ovviamente $\J^\op$ si dirà \bemph{span}}.\\
@@ -603,16 +599,16 @@ Considerando l'ubiquità del concetto di (co)limite, è importante essere in gra
 
 \subsection{Prodotti}
 
-Chiudiamo con una discussione di una diversa caratterizzazione del prodotto di due oggetti in una categoria.\\
+Chiudiamo il capitolo con una discussione di una diversa caratterizzazione del prodotto di due oggetti in una categoria.\\
 La definizione che abbiamo dato in \cref{def:prodotto limite} è evidentemente utile quando si parla di lavorare coi prodotti nell'usuale pratica matematica, ad esempio è una definizione meno "pesante" di quella che si dà dei prodotti in $\topcat$ o $\mblecat$ nella maggior parte dei corsi introduttivi di Topologia Generale o Teoria della Misura. Allo stesso modo non dipende da scelte arbitrarie, come di una norma prodotto in $\catname{NormVec}\K$ o di una misura prodotto in $\meascat$.\\
 Tuttavia in altre applicazioni della Teoria delle Categorie, ad esempio in Topologia Algebrica o informatica teorica, può essere agevole considerare il prodotto di due oggetti non come definito intrinsecamente tramite proprietà universale, ma come un bifuntore.
 
 \begin{theorem}{Caratterizzazione del prodotto binario}{prodotto binario come funtore}
     Sia $\C$ una categoria localmente piccola e sia $\Delta :\C\to\C\times\C$ il funtore diagonale, ovvero l'applicazione
     \[ \Delta( f:X\to Y ) = ((f,f):(X,X)\to(Y,Y)).\]
-    Se $\C$ ammette i prodotti binari, l'applicazione $\Pi : \C\times\C \to \C$ definita da
-    \[\Pi((f,g):(X,Y)\to(W,Z)) := (f\times g : X\times Y \to W\times Z) \]
-    definisce un funtore aggiunto destro a $\Delta$.
+    Se $\C$ ammette i prodotti binari, \textit{una scelta un prodotto per ciascuna coppia di oggetti} definisce un'applicazione $\Pi : \C\times\C \to \C$ attraverso la mappa
+    \[\Pi((f,g):(X,Y)\to(W,Z)) := (\langle f, g\rangle : X\times Y \to W\times Z) \]
+    che è funtoriale e aggiunta destra a $\Delta$.
     \proof
     Osserviamo che dalle definizioni di categoria prodotto (definizione \cref{def:categoria prodotto e bifuntore}), di prodotto nella definizione \cref{def:prodotto limite} e assumendo che il prodotto in $\setcat$ sia l'usuale prodotto cartesiano\footnote{Dimostrazione lasciata per esercizio al lettore}, la seguente catena di biezioni è verificata in $\setcat$ per ogni $A,B$ e $C$ oggetti in $\C$:
     \[\begin{aligned}
@@ -625,16 +621,23 @@ Tuttavia in altre applicazioni della Teoria delle Categorie, ad esempio in Topol
     \qed
 \end{theorem}
 
+Tornando indietro alla discussione del principio di equivalenza avuta in \ref{def:equivalenza di categorie}, notiamo che questo risultato dipende da una serie di scelte che solo dopo possiamo "sanare" grazie al lemma di Yoneda che ci garantisce che scelte diverse ci danno \textit{essenzialmente} lo stesso funtore. Vediamo che vale anche l'implicazione inversa:
+
+\begin{theorem}{}{}
+    Sia $\C$ una categoria localmente piccola e sia $\Delta :\C\to\C\times\C$ il funtore diagonale.\\
+    Se $\Delta$ ammette un aggiunto destro $\Pi$, allora $\C$ ammette i prodotti binari e per ogni coppia $(X,Y)$ di oggetti di $\C$, $\Pi(X,Y)$ è \textit{un} prodotto di $X$ e $Y$.
+    \proof 
+    Credo serva introdurre unità e counità? Ci penso
+\end{theorem}
+
 \begin{corollary}{Caratterizzazione del coprodotto binario}{caratterizzazione del coprodotto binario}
     Sia $\C$ una categoria localmente piccola e sia $\Delta :\C\to\C\times\C$ il funtore diagonale.\\
-    Se $\C$ ammette i coprodotti binari, l'applicazione $\amalg : \C\times\C \to \C$ definita da
-    \[\amalg ((f,g):(X,Y)\to(W,Z)) := (f + g : X + Y \to W + Z) \]
-    definisce un funtore aggiunto sinistro a $\Delta$.
+    $\C$ ammette i coprodotti binari se e solo se ammette un funtore $\amalg$ aggiunto sinistro a $\Delta$ e e per ogni coppia $(X,Y)$ di oggetti di $\C$, $\amalg(X,Y)$ è \textit{un} coprodotto di $X$ e $Y$.
 \end{corollary}
 
 \newcommand\eval{\operatorname{eval}}
 
-\section{Categorie Cartesiane Chiuse}
+\chapter{Categorie Cartesiane Chiuse}
 
 \begin{definition}{}{}
     Sia $\C$ una categoria e siano $X,Y$ oggetti di $\C$ che abbiano un prodotto in $\C$.\\
@@ -736,79 +739,79 @@ Seguendo questa intuizione, ci si potrebbe chiedere se la categoria degli spazi 
     \[ -\times B : \C \ni (f:X\to Y) \mapsto (f\times \id_B : X\times B \to Y\times B )\in \C\]
 \end{theorem}
 
-\subsection{Topos elementari}
+% \subsection{Topos elementari}
 
-\begin{definition}{Suboggetto}{}
-    Sia $\C$ una categoria.\\
-    Definiamo un funtore $M : \C \to \CATcat$ che manda un'oggetto $X$ di $\C$ nella categoria $M(X)$ i cui oggetti sono i monomorfismi in $\C$ con codominio $X$ e in cui un morfismo $x\to y$ è un morfismo di $\C$ che fa commutare il seguente diagramma:
-    \[\begin{tikzcd}
-    	x && y \\
-	    \\
-	    & X
-	    \arrow[from=1-1, to=1-3]
-	    \arrow[hook, from=1-1, to=3-2]
-	    \arrow[hook, from=1-3, to=3-2]
-    \end{tikzcd}\]
-    Definiamo la \bemph{categoria dei suboggetti} di $X$ come lo scheletro della categoria $M(X)$ e la indichiamo con $S(X)$.
-\end{definition}
+% \begin{definition}{Suboggetto}{}
+%     Sia $\C$ una categoria.\\
+%     Definiamo un funtore $M : \C \to \CATcat$ che manda un'oggetto $X$ di $\C$ nella categoria $M(X)$ i cui oggetti sono i monomorfismi in $\C$ con codominio $X$ e in cui un morfismo $x\to y$ è un morfismo di $\C$ che fa commutare il seguente diagramma:
+%     \[\begin{tikzcd}
+%     	x && y \\
+% 	    \\
+% 	    & X
+% 	    \arrow[from=1-1, to=1-3]
+% 	    \arrow[hook, from=1-1, to=3-2]
+% 	    \arrow[hook, from=1-3, to=3-2]
+%     \end{tikzcd}\]
+%     Definiamo la \bemph{categoria dei suboggetti} di $X$ come lo scheletro della categoria $M(X)$ e la indichiamo con $S(X)$.
+% \end{definition}
 
-\begin{proposition}{}{}
-    \begin{enumerate}
-        \item La categoria $M(X)$ ammette un oggetto terminale in $\id_X : X\to X$ e la sua classe di isomorfismo lo è in $S(X)$.
-        \item Se $\C$ ammette un oggetto iniziale $0$, il monomorfismo $0\to X$ è iniziale in $M(X)$ e la sua classe di isomorfismo lo è in $S(X)$.
-        \item La relazione $x\le y \Harr \exists x\to y$ definisce un preordine in $M(X)$ e un ordine in $S(X)$.
-        \item Per $x\inj X$ e $y\inj X$ definiamo $x\wedge y \inj X$ come il loro pullback, quando esiste; se $\C$ ammette questo induce una struttura di reticolo su $S(X)$.
-    \end{enumerate}
-    \proof 
-    \begin{enumerate}
-        \item In quanto isomorfismo, l'identità è sicuramente monica; notiamo inoltre che per ogni mono $x \inj X$ l'unico morfismo che fa commutare il diagramma è $x\inj X$ stesso. 
-        \item Notiamo che il seguente diagramma commuta sempre:
-        \[\begin{tikzcd}
-        	0 && y \\
-	        \\
-	        x && X
-        	\arrow[from=1-1, to=1-3]
-	        \arrow[from=1-1, to=3-1]
-	        \arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=1-1, to=3-3]
-	        \arrow[hook, from=1-3, to=3-3]
-	        \arrow[hook, from=3-1, to=3-3]
-        \end{tikzcd}\]
-        \item Dobbiamo dimostrare che $\le$ è riflessiva e transitiva:\begin{itemize}
-            \item Sicuramente $\id_x : x\to x$ è un valido morfismo in $M(X)$, dunque $x\le x$;
-            \item Per definizione di $\le$ segue automaticamente dalla struttura di categoria.
-        \end{itemize}
-        Assumiamo dunque che $[x]\le[y]$ e $[y]\le[x]$. Dobbiamo dimostrare che $\le$ è ben definita sulle classi di isomorfismo e che è antisimmetrica:\begin{itemize}
-            \item Notiamo che per ogni coppia di isomorfismi $x'\cong x$ e $y\cong y'$ e ogni freccia $x\to y$ esiste una freccia $x'\to y'$ che faccia commutare il diagramma:
-            \[\begin{tikzcd}
-            	x && y \\
-	            \\
-	            {x'} && {y'}
-	            \arrow[from=1-1, to=1-3]
-	            \arrow[shift left=2, curve={height=-6pt}, from=1-1, to=3-1]
-	            \arrow[shift left=2, curve={height=-6pt}, from=1-3, to=3-3]
-	            \arrow[shift right=2, curve={height=6pt}, from=1-3, to=3-3]
-	            \arrow[shift left=2, curve={height=-6pt}, from=3-1, to=1-1]
-	            \arrow[from=3-1, to=3-3]
-            \end{tikzcd}\]
-            Dunque la definizione di $\le$ non dipende dai rappresentanti delle classi.
-            \item Dato che gli oggetti di $M(X)$ sono monomorfismi, $x\le y$ e $y\le x$ implicano $x\cong y$ e dunque $[x]=[y]$.
-        \end{itemize}
-    \end{enumerate}
-\end{proposition}
+% \begin{proposition}{}{}
+%     \begin{enumerate}
+%         \item La categoria $M(X)$ ammette un oggetto terminale in $\id_X : X\to X$ e la sua classe di isomorfismo lo è in $S(X)$.
+%         \item Se $\C$ ammette un oggetto iniziale $0$, il monomorfismo $0\to X$ è iniziale in $M(X)$ e la sua classe di isomorfismo lo è in $S(X)$.
+%         \item La relazione $x\le y \Harr \exists x\to y$ definisce un preordine in $M(X)$ e un ordine in $S(X)$.
+%         \item Per $x\inj X$ e $y\inj X$ definiamo $x\wedge y \inj X$ come il loro pullback, quando esiste; se $\C$ ammette questo induce una struttura di reticolo su $S(X)$.
+%     \end{enumerate}
+%     \proof 
+%     \begin{enumerate}
+%         \item In quanto isomorfismo, l'identità è sicuramente monica; notiamo inoltre che per ogni mono $x \inj X$ l'unico morfismo che fa commutare il diagramma è $x\inj X$ stesso. 
+%         \item Notiamo che il seguente diagramma commuta sempre:
+%         \[\begin{tikzcd}
+%         	0 && y \\
+% 	        \\
+% 	        x && X
+%         	\arrow[from=1-1, to=1-3]
+% 	        \arrow[from=1-1, to=3-1]
+% 	        \arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=1-1, to=3-3]
+% 	        \arrow[hook, from=1-3, to=3-3]
+% 	        \arrow[hook, from=3-1, to=3-3]
+%         \end{tikzcd}\]
+%         \item Dobbiamo dimostrare che $\le$ è riflessiva e transitiva:\begin{itemize}
+%             \item Sicuramente $\id_x : x\to x$ è un valido morfismo in $M(X)$, dunque $x\le x$;
+%             \item Per definizione di $\le$ segue automaticamente dalla struttura di categoria.
+%         \end{itemize}
+%         Assumiamo dunque che $[x]\le[y]$ e $[y]\le[x]$. Dobbiamo dimostrare che $\le$ è ben definita sulle classi di isomorfismo e che è antisimmetrica:\begin{itemize}
+%             \item Notiamo che per ogni coppia di isomorfismi $x'\cong x$ e $y\cong y'$ e ogni freccia $x\to y$ esiste una freccia $x'\to y'$ che faccia commutare il diagramma:
+%             \[\begin{tikzcd}
+%             	x && y \\
+% 	            \\
+% 	            {x'} && {y'}
+% 	            \arrow[from=1-1, to=1-3]
+% 	            \arrow[shift left=2, curve={height=-6pt}, from=1-1, to=3-1]
+% 	            \arrow[shift left=2, curve={height=-6pt}, from=1-3, to=3-3]
+% 	            \arrow[shift right=2, curve={height=6pt}, from=1-3, to=3-3]
+% 	            \arrow[shift left=2, curve={height=-6pt}, from=3-1, to=1-1]
+% 	            \arrow[from=3-1, to=3-3]
+%             \end{tikzcd}\]
+%             Dunque la definizione di $\le$ non dipende dai rappresentanti delle classi.
+%             \item Dato che gli oggetti di $M(X)$ sono monomorfismi, $x\le y$ e $y\le x$ implicano $x\cong y$ e dunque $[x]=[y]$.
+%         \end{itemize}
+%     \end{enumerate}
+% \end{proposition}
 
 
-\subsection{Chiusura cartesiana di una categoria}
+% \subsection{Chiusura cartesiana di una categoria}
 
-Ha senso porsi la domanda di come "chiudere" una categoria cartesiana $\C$ 
+% Ha senso porsi la domanda di come "chiudere" una categoria cartesiana $\C$ 
 
-\subsubsection{"Gruppo generato"}
+% \subsubsection{"Gruppo generato"}
 
-\begin{theorem}{Gruppo libero}{}
-    Sia $U:\grpcat\to\setcat$ il funtore dimenticante che manda un gruppo $(G,\cdot)$ nell'insieme $G$.\\
-    Il funtore $U$ possiede un aggiunto sinistro $F\dashv U$.
-    \proof 
-    Sia $X$ un insieme e sia 
-\end{theorem}
+% \begin{theorem}{Gruppo libero}{}
+%     Sia $U:\grpcat\to\setcat$ il funtore dimenticante che manda un gruppo $(G,\cdot)$ nell'insieme $G$.\\
+%     Il funtore $U$ possiede un aggiunto sinistro $F\dashv U$.
+%     \proof 
+%     Sia $X$ un insieme e sia 
+% \end{theorem}
 
 \newcommand\percat{\catname{PER}}
 \newcommand\pf{\catname{pf}}
