@@ -818,22 +818,27 @@ Seguendo questa intuizione, ci si potrebbe chiedere se la categoria degli spazi 
 \newcommand\grf{\catname{grf}}
 \newcommand\prf{\catname{prf}}
 
-\section{La categoria $\percat(\N)$}
+\chapter{La categoria $\percat(\N)$}
 
-\subsection{Funzioni ricorsive generali}
+\section{Funzioni ricorsive generali}
 
 Consideriamo la seguente categoria:
 
 \begin{definition}{}{}
-    Sia $\pf(\N)$ la categoria i cui oggetti sono potenze finite di $\N$, compreso $\N^0 = 1$, e i cui morfismi sono le \bemph{funzioni parziali} su $\N$, ovvero dove un morfismo $f:\N^n\to \N^m$ è dato da una funzione $f: D\to\N^m$, dove $D\subset \N^k$ può essere anche vuoto.\\
-    I morfismi identità corrispondono alle funzioni identità e la composizione $g\circ f$ è data dalla funzione $g|_{D} \circ f$, dove $D$ è il dominio\footnote{Inteso in senso insiemistico, non in senso categoriale} di $f$.
+    Sia $\pf(\N)$ la categoria i cui oggetti sono potenze finite di $\N$, ovvero 
+    \[\ob\pf(\N) := \{ \N^n : n\in\N  \} \qquad\text{con}\qquad \N^n := \begin{cases}
+    1 := \{\varnothing\} & \text{se } n = 0\\
+    \{ (x_1,..., x_n) : \forall i\le n, x_i \in \N \} & \text{altrimenti}
+    \end{cases} \]
+    E i cui morfismi sono le \bemph{funzioni parziali} su $\N$, ovvero dove un morfismo $f:\N^n\to \N^m$ è dato da una funzione $f: D\to\N^m$, dove $D\subset \N^k$ può essere anche vuoto.\\
+    I morfismi identità corrispondono alle funzioni identità \textit{totali} e la composizione $g\circ f$ è data dalla composizione di funzioni nei punti $x$ tali che $f(x)$ e $g(f(x))$ sono definite e lasciata indefinita altrimenti.
 \end{definition}
 
-\begin{remark}{}{}
-    Per ogni $n,m \in \N$, la funzione vuota definisce un valido morfismo $\N^n\to \N^m$.
-\end{remark}
+Notiamo che innanzitutto la funzione vuota definisce sempre un valido morfismo $\N^n\to\N^m$, e che sebbene $1$ sia terminale in $\setcat$ non lo è in $\pf(\N)$, in quanto per ogni oggetto $\N^n$ esiste un morfismo $\N^n\to 1$ per ogni sottoinsieme di $\N^n$.\\
+Vediamo che, indicando con $D_f$ il dominio come funzione di un morfismo $f$, vale 
+\[ D_{g\circ f} = D_f\cap(D_g\cap f(D_f)) \]
 
-\begin{remark}{}{}
+\begin{proposition}{Cardinalità di $\pf(\N)$}{cardinalità delle funzioni parziali}
     Mentre l'insieme $\ob\pf(\N)$ è numerabile, $\hom\pf(\N)$ ha cardinalità del continuo.
     \proof 
     Dato che le funzioni totali sono casi particolari di funzioni parziali, e le funzioni parziali sono casi particolari di relazioni (che sono semplicemente sottoinsiemi del prodotto cartesiano), valgono le seguenti inclusioni:
@@ -841,20 +846,20 @@ Consideriamo la seguente categoria:
     Dunque passando alle cardinalità per $n,m \ge 1$ possiamo concludere che $\hom_\pf(\N^n,\N^m)$ abbia cardinalità del continuo; a questo punto basta osservare che
     \[ \hom\pf(\N) = \bigcup_{n\in \N, m\in \N} \hom_\pf(\N^n,\N^m) \]
     Dato che è un'unione numerabile di insiemi che hanno al più cardinalità del continuo e quasi sempre la raggiungono, possiamo concludere che abbia cardinalità del continuo.
-\end{remark}
+\end{proposition}
 
 \renewcommand\R{\mc{R}}
 
 \begin{definition}{}{grf e prf}
     Consideriamo la sottocategoria $\grf(\N)$ di $\pf(\N)$ definita da $\ob\grf(\N) = \ob\pf(\N)$ e il cui insieme dei morfismi $\R$ è definito come il minimo sottoinsieme di $\hom\pf(\N)$ tale che:\begin{enumerate}
-        \item Le funzioni zero $z_n : \N^n \to \N^0$ appartengono a $\R$ per ogni $n \in \N$.
+        \item La funzione costantemente zero $z : 1 \to \N$ appartiene a $\R$.
         \item La funzione successore $s: \N \to \N$ appartiene a $\R$.
-        \item Le proiezioni $\pi_i : \N^n \to \N$ appartengono a $\R$; notiamo che questo include la famiglia di funzioni $\sigma_k: 1\to \N$ di scelta di un elemento $k$.
-        \item Se $f:\N^n\to\N^a$ e $g: \N^n\to \N^b$ appartengono a $\R$, allora la funzione $h:\N^n\to\N^{a+b}$ data da $h(\mathbf{x}) = (f(\mathbf{x}),g(\mathbf{x}))$ appartiene a $\R$
-        \item Se $f:\N^l\to \N^n$ e $g: \N^n\to \N^m$ appartengono a $\R$, allora la loro composizione $g\circ f$ appartiene a $\R$.
-        \item Se $f: \N^k \to \N^n$ e $g : \N^{k+2}\to\N^n$ appartengono a $\R$, allora la funzione $h:\N^{k+1}\to\N^n$ definita per induzione da
+        \item Per ogni $n\ge i\ge 1$ le proiezioni $\pi_i^n : \N^n \to \N$ appartengono a $\R$.
+        \item Per $n,k\ge 0$, se $f_1,..., f_k : \N^n\to\N$ appartengono a $\R$, allora il loro \bemph{appaiamento} $\langle f_1,..., f_k \rangle : \N^n\to\N^k$ (il cui dominio come funzione è l'intersezione dei domini di ogni componente) appartiene a $\R$; in particolare se $k=0$ otteniamo la funzione $!:\N^n\to 1$ che ritorna la $0$-upla $\varnothing = \langle\rangle$.
+        \item Se $f:\N^a\to \N^b$ e $g: \N^b\to \N^c$ appartengono a $\R$, allora la loro composizione $g\circ f : \N^a\to\N^c$ appartiene a $\R$.
+        \item Se $f: \N^k \to \N$ e $g : \N^{k+2}\to\N$ appartengono a $\R$, allora la funzione $h:\N^{k+1}\to\N$ definita per induzione da
         \[ h(\mathbf{x},y) = \begin{cases}
-            f(\mathbf{x}) & \text{se }y=0 \\ g(\mathbf{x},y-1,y) & \text{altrimenti}
+            f(\mathbf{x}) & \text{se }y=0 \\ g(\mathbf{x},y,h(y-1)) & \text{altrimenti}
         \end{cases}\]
         appartiene a $\R$.
         \item Se $f\in \hom_{\pf}(\N^{k+1},\N)$, allora la funzione definita da
@@ -891,59 +896,59 @@ Consideriamo la seguente categoria:
 \newcommand\imp{\catname{IMP}}
 \newcommand\stimp{\imp^{(\to)}}
 \newcommand\nimp{\N\imp}
-\subsection{Il linguaggio $\nimp$}
+\newcommand\Var{\catname{Var}}
+\newcommand\Input{\catname{Input}}
+\newcommand\Output{\catname{Output}}
+\newcommand\Temp{\catname{Temp}}
+\newcommand\Exp{\catname{Exp}}
+\newcommand\Com{\catname{Com}}
+\renewcommand\skip{\catname{skip}}
+\newcommand\while{\catname{while}}
+\renewcommand\do{\catname{do}}
+\newcommand\ifc{\catname{if}}
+\newcommand\then{\catname{then}}
+\newcommand\elsec{\catname{else}}
 
-\begin{example}{Esempio di un programma in $\imp$ e in }{}
-    Un semplice programma in $\imp$
-\end{example}
+\section{Il linguaggio $\imp$ e il teorema $s-m-n$}
+\renewcommand\c{\mathbf{c}}
 
-\begin{definition}{Il linguaggio $\nimp$}{}
-    Modifichiamo leggermente la sintassi di $\imp$ per comodità:\begin{itemize}
-        \item Invece di permettere che le variabili di tipo numerico siano elementi di $\Z$, permettiamo che siano elementi di $\N$.
-        \item Ammettiamo variabili di tipo array, che definiamo l'insieme 
-        \[ Arr = \bigcup_{n \in \N_{>0}} Var^n\times \{n\} \]
-        Dove $(X,n) \in Arr$ è indicato come $X^{n} = (x_1,...,x_n)$.
-        \item Analogamente, ammettiamo anche variabili di tipo stringa come array di caratteri da un alfabeto $\Gamma$, ovvero definendo 
-        \[Str = \bigcup_{n \in \N_{>0}} \Gamma^n\times\{n\}\]
-    \end{itemize}
-    Estendiamo dunque in modo appropriato anche la sintassi e semantica delle espressioni:
-    \[ \frac{X^n\qquad i}{X(i)}(X^n \in Arr, i \in Var) \qquad \frac{\langle A^n,\sigma \rangle \to_e X \in \N^*\qquad \langle i, \sigma \rangle \to_e n \in \N}{\langle A^n(i),\sigma \rangle\to_e X(n)} \]
-    Inoltre, per pura chiarezza notazionale, quando un comando \texttt{T} dipende da o modifica lo stato di una $n$-upla di variabili o array di variabili $(x_1,...,x_n)$ scriveremo $\texttt{T}(x_1,...,x_n)$. Per convenzione scriveremo inoltre \\
-    Infine assumiamo per convenzione che un comando $\texttt{T}(x)$ sia naturalmente esteso ad un comando $\texttt{T}(X^n)$ definito nel modo seguente:
-    \[ \texttt{T}(X^n) = \left( i := 1\ ;\ \text{while}\ i \le n\ \text{do}\ \left( x := X(i)\ ;\ \texttt{T}(x)\ ;\ X(i) := x\ ;\ i := i+1 \right)\right)\]
+\begin{definition}{Funzione $\imp$-definibile}{}
+    Modifichiamo leggermente il linguaggio $\imp$, restringendo i valori delle variabili a numeri naturali invece che interi e assumendo senza perdita di generalità che l'insieme $\Var$ abbia la forma 
+    \[ \Var = \underbrace{\{x_i : i \in \N_{\le 0}\}}_{:= \Input} \sqcup \underbrace{\{y_i : i \in \N_{\le 0}\}}_{:= \Output} \sqcup \underbrace{\{t_i : i \in \N_{\le 0}\}}_{:= \Temp} \]
+    e che ogni comando sia scritto in modo da dipendere soltanto dal valore delle variabili in $\Input$: le variabili in $\Temp$ sono da considerarsi le variabili temporanee che un comando può invocare come "appoggio" e le variabili in $\Output$ sono quelle in cui il comando "deposita" il risultato dei suoi calcoli.\\ 
+    Diciamo che un comando $\c \in \Com$ definisce una funzione parziale $f_{\c} : \N^n\to\N^k$ per $n,k\ge 0$ se per ogni $a_1,...,a_n,b_1,...,b_k$ si ha 
+    \[ f(a_1,...,a_n) = (b_1,...,b_k) \Harr \forall\sigma, \exists\sigma' : \langle \c, \sigma[x_1\mapsto a_1,..., x_n\mapsto a_n] \rangle \to_b \sigma'[y_1\mapsto b_1,..., y_k\mapsto b_k]\]
+    In questo caso diremo che $\c$ \bemph{calcola} $f$ e che $f$ è $\imp$\bemph{-definibile}.\\
+    In particolare, la funzione non è definita per i valori di $a_1,...,a_n$ per i quali esiste un qualche stato in cui il comando $\c$ non termina.
 \end{definition}
 
 \begin{theorem}{Tesi di Church-Turing per $\imp$}{}
-    Una funzione $f:\N^m\to\N^n$ appartiene a $\hom\grf(\N)$ se e solo se esiste un programma di $\nimp$ che la calcola.\\
-    Una funzione $f:\N^m\to\N^n$ appartiene a $\hom\prf(\N)$ se e solo se esiste un programma di $\nimp$ che la calcola con cicli $while$ di lunghezza al più predeterminata.
+    Tutte e sole le funzioni in $\hom\grf(\N)$ sono $\imp$-definibili.
     \proof 
-    Dimostriamo per induzione che le funzioni in $\hom\grf(\N)$ sono calcolabili da $\stimp$; specificheremo sempre il tipo delle espressioni coinvolte:\begin{enumerate}
-        \item La funzione zero viene calcolata dal valore di $x$ nel programma
-            \[ \texttt{Zero}(x) = \left(x := 0\right) \]
-        \item Sia $\sigma(x)\in \N$; la funzione successore viene calcolata dal valore di $x$ nel programma
-            \[ \texttt{Succ}(x) = \left( x:= x+1 \right) \]
-        \item La funzione proiezione viene calcolata dal valore di $x$ nel programma
-            \[ \texttt{Proj}(x, X^n, i) = \left( x := X^n(i) \right) \]
-            Notiamo che nel caso in cui $i\ge n$ questa è di fatto la funzione zero; la funzione di scelta di un elemento è una semplice assegnazione.
-        \item La composizione di due funzioni calcolabili $f:\N^l\to\N^m$ e $g:\N^m\to\N^n$ è semplicemente la loro composizione come programmi $\texttt{F}(Y^m, X^l)$ e $\texttt{G}(Y^n, X^m)$, dove assumiamo che $Y^m$ e $Y^n$ servano solo a conservare rispettivamente i valori di $f$ e $g$ e dunque è calcolata dal valore di $Y^n$ nel programma:
-            \[ \texttt{G}\circ\texttt{F}(Y^n, X^l)  = \left(\texttt{F}(Y^m, X^l)\ ;\ X^m := Y^m\ ;\ \texttt{G}(Y^n, X^m)\right) \]
-        \item Assumiamo per le nostre $f: \N^n \to \N$ e $g: \N^{n+2} \to \N$ di avere programmi $\texttt{F}(x, X^n)$ e $\texttt{G}(x, X^n, y, z)$, dove la variabile $x$ serva solo a conservare i valori di $f$ e di $g$; la funzione ricorsiva $h:\N^{n+1}\to\N$ è calcolata dal valore di $x$ nei programmi:\begin{enumerate}
-            \item \[ \texttt{H}(x, X^n,y) = \left( \text{if}\ y=0\ \text{then}\ \texttt{F}(x, X^n)\ \text{else}\left( y := y-1\ ;\ \text{H}(x,X^n,y)\ ;\ z:= x\ ;\ \texttt{G}(x, X^n, y, z) \right) \right) \]
-            \item \[ \texttt{H}(x, X^n,y) = \left(N := y+1 \ ;\ \texttt{F}(x, X^n)\ ;\ n:=2\ ;\ \text{while}\ n \le N\ \text{do}\ \texttt{Step} \right) \]
-            dove $\texttt{Step}$ è definito da 
-            \[ \texttt{Step} = \left( y := n-1\ ;\ z := n\ ;\ \texttt{G}(x,X^n,y,z)\ ;\ n := n+1 \right) \]
-        \end{enumerate}
-        La formulazione (a) è più in linea con la definizione che abbiamo dato in \cref{def:grf e prf}, mentre la formulazione (b) rende più evidente il fatto che sia calcolabile da un ciclo di lunghezza predeterminata.
-        \item Assumendo che $f : \N^{n+1}\to\N$ sia calcolabile dal programma $\texttt{F}(x,X^n,y)$ dove la variabile $x$ serva solo a conservare il valore di $f$, la funzione $\mu_f$ viene calcolata dal valore di $y$ nel programma:
-        \[ \texttt{muf}(y,X^n) = \left( y:= 0\ ;\ \texttt{F}(x,X^n,y)\ ;\ \text{while}\ x>0\ \text{do}\ \left( y:= y+1\ ;\ \texttt{F}(x,X^n,y) \right) \right) \]
+    Dimostriamo solamente che tutte le funzioni $\hom\grf(\N)$ sono $\imp$-definibili per induzione esibendo un programma che le calcoli:\begin{enumerate}
+        \item La funzione zero è calcolata dal comando $\c_z = (y_1 := 0)$.
+        \item La funzione successore è calcolata dal comando $\c_s = (y_1 := x_1+1)$
+        \item Le proiezioni sono calcolate dai comandi $\mathbf{p}_i^n = (y_1 := x_i)$
+        \item Grazie alla sua naturale associatività, la capacità di calcolare l'appaiamento di un numero finito di funzioni è equivalente alla capacità di calcolare l'appaiamento binario insieme alla capacità di calcolare la funzione vuota: quest'ultima viene calcolata da un qualsiasi comando che non termina mai per nessun input e nessuno stato, ad esempio
+        \[\c_! = \left( \while(0 = 0)\do(t_1 := 0) \right)\]
+        mentre se $f$ e $g$ sono funzioni $\N^n \to \N$ calcolate rispettivamente da $\c_f$ e $\c_g$ il loro appaiamento è calcolato da
+        \[ \c_{\langle f,g \rangle} = \left( \underbrace{t_1 := x_1; ...; t_k := x_k;}_{\text{memorizzare gli input}}\ \c_f ; \underbrace{t_{k+1} := y_1;}_{\text{memorizzare l'output}} \underbrace{x_1 := t_1;...; x_k := t_k;}_{\text{reimpostare gli input}}\ \c_g ;\ \underbrace{y_2 := y_1 ; y_1 := t_{k+1}}_{\text{impostare gli output}}  \right) \]
+        assumendo che le variabili temporanee $t_i$ non siano usate nè in $\c_f$ nè in $\c_g$.
+        \item Se $f : \N^a\to\N^b$ è definita dal comando $\c_f$ e $g: \N^b\to\N^c$ è definita dal comando $\c_g$, la loro composizione è definita dal comando
+        \[ \c_{g\circ f} := \left( \c_1 ;\ \underbrace{x_1 := y_1 ; ... ; x_b := y_b ;}_{\text{reimpostare gli input}}\ \c_2 \right) \]
+        \item Se $f: \N^k \to \N$ e $g:\N^{k+2}\to\N$ sono definite rispettivamente da $\c_f$ e $\c_g$, allora la funzione $h : \N^{k+1}\to\N$ data dallo schema di ricorsione è definita dal comando
+        \[ \c_h = \left(\underbrace{\ifc(x_{k+1} = 0)\then(\c_f)}_{\text{caso base}}\elsec(\underbrace{x_{k+1} := x_{k+1} - 1 ;\ \c_h ;\ x_{k+2} := y_1 ;\ \c_g }_{\text{ricorsione}}) \right) \]
+        \item L'operatore di minimalizzazione per una funzione $ f:\N^{k+1}\to \N $ definita dal comando $\c_f$ (che assumiamo non usi la variabile $t_1$ e non modifichi il valore di $x_{k+1}$) è dato dal comando 
+        \[ \c_{\mu(f)} = \left(x_{k+1}:= 0;\ \c_f ;\underbrace{\while(y_1 \neq 0)}_{\text{controlla il valore di }f}\do(x_{k+1} := x_{k+1}+1;\ \c_f );\ y_1 := x_{k+1} \right) \]
     \end{enumerate}
-    L'altra inclusione è più complicata e ci penso dopo
+    L'implicazione inversa è più laboriosa, ma procede nello stesso modo per induzione sulla semantica di $\imp$ e la lasciamo nell'appendice stocazzo.
+    \qed 
 \end{theorem}
 
 \begin{corollary}{}{}
     L'insieme $\hom\grf(\N)$ è numerabile.
     \proof
-    Dato che ogni funzione in $\hom\grf(\N)$ è calcolabile da un programma, ovvero una sequenza finita di simboli tratti da un alfabeto finito $\Gamma$ e per ogni numero naturale $n$ abbiamo la funzione $\id_n : \N^n\to \N^n$, vediamo che 
+    Dato che ogni funzione in $\hom\grf(\N)$ è calcolabile da un programma, ovvero una sequenza finita di simboli tratti da un alfabeto finito $\Gamma$ e per ogni numero naturale $n$ abbiamo la funzione $\pi_1^n : \N^n\to \N$, vediamo che 
     \[ \left|\N\right| \le \left| \hom\grf(\N) \right| \le \left| \bigsqcup_{n \in \N} \Gamma^n \right| = \sum_{n \in \N}\left|\Gamma\right|^n = \left|\N\right| \]
     \qed
 \end{corollary}
@@ -973,30 +978,17 @@ Che è una funzione ricorsiva primitiva.
     Per $i \in \N$ indicheremo con $\phi_i$ la funzione $\Phi(i)$
 \end{definition}
 
+
+
 Notiamo che una tale biezione esiste perchè entrambi gli insiemi sono numerabili.
 
 \begin{theorem}{Teorema $s-m-n$}{}
-    Sia $\phi_i: \N^{m+n} \to \N$ in $\hom\grf(\N)$.\\
-    Esiste una funzione $s_{m,n}: \N^{1+n} \to \N$ in $\hom\prf(\N)$ tale che per ogni $\mathbf{x} \in \N^n$ e $\mathbf{y}\in \N^m$ si abbia
-    \[ \phi_i(\mathbf{x},\mathbf{y}) = \phi_{s_{m,n}(i,\mathbf{x})}(\mathbf{y})\]
+    Sia $f : \N^{m+n} \to \N$ in $\hom\grf(\N)$ definita dal comando $\c_{i}$ con $i \in \N$.\\
+    Esiste una funzione $s_{m,n}: \N^{1+n} \to \N$ in $\hom\prf(\N)$ tale che per ogni $\mathbf{x} \in \N^n$ e $\mathbf{y}\in \N^m$ la funzione $\mathbf{y}\mapsto f(\mathbf{x},\mathbf{y})$ sia calcolata dal comando $\c_{s_{m,n}(i,\mathbf{x})}$.\\
     In più, $s_{m,n}$ è univocamente determinata da $m$ e $n$.
     \proof 
-    La seguente funzione di python esibisce la tesi.\\
-    Gli input sono:\begin{itemize}
-        \item la stringa $f$ che definisce $\phi_i : \N^{n+m} \to \N$ nelle variabili $a \in \N^n$ e $b\in\N^m$;
-        \item il numero $n \in \N$, che dipende dalla $f$ ma esplicitiamo per comodità;
-        \item un punto $x \in \N^n$;
-    \end{itemize} 
-    l'output è la stringa che definisce la funzione $\phi_{s_m^n(i,x)} : \N^m \to \N$ della tesi rimpiazzando ogni istanza di $a_i$ con il valore di $x_i$.
-    \begin{verbatim}
-        def smn(f, n, x):
-            for i in range(n):
-                F = f.split("a["+str(i)+"]")
-                t = str(x[i])
-                f = t.join(F)
-            return f
-        \end{verbatim}
-    Dato che $s$ non calcola effettivamente $f$, ma semplicemente parte da una \textit{qualsiasi} stringa e restituisce in un numero predeterminato di iterazioni un'altra stringa, appartiene a $\hom\prf(\N)$.
+    Vediamo che la funzione $s_{m,n}$ è esibita da
+    \[ s_{m,n}(i,a_1,...,a_n) = \Phi^{-1}\left( x_1 := a_1;\ ...;\ x_n := a_n ;\ \underbrace{\Phi(i)}_{= \c_i} \right) \]
     \qed
 \end{theorem}
 
