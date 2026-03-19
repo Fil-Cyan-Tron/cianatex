@@ -958,88 +958,62 @@ Vediamo che, indicando con $D_f$ il dominio come funzione di un morfismo $f$, va
 
 \subsection{Teorema $s-m-n$}
 
-\begin{definition}{Appaiamento standard di $\N^n$}{appaiamento standard}
-    Fissiamo una biezione ricorsiva  $(a,b) \mapsto \langle a, b\rangle$ tra $\N^2$ e $\N$; notiamo anche che questa definisce ricorsivamente una biezione $\N^n\to \N$, dove
-        \[ \langle x_1,...,x_{n+1} \rangle = \langle \langle x_1,...,x_n \rangle, x_{n+1}\rangle \]
-    che chiameremo \bemph{appaiamento standard} di $\N^n$ e lo indicheremo come $\pair_n$
-\end{definition}
+Per discutere la categoria che stiamo costruendo avremo bisogno di numerare l'insieme $\hom\grf(\N)$ in modo ricorsivo, dunque abbiamo bisogno di alcuni ingredienti: prima di tutto ci serve un appaiamento ricorsivo $\pair: \N^2\iso\N$, di cui un esempio è l'appaiamento di Cantor
+\[ \pair(x,y) = \frac{x^2+x+2xy+3y+y^2}{2} \]
+Che è immediatamente riconoscibile come funzione ricorsiva primitiva.\\
+Possiamo costruire ora esplicitamente una biezione $\Phi : \Com \iso\N$, notazione che manterremo nel prossimo risultato: dalla definizione di $\imp$ si vede che 
+\[ \Com \cong \{\skip\}\sqcup \underbrace{(\Var \times \Exp)}_{(...):=(...)} \sqcup \underbrace{(\Com\times\Com)}_{(...);(...)} \sqcup \underbrace{(\Exp \times \Com \times \Com)}_{\ifc(...)\then(...)\elsec(...)} \sqcup \underbrace{(\Exp \times \Com)}_{\while(...)\do(...)} \]
+E allo stesso modo 
+\[ \Exp \cong \N\sqcup\Var \sqcup\underbrace{(\Exp\times\Exp)}_{(...)+(...)} \sqcup\underbrace{(\Exp-\Exp)}_{(...)-(...)} \sqcup\underbrace{(\Exp\times\Exp)}_{(...)\cdot(...)} \]
+Dunque definiamo per induzione l'enumerazione $\Phi : \Com \iso \N$:
+\[ \begin{cases}
+    \Phi(\skip) & := 0\\
+    \Phi(x := e) & := 1+4\cdot \pair(\varphi(x), \phi(e))\\
+    \Phi(\c_1; \c_2 ) & := 2+4\cdot \pair(\Phi(\c_1),\Phi(\c_2))\\
+    \Phi(\ifc( e\neq 0 )\then( \c_1 )\elsec(\c_2)) & := 3+4\cdot\pair( \phi(e) , \pair(\Phi(\c_1),\Phi(\c_2)) )\\
+    \Phi(\while(e\neq 0)\do(\c)) & := 4+4\cdot\pair(\phi(e), \Phi(\c))
+\end{cases} \]
+Dove $\phi:\Exp \iso \N$ è definita per induzione da 
+\[ \begin{cases}
+    \phi(n) & := 5\cdot n \\
+    \phi(x) & := 1+5\cdot \varphi(x)\\
+    \phi(e_1 + e_2) & := 2 + 5\cdot \pair(\phi(e_1),\phi(e_2))\\
+    \phi(e_1 - e_2) & := 3 + 5\cdot \pair(\phi(e_1),\phi(e_2))\\
+    \phi(e_1 \cdot e_2) & := 4 + 5\cdot \pair(\phi(e_1),\phi(e_2))
+\end{cases} \]
+E $\varphi:\Var \iso \N$ è semplicemente data da
+\[ \begin{cases}
+    \varphi(x_i) & := 3\cdot i \\
+    \varphi(t_i) & := 1+3\cdot i \\
+    \varphi(y_i) & := 2+3\cdot i
+\end{cases} \]
 
-Un esempio di appaiamento è l'appaiamento di Cantor dato da
-\[ \langle x, y \rangle = \frac{x^2+x+2xy+3y+y^2}{2} \]
-Che è una funzione ricorsiva primitiva.
+\begin{example}{Numero di un semplice comando di $\imp$}{}
+    Prendiamo un semplice comando che calcoli la funzione $x\mapsto x!$:
+    \[ \c = \left( y_1 := 1\ ;\ \overbrace{\while(x_1 \neq 0)\do\underbrace{(y_1 := y_1 \cdot x_1\ ;\ x_1 := x_1 - 1)}_{\c_2}}^{\c_1} \right) \]
+    Procedendo per step:
+    \[ \Phi(y_1 := 1) = 1+4\cdot\pair(5,5) =241 \]
+    \[ \Phi(x_1 := x_1-1) = 1+4\cdot \pair (3, 3+5\cdot \pair(16,5)) = 2820297 \]
+    \[ \Phi(y_1:=y_1\cdot x_1) = 1+4\cdot \pair(5, 4+5\cdot\pair(26,16)) = 42421237 \]
+    \[ \Phi(\c_2) = 2+4\cdot\pair( \Phi(y_1 := y_1\cdot x_1), \Phi(x_1 := x_1-1) ) = 478562106907718 \]
+    \[ \Phi(\c_1) = 4+4\cdot\pair(16,\Phi(\c_2)) \approx 3.35\cdot 10^{31} \]
+    \[ \Phi(\c) = 2+4\cdot\pair(\Phi(y_1 := 1) ,\Phi(\c_1) ) = 2+4\cdot\pair(\Phi(y_1 := 1) ,\Phi(\c_1) )\]
+    Il valore esatto di $\Phi(\c)$ è dunque $22465112070767333\cdot 10^{47}$, notevole per un comando da una ventina di simboli.
+\end{example}
 
-\begin{remark}{}{}
-    L'usuale definizione di funzione ricorsiva primitiva o generale è leggermente diversa da quella che abbiamo dato in \cref{def:grf e prf}: generalmente questa viene data molto "con le mani" per funzioni $\N^n\to\N$, intendendo una funzione $\N^n\to\N^m$ come una $m$-upla di funzioni $\N^n\to\N$
-\end{remark}
-
-\begin{definition}{Enumerazione standard di $\hom\grf(\N)$}{enumerazione standard}
-    Fissiamo una biezione $\Phi : \N \to \hom\grf(\N)$ che diremo \bemph{enumerazione standard} di $\hom\grf(\N)$ tale che
-    \[ \Phi^{-1}(\pair_{k+1}) = \pair(\Phi^{-1}(\pair_k),\Phi^{-1}(\pair_{1}))\]
-    Per $i \in \N$ indicheremo con $\phi_i$ la funzione $\Phi(i)$
-\end{definition}
-
-
-
-Notiamo che una tale biezione esiste perchè entrambi gli insiemi sono numerabili.
+Ora, mantenendo questa notazione, possiamo enunciare un risultato che sarà essenziale per dimostrare la chiusura della categoria che stiamo costruendo
 
 \begin{theorem}{Teorema $s-m-n$}{}
-    Sia $f : \N^{m+n} \to \N$ in $\hom\grf(\N)$ definita dal comando $\c_{i}$ con $i \in \N$.\\
-    Esiste una funzione $s_{m,n}: \N^{1+n} \to \N$ in $\hom\prf(\N)$ tale che per ogni $\mathbf{x} \in \N^n$ e $\mathbf{y}\in \N^m$ la funzione $\mathbf{y}\mapsto f(\mathbf{x},\mathbf{y})$ sia calcolata dal comando $\c_{s_{m,n}(i,\mathbf{x})}$.\\
+    Sia $f : \N^{m+n} \to \N$ in $\hom\grf(\N)$ definita dal comando $\Phi^{-1}(i)$ per $i \in \N$.\\
+    Esiste una funzione $s_{m,n}: \N^{1+n} \to \N$ in $\hom\prf(\N)$ tale che per ogni $\mathbf{x} \in \N^n$ e $\mathbf{y}\in \N^m$ la funzione $\mathbf{y}\mapsto f(\mathbf{x},\mathbf{y})$ sia calcolata dal comando $\Phi^{-1}(s_{m,n}(i,\mathbf{x}))$.\\
     In più, $s_{m,n}$ è univocamente determinata da $m$ e $n$.
     \proof 
-    Vediamo che la funzione $s_{m,n}$ è esibita da
-    \[ s_{m,n}(i,a_1,...,a_n) = \Phi^{-1}\left( x_1 := a_1;\ ...;\ x_n := a_n ;\ \underbrace{\Phi(i)}_{= \c_i} \right) \]
+    La funzione $s_{m,n}$ è esibita da
+    \[ s_{m,n}(i,a_1,...,a_n) = \Phi\left( x_1 := a_1;\ ...;\ x_n := a_n ;\ \Phi^{-1}(i) \right) \]
     \qed
 \end{theorem}
 
-\begin{corollary}{Teorema $s-m-n-k$}{}
-    Sia $\phi_i: \N^{m+n} \to \N^{k}$ in $\hom\grf(\N)$.\\
-    Esiste una funzione $s_{m,n}^k: \N^{1+n} \to \N^k$ in $\hom\prf(\N)$ tale che per ogni $\mathbf{x} \in \N^n$ e $\mathbf{y}\in \N^m$ si abbia
-    \[ \phi_i(\mathbf{x},\mathbf{y}) = \phi_{s_{m,n}^k(i,\mathbf{x})}(\mathbf{y})\]
-    In più, $s_{m,n}^k$ è univocamente determinata da $m$, $n$ e $k$ e per $k=1$ si ha $s_{m,n}^k(i,\mathbf{x}) = s_{m,n}(i,\mathbf{x})$.
-    \proof
-    Notiamo che ogni funzione $\phi_i :\N^{m+n}\to\N^k$ è definita da $k$ funzioni $\phi_{i_j} :  \N^{m+n}\to\N$, dunque applicando il teorema $s-m-n$ a ciascuna $\phi_{ij}$ otteniamo
-    \[  \phi_i(\mathbf{x},\mathbf{y}) = (\phi_{s_{m,n}(i_1,\mathbf{x})}(\mathbf{y}),...,\phi_{s_{m,n}(i_k,\mathbf{x})}(\mathbf{y}) ) \]
-    Dunque definiamo 
-    \[s_{m,n}^k(i,\mathbf{x}) := (\pair_k^{-1}\circ\pair_k)(s_{m,n}(i_1,\mathbf{x}),...,s_{m,n}(i_1,\mathbf{x})) \]
-    In quanto composizione di funzioni computabili per ipotesi è computabile, inoltre per 
-\end{corollary}
-
-
-\begin{theorem}{Teorema $\smnk$}{}
-    Siano $m,n,k\in \N_{>0}$.\\
-    Esiste una funzione $s_{m,n}^k: \N^{1+m}\to \N^k$ in $\hom\prf(\N)$ tale che per ogni $\phi_I:\N^{m+n}\to\N$ in $\hom\grf(\N)$ si abbia 
-    \[ \phi_{s_{m,n}^k(I,\mathbf{x})}(\mathbf{y}) \equiv \phi_I(\mathbf{x},\mathbf{y})\]
-    \proof 
-    Procediamo per induzione forte su $k$ e assumiamo che valga per ogni $k \le K$; dimostriamo che vale per $K+1$.\\
-    Abbiamo che una funzione $\phi_i : \N^{m+n}\to \N^{K+1}$ consiste in $K+1$ funzioni $\phi_{i,j}:\N^{m+n}\to\N$, e che quindi:
-    \[ \phi_i = \pair_{K+1}^{-1}(\pair_{K+1}(\phi_{i,1}(\mathbf{x},\mathbf{y}),...,\phi_{i,K}(\mathbf{x},\mathbf{y}),\phi_{i,K+1}(\mathbf{x},\mathbf{y}))) \]
-    Ma dato che per definizione $\pair_{K+1}(x_1,...,x_K, x_{K+1}) = \pair(\pair_K(x_1,...,x_K),x_{K+1})$ segue che
-    \[\phi_i(\mathbf{x},\mathbf{y}) = \pair_{K+1}^{-1}(\pair(\pair_K(\phi_{i,1}(\mathbf{x},\mathbf{y}),...,\phi_{i,K}(\mathbf{x},\mathbf{y})),\phi_{i,K+1}(\mathbf{x},\mathbf{y}))) \]
-    
-\end{theorem}
-
-\begin{theorem}{}{}
-    Un'enumerazione dei morfismi di $\prf(\N)$ e $\grf(\N)$ indce su di loro una struttura di categoria cartesiana chiusa.
-    \proof 
-    Abbiamo già dimostrato la struttura di categoria cartesiana in \cref{rem:su prf e grf}, dimostriamo la chiusura tramite l'esistenza di oggetti esponenziali. Supponiamo di avere oggetti $\N^a$, $\N^b$ e $\N^c$ e un morfismo $\phi_i : \N^a\times\N^b\to\N^c$. L'esponenziale $(\N^a)^{(\N^b)}$ è l'oggetto $\N$ e le mappe $\phi_i\mapsto \lambda\phi_i$ e $\eval$ sono definite dal seguente diagramma:
-    \[\begin{tikzcd}
-    	{\N^a\times \N^b} && {\N^{a+b}} \\
-    	& {(x,y)} \\
-    	&&&& {\N^c} \\
-    	& {(s_{a,b}^c(i,x),y)} && {\phi_{s_{a,b}^c(i,x)}(y) = \phi_i(x,y)} \\
-    	{(\N^a)^{(\N^b)}\times \N^b = \N\times\N^b} &&&& {\N^c}
-    	\arrow[equals, from=1-1, to=1-3]
-    	\arrow["{\lambda\phi_i\times \id_b}"{description}, from=1-1, to=5-1]
-    	\arrow["{\phi_i}"{description}, from=1-3, to=3-5]
-    	\arrow[maps to, from=2-2, to=4-2]
-    	\arrow[maps to, from=2-2, to=4-4]
-    	\arrow[maps to, from=4-2, to=4-4]
-    	\arrow["\eval"{description}, from=5-1, to=5-5]
-    	\arrow[equals, from=5-5, to=3-5]
-    \end{tikzcd}\] 
-    
-\end{theorem}
+Notiamo che la funzione $s_{m,n}$ non esegue il comando $\Phi(i)$, ma semplicemente restituisce il valore 
 
 \subsection{Relazioni di equivalenza parziali}
 
