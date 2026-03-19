@@ -499,13 +499,13 @@ Chiameremo una tale proprietà\footnote{Ovvero essere il cono terminale/iniziale
 Il limite è uno dei concetti centrali della Teoria delle Categorie: analogamente a come sia possibile definire equivalentemente aperti, chiusi, intorni, chiusura, interno e così via in Topologia Generale, è possibile definire i funtori aggiunti in termini di limiti, i limiti in termini di funtori aggiunti ed equivalentemente tante altre costruzioni in Teoria delle Categorie.\\
 Talvolta diremo che una categoria "ammette/ha tutti i..." facendo riferimento a dei (co)limiti definiti su una qualche forma di diagrammi: questo significa che ogni diagramma di quella forma ammette un (co)limite in $\C$.
 
-\begin{remark}{Limiti e oggetti iniziali}{limiti e oggetti iniziali}
+\begin{proposition}{Limiti e oggetti iniziali}{limiti e oggetti iniziali}
     Sia $F:\J\to\C$ un diagramma.\begin{itemize}
         \item Se $\J$ ammette un oggetto iniziale $I$, allora $\catlim F = F(I)$.
         \item Dualmente, se $\J$ ammette un oggetto terminale $Z$, allora $\catcolim F = F(Z)$.
         \item Infine, se $\J$ ammette un oggetto zero $0$, allora $\catlim F = \catcolim F = F(0)$.
     \end{itemize}
-\end{remark}
+\end{proposition}
 
 \subsection{Limiti notevoli}
 
@@ -539,7 +539,6 @@ Il pullback è una sorta di analogo categoriale delle equazioni: è facile dimos
     Si dice \bemph{equalizzatore} di $f$ e $g$ il limite di $\J$ in $\C$, e lo indichiamo con $\eq(f,g)$,  come indichiamo l'unico morfismo "primitivo" del cono con $e_{f,g}:\eq(f,g)\to X$.\\
     Un equalizzatore in $\C^\op$ si dice \bemph{coequalizzatore}.
 \end{definition}
-
 
 \subsection{Esistenza dei limiti}
 
@@ -632,7 +631,7 @@ Tornando indietro alla discussione del principio di equivalenza avuta in \ref{de
 
 \begin{corollary}{Caratterizzazione del coprodotto binario}{caratterizzazione del coprodotto binario}
     Sia $\C$ una categoria localmente piccola e sia $\Delta :\C\to\C\times\C$ il funtore diagonale.\\
-    $\C$ ammette i coprodotti binari se e solo se ammette un funtore $\amalg$ aggiunto sinistro a $\Delta$ e e per ogni coppia $(X,Y)$ di oggetti di $\C$, $\amalg(X,Y)$ è \textit{un} coprodotto di $X$ e $Y$.
+    $\C$ ammette i coprodotti binari se e solo se ammette un funtore $\amalg$ aggiunto sinistro a $\Delta$ e per ogni coppia $(X,Y)$ di oggetti di $\C$, $\amalg(X,Y)$ è \textit{un} coprodotto di $X$ e $Y$.
 \end{corollary}
 
 \newcommand\eval{\operatorname{eval}}
@@ -640,7 +639,7 @@ Tornando indietro alla discussione del principio di equivalenza avuta in \ref{de
 \chapter{Categorie Cartesiane Chiuse}
 
 \begin{definition}{}{}
-    Sia $\C$ una categoria e siano $X,Y$ oggetti di $\C$ che abbiano un prodotto in $\C$.\\
+    Sia $\C$ una categoria e siano $X,Y$ oggetti di $\C$ che ammettano un prodotto in $\C$.\\
     Si dice \bemph{esponenziale} di $Z$ e $Y$ in $\C$ un oggetto, indicato con $Z^Y$, munito di un morfismo $\eval_{Y,Z} : Z^Y\times Y \to Z$ tale che per ogni morfismo $f:X\times Y \to Z$ esista un unico $\lambda f: X\to Z^Y$ tale che il seguente diagramma commuti:
     \[\begin{tikzcd}
     	{X\times Y} \\
@@ -825,7 +824,7 @@ Seguendo questa intuizione, ci si potrebbe chiedere se la categoria degli spazi 
 Consideriamo la seguente categoria:
 
 \begin{definition}{}{}
-    Sia $\pf(\N)$ la categoria i cui oggetti sono potenze finite di $\N$, ovvero 
+    Sia $\pf(\N)$ la categoria i cui oggetti sono potenze insiemistiche finite di $\N$, ovvero 
     \[\ob\pf(\N) := \{ \N^n : n\in\N  \} \qquad\text{con}\qquad \N^n := \begin{cases}
     1 := \{\varnothing\} & \text{se } n = 0\\
     \{ (x_1,..., x_n) : \forall i\le n, x_i \in \N \} & \text{altrimenti}
@@ -869,29 +868,29 @@ Vediamo che, indicando con $D_f$ il dominio come funzione di un morfismo $f$, va
     Questa è detta categoria delle \bemph{funzioni ricorsive generali}; omettendo il requisito $7$ si ottiene la categoria delle \bemph{funzioni ricorsive primitive} $\prf(\N)$.
 \end{definition}
 
-\begin{remark}{Su $\prf(\N)$ e $\grf(\N)$}{su prf e grf}
-    \begin{itemize}
-        \item Le funzioni ricorsive primitive sono funzioni totali, dunque la categoria $\prf(\N)$ è una sottocategoria di $\setcat$.
-        \item Sia $\prf(\N)$ che $\grf(\N)$ sono categorie cartesiane.
-    \end{itemize}
-    \proof 
-    Dimostriamo la cartesianità, il primo punto segue dal teorema di ricorsione.
-    \begin{itemize}
-        \item Per entrambe le categorie, l'oggetto terminale è dato da $1 = \N^0$ con morfismi dati dalle funzioni $\mathbf{x}\mapsto 0$.
-        \item Il cono del prodotto per $\N^a\times \N^b := \N^{a+b}$ è definito dal seguente diagramma:
-        \[\begin{tikzcd}
-        	&& {\N^{a+b}} \\
-        	\\
-        	{\N^a} && {\N^n} && {\N^b}
-    	    \arrow["{(\pi_1,...,\pi_a)}"{description}, from=1-3, to=3-1]
-        	\arrow["{(\pi_{a+1},..,\pi_{a+b})}"{description}, from=1-3, to=3-5]
-        	\arrow["{(f,g)}"{description}, from=3-3, to=1-3]
-        	\arrow["f"{description}, from=3-3, to=3-1]
-    	    \arrow["g"{description}, from=3-3, to=3-5]
-        \end{tikzcd}\]
-        La cui commutatività è data dal requisito 4 nella definizione.
-    \end{itemize}
-\end{remark}
+% \begin{remark}{Su $\prf(\N)$ e $\grf(\N)$}{su prf e grf}
+%     \begin{itemize}
+%         \item Le funzioni ricorsive primitive sono funzioni totali, dunque la categoria $\prf(\N)$ è una sottocategoria di $\setcat$.
+%         \item Sia $\prf(\N)$ che $\grf(\N)$ sono categorie cartesiane.
+%     \end{itemize}
+%     \proof 
+%     Dimostriamo la cartesianità, il primo punto segue dal teorema di ricorsione.
+%     \begin{itemize}
+%         \item Per entrambe le categorie, l'oggetto terminale è dato da $1 = \N^0$ con morfismi dati dalle funzioni $\mathbf{x}\mapsto 0$.
+%         \item Il cono del prodotto per $\N^a\times \N^b := \N^{a+b}$ è definito dal seguente diagramma:
+%         \[\begin{tikzcd}
+%         	&& {\N^{a+b}} \\
+%         	\\
+%         	{\N^a} && {\N^n} && {\N^b}
+%     	    \arrow["{(\pi_1,...,\pi_a)}"{description}, from=1-3, to=3-1]
+%         	\arrow["{(\pi_{a+1},..,\pi_{a+b})}"{description}, from=1-3, to=3-5]
+%         	\arrow["{(f,g)}"{description}, from=3-3, to=1-3]
+%         	\arrow["f"{description}, from=3-3, to=3-1]
+%     	    \arrow["g"{description}, from=3-3, to=3-5]
+%         \end{tikzcd}\]
+%         La cui commutatività è data dal requisito 4 nella definizione.
+%     \end{itemize}
+% \end{remark}
 
 \newcommand\imp{\catname{IMP}}
 \newcommand\stimp{\imp^{(\to)}}
@@ -922,6 +921,12 @@ Vediamo che, indicando con $D_f$ il dominio come funzione di un morfismo $f$, va
     In particolare, la funzione non è definita per i valori di $a_1,...,a_n$ per i quali esiste un qualche stato in cui il comando $\c$ non termina.
 \end{definition}
 
+Questa corrispondenza tra funzioni e comandi non è biunivoca in realtà: in generale, una funzione ammette infiniti comandi che la calcolano e il problema di determinare se due comandi diversi calcolano la stessa funzione è in generale molto difficile da risolvere.\\
+Possiamo definire una relazione di equivalenza $\equiv$ sui comandi, detta equivalenza estensionale, dove due comandi sono equivalenti se e solo se definiscono la stessa funzione \textit{tenendo conto del suo dominio}.\\
+Ad esempio, se 
+\[ \c_1 = (y_1 := x_1\cdot x_1),\]\[ \c_2 = (\ifc(x_1 = 0)\then(y_1 := 0)\elsec(y_1 := x_1\cdot x_1)),\]\[ \c_3 = (\ifc(x_1 = 0)\then(\skip)\elsec(y_1 := x_1\cdot x_1)) \]
+Si vede che $\c_1$ e $\c_2$ sono equivalenti perchè definiscono la funzione $x\mapsto x^2$ su tutto $\N$, ma non sono equivalenti a $\c_3$ perchè questo la definisce solo su $\N\setminus\{0\}$.
+
 \begin{theorem}{Tesi di Church-Turing per $\imp$}{}
     Tutte e sole le funzioni in $\hom\grf(\N)$ sono $\imp$-definibili.
     \proof 
@@ -929,7 +934,7 @@ Vediamo che, indicando con $D_f$ il dominio come funzione di un morfismo $f$, va
         \item La funzione zero è calcolata dal comando $\c_z = (y_1 := 0)$.
         \item La funzione successore è calcolata dal comando $\c_s = (y_1 := x_1+1)$
         \item Le proiezioni sono calcolate dai comandi $\mathbf{p}_i^n = (y_1 := x_i)$
-        \item Grazie alla sua naturale associatività, la capacità di calcolare l'appaiamento di un numero finito di funzioni è equivalente alla capacità di calcolare l'appaiamento binario insieme alla capacità di calcolare la funzione vuota: quest'ultima viene calcolata da un qualsiasi comando che non termina mai per nessun input e nessuno stato, ad esempio
+        \item Grazie alla sua naturale associatività, la capacità di calcolare l'appaiamento di un numero finito di funzioni è equivalente alla capacità di calcolare l'appaiamento binario insieme alla capacità di calcolare la funzione vuota: quest'ultima viene calcolata da $(\skip)$ o da un qualsiasi comando che non termina mai per nessun input e nessuno stato, ad esempio
         \[\c_! = \left( \while(0 = 0)\do(t_1 := 0) \right)\]
         mentre se $f$ e $g$ sono funzioni $\N^n \to \N$ calcolate rispettivamente da $\c_f$ e $\c_g$ il loro appaiamento è calcolato da
         \[ \c_{\langle f,g \rangle} = \left( \underbrace{t_1 := x_1; ...; t_k := x_k;}_{\text{memorizzare gli input}}\ \c_f ; \underbrace{t_{k+1} := y_1;}_{\text{memorizzare l'output}} \underbrace{x_1 := t_1;...; x_k := t_k;}_{\text{reimpostare gli input}}\ \c_g ;\ \underbrace{y_2 := y_1 ; y_1 := t_{k+1}}_{\text{impostare gli output}}  \right) \]
@@ -1026,23 +1031,31 @@ Notiamo che la funzione $s_{m,n}$ non esegue il comando $\Phi(i)$, ma sempliceme
 Intuitivamente possiamo pensare a $A/R$ come ad una partizione di $A$ in $R$-classi di equivalenza e una "zona d'ombra" che $R$ non vede; equivalentemente, potremmo estendere $R$ ad una relazione di equivalenza completa $\cap{R}$ che identifichi i punti fuori dal dominio di $R$ in una nuova classe. 
 
 \begin{definition}{La categoria $\percat(\N)$}{}
-    Definiamo la categoria $\percat(\N)$ come la categoria i cui oggetti sono le relazioni di equivalenza parziali su $\N$ identificate con i loro quozienti $\N/R$ e i cui morfismi sono dati dalle mappe $f:\N/R\to\N/S$ "tracciate" da una qualche $i \in \N$, ovvero da una mappa $\varphi_i \in \hom_\grf(\N,\N)$ definita sul dominio di $R$ tale che 
-    \[ xRy \Rarr \phi_i(x)S\phi_i(y) \]
+    Definiamo la categoria $\percat(\N)$ come la categoria i cui oggetti sono le relazioni di equivalenza parziali su $\N$ (a volte identificate con i loro quozienti $\N/R$) e i cui morfismi sono dati dalle funzioni $f:\N/R\to\N/S$ "tracciate" da una qualche $i \in \N$, ovvero da una mappa $f_i \in \hom_\grf(\N,\N)$ definita sul dominio di $R$ tale che 
+    \[ xRy \Rarr f_i(x)S f_i(y) \]
     O equivalentemente 
-    \[f([x]_R) =[\phi_i(x)]_S\]
+    \[f([x]_R) =[f_i(x)]_S\]
 \end{definition}
 
-\begin{remark}{}{}
-    Nella definizione dei morfismi di $\percat(\N)$ non è richiesto nè che $i$ sia unico nè che $\phi_i$ si comporti in qualsiasi modo stabilito a priori nella "zona d'ombra" di $R$.
-\end{remark}
+Nella definizione dei morfismi di $\percat(\N)$ non è richiesto nè che $i$ sia unico nè che $f_i$ si comporti in qualsiasi modo stabilito a priori nella "zona d'ombra" di $R$. 
 
-\begin{lemma}{}{}
+\begin{lemma}{Oggetto terminale}{}
     Ogni relazione $T$ con un'unica classe di equivalenza non vuota $\dom T$ è un oggetto terminale di $\percat(\N)$.
     \proof 
-    Sia $R$ un oggetto in $\percat(\N)$ e sia $T := \N^2$ la relazione banale. Dimostriamo che esiste un unico morfismo $f: R\to T$: 
+    Sia $R$ un oggetto in $\percat(\N)$ e sia $T$ una relazione di equivalenza con un'unica classe non vuota $\dom T$.\\ 
+    È chiaro che l'unico morfismo $f:R \to T$ è dato una qualsiasi mappa tale che $f(\dom R)\subset \dom T$, in particolare abbiamo che se $\dom R = \varnothing$ l'unica funzione è la funzione vuota, mentre se $\dom R$ non è vuoto esiste sempre la funzione costante per qualche elemento di $\dom T$.
+    \qed 
 \end{lemma}
 
-\section{Appendice: Definizione completa di $\stimp$}
+La nostra scelta "canonica" di oggetto terminale sarà la relazione $1 := \N\times_{\setcat}\N$ con "zona d'ombra" vuota.
+
+\begin{lemma}{}{}
+    Date due relazioni di equivalenza parziali $R$ e $S$ su $\N$, la relazione 
+    \[\pair(a,b) P \pair(c,d) \Harr aRc \wedge bSd\]
+    è una relazione di equivalenza parziale su $\N$ ed è il prodotto categoriale in $\percat(\N)$ di $R$ e $S$.\\
+    Le proiezioni ai fattori sono tracciate rispettivamente da $\pi_R = \pi_1\circ \pair^{-1}$ e $\pi_S := \pi_2\circ \pair^{-1}$ e per due morfismi $f:X\to R$ e $g:X\to S$ tracciate da mappe $\alpha,\beta$ il morfismo $h:X\to P$ dato dalla proprietà universale è tracciato da $x\mapsto \pair(\alpha(x),\beta(x))$.
+    \proof 
+\end{lemma}
 
 \nocite{*}
 \printbibliography
