@@ -605,7 +605,7 @@ Tuttavia in altre applicazioni della Teoria delle Categorie, ad esempio in Topol
 \begin{theorem}{Caratterizzazione del prodotto binario}{prodotto binario come funtore}
     Sia $\C$ una categoria localmente piccola e sia $\Delta :\C\to\C\times\C$ il funtore diagonale, ovvero l'applicazione
     \[ \Delta( f:X\to Y ) = ((f,f):(X,X)\to(Y,Y)).\]
-    Se $\C$ ammette i prodotti binari, \textit{una scelta un prodotto per ciascuna coppia di oggetti} definisce un'applicazione $\Pi : \C\times\C \to \C$ attraverso la mappa
+    Se $\C$ ammette i prodotti binari, \textit{una scelta di un prodotto per ciascuna coppia di oggetti} definisce un'applicazione $\Pi : \C\times\C \to \C$ attraverso la mappa
     \[\Pi((f,g):(X,Y)\to(W,Z)) := (\langle f, g\rangle : X\times Y \to W\times Z) \]
     che è funtoriale e aggiunta destra a $\Delta$.
     \proof
@@ -620,9 +620,9 @@ Tuttavia in altre applicazioni della Teoria delle Categorie, ad esempio in Topol
     \qed
 \end{theorem}
 
-Tornando indietro alla discussione del principio di equivalenza avuta in \ref{def:equivalenza di categorie}, notiamo che questo risultato dipende da una serie di scelte che solo dopo possiamo "sanare" grazie al lemma di Yoneda che ci garantisce che scelte diverse ci danno \textit{essenzialmente} lo stesso funtore. Vediamo che vale anche l'implicazione inversa:
+Tornando indietro alla discussione del principio di equivalenza avuta in \cref{def:equivalenza di categorie}, notiamo che questo risultato dipende da una serie di scelte che solo dopo possiamo "sanare" grazie al lemma di Yoneda che ci garantisce che scelte diverse ci danno \textit{essenzialmente} lo stesso funtore. Vediamo che vale anche l'implicazione inversa:
 
-\begin{theorem}{}{}
+\begin{theorem}{}{Esistenza dei prodotti dagli aggiunti}
     Sia $\C$ una categoria localmente piccola e sia $\Delta :\C\to\C\times\C$ il funtore diagonale.\\
     Se $\Delta$ ammette un aggiunto destro $\Pi$, allora $\C$ ammette i prodotti binari e per ogni coppia $(X,Y)$ di oggetti di $\C$, $\Pi(X,Y)$ è \textit{un} prodotto di $X$ e $Y$.
     \proof 
@@ -699,7 +699,7 @@ Tornando indietro alla discussione del principio di equivalenza avuta in \ref{de
 \end{lemma}
 
 L'intuizione sugli oggetti esponenziali come analoghi agli spazi di funzioni nel caso di $\setcat$ ci suggerisce di cercare esempi di categorie cartesiane chiuse, almeno nel caso concreto, in categorie che abbiano i prodotti e dove l'hom-set tra due oggetti abbia la struttura di un oggetto in sè.\\
-Seguendo questa intuizione, ci si potrebbe chiedere se la categoria degli spazi vettoriali su $\R$, magari di dimensione finita, sia cartesiana chiusa: d'altronde ha un oggetto terminale nello spazio vettoriale banale $\{0\}$, ha il prodotti binario nel prodotto cartesiano e in effetti $\hom(V,W)$ ha una struttura di spazio vettoriale su $\R$; tuttavia il lemma che abbiamo visto impedisce non solo agli spazi vettoriali, ma ai moduli in generale, di formare una categoria cartesiana chiusa.
+Seguendo questa intuizione, ci si potrebbe chiedere se la categoria degli spazi vettoriali su $\R$, magari di dimensione finita, sia cartesiana chiusa: d'altronde ha un oggetto terminale nello spazio vettoriale banale $\{0\}$, ha il prodotto binario nel prodotto cartesiano\footnote{Che nel caso finito è naturalmente isomorfo alla somma diretta, che è il coprodotto} e in effetti $\hom(V,W)$ ha una struttura di spazio vettoriale su $\R$; tuttavia il lemma che abbiamo visto impedisce non solo agli spazi vettoriali, ma ai moduli in generale, di formare una categoria cartesiana chiusa.
 
 \begin{example}{$R\modcat$ non è cartesiana chiusa}{rmod non è ccc}
     Per qualsiasi anello $R$, la categoria $R\modcat$ non è cartesiana chiusa; in particolare dunque, per qualsiasi campo $\K$, la categoria $\veccat(\K)$ non è cartesiana chiusa.
@@ -730,12 +730,22 @@ Seguendo questa intuizione, ci si potrebbe chiedere se la categoria degli spazi 
     \end{itemize}
 \end{example}
 
-\begin{theorem}{}{}
-    Sia $\C$ una categoria localmente piccola con prodotti binari \textit{specificati}.\\
-    Questa è cartesiana chiusa se e solo se i seguenti funtori hanno degli \textit{specifici} aggiunti destri per ogni oggetto $B$:
-    \[ 0 : \C \ni (f:X\to Y) \mapsto (\id_0 : 0 \to 0) \in \mathbf{1} \]
-    \[ \Delta : \C \ni (f:X\to Y)\mapsto ((f,f): (X,X)\to(Y,Y)) \in \C^2\]
-    \[ -\times B : \C \ni (f:X\to Y) \mapsto (f\times \id_B : X\times B \to Y\times B )\in \C\]
+\newcommand\I{\mc{I}}
+\begin{theorem}{Caratterizzazione per le CCC in termini di aggiunti}{ccc da aggiunti}
+    Sia $\C$ una categoria localmente piccola. Valgono le seguenti :\begin{enumerate}
+        \item Il funtore costante
+        \[ 0 : \C \ni (f:X\to Y) \mapsto (\id_0 : 0 \to 0) \in \mathbf{1} \]
+        ammette un aggiunto destro $\I$ se e solo se $\I(0)$ è terminale in $\C$.
+        \item Il funtore diagonale
+        \[ \Delta : \C \ni (f:X\to Y)\mapsto ((f,f): (X,X)\to(Y,Y)) \in \C^2\]
+        ammette un aggiunto destro $\Pi$ se e solo se $\C$ ammette i prodotti binari e $\Pi(A,B)$ è un prodotto di $A$ e $B$.
+        \item Se $\C$ ammette tutti i prodotti binari, la mappa 
+        \[ -\times B : \C \ni (f:X\to Y) \mapsto (f\times \id_B : X\times B \to Y\times B )\in \C\]
+        ammette un aggiunto destro $(-)^B$ per ogni oggetto $B$ se e solo $\C$ ammette gli esponenziali e $(A)^B$ è un esponenziale di $A$ e $B$.
+    \end{enumerate}
+    In particolare, questi funtori aggiunti esistono se e solo se $\C$ è una categoria cartesiana chiusa.
+    \proof 
+
 \end{theorem}
 
 % \subsection{Topos elementari}
@@ -969,7 +979,7 @@ Che è immediatamente riconoscibile come funzione ricorsiva primitiva.\\
 Possiamo costruire ora esplicitamente una biezione $\Phi : \Com \iso\N$, notazione che manterremo nel prossimo risultato: dalla definizione di $\imp$ si vede che 
 \[ \Com \cong \{\skip\}\sqcup \underbrace{(\Var \times \Exp)}_{(...):=(...)} \sqcup \underbrace{(\Com\times\Com)}_{(...);(...)} \sqcup \underbrace{(\Exp \times \Com \times \Com)}_{\ifc(...)\then(...)\elsec(...)} \sqcup \underbrace{(\Exp \times \Com)}_{\while(...)\do(...)} \]
 E allo stesso modo 
-\[ \Exp \cong \N\sqcup\Var \sqcup\underbrace{(\Exp\times\Exp)}_{(...)+(...)} \sqcup\underbrace{(\Exp-\Exp)}_{(...)-(...)} \sqcup\underbrace{(\Exp\times\Exp)}_{(...)\cdot(...)} \]
+\[ \Exp \cong \N\sqcup\Var \sqcup\underbrace{(\Exp\times\Exp)}_{(...)+(...)} \sqcup\underbrace{(\Exp\times\Exp)}_{(...)-(...)} \sqcup\underbrace{(\Exp\times\Exp)}_{(...)\cdot(...)} \]
 Dunque definiamo per induzione l'enumerazione $\Phi : \Com \iso \N$:
 \[ \begin{cases}
     \Phi(\skip) & := 0\\
@@ -1003,7 +1013,7 @@ E $\varphi:\Var \iso \N$ è semplicemente data da
     \[ \Phi(\c_2) = 2+4\cdot\pair( \Phi(y_1 := y_1\cdot x_1), \Phi(x_1 := x_1-1) ) = 478562106907718 \]
     \[ \Phi(\c_1) = 4+4\cdot\pair(16,\Phi(\c_2)) \approx 3.35\cdot 10^{31} \]
     \[ \Phi(\c) = 2+4\cdot\pair(\Phi(y_1 := 1) ,\Phi(\c_1) ) = 2+4\cdot\pair(\Phi(y_1 := 1) ,\Phi(\c_1) )\]
-    Il valore esatto di $\Phi(\c)$ è dunque $22465112070767333\cdot 10^{47}$, notevole per un comando da una ventina di simboli.
+    Il valore esatto di $\Phi(\c)$ è dunque $22465112070767333\cdot 10^{47} \approx 2.25\cdot 10^{63}$, notevole per un comando da una ventina di simboli.
 \end{example}
 
 Ora, mantenendo questa notazione, possiamo enunciare un risultato che sarà essenziale per dimostrare la chiusura della categoria che stiamo costruendo
@@ -1055,6 +1065,7 @@ La nostra scelta "canonica" di oggetto terminale sarà la relazione $1 := \N\tim
     è una relazione di equivalenza parziale su $\N$ ed è il prodotto categoriale in $\percat(\N)$ di $R$ e $S$.\\
     Le proiezioni ai fattori sono tracciate rispettivamente da $\pi_R = \pi_1\circ \pair^{-1}$ e $\pi_S := \pi_2\circ \pair^{-1}$ e per due morfismi $f:X\to R$ e $g:X\to S$ tracciate da mappe $\alpha,\beta$ il morfismo $h:X\to P$ dato dalla proprietà universale è tracciato da $x\mapsto \pair(\alpha(x),\beta(x))$.
     \proof 
+    
 \end{lemma}
 
 \nocite{*}
