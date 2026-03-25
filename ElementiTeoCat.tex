@@ -650,7 +650,7 @@ Tornando indietro alla discussione del principio di equivalenza avuta in \cref{d
     	\arrow["{\eval_{Y,Z}}"{description}, from=3-1, to=3-3]
     \end{tikzcd}\]
     Inoltre l'assegnazione $f\mapsto \lambda f$ deve definire una biezione
-    \[ \hom(X\times Y, Z) \cong \hom{X, Z^Y} \]
+    \[ \hom(X\times Y, Z) \cong \hom(X, Z^Y) \]
 \end{definition}
 
 \begin{definition}{Categoria Cartesiana Chiusa}{CCC}
@@ -829,6 +829,9 @@ Seguendo questa intuizione, ci si potrebbe chiedere se la categoria degli spazi 
 
 \chapter{La categoria $\percat(\N)$}
 
+Questo capitolo è dedicato alla costruzione e allo studio delle proprietà elementari di una particolare categoria cartesiana chiusa, che funge da importante controesempio all'idea intuitiva che avendo gli oggetti esponenziali la cardinalità possa sfuggire di mano: nonostante sia una categoria concreta e tra i suoi oggetti includa insiemi infiniti, la cardinalità di ciascun oggetto rimane al più numerabile, esponenziali inclusi.\\
+La costruzione di questa categoria e la dimostrazione della sua chiusura cartesiana appaiono in una versione estremamente essenziale in \cite{Bainbridge1990}, dove il teorema \ref{th:chiusura cartesiana di per} è una semplice proposizione; qui abbiamo deciso di espandere e precisare i dettagli lasciati "sotto il tappeto".
+
 \section{Funzioni ricorsive generali}
 
 Consideriamo la seguente categoria:
@@ -921,7 +924,7 @@ Vediamo che, indicando con $D_f$ il dominio come funzione di un morfismo $f$, va
 \section{Il linguaggio $\imp$ e il teorema $s-m-n$}
 \renewcommand\c{\mathbf{c}}
 
-\begin{definition}{Funzione $\imp$-definibile}{}
+\begin{definition}{Funzione $\imp$-definibile}{funzione definibile}
     Modifichiamo leggermente il linguaggio $\imp$, restringendo i valori delle variabili a numeri naturali invece che interi e assumendo senza perdita di generalità che l'insieme $\Var$ abbia la forma 
     \[ \Var = \underbrace{\{x_i : i \in \N_{\le 0}\}}_{:= \Input} \sqcup \underbrace{\{y_i : i \in \N_{\le 0}\}}_{:= \Output} \sqcup \underbrace{\{t_i : i \in \N_{\le 0}\}}_{:= \Temp} \]
     e che ogni comando sia scritto in modo da dipendere soltanto dal valore delle variabili in $\Input$: le variabili in $\Temp$ sono da considerarsi le variabili temporanee che un comando può invocare come "appoggio" e le variabili in $\Output$ sono quelle in cui il comando "deposita" il risultato dei suoi calcoli.\\ 
@@ -937,7 +940,7 @@ Ad esempio, se
 \[ \c_1 = (y_1 := x_1\cdot x_1),\]\[ \c_2 = (\ifc(x_1 = 0)\then(y_1 := 0)\elsec(y_1 := x_1\cdot x_1)),\]\[ \c_3 = (\ifc(x_1 = 0)\then(\skip)\elsec(y_1 := x_1\cdot x_1)) \]
 Si vede che $\c_1$ e $\c_2$ sono equivalenti perchè definiscono la funzione $x\mapsto x^2$ su tutto $\N$, ma non sono equivalenti a $\c_3$ perchè questo la definisce solo su $\N\setminus\{0\}$.
 
-\begin{theorem}{Tesi di Church-Turing per $\imp$}{}
+\begin{theorem}{Tesi di Church-Turing per $\imp$}{tesi di church-turing}
     Tutte e sole le funzioni in $\hom\grf(\N)$ sono $\imp$-definibili.
     \proof 
     Dimostriamo solamente che tutte le funzioni $\hom\grf(\N)$ sono $\imp$-definibili per induzione esibendo un programma che le calcoli:\begin{enumerate}
@@ -960,7 +963,7 @@ Si vede che $\c_1$ e $\c_2$ sono equivalenti perchè definiscono la funzione $x\
     \qed 
 \end{theorem}
 
-\begin{corollary}{}{}
+\begin{corollary}{Cardinalità di $\hom\grf(\N)$}{cardinalità delle grf}
     L'insieme $\hom\grf(\N)$ è numerabile.
     \proof
     Dato che ogni funzione in $\hom\grf(\N)$ è calcolabile da un programma, ovvero una sequenza finita di simboli tratti da un alfabeto finito $\Gamma$ e per ogni numero naturale $n$ abbiamo la funzione $\pi_1^n : \N^n\to \N$, vediamo che 
@@ -1013,12 +1016,14 @@ E $\varphi:\Var \iso \N$ è semplicemente data da
     \[ \Phi(\c_2) = 2+4\cdot\pair( \Phi(y_1 := y_1\cdot x_1), \Phi(x_1 := x_1-1) ) = 478562106907718 \]
     \[ \Phi(\c_1) = 4+4\cdot\pair(16,\Phi(\c_2)) \approx 3.35\cdot 10^{31} \]
     \[ \Phi(\c) = 2+4\cdot\pair(\Phi(y_1 := 1) ,\Phi(\c_1) ) = 2+4\cdot\pair(\Phi(y_1 := 1) ,\Phi(\c_1) )\]
-    Il valore esatto di $\Phi(\c)$ è dunque $22465112070767333\cdot 10^{47} \approx 2.25\cdot 10^{63}$, notevole per un comando da una ventina di simboli.
+    Il valore esatto di $\Phi(\c)$ è dunque
+    \[2246511207076733261815666541368859311732521767231329964161761280\]
+    vale a dire circa $2.25\cdot 10^{63}$, notevole per un comando da una ventina di simboli.
 \end{example}
 
 Ora, mantenendo questa notazione, possiamo enunciare un risultato che sarà essenziale per dimostrare la chiusura della categoria che stiamo costruendo
 
-\begin{theorem}{Teorema $s-m-n$}{}
+\begin{theorem}{Teorema $s-m-n$}{teorema smn}
     Sia $f : \N^{m+n} \to \N$ in $\hom\grf(\N)$ definita dal comando $\Phi^{-1}(i)$ per $i \in \N$.\\
     Esiste una funzione $s_{m,n}: \N^{1+n} \to \N$ in $\hom\prf(\N)$ tale che per ogni $\mathbf{x} \in \N^n$ e $\mathbf{y}\in \N^m$ la funzione $\mathbf{y}\mapsto f(\mathbf{x},\mathbf{y})$ sia calcolata dal comando $\Phi^{-1}(s_{m,n}(i,\mathbf{x}))$.\\
     In più, $s_{m,n}$ è univocamente determinata da $m$ e $n$.
@@ -1028,9 +1033,15 @@ Ora, mantenendo questa notazione, possiamo enunciare un risultato che sarà esse
     \qed
 \end{theorem}
 
-Notiamo che la funzione $s_{m,n}$ non esegue il comando $\Phi(i)$, ma semplicemente restituisce il valore 
+Notiamo che la funzione $s_{m,n}$ non esegue il comando $\Phi(i)$, ma semplicemente restituisce il numero del comando con le variabili fissate.
 
-\subsection{Relazioni di equivalenza parziali}
+\begin{definition}{Numerazione per $\hom\grf(\N)$}{numerazione per le grf}
+    Indichiamo con $f_i$ la funzione calcolata dal comando $\Phi^{-1}(i)$ per $i \in \N$.
+\end{definition}
+
+Questa numerazione non è iniettiva, in quanto comandi sintatticamente diversi potrebbero calcolare la stessa funzione, ma è suriettiva e questo ci basta.
+
+\section{$\percat(\N)$: definizioni e proprietà}
 
 \begin{definition}{Relazione di equivalenza parziale}{per}
     Sia $A$ un insieme.\\
@@ -1040,7 +1051,7 @@ Notiamo che la funzione $s_{m,n}$ non esegue il comando $\Phi(i)$, ma sempliceme
 
 Intuitivamente possiamo pensare a $A/R$ come ad una partizione di $A$ in $R$-classi di equivalenza e una "zona d'ombra" che $R$ non vede; equivalentemente, potremmo estendere $R$ ad una relazione di equivalenza completa $\cap{R}$ che identifichi i punti fuori dal dominio di $R$ in una nuova classe. 
 
-\begin{definition}{La categoria $\percat(\N)$}{}
+\begin{definition}{La categoria $\percat(\N)$}{categoria per}
     Definiamo la categoria $\percat(\N)$ come la categoria i cui oggetti sono le relazioni di equivalenza parziali su $\N$ (a volte identificate con i loro quozienti $\N/R$) e i cui morfismi sono dati dalle funzioni $f:\N/R\to\N/S$ "tracciate" da una qualche $i \in \N$, ovvero da una mappa $f_i \in \hom_\grf(\N,\N)$ definita sul dominio di $R$ tale che 
     \[ xRy \Rarr f_i(x)S f_i(y) \]
     O equivalentemente 
@@ -1049,7 +1060,7 @@ Intuitivamente possiamo pensare a $A/R$ come ad una partizione di $A$ in $R$-cla
 
 Nella definizione dei morfismi di $\percat(\N)$ non è richiesto nè che $i$ sia unico nè che $f_i$ si comporti in qualsiasi modo stabilito a priori nella "zona d'ombra" di $R$. 
 
-\begin{lemma}{Oggetto terminale}{}
+\begin{lemma}{Oggetto terminale di $\percat(\N)$}{oggetto terminale di per}
     Ogni relazione $T$ con un'unica classe di equivalenza non vuota $\dom T$ è un oggetto terminale di $\percat(\N)$.
     \proof 
     Sia $R$ un oggetto in $\percat(\N)$ e sia $T$ una relazione di equivalenza con un'unica classe non vuota $\dom T$.\\ 
@@ -1059,14 +1070,32 @@ Nella definizione dei morfismi di $\percat(\N)$ non è richiesto nè che $i$ sia
 
 La nostra scelta "canonica" di oggetto terminale sarà la relazione $1 := \N\times_{\setcat}\N$ con "zona d'ombra" vuota.
 
-\begin{lemma}{}{}
+\begin{lemma}{Prodotti in $\percat(\N)$}{prodotti in per}
     Date due relazioni di equivalenza parziali $R$ e $S$ su $\N$, la relazione 
     \[\pair(a,b) P \pair(c,d) \Harr aRc \wedge bSd\]
-    è una relazione di equivalenza parziale su $\N$ ed è il prodotto categoriale in $\percat(\N)$ di $R$ e $S$.\\
-    Le proiezioni ai fattori sono tracciate rispettivamente da $\pi_R = \pi_1\circ \pair^{-1}$ e $\pi_S := \pi_2\circ \pair^{-1}$ e per due morfismi $f:X\to R$ e $g:X\to S$ tracciate da mappe $\alpha,\beta$ il morfismo $h:X\to P$ dato dalla proprietà universale è tracciato da $x\mapsto \pair(\alpha(x),\beta(x))$.
+    è una relazione di equivalenza parziale su $\N$ ed è un prodotto categoriale in $\percat(\N)$ di $R$ e $S$.\\
+    Le proiezioni ai fattori sono tracciate rispettivamente da $\pi_R = \pi_1\circ \pair^{-1}$ e $\pi_S := \pi_2\circ \pair^{-1}$ e per due morfismi $f:X\to R$ e $g:X\to S$ tracciate da mappe $\alpha,\beta$ il morfismo $h:X\to P$ dato dalla proprietà universale è tracciato da $\eta : x\mapsto \pair(\alpha(x),\beta(x))$.
     \proof 
-    
+    È immediato osservare che $P$ è sia transitiva che simmetrica, dunque dimostriamo che è un prodotto di $R$ e $S$.\\
+    Prendiamo $n,m \in \N$ tali che $nXm$, $\alpha(n)R\alpha(m)$ e $\beta(n)S\beta(m)$; osserviamo che per definizione di $P$ vale 
+    \[ \underbrace{\pair(\alpha(n),\beta(n))}_{\eta(n)}P\underbrace{\pair(\alpha(m),\beta(m))}_{\eta(m)}\Harr \alpha(n)R\alpha(m)\wedge \beta(n)S\beta(m) \]
+    Vediamo inoltre che le mappe sottostanti (e dunque anche i morfismi) rispettano la proprietà di cono  
+    \[ \pi_R\circ \eta = \pi_1\circ\pair^{-1}\circ\pair(\alpha,\beta) = \pi_1(\alpha,\beta) = \alpha \]
+    Dimostriamo infine che $P$ è universale: per qualsiasi altro cono $(P', \pi'_R,\pi'_S)$ abbiamo 
+    \[ xP'y \Rarr \pi'_R(x)R\pi'_R(y)\wedge \pi'_S(x)S\pi'_S(y) \Harr \pair(\pi'_R(x),\pi'_S(x))P\pair(\pi'_R(y),\pi'_S(y))  \]
+    Ovvero esiste un morfismo $P'\to P$ tracciato da $\pair\circ(\pi'_R, \pi'_S)$
+    \qed
 \end{lemma}
+
+\begin{theorem}{Chiusura cartesiana di $\percat(\N)$}{chiusura cartesiana di per}
+    La categoria $\percat(\N)$ è una categoria cartesiana chiusa.\\
+    Un esponenziale $R^S$ è dato dalla relazione 
+    \[ aR^Sb \Harr \forall x,y \in \N, xSy \Rarr f_a(x)Rf_b(y) \]
+    o in altre parole, due numeri sono equivalenti in $R^S$ se e solo se tracciano lo stesso morfismo $S\to R$.
+    \proof 
+    I lemmi \ref{lem:oggetto terminale di per} e \ref{lem:prodotti in per} ci danno le prime due condizioni; per la terza, costruiamo per esaustione su $S \in \ob\percat(\N)$ un funtore aggiunto destro a $-\times S$, dove il prodotto scelto è quello definito nel lemma, che ci darà la chiusura grazie al teorema \ref{th:ccc da aggiunti}.\\
+    Il funtore $(-)^S$ agisce sugli oggetti come specificato nella tesi 
+\end{theorem}
 
 \nocite{*}
 \printbibliography
