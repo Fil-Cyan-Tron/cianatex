@@ -611,9 +611,9 @@ Tuttavia in altre applicazioni della Teoria delle Categorie, ad esempio in Topol
     \proof
     Osserviamo che dalle definizioni di categoria prodotto (definizione \cref{def:categoria prodotto e bifuntore}), di prodotto nella definizione \cref{def:prodotto limite} e assumendo che il prodotto in $\setcat$ sia l'usuale prodotto cartesiano\footnote{Dimostrazione lasciata per esercizio al lettore}, la seguente catena di biezioni è verificata in $\setcat$ per ogni $A,B$ e $C$ oggetti in $\C$:
     \[\begin{aligned}
-        \hom_{\C^2}(\Delta A,(B,C)) & \cong_\setcat \hom_{\C^2}((A,A),(B,C))\\
-        & \cong_\setcat \hom_\C(A,B)\times \hom_\C(A,C)\\
-        & \cong_\setcat \underbrace{\hom_\C(A, B\times C)}_{\C^\op \times (\C\times\C) \to \setcat} = \hom_{C}(A,\Pi(B,C))
+        \C^2(\Delta A,(B,C)) & \cong \C^2((A,A),(B,C))\\
+        & \cong \C(A,B)\times \C(A,C)\\
+        & \cong \underbrace{\C(A, B\times C)}_{\C^\op \times (\C\times\C) \to \setcat} = \C(A,\Pi(B,C))
     \end{aligned} \]
     Abbiamo dimostrato che $\Pi$ è effettivamente una mappa aggiunta destra alla mappa diagonale; dovremmo dimostrare la funtorialità, ma è banale e consiste semplicemente nell'applicare le proprietà universali dei prodotti.\\
     Applicando il lemma \cref{lem:unicità degli aggiunti}, otteniamo l'essenziale unicità, concludendo.
@@ -626,7 +626,20 @@ Tornando indietro alla discussione del principio di equivalenza avuta in \cref{d
     Sia $\C$ una categoria localmente piccola e sia $\Delta :\C\to\C\times\C$ il funtore diagonale.\\
     Se $\Delta$ ammette un aggiunto destro $\Pi$, allora $\C$ ammette i prodotti binari e per ogni coppia $(X,Y)$ di oggetti di $\C$, $\Pi(X,Y)$ è \textit{un} prodotto di $X$ e $Y$.
     \proof 
-    Credo serva introdurre unità e counità? Ci penso
+    Per ipotesi, dato che $\Delta \dashv \Pi$, abbiamo che 
+    \[ \alpha : \C(\Pi(X,Y),\Pi(X,Y))\iso \C^2(\Delta\Pi(X,Y),(X,Y)) = \C(\Pi(X,Y),X) \times \C(\Pi(X,Y),Y) \]
+    Otteniamo dunque $(\pi_X,\pi_Y) := \alpha( \id_{\Pi(X,Y)} )$ e dato che per l'ipotesi di aggiunzione per ogni $f:Z\to X$ e $g:Z\to Y$ ovvero per ogni morfismo $(f,g):(Z,Z)\to(X,Y)$ deve esistere un unico $h: Z\to\Pi(X,Y)$ risulta immediato controllare che il seguente diagramma commuti:
+    \[\begin{tikzcd}
+    	&& {\Pi(X,Y)} && \\
+	    \\
+	    X && Z && Y
+	    \arrow["{\pi_X}"{description}, from=1-3, to=3-1]
+	    \arrow["{\pi_Y}"{description}, from=1-3, to=3-5]
+	    \arrow["h"{description}, from=3-3, to=1-3]
+	    \arrow["f"{description}, from=3-3, to=3-1]
+	    \arrow["g"{description}, from=3-3, to=3-5]
+    \end{tikzcd}\]
+    Abbiamo che quindi $(\Pi(X,Y),\pi_X,\pi_Y)$ è un adeguato candidato prodotto, l'universalità segue da un ragionamento analogo a quello del teorema \cref{th:prodotto binario come funtore}: se esistesse un altro prodotto, questo definirebbe un aggiunto destro alla diagonale, ma dato che questo deve essere essenzialmente unico allora deve essere isomorfo a $\Pi(X,Y)$.
 \end{theorem}
 
 \begin{corollary}{Caratterizzazione del coprodotto binario}{caratterizzazione del coprodotto binario}
