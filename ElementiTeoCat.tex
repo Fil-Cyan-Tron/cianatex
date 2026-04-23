@@ -507,11 +507,61 @@ Talvolta diremo che una categoria "ammette/ha tutti i..." facendo riferimento a 
     \end{itemize}
 \end{proposition}
 
+\begin{definition}{Diagramma discreto e prodotto}{prodotto limite}
+    Sia $\C$ una categoria e per un insieme di indici $I$ definiamo la categoria discreta $\mathbf{D}[I]$, ovvero la categoria i cui oggetti sono elementi di $I$ e i cui unici morfismi sono le identità.\\
+    Si dice \bemph{diagramma discreto} un funtore $X_{\bullet}:\mathbf{D}[I]\to\C$ e il limite di questo diagramma (quando esiste) è detto \bemph{prodotto} degli $X_i$ in $\C$ ed è indicato con $\prod_{i \in I}X_i$.\\
+    Questo è dotato di un insieme di morfismi $\{\pi_i:\prod_{i \in I}X_i\to X_i\}$ detti \bemph{proiezioni} che soddisfano la cosiddetta \bemph{proprietà universale} del prodotto, ovvero per ogni insieme di morfismi $\{ f_i :Y\to X_i \}_{i\in I}$ esiste ed è unico $h:Y\to \prod_{i \in I}X_i$ tale che il seguente diagramma commuti per ogni $i \in I$:
+    \[\begin{tikzcd}
+    	{\prod_{i \in I}X_i} && \\
+	    \\
+	    Y && {X_i}
+	    \arrow["{\pi_i}"{description}, from=1-1, to=3-3]
+	    \arrow["h"{description}, dashed, from=3-1, to=1-1]
+	    \arrow["{f_i}"{description}, from=3-1, to=3-3]
+    \end{tikzcd}\]
+    Quando $|I| = 2$ diciamo che il prodotto è \bemph{binario} e lo\footnote{o meglio, ne indichiamo uno} indichiamo con $X_1\times X_2$.\\
+    Il colimite di $X_\bullet$ in $\C$ si dice \bemph{coprodotto} e si indica con $\amalg_{i \in I}X_i$.
+\end{definition}
+
+È immediato notare alcuni fatti:\begin{itemize}
+    \item Il prodotto del diagramma vuoto in $\C$ è, se esiste, un suo oggetto terminale.
+    \item Il prodotto è naturalmente associativo, ovvero per tutti gli insiemi di indici $I$ e $J$ le proprietà universali garantiscono l'esistenza di un isomorfismo 
+    \[ \alpha_{I,J}: \left( \prod_{i\in I} X_i \right)\times \left(\prod_{j\in J} X_j\right)\iso \prod_{k \in I\sqcup J} X_k \]
+    \item L'esistenza dei prodotti binari e di un oggetto terminale implica l'esistenza di prodotti finiti qualsiasi.
+\end{itemize}
+
+\begin{definition}{Diagramma parallelo ed equalizzatore}{equalizzatore}
+    Sia $I$ un insieme di indici e sia $\mathbf{2}[I]$ la categoria con due oggetti $\heartsuit$ e $\diamondsuit$ e per i cui morfismi non identità sono $i:\heartsuit \to \diamondsuit$ per $i \in I$.\\
+    Si dice \bemph{diagramma parallelo} un funtore $f_\bullet : \mathbf{2}[I]\to \C$ e il limite di questo diagramma si dice \bemph{equalizzatore} degli $f_i : X\to Y$ in $\C$ ed è indicato con $\eq(\{f_i\}_{i \in I})$.\\
+    Questo è dotato di un (mono)morfismo $e: \eq(\{f_i\}_{i \in I})\to X$ che soddisfa la proprietà universale dell'equalizzatore, ovvero per ogni $p:Z\to X$ e $q:Z\to Y$ tale che per ogni $i \in I$ il triangolo a destra commuti, esiste ed è unico $h:Z\to \eq(\{f_i\}_{i \in I})$ tale che tutto il seguente diagramma commuti:
+    \[\begin{tikzcd}
+    	&& Z && \\
+	    {\eq(\{f_i\}_{i \in I})} \\
+	    && X && Y
+	    \arrow["r"{description}, dashed, from=1-3, to=2-1]
+	    \arrow["p"{description}, from=1-3, to=3-3]
+	    \arrow["q"{description}, from=1-3, to=3-5]
+	    \arrow["e"{description}, hook, from=2-1, to=3-3]
+	    \arrow["{f_i}"{description}, from=3-3, to=3-5]
+    \end{tikzcd}\]
+    Il colimite di $f_i$ in $\C$ si dice \bemph{coequalizzatore}
+\end{definition}
+ 
+\begin{example}{Prodotti, coprodotti, equalizzatori e coequalizzatori in $\setcat$}{limiti e colimiti in set}
+    La categoria $\setcat$ è una categoria completa:
+    \begin{itemize}
+        \item Il prodotto è dato dal prodotto cartesiano.
+        \item L'equalizzatore di $f,g:X\to Y$ è dato dall'insieme $\{ x \in X : f(x)=g(x) \}$ e dal morfismo equalizzante corrispondente all'inclusione insiemistica.
+    \end{itemize}
+    Meno banalmente, è anche una categoria cocompleta: moralmente, l'equivalenza tra $\setcat$ e $\setcat^\op$ è data dal funtore che manda un insieme nel suo insieme delle parti e una funzione nella sua funzione controimmagine.\\
+    Saltando a piè pari tutti i dettagli\footnote{Per una trattazione comunque informale dei quali si rimanda il lettore a \cite{ButGeeee}}, abbiamo che il coprodotto è dato dall'unione disgiunta, mentre il coequalizzatore è dato da $Y/\sim$, dove $\sim$ è la più piccola relazione di equivalenza su $Y$ tale che per ogni $x \in X$ si abbia $f(x)\sim g(x)$ e l'epimorfismo coequalizzante è dato dalla proiezione canonica al quoziente $y\mapsto [y]_\sim$.
+\end{example}
+
 \subsection{Limiti notevoli}
 
 Presentiamo alcune forme di diagramma che hanno limiti di particolare importanza nella pratica matematica; in questa sezione, assumeremo per semplicità che $\J$ sia una sottocategoria (di forma opportunamente specificata) di $\C$ e $F : \J \inj \C$ sia il funtore di inclusione: questo ci permetterà di dire semplicemente "Sia $\J$ un diagramma" o parlare di $\catlim\J$.
 
-\begin{definition}{Prodotto}{prodotto limite}
+\begin{definition}{Prodotto}{kdjfhkjdsfkprodotto limite}
     Sia $\C$ una categoria e sia $\J$ un diagramma discreto (ovvero i cui unici morfismi sono le identità).\\
     Si dice \bemph{prodotto} di $\J$ in $\C$ il limite di $\J$ in $\C$, che indicheremo come
     \[ \prod_{X\in\ob\J} X\quad\text{oppure, più semplicemente,}\quad \prod\J\ . \]
