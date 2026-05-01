@@ -762,12 +762,12 @@ Tornando indietro alla discussione del principio di equivalenza avuta in \cref{d
 \end{lemma}
 
 L'intuizione sugli oggetti esponenziali come analoghi agli spazi di funzioni nel caso di $\setcat$ ci suggerisce di cercare esempi di categorie cartesiane chiuse, almeno nel caso concreto, in categorie che abbiano i prodotti e dove l'hom-set tra due oggetti abbia la struttura di un oggetto in sè.\\
-Seguendo questa intuizione, ci si potrebbe chiedere se la categoria degli spazi vettoriali su $\R$, magari di dimensione finita, sia cartesiana chiusa: d'altronde ha un oggetto terminale nello spazio vettoriale banale $\{0\}$, ha il prodotto binario nel prodotto cartesiano\footnote{Che nel caso finito è naturalmente isomorfo alla somma diretta, che è il coprodotto} e in effetti $\hom(V,W)$ ha una struttura di spazio vettoriale su $\R$; tuttavia il lemma che abbiamo visto impedisce non solo agli spazi vettoriali, ma ai moduli in generale, di formare una categoria cartesiana chiusa.
+Seguendo questa intuizione, ci si potrebbe chiedere se qualchedi moduli, magari particolarmente "beneducata" come quella degli $\R$-spazi vettoriali di dimensione finita, sia cartesiana chiusa: d'altronde ha un oggetto terminale nello spazio vettoriale banale $\{0\}$, ha il prodotto binario nel prodotto cartesiano\footnote{Che nel caso finito è naturalmente isomorfo alla somma diretta, che è il coprodotto} e in effetti $\hom(V,W)$ ha una struttura di spazio vettoriale su $\R$; tuttavia il lemma che abbiamo visto impedisce non solo agli spazi vettoriali, ma ai moduli in generale, di formare una categoria cartesiana chiusa.
 
-\begin{example}{$R\modcat$ non è cartesiana chiusa}{rmod non è ccc}
-    Per qualsiasi anello $R$, la categoria $R\modcat$ non è cartesiana chiusa; in particolare dunque, per qualsiasi campo $\K$, la categoria $\veccat(\K)$ non è cartesiana chiusa.
+\begin{example}{$A\modcat$ non è cartesiana chiusa}{rmod non è ccc}
+    Per qualsiasi anello $A$, la categoria $A\modcat$ non è cartesiana chiusa; in particolare dunque, per qualsiasi campo $\K$, la categoria $\veccat(\K)$ non è cartesiana chiusa.
     \proof 
-    $R\modcat$ ha un oggetto zero $\{0\}$, il modulo banale, ma dunque se fosse cartesiana chiusa tutti i moduli sarebbero isomorfi per il lemma \cref{lem:ccc e oggetti zero}; dato che questo non è vero, $R\modcat$ non può essere cartesiana chiusa.
+    $A\modcat$ ha un oggetto zero $\{0\}$, il modulo banale, ma dunque se fosse cartesiana chiusa tutti i moduli sarebbero isomorfi per il lemma \cref{lem:ccc e oggetti zero}; dato che questo non è vero, $A\modcat$ non può essere cartesiana chiusa.
     \qed
 \end{example}
 
@@ -797,7 +797,7 @@ Seguendo questa intuizione, ci si potrebbe chiedere se la categoria degli spazi 
 \begin{theorem}{Caratterizzazione per le CCC in termini di aggiunti}{ccc da aggiunti}
     Sia $\C$ una categoria localmente piccola. Valgono le seguenti :\begin{enumerate}
         \item Il funtore costante
-        \[ 0 : \C \ni (f:X\to Y) \mapsto (\id_0 : 0 \to 0) \in \mathbf{1} \]
+        \[ K_0 : \C \ni (f:X\to Y) \mapsto (\id_0 : 0 \to 0) \in \mathbf{1} \]
         ammette un aggiunto destro $\I$ se e solo se $\I(0)$ è terminale in $\C$.
         \item Il funtore diagonale
         \[ \Delta : \C \ni (f:X\to Y)\mapsto ((f,f): (X,X)\to(Y,Y)) \in \C^2\]
@@ -808,8 +808,13 @@ Seguendo questa intuizione, ci si potrebbe chiedere se la categoria degli spazi 
     \end{enumerate}
     In particolare, questi funtori aggiunti esistono se e solo se $\C$ è una categoria cartesiana chiusa.
     \proof 
-
+    Procediamo un punto alla volta:\begin{enumerate}
+        \item 
+    \end{enumerate}
 \end{theorem}
+
+Notiamo che questo teorema ci dà un'altra ragione per cui una categoria di $A$-moduli non può essere cartesiana chiusa: nonostante per ogni coppia di moduli $M$ e $N$ ci sia effettivamente un modulo $N^M = \hom_R(M,N)$, la mappa $N\mapsto N^M$ non è aggiunta destra a $N\mapsto N\times M$ ma notoriamente a $N\mapsto N \otimes M$ e in generale $N\otimes M$ non è isomorfo a $N\times M$.\\
+Per un esempio basta pensare a $\R$ visto come $\R$-spazio vettoriale: abbiamo che $\R\times\R \cong \R^2$, ma\footnote{Basta notare che dato che $\{1\}$ è una base di $\R$ su $\R$, una base di $\R\otimes\R$ è data da $\{1\otimes 1\}$} $\R\otimes\R \cong \R$, che ovviamente non sono isomorfi perchè hanno dimensione diversa.
 
 % \subsection{Topos elementari}
 
