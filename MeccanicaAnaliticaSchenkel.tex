@@ -41,12 +41,12 @@ Assumiamo che il lettore abbia già familiarità con il concetto \bemph{($\R$-)s
 
 \begin{example}{Lo spazio di dimensione finita $\R^n$}{}
     L'esempio standard di spazio vettoriale è $\R^n$, con $n \in \N$.\\
-    Per ogni $n, m \in \N$ esiste\footnote{una volta scelta una base} una biezione $\M_{n\times m}(\R) \iso \hom(\R^m,\R^n)$ che associa una matrice $M$ alla mappa lineare $f_M : \mathbf{v}\mapsto M\mathbf{v}$
+    Per ogni $n, m \in \N$ esiste\footnote{una volta scelta una base} una biezione $\M_{n\times m}(\R) \iso \hom(\R^m,\R^n)$ che associa una matrice $M$ alla mappa lineare $f_M : \vec{v}\mapsto M\vec{v}$
 \end{example}
 
 Notiamo che se $V$ è uno spazio vettoriale di dimensione $n \in \N$, esiste un\footnote{non unico!} isomorfismo $\R^n \iso V$.\\
 Infatti scegliendo una base $\{e_i\in V\}_{1\le i \le n}$ un isomorfismo lineare può essere definito da 
-\[ e: \mathbf{v} = \begin{pmatrix} v^1 \\ \vdots \\ v^n \end{pmatrix}\mapsto \sum_{i=1}^n v^i e_i  \]
+\[ e: \vec{v} = \begin{pmatrix} v^1 \\ \vdots \\ v^n \end{pmatrix}\mapsto \sum_{i=1}^n v^i e_i  \]
 In particolare, dato che per due basi $\{e_i\}_i$, $\{e'_i\}_i$ esiste una matrice $B = (B_i^j)$ in $\GL(n)$ tale che 
 \[ e_i = \sum_{j = 1}^n B^j_i e'_i \]
 Otteniamo un automorfismo lineare
@@ -94,7 +94,7 @@ Che implica $\delta\psi(v) \equiv \di\psi(v)$.
 \end{proposition}
 
 Come conseguenza diretta della proposizione precedente, ogni spazio affine $A$ di dimensione $n\in \N$ è dotato di un\footnote{non unico} isomorfismo affine con $\R^n$: scegliendo un punto base $P_0 \in A$ e una base $\{e_i\}_i$ di $V$ questo è dato da
-\[ (P_0,e): \mathbf{v} = \begin{pmatrix} v^1\\\vdots\\v^n \end{pmatrix}\mapsto P_0 + \sum_{i=1}^n v^ie_i\]
+\[ (P_0,e): \vec{v} = \begin{pmatrix} v^1\\\vdots\\v^n \end{pmatrix}\mapsto P_0 + \sum_{i=1}^n v^ie_i\]
 In particolare, considerando due punti $P_0,P_0' \in A$ e dato che per due basi $\{e_i\}_i$, $\{e'_i\}_i$ esiste una matrice $B = (B_i^j)$ in $\GL(n)$ tale che 
 \[ e_i = \sum_{j = 1}^n B^j_i e'_i \]
 Otteniamo un automorfismo affine 
@@ -110,14 +110,14 @@ Modellando il tempo come uno spazio $A^1$ di dimensione $1$ e lo spazio come uno
 \[\begin{tikzcd}
 	{A^1} && {A^3} \\
 	{\R^1} && {\R^3} \\
-	t && {\mathbf{x} + \mathbf{v}t}
+	t && {\vec{x} + \vec{v}t}
 	\arrow["\psi"{description}, from=1-1, to=1-3]
 	\arrow[from=2-1, to=1-1]
 	\arrow[from=2-1, to=2-3]
 	\arrow[from=2-3, to=1-3]
 	\arrow[maps to, from=3-1, to=3-3]
 \end{tikzcd}\]
-Dove $\mathbf{v}$ è la velocità dela particella e $\mathbf{x}_0$ la sua posizione al tempo $t=0$.\\
+Dove $\vec{v}$ è la velocità dela particella e $\vec{x}_0$ la sua posizione al tempo $t=0$.\\
 Tuttavia, per descrivere moti più interessanti (ad esempio quando le particelle sono sottoposte a delle forze) è necessario passare ad un formalismo ancora più generale.
 
 \subsection{Varietà lisce}
@@ -258,13 +258,13 @@ Notiamo anche che una mappa affine $\psi : E\to E'$ è un'isometria se e solo se
 \newcommand\SO{\operatorname{SO}}
 \begin{example}{Lo spazio euclideo $\R^n$}{}
     Per $n \in \N$, lo spazio vettoriale $\R^n$ è dotato di un prodotto scalare naturale $\cdot$ definito da
-    \[ \mathbf{v}\cdot\mathbf{w} = \begin{pmatrix} v^1\\\vdots\\v^n \end{pmatrix}\cdot \begin{pmatrix} w^1\\\vdots\\w^n \end{pmatrix} = \sum_{i=1}^n v^i w^i \]
+    \[ \vec{v}\cdot\vec{w} = \begin{pmatrix} v^1\\\vdots\\v^n \end{pmatrix}\cdot \begin{pmatrix} w^1\\\vdots\\w^n \end{pmatrix} = \sum_{i=1}^n v^i w^i \]
     Come visto sopra, questo spazio ha anche una struttura di spazio affine, sul quale questo prodotto scalare definisce la tipica distanza 
-    \[ d(\mathbf{x},\mathbf{y}) = d\left(\begin{pmatrix} x^1\\\vdots\\x^n \end{pmatrix}, \begin{pmatrix} y^1\\\vdots\\y^n \end{pmatrix}\right) = \sqrt{ \sum_{i=1}^n (x^i-y^i)^2 } \]
-    Ogni isometria affine $\psi : \R^m\to\R^n$ è rappresentata tramite l'espressione $\psi(\mathbf{x}) = \mathbf{b}+L\mathbf{x}$ da un vettore $\mathbf{b\in\R^n}$ e una matrice $L$ con $n$ righe e $m$ colonne tale che $L^T L = \mathbf{1}_{m\times m}$.\\
+    \[ d(\vec{x},\vec{y}) = d\left(\begin{pmatrix} x^1\\\vdots\\x^n \end{pmatrix}, \begin{pmatrix} y^1\\\vdots\\y^n \end{pmatrix}\right) = \sqrt{ \sum_{i=1}^n (x^i-y^i)^2 } \]
+    Ogni isometria affine $\psi : \R^m\to\R^n$ è rappresentata tramite l'espressione $\psi(\vec{x}) = \vec{b}+L\vec{x}$ da un vettore $\vec{b\in\R^n}$ e una matrice $L$ con $n$ righe e $m$ colonne tale che $L^T L = \vec{1}_{m\times m}$.\\
     Osserviamo che tali matrici esistono solo per $n\ge m$, fatto che corrisponde alla nostra intuizione geometrica: non è possibile che $\psi$ preservi le distanze se ci sono dimensioni che vengono "schiacciate" quando questa trasforma lo spazio.\\
     Notiamo anche che quando $n=m$, abbiamo che la\footnote{mappa rappresentata dalla} matrice $L$ deve appartenere al gruppo ortogonale $\O(n)$ e che ogni isometria $\psi:\R^n\to\R^n$ è invertibile con inversa $\psi^{-1}$ data da 
-    \[ \psi^{-1}(\mathbf{x}) = L^T(\mathbf{x}-\mathbf{b}) = -L^T\mathbf{b} + L^T\mathbf{x} \]
+    \[ \psi^{-1}(\vec{x}) = L^T(\vec{x}-\vec{b}) = -L^T\vec{b} + L^T\vec{x} \]
 \end{example}
 
 Come per il caso vettoriale e per il caso affine, non sarà mica che ogni spazio euclideo di dimensione finita è segretamente $\R^n$ sotto mentite spoglie? E certo che è così, lo vediamo con la prossima proposizione:
@@ -275,7 +275,7 @@ Come per il caso vettoriale e per il caso affine, non sarà mica che ogni spazio
     Scegliamo un punto $P_0 \in E$ e una base ortonormale $\{e_i \in V : s(e_i,e_j) = \delta_{i,j}\}_{1\le i\le n}$ per lo spazio vettoriale sottostante $V$, dunque definiamo la mappa $\psi$ come
     \[\psi( (x^i)_i ) = P_0 + \sum_{i=1}^n x^ie_i \]
     Questa è ovviamente una mappa affine, notiamo che preserva i prodotti scalari:
-    \[ s(\di \psi(\mathbf{v}),\di\psi(\mathbf{w}) ) = \sum_{i,j = 1}^n v^i w^j \underbrace{s(e_i,e_j)}_{=\delta_{i,j}} = \sum_{i=1}^n v^i w^i = \mathbf{v}\cdot\mathbf{w}\]
+    \[ s(\di \psi(\vec{v}),\di\psi(\vec{w}) ) = \sum_{i,j = 1}^n v^i w^j \underbrace{s(e_i,e_j)}_{=\delta_{i,j}} = \sum_{i=1}^n v^i w^i = \vec{v}\cdot\vec{w}\]
     Dunque è un'isometria. Vediamo che la sua inversa $\psi^{-1}:E\iso\R^n$ assume la forma 
     \[ \psi^{-1}(P) = \begin{pmatrix}s(e_1,P-P_0) \\ \vdots \\ s(e_n, P-P_0) \end{pmatrix} \]
     \qed
@@ -292,18 +292,18 @@ Grazie a questi isomorfismi è facile determinare il gruppo di automorfismi $\Au
 	\arrow["{\eta_\psi(f) :=  \psi^{-1} \circ f \circ \psi}"{description}, from=3-1, to=3-5]
 	\arrow["\psi"{description}, from=3-5, to=1-4]
 \end{tikzcd}\]
-Come visto sopra, abbiamo anche un isomorfismo $\R^n\times\O(n)\iso\Aut(\R^n)$ che manda la coppia $(\mathbf{b},L)$ nell'automorfismo $f_{(\mathbf{b},L)}(\mathbf{x}) = \mathbf{b}+L\mathbf{x}$: i seguenti calcoli esibiscono la struttura di gruppo di $\R^n\times\O(n)$:\begin{itemize}
+Come visto sopra, abbiamo anche un isomorfismo $\R^n\times\O(n)\iso\Aut(\R^n)$ che manda la coppia $(\vec{b},L)$ nell'automorfismo $f_{(\vec{b},L)}(\vec{x}) = \vec{b}+L\vec{x}$: i seguenti calcoli esibiscono la struttura di gruppo di $\R^n\times\O(n)$:\begin{itemize}
     \item La composizione è data da
-        \[ f_{(\mathbf{b},L)} \circ f_{(\mathbf{b}',L')(\mathbf{x})} = \mathbf{b} + L f_{(\mathbf{b}',L')}(\mathbf{x}) = \mathbf{b}+L\mathbf{b}' + LL'\mathbf{x} = f_{(\mathbf{b} + L\mathbf{b}', LL' )}(\mathbf{x}) \]
-        Dunque l'operazione del gruppo è $(\mathbf{b},L)\cdot (\mathbf{b}',L') := (\mathbf{b} + L\mathbf{b}', LL' )$ e notiamo che è diversa dall'operazione \naif sul prodotto diretto del gruppo additivo $\R^n$ e del gruppo di composizione $\O(n)$. 
-    \item L'elemento neutro è ovviamente $\id = f_{(\mathbf{0},\mathbf{1}_{n\times n})}$.
-    \item L'inverso di $(\mathbf{b},L)$ è dato da $(-L^T\mathbf{b},L^T)$.
+        \[ f_{(\vec{b},L)} \circ f_{(\vec{b}',L')(\vec{x})} = \vec{b} + L f_{(\vec{b}',L')}(\vec{x}) = \vec{b}+L\vec{b}' + LL'\vec{x} = f_{(\vec{b} + L\vec{b}', LL' )}(\vec{x}) \]
+        Dunque l'operazione del gruppo è $(\vec{b},L)\cdot (\vec{b}',L') := (\vec{b} + L\vec{b}', LL' )$ e notiamo che è diversa dall'operazione \naif sul prodotto diretto del gruppo additivo $\R^n$ e del gruppo di composizione $\O(n)$. 
+    \item L'elemento neutro è ovviamente $\id = f_{(\vec{0},\vec{1}_{n\times n})}$.
+    \item L'inverso di $(\vec{b},L)$ è dato da $(-L^T\vec{b},L^T)$.
 \end{itemize}
 Queste trasformazioni hanno il significato geometrico di traslazioni, rotazioni e riflessioni dello spazio euclideo $\R^n$.\\
 Applicando subito quanto visto al tempo $E^1$ e allo spazio $E^3$ della fisica classica otteniamo in qualunque scelta di coordinate una descrizione esplicita dei loro automorfismi: 
 \[ \R^1\iso \R^1, t\mapsto at+c \]
-\[ \R^3 \iso \R^3, \mathbf{x}\mapsto L\mathbf{x} + \mathbf{b} \]
-Per $a \in \{-1,1\}$, $c \in \R$, $L\in\O(3)$ e $\mathbf{b}\in\R^3$; per escludere trasformazioni che possano riflettere il tempo (con $a=-1$) o lo spazio (con $\det L = -1$), dotiamo questi nostri spazi euclidei di un'\bemph{orientazione} ereditata da quella sul loro spazio vettoriale sottostante e richiediamo che gli automorfismi la preservino:
+\[ \R^3 \iso \R^3, \vec{x}\mapsto L\vec{x} + \vec{b} \]
+Per $a \in \{-1,1\}$, $c \in \R$, $L\in\O(3)$ e $\vec{b}\in\R^3$; per escludere trasformazioni che possano riflettere il tempo (con $a=-1$) o lo spazio (con $\det L = -1$), dotiamo questi nostri spazi euclidei di un'\bemph{orientazione} ereditata da quella sul loro spazio vettoriale sottostante e richiediamo che gli automorfismi la preservino:
 
 \begin{definition}{Orientazione}{}
     Un'\bemph{orientazione} su uno spazio vettoriale $V$ è una classe di equivalenza di basi $[\{e_i\}_i]_\sim$ dove due basi sono equivalenti se e solo se la mappa di cambiamento di base $f(e_i') = e_i$ ha determinante positivo.
@@ -315,7 +315,7 @@ Nel caso orientato, siamo forzati a scegliere $a=1$ e $L \in \SO(3)$, il sottogr
 
 Inizialmente potremmo pensare ancora una volta a una soluzione \naif per la struttura del nostro spaziotempo unificato, ovvero il prodotto $E^1\times E^3$ del tempo e dello spazio, ma ancora una volta la realtà dei fatti decide di rovinarci la festa e ci costringe a lavorare di più: questa descrizione ingenua presumerebbe un prodotto in qualche modo "privilegiato", di cui non c'è evidenza nella natura.\\
 Qualcosa che ha senso definire \textit{nel contesto della meccanica classica} è la mappa di proiezione sul tempo 
-\[\pi_{E^1}: E^1\times E^3 \to E^1\] 
+\[\pi_1: E^1\times E^3 \to E^1\] 
 che manda il punto $(t,P)$ nel suo tempo $t$, che fisicamente interpretiamo come il \bemph{tempo assoluto}.\\
 Seguendo \cite{Moretti2024}, formuleremo il nostro concetto di spaziotempo in modo indipendente da coordinate usando il linguaggio delle varietà, per il quale avremo bisogno di alcuni strumenti di geometria differenziale.
 
@@ -362,6 +362,124 @@ Si noti però che abbiamo scritto \bemph{uno}\footnote{Il lettore esasperato pot
 	    \arrow["f"{description}, from=3-1, to=3-3]
     \end{tikzcd}\]
     E che per ogni $t \in E^1$ la restrizione alle fibre $F|_{\Sigma_t} :\Sigma_t\iso \Sigma'_{f(t)}$ sia un'isometria affine.
+\end{definition}
+
+Enunciamo ora un teorema di cui non possiamo dare la dimostrazione perchè richiede strumenti più avanzati di geometria differenziale che non possediamo e che esulano dagli scopi di questo corso.
+
+\begin{theorem}{Essenziale unicità dello spaziotempo della fisica classica}{spaziotempo standard}
+    Ogni spaziotempo della fisica classica $T:\V^4\to E^1$ è isomorfo in modo non canonico allo spaziotempo standard $\pi_1: E^1 \times E^3\to E^1$.\\
+    Una scelta di un isomorfismo 
+    \[ (\mc R, \id_{E^1}) : (T:\V^4\to E^1) \iso (\pi_1: E^1 \times E^3\to E^1)  \]
+    È detta \bemph{(sistema di) riferimento}.
+\end{theorem}
+
+Un cambiamento di riferimento dunque è dato da un'automorfismo dello spaziotempo standard
+\[\begin{tikzcd}
+	& {T:\V^4\to E^1} & \\
+	\\
+	{\pi_1:E^1\times E^3 \to E^1} && {\pi_1: E^1 \times E^3\to E^1}
+	\arrow["{\mc R}"{description}, from=1-2, to=3-1]
+	\arrow["{\mc R'}"{description}, from=1-2, to=3-3]
+	\arrow["{\mc R' \circ \mc R^{-1}}"{description}, from=3-1, to=3-3]
+\end{tikzcd}\]
+Che di seguito descriveremo esplicitamente.\\
+Come abbiamo visto sopra, uno spazio euclideo $E^n$ ammette una scelta (non canonica) di coordinate data da $\psi_n:\R^n\to E^n$, dunque possiamo ottenere una descrizione ancora più esplicita dello spaziotempo attraverso delle \bemph{coordinate standard adattate al riferimento}
+\[\begin{tikzcd}
+	{\V^4} && {E^1\times E^3} && {\R^1\times \R^3} \\
+	\\
+	{E^1} && {E^1} && {\R^1}
+	\arrow["{\mc R}"{description}, from=1-1, to=1-3]
+	\arrow["T"{description}, from=1-1, to=3-1]
+	\arrow["{(\psi_1^{-1},\psi_3^{-1})}"{description}, from=1-3, to=1-5]
+	\arrow["{\pi_1}"{description}, from=1-3, to=3-3]
+	\arrow["{\pi_1}"{description}, from=1-5, to=3-5]
+	\arrow[equals, from=3-1, to=3-3]
+	\arrow["{\psi_1^{-1}}"{description}, from=3-3, to=3-5]
+\end{tikzcd}\]
+La potenza delle coordinate è che ci permettono di effettuare calcoli: vediamo un esempio:  abbiamo un isomorfismo di gruppi
+\[ \Aut(T:\V^4\to E^1) \iso \Aut(\pi_1:\R^1\times\R^3\to\R^1 ) \]
+E notiamo che il secondo è notevolmente più semplice da determinare del primo
+
+\begin{proposition}{Gruppo degli automorfismi di $\pi_1:\R^1\times\R^3\to\R^1$}{automorfismi dello spaziotempo standard}
+    Ogni automorfismo 
+    \[ (F,f): (\pi_1:\R^1\times\R^3\to\R^1)\iso (\pi_1:\R^1\times\R^3\to\R^1) \]
+    È della forma 
+    \[ F: (t,\vec{x}) \mapsto (c+at, \vec{b}(t) + R(t)\vec{x} ) \quad f:t\mapsto c+at \]
+    Con $c$ in $\R$, $a =\pm 1$, $\vec{b}$ in $\C^{\infty}(\R^1,\R^3)$ e $R$ in $\C^{\infty}(\R^1,O(3))$.\\
+    L'insieme sottostante al gruppo degli automorfismi allora è dato dal prodotto cartesiano
+    \[ \R^1\times \{\pm 1\} \times \C^{\infty}(\R^1,\R^3) \times \C^{\infty}(\R^1,O(3)) \]
+    E la struttura di gruppo è data da
+    \[ (c,a,\vec{b},R)(c', a', \vec{b}', R') = (c+ac', aa', \vec{b}(c'+a'(\cdot))+R(c'+a'(\cdot))\vec{b}'(\cdot) , R(c'+a'(\cdot))R'(\cdot) ) \]
+    con evidente neutro $(0,1, \vec{0},\id_{\R^3})$ e inversi dati da
+    \[ (c,a,\vec{b}, R)^{-1} = (-ac, a, -R^T(-ac+a(\cdot))\vec{b}(-ac+a\cdot), R^T(-ac+a(\cdot)) ) \]
+    \proof 
+    Abbiamo già visto che le isometrie affini di $\R^1$ sono della forma $t\mapsto c+at$; per la proprietà universale del prodotto, il diffeomorfismo $F$ di $\R^1\times\R^3$ si può scrivere in componenti $(F_1, F_3)$, dunque notiamo la commutatività del seguente diagramma 
+    \[\begin{tikzcd}
+    	{\R^1\times \R^3} &&&& {\R^1\times\R^3} \\
+	    & {(t,\vec{x})} && {(F_1(t,\vec{x}),F_3(t,\vec{x}))} \\
+	    \\
+	    & t && {f(t) = F_{1}(t,\vec{x})} \\
+	    {\R^1} &&&& {\R^1}
+	    \arrow["F"{description}, from=1-1, to=1-5]
+	    \arrow["{\pi_1}"{description}, from=1-1, to=5-1]
+	    \arrow["{\pi_1}"{description}, from=1-5, to=5-5]
+	    \arrow[maps to, from=2-2, to=2-4]
+	    \arrow[maps to, from=2-2, to=4-2]
+	    \arrow[maps to, from=2-4, to=4-4]
+	    \arrow[maps to, from=4-2, to=4-4]
+	    \arrow["f"{description}, from=5-1, to=5-5]
+    \end{tikzcd}\]
+    Che ci da $F(t,\vec{x}) = c+at$; dato che richiediamo che $\vec{x}\mapsto F_3(t,\vec{x})$ sia un'isometria affine, deve essere della forma $(t,\vec{x})\mapsto  \vec{b}(t)+ R(t)\vec{x}$ con $\vec{b}(t)$ in $\R^3$ e $R(t)$ in $O(3)$, ma dato che deve essere differenziabile queste quantità devono dipendere in modo differenziabile da $t$, dunque ecco dimostrata la biezione; la verifica delle leggi di gruppo è banale e lasciata come esercizio al lettore.
+    \qed
+\end{proposition}
+
+Nel caso in cui lo spaziotempo dovesse essere dotato di un'orientazione, la proposizione di cui sopra varrebbe ugualmente limitandosi ai sottogruppi $\{1\}$ e $SO(3)$ rispettivamente di $\{\pm 1\}$ e $O(3)$.\\
+In particolare, se lo spaziotempo dovesse presentare una struttura di spazio euclideo, un automorfismo preserverebbe questa struttura se e solo se fosse della forma
+\[ (t,\vec{x})\mapsto (c+at, \vec{b} + \vec{v}t + R\vec{x}) \]
+con $c,a,\vec{b},\vec{v}$ e $R$ costanti\footnote{adeguatamente ristrette nel caso orientato}; questo caso descrive il gruppo delle \bemph{trasformazioni galileiane} e più avanti vedremo come le leggi di Newton inducano una struttra affine.
+
+\chapter{Meccanica Classica}
+
+\section{Cinematica}
+
+L'oggetto fondamentale di interesse della meccanica classica è il \bemph{punto materiale}, o \bemph{particella}, che si muove nello spazio nel corso del tempo. 
+
+\begin{definition}{Linea di universo}{linea di universo}
+    Una \bemph{linea di universo} nello spaziotempo $T:\V^4\to E^1$ è una curva liscia $\gamma : I \to \V^4$ da un intervallo aperto $I\subset E^1$ tale che il seguente diagramma commuti 
+    \[\begin{tikzcd}
+	    && {\V^4} \\
+	    \\
+	    I && {E^1}
+	    \arrow["T"{description}, from=1-3, to=3-3]
+	    \arrow["\gamma"{description}, from=3-1, to=1-3]
+	    \arrow[hook, from=3-1, to=3-3]
+    \end{tikzcd}\]
+    Un punto materiale verrà identificato con la sua linea di universo.
+\end{definition}
+
+Notiamo che le linee di universo si comportano bene sotto l'azione degli isomorfismi di spaziotempi, infatti per $\gamma$ e $T$ come nella definizione e un isomorfismo $(F,f) : T\to T'$ vediamo facilmente che la mappa $\gamma ' := F\circ \gamma \circ f^{-1}$ è liscia soddisfa il requisito $T'\circ \gamma' = \id_I$, quindi è una linea di universo in $T'$.\\
+Specializzandoci con un riferimento al caso di $\pi_1:E^1\times E^3\to E^1$, notiamo che una linea di universo può essere scritta in componenti come $(\gamma_1,\gamma_3)$ e che il requisito $\pi_1\circ \gamma = \id_I$ implica che $\gamma_1$ sia l'identità; di conseguenza, le linee di universo nello spaziotempo standard (e dunque di qualsiasi spaziotempo) sono in corrispondenza biunivoca con le curve lisce in $E^3$.\\
+Specializzandoci ulteriormente con una scelta di coordinate, vediamo che una linea di universo $\gamma$ è determinata da una curva liscia $\vec{\gamma}$ in $\R^3$; adottando questo punto di vista, l'azione degli automorfismi sulle linee di universo può essere calcolata esplicitamente: dato un automorfismo $(F,f)$ con $f: t\mapsto c+at$ e $F: (t,\vec x)\mapsto (c+at, \vec b(t) + R(t)\vec x )$ , vediamo che $F\circ\gamma\circ f^{-1}$ è dato dalla mappa $t' \mapsto (t', \vec b(-ac +at') + R(-ac+at')\vec \gamma (-ac +at') )$ che ci permette di trasformare $\vec \gamma : I \to \R^3$ in $\vec \gamma' : aI+c \to \R^3$
+
+\subsection{Velocità e accelerazione}
+
+Possiamo finalmente definire le due quantità centrali nella cinematica, ovvero la velocità e l'accelerazione. A priori tuttavia l'intuizione della velocità come derivata temporale non è adatta al nostro ambiente, poichè per tempi diversi $t$ e $t+h$ si ha che $\gamma$ appartiene a spazi euclidei $\Sigma_t$ e $\Sigma_{t+h}$ che sono a priori distinti, dunque non è possibile calcolare il rapporto incrementale in questo modo; definiamo quindi un concetto di derivata rispetto a un riferimento $R$ e poi studieremo come si comporta sotto l'azione dei cambiamenti di coordinate.
+
+\begin{definition}{Derivata rispetto a un riferimento}{derivata rispetto a un riferimento}
+    Siano $T:\V^4\to\E^1$ uno spaziotempo, $\gamma : I\to\V^4$ una linea di universo e $R:T\to\pi_1$ un riferimento. Definiamo la mappa $\gamma_R : I \to E^3$ data da $t\mapsto R|_{\Sigma_t}(\gamma(t))$. Si dice \bemph{derivata temporale rispetto al riferimento} al tempo $t$ l'elemento di $V^3$ spazio vettoriale sottostante a $E^3$ dato dal limite 
+    \[ \frac{\di}{\di t}\gamma_R(t) := \lim_{h \to 0}\frac{\gamma_R(t+h)-\gamma_R(t)}{h} \]
+    Utilizzando la parte lineare $\di R|_{\Sigma_t} : V_t\iso V^3$ si ottiene un elemento di $V_t$ e dunque definiamo
+    \[ \frac{\di}{\di t}\bigg|_R \gamma(t) := \left( \di R|_{\Sigma_t}^{-1} \circ \frac{\di}{\di t} \circ R|_{\Sigma_t} \right)(\gamma(t)) \]
+\end{definition}
+
+Possiamo dunque definire in modo adatto velocità e accelerazione:
+
+\begin{definition}{Velocità e accelerazione rispetto a un riferimento}{velocità e accelerazione}
+    Siano $T:\V^4\to\E^1$ uno spaziotempo, $\gamma : I\to\V^4$ una linea di universo e $R:T\to\pi_1$ un riferimento.\\
+    Definiamo la \bemph{velocità} di $\gamma$ rispetto a $R$ come 
+    \[ v|_R(t) := \frac{\di}{\di t}\bigg|_R \gamma(t) = \left( \di R|_{\Sigma_t}^{-1} \circ \frac{\di}{\di t} \circ R|_{\Sigma_t} \right)(\gamma(t)) \]
+    E definiamo l'\bemph{accelerazione} come 
+    \[ a|_R(t) := \frac{\di^2}{\di t^2}\bigg|_R \gamma(t) = \left( \di R|_{\Sigma_t}^{-1} \circ \frac{\di^2}{\di t^2} \circ R|_{\Sigma_t} \right)(\gamma(t)) \]
 \end{definition}
 
 \nocite{*}
