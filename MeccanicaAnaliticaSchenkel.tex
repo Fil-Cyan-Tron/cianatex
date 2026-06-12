@@ -263,7 +263,7 @@ Notiamo anche che una mappa affine $\psi : E\to E'$ è un'isometria se e solo se
     \[ d(\vec{x},\vec{y}) = d\left(\begin{pmatrix} x^1\\\vdots\\x^n \end{pmatrix}, \begin{pmatrix} y^1\\\vdots\\y^n \end{pmatrix}\right) = \sqrt{ \sum_{i=1}^n (x^i-y^i)^2 } \]
     Ogni isometria affine $\psi : \R^m\to\R^n$ è rappresentata tramite l'espressione $\psi(\vec{x}) = \vec{b}+L\vec{x}$ da un vettore $\vec{b\in\R^n}$ e una matrice $L$ con $n$ righe e $m$ colonne tale che $L^T L = \vec{1}_{m\times m}$.\\
     Osserviamo che tali matrici esistono solo per $n\ge m$, fatto che corrisponde alla nostra intuizione geometrica: non è possibile che $\psi$ preservi le distanze se ci sono dimensioni che vengono "schiacciate" quando questa trasforma lo spazio.\\
-    Notiamo anche che quando $n=m$, abbiamo che la\footnote{mappa rappresentata dalla} matrice $L$ deve appartenere al gruppo ortogonale $\O(n)$ e che ogni isometria $\psi:\R^n\to\R^n$ è invertibile con inversa $\psi^{-1}$ data da 
+    Notiamo anche che quando $n=m$, abbiamo che la\footnote{mappa rappresentata dalla} matrice $L$ deve appartenere al gruppo ortogonale $\\O(n)$ e che ogni isometria $\psi:\R^n\to\R^n$ è invertibile con inversa $\psi^{-1}$ data da 
     \[ \psi^{-1}(\vec{x}) = L^T(\vec{x}-\vec{b}) = -L^T\vec{b} + L^T\vec{x} \]
 \end{example}
 
@@ -292,10 +292,10 @@ Grazie a questi isomorfismi è facile determinare il gruppo di automorfismi $\Au
 	\arrow["{\eta_\psi(f) :=  \psi^{-1} \circ f \circ \psi}"{description}, from=3-1, to=3-5]
 	\arrow["\psi"{description}, from=3-5, to=1-4]
 \end{tikzcd}\]
-Come visto sopra, abbiamo anche un isomorfismo $\R^n\times\O(n)\iso\Aut(\R^n)$ che manda la coppia $(\vec{b},L)$ nell'automorfismo $f_{(\vec{b},L)}(\vec{x}) = \vec{b}+L\vec{x}$: i seguenti calcoli esibiscono la struttura di gruppo di $\R^n\times\O(n)$:\begin{itemize}
+Come visto sopra, abbiamo anche un isomorfismo $\R^n\times\\O(n)\iso\Aut(\R^n)$ che manda la coppia $(\vec{b},L)$ nell'automorfismo $f_{(\vec{b},L)}(\vec{x}) = \vec{b}+L\vec{x}$: i seguenti calcoli esibiscono la struttura di gruppo di $\R^n\times\\O(n)$:\begin{itemize}
     \item La composizione è data da
         \[ f_{(\vec{b},L)} \circ f_{(\vec{b}',L')(\vec{x})} = \vec{b} + L f_{(\vec{b}',L')}(\vec{x}) = \vec{b}+L\vec{b}' + LL'\vec{x} = f_{(\vec{b} + L\vec{b}', LL' )}(\vec{x}) \]
-        Dunque l'operazione del gruppo è $(\vec{b},L)\cdot (\vec{b}',L') := (\vec{b} + L\vec{b}', LL' )$ e notiamo che è diversa dall'operazione \naif sul prodotto diretto del gruppo additivo $\R^n$ e del gruppo di composizione $\O(n)$. 
+        Dunque l'operazione del gruppo è $(\vec{b},L)\cdot (\vec{b}',L') := (\vec{b} + L\vec{b}', LL' )$ e notiamo che è diversa dall'operazione \naif sul prodotto diretto del gruppo additivo $\R^n$ e del gruppo di composizione $\\O(n)$. 
     \item L'elemento neutro è ovviamente $\id = f_{(\vec{0},\vec{1}_{n\times n})}$.
     \item L'inverso di $(\vec{b},L)$ è dato da $(-L^T\vec{b},L^T)$.
 \end{itemize}
@@ -303,7 +303,7 @@ Queste trasformazioni hanno il significato geometrico di traslazioni, rotazioni 
 Applicando subito quanto visto al tempo $E^1$ e allo spazio $E^3$ della fisica classica otteniamo in qualunque scelta di coordinate una descrizione esplicita dei loro automorfismi: 
 \[ \R^1\iso \R^1, t\mapsto at+c \]
 \[ \R^3 \iso \R^3, \vec{x}\mapsto L\vec{x} + \vec{b} \]
-Per $a \in \{-1,1\}$, $c \in \R$, $L\in\O(3)$ e $\vec{b}\in\R^3$; per escludere trasformazioni che possano riflettere il tempo (con $a=-1$) o lo spazio (con $\det L = -1$), dotiamo questi nostri spazi euclidei di un'\bemph{orientazione} ereditata da quella sul loro spazio vettoriale sottostante e richiediamo che gli automorfismi la preservino:
+Per $a \in \{-1,1\}$, $c \in \R$, $L\in\\O(3)$ e $\vec{b}\in\R^3$; per escludere trasformazioni che possano riflettere il tempo (con $a=-1$) o lo spazio (con $\det L = -1$), dotiamo questi nostri spazi euclidei di un'\bemph{orientazione} ereditata da quella sul loro spazio vettoriale sottostante e richiediamo che gli automorfismi la preservino:
 
 \begin{definition}{Orientazione}{}
     Un'\bemph{orientazione} su uno spazio vettoriale $V$ è una classe di equivalenza di basi $[\{e_i\}_i]_\sim$ dove due basi sono equivalenti se e solo se la mappa di cambiamento di base $f(e_i') = e_i$ ha determinante positivo.
@@ -405,9 +405,9 @@ E notiamo che il secondo è notevolmente più semplice da determinare del primo
     \[ (F,f): (\pi_1:\R^1\times\R^3\to\R^1)\iso (\pi_1:\R^1\times\R^3\to\R^1) \]
     È della forma 
     \[ F: (t,\vec{x}) \mapsto (c+at, \vec{b}(t) + R(t)\vec{x} ) \quad f:t\mapsto c+at \]
-    Con $c$ in $\R$, $a =\pm 1$, $\vec{b}$ in $\C^{\infty}(\R^1,\R^3)$ e $R$ in $\C^{\infty}(\R^1,O(3))$.\\
+    Con $c$ in $\R$, $a =\pm 1$, $\vec{b}$ in $\C^{\infty}(\R^1,\R^3)$ e $R$ in $\C^{\infty}(\R^1,\O(3))$.\\
     L'insieme sottostante al gruppo degli automorfismi allora è dato dal prodotto cartesiano
-    \[ \R^1\times \{\pm 1\} \times \C^{\infty}(\R^1,\R^3) \times \C^{\infty}(\R^1,O(3)) \]
+    \[ \R^1\times \{\pm 1\} \times \C^{\infty}(\R^1,\R^3) \times \C^{\infty}(\R^1,\O(3)) \]
     E la struttura di gruppo è data da
     \[ (c,a,\vec{b},R)(c', a', \vec{b}', R') = (c+ac', aa', \vec{b}(c'+a'(\cdot))+R(c'+a'(\cdot))\vec{b}'(\cdot) , R(c'+a'(\cdot))R'(\cdot) ) \]
     con evidente neutro $(0,1, \vec{0},\id_{\R^3})$ e inversi dati da
@@ -429,11 +429,11 @@ E notiamo che il secondo è notevolmente più semplice da determinare del primo
 	    \arrow[maps to, from=4-2, to=4-4]
 	    \arrow["f"{description}, from=5-1, to=5-5]
     \end{tikzcd}\]
-    Che ci da $F(t,\vec{x}) = c+at$; dato che richiediamo che $\vec{x}\mapsto F_3(t,\vec{x})$ sia un'isometria affine, deve essere della forma $(t,\vec{x})\mapsto  \vec{b}(t)+ R(t)\vec{x}$ con $\vec{b}(t)$ in $\R^3$ e $R(t)$ in $O(3)$, ma dato che deve essere differenziabile queste quantità devono dipendere in modo differenziabile da $t$, dunque ecco dimostrata la biezione; la verifica delle leggi di gruppo è banale e lasciata come esercizio al lettore.
+    Che ci da $F(t,\vec{x}) = c+at$; dato che richiediamo che $\vec{x}\mapsto F_3(t,\vec{x})$ sia un'isometria affine, deve essere della forma $(t,\vec{x})\mapsto  \vec{b}(t)+ R(t)\vec{x}$ con $\vec{b}(t)$ in $\R^3$ e $R(t)$ in $\O(3)$, ma dato che deve essere differenziabile queste quantità devono dipendere in modo differenziabile da $t$, dunque ecco dimostrata la biezione; la verifica delle leggi di gruppo è banale e lasciata come esercizio al lettore.
     \qed
 \end{proposition}
 
-Nel caso in cui lo spaziotempo dovesse essere dotato di un'orientazione, la proposizione di cui sopra varrebbe ugualmente limitandosi ai sottogruppi $\{1\}$ e $SO(3)$ rispettivamente di $\{\pm 1\}$ e $O(3)$.\\
+Nel caso in cui lo spaziotempo dovesse essere dotato di un'orientazione, la proposizione di cui sopra varrebbe ugualmente limitandosi ai sottogruppi $\{1\}$ e $\SO(3)$ rispettivamente di $\{\pm 1\}$ e $\O(3)$.\\
 In particolare, se lo spaziotempo dovesse presentare una struttura di spazio euclideo, un automorfismo preserverebbe questa struttura se e solo se fosse della forma
 \[ (t,\vec{x})\mapsto (c+at, \vec{b} + \vec{v}t + R\vec{x}) \]
 con $c,a,\vec{b},\vec{v}$ e $R$ costanti\footnote{adeguatamente ristrette nel caso orientato}; questo caso descrive il gruppo delle \bemph{trasformazioni galileiane} e più avanti vedremo come le leggi di Newton inducano una struttra affine.
@@ -459,8 +459,10 @@ L'oggetto fondamentale di interesse della meccanica classica è il \bemph{punto 
 
 Notiamo che le linee di universo si comportano bene sotto l'azione degli isomorfismi di spaziotempi, infatti per $\gamma$ e $T$ come nella definizione e un isomorfismo $(F,f) : T\to T'$ vediamo facilmente che la mappa $\gamma ' := F\circ \gamma \circ f^{-1}$ è liscia soddisfa il requisito $T'\circ \gamma' = \id_I$, quindi è una linea di universo in $T'$.\\
 Specializzandoci con un riferimento al caso di $\pi_1:E^1\times E^3\to E^1$, notiamo che una linea di universo può essere scritta in componenti come $(\gamma_1,\gamma_3)$ e che il requisito $\pi_1\circ \gamma = \id_I$ implica che $\gamma_1$ sia l'identità; di conseguenza, le linee di universo nello spaziotempo standard (e dunque di qualsiasi spaziotempo) sono in corrispondenza biunivoca con le curve lisce in $E^3$.\\
-Specializzandoci ulteriormente con una scelta di coordinate, vediamo che una linea di universo $\gamma$ è determinata da una curva liscia $\vec{\gamma}$ in $\R^3$; adottando questo punto di vista, l'azione degli automorfismi sulle linee di universo può essere calcolata esplicitamente: dato un automorfismo $(F,f)$ con $f: t\mapsto c+at$ e $F: (t,\vec x)\mapsto (c+at, \vec b(t) + R(t)\vec x )$ , vediamo che $F\circ\gamma\circ f^{-1}$ è dato dalla mappa $t' \mapsto (t', \vec b(-ac +at') + R(-ac+at')\vec \gamma (-ac +at') )$ che ci permette di trasformare $\vec \gamma : I \to \R^3$ in $\vec \gamma' : aI+c \to \R^3$
+Specializzandoci ulteriormente con una scelta di coordinate, vediamo che una linea di universo $\gamma$ è determinata da una curva liscia $\vec{\gamma}$ in $\R^3$; adottando questo punto di vista, l'azione degli automorfismi calcolati in \cref{prop:automorfismi dello spaziotempo standard} sulle linee di universo può essere calcolata esplicitamente: dato un automorfismo $(F,f)$ con $f(t)= c+at$ e $F(t,\vec x)= (c+at, \vec b(t) + R(t)\vec x )$ , vediamo che $F\circ\gamma\circ f^{-1}$ è dato dalla mappa $t' \mapsto (t', \vec b(-ac +at') + R(-ac+at')\vec \gamma (-ac +at') )$ che ci permette di trasformare $\vec \gamma : I \to \R^3$ in $\vec \gamma' : aI+c \to \R^3$.
 
+\newcommand\tv{\text{(tv)}}
+\newcommand\cor{\text{(cor)}}
 \subsection{Velocità e accelerazione}
 
 Possiamo finalmente definire le due quantità centrali nella cinematica, ovvero la velocità e l'accelerazione. A priori tuttavia l'intuizione della velocità come derivata temporale non è adatta al nostro ambiente, poichè per tempi diversi $t$ e $t+h$ si ha che $\gamma$ appartiene a spazi euclidei $\Sigma_t$ e $\Sigma_{t+h}$ che sono a priori distinti, dunque non è possibile calcolare il rapporto incrementale in questo modo; definiamo quindi un concetto di derivata rispetto a un riferimento $R$ e poi studieremo come si comporta sotto l'azione dei cambiamenti di coordinate.
@@ -478,9 +480,82 @@ Possiamo dunque definire in modo adatto velocità e accelerazione:
     Siano $T:\V^4\to\E^1$ uno spaziotempo, $\gamma : I\to\V^4$ una linea di universo e $R:T\to\pi_1$ un riferimento.\\
     Definiamo la \bemph{velocità} di $\gamma$ rispetto a $R$ come 
     \[ v|_R(t) := \frac{\di}{\di t}\bigg|_R \gamma(t) = \left( \di R|_{\Sigma_t}^{-1} \circ \frac{\di}{\di t} \circ R|_{\Sigma_t} \right)(\gamma(t)) \]
-    E definiamo l'\bemph{accelerazione} come 
+    E definiamo la sua \bemph{accelerazione} come 
     \[ a|_R(t) := \frac{\di^2}{\di t^2}\bigg|_R \gamma(t) = \left( \di R|_{\Sigma_t}^{-1} \circ \frac{\di^2}{\di t^2} \circ R|_{\Sigma_t} \right)(\gamma(t)) \]
 \end{definition}
+
+Sarà utile esprimere queste formule in una qualsiasi scelta di coordinate standard adattate a $R$, ovvero una scelta di un punto $O \in \E^3$ e una base ortonormale $\{e_1,e_2,e_3\}\subset V^3$: definendo
+\[ O(t):= R|_{\Sigma_t}^{-1}(O) \in \Sigma_t \]
+\[ e_i(t) := \di R|_{\Sigma t}^{-1}(e_i) \in V_t \]
+Possiamo scrivere 
+\[ \gamma(t) = O(t) + \sum_i \vec\gamma^i(t) e_i(t) \in \Sigma_t \]
+E dunque ottenere
+\begin{align*} 
+    v|_R(t) & = \di R|_{\Sigma_t}^{-1}\ \frac{\di}{\di t}\left( R|_{\Sigma_t}(O(t)) + \sum_i \vec\gamma^i(t) \di R|_{\Sigma_t}(e_i(t)) \right) \\ & = \di R|_{\Sigma_t}^{-1}\ \frac{\di}{\di t}\left( O + \sum_i\vec\gamma^i(t) e_i \right) \\ & = \sum_i \frac{\di}{\di t} \vec\gamma^i(t) \di R|_{\Sigma_t}^{-1}(e_i) = \sum_i \frac{\di}{\di t} \vec\gamma^i(t)e_i(t)
+\end{align*}
+E in modo del tutto analogo per l'accelerazione 
+\[ a|_R(t) = \sum_i \frac{\di^2}{\di t^2} \vec\gamma^i(t)e_i(t) \]
+Avendo definito velocità e accelerazione rispetto a un riferimento $R$, è importante capire come queste cambino sotto il passaggio a un altro sistema di riferimento $R'$.\\
+Scegliendo due sistemi di coordinate adattati $(O,\{e_i\}_i)$ e $(O', \{e'_i\}_i)$, possiamo scrivere una linea di universo $\gamma(t) \in \Sigma_t$ in due modi diversi:
+\[ \gamma(t) = O(t) + \sum_i \vec\gamma^i(t) e_i(t) = O'(t) + \sum_i \vec\gamma'^i(t) e'_i(t) \]
+Per confrontare $v|_R$ e $v|_{R'}$, usiamo che esiste un $A \in \C^\infty(I, \O(3))$ tale che 
+\[ e_i(t) = \sum_j A_i^j(t) e'_j(t) \]
+e calcoliamo 
+\begin{align*} \gamma(t) & = O'(t) + \left( O(t)-O'(t) +\sum_{i,j} \vec\gamma^i(t) A_i^j(t) e'_j(t)  \right)\\ & = O'(t) + \sum_j\underbrace{\left( b^j(t) + \sum_i A_i^j(t)\vec\gamma^i(t) \right)}_{= \vec\gamma'^j(t)} e'_j(t) \end{align*}
+dove $\vec b \in \C^{\infty(I, \R^3)}$ è data da $O(t)-O'(t) = \sum_i b^i(t)e'_i(t)$: otteniamo la relazione
+\begin{align*}
+    v|_{R'}(t) & = \sum_i \frac{\di}{\di t}\vec\gamma'^i(t) e'_i(t) \\ & = \sum_i\frac{\di}{\di t} \left( b^i(t) + \sum_j A^i_j(t)\vec\gamma^j(t) \right)e'_i(t) \\ & = \sum_i\left[ \frac{\di}{\di t} b^i(t) + \sum_j\left( \frac{\di A^i_j(t) }{\di t}\vec\gamma^j(t) + A^i_j(t) \frac{\di \vec\gamma^j(t)}{\di t} \right) \right] e'_i(t) \\ & = \underbrace{\sum_j \frac{\di \vec\gamma^j(t)}{\di t} e_j(t)}_{=v|_R(t)} + \underbrace{\sum_i \left[ \frac{\di b^i(t)}{\di t} + \sum_j\left( \frac{\di A^i_j(t)}{\di t} \vec\gamma^j(t) \right) \right]e'_i(t)}_{=: v^\tv (t)}
+\end{align*} 
+dove $v^\tv(t)$ è detta \bemph{velocità di trascinamento} di $R$ rispetto a $R'$. Con un calcolo analogo troviamo che l'accelerazione ha una forma simile:
+\[ a|_{R'}(t) = \underbrace{\sum_j \frac{\di^2 \vec\gamma^j(t)}{\di t^2} e_j(t)}_{=a|_R(t)} + \underbrace{\sum_i \left[ \frac{\di^2 b^i(t)}{\di t^2} + \sum_j\left( \frac{\di^2 A^i_j(t)}{\di t^2} \vec\gamma^j(t) \right) \right]e'_i(t)}_{=: a^\tv (t)} + \underbrace{2\sum_{i,j} \frac{\di A^i_j(t)}{\di t} \frac{\di \vec\gamma^j(t)}{\di t} e'_i(t)}_{=: a^\cor(t)} \]
+dove $a^\tv(t)$ è detta \bemph{accelerazione di trascinamento} di $R$ rispetto a $R'$ e $a^\cor(t)$ è detta \bemph{accelerazione di Coriolis} e caratteristicamente dipende dalla velocità $v|_R(t)$
+
+\section{Dinamica Newtoniana}
+
+In questa sezione, discutiamo i principi della dinamica di Newton, che governano la dinamica di (potenzialmente molteplici) punti materiali e hanno riscosso grandissimo successo nel descrivere situazioni reali (con le dovute approssimazioni, ovviamente).
+
+\subsection{Primo principio, o principio d'inerzia}
+
+Il primo principio stabilisce una classe privilegiata di sistemi di riferimento per lo spaziotempo $T:\V^4\to\E^1$, caratterizzati dal comportamento di sistemi di particelle "isolati", ovvero separate tra loro e dagli altri corpi dell'universo da grandissime distanze.
+
+\begin{axiom}{Primo principio della dinamica}{dinamica 1}
+    Esiste una classe di sistemi di riferimento detti \bemph{inerziali} in ciascuno dei quali ogni punto di un insieme arbitrario di punti materiali isolati si muove di moto rettilineo uniforme, ovvero a velocità costante dipendente soltanto dal punto materiale considerato.
+\end{axiom}
+
+\textit{Espressiamo} (sic) questo principio in un linguaggio vagamente più formale.\\
+Un insieme di $N$ punti materiali $\{ Q_1,...,Q_N \}$ corrisponde a $N$ linee di universo $\gamma_{Q_k}:I\to\V^4$ nello spaziotempo. Dato in qualsiasi sistema di riferimento $(R,\id_{\E^1})$ per lo spaziotempo con coordinate standard adattate, abbiamo introdotto il concetto di velocità rispetto ad $R$
+\[ v_{Q_k}|_R (t) = \sum_i\frac{\di \vec\gamma_{Q_k}^i(t)}{\di t}e_i(t) \]
+Il primo principio allora richiede che l'accelerazione di ciascun punto sia nulla, ovvero
+\[ a_{Q_k}|_R (t) = \sum_i\frac{\di^2 \vec\gamma_{Q_k}^i(t)}{\di t^2}e_i(t) = 0 \]
+È anche importante sottolineare che non c'è un solo sistema di riferimento inerziale, ma ce ne sono a priori quanti vogliamo: ricordando che l'automorfismo $(F,f)$ nel diagramma 
+\[\begin{tikzcd}
+	&& {T:\V^4 \to \E^1} && \\
+	{\pi_1:\E^1\times\E^3 \to \E^1} &&&& {\pi_1:\E^1\times\E^3 \to \E^1} \\
+	\\
+	{\pi_1:\R^1\times\R^3\to\R^1} &&&& {\pi_1:\R^1\times\R^3 \to \R^1}
+	\arrow["{(R,\id_{\E^1})}"{description}, from=1-3, to=2-1]
+	\arrow["{(R',\id_{\E^1})}"{description}, from=1-3, to=2-5]
+	\arrow[from=2-1, to=4-1]
+	\arrow[from=2-5, to=4-5]
+	\arrow["{(F,f)}"{description}, from=4-1, to=4-5]
+\end{tikzcd}\]
+Ha forma generale $f(t) = c+at$ e $F(t,\vec x) = (c+at, \vec b(t) + A(t) \vec x)$ con $c \in \R$, $a \in \{\pm1\}$, $\vec b \in \C^{\infty}(\R^1, \R^3)$ e $A \in \C^{\infty}(\R^1, \O(3))$, il seguente risultato è di importanza fondamentale:
+
+\begin{theorem}{}{}
+    Assumiamo che per ogni riferimento $R$ e ogni evento $p\in\V^4$ esista un punto materiale la cui linea di universo attraversi $p$ con velocità (rispetto a $R$) fissabile a piacimento e che il punto sia isolato in qualche intervallo aperto $I \subset \E^1$ con $T(p)\in I$\\
+    Se $R$ è inerziale, dato un altro riferimento $R'$ questo è inerziale se e solo se l'automorfismo $(F,f)$ che descrive il cambiamento di sistema di riferimento in coordinate standard adattate assume la forma di una trasformazione di Galileo, ovvero $f(t) = c+at$ e $F(t,\vec x) = (c+at, \vec b + \vec v t A \vec x)$ con $c \in \R$, $a \in \{\pm1\}$, $\vec b,\vec v \in \R^3$ e $A \in \O(3)$ costanti.
+    \proof 
+    Ricordiamoci le formule di trasformazione derivate sopra
+    \[ a|_R'(t) = a|_R(t) + a^\tv(t) + a^\cor(t) \]
+    Dove
+    \[ a^\tv(t) = \sum_i \left[ \frac{\di^2 b^i(t)}{\di t^2} + \sum_j\frac{\di^2 A^i_j(t)}{\di t^2} \vec\gamma^j(t) \right]e'_i(t) \]
+    \[ a^\cor(t) = 2\sum_{i,j} \frac{\di A^i_j(t)}{\di t} \frac{\di \vec\gamma^j(t)}{\di t} e'_i(t) \]
+    E dimostriamo entrambe le implicazioni:\begin{itemize}
+        \item Supponiamo che $(F,f)$ sia una trasformazione di Galileo: notiamo immediatamente che dalle formule di trasformazione, dato un insieme di punti isolati $\{Q_k\}_k$, per ciascuno di essi $a_{Q_k}|_R(t)$ è nulla per definizione, $a^\cor(t)$ è nulla per la costanza di $A$ e aggiungendo la costanza\footnote{A dire il vero, funzionerebbe anche se $\vec b(t)$ variasse solo al primo ordine} di $\vec b(t)$ otteniamo anche la nullità di $a^\tv(t)$.
+        \item 
+    \end{itemize}
+\end{theorem}
+
 
 \nocite{*}
 \printbibliography
