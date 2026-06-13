@@ -20,6 +20,8 @@
 
 \begin{document}
 
+\tableofcontents
+
 \chapter{Prolegomeni di Geometria}
 
 In questo capitolo daremo un'esposizione relativamente minimale degli strumenti di geometria che ci serviranno per trattare la meccanica classica in modo soddisfacente ai fini del nostro corso.
@@ -438,7 +440,7 @@ In particolare, se lo spaziotempo dovesse presentare una struttura di spazio euc
 \[ (t,\vec{x})\mapsto (c+at, \vec{b} + \vec{v}t + R\vec{x}) \]
 con $c,a,\vec{b},\vec{v}$ e $R$ costanti\footnote{adeguatamente ristrette nel caso orientato}; questo caso descrive il gruppo delle \bemph{trasformazioni galileiane} e più avanti vedremo come le leggi di Newton inducano una struttra affine.
 
-\chapter{Meccanica Classica}
+\chapter{Meccanica Newtoniana}
 
 \section{Cinematica}
 
@@ -541,7 +543,7 @@ Il primo principio allora richiede che l'accelerazione di ciascun punto sia null
 \end{tikzcd}\]
 Ha forma generale $f(t) = c+at$ e $F(t,\vec x) = (c+at, \vec b(t) + A(t) \vec x)$ con $c \in \R$, $a \in \{\pm1\}$, $\vec b \in \C^{\infty}(\R^1, \R^3)$ e $A \in \C^{\infty}(\R^1, \O(3))$, il seguente risultato è di importanza fondamentale:
 
-\begin{theorem}{}{}
+\begin{theorem}{Principio di inerzia e trasformazioni di Galileo}{inerzia e galileo}
     Assumiamo che per ogni riferimento $R$ e ogni evento $p\in\V^4$ esista un punto materiale la cui linea di universo attraversi $p$ con velocità (rispetto a $R$) fissabile a piacimento e che il punto sia isolato in qualche intervallo aperto $I \subset \E^1$ con $T(p)\in I$\\
     Se $R$ è inerziale, dato un altro riferimento $R'$ questo è inerziale se e solo se l'automorfismo $(F,f)$ che descrive il cambiamento di sistema di riferimento in coordinate standard adattate assume la forma di una trasformazione di Galileo, ovvero $f(t) = c+at$ e $F(t,\vec x) = (c+at, \vec b + \vec v t A \vec x)$ con $c \in \R$, $a \in \{\pm1\}$, $\vec b,\vec v \in \R^3$ e $A \in \O(3)$ costanti.
     \proof 
@@ -552,10 +554,254 @@ Ha forma generale $f(t) = c+at$ e $F(t,\vec x) = (c+at, \vec b(t) + A(t) \vec x)
     \[ a^\cor(t) = 2\sum_{i,j} \frac{\di A^i_j(t)}{\di t} \frac{\di \vec\gamma^j(t)}{\di t} e'_i(t) \]
     E dimostriamo entrambe le implicazioni:\begin{itemize}
         \item Supponiamo che $(F,f)$ sia una trasformazione di Galileo: notiamo immediatamente che dalle formule di trasformazione, dato un insieme di punti isolati $\{Q_k\}_k$, per ciascuno di essi $a_{Q_k}|_R(t)$ è nulla per definizione, $a^\cor(t)$ è nulla per la costanza di $A$ e aggiungendo la costanza\footnote{A dire il vero, funzionerebbe anche se $\vec b(t)$ variasse solo al primo ordine} di $\vec b(t)$ otteniamo anche la nullità di $a^\tv(t)$.
-        \item 
+        \item Supponiamo che $R$ e $R'$ siano inerziali; in particolare, per ogni singolo punto isolato $Q$ abbiamo $a_Q|_R =0$ e $a_Q|_{R'} =0$. Come conseguenza dell'ipotesi di cui sopra, ogni linea di universo 
+        \[ \gamma_Q(t) = O(t) +\sum_i (q^i +c^i t )e_i(t) \]
+        con $\vec q, \vec c \in \R^3$ descrive un tale punto isolato con accelerazione nulla rispetto a $R$; dato che anche l'accelerazione rispetto a $R'$ deve essere nulla, abbiamo che $a^\tv(t)+a^\cor(t) = 0$, ovvero 
+        \[ 0= \sum_i\left[ \frac{\di^2 b^i(t)}{\di t^2} + \sum_j \frac{\di^2 A^i_j(t)}{\di t^2}(q^j + c^j t) + 2\sum_j \frac{\di A^i_j(t)}{\di t}c^i  \right]e'_i(t) \qquad \forall \vec q, \vec c \in \R^3\]
+        Osserviamo che tre casi particolari determinano le variazioni di $\vec b$ e $A$:
+        \[ \vec q = \vec c = 0 \Rarr \frac{\di^2 \vec b(t)}{\di t^2} = 0\Rarr \vec b(t) = \vec b + \vec v t\]
+        \[ \vec q \in \R^3, \vec c = 0 \Rarr \frac{\di^2 A(t)}{\di t^2} = 0 \Rarr A(t) = A + K t \]
+        \[\vec q = 0, \vec c \in \R^3  \Rarr \frac{\di A(t)}{\di t} = 0 \Rarr A(t) = A \]
+        Quindi il cambiamento tra sistemi di riferimento è una trasformazione galileiana.
     \end{itemize}
+    \qed
 \end{theorem}
 
+Una conseguenza importante del primo principio è che questo permette di dare allo spaziotempo $T:\V^4\to\E^1$ una struttura affine privilegiata 
+
+\begin{theorem}{Struttura affine su $T:\V^4\to\R^1$}{spaziotempo affine}
+    Esiste una struttura affine $+:\V^4\times V^4 \to \V^4$ sullo spaziotempo $T:\V^4\to\E^1$ tale che per ogni riferimento inerziale $(R,\id_{\E^1})$ la mappa $R:\V^4\to \E^1\times \E^4$ sia affine.\\
+    Questa struttura è unica a meno di\footnote{non unici} isomorfismi affini che agiscono su $\V^4$ come l'identità ed è detta \bemph{struttura galileiana}.
+    \proof 
+    Ricordando che $\E^1\times\E^3$ ha canonicamente una struttura affine su $V^1\times V^3$ data da $(t,O)+(c,v) = (t+c, O+v)$, per qualsiasi riferimento inerziale $R$ possiamo trasferirla a $\V^4$ tramite il diffeomoerfismo $R$ definendo $ p +_R (c,v) = R^{-1}(R(p) + (c,v))$. Considerando un qualsiasi altro riferimento inerziale $R'$, sappiamo dal teorema precedente che il cambiamento di sistema di riferimento
+    \[\begin{tikzcd}
+    	& {\V^4} & \\
+	    \\
+	    {\E^1\times \E^3} && {\E^1\times\E^3}
+	    \arrow["R"{description}, from=1-2, to=3-1]
+	    \arrow["{R'}"{description}, from=1-2, to=3-3]
+	    \arrow["{R'\circ R^{-1}}"{description}, from=3-1, to=3-3]
+    \end{tikzcd}\]
+    deve assumere la forma di una trasformazione galileiana, dunque deve essere affine rispetto alla struttura indotta da $R$ e quindi anche $R'$ deve essere una trasformazione affine.\\
+    Dimostriamo l'unicità: consideriamo un'altra struttura affine $+$ su $\V^4$ che soddisfi le proprietà richieste; in particolare per quanto visto sopra, il seguente diagramma deve commutare
+    \[\begin{tikzcd}
+    	{\V^4_+} && {\V^4_{+_R}} \\
+	    \\
+	    & {\E^1\times \E^3}
+	    \arrow["{R\circ R^{-1} = \id_{\V^4}}"{description}, from=1-1, to=1-3]
+	    \arrow["R"{description}, from=1-1, to=3-2]
+	    \arrow["R"{description}, from=1-3, to=3-2]
+    \end{tikzcd}\]
+    E dunque le due strutture affini devono essere isomorfe. Si noti che la parte lineare $V^4\iso V^1\times V^3$ di questo isomorfismo non è necessariamente l'identità però.
+    \qed
+\end{theorem}
+
+È interessante notare che la mappa $T:\V^4\to\E^1$ è affine, in quanto per qualsiasi riferimento inerziale $R$ vale $T = \pi_1 \circ R$.\\
+La verifica che il gruppo degli automorfismi di questa struttura affine è esattamente il gruppo delle trasformazioni galileiane è lasciata come esercizio per il lettore.
+
+\subsection{Secondo principio e le forze}
+
+A differenza del primo principio, questo e i prossimi permettono che i singoli punti del sistema considerato non siano necessariamente isolati tra loro. Questi vanno formulati comunque rispetto alla classe dei riferimenti inerziali e assumendo che l'intero sistema sia isolato rispetto al resto dell'universo.
+\paragraph{Notazione.} Dato un riferimento inerziale $(R,\id_{\E^1})$, d'ora in avanti identificheremo sempre gli spazi euclidei $\Sigma_t \iso \E^3$ e gli spazi vettoriali sottostanti $V_t\iso V^3$; in particolare, considereremo sempre una linea di universo come una curva liscia $\gamma |_R :I\to E_3$ con velocità e accelerazione date semplicemente da 
+\[ v|_R = \frac{\di }{\di t}\gamma|_R : I \to V^3, \qquad a|_R = \frac{\di^2 }{\di t^2}\gamma|_R : I \to V^3\]
+
+\begin{axiom}{Principi di massa e impulso}{massa e impulso}
+    Per ogni punto materiale $Q$ esiste una costante $m_Q>0$ detta \bemph{massa} di $Q$ tale che valgano i seguenti fatti:\begin{itemize}
+        \item Principio di conservazione dell'impulso: in ogni riferimento inerziale e per ogni sistema isolato costituito da due punti $P,Q$, il vettore $m_P v_P|_R + m_Q v_Q|_R$ è costante nel tempo anche se non lo sono separatamente le singole velocità; il vettore $p_Q = m_Q v_Q|_R$ è detto \bemph{impulso} di $Q$ rispetto a $R$. 
+        \item Principio di conservazione della massa: nei processi in cui il numero dei punti materiali cambia, la somma delle masse iniziali è uguale alla somma delle masse finali.
+    \end{itemize} 
+\end{axiom}
+
+\begin{axiom}{Secondo principio della dinamica}{dinamica 2.1}
+    Per ogni sistema di riferimento $R$ e ogni sistema isolato costituito da due punti isolati $Q,Q'$, esistono due mappe liscie 
+    \[ F_R, F'_R : \E^3\times \E^3 \times V^3\times V^3 \to V^3 \times V^3 \] tali che 
+    \[ \forall t \in I, \begin{cases}
+        m_Q a_Q|_R(t) = F_R(\gamma_Q|_R(t), \gamma_{Q'}|_R(t), v_Q|_R(t), v_{Q'}|_R(t))\\
+        m_{Q'} a_{Q'}|_R(t) = F'_R(\gamma_{Q'}|_R(t), \gamma_{Q}|_R(t), v_{Q'}|_R(t), v_{Q}|_R(t))
+    \end{cases}\]
+    $F_R$ ($F'_R$) è chiamata la \bemph{forza} che agisce su $Q$ ($Q'$) a causa di $Q'$ ($Q$), e ciascuna è detta \bemph{reazione} rispetto all'altra.\\
+    Inoltre, le forze sono equivarianti rispetto a cambiamenti di sistema di riferimento inerziale, ovvero il\footnote{A dire il vero, i seguenti due diagrammi, dato che ne otteniamo un altro scambiando $F$ con $F'$} seguente diagramma commuta per ogni $t \in I$:
+    \[\begin{tikzcd}
+    	&& {\Sigma_t\times\Sigma_t \times V_t\times V_t} && \\
+	    \\
+	    {\E^3\times\E^3\times V^3\times V^3} && {V_t} && {\E^3\times\E^3\times V^3\times V^3} \\
+	    \\
+	    {V_3} &&&& {V^3}
+	    \arrow["{R'|_{\Sigma_t}\times R'|_{\Sigma_t} \times \di R'|_{\Sigma_t} \times \di R'|_{\Sigma_t}}"{description}, from=1-3, to=3-1]
+    	\arrow["{R|_{\Sigma_t}\times R|_{\Sigma_t} \times \di R|_{\Sigma_t} \times \di R|_{\Sigma_t}}"{description}, from=1-3, to=3-5]
+	    \arrow["{F_{R'}}"{description}, from=3-1, to=5-1]
+	    \arrow["{\di R|_{\Sigma_t}}"{description}, from=3-3, to=5-1]
+    	\arrow["{\di R|_{\Sigma_t}}"{description}, from=3-3, to=5-5]
+	    \arrow["{F_R}"{description}, from=3-5, to=5-5]
+    \end{tikzcd}\]
+\end{axiom}
+
+Trovare le espressioni per le forze più appropriate a modellare i problemi concreti in natura è il lavoro dei fisici: queste dipendono dalle caratteristiche specifiche dei sistemi considerati. Vediamo due esempi:
+
+\begin{example}{Forza elettrostatica e forza gravitazionale}{coulomb e gravità}
+    Due casi importanti di forze sono la forza \bemph{elettrostatica} che agisce su due punti con cariche elettriche $q, q' \in \R$ e posizioni $\vec x, \vec x' \in \E^3$:
+    \[ F_R(\vec x, \vec x', \vec v, \vec v') = k q q' \frac{ \vec x-\vec x' }{\| \vec x - \vec x' \|^3} \]
+    E la forza \bemph{di gravità}, che dipende dalle masse invece:
+    \[ F_R(\vec x, \vec x', \vec v, \vec v') = -G m m' \frac{ \vec x-\vec x' }{\| \vec x - \vec x' \|^3} \]
+    Le costanti $k>0$ e $G>0$ sono dette rispettivamente \bemph{costante di Coulomb} e \bemph{costante di gravitazione universale}.\\
+    Queste forze hanno una forma molto simile, la differenza cruciale è che la forza di gravità è sempre attrattiva, mentre quella elettrostatica è repulsiva tra cariche di segno uguale e attrattiva tra cariche di segno opposto.
+\end{example}
+
+Euristicamente, possiamo osservare che per non violare il primo principio ogni forza fisicamente sensata deve decrescere fino ad annullarsi al crescere della distanza, come le forze che abbiamo appena visto.\\
+Nella nostra formulazione, il terzo principio è un'immediata conseguenza del secondo principio e di quello dell'impulso: infatti per due punti in moto rettilineo uniforme, sommando le due equazioni in \cref{ax:dinamica 2.1} otteniamo l'identità
+\[ F_R(\gamma_Q|_R(t), \gamma_{Q'}|_R(t), v_Q|_R(t), v_{Q'}|_R(t)) = - F'_R(\gamma_{Q'}|_R(t), \gamma_{Q}|_R(t), v_{Q'}|_R(t), v_{Q}|_R(t))\]
+Che viene generalizzata dal seguente principio, che permette di derivare anche la conservazione del momento angolare
+
+\begin{axiom}{Principio forte di azione-reazione}{dinamica 2.2}
+    Per ogni $t \in I$, se il vettore $\gamma_Q|_R(t) - \gamma_{Q'(t)}|_R(t)$, le forze 
+    \[ F_R(\gamma_Q|_R(t), \gamma_{Q'}|_R(t), v_Q|_R(t), v_{Q'}|_R(t)) \quad\text{e}\quad F'_R(\gamma_{Q'}|_R(t), \gamma_{Q}|_R(t), v_{Q'}|_R(t), v_{Q}|_R(t)) \]
+    Sono dirette lungo la direzione definita da tale vettore e hanno senso opposto.
+\end{axiom}
+
+Il prossimo principio ci permette di generalizzare quanto detto per i sistemi con due particelle a sistemi di un numero finito di particelle
+
+\begin{axiom}{Principio di sovrapposizione delle forze}{sovrapposizione delle forze}
+    Dato un sistema isolato di $N \in \N$ punti $\{Q_k\}_{k\le N}$, per ogni sistema di riferimento inerziale $R$ vale il secondo principio della dinamica in forma completa, ovvero per ogni $k\le N$ e per ogni $t \in I$:
+    \[ m_{Q_k}a_{Q_k}|_R(t) = \underbrace{\sum_{i\neq k} F_{R,ki} (\gamma_{Q_k}|_R(t), \gamma_{Q_i}|_R(t), v_{Q_k}|_R(t), v_{Q_i}|_R(t)) }_{=: F_{R,k}(\gamma_{Q_1}|_R(t),...,\gamma_{Q_N}|_R(t),v_{Q_1}|_R(t),..., v_{Q_N}|_R(t)) } \]
+    Dove $F_{R,ki}$ è la forza che agisce su $Q_k$ a causa di $Q_i$, ottenuta allontanando sufficientemente tutti gli altri punti
+\end{axiom}
+
+Mettendo l'equazione dataci da questo principio in coordinate, otteniamo un familiare sistema di equazioni differenziali del secondo ordine:
+\[ \frac{\di^2 \vec x_k(t) }{\di t^2} = \frac{1}{m_k}  \vec F_k \left(\vec x_1(t),...,\vec x_N(t), \frac{\di \vec x_1(t)}{\di t},..., \frac{\di \vec x_N(t)}{\di t}\right) \]
+Il \bemph{problema fondamentale della dinamica} è risolvere questo sistema date le condizioni iniziali e così prevedere il moto del sistema fisico.\\
+È un problema difficile, ma il seguente teorema (la cui dimostrazione esula dagli scopi di questo corso) ci garantisce almeno il fatto che una soluzione esista e che la nostra teoria sia deterministica:
+
+\begin{theorem}{Esistenza e unicità locale delle soluzioni del PDC}{esistenza e unicità locale 1}
+    Siano $D,D' \subset \R^n$ aperti e $I \subset \R$ un intervallo aperto e si consideri l'equazione differenziale 
+    \[ \frac{\di^2 \vec x(t)}{\di t^2} = F\left( t, \vec x(t), \frac{\di \vec x(t)}{\di t} \right) \]
+    Con $F : I\times D, D'\to\R^n$ una funzione $\C^1$.\\
+    Per ogni dato iniziale $(t_0, \vec x_0, \dot{\vec x}_0)$ e un intervallo aperto $I_0\subset I$ sufficientemente piccolo che contenga $t_0$, esiste ed è unica la funzione $\vec x:I_0\to\R^n$ di classe $\C^2$ che risolve l'equazione differenziale e soddisfa $\vec x(t_0) = \vec x_0$ e $\dot{ \vec x}(t_0) = \dot {\vec x}_0$\\
+    Inoltre, ciascun dato iniziale determina un intervallo massimale in cui questa soluzione esiste ed è unica.
+\end{theorem}
+
+Facciamo qualche osservazione sull'invarianza della meccanica newtoniana rispetto alle trasformazioni galileiane, che sappiamoe essere gli automorfismi affini di $\V^4$.\\
+Ricordiamo che in un sistema di riferimento inerziale $R$, le trasformazioni di galileo prendono la forma:
+\[ (t,\vec x)\mapsto (c+at, \vec b + \vec v t + A\vec x) \]
+Per $c \in \R$, $a \in \{\pm 1\}$, $\vec b, \vec v \in \R^3$ e $A \in \O(3)$, opportunamente ristretti nel caso orientato.
+
+\begin{axiom}{Principio di relatività galileiana}{relatività galileiana}
+    Tutta la meccanica newtoniana, in particolare le equazioni di \cref{ax:sovrapposizione delle forze} sono invarianti per le trasformazioni di Galileo.
+\end{axiom}
+
+Osserviamo che questo principio restringe la forma che possono avere le forze: infatti dato che una trasformazione di Galileo agisce su di una curva $t\mapsto\vec x(t)$ mandandola in $t' = \mapsto \vec x'(t') $, dove sostituende $t' = c + at$ vediamo $\vec x'(t') = \vec b + \vec v t + A\vec x(t)$ e dunque 
+\[ \frac{\di \vec x'(t')}{\di t'} = a\vec v + a A \frac{\di \vec x(t)}{\di t} \qquad\text{e}\qquad \frac{\di^2 \vec x'(t')}{\di t'^2} = A\frac{\di^2 \vec x(t)}{\di t^2}\]
+Per l'invarianza galileiana delle leggi di newton, otteniamo che una forza deve rispettare 
+\[ \vec F\left( \vec x'(t'), \vec y'(t'), \frac{\di \vec x'(t')}{\di t'}.\frac{\di \vec y'(t')}{\di t'} \right) = A \vec F \left( \vec x(t), \vec y(t), \frac{\di \vec x(t)}{\di t},\frac{\di \vec y(t)}{\di t} \right)\]
+per ogni trasformazione di galileo. Questo implica che $\vec F$ deve essere della forma $\vec F(\vec x, \vec y, \vec u, \vec w) = \vec f(\vec x-\vec y, \vec u - \vec w)$ con $\vec f : \R^3\times \R^3 \to \R^3$ che rispetta le seguenti proprietà:\begin{itemize}
+    \item $\vec f(A\vec x , A\vec u) = A\vec f(\vec x, \vec u)$ per ogni $A \in \O(3)$.
+    \item $\vec f(\vec x, a\vec u) = \vec f(\vec x, \vec u)$ per $a =\pm 1$
+\end{itemize}
+
+\subsection{Quando Newton non funziona}
+
+I principi appena formulati non contemplano numerosi casi di interesse fisico, di cui adesso presentiamo una piccola selezione
+
+\newcommand\eff{\text{eff}}
+\subsubsection{Moto assegnato per un sottosistema e forze dipendenti dal tempo}
+
+Molto frequentemente, quasi sempre in effetti, nelle situazioni pratiche capita che in un sistema di punti $\{Q_1,...,Q_N\}$ il moto di un sottosistema $\{Q_{n+1},...,Q_N\}$ sia fissato e si voglia trovare di conseguenza il moto dei punti $\{Q_1,...,Q_n\}$ rimanenti; è il caso ad esempio del moto della Terra fissato quello del Sole.\\
+Inserendo le linee di universo prescritte di $\{Q_{n+1},..., Q_N\}$ nelle equazioni di Newton si trova una forza "effettiva" che può dipendere esplicitamente dal tempo:
+\[F^\eff_k(t, \gamma_{Q_1}(t),..., \gamma_{Q_n}(t), v_{Q_1}(t),...,v_{Q_n}(t)) := F_k(\gamma_{Q_1}(t),..., \gamma_{Q_N}(t),  v_{Q_1}(t),...,v_{Q_N}(t) )\]
+Le linee di universo dei punti rimanenti sono quindi determinate dal sistema 
+\[ m_{Q_k} a_{Q_k}(t) = F^\eff_k(t, \gamma_{Q_1}(t),..., \gamma_{Q_n}(t), v_{Q_1}(t),...,v_{Q_n}(t)) \]
+che comunque soddisfa le ipotesi del teorema di esistenza e unicità delle soluzioni, dunque possiamo estendere il determinismo a situazioni più generali.
+
+\newcommand\cent{\text{(cent)}}
+\subsubsection{Sistemi non inerziali}
+
+A volte conviene usare un sistema di riferimento non inerziale $R'$, ad esempio un sistema solidale alla superficie della Terra, ma questo modifica un po' la forma delle equazioni di newton. Dalle leggi di trasformazione ottengo le nuove equazioni 
+\[ m_{Q_k}a_{Q_k}|_{R'}(t) + m_{Q_k}a_{Qk}^\tv(t) + m_{Q_k}a_{Q_k}^\cor (t) = F_{R',k}\left( t, \gamma_{Q_1}|_{R'}(t),..,\gamma_{Q_N}|_{R'}(t), v_{Q_1}|_{R'}(t),..., v_{Q_n}|_{R'}(t)  \right) \]
+ricordando che $v|_R(t) = v|_{R'}(t)+v^\tv(t)$ e $a|_R(t) = a|_{R'}+a^\tv(t)+a^\cor(t)$: spesso i due termini "aggiuntivi" a sinistra vengono portati a destra e interpretati come le cosiddette forze fittizie, dovute al sistema non inerziale:
+\[ m_{Q_k}a_{Q_k}|_{R'} = \underbrace{F^\cent}_{=: -m_{Q_k}a_{Q_k}^\tv} + \underbrace{F^\cor}_{=: -m_{Q_k}a_{Q_k}^\cor} + F_{R', k} \]
+Dato che il lato destro comunque dipende da $t$, $\gamma_{Q_i}$ e $v_{Q_i}$ si applica comunque il teorema di esistenza e unicità dandoci il determinismo.
+
+\subsubsection{Vincoli geometrici}
+
+Nelle applicazioni reali, spesso capita che i punti del sistema $\{Q_1,...,Q_N\}$ debbano muoversi rispettando certi vincoli geometrici: magari la posizione di $Q_3$ deve trovarsi su una qualche curva perchè scorre su un binario, o $Q_1$ e $Q_5$ devono trovarsi a distanza fissata perchè uniti da un'asta, o tutti i punti devono giacere sulla superficie di un tavolo, chi più ne ha più ne metta.\\
+Si nota immediatamente che le equazioni di Newton viste sopra non sono adeguate a descrivere questi sistemi vincolati, perchè la dinamica indotta non presenta vincoli geometrici: per affrontare questo problema si introducono le cosiddette \bemph{reazioni vincolari}, delle "forze" $\phi_k$ che modificano le equazioni del moto nella forma
+\[ m_{Q_k} a_{Q_k}|_R(t) = F_{R,k}\left( \gamma_{Q_1}|_{R}(t),..,\gamma_{Q_N}|_{R}(t), v_{Q_1}|_{R}(t),..., v_{Q_n}|_{R}(t)  \right) + \phi_k \]
+Ma queste reazioni vincolari non sono note a priori, appaiono come incognite nel sistema e questo in generale ci porta fuori dalle ipotesi sotto cui ci è garantito il determinismo dagli strumenti sviluppati fino a questo punto.\\ 
+Per trattare questi sistemi introdurremo il formalismo della meccanica lagrangiana, che svilupperemo nella prossima parte del corso.
+
+\chapter{Meccanica Lagrangiana}
+
+Il formalismo della meccanica Lagrangiana è una formulazione più elegante e soprattutto estremamente più potente della meccanica classica rispetto alla meccanica newtoniana.\\
+Alcuni dei principali vantaggi sono:\begin{itemize}
+    \item Questa formulazione si applica anche a certe classi di sistemi vincolati, dove i vincoli sono detti \bemph{ideali}, estendendo consistentemente la meccanica newtoniana.
+    \item Il legame tra le simmetrie di un sistema e le sue quantità conservate datoci dal teorema di Noether, che vedremo più avanti, viene espresso in modo estremamente elegante e naturale.
+\end{itemize}
+
+\section{Geometria dei vincoli olonomi e ideali}
+
+In questa sezione ci occuperemo dei sistemi di $N\ge 1$ punti materiali $\{Q_1,...,Q_N\}$. Dato che questi $N$ punti sono descritti da $N$ linee di universo $\gamma_k : I \to \V^4$ con $T\circ \gamma_k = \id_{I}$, per tenere traccia di tutti questi punti contemporaneamente introduciamo un'estensione del nostro spaziotempo.
+
+\begin{definition}{}{}
+    Sia $T:\V^4\to\E^1$ uno spaziotempo e sia $N\ge 1$.\\
+    Il corrispondete \bemph{spaziotempo delle configurazioni} per $N$ punti materiali è dato dal prodotto fibrato 
+    \[ \V^{3N+1} = \underbrace{\V^4 \times_{\E_1}...\times_{\E_1} \V^4 }_{N\text{ volte}} = \left\{ (p_1,...,p_N) \in (\V^4)^N : \forall i, j, T(p_i) = T(p_j) \right\} \]
+    Con la fibrazione ovvia $T:\V^{3N+1}\to \E^1$ data da $T(p_1,...,p_N) = T(p_i)$ per qualsiasi $i$.\\
+    Alternativamente, $T:\V^{3N+1}\to\E^1$ è definito per proprietà universale come limite del seguente diagramma nella categoria dei fibrati differenziabili 
+    \[\begin{tikzcd}
+    	& {\V^{3N+1}} & \\
+    	{\V^4} && {\V^4} \\
+	    & {\E^1}
+    	\arrow[dashed, from=1-2, to=2-1]
+	    \arrow[dashed, from=1-2, to=2-3]
+    	\arrow["\lrcorner"{anchor=center, pos=0.125, rotate=-45}, draw=none, from=1-2, to=3-2]
+	    \arrow["{...}"{description}, draw=none, from=2-1, to=2-3]
+    	\arrow["T"{description}, from=2-1, to=3-2]
+	    \arrow["T"{description}, from=2-3, to=3-2]
+    \end{tikzcd}\]
+\end{definition}
+
+Osserviamo che le fibre di $\V^{3N+1}$ al tempo $t\in \E^1$ sono date da $\Sigma_t^N = \Sigma_t\times...\times\Sigma_t$, che dunque eredita la struttura di spazio euclideo sopra lo spazio vettoriale sottostante $V_t^N = V_t\times...\times V_t$ con l'evidente prodotto scalare.\\
+Trattare un sistema di $N$ linee di universo $\gamma_{k}:I\to\V^4$ è assolutamente identico al trattare una singola linea di universo $\Gamma :I\to\V^{3N+1}$ data da $\Gamma(t)=(\gamma_1(t),...,\gamma_N(t))$, infatti come visto sopra $T\circ \Gamma = \id_{I}$ e viceversa proiettando su ciascuna componente torniamo a $\gamma_k = \pi_k\circ \Gamma: I \to \V^4$.\\
+Anche un sistema di riferimento $R:\V^4\to \E^1\times\E^3$ può essere facilmente esteso e illuminare un attimo il senso di quel $3N+1$ all'esponente, come si vede in questo diagramma 
+\[\begin{tikzcd}
+	{\V^4\times_{\E_1}...\times_{\E_1}\V^4} &&& {(\E^1\times\E^3)\times_{\E^1}...\times_{\E^1}(\E^1\times \E^3)} \\
+	{\V^{3N+1}} &&& {\E^1\times\E^{3N}} \\
+	\\
+	{\E^1} &&& {\E^1}
+	\arrow["{(R,..., R)}"{description}, from=1-1, to=1-4]
+	\arrow["\cong"{marking, allow upside down}, draw=none, from=1-4, to=2-4]
+	\arrow["{=}"{marking, allow upside down}, draw=none, from=2-1, to=1-1]
+	\arrow["T"{description}, from=2-1, to=4-1]
+	\arrow["{\pi_{\E^1}}"{description}, from=2-4, to=4-4]
+	\arrow["{\id_{\E^1}}"{description}, from=4-1, to=4-4]
+\end{tikzcd}\] 
+E lo stesso vale evidentemente per qualsiasi scelta di coordinate standard che ci porterà in $\R^1\times\R^{3N}$.
+
+\begin{definition}{Vincoli olonomi}{vincoli olonomi}
+    Un sistema di $0\le C\le N$ \bemph{vincoli olonomi} per un sistema di di $N\ge 1$ punti materiali è dato da una famiglia di $C$ funzioni liscie $f_j : \V^{3N+1}\to\R$ che soddisfano le seguenti proprietà:\begin{itemize}
+        \item Per ogni $t \in \E^1$ vale 
+        \[ \Sigma_t^N \cap \bigcap_j f_j^{-1}(\{0\}) \neq \varnothing\]
+        \item Per ogni $t \in \E^1$ e qualsiasi scelta di coordinate standard adattate $(t,\vec{\vec x}) := (t,x^1,...,x^{3N})$, la matrice jacobiana 
+        \[ \left[ \frac{\partial f_j}{\partial x^i} \bigg|_{(t,\vec{\vec x})} \right]_{i,j} : \R^{3N}\to \R^C \]
+        Ha rango massimo per ogni $(t,\vec{\vec x})$ tale che $f_j((t,\vec{\vec x}))\neq 0$ per ogni $j\le C$
+    \end{itemize}
+    A questo punto è detto \bemph{spaziotempo delle configurazioni} di un sistema di $N$ punti materiali sottoposto a $C$ vincoli olonomi $\{f_1,...,f_C\}$ il fibrato 
+    \[ T: \V^{n+1}:= \bigcap_j f_j^{-1}(\{0\}) \subset \V^{3N+1} \to \E^1 \]
+    Dove $n := 3N - C$ è detto il numero di \bemph{gradi di libertà} del sistema.\\
+    Lo spazio $\Q_t := \V^{n+1}\cap \Sigma_t^N$ è detto \bemph{spazio delle configurazioni} del sistema al tempo $t$
+\end{definition}
+
+Ok, che diavolo abbiamo appena letto? Le proprietà che abbiamo richiesto sui vincoli sono proprietà tecniche che ci permettono di applicare un potente teorema di geometria differenziale, il \bemph{teorema dei valori regolari}\footnote{Reperibile in \cite{Moretti2024} per interessati e masochisti} che ci conduce al seguente risultato.
+
+\begin{proposition}{}{}
+    Nel contesto della definizione precedente, valgono i seguenti fatti:\begin{enumerate}
+        \item $\V^{n+1}\subset \V^{3N+1}$ è una sottovarietà \textit{embedded}\footnote{Possibili traduzioni sono immersa, inclusa o incastonata, ma in genere si usa l'aggettivo in inglese e ci si mette il cuore in pace.} di dimensione $n+1$ e la fibrazione $T:\V^{n+1}\to\E^1$ è una sommersione suriettiva.
+        \item Per ogni $t \in \E^1$, $\Q_t = \V^{n+1}\cap\sigma_t^N \subset \Sigma_t^N$ è una sottovarietà embedded di dimensione $n$.
+        \item Per ogni punto $p \in \V^{3N+1}$ possiamo scegliere in un intorno di $p$ una carta locale $(U\subset \V^{3N+1},\phi:U\to \R^{3N+1})$ tale che \begin{itemize}
+            \item \[ \forall p' \in U, \phi(p') := (T(p'), \phi^1(p'),...,\phi^{3N}(p')) \]
+            \item \[ \forall t \in T(U), \forall p' \in U\cap Q_t, \phi(p') = (t, \phi^1(p'),...,\phi^n(p'),0,...,0) \]
+        \end{itemize}
+    \end{enumerate}
+\end{proposition}
 
 \nocite{*}
 \printbibliography
