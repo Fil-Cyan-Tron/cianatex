@@ -22,7 +22,7 @@
 
 \tableofcontents
 
-\chapter{Prolegomeni di Geometria}
+\chapter{Geometria}
 
 In questo capitolo daremo un'esposizione relativamente minimale degli strumenti di geometria che ci serviranno per trattare la meccanica classica in modo soddisfacente ai fini del nostro corso.
 
@@ -744,7 +744,7 @@ In questa sezione ci occuperemo dei sistemi di $N\ge 1$ punti materiali $\{Q_1,.
     Sia $T:\V^4\to\E^1$ uno spaziotempo e sia $N\ge 1$.\\
     Il corrispondete \bemph{spaziotempo delle configurazioni} per $N$ punti materiali è dato dal prodotto fibrato 
     \[ \V^{3N+1} = \underbrace{\V^4 \times_{\E_1}...\times_{\E_1} \V^4 }_{N\text{ volte}} = \left\{ (p_1,...,p_N) \in (\V^4)^N : \forall i, j, T(p_i) = T(p_j) \right\} \]
-    Con la fibrazione ovvia $T:\V^{3N+1}\to \E^1$ data da $T(p_1,...,p_N) = T(p_i)$ per qualsiasi $i$.\\
+    Con la sommersione suriettiva ovvia $T:\V^{3N+1}\to \E^1$ data da $T(p_1,...,p_N) = T(p_i)$ per qualsiasi $i$.\\
     Alternativamente, $T:\V^{3N+1}\to\E^1$ è definito per proprietà universale come limite del seguente diagramma nella categoria dei fibrati differenziabili 
     \[\begin{tikzcd}
     	& {\V^{3N+1}} & \\
@@ -781,27 +781,98 @@ E lo stesso vale evidentemente per qualsiasi scelta di coordinate standard che c
         \item Per ogni $t \in \E^1$ vale 
         \[ \Sigma_t^N \cap \bigcap_j f_j^{-1}(\{0\}) \neq \varnothing\]
         \item Per ogni $t \in \E^1$ e qualsiasi scelta di coordinate standard adattate $(t,\vec{\vec x}) := (t,x^1,...,x^{3N})$, la matrice jacobiana 
-        \[ \left[ \frac{\partial f_j}{\partial x^i} \bigg|_{(t,\vec{\vec x})} \right]_{i,j} : \R^{3N}\to \R^C \]
-        Ha rango massimo per ogni $(t,\vec{\vec x})$ tale che $f_j((t,\vec{\vec x}))\neq 0$ per ogni $j\le C$
+        \[ \left[ \frac{\partial f_j}{\partial x^i} \bigg|_{(t,\vec{\vec x})} \right]_{1\le i\le 3N,1\le j\le C} : \R^{3N}\to \R^C \]
+        Ha rango massimo per ogni $(t,\vec{\vec x})$ tale che $f_j((t,\vec{\vec x})) = 0$ per ogni $j\le C$
     \end{itemize}
     A questo punto è detto \bemph{spaziotempo delle configurazioni} di un sistema di $N$ punti materiali sottoposto a $C$ vincoli olonomi $\{f_1,...,f_C\}$ il fibrato 
     \[ T: \V^{n+1}:= \bigcap_j f_j^{-1}(\{0\}) \subset \V^{3N+1} \to \E^1 \]
     Dove $n := 3N - C$ è detto il numero di \bemph{gradi di libertà} del sistema.\\
-    Lo spazio $\Q_t := \V^{n+1}\cap \Sigma_t^N$ è detto \bemph{spazio delle configurazioni} del sistema al tempo $t$
+    Lo spazio $\Q_t := \V^{n+1}\cap \Sigma_t^N$ è detto \bemph{spazio delle configurazioni} del sistema al tempo $t$.
 \end{definition}
 
 Ok, che diavolo abbiamo appena letto? Le proprietà che abbiamo richiesto sui vincoli sono proprietà tecniche che ci permettono di applicare un potente teorema di geometria differenziale, il \bemph{teorema dei valori regolari}\footnote{Reperibile in \cite{Moretti2024} per interessati e masochisti} che ci conduce al seguente risultato.
 
-\begin{proposition}{}{}
+\begin{proposition}{}{utile sulle varietà}
     Nel contesto della definizione precedente, valgono i seguenti fatti:\begin{enumerate}
-        \item $\V^{n+1}\subset \V^{3N+1}$ è una sottovarietà \textit{embedded}\footnote{Possibili traduzioni sono immersa, inclusa o incastonata, ma in genere si usa l'aggettivo in inglese e ci si mette il cuore in pace.} di dimensione $n+1$ e la fibrazione $T:\V^{n+1}\to\E^1$ è una sommersione suriettiva.
+        \item $\V^{n+1}\subset \V^{3N+1}$ è una sottovarietà \textit{embedded}\footnote{Possibili traduzioni sono immersa, inclusa o incastonata, ma in genere si usa l'aggettivo in inglese e ci si mette il cuore in pace.} di dimensione $n+1$ e la restrizione $T:\V^{n+1}\to\E^1$ è una sommersione suriettiva.
         \item Per ogni $t \in \E^1$, $\Q_t = \V^{n+1}\cap\sigma_t^N \subset \Sigma_t^N$ è una sottovarietà embedded di dimensione $n$.
         \item Per ogni punto $p \in \V^{3N+1}$ possiamo scegliere in un intorno di $p$ una carta locale $(U\subset \V^{3N+1},\phi:U\to \R^{3N+1})$ tale che \begin{itemize}
             \item \[ \forall p' \in U, \phi(p') := (T(p'), \phi^1(p'),...,\phi^{3N}(p')) \]
             \item \[ \forall t \in T(U), \forall p' \in U\cap Q_t, \phi(p') = (t, \phi^1(p'),...,\phi^n(p'),0,...,0) \]
         \end{itemize}
     \end{enumerate}
+    \proof 
+    La seconda proprietà segue direttamente dalle richieste sui vincoli olonomi e dal teorema dei valori regolari; per verificare la prima proprietà dobbiamo estendere la matrice jacobiana con una derivata temporale, che faremo identificando $x^0:= t$:
+    \[\left[ \frac{\partial f_j}{\partial x^i} \bigg|_{(t,\vec{\vec x})} \right]_{0\le i\le 3N,1\le j\le C} : \R^{3N+1}\to \R^C\]
+    questa matrice ha ovviamente rango massimo, perchè restringendoci a vettori della forma $(0,\vec{\vec{x}})$ otteniamo la matrice jacobiana non estesa, che ha rango massimo per definizione.\\
+    Rimane solo la terza, che segue dal teorema dei valori regolari.
 \end{proposition}
+
+Vediamo un esempio
+
+\begin{example}{}{}
+    Consideriamo un sistema di un ($N=1$) punto materiale e un ($C=1$) vincolo: scegliendo un qualsiasi sistema di riferimento $R$, abbiamo $\V^{3+1}\cong \E^1\times\E^3$ possiamo considerare la mappa liscia $f:\E^1\times\E^3\to\R$ definita da $(t, q)\mapsto \| q- O(t) \|^2 - r_0^2(t)$, dove $O:\E^1\to\E^3$ e $r_0:\E^1\to\R_{>0}$ sono mappe liscie.\\
+    Per ogni $t$ fissato, i punti di $f(t,q)=0$ definiscono una sfera $\S^2_t$ di centro $O(t)$ e raggio $r_0(t)$. Passando in coordinate abbiamo:
+    \[ f(t,\vec x) = (x^1 - O^1(t))^2 + (x^2 -O^2(t))^2 + (x^3 -O^3(t))^2 - r_0^2(t) \]
+    Chiaramente il primo punto della definizione di vincolo olonomo è soddisfatto dal fatto che la controimmagine di $0$ è come abbiamo detto una sfera; per la seconda proprietà dobbiamo calcolare la matrice jacobiana:
+    \[ \left[ \frac{\partial f}{\partial x^1}, \frac{\partial f}{\partial x^2}, \frac{\partial f}{\partial x^3} \right] = \left[ 2(x^1 -O^1(t)), 2(x^2 -O^2(t)), 2(x^3 -O^3(t)) \right] \]
+    Che ha rango massimo fintanto che almeno una delle sue componenti non è nulla, cosa che si verifica sempre negli zeri di $f$, dunque questo è un vincolo olonomo.
+\end{example}
+
+\begin{example}{}{}
+    Consideriamo ora $N=2$ punti materiali, dunque con un riferimento $R$ ci poniamo in $\V^{6+1}\iso \E^1\times\E^3\times\E^3$ e le mappe liscie $f_{1,2}:\E^1\times\E^3\times\E^3$ definite da 
+    \[ f_1(t,q_1,q_2) = \| q_1-O(t) \|^2 - r_0^2(t)\]
+    \[ f_2(t,q_1,q_2) = \|q_1-q_2\|^2 - D_0^2(t) \]
+    TBD
+\end{example} 
+
+In preprarazione alla discussione sui vincoli ideali, definiamo un importante concetto di geometria differenziale:
+
+\begin{definition}{Spazio tangente di $\Q_t$}{spazio tangente}
+    Consideriamo, per $t\in\Q^1$, la sottovarietà embedded $\Q_t = \V^{n+1}\cap\Sigma^N_t \subset \Sigma^N_t$.\\
+    Scegliendo coordinate locali su $\Q_t$, ovvero una carta locale $(U,\psi)$ tale che $U\subset\Q_t$ e $\psi:U\to\R^n$ otteniamo una parametrizzazione locale $\psi^{-1}:\psi(U)\to\Sigma^N_t$ di $\Q_t$ data da $\psi^{-1}(q^1,...,q^n)$.\\
+    Definiamo lo \bemph{spazio tangente} di $\Q_t$ in $q \in U$ come il sottospazio vettoriale 
+    \[ T_q\Q_t := \left\langle \frac{\partial \psi^{-1}(q^1,...,q^n)}{\partial q^1}\bigg|_{\psi(q)},...,\frac{\partial \psi^{-1}(q^1,...,q^n)}{\partial q^n}\bigg|_{\psi(q)}  \right\rangle \]
+    di $V_t^N$, spazio sottostante a $\Sigma_t^N$.
+\end{definition}
+
+Dimostriamo alcuni utili risultati su $T_q\Q_t$:
+
+\begin{proposition}{}{}
+    Lo spazio tangente $T_q\Q_t$ non dipende dalla scelta di coordinate e come spazio vettoriale ha la stessa dimensione $n$ di $\Q_t$ come varietà.
+    \proof 
+    Senza esplicitare tutti i calcoli, date due carte locali $(U,\psi)$ e $(U',\psi')$ si nota che la funzione di trasferimento $\psi'\circ\psi^{-1}$; calcolando con la regola della catena le derivate di $\psi^{-1} = \psi'^{-1}\circ \psi'\circ \psi^{-1}$ otteniamo 
+    \[ \frac{\partial \psi^{-1}(q^1,..., q^n)}{\partial q^i}\bigg|_{\psi(q)} = \sum_j \frac{\partial \psi'^{-1}(q'^1,..., q'^n)}{\partial q'^j}\bigg|_{\psi(q)}\frac{\partial q'^j}{\partial q^i}\bigg|_{\psi(q)} \]
+    Poichè la jacobiana di ogni diffeomeorfismo è invertibile, ne segue che gli spazi tangenti coincidono.\\
+    Per dimostrare che la dimensione è la stessa di $\Q_t$, usiamo una carta del tipo del terzo punto di \cref{prop:utile sulle varietà}: in questo caso è evidente che i generatori di $T_q\Q_t$ sono indipendenti, dato che usando coordinate locali su $\Sigma_t^N$ si ottiene $\psi^{-1}(q^1,...,q^n) = (q^1,...,q^n,0,...,0)$ e derivando rispetto a $q^i$ si osserva l'indipendenza lineare.
+    \qed 
+\end{proposition}
+
+Finalmente possiamo definire i vincoli ideali:
+
+\begin{definition}{Vincoli ideali}{vincoli ideali}
+    Sia $\{f_1,..., f_C\}$ un sistema di $0\le C\le 3N$ vincoli olonomi per un sistema di $N\ge 1$ punti materiali.\\
+    Questi vincoli sono detti \bemph{ideali} se per ogni linea di universo $\Gamma:I\to\V^{n+1}$ e ogni $t\in I$, la reazione vincolare $\phi = (\phi_1,...,\phi_N) \in V_t^N$ è normale a $\Q_t$, ovvero $\phi \cdot v = 0$ per ogni vettore tangente $v \in T_{\Gamma(t)}\Q_t$
+\end{definition}
+
+Osserviamo che questa definizione ha una forte connotazione fisica, infatti questi vincoli sono stati introdotti nel contesto della meccanica newtoniana: in particolare, non si può dedurre dalla definizione matematica di vincoli olonomi che questi debbano essere o non essere anche ideali.\\
+Si deve pensare alla richiesta di idealità come a una richiesta aggiuntiva sul comportamento geometrico di un vincolo che lo rende adatto per applicare l'apparato della meccanica lagrangiana.
+
+\newcommand\T{\mc{T}}
+\section{Energia cinetica}
+
+Per trattare i sistemi di punti materiali con vincoli ideali è spesso necessario calcolare le componenti tangenziali ai vincoli dell'accelerazione, ma per farlo è necessario introdurre il concetto di energia cinetica.\\
+L'obiettivo di questa parte sarà definire l'energia cinetica per sistemi di $N\ge 1$ punti materiali $\{Q_1,...,Q_N\}$ sottoposti a $C\le N$ vincoli olonomi $\{f_1,...,f_C\}$ e illustrare la geometria sottesa alle coordinate puntate $\dot q$. Per farlo dobbiamo estendere opportunamente i concetti di velocià e accelerazione in $\V^4$ a $\V^{3N+1}$\\
+Sia $\Gamma:I\to \V^{n+1}$ una linea di universo nello spazio delle configurazioni vincolato: dato che questo è una sottovarietà embedded di $\V^{3N+1}$, possiamo leggerla come linea di universo in quest'ultimo e definire come sopra velocità e accelerazione rispetto a un riferimento $R$: esplicitamente
+\[ v|_R(t) := \left((\di R|_{\Sigma_t}^{\times N})^{-1}\circ \frac{\di}{\di t} \circ R|_{\Sigma_t}^{\times N} \right)(\Gamma(t)) = (v_{Q_1}|R(t),..., v_{Q_N}|_R(t)) \in V_t^\N \]
+\[ a|_R(t) := \left((\di R|_{\Sigma_t}^{\times N})^{-1}\circ \frac{\di^2}{\di t^2} \circ R|_{\Sigma_t}^{\times N} \right)(\Gamma(t)) = (a_{Q_1}|R(t),..., a_{Q_N}|_R(t)) \in V_t^\N \]
+Ora possiamo definire l'energia cinetica.
+
+\begin{definition}{Energia cinetica}{energia cinetica}
+    Sia $\Gamma:I\to\V^{n+1}\subset\V^{3N+1}$ una linea cinetica nello spaziotempo delle configurazioni di un sistema con vincoli olonomi e sia $R$ un riferimento.\\
+    La sua \bemph{energia cinetica} rispetto a $R$ è definita da:
+    \[ \T_R(t) := \sum_i \frac{m_{Q_i}}{2}\| v_{Q_i}|_R(t) \|^2 =  \sum_i \frac{m_{Q_i}}{2}(v_{Q_i}|_R(t) \cdot v_{Q_i}|_R(t)) \]
+\end{definition}
 
 \nocite{*}
 \printbibliography
