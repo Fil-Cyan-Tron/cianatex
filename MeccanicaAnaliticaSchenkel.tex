@@ -43,12 +43,12 @@ Assumiamo che il lettore abbia già familiarità con il concetto \bemph{($\R$-)s
 
 \begin{example}{Lo spazio di dimensione finita $\R^n$}{}
     L'esempio standard di spazio vettoriale è $\R^n$, con $n \in \N$.\\
-    Per ogni $n, m \in \N$ esiste\footnote{una volta scelta una base} una biezione $\M_{n\times m}(\R) \iso \hom(\R^m,\R^n)$ che associa una matrice $M$ alla mappa lineare $f_M : \vec{v}\mapsto M\vec{v}$
+    Per ogni $n, m \in \N$ esiste\footnote{una volta scelta una base} una biezione $\M_{n\times m}(\R) \iso \hom(\R^m,\R^n)$ che associa una matrice $M$ alla mappa lineare $f_M : \bar{v}\mapsto M\bar{v}$
 \end{example}
 
 Notiamo che se $V$ è uno spazio vettoriale di dimensione $n \in \N$, esiste un\footnote{non unico!} isomorfismo $\R^n \iso V$.\\
 Infatti scegliendo una base $\{e_i\in V\}_{1\le i \le n}$ un isomorfismo lineare può essere definito da 
-\[ e: \vec{v} = \begin{pmatrix} v^1 \\ \vdots \\ v^n \end{pmatrix}\mapsto \sum_{i=1}^n v^i e_i  \]
+\[ e: \bar{v} = \begin{pmatrix} v^1 \\ \vdots \\ v^n \end{pmatrix}\mapsto \sum_{i=1}^n v^i e_i  \]
 In particolare, dato che per due basi $\{e_i\}_i$, $\{e'_i\}_i$ esiste una matrice $B = (B_i^j)$ in $\GL(n)$ tale che 
 \[ e_i = \sum_{j = 1}^n B^j_i e'_i \]
 Otteniamo un automorfismo lineare
@@ -96,7 +96,7 @@ Che implica $\delta\psi(v) \equiv \di\psi(v)$.
 \end{proposition}
 
 Come conseguenza diretta della proposizione precedente, ogni spazio affine $A$ di dimensione $n\in \N$ è dotato di un\footnote{non unico} isomorfismo affine con $\R^n$: scegliendo un punto base $P_0 \in A$ e una base $\{e_i\}_i$ di $V$ questo è dato da
-\[ (P_0,e): \vec{v} = \begin{pmatrix} v^1\\\vdots\\v^n \end{pmatrix}\mapsto P_0 + \sum_{i=1}^n v^ie_i\]
+\[ (P_0,e): \bar{v} = \begin{pmatrix} v^1\\\vdots\\v^n \end{pmatrix}\mapsto P_0 + \sum_{i=1}^n v^ie_i\]
 In particolare, considerando due punti $P_0,P_0' \in A$ e dato che per due basi $\{e_i\}_i$, $\{e'_i\}_i$ esiste una matrice $B = (B_i^j)$ in $\GL(n)$ tale che 
 \[ e_i = \sum_{j = 1}^n B^j_i e'_i \]
 Otteniamo un automorfismo affine 
@@ -112,14 +112,14 @@ Modellando il tempo come uno spazio $A^1$ di dimensione $1$ e lo spazio come uno
 \[\begin{tikzcd}
 	{A^1} && {A^3} \\
 	{\R^1} && {\R^3} \\
-	t && {\vec{x} + \vec{v}t}
+	t && {\bar{x} + \bar{v}t}
 	\arrow["\psi"{description}, from=1-1, to=1-3]
 	\arrow[from=2-1, to=1-1]
 	\arrow[from=2-1, to=2-3]
 	\arrow[from=2-3, to=1-3]
 	\arrow[maps to, from=3-1, to=3-3]
 \end{tikzcd}\]
-Dove $\vec{v}$ è la velocità dela particella e $\vec{x}_0$ la sua posizione al tempo $t=0$.\\
+Dove $\bar{v}$ è la velocità dela particella e $\bar{x}_0$ la sua posizione al tempo $t=0$.\\
 Tuttavia, per descrivere moti più interessanti (ad esempio quando le particelle sono sottoposte a delle forze) è necessario passare ad un formalismo ancora più generale.
 
 \subsection{Varietà lisce}
@@ -260,13 +260,13 @@ Notiamo anche che una mappa affine $\psi : E\to E'$ è un'isometria se e solo se
 \newcommand\SO{\operatorname{SO}}
 \begin{example}{Lo spazio euclideo $\R^n$}{}
     Per $n \in \N$, lo spazio vettoriale $\R^n$ è dotato di un prodotto scalare naturale $\cdot$ definito da
-    \[ \vec{v}\cdot\vec{w} = \begin{pmatrix} v^1\\\vdots\\v^n \end{pmatrix}\cdot \begin{pmatrix} w^1\\\vdots\\w^n \end{pmatrix} = \sum_{i=1}^n v^i w^i \]
+    \[ \bar{v}\cdot\bar{w} = \begin{pmatrix} v^1\\\vdots\\v^n \end{pmatrix}\cdot \begin{pmatrix} w^1\\\vdots\\w^n \end{pmatrix} = \sum_{i=1}^n v^i w^i \]
     Come visto sopra, questo spazio ha anche una struttura di spazio affine, sul quale questo prodotto scalare definisce la tipica distanza 
-    \[ d(\vec{x},\vec{y}) = d\left(\begin{pmatrix} x^1\\\vdots\\x^n \end{pmatrix}, \begin{pmatrix} y^1\\\vdots\\y^n \end{pmatrix}\right) = \sqrt{ \sum_{i=1}^n (x^i-y^i)^2 } \]
-    Ogni isometria affine $\psi : \R^m\to\R^n$ è rappresentata tramite l'espressione $\psi(\vec{x}) = \vec{b}+L\vec{x}$ da un vettore $\vec{b\in\R^n}$ e una matrice $L$ con $n$ righe e $m$ colonne tale che $L^T L = \vec{1}_{m\times m}$.\\
+    \[ d(\bar{x},\bar{y}) = d\left(\begin{pmatrix} x^1\\\vdots\\x^n \end{pmatrix}, \begin{pmatrix} y^1\\\vdots\\y^n \end{pmatrix}\right) = \sqrt{ \sum_{i=1}^n (x^i-y^i)^2 } \]
+    Ogni isometria affine $\psi : \R^m\to\R^n$ è rappresentata tramite l'espressione $\psi(\bar{x}) = \bar{b}+L\bar{x}$ da un vettore $\bar{b\in\R^n}$ e una matrice $L$ con $n$ righe e $m$ colonne tale che $L^T L = \bar{1}_{m\times m}$.\\
     Osserviamo che tali matrici esistono solo per $n\ge m$, fatto che corrisponde alla nostra intuizione geometrica: non è possibile che $\psi$ preservi le distanze se ci sono dimensioni che vengono "schiacciate" quando questa trasforma lo spazio.\\
     Notiamo anche che quando $n=m$, abbiamo che la\footnote{mappa rappresentata dalla} matrice $L$ deve appartenere al gruppo ortogonale $\\O(n)$ e che ogni isometria $\psi:\R^n\to\R^n$ è invertibile con inversa $\psi^{-1}$ data da 
-    \[ \psi^{-1}(\vec{x}) = L^T(\vec{x}-\vec{b}) = -L^T\vec{b} + L^T\vec{x} \]
+    \[ \psi^{-1}(\bar{x}) = L^T(\bar{x}-\bar{b}) = -L^T\bar{b} + L^T\bar{x} \]
 \end{example}
 
 Come per il caso vettoriale e per il caso affine, non sarà mica che ogni spazio euclideo di dimensione finita è segretamente $\R^n$ sotto mentite spoglie? E certo che è così, lo vediamo con la prossima proposizione:
@@ -277,7 +277,7 @@ Come per il caso vettoriale e per il caso affine, non sarà mica che ogni spazio
     Scegliamo un punto $P_0 \in E$ e una base ortonormale $\{e_i \in V : s(e_i,e_j) = \delta_{i,j}\}_{1\le i\le n}$ per lo spazio vettoriale sottostante $V$, dunque definiamo la mappa $\psi$ come
     \[\psi( (x^i)_i ) = P_0 + \sum_{i=1}^n x^ie_i \]
     Questa è ovviamente una mappa affine, notiamo che preserva i prodotti scalari:
-    \[ s(\di \psi(\vec{v}),\di\psi(\vec{w}) ) = \sum_{i,j = 1}^n v^i w^j \underbrace{s(e_i,e_j)}_{=\delta_{i,j}} = \sum_{i=1}^n v^i w^i = \vec{v}\cdot\vec{w}\]
+    \[ s(\di \psi(\bar{v}),\di\psi(\bar{w}) ) = \sum_{i,j = 1}^n v^i w^j \underbrace{s(e_i,e_j)}_{=\delta_{i,j}} = \sum_{i=1}^n v^i w^i = \bar{v}\cdot\bar{w}\]
     Dunque è un'isometria. Vediamo che la sua inversa $\psi^{-1}:E\iso\R^n$ assume la forma 
     \[ \psi^{-1}(P) = \begin{pmatrix}s(e_1,P-P_0) \\ \vdots \\ s(e_n, P-P_0) \end{pmatrix} \]
     \qed
@@ -294,18 +294,18 @@ Grazie a questi isomorfismi è facile determinare il gruppo di automorfismi $\Au
 	\arrow["{\eta_\psi(f) :=  \psi^{-1} \circ f \circ \psi}"{description}, from=3-1, to=3-5]
 	\arrow["\psi"{description}, from=3-5, to=1-4]
 \end{tikzcd}\]
-Come visto sopra, abbiamo anche un isomorfismo $\R^n\times\\O(n)\iso\Aut(\R^n)$ che manda la coppia $(\vec{b},L)$ nell'automorfismo $f_{(\vec{b},L)}(\vec{x}) = \vec{b}+L\vec{x}$: i seguenti calcoli esibiscono la struttura di gruppo di $\R^n\times\\O(n)$:\begin{itemize}
+Come visto sopra, abbiamo anche un isomorfismo $\R^n\times\\O(n)\iso\Aut(\R^n)$ che manda la coppia $(\bar{b},L)$ nell'automorfismo $f_{(\bar{b},L)}(\bar{x}) = \bar{b}+L\bar{x}$: i seguenti calcoli esibiscono la struttura di gruppo di $\R^n\times\\O(n)$:\begin{itemize}
     \item La composizione è data da
-        \[ f_{(\vec{b},L)} \circ f_{(\vec{b}',L')(\vec{x})} = \vec{b} + L f_{(\vec{b}',L')}(\vec{x}) = \vec{b}+L\vec{b}' + LL'\vec{x} = f_{(\vec{b} + L\vec{b}', LL' )}(\vec{x}) \]
-        Dunque l'operazione del gruppo è $(\vec{b},L)\cdot (\vec{b}',L') := (\vec{b} + L\vec{b}', LL' )$ e notiamo che è diversa dall'operazione \naif sul prodotto diretto del gruppo additivo $\R^n$ e del gruppo di composizione $\\O(n)$. 
-    \item L'elemento neutro è ovviamente $\id = f_{(\vec{0},\vec{1}_{n\times n})}$.
-    \item L'inverso di $(\vec{b},L)$ è dato da $(-L^T\vec{b},L^T)$.
+        \[ f_{(\bar{b},L)} \circ f_{(\bar{b}',L')(\bar{x})} = \bar{b} + L f_{(\bar{b}',L')}(\bar{x}) = \bar{b}+L\bar{b}' + LL'\bar{x} = f_{(\bar{b} + L\bar{b}', LL' )}(\bar{x}) \]
+        Dunque l'operazione del gruppo è $(\bar{b},L)\cdot (\bar{b}',L') := (\bar{b} + L\bar{b}', LL' )$ e notiamo che è diversa dall'operazione \naif sul prodotto diretto del gruppo additivo $\R^n$ e del gruppo di composizione $\\O(n)$. 
+    \item L'elemento neutro è ovviamente $\id = f_{(\bar{0},\bar{1}_{n\times n})}$.
+    \item L'inverso di $(\bar{b},L)$ è dato da $(-L^T\bar{b},L^T)$.
 \end{itemize}
 Queste trasformazioni hanno il significato geometrico di traslazioni, rotazioni e riflessioni dello spazio euclideo $\R^n$.\\
 Applicando subito quanto visto al tempo $E^1$ e allo spazio $E^3$ della fisica classica otteniamo in qualunque scelta di coordinate una descrizione esplicita dei loro automorfismi: 
 \[ \R^1\iso \R^1, t\mapsto at+c \]
-\[ \R^3 \iso \R^3, \vec{x}\mapsto L\vec{x} + \vec{b} \]
-Per $a \in \{-1,1\}$, $c \in \R$, $L\in\\O(3)$ e $\vec{b}\in\R^3$; per escludere trasformazioni che possano riflettere il tempo (con $a=-1$) o lo spazio (con $\det L = -1$), dotiamo questi nostri spazi euclidei di un'\bemph{orientazione} ereditata da quella sul loro spazio vettoriale sottostante e richiediamo che gli automorfismi la preservino:
+\[ \R^3 \iso \R^3, \bar{x}\mapsto L\bar{x} + \bar{b} \]
+Per $a \in \{-1,1\}$, $c \in \R$, $L\in\\O(3)$ e $\bar{b}\in\R^3$; per escludere trasformazioni che possano riflettere il tempo (con $a=-1$) o lo spazio (con $\det L = -1$), dotiamo questi nostri spazi euclidei di un'\bemph{orientazione} ereditata da quella sul loro spazio vettoriale sottostante e richiediamo che gli automorfismi la preservino:
 
 \begin{definition}{Orientazione}{}
     Un'\bemph{orientazione} su uno spazio vettoriale $V$ è una classe di equivalenza di basi $[\{e_i\}_i]_\sim$ dove due basi sono equivalenti se e solo se la mappa di cambiamento di base $f(e_i') = e_i$ ha determinante positivo.
@@ -406,21 +406,21 @@ E notiamo che il secondo è notevolmente più semplice da determinare del primo
     Ogni automorfismo 
     \[ (F,f): (\pi_1:\R^1\times\R^3\to\R^1)\iso (\pi_1:\R^1\times\R^3\to\R^1) \]
     È della forma 
-    \[ F: (t,\vec{x}) \mapsto (c+at, \vec{b}(t) + R(t)\vec{x} ) \quad f:t\mapsto c+at \]
-    Con $c$ in $\R$, $a =\pm 1$, $\vec{b}$ in $\C^{\infty}(\R^1,\R^3)$ e $R$ in $\C^{\infty}(\R^1,\O(3))$.\\
+    \[ F: (t,\bar{x}) \mapsto (c+at, \bar{b}(t) + R(t)\bar{x} ) \quad f:t\mapsto c+at \]
+    Con $c$ in $\R$, $a =\pm 1$, $\bar{b}$ in $\C^{\infty}(\R^1,\R^3)$ e $R$ in $\C^{\infty}(\R^1,\O(3))$.\\
     L'insieme sottostante al gruppo degli automorfismi allora è dato dal prodotto cartesiano
     \[ \R^1\times \{\pm 1\} \times \C^{\infty}(\R^1,\R^3) \times \C^{\infty}(\R^1,\O(3)) \]
     E la struttura di gruppo è data da
-    \[ (c,a,\vec{b},R)(c', a', \vec{b}', R') = (c+ac', aa', \vec{b}(c'+a'(\cdot))+R(c'+a'(\cdot))\vec{b}'(\cdot) , R(c'+a'(\cdot))R'(\cdot) ) \]
-    con evidente neutro $(0,1, \vec{0},\id_{\R^3})$ e inversi dati da
-    \[ (c,a,\vec{b}, R)^{-1} = (-ac, a, -R^T(-ac+a(\cdot))\vec{b}(-ac+a\cdot), R^T(-ac+a(\cdot)) ) \]
+    \[ (c,a,\bar{b},R)(c', a', \bar{b}', R') = (c+ac', aa', \bar{b}(c'+a'(\cdot))+R(c'+a'(\cdot))\bar{b}'(\cdot) , R(c'+a'(\cdot))R'(\cdot) ) \]
+    con evidente neutro $(0,1, \bar{0},\id_{\R^3})$ e inversi dati da
+    \[ (c,a,\bar{b}, R)^{-1} = (-ac, a, -R^T(-ac+a(\cdot))\bar{b}(-ac+a\cdot), R^T(-ac+a(\cdot)) ) \]
     \proof 
     Abbiamo già visto che le isometrie affini di $\R^1$ sono della forma $t\mapsto c+at$; per la proprietà universale del prodotto, il diffeomorfismo $F$ di $\R^1\times\R^3$ si può scrivere in componenti $(F_1, F_3)$, dunque notiamo la commutatività del seguente diagramma 
     \[\begin{tikzcd}
     	{\R^1\times \R^3} &&&& {\R^1\times\R^3} \\
-	    & {(t,\vec{x})} && {(F_1(t,\vec{x}),F_3(t,\vec{x}))} \\
+	    & {(t,\bar{x})} && {(F_1(t,\bar{x}),F_3(t,\bar{x}))} \\
 	    \\
-	    & t && {f(t) = F_{1}(t,\vec{x})} \\
+	    & t && {f(t) = F_{1}(t,\bar{x})} \\
 	    {\R^1} &&&& {\R^1}
 	    \arrow["F"{description}, from=1-1, to=1-5]
 	    \arrow["{\pi_1}"{description}, from=1-1, to=5-1]
@@ -431,14 +431,14 @@ E notiamo che il secondo è notevolmente più semplice da determinare del primo
 	    \arrow[maps to, from=4-2, to=4-4]
 	    \arrow["f"{description}, from=5-1, to=5-5]
     \end{tikzcd}\]
-    Che ci da $F(t,\vec{x}) = c+at$; dato che richiediamo che $\vec{x}\mapsto F_3(t,\vec{x})$ sia un'isometria affine, deve essere della forma $(t,\vec{x})\mapsto  \vec{b}(t)+ R(t)\vec{x}$ con $\vec{b}(t)$ in $\R^3$ e $R(t)$ in $\O(3)$, ma dato che deve essere differenziabile queste quantità devono dipendere in modo differenziabile da $t$, dunque ecco dimostrata la biezione; la verifica delle leggi di gruppo è banale e lasciata come esercizio al lettore.
+    Che ci da $F(t,\bar{x}) = c+at$; dato che richiediamo che $\bar{x}\mapsto F_3(t,\bar{x})$ sia un'isometria affine, deve essere della forma $(t,\bar{x})\mapsto  \bar{b}(t)+ R(t)\bar{x}$ con $\bar{b}(t)$ in $\R^3$ e $R(t)$ in $\O(3)$, ma dato che deve essere differenziabile queste quantità devono dipendere in modo differenziabile da $t$, dunque ecco dimostrata la biezione; la verifica delle leggi di gruppo è banale e lasciata come esercizio al lettore.
     \qed
 \end{proposition}
 
 Nel caso in cui lo spaziotempo dovesse essere dotato di un'orientazione, la proposizione di cui sopra varrebbe ugualmente limitandosi ai sottogruppi $\{1\}$ e $\SO(3)$ rispettivamente di $\{\pm 1\}$ e $\O(3)$.\\
 In particolare, se lo spaziotempo dovesse presentare una struttura di spazio euclideo, un automorfismo preserverebbe questa struttura se e solo se fosse della forma
-\[ (t,\vec{x})\mapsto (c+at, \vec{b} + \vec{v}t + R\vec{x}) \]
-con $c,a,\vec{b},\vec{v}$ e $R$ costanti\footnote{adeguatamente ristrette nel caso orientato}; questo caso descrive il gruppo delle \bemph{trasformazioni galileiane} e più avanti vedremo come le leggi di Newton inducano una struttra affine.
+\[ (t,\bar{x})\mapsto (c+at, \bar{b} + \bar{v}t + R\bar{x}) \]
+con $c,a,\bar{b},\bar{v}$ e $R$ costanti\footnote{adeguatamente ristrette nel caso orientato}; questo caso descrive il gruppo delle \bemph{trasformazioni galileiane} e più avanti vedremo come le leggi di Newton inducano una struttra affine.
 
 \chapter{Meccanica Newtoniana}
 
@@ -461,7 +461,7 @@ L'oggetto fondamentale di interesse della meccanica classica è il \bemph{punto 
 
 Notiamo che le linee di universo si comportano bene sotto l'azione degli isomorfismi di spaziotempi, infatti per $\gamma$ e $T$ come nella definizione e un isomorfismo $(F,f) : T\to T'$ vediamo facilmente che la mappa $\gamma ' := F\circ \gamma \circ f^{-1}$ è liscia soddisfa il requisito $T'\circ \gamma' = \id_I$, quindi è una linea di universo in $T'$.\\
 Specializzandoci con un riferimento al caso di $\pi_1:E^1\times E^3\to E^1$, notiamo che una linea di universo può essere scritta in componenti come $(\gamma_1,\gamma_3)$ e che il requisito $\pi_1\circ \gamma = \id_I$ implica che $\gamma_1$ sia l'identità; di conseguenza, le linee di universo nello spaziotempo standard (e dunque di qualsiasi spaziotempo) sono in corrispondenza biunivoca con le curve lisce in $E^3$.\\
-Specializzandoci ulteriormente con una scelta di coordinate, vediamo che una linea di universo $\gamma$ è determinata da una curva liscia $\vec{\gamma}$ in $\R^3$; adottando questo punto di vista, l'azione degli automorfismi calcolati in \cref{prop:automorfismi dello spaziotempo standard} sulle linee di universo può essere calcolata esplicitamente: dato un automorfismo $(F,f)$ con $f(t)= c+at$ e $F(t,\vec x)= (c+at, \vec b(t) + R(t)\vec x )$ , vediamo che $F\circ\gamma\circ f^{-1}$ è dato dalla mappa $t' \mapsto (t', \vec b(-ac +at') + R(-ac+at')\vec \gamma (-ac +at') )$ che ci permette di trasformare $\vec \gamma : I \to \R^3$ in $\vec \gamma' : aI+c \to \R^3$.
+Specializzandoci ulteriormente con una scelta di coordinate, vediamo che una linea di universo $\gamma$ è determinata da una curva liscia $\bar{\gamma}$ in $\R^3$; adottando questo punto di vista, l'azione degli automorfismi calcolati in \cref{prop:automorfismi dello spaziotempo standard} sulle linee di universo può essere calcolata esplicitamente: dato un automorfismo $(F,f)$ con $f(t)= c+at$ e $F(t,\bar x)= (c+at, \bar b(t) + R(t)\bar x )$ , vediamo che $F\circ\gamma\circ f^{-1}$ è dato dalla mappa $t' \mapsto (t', \bar b(-ac +at') + R(-ac+at')\bar \gamma (-ac +at') )$ che ci permette di trasformare $\bar \gamma : I \to \R^3$ in $\bar \gamma' : aI+c \to \R^3$.
 
 \newcommand\tv{\text{(tv)}}
 \newcommand\cor{\text{(cor)}}
@@ -470,7 +470,7 @@ Specializzandoci ulteriormente con una scelta di coordinate, vediamo che una lin
 Possiamo finalmente definire le due quantità centrali nella cinematica, ovvero la velocità e l'accelerazione. A priori tuttavia l'intuizione della velocità come derivata temporale non è adatta al nostro ambiente, poichè per tempi diversi $t$ e $t+h$ si ha che $\gamma$ appartiene a spazi euclidei $\Sigma_t$ e $\Sigma_{t+h}$ che sono a priori distinti, dunque non è possibile calcolare il rapporto incrementale in questo modo; definiamo quindi un concetto di derivata rispetto a un riferimento $R$ e poi studieremo come si comporta sotto l'azione dei cambiamenti di coordinate.
 
 \begin{definition}{Derivata rispetto a un riferimento}{derivata rispetto a un riferimento}
-    Siano $T:\V^4\to\E^1$ uno spaziotempo, $\gamma : I\to\V^4$ una linea di universo e $R:T\to\pi_1$ un riferimento. Definiamo la mappa $\gamma_R : I \to E^3$ data da $t\mapsto R|_{\Sigma_t}(\gamma(t))$. Si dice \bemph{derivata temporale rispetto al riferimento} al tempo $t$ l'elemento di $V^3$ spazio vettoriale sottostante a $E^3$ dato dal limite 
+    Siano $T:\V^4\to E^1$ uno spaziotempo, $\gamma : I\to\V^4$ una linea di universo e $R:T\to\pi_1$ un riferimento. Definiamo la mappa $\gamma_R : I \to E^3$ data da $t\mapsto R|_{\Sigma_t}(\gamma(t))$. Si dice \bemph{derivata temporale rispetto al riferimento} al tempo $t$ l'elemento di $V^3$ spazio vettoriale sottostante a $E^3$ dato dal limite 
     \[ \frac{\di}{\di t}\gamma_R(t) := \lim_{h \to 0}\frac{\gamma_R(t+h)-\gamma_R(t)}{h} \]
     Utilizzando la parte lineare $\di R|_{\Sigma_t} : V_t\iso V^3$ si ottiene un elemento di $V_t$ e dunque definiamo
     \[ \frac{\di}{\di t}\bigg|_R \gamma(t) := \left( \di R|_{\Sigma_t}^{-1} \circ \frac{\di}{\di t} \circ R|_{\Sigma_t} \right)(\gamma(t)) \]
@@ -479,37 +479,37 @@ Possiamo finalmente definire le due quantità centrali nella cinematica, ovvero 
 Possiamo dunque definire in modo adatto velocità e accelerazione:
 
 \begin{definition}{Velocità e accelerazione rispetto a un riferimento}{velocità e accelerazione}
-    Siano $T:\V^4\to\E^1$ uno spaziotempo, $\gamma : I\to\V^4$ una linea di universo e $R:T\to\pi_1$ un riferimento.\\
+    Siano $T:\V^4\to E^1$ uno spaziotempo, $\gamma : I\to\V^4$ una linea di universo e $R:T\to\pi_1$ un riferimento.\\
     Definiamo la \bemph{velocità} di $\gamma$ rispetto a $R$ come 
     \[ v|_R(t) := \frac{\di}{\di t}\bigg|_R \gamma(t) = \left( \di R|_{\Sigma_t}^{-1} \circ \frac{\di}{\di t} \circ R|_{\Sigma_t} \right)(\gamma(t)) \]
     E definiamo la sua \bemph{accelerazione} come 
     \[ a|_R(t) := \frac{\di^2}{\di t^2}\bigg|_R \gamma(t) = \left( \di R|_{\Sigma_t}^{-1} \circ \frac{\di^2}{\di t^2} \circ R|_{\Sigma_t} \right)(\gamma(t)) \]
 \end{definition}
 
-Sarà utile esprimere queste formule in una qualsiasi scelta di coordinate standard adattate a $R$, ovvero una scelta di un punto $O \in \E^3$ e una base ortonormale $\{e_1,e_2,e_3\}\subset V^3$: definendo
+Sarà utile esprimere queste formule in una qualsiasi scelta di coordinate standard adattate a $R$, ovvero una scelta di un punto $O \in E^3$ e una base ortonormale $\{e_1,e_2,e_3\}\subset V^3$: definendo
 \[ O(t):= R|_{\Sigma_t}^{-1}(O) \in \Sigma_t \]
 \[ e_i(t) := \di R|_{\Sigma t}^{-1}(e_i) \in V_t \]
 Possiamo scrivere 
-\[ \gamma(t) = O(t) + \sum_i \vec\gamma^i(t) e_i(t) \in \Sigma_t \]
+\[ \gamma(t) = O(t) + \sum_i \bar\gamma^i(t) e_i(t) \in \Sigma_t \]
 E dunque ottenere
 \begin{align*} 
-    v|_R(t) & = \di R|_{\Sigma_t}^{-1}\ \frac{\di}{\di t}\left( R|_{\Sigma_t}(O(t)) + \sum_i \vec\gamma^i(t) \di R|_{\Sigma_t}(e_i(t)) \right) \\ & = \di R|_{\Sigma_t}^{-1}\ \frac{\di}{\di t}\left( O + \sum_i\vec\gamma^i(t) e_i \right) \\ & = \sum_i \frac{\di}{\di t} \vec\gamma^i(t) \di R|_{\Sigma_t}^{-1}(e_i) = \sum_i \frac{\di}{\di t} \vec\gamma^i(t)e_i(t)
+    v|_R(t) & = \di R|_{\Sigma_t}^{-1}\ \frac{\di}{\di t}\left( R|_{\Sigma_t}(O(t)) + \sum_i \bar\gamma^i(t) \di R|_{\Sigma_t}(e_i(t)) \right) \\ & = \di R|_{\Sigma_t}^{-1}\ \frac{\di}{\di t}\left( O + \sum_i\bar\gamma^i(t) e_i \right) \\ & = \sum_i \frac{\di}{\di t} \bar\gamma^i(t) \di R|_{\Sigma_t}^{-1}(e_i) = \sum_i \frac{\di}{\di t} \bar\gamma^i(t)e_i(t)
 \end{align*}
 E in modo del tutto analogo per l'accelerazione 
-\[ a|_R(t) = \sum_i \frac{\di^2}{\di t^2} \vec\gamma^i(t)e_i(t) \]
+\[ a|_R(t) = \sum_i \frac{\di^2}{\di t^2} \bar\gamma^i(t)e_i(t) \]
 Avendo definito velocità e accelerazione rispetto a un riferimento $R$, è importante capire come queste cambino sotto il passaggio a un altro sistema di riferimento $R'$.\\
 Scegliendo due sistemi di coordinate adattati $(O,\{e_i\}_i)$ e $(O', \{e'_i\}_i)$, possiamo scrivere una linea di universo $\gamma(t) \in \Sigma_t$ in due modi diversi:
-\[ \gamma(t) = O(t) + \sum_i \vec\gamma^i(t) e_i(t) = O'(t) + \sum_i \vec\gamma'^i(t) e'_i(t) \]
+\[ \gamma(t) = O(t) + \sum_i \bar\gamma^i(t) e_i(t) = O'(t) + \sum_i \bar\gamma'^i(t) e'_i(t) \]
 Per confrontare $v|_R$ e $v|_{R'}$, usiamo che esiste un $A \in \C^\infty(I, \O(3))$ tale che 
 \[ e_i(t) = \sum_j A_i^j(t) e'_j(t) \]
 e calcoliamo 
-\begin{align*} \gamma(t) & = O'(t) + \left( O(t)-O'(t) +\sum_{i,j} \vec\gamma^i(t) A_i^j(t) e'_j(t)  \right)\\ & = O'(t) + \sum_j\underbrace{\left( b^j(t) + \sum_i A_i^j(t)\vec\gamma^i(t) \right)}_{= \vec\gamma'^j(t)} e'_j(t) \end{align*}
-dove $\vec b \in \C^{\infty(I, \R^3)}$ è data da $O(t)-O'(t) = \sum_i b^i(t)e'_i(t)$: otteniamo la relazione
+\begin{align*} \gamma(t) & = O'(t) + \left( O(t)-O'(t) +\sum_{i,j} \bar\gamma^i(t) A_i^j(t) e'_j(t)  \right)\\ & = O'(t) + \sum_j\underbrace{\left( b^j(t) + \sum_i A_i^j(t)\bar\gamma^i(t) \right)}_{= \bar\gamma'^j(t)} e'_j(t) \end{align*}
+dove $\bar b \in \C^{\infty(I, \R^3)}$ è data da $O(t)-O'(t) = \sum_i b^i(t)e'_i(t)$: otteniamo la relazione
 \begin{align*}
-    v|_{R'}(t) & = \sum_i \frac{\di}{\di t}\vec\gamma'^i(t) e'_i(t) \\ & = \sum_i\frac{\di}{\di t} \left( b^i(t) + \sum_j A^i_j(t)\vec\gamma^j(t) \right)e'_i(t) \\ & = \sum_i\left[ \frac{\di}{\di t} b^i(t) + \sum_j\left( \frac{\di A^i_j(t) }{\di t}\vec\gamma^j(t) + A^i_j(t) \frac{\di \vec\gamma^j(t)}{\di t} \right) \right] e'_i(t) \\ & = \underbrace{\sum_j \frac{\di \vec\gamma^j(t)}{\di t} e_j(t)}_{=v|_R(t)} + \underbrace{\sum_i \left[ \frac{\di b^i(t)}{\di t} + \sum_j\left( \frac{\di A^i_j(t)}{\di t} \vec\gamma^j(t) \right) \right]e'_i(t)}_{=: v^\tv (t)}
+    v|_{R'}(t) & = \sum_i \frac{\di}{\di t}\bar\gamma'^i(t) e'_i(t) \\ & = \sum_i\frac{\di}{\di t} \left( b^i(t) + \sum_j A^i_j(t)\bar\gamma^j(t) \right)e'_i(t) \\ & = \sum_i\left[ \frac{\di}{\di t} b^i(t) + \sum_j\left( \frac{\di A^i_j(t) }{\di t}\bar\gamma^j(t) + A^i_j(t) \frac{\di \bar\gamma^j(t)}{\di t} \right) \right] e'_i(t) \\ & = \underbrace{\sum_j \frac{\di \bar\gamma^j(t)}{\di t} e_j(t)}_{=v|_R(t)} + \underbrace{\sum_i \left[ \frac{\di b^i(t)}{\di t} + \sum_j\left( \frac{\di A^i_j(t)}{\di t} \bar\gamma^j(t) \right) \right]e'_i(t)}_{=: v^\tv (t)}
 \end{align*} 
 dove $v^\tv(t)$ è detta \bemph{velocità di trascinamento} di $R$ rispetto a $R'$. Con un calcolo analogo troviamo che l'accelerazione ha una forma simile:
-\[ a|_{R'}(t) = \underbrace{\sum_j \frac{\di^2 \vec\gamma^j(t)}{\di t^2} e_j(t)}_{=a|_R(t)} + \underbrace{\sum_i \left[ \frac{\di^2 b^i(t)}{\di t^2} + \sum_j\left( \frac{\di^2 A^i_j(t)}{\di t^2} \vec\gamma^j(t) \right) \right]e'_i(t)}_{=: a^\tv (t)} + \underbrace{2\sum_{i,j} \frac{\di A^i_j(t)}{\di t} \frac{\di \vec\gamma^j(t)}{\di t} e'_i(t)}_{=: a^\cor(t)} \]
+\[ a|_{R'}(t) = \underbrace{\sum_j \frac{\di^2 \bar\gamma^j(t)}{\di t^2} e_j(t)}_{=a|_R(t)} + \underbrace{\sum_i \left[ \frac{\di^2 b^i(t)}{\di t^2} + \sum_j\left( \frac{\di^2 A^i_j(t)}{\di t^2} \bar\gamma^j(t) \right) \right]e'_i(t)}_{=: a^\tv (t)} + \underbrace{2\sum_{i,j} \frac{\di A^i_j(t)}{\di t} \frac{\di \bar\gamma^j(t)}{\di t} e'_i(t)}_{=: a^\cor(t)} \]
 dove $a^\tv(t)$ è detta \bemph{accelerazione di trascinamento} di $R$ rispetto a $R'$ e $a^\cor(t)$ è detta \bemph{accelerazione di Coriolis} e caratteristicamente dipende dalla velocità $v|_R(t)$
 
 \section{Dinamica Newtoniana}
@@ -518,66 +518,66 @@ In questa sezione, discutiamo i principi della dinamica di Newton, che governano
 
 \subsection{Primo principio, o principio d'inerzia}
 
-Il primo principio stabilisce una classe privilegiata di sistemi di riferimento per lo spaziotempo $T:\V^4\to\E^1$, caratterizzati dal comportamento di sistemi di particelle "isolati", ovvero separate tra loro e dagli altri corpi dell'universo da grandissime distanze.
+Il primo principio stabilisce una classe privilegiata di sistemi di riferimento per lo spaziotempo $T:\V^4\to E^1$, caratterizzati dal comportamento di sistemi di particelle "isolati", ovvero separate tra loro e dagli altri corpi dell'universo da grandissime distanze.
 
 \begin{axiom}{Primo principio della dinamica}{dinamica 1}
     Esiste una classe di sistemi di riferimento detti \bemph{inerziali} in ciascuno dei quali ogni punto di un insieme arbitrario di punti materiali isolati si muove di moto rettilineo uniforme, ovvero a velocità costante dipendente soltanto dal punto materiale considerato.
 \end{axiom}
 
 \textit{Espressiamo} (sic) questo principio in un linguaggio vagamente più formale.\\
-Un insieme di $N$ punti materiali $\{ Q_1,...,Q_N \}$ corrisponde a $N$ linee di universo $\gamma_{Q_k}:I\to\V^4$ nello spaziotempo. Dato in qualsiasi sistema di riferimento $(R,\id_{\E^1})$ per lo spaziotempo con coordinate standard adattate, abbiamo introdotto il concetto di velocità rispetto ad $R$
-\[ v_{Q_k}|_R (t) = \sum_i\frac{\di \vec\gamma_{Q_k}^i(t)}{\di t}e_i(t) \]
+Un insieme di $N$ punti materiali $\{ Q_1,...,Q_N \}$ corrisponde a $N$ linee di universo $\gamma_{Q_k}:I\to\V^4$ nello spaziotempo. Dato in qualsiasi sistema di riferimento $(R,\id_{E^1})$ per lo spaziotempo con coordinate standard adattate, abbiamo introdotto il concetto di velocità rispetto ad $R$
+\[ v_{Q_k}|_R (t) = \sum_i\frac{\di \bar\gamma_{Q_k}^i(t)}{\di t}e_i(t) \]
 Il primo principio allora richiede che l'accelerazione di ciascun punto sia nulla, ovvero
-\[ a_{Q_k}|_R (t) = \sum_i\frac{\di^2 \vec\gamma_{Q_k}^i(t)}{\di t^2}e_i(t) = 0 \]
+\[ a_{Q_k}|_R (t) = \sum_i\frac{\di^2 \bar\gamma_{Q_k}^i(t)}{\di t^2}e_i(t) = 0 \]
 È anche importante sottolineare che non c'è un solo sistema di riferimento inerziale, ma ce ne sono a priori quanti vogliamo: ricordando che l'automorfismo $(F,f)$ nel diagramma 
 \[\begin{tikzcd}
-	&& {T:\V^4 \to \E^1} && \\
-	{\pi_1:\E^1\times\E^3 \to \E^1} &&&& {\pi_1:\E^1\times\E^3 \to \E^1} \\
+	&& {T:\V^4 \to E^1} && \\
+	{\pi_1:E^1\times E^3 \to E^1} &&&& {\pi_1:E^1\times E^3 \to E^1} \\
 	\\
 	{\pi_1:\R^1\times\R^3\to\R^1} &&&& {\pi_1:\R^1\times\R^3 \to \R^1}
-	\arrow["{(R,\id_{\E^1})}"{description}, from=1-3, to=2-1]
-	\arrow["{(R',\id_{\E^1})}"{description}, from=1-3, to=2-5]
+	\arrow["{(R,\id_{E^1})}"{description}, from=1-3, to=2-1]
+	\arrow["{(R',\id_{E^1})}"{description}, from=1-3, to=2-5]
 	\arrow[from=2-1, to=4-1]
 	\arrow[from=2-5, to=4-5]
 	\arrow["{(F,f)}"{description}, from=4-1, to=4-5]
 \end{tikzcd}\]
-Ha forma generale $f(t) = c+at$ e $F(t,\vec x) = (c+at, \vec b(t) + A(t) \vec x)$ con $c \in \R$, $a \in \{\pm1\}$, $\vec b \in \C^{\infty}(\R^1, \R^3)$ e $A \in \C^{\infty}(\R^1, \O(3))$, il seguente risultato è di importanza fondamentale:
+Ha forma generale $f(t) = c+at$ e $F(t,\bar x) = (c+at, \bar b(t) + A(t) \bar x)$ con $c \in \R$, $a \in \{\pm1\}$, $\bar b \in \C^{\infty}(\R^1, \R^3)$ e $A \in \C^{\infty}(\R^1, \O(3))$, il seguente risultato è di importanza fondamentale:
 
 \begin{theorem}{Principio di inerzia e trasformazioni di Galileo}{inerzia e galileo}
-    Assumiamo che per ogni riferimento $R$ e ogni evento $p\in\V^4$ esista un punto materiale la cui linea di universo attraversi $p$ con velocità (rispetto a $R$) fissabile a piacimento e che il punto sia isolato in qualche intervallo aperto $I \subset \E^1$ con $T(p)\in I$\\
-    Se $R$ è inerziale, dato un altro riferimento $R'$ questo è inerziale se e solo se l'automorfismo $(F,f)$ che descrive il cambiamento di sistema di riferimento in coordinate standard adattate assume la forma di una trasformazione di Galileo, ovvero $f(t) = c+at$ e $F(t,\vec x) = (c+at, \vec b + \vec v t A \vec x)$ con $c \in \R$, $a \in \{\pm1\}$, $\vec b,\vec v \in \R^3$ e $A \in \O(3)$ costanti.
+    Assumiamo che per ogni riferimento $R$ e ogni evento $p\in\V^4$ esista un punto materiale la cui linea di universo attraversi $p$ con velocità (rispetto a $R$) fissabile a piacimento e che il punto sia isolato in qualche intervallo aperto $I \subset E^1$ con $T(p)\in I$\\
+    Se $R$ è inerziale, dato un altro riferimento $R'$ questo è inerziale se e solo se l'automorfismo $(F,f)$ che descrive il cambiamento di sistema di riferimento in coordinate standard adattate assume la forma di una trasformazione di Galileo, ovvero $f(t) = c+at$ e $F(t,\bar x) = (c+at, \bar b + \bar v t A \bar x)$ con $c \in \R$, $a \in \{\pm1\}$, $\bar b,\bar v \in \R^3$ e $A \in \O(3)$ costanti.
     \proof 
     Ricordiamoci le formule di trasformazione derivate sopra
     \[ a|_R'(t) = a|_R(t) + a^\tv(t) + a^\cor(t) \]
     Dove
-    \[ a^\tv(t) = \sum_i \left[ \frac{\di^2 b^i(t)}{\di t^2} + \sum_j\frac{\di^2 A^i_j(t)}{\di t^2} \vec\gamma^j(t) \right]e'_i(t) \]
-    \[ a^\cor(t) = 2\sum_{i,j} \frac{\di A^i_j(t)}{\di t} \frac{\di \vec\gamma^j(t)}{\di t} e'_i(t) \]
+    \[ a^\tv(t) = \sum_i \left[ \frac{\di^2 b^i(t)}{\di t^2} + \sum_j\frac{\di^2 A^i_j(t)}{\di t^2} \bar\gamma^j(t) \right]e'_i(t) \]
+    \[ a^\cor(t) = 2\sum_{i,j} \frac{\di A^i_j(t)}{\di t} \frac{\di \bar\gamma^j(t)}{\di t} e'_i(t) \]
     E dimostriamo entrambe le implicazioni:\begin{itemize}
-        \item Supponiamo che $(F,f)$ sia una trasformazione di Galileo: notiamo immediatamente che dalle formule di trasformazione, dato un insieme di punti isolati $\{Q_k\}_k$, per ciascuno di essi $a_{Q_k}|_R(t)$ è nulla per definizione, $a^\cor(t)$ è nulla per la costanza di $A$ e aggiungendo la costanza\footnote{A dire il vero, funzionerebbe anche se $\vec b(t)$ variasse solo al primo ordine} di $\vec b(t)$ otteniamo anche la nullità di $a^\tv(t)$.
+        \item Supponiamo che $(F,f)$ sia una trasformazione di Galileo: notiamo immediatamente che dalle formule di trasformazione, dato un insieme di punti isolati $\{Q_k\}_k$, per ciascuno di essi $a_{Q_k}|_R(t)$ è nulla per definizione, $a^\cor(t)$ è nulla per la costanza di $A$ e aggiungendo la costanza\footnote{A dire il vero, funzionerebbe anche se $\bar b(t)$ variasse solo al primo ordine} di $\bar b(t)$ otteniamo anche la nullità di $a^\tv(t)$.
         \item Supponiamo che $R$ e $R'$ siano inerziali; in particolare, per ogni singolo punto isolato $Q$ abbiamo $a_Q|_R =0$ e $a_Q|_{R'} =0$. Come conseguenza dell'ipotesi di cui sopra, ogni linea di universo 
         \[ \gamma_Q(t) = O(t) +\sum_i (q^i +c^i t )e_i(t) \]
-        con $\vec q, \vec c \in \R^3$ descrive un tale punto isolato con accelerazione nulla rispetto a $R$; dato che anche l'accelerazione rispetto a $R'$ deve essere nulla, abbiamo che $a^\tv(t)+a^\cor(t) = 0$, ovvero 
-        \[ 0= \sum_i\left[ \frac{\di^2 b^i(t)}{\di t^2} + \sum_j \frac{\di^2 A^i_j(t)}{\di t^2}(q^j + c^j t) + 2\sum_j \frac{\di A^i_j(t)}{\di t}c^i  \right]e'_i(t) \qquad \forall \vec q, \vec c \in \R^3\]
-        Osserviamo che tre casi particolari determinano le variazioni di $\vec b$ e $A$:
-        \[ \vec q = \vec c = 0 \Rarr \frac{\di^2 \vec b(t)}{\di t^2} = 0\Rarr \vec b(t) = \vec b + \vec v t\]
-        \[ \vec q \in \R^3, \vec c = 0 \Rarr \frac{\di^2 A(t)}{\di t^2} = 0 \Rarr A(t) = A + K t \]
-        \[\vec q = 0, \vec c \in \R^3  \Rarr \frac{\di A(t)}{\di t} = 0 \Rarr A(t) = A \]
+        con $\bar q, \bar c \in \R^3$ descrive un tale punto isolato con accelerazione nulla rispetto a $R$; dato che anche l'accelerazione rispetto a $R'$ deve essere nulla, abbiamo che $a^\tv(t)+a^\cor(t) = 0$, ovvero 
+        \[ 0= \sum_i\left[ \frac{\di^2 b^i(t)}{\di t^2} + \sum_j \frac{\di^2 A^i_j(t)}{\di t^2}(q^j + c^j t) + 2\sum_j \frac{\di A^i_j(t)}{\di t}c^i  \right]e'_i(t) \qquad \forall \bar q, \bar c \in \R^3\]
+        Osserviamo che tre casi particolari determinano le variazioni di $\bar b$ e $A$:
+        \[ \bar q = \bar c = 0 \Rarr \frac{\di^2 \bar b(t)}{\di t^2} = 0\Rarr \bar b(t) = \bar b + \bar v t\]
+        \[ \bar q \in \R^3, \bar c = 0 \Rarr \frac{\di^2 A(t)}{\di t^2} = 0 \Rarr A(t) = A + K t \]
+        \[\bar q = 0, \bar c \in \R^3  \Rarr \frac{\di A(t)}{\di t} = 0 \Rarr A(t) = A \]
         Quindi il cambiamento tra sistemi di riferimento è una trasformazione galileiana.
     \end{itemize}
     \qed
 \end{theorem}
 
-Una conseguenza importante del primo principio è che questo permette di dare allo spaziotempo $T:\V^4\to\E^1$ una struttura affine privilegiata 
+Una conseguenza importante del primo principio è che questo permette di dare allo spaziotempo $T:\V^4\to E^1$ una struttura affine privilegiata 
 
 \begin{theorem}{Struttura affine su $T:\V^4\to\R^1$}{spaziotempo affine}
-    Esiste una struttura affine $+:\V^4\times V^4 \to \V^4$ sullo spaziotempo $T:\V^4\to\E^1$ tale che per ogni riferimento inerziale $(R,\id_{\E^1})$ la mappa $R:\V^4\to \E^1\times \E^4$ sia affine.\\
+    Esiste una struttura affine $+:\V^4\times V^4 \to \V^4$ sullo spaziotempo $T:\V^4\to E^1$ tale che per ogni riferimento inerziale $(R,\id_{E^1})$ la mappa $R:\V^4\to E^1\times E^4$ sia affine.\\
     Questa struttura è unica a meno di\footnote{non unici} isomorfismi affini che agiscono su $\V^4$ come l'identità ed è detta \bemph{struttura galileiana}.
     \proof 
-    Ricordando che $\E^1\times\E^3$ ha canonicamente una struttura affine su $V^1\times V^3$ data da $(t,O)+(c,v) = (t+c, O+v)$, per qualsiasi riferimento inerziale $R$ possiamo trasferirla a $\V^4$ tramite il diffeomoerfismo $R$ definendo $ p +_R (c,v) = R^{-1}(R(p) + (c,v))$. Considerando un qualsiasi altro riferimento inerziale $R'$, sappiamo dal teorema precedente che il cambiamento di sistema di riferimento
+    Ricordando che $E^1\times E^3$ ha canonicamente una struttura affine su $V^1\times V^3$ data da $(t,O)+(c,v) = (t+c, O+v)$, per qualsiasi riferimento inerziale $R$ possiamo trasferirla a $\V^4$ tramite il diffeomoerfismo $R$ definendo $ p +_R (c,v) = R^{-1}(R(p) + (c,v))$. Considerando un qualsiasi altro riferimento inerziale $R'$, sappiamo dal teorema precedente che il cambiamento di sistema di riferimento
     \[\begin{tikzcd}
     	& {\V^4} & \\
 	    \\
-	    {\E^1\times \E^3} && {\E^1\times\E^3}
+	    {E^1\times E^3} && {E^1\times E^3}
 	    \arrow["R"{description}, from=1-2, to=3-1]
 	    \arrow["{R'}"{description}, from=1-2, to=3-3]
 	    \arrow["{R'\circ R^{-1}}"{description}, from=3-1, to=3-3]
@@ -587,7 +587,7 @@ Una conseguenza importante del primo principio è che questo permette di dare al
     \[\begin{tikzcd}
     	{\V^4_+} && {\V^4_{+_R}} \\
 	    \\
-	    & {\E^1\times \E^3}
+	    & {E^1\times E^3}
 	    \arrow["{R\circ R^{-1} = \id_{\V^4}}"{description}, from=1-1, to=1-3]
 	    \arrow["R"{description}, from=1-1, to=3-2]
 	    \arrow["R"{description}, from=1-3, to=3-2]
@@ -596,13 +596,13 @@ Una conseguenza importante del primo principio è che questo permette di dare al
     \qed
 \end{theorem}
 
-È interessante notare che la mappa $T:\V^4\to\E^1$ è affine, in quanto per qualsiasi riferimento inerziale $R$ vale $T = \pi_1 \circ R$.\\
+È interessante notare che la mappa $T:\V^4\to E^1$ è affine, in quanto per qualsiasi riferimento inerziale $R$ vale $T = \pi_1 \circ R$.\\
 La verifica che il gruppo degli automorfismi di questa struttura affine è esattamente il gruppo delle trasformazioni galileiane è lasciata come esercizio per il lettore.
 
 \subsection{Secondo principio e le forze}
 
 A differenza del primo principio, questo e i prossimi permettono che i singoli punti del sistema considerato non siano necessariamente isolati tra loro. Questi vanno formulati comunque rispetto alla classe dei riferimenti inerziali e assumendo che l'intero sistema sia isolato rispetto al resto dell'universo.
-\paragraph{Notazione.} Dato un riferimento inerziale $(R,\id_{\E^1})$, d'ora in avanti identificheremo sempre gli spazi euclidei $\Sigma_t \iso \E^3$ e gli spazi vettoriali sottostanti $V_t\iso V^3$; in particolare, considereremo sempre una linea di universo come una curva liscia $\gamma |_R :I\to E_3$ con velocità e accelerazione date semplicemente da 
+\paragraph{Notazione.} Dato un riferimento inerziale $(R,\id_{E^1})$, d'ora in avanti identificheremo sempre gli spazi euclidei $\Sigma_t \iso E^3$ e gli spazi vettoriali sottostanti $V_t\iso V^3$; in particolare, considereremo sempre una linea di universo come una curva liscia $\gamma |_R :I\to E_3$ con velocità e accelerazione date semplicemente da 
 \[ v|_R = \frac{\di }{\di t}\gamma|_R : I \to V^3, \qquad a|_R = \frac{\di^2 }{\di t^2}\gamma|_R : I \to V^3\]
 
 \begin{axiom}{Principi di massa e impulso}{massa e impulso}
@@ -614,7 +614,7 @@ A differenza del primo principio, questo e i prossimi permettono che i singoli p
 
 \begin{axiom}{Secondo principio della dinamica}{dinamica 2.1}
     Per ogni sistema di riferimento $R$ e ogni sistema isolato costituito da due punti isolati $Q,Q'$, esistono due mappe liscie 
-    \[ F_R, F'_R : \E^3\times \E^3 \times V^3\times V^3 \to V^3 \times V^3 \] tali che 
+    \[ F_R, F'_R : E^3\times E^3 \times V^3\times V^3 \to V^3 \times V^3 \] tali che 
     \[ \forall t \in I, \begin{cases}
         m_Q a_Q|_R(t) = F_R(\gamma_Q|_R(t), \gamma_{Q'}|_R(t), v_Q|_R(t), v_{Q'}|_R(t))\\
         m_{Q'} a_{Q'}|_R(t) = F'_R(\gamma_{Q'}|_R(t), \gamma_{Q}|_R(t), v_{Q'}|_R(t), v_{Q}|_R(t))
@@ -624,7 +624,7 @@ A differenza del primo principio, questo e i prossimi permettono che i singoli p
     \[\begin{tikzcd}
     	&& {\Sigma_t\times\Sigma_t \times V_t\times V_t} && \\
 	    \\
-	    {\E^3\times\E^3\times V^3\times V^3} && {V_t} && {\E^3\times\E^3\times V^3\times V^3} \\
+	    {E^3\times E^3\times V^3\times V^3} && {V_t} && {E^3\times E^3\times V^3\times V^3} \\
 	    \\
 	    {V_3} &&&& {V^3}
 	    \arrow["{R'|_{\Sigma_t}\times R'|_{\Sigma_t} \times \di R'|_{\Sigma_t} \times \di R'|_{\Sigma_t}}"{description}, from=1-3, to=3-1]
@@ -639,10 +639,10 @@ A differenza del primo principio, questo e i prossimi permettono che i singoli p
 Trovare le espressioni per le forze più appropriate a modellare i problemi concreti in natura è il lavoro dei fisici: queste dipendono dalle caratteristiche specifiche dei sistemi considerati. Vediamo due esempi:
 
 \begin{example}{Forza elettrostatica e forza gravitazionale}{coulomb e gravità}
-    Due casi importanti di forze sono la forza \bemph{elettrostatica} che agisce su due punti con cariche elettriche $q, q' \in \R$ e posizioni $\vec x, \vec x' \in \E^3$:
-    \[ F_R(\vec x, \vec x', \vec v, \vec v') = k q q' \frac{ \vec x-\vec x' }{\| \vec x - \vec x' \|^3} \]
+    Due casi importanti di forze sono la forza \bemph{elettrostatica} che agisce su due punti con cariche elettriche $q, q' \in \R$ e posizioni $\bar x, \bar x' \in E^3$:
+    \[ F_R(\bar x, \bar x', \bar v, \bar v') = k q q' \frac{ \bar x-\bar x' }{\| \bar x - \bar x' \|^3} \]
     E la forza \bemph{di gravità}, che dipende dalle masse invece:
-    \[ F_R(\vec x, \vec x', \vec v, \vec v') = -G m m' \frac{ \vec x-\vec x' }{\| \vec x - \vec x' \|^3} \]
+    \[ F_R(\bar x, \bar x', \bar v, \bar v') = -G m m' \frac{ \bar x-\bar x' }{\| \bar x - \bar x' \|^3} \]
     Le costanti $k>0$ e $G>0$ sono dette rispettivamente \bemph{costante di Coulomb} e \bemph{costante di gravitazione universale}.\\
     Queste forze hanno una forma molto simile, la differenza cruciale è che la forza di gravità è sempre attrattiva, mentre quella elettrostatica è repulsiva tra cariche di segno uguale e attrattiva tra cariche di segno opposto.
 \end{example}
@@ -667,34 +667,34 @@ Il prossimo principio ci permette di generalizzare quanto detto per i sistemi co
 \end{axiom}
 
 Mettendo l'equazione dataci da questo principio in coordinate, otteniamo un familiare sistema di equazioni differenziali del secondo ordine:
-\[ \frac{\di^2 \vec x_k(t) }{\di t^2} = \frac{1}{m_k}  \vec F_k \left(\vec x_1(t),...,\vec x_N(t), \frac{\di \vec x_1(t)}{\di t},..., \frac{\di \vec x_N(t)}{\di t}\right) \]
+\[ \frac{\di^2 \bar x_k(t) }{\di t^2} = \frac{1}{m_k}  \bar F_k \left(\bar x_1(t),...,\bar x_N(t), \frac{\di \bar x_1(t)}{\di t},..., \frac{\di \bar x_N(t)}{\di t}\right) \]
 Il \bemph{problema fondamentale della dinamica} è risolvere questo sistema date le condizioni iniziali e così prevedere il moto del sistema fisico.\\
 È un problema difficile, ma il seguente teorema (la cui dimostrazione esula dagli scopi di questo corso) ci garantisce almeno il fatto che una soluzione esista e che la nostra teoria sia deterministica:
 
 \begin{theorem}{Esistenza e unicità locale delle soluzioni del PDC}{esistenza e unicità locale 1}
     Siano $D,D' \subset \R^n$ aperti e $I \subset \R$ un intervallo aperto e si consideri l'equazione differenziale 
-    \[ \frac{\di^2 \vec x(t)}{\di t^2} = F\left( t, \vec x(t), \frac{\di \vec x(t)}{\di t} \right) \]
+    \[ \frac{\di^2 \bar x(t)}{\di t^2} = F\left( t, \bar x(t), \frac{\di \bar x(t)}{\di t} \right) \]
     Con $F : I\times D, D'\to\R^n$ una funzione $\C^1$.\\
-    Per ogni dato iniziale $(t_0, \vec x_0, \dot{\vec x}_0)$ e un intervallo aperto $I_0\subset I$ sufficientemente piccolo che contenga $t_0$, esiste ed è unica la funzione $\vec x:I_0\to\R^n$ di classe $\C^2$ che risolve l'equazione differenziale e soddisfa $\vec x(t_0) = \vec x_0$ e $\dot{ \vec x}(t_0) = \dot {\vec x}_0$\\
+    Per ogni dato iniziale $(t_0, \bar x_0, \dot{\bar x}_0)$ e un intervallo aperto $I_0\subset I$ sufficientemente piccolo che contenga $t_0$, esiste ed è unica la funzione $\bar x:I_0\to\R^n$ di classe $\C^2$ che risolve l'equazione differenziale e soddisfa $\bar x(t_0) = \bar x_0$ e $\dot{ \bar x}(t_0) = \dot {\bar x}_0$\\
     Inoltre, ciascun dato iniziale determina un intervallo massimale in cui questa soluzione esiste ed è unica.
 \end{theorem}
 
 Facciamo qualche osservazione sull'invarianza della meccanica newtoniana rispetto alle trasformazioni galileiane, che sappiamoe essere gli automorfismi affini di $\V^4$.\\
 Ricordiamo che in un sistema di riferimento inerziale $R$, le trasformazioni di galileo prendono la forma:
-\[ (t,\vec x)\mapsto (c+at, \vec b + \vec v t + A\vec x) \]
-Per $c \in \R$, $a \in \{\pm 1\}$, $\vec b, \vec v \in \R^3$ e $A \in \O(3)$, opportunamente ristretti nel caso orientato.
+\[ (t,\bar x)\mapsto (c+at, \bar b + \bar v t + A\bar x) \]
+Per $c \in \R$, $a \in \{\pm 1\}$, $\bar b, \bar v \in \R^3$ e $A \in \O(3)$, opportunamente ristretti nel caso orientato.
 
 \begin{axiom}{Principio di relatività galileiana}{relatività galileiana}
     Tutta la meccanica newtoniana, in particolare le equazioni di \cref{ax:sovrapposizione delle forze} sono invarianti per le trasformazioni di Galileo.
 \end{axiom}
 
-Osserviamo che questo principio restringe la forma che possono avere le forze: infatti dato che una trasformazione di Galileo agisce su di una curva $t\mapsto\vec x(t)$ mandandola in $t' = \mapsto \vec x'(t') $, dove sostituende $t' = c + at$ vediamo $\vec x'(t') = \vec b + \vec v t + A\vec x(t)$ e dunque 
-\[ \frac{\di \vec x'(t')}{\di t'} = a\vec v + a A \frac{\di \vec x(t)}{\di t} \qquad\text{e}\qquad \frac{\di^2 \vec x'(t')}{\di t'^2} = A\frac{\di^2 \vec x(t)}{\di t^2}\]
+Osserviamo che questo principio restringe la forma che possono avere le forze: infatti dato che una trasformazione di Galileo agisce su di una curva $t\mapsto\bar x(t)$ mandandola in $t' = \mapsto \bar x'(t') $, dove sostituende $t' = c + at$ vediamo $\bar x'(t') = \bar b + \bar v t + A\bar x(t)$ e dunque 
+\[ \frac{\di \bar x'(t')}{\di t'} = a\bar v + a A \frac{\di \bar x(t)}{\di t} \qquad\text{e}\qquad \frac{\di^2 \bar x'(t')}{\di t'^2} = A\frac{\di^2 \bar x(t)}{\di t^2}\]
 Per l'invarianza galileiana delle leggi di newton, otteniamo che una forza deve rispettare 
-\[ \vec F\left( \vec x'(t'), \vec y'(t'), \frac{\di \vec x'(t')}{\di t'}.\frac{\di \vec y'(t')}{\di t'} \right) = A \vec F \left( \vec x(t), \vec y(t), \frac{\di \vec x(t)}{\di t},\frac{\di \vec y(t)}{\di t} \right)\]
-per ogni trasformazione di galileo. Questo implica che $\vec F$ deve essere della forma $\vec F(\vec x, \vec y, \vec u, \vec w) = \vec f(\vec x-\vec y, \vec u - \vec w)$ con $\vec f : \R^3\times \R^3 \to \R^3$ che rispetta le seguenti proprietà:\begin{itemize}
-    \item $\vec f(A\vec x , A\vec u) = A\vec f(\vec x, \vec u)$ per ogni $A \in \O(3)$.
-    \item $\vec f(\vec x, a\vec u) = \vec f(\vec x, \vec u)$ per $a =\pm 1$
+\[ \bar F\left( \bar x'(t'), \bar y'(t'), \frac{\di \bar x'(t')}{\di t'}.\frac{\di \bar y'(t')}{\di t'} \right) = A \bar F \left( \bar x(t), \bar y(t), \frac{\di \bar x(t)}{\di t},\frac{\di \bar y(t)}{\di t} \right)\]
+per ogni trasformazione di galileo. Questo implica che $\bar F$ deve essere della forma $\bar F(\bar x, \bar y, \bar u, \bar w) = \bar f(\bar x-\bar y, \bar u - \bar w)$ con $\bar f : \R^3\times \R^3 \to \R^3$ che rispetta le seguenti proprietà:\begin{itemize}
+    \item $\bar f(A\bar x , A\bar u) = A\bar f(\bar x, \bar u)$ per ogni $A \in \O(3)$.
+    \item $\bar f(\bar x, a\bar u) = \bar f(\bar x, \bar u)$ per $a =\pm 1$
 \end{itemize}
 
 \subsection{Quando Newton non funziona}
@@ -741,15 +741,15 @@ Alcuni dei principali vantaggi sono:\begin{itemize}
 In questa sezione ci occuperemo dei sistemi di $N\ge 1$ punti materiali $\{Q_1,...,Q_N\}$. Dato che questi $N$ punti sono descritti da $N$ linee di universo $\gamma_k : I \to \V^4$ con $T\circ \gamma_k = \id_{I}$, per tenere traccia di tutti questi punti contemporaneamente introduciamo un'estensione del nostro spaziotempo.
 
 \begin{definition}{}{}
-    Sia $T:\V^4\to\E^1$ uno spaziotempo e sia $N\ge 1$.\\
+    Sia $T:\V^4\to E^1$ uno spaziotempo e sia $N\ge 1$.\\
     Il corrispondete \bemph{spaziotempo delle configurazioni} per $N$ punti materiali è dato dal prodotto fibrato 
     \[ \V^{3N+1} = \underbrace{\V^4 \times_{\E_1}...\times_{\E_1} \V^4 }_{N\text{ volte}} = \left\{ (p_1,...,p_N) \in (\V^4)^N : \forall i, j, T(p_i) = T(p_j) \right\} \]
-    Con la sommersione suriettiva ovvia $T:\V^{3N+1}\to \E^1$ data da $T(p_1,...,p_N) = T(p_i)$ per qualsiasi $i$.\\
-    Alternativamente, $T:\V^{3N+1}\to\E^1$ è definito per proprietà universale come limite del seguente diagramma nella categoria dei fibrati differenziabili 
+    Con la sommersione suriettiva ovvia $T:\V^{3N+1}\to E^1$ data da $T(p_1,...,p_N) = T(p_i)$ per qualsiasi $i$.\\
+    Alternativamente, $T:\V^{3N+1}\to E^1$ è definito per proprietà universale come limite del seguente diagramma nella categoria dei fibrati differenziabili 
     \[\begin{tikzcd}
     	& {\V^{3N+1}} & \\
     	{\V^4} && {\V^4} \\
-	    & {\E^1}
+	    & {E^1}
     	\arrow[dashed, from=1-2, to=2-1]
 	    \arrow[dashed, from=1-2, to=2-3]
     	\arrow["\lrcorner"{anchor=center, pos=0.125, rotate=-45}, draw=none, from=1-2, to=3-2]
@@ -759,33 +759,33 @@ In questa sezione ci occuperemo dei sistemi di $N\ge 1$ punti materiali $\{Q_1,.
     \end{tikzcd}\]
 \end{definition}
 
-Osserviamo che le fibre di $\V^{3N+1}$ al tempo $t\in \E^1$ sono date da $\Sigma_t^N = \Sigma_t\times...\times\Sigma_t$, che dunque eredita la struttura di spazio euclideo sopra lo spazio vettoriale sottostante $V_t^N = V_t\times...\times V_t$ con l'evidente prodotto scalare.\\
+Osserviamo che le fibre di $\V^{3N+1}$ al tempo $t\in E^1$ sono date da $\Sigma_t^N = \Sigma_t\times...\times\Sigma_t$, che dunque eredita la struttura di spazio euclideo sopra lo spazio vettoriale sottostante $V_t^N = V_t\times...\times V_t$ con l'evidente prodotto scalare.\\
 Trattare un sistema di $N$ linee di universo $\gamma_{k}:I\to\V^4$ è assolutamente identico al trattare una singola linea di universo $\Gamma :I\to\V^{3N+1}$ data da $\Gamma(t)=(\gamma_1(t),...,\gamma_N(t))$, infatti come visto sopra $T\circ \Gamma = \id_{I}$ e viceversa proiettando su ciascuna componente torniamo a $\gamma_k = \pi_k\circ \Gamma: I \to \V^4$.\\
-Anche un sistema di riferimento $R:\V^4\to \E^1\times\E^3$ può essere facilmente esteso e illuminare un attimo il senso di quel $3N+1$ all'esponente, come si vede in questo diagramma 
+Anche un sistema di riferimento $R:\V^4\to E^1\times E^3$ può essere facilmente esteso e illuminare un attimo il senso di quel $3N+1$ all'esponente, come si vede in questo diagramma 
 \[\begin{tikzcd}
-	{\V^4\times_{\E_1}...\times_{\E_1}\V^4} &&& {(\E^1\times\E^3)\times_{\E^1}...\times_{\E^1}(\E^1\times \E^3)} \\
-	{\V^{3N+1}} &&& {\E^1\times\E^{3N}} \\
+	{\V^4\times_{\E_1}...\times_{\E_1}\V^4} &&& {(E^1\times E^3)\times_{E^1}...\times_{E^1}(E^1\times E^3)} \\
+	{\V^{3N+1}} &&& {E^1\times E^{3N}} \\
 	\\
-	{\E^1} &&& {\E^1}
+	{E^1} &&& {E^1}
 	\arrow["{(R,..., R)}"{description}, from=1-1, to=1-4]
 	\arrow["\cong"{marking, allow upside down}, draw=none, from=1-4, to=2-4]
 	\arrow["{=}"{marking, allow upside down}, draw=none, from=2-1, to=1-1]
 	\arrow["T"{description}, from=2-1, to=4-1]
-	\arrow["{\pi_{\E^1}}"{description}, from=2-4, to=4-4]
-	\arrow["{\id_{\E^1}}"{description}, from=4-1, to=4-4]
+	\arrow["{\pi_{E^1}}"{description}, from=2-4, to=4-4]
+	\arrow["{\id_{E^1}}"{description}, from=4-1, to=4-4]
 \end{tikzcd}\] 
 E lo stesso vale evidentemente per qualsiasi scelta di coordinate standard che ci porterà in $\R^1\times\R^{3N}$.
 
 \begin{definition}{Vincoli olonomi}{vincoli olonomi}
     Un sistema di $0\le C\le N$ \bemph{vincoli olonomi} per un sistema di di $N\ge 1$ punti materiali è dato da una famiglia di $C$ funzioni liscie $f_j : \V^{3N+1}\to\R$ che soddisfano le seguenti proprietà:\begin{itemize}
-        \item Per ogni $t \in \E^1$ vale 
+        \item Per ogni $t \in E^1$ vale 
         \[ \Sigma_t^N \cap \bigcap_j f_j^{-1}(\{0\}) \neq \varnothing\]
-        \item Per ogni $t \in \E^1$ e qualsiasi scelta di coordinate standard adattate $(t,\vec{\vec x}) := (t,x^1,...,x^{3N})$, la matrice jacobiana 
-        \[ \left[ \frac{\partial f_j}{\partial x^i} \bigg|_{(t,\vec{\vec x})} \right]_{1\le i\le 3N,1\le j\le C} : \R^{3N}\to \R^C \]
-        Ha rango massimo per ogni $(t,\vec{\vec x})$ tale che $f_j((t,\vec{\vec x})) = 0$ per ogni $j\le C$
+        \item Per ogni $t \in E^1$ e qualsiasi scelta di coordinate standard adattate $(t,\bar{\bar x}) := (t,x^1,...,x^{3N})$, la matrice jacobiana 
+        \[ \left[ \frac{\partial f_j}{\partial x^i} \bigg|_{(t,\bar{\bar x})} \right]_{1\le i\le 3N,1\le j\le C} : \R^{3N}\to \R^C \]
+        Ha rango massimo per ogni $(t,\bar{\bar x})$ tale che $f_j((t,\bar{\bar x})) = 0$ per ogni $j\le C$
     \end{itemize}
     A questo punto è detto \bemph{spaziotempo delle configurazioni} di un sistema di $N$ punti materiali sottoposto a $C$ vincoli olonomi $\{f_1,...,f_C\}$ il fibrato 
-    \[ T: \V^{n+1}:= \bigcap_j f_j^{-1}(\{0\}) \subset \V^{3N+1} \to \E^1 \]
+    \[ T: \V^{n+1}:= \bigcap_j f_j^{-1}(\{0\}) \subset \V^{3N+1} \to E^1 \]
     Dove $n := 3N - C$ è detto il numero di \bemph{gradi di libertà} del sistema.\\
     Lo spazio $\Q_t := \V^{n+1}\cap \Sigma_t^N$ è detto \bemph{spazio delle configurazioni} del sistema al tempo $t$.
 \end{definition}
@@ -794,8 +794,8 @@ Ok, che diavolo abbiamo appena letto? Le proprietà che abbiamo richiesto sui vi
 
 \begin{proposition}{}{utile sulle varietà}
     Nel contesto della definizione precedente, valgono i seguenti fatti:\begin{enumerate}
-        \item $\V^{n+1}\subset \V^{3N+1}$ è una sottovarietà \textit{embedded}\footnote{Possibili traduzioni sono immersa, inclusa o incastonata, ma in genere si usa l'aggettivo in inglese e ci si mette il cuore in pace.} di dimensione $n+1$ e la restrizione $T:\V^{n+1}\to\E^1$ è una sommersione suriettiva.
-        \item Per ogni $t \in \E^1$, $\Q_t = \V^{n+1}\cap\sigma_t^N \subset \Sigma_t^N$ è una sottovarietà embedded di dimensione $n$.
+        \item $\V^{n+1}\subset \V^{3N+1}$ è una sottovarietà \textit{embedded}\footnote{Possibili traduzioni sono immersa, inclusa o incastonata, ma in genere si usa l'aggettivo in inglese e ci si mette il cuore in pace.} di dimensione $n+1$ e la restrizione $T:\V^{n+1}\to E^1$ è una sommersione suriettiva.
+        \item Per ogni $t \in E^1$, $\Q_t = \V^{n+1}\cap\sigma_t^N \subset \Sigma_t^N$ è una sottovarietà embedded di dimensione $n$.
         \item Per ogni punto $p \in \V^{3N+1}$ possiamo scegliere in un intorno di $p$ una carta locale $(U\subset \V^{3N+1},\phi:U\to \R^{3N+1})$ tale che \begin{itemize}
             \item \[ \forall p' \in U, \phi(p') := (T(p'), \phi^1(p'),...,\phi^{3N}(p')) \]
             \item \[ \forall t \in T(U), \forall p' \in U\cap Q_t, \phi(p') = (t, \phi^1(p'),...,\phi^n(p'),0,...,0) \]
@@ -803,24 +803,24 @@ Ok, che diavolo abbiamo appena letto? Le proprietà che abbiamo richiesto sui vi
     \end{enumerate}
     \proof 
     La seconda proprietà segue direttamente dalle richieste sui vincoli olonomi e dal teorema dei valori regolari; per verificare la prima proprietà dobbiamo estendere la matrice jacobiana con una derivata temporale, che faremo identificando $x^0:= t$:
-    \[\left[ \frac{\partial f_j}{\partial x^i} \bigg|_{(t,\vec{\vec x})} \right]_{0\le i\le 3N,1\le j\le C} : \R^{3N+1}\to \R^C\]
-    questa matrice ha ovviamente rango massimo, perchè restringendoci a vettori della forma $(0,\vec{\vec{x}})$ otteniamo la matrice jacobiana non estesa, che ha rango massimo per definizione.\\
+    \[\left[ \frac{\partial f_j}{\partial x^i} \bigg|_{(t,\bar{\bar x})} \right]_{0\le i\le 3N,1\le j\le C} : \R^{3N+1}\to \R^C\]
+    questa matrice ha ovviamente rango massimo, perchè restringendoci a vettori della forma $(0,\bar{\bar{x}})$ otteniamo la matrice jacobiana non estesa, che ha rango massimo per definizione.\\
     Rimane solo la terza, che segue dal teorema dei valori regolari.
 \end{proposition}
 
 Vediamo un esempio
 
 \begin{example}{}{}
-    Consideriamo un sistema di un ($N=1$) punto materiale e un ($C=1$) vincolo: scegliendo un qualsiasi sistema di riferimento $R$, abbiamo $\V^{3+1}\cong \E^1\times\E^3$ possiamo considerare la mappa liscia $f:\E^1\times\E^3\to\R$ definita da $(t, q)\mapsto \| q- O(t) \|^2 - r_0^2(t)$, dove $O:\E^1\to\E^3$ e $r_0:\E^1\to\R_{>0}$ sono mappe liscie.\\
+    Consideriamo un sistema di un ($N=1$) punto materiale e un ($C=1$) vincolo: scegliendo un qualsiasi sistema di riferimento $R$, abbiamo $\V^{3+1}\cong E^1\times E^3$ possiamo considerare la mappa liscia $f:E^1\times E^3\to\R$ definita da $(t, q)\mapsto \| q- O(t) \|^2 - r_0^2(t)$, dove $O:E^1\to E^3$ e $r_0:E^1\to\R_{>0}$ sono mappe liscie.\\
     Per ogni $t$ fissato, i punti di $f(t,q)=0$ definiscono una sfera $\S^2_t$ di centro $O(t)$ e raggio $r_0(t)$. Passando in coordinate abbiamo:
-    \[ f(t,\vec x) = (x^1 - O^1(t))^2 + (x^2 -O^2(t))^2 + (x^3 -O^3(t))^2 - r_0^2(t) \]
+    \[ f(t,\bar x) = (x^1 - O^1(t))^2 + (x^2 -O^2(t))^2 + (x^3 -O^3(t))^2 - r_0^2(t) \]
     Chiaramente il primo punto della definizione di vincolo olonomo è soddisfatto dal fatto che la controimmagine di $0$ è come abbiamo detto una sfera; per la seconda proprietà dobbiamo calcolare la matrice jacobiana:
     \[ \left[ \frac{\partial f}{\partial x^1}, \frac{\partial f}{\partial x^2}, \frac{\partial f}{\partial x^3} \right] = \left[ 2(x^1 -O^1(t)), 2(x^2 -O^2(t)), 2(x^3 -O^3(t)) \right] \]
     Che ha rango massimo fintanto che almeno una delle sue componenti non è nulla, cosa che si verifica sempre negli zeri di $f$, dunque questo è un vincolo olonomo.
 \end{example}
 
 \begin{example}{}{}
-    Consideriamo ora $N=2$ punti materiali, dunque con un riferimento $R$ ci poniamo in $\V^{6+1}\iso \E^1\times\E^3\times\E^3$ e le mappe liscie $f_{1,2}:\E^1\times\E^3\times\E^3$ definite da 
+    Consideriamo ora $N=2$ punti materiali, dunque con un riferimento $R$ ci poniamo in $\V^{6+1}\iso E^1\times E^3\times E^3$ e le mappe liscie $f_{1,2}:E^1\times E^3\times E^3$ definite da 
     \[ f_1(t,q_1,q_2) = \| q_1-O(t) \|^2 - r_0^2(t)\]
     \[ f_2(t,q_1,q_2) = \|q_1-q_2\|^2 - D_0^2(t) \]
     TBD
@@ -864,15 +864,243 @@ Si deve pensare alla richiesta di idealità come a una richiesta aggiuntiva sul 
 Per trattare i sistemi di punti materiali con vincoli ideali è spesso necessario calcolare le componenti tangenziali ai vincoli dell'accelerazione, ma per farlo è necessario introdurre il concetto di energia cinetica.\\
 L'obiettivo di questa parte sarà definire l'energia cinetica per sistemi di $N\ge 1$ punti materiali $\{Q_1,...,Q_N\}$ sottoposti a $C\le N$ vincoli olonomi $\{f_1,...,f_C\}$ e illustrare la geometria sottesa alle coordinate puntate $\dot q$. Per farlo dobbiamo estendere opportunamente i concetti di velocià e accelerazione in $\V^4$ a $\V^{3N+1}$\\
 Sia $\Gamma:I\to \V^{n+1}$ una linea di universo nello spazio delle configurazioni vincolato: dato che questo è una sottovarietà embedded di $\V^{3N+1}$, possiamo leggerla come linea di universo in quest'ultimo e definire come sopra velocità e accelerazione rispetto a un riferimento $R$: esplicitamente
-\[ v|_R(t) := \left((\di R|_{\Sigma_t}^{\times N})^{-1}\circ \frac{\di}{\di t} \circ R|_{\Sigma_t}^{\times N} \right)(\Gamma(t)) = (v_{Q_1}|R(t),..., v_{Q_N}|_R(t)) \in V_t^\N \]
-\[ a|_R(t) := \left((\di R|_{\Sigma_t}^{\times N})^{-1}\circ \frac{\di^2}{\di t^2} \circ R|_{\Sigma_t}^{\times N} \right)(\Gamma(t)) = (a_{Q_1}|R(t),..., a_{Q_N}|_R(t)) \in V_t^\N \]
+\[ v|_R(t) := \left((\di R|_{\Sigma_t}^{\times N})^{-1}\circ \frac{\di}{\di t} \circ R|_{\Sigma_t}^{\times N} \right)(\Gamma(t)) = (v_{Q_1}|_R(t),..., v_{Q_N}|_R(t)) \in V_t^\N \]
+\[ a|_R(t) := \left((\di R|_{\Sigma_t}^{\times N})^{-1}\circ \frac{\di^2}{\di t^2} \circ R|_{\Sigma_t}^{\times N} \right)(\Gamma(t)) = (a_{Q_1}|_R(t),..., a_{Q_N}|_R(t)) \in V_t^\N \]
 Ora possiamo definire l'energia cinetica.
 
 \begin{definition}{Energia cinetica}{energia cinetica}
     Sia $\Gamma:I\to\V^{n+1}\subset\V^{3N+1}$ una linea cinetica nello spaziotempo delle configurazioni di un sistema con vincoli olonomi e sia $R$ un riferimento.\\
     La sua \bemph{energia cinetica} rispetto a $R$ è definita da:
     \[ \T_R(t) := \sum_i \frac{m_{Q_i}}{2}\| v_{Q_i}|_R(t) \|^2 =  \sum_i \frac{m_{Q_i}}{2}(v_{Q_i}|_R(t) \cdot v_{Q_i}|_R(t)) \]
+    Dove il prodotto scalare è da intendersi come il prodotto dello spazio euclideo $\Sigma_t$
 \end{definition}
+
+Sarà opportuno ottenere una formula per l'energia cinetica in coordinate.\\
+Data una carta $(U,\psi)$, questa si dice \bemph{adattata alla sommersione suriettiva} $T:\V^{n+1}\to E^1$ se è della forma $\psi(q) = (T(q),q^1(q),...,q^n(q))$; le coordinate locali $(t,q^1,...,q^n)$ sono dette \bemph{coordinate locali naturali} su $\V^{n+1}$.\\
+Notiamo che la restrizione $\phi|_{\Sigma_t^N}$ definisce una carta locale su $\Q_t$ per $t$ fissato; per $I$ sufficientemente piccoli, la linea di universo $\Gamma : I\to\V^{n+1}$ può essere fattorizzata attraverso una carta locale adattata $\psi$ in $\psi\circ\Gamma : I \to \psi(U)\subset \R^{n+1}$ con $\psi\Gamma(t) = (t,q^1(t),...,q^n(t))$; allo stesso modo una mappa liscia $\gamma:I\to\psi(U)\subset\R^{n+1}$ della forma $t\mapsto(t,q^1(t),...,q^n(t))$ definisce una linea di universo attraverso la composizione $\psi^{-1}\circ\gamma$.
+
+\begin{lemma}{}{}
+    Sia $\Gamma:I\to\V^{n+1}$ una linea di universo con $I$ sufficientemente piccolo da permettere una rappresentazione in coordinate locali naturali $\Gamma(t) = \psi^{-1}(t,q^1(t),...,q^n(t))$. Allora la sua velocità può essere scritta come 
+    \[ v|_R(t) = \frac{\partial }{\partial t}\bigg|_R \psi^{-1}(t, q^1(t),...,q^n(t)) +\sum_k \frac{\partial \psi|_{\Sigma_t^N}^{-1}(q^1(t),...,q^n(t))}{\partial q^k}\frac{\di q^k(t)}{\di t} \]
+    Dove il primo termine è definito da 
+    \[ \frac{\partial }{\partial t}\bigg|_R = (\di R|_{\Sigma_t}^{\times N})^{-1}\circ \frac{\partial}{\partial t}\circ R|_{\Sigma_t}^{\times N} \]
+    \proof 
+    Usiamo la formula della velocità che abbiamo definito sopra:
+    \begin{align*}
+        v|_R(t) & = \left((\di R|_{\Sigma_t}^{\times N})^{-1}\circ \frac{\di}{\di t} \circ R|_{\Sigma_t}^{\times N} \right)(\psi^{-1}(t,q^1(t),...,q^n(t))) \\ & = (\di R|_{\Sigma_t}^{\times N})^{-1}\circ\left[ \frac{\partial R|_{\Sigma_t}^{\times N}(\psi^{-1}(...))}{\partial t} + \sum_k \underbrace{\frac{\partial R|_{\Sigma_t}^{\times N}(\psi^{-1}(...))}{\partial q^k}}_{= \di R|_{\Sigma_t}^{\times N} \frac{\partial \psi|_{\Sigma_t^N}^{-1}(...)}{\partial q^k}}\frac{\di q^k(t)}{\di t} \right] \\ & = \left((\di R|_{\Sigma_t}^{\times N})^{-1}\circ \frac{\partial}{\partial t}\circ R|_{\Sigma_t}^{\times N}\right)(\psi^{-1}(...)) + \sum_k \frac{\partial \psi|_{\Sigma_t^N}^{-1}(q^1(t),...,q^n(t))}{\partial q^k}\frac{\di q^k(t)}{\di t}
+    \end{align*}
+    \qed 
+\end{lemma}
+
+Notiamo che le derivate parziali rispetto ai vari $q^k$ di $\psi|_{\Sigma_t^N}^{-1}(...)$ sono vettori tangenti a $\Q_t$ che hanno $N$ componenti in $V_t$, ciascuna accessibile tramite la proiezione all'$i$-esimo fattore $\pi_i$.\\
+Inserendo le velocità in coordinate nella formula dell'energia cinetica, otteniamo 
+\begin{align*}
+    \T_R(t) & = \sum_{k,l} A_{k,l}(t, q^1(t),..., q^n(t))\frac{\di q^k(t)}{\di t}\frac{\di q^l(t)}{\di t} \\ & +  \sum_k B_k(t, q^1(t),..., q^n(t)) \frac{\di q^k(t)}{\di t} \\ & + C(t, q^1(t),..., q^n(t))
+\end{align*}
+con 
+\[ A_{k,l}(t, q^1(t),..., q^n(t)) = \sum_i \frac{m_{Q_i}}{2}  \left( \pi_i\left( \frac{\partial \psi|_{\Sigma_t^N}^{-1}(t,q^1(t),...,q^n(t)) }{\partial q^k} \right) \cdot \pi_i\left( \frac{\partial \psi|_{\Sigma_t^N}^{-1}(t,q^1(t),...,q^n(t)) }{\partial q^l} \right) \right) \]
+\[ B_k(t, q^1(t),..., q^n(t)) = 2\sum_i \frac{m_{Q_i}}{2}  \left( \pi_i\left( \frac{\partial \psi|_{\Sigma_t^N}^{-1}(t,q^1(t),...,q^n(t)) }{\partial q^k} \right) \cdot \pi_i\left( \frac{\partial }{\partial t}\bigg|_R\psi^{-1}(t,q^1(t),...,q^n(t))  \right) \right) \]
+\[ C(t, q^1(t),..., q^n(t)) = \sum_i \frac{m_{Q_i}}{2}  \left( \pi_i\left( \frac{\partial }{\partial t}\bigg|_R\psi^{-1}(t,q^1(t),...,q^n(t)) \right) \cdot \pi_i\left( \frac{\partial }{\partial t}\bigg|_R\psi^{-1}(t,q^1(t),...,q^n(t))  \right) \right) \]
+Questa mostruosità ci permette di pensare all'energia cinetica come a una funzione $\T(t,q^1,...,q^n,\dot q^1,...,\dot q^n)$ in $2n+1$ variabili in $\psi(U)\times\R^n$, dove le $\dot q^i$ rappresentano le derivate temporali. Ma che oggetto geometrico sottosta a queste nuove coordinate?
+
+\subsection{Spaziotempo degli atti di moto}
+
+Ci sono diversi metodi avanzati e molto eleganti per costruire i fibrati di jet, ma noi purtroppo non li possediamo, quindi dobbiamo usare il \textit{metodo della bestia}\footnote{Moretti, 2023}, più elementare ma anche più sgraziato.
+
+\subsubsection{Costruzione di una varietà dalla scelta di un atlante}
+
+Sia $\M$ una varietà e sia $\A := \{ (U_i,\psi_i) \}_i$ un atlante non necessariamente massimale. Lo spazio quoziente $\bigsqcup_i U_i/\sim$ ottenuto dall'unione disgiunta degli aperti modulo la relazione di equivalenza $[i,p]\sim[j, q]$ se e solo se $p=q$ è omeomorfo a $\M$ tramite la mappa $[i,p]\mapsto p$.\\
+Usando gli omeomorfismi delle carte locali mandando $[i,p]\mapsto [i,\psi_i(p)]$, possiamo leggerlo come $ \bigsqcup_i \psi_i(U_i)/\sim $, dove $[i,x]\sim[j,y]$ se e solo se $\psi_i^{-1}(x) = \psi_j^{-1}(y)$, ovvero $x = \psi_i\psi_j^{-1}(y)$ scrivendolo in termini delle funzioni di trasferimento.\\
+Trasferendo la struttura differenziabile di $\M$ lungo l'omeomorfismo $\bigsqcup_i \psi_i(U_i)/\sim \iso \M$, otteniamo una descrizione diffeomorfa di $\M$ in termini di carte locali incollate tra loro mediante le loro funzioni di trasferimento.
+
+\begin{definition}{Spaziotempo degli atti di moto}{spaziotempo degli atti di moto}
+    Sia $T:\V^{n+1}\to E^1$ uno spaziotempo delle configurazioni per un sistema di vincoli olonomi e sia $\A = \{(U_i,\psi_i)\}_i$ il suo atlante dato dalle carte locali adattate alla sommersione suriettiva $T$.\\
+    Lo \bemph{spaziotempo degli atti di moto} per il sistema $A(\V^{n+1})$, o \bemph{fibrato di jet}, è definito applicando la costruzione precedente alle carte di coordinate locali $\phi_i(U_i)\times\R^n$ e alle mappe di transizione $\psi_j(U_i\cap U_j)\times\R^n\iso \psi_i(U_i\cap U_j)\times \R^n$ date da
+    \[ (t,\bar q ,\bar{\dot q}) \mapsto \left( t, (\psi_i\psi_j^{-1})|_{\Sigma_t^N}(\bar q), \frac{\partial (\psi_i\psi_j^{-1})(t, \bar q) }{\partial t} + \sum_k \frac{\partial (\psi_i\psi_j^{-1})|_{\Sigma_t^N}(\bar q) }{\partial q^k} \dot q^k \right) \] 
+\end{definition}
+
+Notiamo che la regola di trasformazione delle coordinate puntate $\dot{\bar q}$ codifica precisamente il modo in cui la derivata temporale di una curva liscia $\bar q(t)$ si trasforma attraverso un cambiamento di coordinate secondo la regola della catena.\\
+Abbiamo un'evidente sommersione suriettiva $T:A(\V^{n+1})\to \V^{n+1}\to E^1$ che manda $(t,\bar q ,\bar{\dot q})\mapsto(t,\bar q )\mapsto t$. Allo stesso modo possiamo estendere una linea di universo $\Gamma:I\to\V^{n+1}$ a una linea $\hat\Gamma:I\to A(\V^{n+1})$ aggiungendo le derivate delle componenti:
+\[ \hat\Gamma(t):= \left(t, q^1(t),...,q^n(t), \frac{\di q^1(t)}{\di t},..., \frac{\di q^n(t)}{\di t}\right) \]
+Notiamo anche che la velocità può essere considerata una funzione $A(\V^{n+1})\to V_t^N$ ponendo
+\[ v|_R(t,\bar q,\dot{\bar q}) = \frac{\partial }{\partial t}\bigg|_R \psi^{-1}(t,\bar q,\dot{\bar q}) +\sum_k \frac{\partial \psi|_{\Sigma_t^N}^{-1}(t,\bar q,\dot{\bar q})}{\partial q^k}\dot q^k \]
+Possiamo fare un ragionamento analogo per l'energia cinetica dunque 
+\[ \T(t,\bar q,\dot{\bar q}) = \sum_i \frac{m_{Q_i}}{2} \| v_{Q_i}|_R(t,\bar q,\dot{\bar q}) \|^2 \]
+E questo ci permette di recuperare le espressioni per la velocità ed energia cinetica di $\Gamma$ attraverso la sua estensione $\hat\Gamma$:
+\[ v_R(t) = [v_R]_{\hat\Gamma(t)} := v_R(\hat\Gamma(t)) \]
+\[ \T_R(t) = [\T_R]_{\hat\Gamma(t)} := \T_R(\hat\Gamma(t)) \]
+
+\begin{proposition}{}{}
+    Sia $\Gamma:I\to\V^{n+1}$ una linea di universo con $I$ abbastanza piccolo da ammettere una rappresentazione in coordinate locali naturali.\\
+    Allora
+    \[ \frac{\di}{\di t}\left[ \frac{\partial \T_R}{\partial \dot q^k} \right]_{\hat\Gamma(t)} - \left[ \frac{\partial \T_R}{\partial q^k} \right]_{\hat\Gamma(t)} = \sum_i m_{Q_i} \left( a_{Q_i}|_R(t)\cdot \pi_i\left( \frac{\partial \psi|_{\Sigma_t^N}^{-1}(t,\bar q,\dot{\bar q})}{\partial q^k} \right) \right) \]
+    \proof 
+    Omettiamo gli argomenti delle funzioni per alleggerire la notazione\footnote{Potreste chiederci perchè non l'abbiamo fatto prima... bella domanda, diremo che dovevamo tutti interiorizzare quali fossero questi argomenti.} e sviluppiamo il lato sinistro: 
+    \begin{align*}
+        \frac{\di}{\di t}\left[ \frac{\partial \T_R}{\partial \dot q^k} \right]_{\hat\Gamma(t)} - \left[ \frac{\partial \T_R}{\partial q^k} \right]_{\hat\Gamma(t)} & = \sum_i \frac{m_{Q_i}}{2} \left( \frac{\di}{\di t}\left[ \frac{\partial (v_{Q_i}|_R\cdot v_{Q_i}|_R) }{\partial \dot q^k} \right]_{\hat\Gamma(t)} - \left[ \frac{\partial (v_{Q_i}|_R\cdot v_{Q_i}|_R) }{\partial q^k} \right]_{\hat\Gamma(t)} \right) \\ & = \sum_i m_{Q_i} \left( \frac{\di}{\di t} \left[ v_{Q_i}|_R\cdot \frac{\partial v_{Q_i}|_R }{\partial\dot q^k} \right]_{\hat\Gamma(t)} - \left[ v_{Q_i}|_R\cdot \frac{\partial v_{Q_i}|_R }{\partial q^k} \right]_{\hat\Gamma(t)} \right)
+    \end{align*}
+    TBD
+\end{proposition}
+
+Nel caso in cui $\Gamma: I\to\V^{n+1}$ non si fattorizzi attraverso una singola carta locale, si può scegliere un ricoprimento aperto di $I$ con sottointervalli abbastanza piccoli e lavorare localmente su quello.
+
+\section{Equazioni di Eulero-Lagrange}
+
+Adesso deriveremo e studieremo le equazioni cardinali della meccanica lagrangiana, le equazioni di Eulero-Lagrange, che governano un sistema vincolato sotto le ipotesi che i vincoli siano olonomi e ideali.
+
+\begin{theorem}{Equazioni di Eulero-Lagrange}{Eulero-Lagrange 1}
+    Sia $\{Q_1,...,Q_N\}$ un sistema di $N\ge 1$ punti materiali sottoposto a un sistema $\{f_1,...,f_C\}$ di $0\le C\le 3N$ vincoli olonomi. Sia inoltre $\Gamma:I\to\V^{n+1}\subset\V^{3N+1}$ una linea di universo nello spaziotempo delle configurazioni del sistema vincolato con $I\subset E^1$ abbastanza piccolo da ammettere una rappresentazione in coordinate locali naturali $\Gamma(t) = \psi^{-1}(t,\bar q(t))$.\\
+    Se $\Gamma$ soddisfa le equazioni di Newton 
+    \[ m_{Q_i}a_{Q_i}|_R(t) = F_{R,i}(\Gamma(t),v_R(t)) + \Phi_i \]
+    Dove $\Phi_i$ sono reazioni vincolari che verificano la proprietà di vincoli ideali, allora soddisfa anche le \bemph{equazioni di Eulero-Lagrange}:
+    \[ \frac{\di}{\di t}\left[ \frac{\partial \T_R}{\partial \dot q^k} \right]_{\hat\Gamma(t)} - \left[ \frac{\partial\T_R}{\partial q^k} \right]_{\hat\Gamma(t)} = [\mc Q_{R,k}]_{\hat\Gamma(t)} \]
+    Dove 
+    \[ \mc Q_{R,k}(t,\bar q, \dot{\bar q}) = \left( F_R \cdot \frac{ \partial \psi|_{\Sigma_t^N}}{\partial q^k} \right) \]
+    sono le componenti della forza $F_R = (F_{R,1},...,F_{R,N}) \in V_t^N$ lungo i vettori tangenti di $T_q\Q_t$.
+    \proof 
+    Scriviamo il sistema delle equazioni di Newton come un'unica equazione 
+    \[ \begin{pmatrix}
+        m_{Q_1}a_{Q_1}|_R \\ \vdots \\ m_{Q_N}a_{Q_N}|_R
+    \end{pmatrix} = \begin{pmatrix}
+        F_{R,1} \\ \vdots \\ F_{R,N}
+    \end{pmatrix} + \begin{pmatrix}
+        \Phi_1 \\ \vdots \\ \Phi_N
+    \end{pmatrix} = F_R + \Phi \]
+    Facendo il prodotto scalare con i vettori tangenti da entrambi i lati concludiamo immediatamente, ricordando le definizioni di vincoli ideali e l'ultima proposizione della sezione precedente
+    \[ \underbrace{ \sum_i m_{Q_i} \left( a_{Q_i}|_R(t)\cdot \pi_i\left( \frac{\partial \psi|_{\Sigma_t^N}^{-1}(t,\bar q,\dot{\bar q})}{\partial q^k} \right) \right) }_{ = \frac{\di}{\di t}\left[ \frac{\partial \T_R}{\partial \dot q^k} \right]_{\hat\Gamma(t)} - \left[ \frac{\partial\T_R}{\partial q^k} \right]_{\hat\Gamma(t)} } = \underbrace{ \left( F_R \cdot \frac{ \partial \psi|_{\Sigma_t^N}}{\partial q^k} \right) }_{= [\mc Q_{R,k}]_{\hat\Gamma(t)}} + \underbrace{ \left( \Phi \cdot \frac{ \partial \psi|_{\Sigma_t^N}}{\partial q^k} \right)}_{= 0}  \]
+    \qed 
+\end{theorem}
+
+Notiamo che il vantaggio delle equazioni di Eulero-Lagrange è che grazie all'ipotesi di idealità dei vincoli, queste non dipendono dalle reazioni vincolari, che nelle equazioni di Newton appaiono come incognite.\\
+Tuttavia il teorema di cui sopra non risulta essere davvero soddisfacente: non ci dice che possiamo trovare una soluzione\footnote{Che in linea di massa potrebbe anche non esistere per quanto ne sappiamo ora} delle equazioni di Eulero-Lagrange ed essere certi che questa sia effettivamente una linea di universo che soddisfa le equazioni di Newton. Per ottenere questo risultato dobbiamo lavorare ancora un po'.\\
+Ricordiamo che l'energia cinetica in coordinate naturali ha forma 
+\[ \T_R = \sum_{k,l}A_{k,l}\dot q^k \dot q^l + \sum_k B_k \dot q^k + C  \]
+Ciò implica che le equazioni di Eulero-Lagrange possono essere riscritte come 
+\[ \sum_l A_{k,l}(t,\bar q(t))\frac{\di^2 q^l(t)}{\di t^2} = G_k\left(t, \bar q(t), \frac{\di\bar q(t)}{\di t}\right) \]
+Per applicare il teorema \cref{th:esistenza e unicità locale 1} dobbiamo dimostrare che la matrice $A(t,\bar q) = (A_{k,l}(t,\bar q))_{k,l}$ è invertibile, in modo da poter riscrivere l'equazione in forma normale.
+
+\begin{theorem}{}{}
+    Nel contesto del teorema precedente, la matrice $A(t,\bar q)$ è definita positiva per ogni $(t,\bar q)$ e dunque è invertibile.
+    \proof 
+    Ricordiamo che una matrice è definita positiva se e solo se $\bar v^T A \bar v > 0$ per ogni vettore $\bar v$  non nullo; in particolare possiamo riscrivere questa condizione per esteso usando la formula per $A_{k,l}$ come 
+    \begin{align*} \sum_{k,l} A_{k,l} v^k v^l & = \sum_i \frac{m_{Q_i}}{2} \left( \pi_i\left( \sum_k v^k \frac{\partial \psi|_{\Sigma_t^N}^{-1}}{\partial q^k} \right) \cdot \pi_i\left( \sum_k v^k \frac{\partial \psi|_{\Sigma_t^N}^{-1}}{\partial q^k} \right) \right) \\ & = \sum_i \frac{m_{Q_i}}{2} \left| \pi_i\left( \sum_k v^k \frac{\partial \psi|_{\Sigma_t^N}^{-1}}{\partial q^k} \right) \right|^2 > 0 \end{align*}
+    Questa espressione è sicuramente maggiore o uguale a zero, è una somma di termini non negativi (le norme) scalati di costanti positive (le masse); potrebbe essere nulla, ma grazie al fatto che le derivate di $\psi|_{\Sigma_t^N}^{-1}$ sono una base di $T_q\Q_t$, un vettore ha componente nulla rispetto a ogni elemento della base se e solo se è il vettore nullo, dunque concludiamo osservando che $A$ essendo simmetrica e definita positiva è invertibile.
+    \qed
+\end{theorem}
+
+\begin{corollary}{Esistenza e unicità locale per le equazioni di Eulero-Lagrange}{esistenza e unicità locale 2}
+    Le equazioni di Eulero-Lagrange possono essere riscritte in forma normale come
+    \[ \frac{\di^2 q^l(t)}{\di t^2} =  \sum_k \frac{1}{2} (A^{k,l}(t,\bar q(t)))^{-1} G_k\left(t, \bar q(t), \frac{\di\bar q(t)}{\di t}\right) \] 
+    E dunque per ogni dato iniziale $(t_0,\bar q_0, \dot{\bar q}_0)$ esiste ed è unica la soluzione locale.
+\end{corollary}
+
+Questo teorema ci dice qualcosa di molto forte, e in un certo senso "giustifica" il passaggio dalla meccanica newtoniana a quella lagrangiana: la seconda è in grado di darci delle equazioni del moto deterministiche sia nei sistemi svincolati, dove era sufficiente quella newtoniana, sia in quelli vincolati sotto opportune ipotesi di idealità.\\
+In molti casi pratici, ma non in tutti, le forze $F_R = (F_{R,1},..., F_{R,N})$ hanno una forma particolare, ovvero ammettono un cosiddetto \bemph{potenziale}: ciò significa che esiste una funzione liscia $\U : \V^{3N+1}\to\R$ tale che per ogni punto $p \in \V^{3N+1}$ e ogni vettore $v \in V_{T(p)}^N$ valga
+\[ F_{R}(p) \cdot v = -\frac{\di}{\di\varepsilon}\U(p+\varepsilon v)\bigg|_{\varepsilon = 0} \]
+Che in coordinate standard adattate $(t,\bar{\bar x})$ assume la forma familiare
+\[ \bar F_{R,i}(t,\bar{\bar x}) = - \nabla_{\bar x_i} \U(t, \bar{\bar x}) \]
+Dove il segno negativo è per convenzione. In questo caso, le componenti lagrangiane delle forze sono date da
+\[ Q_{R,k}(t,\bar q) = F_R \cdot \frac{\partial \psi|_{\Sigma_t^N}^{-1}(\bar q)}{\partial q^k} = -\frac{\partial\U(t,\bar q)}{\partial q^k}\]
+Dove con un piccolo abuso di notazione abbiamo indicato $\U(t,\bar q) = \U(\psi^{-1}(t,\bar q))$ restringendoci a una carta locale su $\V^{n+1}$.
+
+\begin{corollary}{Equazioni di Eulero-Lagrange con un potenziale}{Eulero-Lagrange 2}
+    Nel contesto dei teoremi precedenti, si supponga che le forze $F_R$ ammettano un potenziale $\U$; definiamo allora in coordinate locali naturali la \bemph{Lagrangiana} del sistema $\L_R : A(\V^{n+1})\to \R$ come
+    \[ \L_R(t,\bar q, \dot{\bar q}) := \T_R(t,\bar q, \dot{\bar q}) - \U(t, \bar q) \]
+    Sotto questa ipotesi, le equazioni di Eulero-Lagrange possono essere riscritte come
+    \[ \frac{\di}{\di t}\left[ \frac{\partial \L_R}{\partial \dot q^k} \right]_{\hat\Gamma(t)} - \left[ \frac{\partial \L_R}{\partial q^k} \right]_{\hat\Gamma(t)} = 0\]
+    \proof 
+    Notando che $\U$ non dipende dalle coordinate puntate, il primo termine si riconosce essere semplicemente la derivata dell'energia cinetica $\T_R$, mentre il secondo termine per linearità è
+    \[ \left[ \frac{\partial \L_R}{\partial q^k} \right]_{\hat\Gamma(t)} = \left[ \frac{\partial \T_R}{\partial q^k} \right]_{\hat\Gamma(t)} - \underbrace{\left[ \frac{\partial \U_R}{\partial q^k} \right]_{\hat\Gamma(t)}}_{= - [Q_{R,k}]_{\hat\Gamma(t)}} \]
+    Poi basta riordinare per recuperare le equazioni di Eulero-Lagrange.
+\end{corollary}
+
+Nel contesto della meccanica lagrangiana, spesso un sistema è descritto puramente in termini della sua lagrangiana $\L_R : A(\V^{n+1})\to\R$ senza specificare le forze, anche se questa non dovesse assumere la forma di una lagrangiana "standard" $\T_R -\U$, ad esempio lasciando che un potenziale dipenda anche dalle coordinate puntate.\\
+Notiamo che due lagrangiane diverse possono generare le stesse equazioni di Eulero-Lagrange: per una mappa liscia $g:\V^{n+1}\to\R$ definiamo la sua derivata totale formale come una funzione $\di_t g: A(\V^{n+1})\to\R$ in coordinate naturali come
+\[ \di_t g(t,\bar q, \dot{\bar q}) := \frac{\partial g(t,\bar q)}{\partial t} + \sum_{k} \frac{\partial g(t,\bar q)}{\partial q^k} \]
+Allora per calcolo diretto si verifica che $\L_R$ e $\L_R +\di_t g$ producono le stesse equazioni di Eulero-Lagrange; per questo motivo a volte è utile pensare alle lagrangiane come a classi di equivalenza $[\L]$ rispetto alla relazione $\L \sim \L + \di_t g$.
+
+\chapter{Simmetrie e leggi di conservazione}
+
+In questa parte studieremo degli interessanti legami tra le simmetrie di un sistema fisico descritto da una lagrangiana $\L: A(\V^{n+1})\to\R$ e le quantità che rimangono costanti durante l'evoluzione dinamica del sistema. Partiremo da un caso molto semplice, quello delle coordinate cicliche, per poi studiare i teoremi di Noether e di Jacobi.
+
+\newcommand\I{\mc I}
+\section{Coordinate Cicliche}
+
+\begin{definition}{Coordinate cicliche}{coordinate cicliche}
+    Si consideri un sistema fisico descritto da uno spaziotempo delle configurazioni $T:\V^{n+1}\to E^1$ e da una lagrangiana $\L:A(\V^{n+1})\to\R$ e sia $(U,\psi)$ una carta locale per $\V^{n+1}$ con le corrispondenti coordinate locali naturali $(t, q, \dot q) := (t,\bar q, \dot{\bar q})$.\\
+    Una coordinata $q^j$ si dice \bemph{ciclica} se la derivata parziale 
+    \[ \frac{\partial \L(t,q,\dot q)}{\partial q^j} = 0 \]
+    È nulla per tutti i punti di $\psi(U)\times\R^n$.
+\end{definition}
+
+Notiamo che il significato geometrico di questa richiesta è che la lagrangiana sia invariante per traslazione lungo questa coordinata, ovvero che per ogni $b\in\R$ sufficientemente piccolo valga
+\[\L(t,q^1,...,q^j,...,q^n,\dot q) = \L(t,q^1,...,q^j+b,...,q^n,\dot q)\]
+Ne segue che le coordinate cicliche esprimono una simmetria (locale) per traslazione del sistema fisico.
+
+\begin{proposition}{Momento coniugato}{momento coniugato}
+    Nel contesto della definizione precedente, definendo il \bemph{momento coniugato associato} a una coordinata ciclica $q^j$ come 
+    \[ p_j(t,q,\dot q) = \frac{\partial \L(t,q,\dot q)}{\partial \dot q^j} \]
+    Si ha che questo è un \bemph{integrale primo} del moto, ovvero la sua valutazione lungo una linea di universo $\hat\Gamma(t)$ che risolve le equazioni di Eulero-Lagrange è costante rispetto al tempo.
+    \proof 
+    Richiamiamo le equazioni di Eulero-Lagrange per la coordinata ciclica $q^j$:
+    \[ \underbrace{\frac{\di}{\di t}\left[ \frac{\partial \L}{\partial \dot q^j} \right]_{\hat\Gamma(t)}}_{=: [p_j]_{\hat\Gamma(t)}} - \underbrace{\left[ \frac{\partial \L_R}{\partial q^j} \right]_{\hat\Gamma(t)}}_{= 0} = 0\] 
+    \qed
+\end{proposition}
+
+In linea di principio, l'integrale primo $p_j(t,q,\dot q)$ è definito solo localmente sullo spaziotempo degli atti di moto perchè dipende da coordinate locali; nel contesto del teorema di Noether, che occuperà tutta la prossima sezione, vedremo quando è possibile "incollare" integrali primi locali per ottenerne uno globale $\I : A(\V^{n+1})\to\R$.\\
+È importante sottolineare che l'integrale primo è costante nel tempo \textit{per una linea di universo fissata}, in generale linee di universo con dati iniziali diversi possono avere integrali primi anche molto diversi.\\
+Ovviamente, più coordinate cicliche generano più integrali primi del moto.
+
+\begin{example}{}{}
+    Consideriamo un sistema di $N\ge 1$ punti materiali svincolati e senza forze in un riferimento inerziale $R$ con coordinate standard $(t,\bar{\bar x}) \in \R^{3N+1}$.\\
+    La lagrangiana di questo sistema è data da
+    \[ \L(t,\bar{\bar x},\dot{\bar{\bar x}})  = \sum_i \frac{m_{Q_i}}{2}\| \dot{\bar x}_i \|^2\]
+    Osserviamo che tutte le coordinate $x_i^k$ con $i \le N$ e $k\le 3$ sono cicliche; i momenti coniugati sono dati da
+    \[ p_k^i(t,\bar{\bar x}, \dot{\bar{\bar x}}) = \frac{\partial \L(t,\bar{\bar x},\dot{\bar{\bar x}})}{\partial \dot x_k^i} = m_{Q_i}\dot x_i^k \]
+    E, per la proposizione precedente, definiscono degli integrali primi del moto.\\
+    Si nota immediatamente che questi non sono nient'altro che le componenti degli impulsi del sistema, quindi ogni impulso $\bar p^i$ è conservato durante il moto del sistema
+\end{example}
+
+\begin{example}{}{}
+    Supponiamo di introdurre nel sistema precedente delle forze che derivano da un potenziale $\U$ dipendente soltanto dalle differenze $\bar x_i -\bar x_j$ tra le posizioni: la lagrangiana allora diventa 
+    \[ \L(t,\bar{\bar x},\dot{\bar{\bar x}})  = \sum_i \frac{m_{Q_i}}{2}\| \dot{\bar x}_i \|^2 - \U(\bar x_1 - \bar x_2,..., \bar x_{N-1} - \bar x_N)\]
+    Dove abbiamo scritto $\U$ puramente in funzione delle differenze tra indici consecutivi\footnote{Perchè possiamo farlo senza perdita di generalità? Lo lasciamo come esercizio per il lettore}.\\
+    Almeno così ad occhio, non sembrano esserci coordinate cicliche... o invece ce ne sono? Facciamo un cambiamento di coordinate: 
+    \[ \bar X := \frac{ \sum_i m_{Q_i}\bar x_i }{\sum_i m_{Q_i}} \]
+    \[ \bar\xi_i := \bar x_i - \frac{ \sum_{j = i+1} m_{Q_j}\bar x_j }{\sum_{j=i+1} m_{Q_j}} \]
+    Dette rispettivamente \bemph{centro di massa} e \bemph{coordinate di Jacobi} del sistema.\\
+    Si può dimostrare per induzione su $N$ che la lagrangiana di questo sistema è scritta come 
+    \[ \L\left(t,\bar X, \bar{\bar \xi}, \dot{\bar X}, \dot{\bar{\bar\xi}} \right) = \frac{M}{2}\| \dot{\bar X} \|^2 + \sum_i \frac{\mu_i}{2} \|\dot{\bar\xi}_i\|^2 - \tilde\U(\bar{\bar\xi}) \]
+    Dove $M$ è la massa totale e le $\mu_i$ sono dette \bemph{masse ridotte} e sono costanti definite in termini delle masse un modo che non ci interessa.\\
+    Poichè il potenziale dipende solo dalle $\bar\xi_i$, le coordinate di $\bar X=(X^1,X^2,X^3)$ sono coordinate cicliche e gli integrali primi di questo moto sono quelle che riconosciamo essere le componenti dell'impulso totale 
+    \[ [\bar p]_{\hat\Gamma(t)} = \sum_i m_{Q_i} \frac{\di \bar x_i(t)}{\di t} \]
+\end{example}
+
+Questo esempio ci illustra come a volte le coordinate cicliche siano nascoste e possano essere recuperate solo attraverso cambiamenti di coordinate anche piuttosto elaborati.\\
+Questo diventerà molto più chiaro nel contesto generale del teorema di Noether, che illustra esattamente le corrispondenze tra le simmetrie del sistema fisico e le quantità conservate.
+
+\section{Il Teorema di Noether}
+
+Per formulare e dimostrare il teorema di Noether dobbiamo considerare una classe particolare di automorfismi dello spaziotempo delle configurazioni, ovvero quelli che non trasformano il tempo.
+
+\begin{definition}{}{}
+    Un \bemph{automorfismo che preserva le fibre} dello spaziotempo delle configurazioni $T:\V^{n+1}\to E^1$ è un automorfismo $F:\V^{n+1}\iso \V^{n+1}$ tale che $T = T \circ F = T \circ F^{-1}$, ovvero tale che il seguente diagramma commuti:
+    \[\begin{tikzcd}
+    	{\V^{n+1}} && {\V^{n+1}} \\
+	    \\
+	    & {E^1}
+	    \arrow["F"{description}, from=1-1, to=1-3]
+	    \arrow["T"{description}, from=1-1, to=3-2]
+	    \arrow["T"{description}, from=1-3, to=3-2]
+    \end{tikzcd}\]
+    Un \bemph{gruppo a un parametro di automorfismi che preservano le fibre} è una mappa liscia $F:\R\times\V^{n+1}\to\V^{n+1}$ tale che la mappa $F_\bullet : s \mapsto F_s : \V^{n+1}\iso\V^{n+1}$ sia un omomorfismo di gruppi dal gruppo additivo dei numeri reali al sottogruppo che preserva le fibre del gruppo degli automorfismi di $\V^{n+1}$, ovvero per ogni $s,r \in \R$ valgano:\begin{enumerate}
+        \item $T = T \circ F_s$
+        \item $F_0 = \id_{\V^{n+1}} $
+        \item $F_{s+r} = F_s\circ F_r$
+    \end{enumerate}
+\end{definition}
+
+Curiosamente, l'immagine di $F_\bullet$ deve essere dunque un sottogruppo abeliano del gruppo degli automorfismi\footnote{E dunque, del sottogruppo di quelli che preservano le fibre} di $\V^{n+1}$.
 
 \nocite{*}
 \printbibliography
