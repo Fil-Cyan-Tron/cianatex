@@ -1,4 +1,4 @@
-\documentclass{book}
+\documentclass[openany]{book}
 
 \usepackage{cianatex}
 
@@ -213,8 +213,9 @@ L'esempio si generalizza immediatamente agli spazi affini di dimensione finita c
 
 Nel linguaggio della teoria delle categorie, per il quale rimandiamo il lettore a \cite{Riehl2017}, possiamo esprimere elegantemente quanto detto sopra: per ogni $k \in \N_{>0}$ la seguente catena di funtori dimenticanti\footnote{Ovvero fedeli, intuitivamente un analogo dell'iniettività per i funtori.} che esibisce ciascuna di queste come categoria concreta\footnote{Moralmente, una categoria i cui oggetti sono insiemi dotati di una qualche struttura e i cui morfismi sono funzioni insiemistiche che rispettano questa struttura}:
 \[ \catname{finVec}(\R) \to \catname{finAff} \to \C^\infty\catname{Man} \to \topcat \to \setcat \]
-Attraverso la quale uno spazio vettoriale (dotato di una strutture di spazio affine, la topologia ereditata da $\R^n$ e la sua struttura liscia) $\left( V,0,+,\tau_e,\left\{(V, e^{-1})\right\}\right)$ perde progressivamente "pezzi" di struttura, così come le mappe che lo coinvolgono come dominio o codominio.
+Attraverso la quale uno spazio vettoriale (dotato di una struttura di spazio affine, la topologia ereditata da $\R^n$ e la sua struttura liscia) $\left( V,0,+,\tau_e,\left\{(V, e^{-1})\right\}\right)$ perde progressivamente "pezzi" di struttura, così come le mappe che lo coinvolgono come dominio o codominio.
 
+\newpage
 \section{Geometria della fisica classica}
 
 \newcommand\naif{\textit{naïf}\ }
@@ -512,8 +513,9 @@ dove $\bar b \in \C^{\infty(I, \R^3)}$ è data da $O(t)-O'(t) = \sum_i b^i(t)e'_
 \end{align*} 
 dove $v^\tv(t)$ è detta \bemph{velocità di trascinamento} di $R$ rispetto a $R'$. Con un calcolo analogo troviamo che l'accelerazione ha una forma simile:
 \[ a|_{R'}(t) = \underbrace{\sum_j \frac{\di^2 \bar\gamma^j(t)}{\di t^2} e_j(t)}_{=a|_R(t)} + \underbrace{\sum_i \left[ \frac{\di^2 b^i(t)}{\di t^2} + \sum_j\left( \frac{\di^2 A^i_j(t)}{\di t^2} \bar\gamma^j(t) \right) \right]e'_i(t)}_{=: a^\tv (t)} + \underbrace{2\sum_{i,j} \frac{\di A^i_j(t)}{\di t} \frac{\di \bar\gamma^j(t)}{\di t} e'_i(t)}_{=: a^\cor(t)} \]
-dove $a^\tv(t)$ è detta \bemph{accelerazione di trascinamento} di $R$ rispetto a $R'$ e $a^\cor(t)$ è detta \bemph{accelerazione di Coriolis} e caratteristicamente dipende dalla velocità $v|_R(t)$
+dove $a^\tv(t)$ è detta \bemph{accelerazione di trascinamento} di $R$ rispetto a $R'$ e $a^\cor(t)$ è detta \bemph{accelerazione di Coriolis} e caratteristicamente dipende dalla velocità $v|_R(t)$.
 
+\newpage
 \section{Dinamica Newtoniana}
 
 In questa sezione, discutiamo i principi della dinamica di Newton, che governano la dinamica di (potenzialmente molteplici) punti materiali e hanno riscosso grandissimo successo nel descrivere situazioni reali (con le dovute approssimazioni, ovviamente).
@@ -860,6 +862,7 @@ Finalmente possiamo definire i vincoli ideali:
 Osserviamo che questa definizione ha una forte connotazione fisica, infatti questi vincoli sono stati introdotti nel contesto della meccanica newtoniana: in particolare, non si può dedurre dalla definizione matematica di vincoli olonomi che questi debbano essere o non essere anche ideali.\\
 Si deve pensare alla richiesta di idealità come a una richiesta aggiuntiva sul comportamento geometrico di un vincolo che lo rende adatto per applicare l'apparato della meccanica lagrangiana.
 
+\newpage
 \newcommand\T{\mc{T}}
 \section{Energia cinetica}
 
@@ -946,6 +949,7 @@ E questo ci permette di recuperare le espressioni per la velocità ed energia ci
 
 Nel caso in cui $\Gamma: I\to\V^{n+1}$ non si fattorizzi attraverso una singola carta locale, si può scegliere un ricoprimento aperto di $I$ con sottointervalli abbastanza piccoli e lavorare localmente su quello.
 
+\newpage
 \section{Equazioni di Eulero-Lagrange}
 
 Adesso deriveremo e studieremo le equazioni cardinali della meccanica lagrangiana, le equazioni di Eulero-Lagrange, che governano un sistema vincolato sotto le ipotesi che i vincoli siano olonomi e ideali.
@@ -1081,6 +1085,8 @@ Ovviamente, più coordinate cicliche generano più integrali primi del moto.
 Questo esempio ci illustra come a volte le coordinate cicliche siano nascoste e possano essere recuperate solo attraverso cambiamenti di coordinate anche piuttosto elaborati.\\
 Questo diventerà molto più chiaro nel contesto generale del teorema di Noether, che illustra esattamente le corrispondenze tra le simmetrie del sistema fisico e le quantità conservate.
 
+\newpage
+\newcommand\loc{\text{loc}}
 \section{Il Teorema di Noether}
 
 Per formulare e dimostrare il teorema di Noether dobbiamo considerare una classe particolare di automorfismi dello spaziotempo delle configurazioni, ovvero quelli che non trasformano il tempo.
@@ -1102,7 +1108,125 @@ Per formulare e dimostrare il teorema di Noether dobbiamo considerare una classe
     \end{enumerate}
 \end{definition}
 
-Curiosamente, l'immagine di $F_\bullet$ deve essere dunque un sottogruppo abeliano del gruppo degli automorfismi\footnote{E dunque, del sottogruppo di quelli che preservano le fibre} di $\V^{n+1}$.
+Curiosamente, l'immagine di $F_\bullet$ deve essere dunque un sottogruppo abeliano del gruppo degli automorfismi\footnote{E dunque, del sottogruppo di quelli che preservano le fibre} di $\V^{n+1}$.\\
+Per facilitare i calcoli sarebbe bello riuscire a esprimere l'azione di questi automorfismi in coordinate, ma c'è un problema: per qualsiasi carta locale adattata $(U,\psi)$, non è assolutamente detto che $F_s(U) \subset U$, quindi che si fa?\\
+È presto detto, basta restringersi a un intervallo $(-\varepsilon, \varepsilon)$ e un aperto $V\subset U$ sufficientemente piccoli da avere $F((-\varepsilon, \varepsilon)\times V)\subset U$. In questa situazione possiamo esprimere l'automorfismo in termini di coordinate locali naturali nel seguente diagramma:
+\[\begin{tikzcd}
+	& {(-\varepsilon,\varepsilon)\times V} && U & \\
+	\\
+	{(-\varepsilon,\varepsilon)\times \psi(V)} &&&& {\psi(U)} \\
+	{(s,(t,q))} &&&& {(t,q'(s,t,q))}
+	\arrow["F"{description}, from=1-2, to=1-4]
+	\arrow["{\id_{(-\varepsilon, \varepsilon)}\times \psi}"{description}, from=1-2, to=3-1]
+	\arrow["\psi"{description}, from=1-4, to=3-5]
+	\arrow["{\psi\circ F\circ (\id_{(-\varepsilon, \varepsilon)}\times \psi)^{-1}}"{description}, from=3-1, to=3-5]
+	\arrow[maps to, from=4-1, to=4-5]
+\end{tikzcd}\]
+Dove ovviamente $q = (q^1,...,q^n)$ e $q' = (q'^1,...,q'^n)$.\\
+Possiamo estendere l'azione di $F$ allo spaziotempo degli atti di moto $A(\V^{n+1})$ mandando $(s,(t,q,\dot q))$ in $(t,q'(s,t,q),\dot q'(s,t,q,\dot q))$, dove 
+\[ \dot q'^k (s,t,q,\dot q) = \frac{\partial q'(s,t,q)}{\partial t} + \sum_l \frac{\partial q'^k(s,t,q)}{\partial q^l} \dot q^l \]
+
+\begin{definition}{Sistema invariante}{sistema invariante}
+    Si consideri un sistema fisico con spaziotempo delle configurazioni $T:\V^{n+1}\to E^1$ descritto dalla lagrangiana $\L:A(\V^{n+1})\to\R$.\\
+    Questo sistema si dice \bemph{debolmente invariante} rispetto a un gruppo di automorfismi a un parametro $F:\R\times\V^{n+1}\to\V^{n+1}$ che preservano le fibre se, in ogni carta locale adattata $(U,\psi)$ e aperto $V\subset U$ sufficientemente piccolo come visto sopra, esiste una funzione liscia $g: \V^{n+1}\to\R$ tale che
+    \[ \frac{\partial \L(t, q'(s,t,q), \dot q'(t,s,q,\dot q))}{\partial s}\bigg|_{s=0} = \di_t g(t,q,\dot q) := \frac{\partial g(t,q)}{\partial t} + \sum_k \frac{\partial g(t,q)}{\partial q^k}\dot q^k \]
+    In particolare, se $g$ è la funzione costantemente nulla, il sistema si dice \bemph{invariante}.\\
+    $F$ è detto \bemph{gruppo di simmetria (debole)} del sistema fisico.
+\end{definition}
+
+Chiaramente l'idea alla base dell'invarianza debole è l'osservazione fatta qualche pagina fa secondo cui le lagrangiane $\L$ e $\L+\di_t g$ producono le stesse equazioni di Eulero-Lagrange: infatti, l'invarianza debole afferma che non la lagrangiana $\L$ in sè ma la sua classe di equivalenza $[\L]$ è invariante rispetto all'azione di $F$.\\
+Si può introdurre anche una nozione di invarianza (debole) locale quando si dispone non di un automorfismo globale da restringere opportunamente ma di una famiglia di diffeomorfismi locali $F_\loc : (-\varepsilon, \varepsilon)\times \psi(V)\to\psi(U)$; dato che comunque noi lavoreremo in carte locali, le dimostrazioni che seguono si applicano anche al caso in cui si disponga soltanto di una simmetria locale.
+
+\begin{theorem}{Teorema di Noether}{teorema di noether}
+    Nel contesto della definizione precedente, le funzioni lisce $I_{F,g}:\psi(V)\times\R^n\to\R$ definite da
+    \[ I_{F,g}(t,q,\dot q) = -g(t,q) + \sum_k \frac{\partial \L(t,q,\dot q)}{\partial \dot q^k}\frac{q'^k(s,t,q)}{\partial s}\bigg|_{s=0}  \]
+    Sono integrali primi del moto, vale a dire che la loro valutazione lungo una linea di universo $\hat\Gamma:I\to A(\V^{n+1})$ che soddisfa le equazioni di Eulero-Lagrange è costante.\\
+    Questi integrali primi si assemblano per incollamento in un integrale primo globale $\I_{F,g}:A(\V^{n+1})\to\R$ detto \bemph{integrale primo di Noether}.
+    \proof 
+    Analizziamo la condizione di invarianza debole 
+    \[ \frac{\partial \L(t, q'(s,t,q), \dot q'(t,s,q,\dot q))}{\partial s}\bigg|_{s=0} = \di_t g(t,q,\dot q) \]
+    Sviluppando il lato sinistro 
+    \begin{align*}
+        \frac{\partial \L(t, q'(s,t,q), \dot q'(t,s,q,\dot q))}{\partial s}\bigg|_{s=0} & = \sum_k \frac{\partial \L(t,q',\dot q' )}{\partial q'^k} \frac{\partial q'^k}{\partial s} \bigg|_{s=0} + \sum_k \frac{\partial \L(t,q',\dot q' )}{\partial \dot q'^k} \frac{\partial \dot q'^k}{\partial s} \bigg|_{s=0} \\ & = \sum_k \frac{\partial \L(t,q,\dot q )}{\partial q^k} \frac{\partial q'^k}{\partial s} \bigg|_{s=0} + \sum_k \frac{\partial \L(t,q,\dot q )}{\partial \dot q^k} \underbrace{\frac{\partial \dot q'^k}{\partial s} \bigg|_{s=0}}_{=: \heartsuit}
+    \end{align*}
+    Dove per passare alla seconda riga abbiamo usato il fatto che $q'|_{s=0} = q$ e $\dot q'|_{s=0} = \dot q$. A questo punto esaminando $\heartsuit$ vediamo che 
+    \begin{align*}
+        \frac{\partial \dot q'^k}{\partial s} \bigg|_{s=0} & = \frac{\partial }{\partial s}\left( \frac{\partial q'^k}{\partial t} + \sum_l \frac{\partial q'^k}{\partial q^l}\dot q^l \right)\bigg|_{s=0} \\ & = \left( \frac{\partial^2 q'^k }{\underbrace{\partial s \partial t}_{= \partial t \partial s}} + \sum_l \frac{\partial^2 q'^k}{\underbrace{\partial s \partial q^l}_{= \partial q^l \partial s}} \dot q^l \right)\bigg|_{s=0} \\ & = \frac{\partial }{\partial t}\left( \frac{\partial q'^k}{\partial s} \bigg|_{s=0} \right) + \sum_k \frac{\partial}{\partial q^l} \left( \frac{\partial q'^k}{\partial s}\bigg|_{s=0} \right)\dot q^l = \frac{\di}{\di t}\left( \frac{\partial q'^k}{\partial s}\bigg|_{s=0} \right)
+    \end{align*}
+    Adesso, ricordandoci che $\Gamma$ soddisfa le equazioni di Eulero-Lagrange 
+    \[ \frac{\di}{\di t}\left[ \frac{\partial \L}{\partial \dot q^k} \right]_{\hat\Gamma(t)} =  \left[ \frac{\partial \L}{\partial q^k} \right]_{\hat\Gamma(t)} \]
+    Possiamo scrivere 
+    \begin{align*}
+        \left[ \frac{\partial \L(t,q',\dot q')}{\partial s}\bigg|_{s=0} \right]_{\hat\Gamma(t)} & = \sum_k \left( \left[ \frac{\partial \L}{\partial q^k} \right]_{\hat\Gamma(t)}\left[ \frac{\partial q'^k}{\partial s}\bigg|_{s=0} \right]_{\hat\Gamma(t)} + \left[ \frac{\partial \L}{\partial \dot q^k} \right]_{\hat\Gamma(t)}\frac{\di}{\di t} \left[ \frac{\partial q'^k}{\partial s}\bigg|_{s=0} \right]_{\hat\Gamma(t)} \right) \\
+        & = \sum_k \left( \frac{\di}{\di t}\left[ \frac{\partial \L}{\partial \dot q^k} \right]_{\hat\Gamma(t)}\left[ \frac{\partial q'^k}{\partial s}\bigg|_{s=0} \right]_{\hat\Gamma(t)} + \left[ \frac{\partial \L}{\partial \dot q^k} \right]_{\hat\Gamma(t)}\frac{\di}{\di t} \left[ \frac{\partial q'^k}{\partial s}\bigg|_{s=0} \right]_{\hat\Gamma(t)} \right) \\ 
+        & = \frac{\di}{\di t}\left[ \sum_k \frac{\partial \L}{\partial\dot q^k} \frac{\partial q'^k}{\partial s}\bigg|_{s=0} \right]_{\hat\Gamma(t)} = \frac{\di}{\di t}[g]_{\hat\Gamma(t)}
+    \end{align*}
+    Portando tutto al lato sinistro ne segue che 
+    \[ \frac{\di}{\di t} [I_{F,g}]_{\hat\Gamma(t)} = \frac{\di}{\di t}\left[ -g + \sum_k \frac{\partial \L}{\partial \dot q^k}\frac{\partial q'^k}{\partial s}\bigg|_{s=0} \right]_{\hat\Gamma(t)} = 0 \]
+    Che implica, dato che $I$ è connesso, che $[I_{F,g}]_{\hat\Gamma(t)}$ sia costante nel tempo.\\
+    Per dimostrare che possiamo incollare gli integrali locali dobbiamo mostrare che, date due carte $(U,\psi)$ e $(\tilde U, \tilde \psi)$, su $\varnothing \neq V\cap \tilde V \subset U\cap \tilde U$ valga 
+    \[ I_{F,g}(t,q,\dot q) = \left[ -g(t,q) + \sum_k \frac{\partial \L(t,q,\dot q)}{\partial \dot q^k}\frac{\partial q'^k}{\partial s}\bigg|_{s=0} \right]_{\hat\Gamma(t)} = \left[ -g(t,\tilde q) + \sum_k \frac{\partial \L(t,\tilde q,\dot{\tilde q})}{\partial \dot{\tilde q}^k}\frac{\partial \tilde q'^k}{\partial s}\bigg|_{s=0} \right]_{\hat\Gamma(t)} = I_{F,g}(t,\tilde q,\dot {\tilde q}) \]
+    Per i termini che coinvolgono $g$ questo è automatico perchè richiediamo che sia definita globalmente; vediamo ora che 
+    \begin{align*}
+        \sum_k \frac{\partial \L(t,q,\dot q)}{\partial \dot q^k}\frac{\partial q'^k}{\partial s}\bigg|_{s=0} & = \sum_{k,l} \frac{\partial \L(t,q,\dot q)}{\partial \dot{\tilde q}^l} \frac{\partial \dot{\tilde q}^l}{\partial \dot q^k} \frac{\partial q'^k}{\partial s}\bigg|_{s=0} \\ & = \sum_{k,l} \frac{\partial \L(t,q,\dot q)}{\partial \dot{\tilde q}^l} \frac{\partial \tilde q^l}{\partial q^k} \frac{\partial q'^k}{\partial s}\bigg|_{s=0} = \sum_l \frac{\partial \L}{\partial \dot{\tilde q }^l }\frac{ \partial \tilde q'^l}{\partial s}\bigg|_{s=0}
+    \end{align*}
+    Dove l'ultimo passaggio si legge più in dettaglio come 
+    \[ \frac{\partial \tilde q'^l}{\partial s}\bigg|_{s=0} = \frac{\partial \tilde q^l(t, q'(s,t,q))}{\partial s}\bigg|_{s=0} = \sum_k \left( \frac{\partial \tilde q^l}{\partial q'^k}\frac{\partial q'^k}{\partial s}\bigg|_{s=0} \right) = \sum_k \frac{\partial \tilde q^l}{\partial q^k} \left( \frac{\partial q'^k}{\partial s}\bigg|_{s=0} \right)\]
+    \qed
+\end{theorem}
+
+\newpage
+\renewcommand\H{\mc H}
+\section{Il teorema di Jacobi}
+
+In questa parte introduciamo il teorema di Jacobi, che è complementare al teorema di Noether perchè si occupa dell'invarianza rispetto alle traslazioni temporali invece che alle variazioni lungo una coordinata spaziale.
+
+\begin{theorem}{Teorema di Jacobi}{teorema di Jacobi}
+    Si consideri un sistema fisico $T:\V^{n+1}\to E^1$ descritto da una lagrangiana $\L : A(\V^{n+1})\to\R$.\\
+    Data una carta locale adattata $(U,\psi)$, definiamo la \bemph{funzione hamiltoniana locale} in $(U,\psi)$ del sistema come la funzione liscia $\H : \psi(U)\times\R^n\to \R$ data da 
+    \[ \H(t,q,\dot q) = \sum_k \dot q^k\frac{\partial \L(t,q,\dot q)}{\partial \dot q^k} - \L(t,q,\dot q) \]
+    Allora lungo ogni linea di universo $\Gamma:I\to\V^{n+1}$ che risolve le equazioni di Eulero-Lagrange vale l'identità 
+    \[ \frac{\di}{\di t} [\H]_{\hat\Gamma(t)} = -\left[ \frac{\partial \L}{\partial t} \right]_{\hat\Gamma(t)} \]
+    \proof 
+    La dimostrazione procede per calcolo diretto 
+    \begin{align*}
+        \frac{\di}{\di t}[\H]_{\hat\Gamma(t)} & = \frac{\di}{\di t}\left[ \sum_k \dot q^k \frac{\partial \L}{\partial \dot q^k} - \L \right]_{\hat\Gamma(t)} \\
+        & = \frac{\di}{\di t}\left( \frac{\di q^k}{\di t}\left[ \frac{\partial \L}{\partial \dot q^k} \right]_{\hat\Gamma(t)} - [\L]_{\hat\Gamma(t)}  \right) \\ 
+        & = \sum_k \left( \frac{\di^2 q^k}{\di t^2}\left[ \frac{\partial \L}{\partial \dot q^k} \right]_{\hat\Gamma(t)} + \frac{\di q^k}{\di t} \underbrace{\frac{\di}{\di t}\left[ \frac{\partial \L}{\partial \dot q^k} \right]_{\hat\Gamma(t)}}_{\text{Eulero-Lagrange}} \right) - \frac{\di}{\di t}[\L]_{\hat\Gamma(t)} \\ 
+        & = \sum_k\left( \underbrace{\frac{\di^2 q^k}{\di t^2}\left[ \frac{\partial \L}{\partial \dot q^k} \right]_{\hat\Gamma(t)}}_{=:\heartsuit_k } + \underbrace{\frac{\di q^k}{\di t} \left[ \frac{\partial \L}{\partial q^k} \right]_{\hat\Gamma(t)}}_{=:\diamondsuit_k} \right) - \underbrace{\frac{\di}{\di t}[\L]_{\hat\Gamma(t)}}_{=:\clubsuit}
+    \end{align*}
+    Studiando $\clubsuit$ tramite la regola della catena otteniamo 
+    \[ \clubsuit = \frac{\di}{\di t}\L\left(t,q(t)\dot q(t)\right) = \frac{\partial \L}{\partial t} + \sum_k\left( \underbrace{\frac{\di^2 q^k}{\di t^2}\left[ \frac{\partial \L}{\partial \dot q^k} \right]_{\hat\Gamma(t)}}_{=\heartsuit_k } + \underbrace{\frac{\di q^k}{\di t} \left[ \frac{\partial \L}{\partial q^k} \right]_{\hat\Gamma(t)}}_{=\diamondsuit_k} \right) \]
+    Vediamo dunque che i termini si cancellano
+    \[ \frac{\di  }{\di t}[\H]_{\hat\Gamma(t)} = \sum_k (\heartsuit_k + \diamondsuit_k) -\left[ \frac{\partial \L}{\partial t} \right]_{\hat\Gamma(t)} -\sum_k(\heartsuit_k + \diamondsuit_k) = -\left[ \frac{\partial \L}{\partial t} \right]_{\hat\Gamma(t)} \]
+    \qed
+\end{theorem}
+
+\begin{corollary}{}{}
+    Nella situazione del teorema precedente, se la lagrangiana è costante nel tempo in coordinate locali naturali, allora l'hamiltoniana è un integrale primo del moto
+\end{corollary}
+
+È chiaro che questo corollario dunque si riferisce a una simmetria del sistema, come il teorema di Noether di Noether, dato che possiamo interpretare la costanza nel tempo come un'invarianza del sistema rispetto a traslazioni temporali $(t,q,\dot q)\mapsto (t+\tau, q, \dot q)$.\\
+È importante sottolineare che l'hamiltoniana è una funzione \textit{locale}, che \textit{non} può essere estesa a una funzione globale, così come il suo integrale primo: infatti ricordando che una trasformazione di coordinate $(t,q,\dot q)\mapsto (t', q', \dot q')$ è data da 
+\[ (t', q', \dot q') = \left( t', q'(t,q), \frac{\partial q'(t,q)}{\partial t} + \sum_k \frac{\partial q'^k(t,q)}{\partial q^k}\dot q'^k \right) \]
+L'hamiltoniana si trasforma 
+\begin{align*}
+    \H(t,q,\dot q) & = \sum_k \dot q^k\frac{\partial \L(t,q,\dot q)}{\partial \dot q^k} - \L(t,q,\dot q) \\
+    & = \sum_k \dot q^k\frac{\partial \L(t',q',\dot q')}{\partial \dot q^k} - \L(t',q',\dot q')\\
+    & = \sum_l \underbrace{\sum_k \dot q^k\frac{\partial \dot q'^l}{\partial \dot q^k} }_{= \dot q'^l - \frac{\partial q'^l}{\partial t}}\frac{\partial \L(t',q',\dot q')}{\partial \dot q'^k} - \L(t',q',\dot q') \\
+    & = \H(t',q',\dot q') - \sum_l \frac{\partial q'^l}{\partial t}\frac{\partial \L(t',q',\dot q')}{\partial q'^l} \neq \H(t',q',\dot q')
+\end{align*}
+Dunque vediamo che, analogamente alle coordinate cicliche, l'integrale primo di Jacobi dipende dalla scelta di una carta.\\
+Consideriamo un caso particolare, in cui la Lagrangiana ha forma standard $\L(t,q,\dot q) = \T_R(q,\dot q)-\U(q)$ ed è indipendente dal tempo $t$, con energia cinetica di forma 
+\[ \T_R = \sum_{k,l} A_{k,l}(q)\dot q^k\dot q^l  \]
+Allora l'hamiltoniana locale è data dall'energia totale del sistema:
+\begin{align*}
+    \H(q,\dot q) = \sum_k \dot q^k \frac{\partial \L(q,\dot q)}{\partial \dot q^k} - \L(q,\dot q)\\
+    & = sum_{k,l} 2 A_{k,l}(q)\dot q^k \dot q^l - \sum_{k,l} A_{k,l}(q)\dot q^k\dot q^l + \U(q) = \T_R(q,\dot q) + \U(q)
+\end{align*}
+In questa situazione, il teorema di Jacobi implica che localmente l'energia totale si conserva durante l'evoluzione dinamica del sistema.
+
+\chapter{Meccanica Hamiltoniana}
 
 \nocite{*}
 \printbibliography
