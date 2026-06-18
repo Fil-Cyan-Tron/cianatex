@@ -847,7 +847,7 @@ Dimostriamo alcuni utili risultati su $T_q\Q_t$:
     \proof 
     Senza esplicitare tutti i calcoli, date due carte locali $(U,\psi)$ e $(U',\psi')$ si nota che la funzione di trasferimento $\psi'\circ\psi^{-1}$; calcolando con la regola della catena le derivate di $\psi^{-1} = \psi'^{-1}\circ \psi'\circ \psi^{-1}$ otteniamo 
     \[ \frac{\partial \psi^{-1}(q^1,..., q^n)}{\partial q^i}\bigg|_{\psi(q)} = \sum_j \frac{\partial \psi'^{-1}(q'^1,..., q'^n)}{\partial q'^j}\bigg|_{\psi(q)}\frac{\partial q'^j}{\partial q^i}\bigg|_{\psi(q)} \]
-    Poichè la jacobiana di ogni diffeomeorfismo è invertibile, ne segue che gli spazi tangenti coincidono.\\
+    Poichè la jacobiana di ogni diffeomorfismo è invertibile, ne segue che gli spazi tangenti coincidono.\\
     Per dimostrare che la dimensione è la stessa di $\Q_t$, usiamo una carta del tipo del terzo punto di \cref{prop:utile sulle varietà}: in questo caso è evidente che i generatori di $T_q\Q_t$ sono indipendenti, dato che usando coordinate locali su $\Sigma_t^N$ si ottiene $\psi^{-1}(q^1,...,q^n) = (q^1,...,q^n,0,...,0)$ e derivando rispetto a $q^i$ si osserva l'indipendenza lineare.
     \qed 
 \end{proposition}
@@ -1227,6 +1227,81 @@ Allora l'hamiltoniana locale è data dall'energia totale del sistema:
 In questa situazione, il teorema di Jacobi implica che localmente l'energia totale si conserva durante l'evoluzione dinamica del sistema.
 
 \chapter{Meccanica Hamiltoniana}
+
+In questa parte studieremo una formulazione alternativa della meccanica classica, ovvero la meccanica hamiltoniana.\\
+Sebbene sia equivalente alla formulazione lagrangiana, presenta alcune caratteristiche interessanti:\begin{itemize}
+    \item Le equazioni di hamilton assumono una forma più simmetrica rispetto a quella delle equazioni di Eulero-Lagrange e possono essere scritte in un'utile forma algebrica attraverso la cosiddetta parentesi di Poisson che vedremo più avanti.
+    \item Per chi sarà interessato a proseguire con un percorso legato alla fisica matematica, la meccanica hamiltoniana è il punto di partenza per le formulazioni della meccanica statistica e la meccanica quantistica, che tuttavia sono al di fuori di questo corso.
+\end{itemize}
+
+\newcommand\Leg{\mathbb L}
+\section{Spaziotempo delle fasi e trasformata di Legendre}
+
+Mentre la meccanica lagrangiana è stata formulata sullo spaziotempo degli atti di moto $T:A(\V^{n+1})\to E^1$ con coordinate locali naturali $(t,q,\dot q)$, nella meccanica hamiltoniana si sostituiscono le coordinate puntate $\dot q = (\dot q^1,..., \dot q^n)$ coi cosiddetti momenti coniugati $p = (p_1,...,p_k)$.\\
+Se si viene dalla meccanica lagrangiana, questi sono definiti in termini della lagrangiana $\L:A(\V^{n+1})\to\R$ tramite la formula 
+\[ p_k = \frac{\partial \L(t,q,\dot q)}{\partial \dot q^k} \]
+Ma è importante sottolineare che nella meccanica hamiltoniana questi non sono definiti in termini delle coordinate puntate, ma sono vere coordinate indipendenti che le sostituiscono.\\
+Ricordandoci la legge di trasformazione per le coordinate puntate $(t,q,\dot q)\mapsto(t', q', \dot q')$, ovvero 
+\[ t' = t',\quad q'^k = q'^k(t,q),\quad \dot q'^k = \dot q'^k(t,q,\dot q) = \frac{\partial q'^k(t,q)}{\partial t} + \sum_l \frac{\partial q'^k(t,q) }{\partial q^l}\dot q^l  \]
+Segue che i momenti coniugati devono trasformarsi nel seguente modo:
+\[p'_k = \frac{\partial \L(t,q,\dot q)}{\partial \dot q^k} = \sum_l \frac{\partial \dot q^l}{\partial \dot q'^l} \frac{\partial \L(t,q,\dot q)}{\partial \dot q^l} = \sum_l \frac{\partial \dot q^l}{\partial \dot q'^l} p_l \]
+
+\begin{definition}{Spaziotempo delle fasi}{spaziotempo delle fasi}
+    Sia $T:\V^{n+1}\to E^1$ uno spaziotempo delle configurazioni per un sistema fisico con vincoli olonomi e sia $\A = \{ (U_i,\psi_i) \}_i$ l'atlante dato dalle carte locali adattate alla sommersione suriettiva $T$.\\
+    Il corrispettivo \bemph{spaziotempo delle fasi} $T:F(\V^{n+1})\to E^1$ si definisce applicando la costruzione di fibrato jet alle carte di coordinate locali $\psi_i(U_i)\times\R^n$ e le mappe di trasferimento $\psi_j(U_i\cap U_j)\times \R^n \iso \psi_i(U_i\cap U_j)\times \R^n$ che cambiano le coordinate $(t,q,p)\mapsto (t',q',p')$ date da 
+    \[ t'=t,\quad q'^k=q'^k(t,q),\quad p'_k = \sum_l \frac{\partial q^l(t,q)}{\partial q'^k}p_l  \]
+    Con la sommersione suriettiva $(t,q,p)\mapsto t$
+\end{definition}
+
+Notiamo che richiedendo che i momenti coniugati rispondano alla stessa legge di trasformazione derivata dal formalismo lagrangiano, otteniamo un'identità che coinvolge l'inversa della matrice jacobiana del cambiamento di coordinate $q'=q'(t,q)$, definita dalle derivate di $q^l$ rispetto a $q'^k$.\\
+Questo implica che i momenti coniugati $p_k$ si comportino \textit{dualmente} rispetto alle velocità $\dot q^k$, cosa che nel linguaggio della geometria differenziale viene espressa dicendo che i $p_k$ sono \bemph{vettori cotangenti} alle coordinate $q^k$\\
+La formula che determina i momenti coniugati a partire dalla lagrangiana definisce un'importante trasformazione globale che ci permette di passare dalla meccanica lagrangiana a quella hamiltoniana.
+
+\begin{proposition}{Trasformata di Legendre}{trasformata di legendre}
+    Si consideri uno spaziotempo delle configurazioni $T:\V^{n+1}\to E^1$ per un sistema fisico descritto dalla lagrangiana $\L:A(\V^{n+1})\to\R$.\\
+    A questi dati è associata una mappa liscia $\Leg_\L : A(\V^{n+1})\to F(\V^{n+1})$ detta \bemph{trasformazione di legendre} definita in coordinate locali come 
+    \[ \Leg_\L(t,q,\dot q) = \left( t, q, \frac{\partial \L(t,q\dot q)}{\partial \dot q^1},...,  \frac{\partial \L(t,q\dot q)}{\partial \dot q^n}\right) \]
+    Nel caso in cui la lagrangiana è della forma
+    \[ \L(t,q,\dot q) = \sum_{k,l}A_{k,l}(t,q)\dot q^k \dot q^l + \sum_k \tilde B_k(t,q) \dot q^k + \tilde C(t,q) \]
+    Con $A_{k,l}$, $\tilde B_k$ e $\tilde C$ funzioni lisce e la matrice $A = (A_{k,l})_{k,l}$ invertibile, la trasformazione di legendre è anche un diffeomorfismo.
+    \proof 
+    Abbiamo già visto che in coordinate locali i momenti coniugati si trasformano come le derivate parziali sotto i cambiamenti di coordinate, dunque le espressioni locali si assemblano in una trasformazione liscia globale.\\
+    Sotto le ipotesi date, si ha l'espressione per i $p_k$ data da:
+    \[ p^k = \sum_l 2A_{k,l}(t,q)\dot q^l + \tilde B_k(t,q) \]
+    Che può essere invertita come 
+    \[ \dot q^k(t,q,p) = \sum_{l}\frac{1}{2}(A^{-1})^{k,l}(t,q)(p_l - \tilde B_l(t,q)) \]
+    Definendo localmente un'inversa liscia della trasformazione di legendre.
+\end{proposition}
+
+Notiamo che la richiesta sulla forma della lagrangiana è esattamente quella che avevamo imposto per dimostrare la buona positura delle equazioni di Eulero-Lagrange. Tale condizione in particolare è soddisfatta dalle lagrangiane di forma standard $\L(t,q,\dot q) = \T_R(t,q,\dot q) - \U(t,q)$, dove $\T_R$ è l'energia cinetica e $\U$ un potenziale.\\
+Più in generale, si dice che una lagrangiana è \bemph{non degenere} se, in ogni scelta di coordinate locali naturali, la famiglia di equazioni 
+\[ p_k(t,q,\dot q) = \frac{\partial\L(t,q,\dot q)}{\partial\dot q^k} \]
+Può essere invertita ottentendo espressioni $\dot q^k(t,q,p)$ lisce.\\
+Ovviamente la trasformata di Legendre è un diffeomorfismo in questo caso più generale di lagrangiane non degeneri.
+
+\newpage
+\section{Equazioni di Hamilton}
+
+In questa parte formuleremo e studieremo le equazioni di hamilton, che dimostreremo essere equivalenti a quelle di Eulero-Lagrange sotto l'ipotesi di non degenerazione della lagrangiana.\\
+Mentre nella meccanica lagrangiana la dinamica è codificata dalla scelta di una funzione globale $\L:A(\V^{n+1})\to\R$, nella meccanica hamiltoniana viene codificata in modo simile dalla scelta di hamiltoniana $\H$.\\
+Il tipo di oggetto che descrive un'hamiltoniana globale su $F(\V^{n+1})$ però è più sofisticato, in quanto un'hamiltoniana non è una funzione liscia globale su $F(\V^{n+1})$ a differenza della lagrangiana. Per comprenderne meglio la costruzione è bene trasformare il dato globale della lagrangiana $\L$ in una collezione di dati locali.\\
+Una lagrangiana è una mappa globale $\L:A(\V^{n+1})\to\R$, la cui restrizione alle carte adattate $\psi(U)\times\R^n$ definisce una famiglia di mappe lisce locali $\{ \L_U:\psi(U)\times\R^n\to\R \}_{(U,\psi)}$ parametrizzata dalle carte locali adattate a $T:\V^{n+1}\to E^1$.\\
+Per costruzione, queste mappe locali devono andare d'accordo sulle intersezioni, ovvero per carte $(U,\psi)$ e $(U,\psi')$ si abbia $\L_{U'}(t',q',\dot q') = \L_U(t,q,\dot q)$ dove $(t,q,\dot q)\mapsto (t',q',\dot q')$ è il cambiamento di coordinate.\\
+Viceversa, qualsiasi famiglia di mappe lisce locali $\{\L_U\}_{(U,\psi)}$ che soddisfi queste condizioni definisce globalmente per incollamento una mappa liscia $\L : A(\V^{n+1})\to\R$.
+
+\begin{definition}{Hamiltoniana}{hamiltoniana}
+    Un'Hamiltoniana $\H$ sullo spaziotempo delle fasi $F(\V^{n+1})$ è data da una famiglia di mappe $\{\H_U: \psi(U)\times\R^n\to\R\}_{(U,\psi)}$ tale che per ogni coppia di carte locali $(U,\psi)$ e $(U',\psi')$ con cambiamento di coordinate $(t,q,p)\mapsto (t',q',p')$ si abbia 
+    \[ \H_{U'}(t',q',p')  = \H_U(t,q,p) +\sum_k \frac{\partial q'^k}{\partial t}p'_k \]
+\end{definition}
+
+\begin{proposition}{Costruzione di un'hamiltoniana da una lagrangiana}{lagrangiana to hamiltoniana}
+    Sia $T:\V^{n+1}\to E^1$ lo spaziotempo delle configurazioni per un sistema con vincoli olonomi e sia $\L:A(\V^{n+1})\to\R$ una lagrangiana le cui restrizioni a ciascuna carta locale adattata siano tutte non degeneri, ovvero tali che le equazioni $p_k(t,q,\dot q)$ siano localmente invertibili in espressioni $\dot q^k(t,q,p)$.\\
+    Allora la famiglia di mappe 
+    \[ \left\{\H_U(t,q,p) := \sum_k \dot q^k(t,q,p)p_k - \L_U(t,q,\dot q(t,q,p)) \right\}_{(U,\psi)} \]
+    Definisce un'hamiltoniana su $F(\V^{n+1})$.
+    \proof 
+    
+\end{proposition}
 
 \nocite{*}
 \printbibliography
