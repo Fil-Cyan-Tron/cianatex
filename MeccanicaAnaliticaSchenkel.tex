@@ -164,9 +164,7 @@ Assumiamo che il lettore abbia familiarità con alcuni concetti di topologia gen
 	    \arrow["{\phi'\circ f\circ \phi^{-1}}"{description}, from=3-1, to=3-5]
     \end{tikzcd}\]
 \end{definition}
-
-In immagini, la situazione descritta sopra appare così
-%TODO:IMMAGINE VARIETÀ
+%Qui sarebbe bello aggiungere l'immagine di una varietà ma non ho voglia di farla in TIKZ
 Una carta locale $(U,\phi)$ definisce su $M$ delle \bemph{coordinate locali} date dall'immagine di un punto in $U$ attraverso $\phi$
 \[ \phi(P) = \begin{pmatrix} \phi^1(P)\\ \vdots \\ \phi^n(P) \end{pmatrix} \]
 Queste ci permettono di definire un concetto di differenziazione locale su $M$\footnote{limitato dalla classe di differenziabilità di $M$ ovviamente}, invariante per transizione a qualsiasi altra carta compatibile.\\
@@ -325,7 +323,7 @@ che manda il punto $(t,P)$ nel suo tempo $t$, che fisicamente interpretiamo come
 Seguendo \cite{Moretti2024}, formuleremo il nostro concetto di spaziotempo in modo indipendente da coordinate usando il linguaggio delle varietà, per il quale avremo bisogno di alcuni strumenti di geometria differenziale.
 
 \begin{definition}{Sommersione}{sommersione}
-    Un morfismo di varietà lisce $f:\M\to\M'$ di dimensioni $n, n' \in \N$ si dice \bemph{sommersione in $p \in \M$}\footnote{Nella terminologia di \cite{Moretti2024}, non singolare} se per ogni\footnote{E dunque per una qualunque} scelta di carte locali $(U,\phi)$ e $(U',\phi')$ con $f(U)\subset U'$ e $p\in U$, la matrice jacobiana
+    Un morfismo di varietà lisce $f:\M\to\M'$ di dimensioni $n, n' \in \N$ si dice \bemph{sommersione in $p \in \M$}\footnote{Nella terminologia di \cite{Moretti2024}, non singolare} se per ogni\footnote{E dunque per una qualunque} scelta di carte locali $(U,\phi)$ e $(U',\phi')$ con $f(U)\subset U'$ e $p\in U$, la matrice Jacobiana
     \[ \left[ \frac{\partial (\phi\circ f\circ \phi^{-1})^j  }{\partial x^i} \bigg|_{\phi(p)} \right]_{1\le i\le n, 1\le j\le n'} : \R^n \to \R^{n'}\]
     della mappa liscia $\phi\circ f\circ\phi^{-1}$ ha rango massimo.\\
     Un morfismo si dice \bemph{sommersione} se lo è per ogni punto $p\in\M$.
@@ -441,7 +439,7 @@ E notiamo che il secondo è notevolmente più semplice da determinare del primo
 Nel caso in cui lo spaziotempo dovesse essere dotato di un'orientazione, la proposizione di cui sopra varrebbe ugualmente limitandosi ai sottogruppi $\{1\}$ e $\SO(3)$ rispettivamente di $\{\pm 1\}$ e $\O(3)$.\\
 In particolare, se lo spaziotempo dovesse presentare una struttura di spazio euclideo, un automorfismo preserverebbe questa struttura se e solo se fosse della forma
 \[ (t,\bar{x})\mapsto (c+at, \bar{b} + \bar{v}t + R\bar{x}) \]
-con $c,a,\bar{b},\bar{v}$ e $R$ costanti\footnote{adeguatamente ristrette nel caso orientato}; questo caso descrive il gruppo delle \bemph{trasformazioni galileiane} e più avanti vedremo come le leggi di Newton inducano una struttra affine.
+con $c,a,\bar{b},\bar{v}$ e $R$ costanti\footnote{adeguatamente ristrette nel caso orientato}; questo caso descrive il gruppo delle \bemph{trasformazioni Galileiane} e più avanti vedremo come le leggi di Newton inducano una struttra affine.
 
 \chapter{Meccanica Newtoniana}
 
@@ -547,7 +545,7 @@ Il primo principio allora richiede che l'accelerazione di ciascun punto sia null
 \end{tikzcd}\]
 Ha forma generale $f(t) = c+at$ e $F(t,\bar x) = (c+at, \bar b(t) + A(t) \bar x)$ con $c \in \R$, $a \in \{\pm1\}$, $\bar b \in \C^{\infty}(\R^1, \R^3)$ e $A \in \C^{\infty}(\R^1, \O(3))$, il seguente risultato è di importanza fondamentale:
 
-\begin{theorem}{Principio di inerzia e trasformazioni di Galileo}{inerzia e galileo}
+\begin{theorem}{Principio di inerzia e trasformazioni di Galileo}{inerzia e Galileo}
     Assumiamo che per ogni riferimento $R$ e ogni evento $p\in\V^4$ esista un punto materiale la cui linea di universo attraversi $p$ con velocità (rispetto a $R$) fissabile a piacimento e che il punto sia isolato in qualche intervallo aperto $I \subset E^1$ con $T(p)\in I$\\
     Se $R$ è inerziale, dato un altro riferimento $R'$ questo è inerziale se e solo se l'automorfismo $(F,f)$ che descrive il cambiamento di sistema di riferimento in coordinate standard adattate assume la forma di una trasformazione di Galileo, ovvero $f(t) = c+at$ e $F(t,\bar x) = (c+at, \bar b + \bar v t A \bar x)$ con $c \in \R$, $a \in \{\pm1\}$, $\bar b,\bar v \in \R^3$ e $A \in \O(3)$ costanti.
     \proof 
@@ -566,7 +564,7 @@ Ha forma generale $f(t) = c+at$ e $F(t,\bar x) = (c+at, \bar b(t) + A(t) \bar x)
         \[ \bar q = \bar c = 0 \Rarr \frac{\di^2 \bar b(t)}{\di t^2} = 0\Rarr \bar b(t) = \bar b + \bar v t\]
         \[ \bar q \in \R^3, \bar c = 0 \Rarr \frac{\di^2 A(t)}{\di t^2} = 0 \Rarr A(t) = A + K t \]
         \[\bar q = 0, \bar c \in \R^3  \Rarr \frac{\di A(t)}{\di t} = 0 \Rarr A(t) = A \]
-        Quindi il cambiamento tra sistemi di riferimento è una trasformazione galileiana.
+        Quindi il cambiamento tra sistemi di riferimento è una trasformazione Galileiana.
     \end{itemize}
     \qed
 \end{theorem}
@@ -575,7 +573,7 @@ Una conseguenza importante del primo principio è che questo permette di dare al
 
 \begin{theorem}{Struttura affine su $T:\V^4\to\R^1$}{spaziotempo affine}
     Esiste una struttura affine $+:\V^4\times V^4 \to \V^4$ sullo spaziotempo $T:\V^4\to E^1$ tale che per ogni riferimento inerziale $(R,\id_{E^1})$ la mappa $R:\V^4\to E^1\times E^4$ sia affine.\\
-    Questa struttura è unica a meno di\footnote{non unici} isomorfismi affini che agiscono su $\V^4$ come l'identità ed è detta \bemph{struttura galileiana}.
+    Questa struttura è unica a meno di\footnote{non unici} isomorfismi affini che agiscono su $\V^4$ come l'identità ed è detta \bemph{struttura Galileiana}.
     \proof 
     Ricordando che $E^1\times E^3$ ha canonicamente una struttura affine su $V^1\times V^3$ data da $(t,O)+(c,v) = (t+c, O+v)$, per qualsiasi riferimento inerziale $R$ possiamo trasferirla a $\V^4$ tramite il diffeomoerfismo $R$ definendo $ p +_R (c,v) = R^{-1}(R(p) + (c,v))$. Considerando un qualsiasi altro riferimento inerziale $R'$, sappiamo dal teorema precedente che il cambiamento di sistema di riferimento
     \[\begin{tikzcd}
@@ -586,7 +584,7 @@ Una conseguenza importante del primo principio è che questo permette di dare al
 	    \arrow["{R'}"{description}, from=1-2, to=3-3]
 	    \arrow["{R'\circ R^{-1}}"{description}, from=3-1, to=3-3]
     \end{tikzcd}\]
-    deve assumere la forma di una trasformazione galileiana, dunque deve essere affine rispetto alla struttura indotta da $R$ e quindi anche $R'$ deve essere una trasformazione affine.\\
+    deve assumere la forma di una trasformazione Galileiana, dunque deve essere affine rispetto alla struttura indotta da $R$ e quindi anche $R'$ deve essere una trasformazione affine.\\
     Dimostriamo l'unicità: consideriamo un'altra struttura affine $+$ su $\V^4$ che soddisfi le proprietà richieste; in particolare per quanto visto sopra, il seguente diagramma deve commutare
     \[\begin{tikzcd}
     	{\V^4_+} && {\V^4_{+_R}} \\
@@ -601,7 +599,7 @@ Una conseguenza importante del primo principio è che questo permette di dare al
 \end{theorem}
 
 È interessante notare che la mappa $T:\V^4\to E^1$ è affine, in quanto per qualsiasi riferimento inerziale $R$ vale $T = \pi_1 \circ R$.\\
-La verifica che il gruppo degli automorfismi di questa struttura affine è esattamente il gruppo delle trasformazioni galileiane è lasciata come esercizio per il lettore.
+La verifica che il gruppo degli automorfismi di questa struttura affine è esattamente il gruppo delle trasformazioni Galileiane è lasciata come esercizio per il lettore.
 
 \subsection{Secondo principio e le forze}
 
@@ -683,20 +681,20 @@ Il \bemph{problema fondamentale della dinamica} è risolvere questo sistema date
     Inoltre, ciascun dato iniziale determina un intervallo massimale in cui questa soluzione esiste ed è unica.
 \end{theorem}
 
-Facciamo qualche osservazione sull'invarianza della meccanica newtoniana rispetto alle trasformazioni galileiane, che sappiamoe essere gli automorfismi affini di $\V^4$.\\
-Ricordiamo che in un sistema di riferimento inerziale $R$, le trasformazioni di galileo prendono la forma:
+Facciamo qualche osservazione sull'invarianza della meccanica Newtoniana rispetto alle trasformazioni Galileiane, che sappiamoe essere gli automorfismi affini di $\V^4$.\\
+Ricordiamo che in un sistema di riferimento inerziale $R$, le trasformazioni di Galileo prendono la forma:
 \[ (t,\bar x)\mapsto (c+at, \bar b + \bar v t + A\bar x) \]
 Per $c \in \R$, $a \in \{\pm 1\}$, $\bar b, \bar v \in \R^3$ e $A \in \O(3)$, opportunamente ristretti nel caso orientato.
 
-\begin{axiom}{Principio di relatività galileiana}{relatività galileiana}
-    Tutta la meccanica newtoniana, in particolare le equazioni di \cref{ax:sovrapposizione delle forze} sono invarianti per le trasformazioni di Galileo.
+\begin{axiom}{Principio di relatività Galileiana}{relatività Galileiana}
+    Tutta la meccanica Newtoniana, in particolare le equazioni di \cref{ax:sovrapposizione delle forze} sono invarianti per le trasformazioni di Galileo.
 \end{axiom}
 
 Osserviamo che questo principio restringe la forma che possono avere le forze: infatti dato che una trasformazione di Galileo agisce su di una curva $t\mapsto\bar x(t)$ mandandola in $t' = \mapsto \bar x'(t') $, dove sostituende $t' = c + at$ vediamo $\bar x'(t') = \bar b + \bar v t + A\bar x(t)$ e dunque 
 \[ \frac{\di \bar x'(t')}{\di t'} = a\bar v + a A \frac{\di \bar x(t)}{\di t} \qquad\text{e}\qquad \frac{\di^2 \bar x'(t')}{\di t'^2} = A\frac{\di^2 \bar x(t)}{\di t^2}\]
-Per l'invarianza galileiana delle leggi di newton, otteniamo che una forza deve rispettare 
+Per l'invarianza Galileiana delle leggi di Newton, otteniamo che una forza deve rispettare 
 \[ \bar F\left( \bar x'(t'), \bar y'(t'), \frac{\di \bar x'(t')}{\di t'}.\frac{\di \bar y'(t')}{\di t'} \right) = A \bar F \left( \bar x(t), \bar y(t), \frac{\di \bar x(t)}{\di t},\frac{\di \bar y(t)}{\di t} \right)\]
-per ogni trasformazione di galileo. Questo implica che $\bar F$ deve essere della forma $\bar F(\bar x, \bar y, \bar u, \bar w) = \bar f(\bar x-\bar y, \bar u - \bar w)$ con $\bar f : \R^3\times \R^3 \to \R^3$ che rispetta le seguenti proprietà:\begin{itemize}
+per ogni trasformazione di Galileo. Questo implica che $\bar F$ deve essere della forma $\bar F(\bar x, \bar y, \bar u, \bar w) = \bar f(\bar x-\bar y, \bar u - \bar w)$ con $\bar f : \R^3\times \R^3 \to \R^3$ che rispetta le seguenti proprietà:\begin{itemize}
     \item $\bar f(A\bar x , A\bar u) = A\bar f(\bar x, \bar u)$ per ogni $A \in \O(3)$.
     \item $\bar f(\bar x, a\bar u) = \bar f(\bar x, \bar u)$ per $a =\pm 1$
 \end{itemize}
@@ -718,7 +716,7 @@ che comunque soddisfa le ipotesi del teorema di esistenza e unicità delle soluz
 \newcommand\cent{\text{(cent)}}
 \subsubsection{Sistemi non inerziali}
 
-A volte conviene usare un sistema di riferimento non inerziale $R'$, ad esempio un sistema solidale alla superficie della Terra, ma questo modifica un po' la forma delle equazioni di newton. Dalle leggi di trasformazione ottengo le nuove equazioni 
+A volte conviene usare un sistema di riferimento non inerziale $R'$, ad esempio un sistema solidale alla superficie della Terra, ma questo modifica un po' la forma delle equazioni di Newton. Dalle leggi di trasformazione ottengo le nuove equazioni 
 \[ m_{Q_k}a_{Q_k}|_{R'}(t) + m_{Q_k}a_{Qk}^\tv(t) + m_{Q_k}a_{Q_k}^\cor (t) = F_{R',k}\left( t, \gamma_{Q_1}|_{R'}(t),..,\gamma_{Q_N}|_{R'}(t), v_{Q_1}|_{R'}(t),..., v_{Q_n}|_{R'}(t)  \right) \]
 ricordando che $v|_R(t) = v|_{R'}(t)+v^\tv(t)$ e $a|_R(t) = a|_{R'}+a^\tv(t)+a^\cor(t)$: spesso i due termini "aggiuntivi" a sinistra vengono portati a destra e interpretati come le cosiddette forze fittizie, dovute al sistema non inerziale:
 \[ m_{Q_k}a_{Q_k}|_{R'} = \underbrace{F^\cent}_{=: -m_{Q_k}a_{Q_k}^\tv} + \underbrace{F^\cor}_{=: -m_{Q_k}a_{Q_k}^\cor} + F_{R', k} \]
@@ -730,13 +728,13 @@ Nelle applicazioni reali, spesso capita che i punti del sistema $\{Q_1,...,Q_N\}
 Si nota immediatamente che le equazioni di Newton viste sopra non sono adeguate a descrivere questi sistemi vincolati, perchè la dinamica indotta non presenta vincoli geometrici: per affrontare questo problema si introducono le cosiddette \bemph{reazioni vincolari}, delle "forze" $\phi_k$ che modificano le equazioni del moto nella forma
 \[ m_{Q_k} a_{Q_k}|_R(t) = F_{R,k}\left( \gamma_{Q_1}|_{R}(t),..,\gamma_{Q_N}|_{R}(t), v_{Q_1}|_{R}(t),..., v_{Q_n}|_{R}(t)  \right) + \phi_k \]
 Ma queste reazioni vincolari non sono note a priori, appaiono come incognite nel sistema e questo in generale ci porta fuori dalle ipotesi sotto cui ci è garantito il determinismo dagli strumenti sviluppati fino a questo punto.\\ 
-Per trattare questi sistemi introdurremo il formalismo della meccanica lagrangiana, che svilupperemo nella prossima parte del corso.
+Per trattare questi sistemi introdurremo il formalismo della meccanica Lagrangiana, che svilupperemo nella prossima parte del corso.
 
 \chapter{Meccanica Lagrangiana}
 
-Il formalismo della meccanica Lagrangiana è una formulazione più elegante e soprattutto estremamente più potente della meccanica classica rispetto alla meccanica newtoniana.\\
+Il formalismo della meccanica Lagrangiana è una formulazione più elegante e soprattutto estremamente più potente della meccanica classica rispetto alla meccanica Newtoniana.\\
 Alcuni dei principali vantaggi sono:\begin{itemize}
-    \item Questa formulazione si applica anche a certe classi di sistemi vincolati, dove i vincoli sono detti \bemph{ideali}, estendendo consistentemente la meccanica newtoniana.
+    \item Questa formulazione si applica anche a certe classi di sistemi vincolati, dove i vincoli sono detti \bemph{ideali}, estendendo consistentemente la meccanica Newtoniana.
     \item Il legame tra le simmetrie di un sistema e le sue quantità conservate datoci dal teorema di Noether, che vedremo più avanti, viene espresso in modo estremamente elegante e naturale.
 \end{itemize}
 
@@ -784,7 +782,7 @@ E lo stesso vale evidentemente per qualsiasi scelta di coordinate standard che c
     Un sistema di $0\le C\le N$ \bemph{vincoli olonomi} per un sistema di di $N\ge 1$ punti materiali è dato da una famiglia di $C$ funzioni liscie $f_j : \V^{3N+1}\to\R$ che soddisfano le seguenti proprietà:\begin{itemize}
         \item Per ogni $t \in E^1$ vale 
         \[ \Sigma_t^N \cap \bigcap_j f_j^{-1}(\{0\}) \neq \varnothing\]
-        \item Per ogni $t \in E^1$ e qualsiasi scelta di coordinate standard adattate $(t,\bar{\bar x}) := (t,x^1,...,x^{3N})$, la matrice jacobiana 
+        \item Per ogni $t \in E^1$ e qualsiasi scelta di coordinate standard adattate $(t,\bar{\bar x}) := (t,x^1,...,x^{3N})$, la matrice Jacobiana 
         \[ \left[ \frac{\partial f_j}{\partial x^i} \bigg|_{(t,\bar{\bar x})} \right]_{1\le i\le 3N,1\le j\le C} : \R^{3N}\to \R^C \]
         Ha rango massimo per ogni $(t,\bar{\bar x})$ tale che $f_j((t,\bar{\bar x})) = 0$ per ogni $j\le C$
     \end{itemize}
@@ -806,9 +804,9 @@ Ok, che diavolo abbiamo appena letto? Le proprietà che abbiamo richiesto sui vi
         \end{itemize}
     \end{enumerate}
     \proof 
-    La seconda proprietà segue direttamente dalle richieste sui vincoli olonomi e dal teorema dei valori regolari; per verificare la prima proprietà dobbiamo estendere la matrice jacobiana con una derivata temporale, che faremo identificando $x^0:= t$:
+    La seconda proprietà segue direttamente dalle richieste sui vincoli olonomi e dal teorema dei valori regolari; per verificare la prima proprietà dobbiamo estendere la matrice Jacobiana con una derivata temporale, che faremo identificando $x^0:= t$:
     \[\left[ \frac{\partial f_j}{\partial x^i} \bigg|_{(t,\bar{\bar x})} \right]_{0\le i\le 3N,1\le j\le C} : \R^{3N+1}\to \R^C\]
-    questa matrice ha ovviamente rango massimo, perchè restringendoci a vettori della forma $(0,\bar{\bar{x}})$ otteniamo la matrice jacobiana non estesa, che ha rango massimo per definizione.\\
+    questa matrice ha ovviamente rango massimo, perchè restringendoci a vettori della forma $(0,\bar{\bar{x}})$ otteniamo la matrice Jacobiana non estesa, che ha rango massimo per definizione.\\
     Rimane solo la terza, che segue dal teorema dei valori regolari.
 \end{proposition}
 
@@ -818,17 +816,17 @@ Vediamo un esempio
     Consideriamo un sistema di un ($N=1$) punto materiale e un ($C=1$) vincolo: scegliendo un qualsiasi sistema di riferimento $R$, abbiamo $\V^{3+1}\cong E^1\times E^3$ possiamo considerare la mappa liscia $f:E^1\times E^3\to\R$ definita da $(t, q)\mapsto \| q- O(t) \|^2 - r_0^2(t)$, dove $O:E^1\to E^3$ e $r_0:E^1\to\R_{>0}$ sono mappe liscie.\\
     Per ogni $t$ fissato, i punti di $f(t,q)=0$ definiscono una sfera $\S^2_t$ di centro $O(t)$ e raggio $r_0(t)$. Passando in coordinate abbiamo:
     \[ f(t,\bar x) = (x^1 - O^1(t))^2 + (x^2 -O^2(t))^2 + (x^3 -O^3(t))^2 - r_0^2(t) \]
-    Chiaramente il primo punto della definizione di vincolo olonomo è soddisfatto dal fatto che la controimmagine di $0$ è come abbiamo detto una sfera; per la seconda proprietà dobbiamo calcolare la matrice jacobiana:
+    Chiaramente il primo punto della definizione di vincolo olonomo è soddisfatto dal fatto che la controimmagine di $0$ è come abbiamo detto una sfera; per la seconda proprietà dobbiamo calcolare la matrice Jacobiana:
     \[ \left[ \frac{\partial f}{\partial x^1}, \frac{\partial f}{\partial x^2}, \frac{\partial f}{\partial x^3} \right] = \left[ 2(x^1 -O^1(t)), 2(x^2 -O^2(t)), 2(x^3 -O^3(t)) \right] \]
     Che ha rango massimo fintanto che almeno una delle sue componenti non è nulla, cosa che si verifica sempre negli zeri di $f$, dunque questo è un vincolo olonomo.
 \end{example}
 
-\begin{example}{}{}
-    Consideriamo ora $N=2$ punti materiali, dunque con un riferimento $R$ ci poniamo in $\V^{6+1}\iso E^1\times E^3\times E^3$ e le mappe liscie $f_{1,2}:E^1\times E^3\times E^3$ definite da 
-    \[ f_1(t,q_1,q_2) = \| q_1-O(t) \|^2 - r_0^2(t)\]
-    \[ f_2(t,q_1,q_2) = \|q_1-q_2\|^2 - D_0^2(t) \]
-    TBD
-\end{example} 
+% \begin{example}{}{}
+%     Consideriamo ora $N=2$ punti materiali, dunque con un riferimento $R$ ci poniamo in $\V^{6+1}\iso E^1\times E^3\times E^3$ e le mappe liscie $f_{1,2}:E^1\times E^3\times E^3$ definite da 
+%     \[ f_1(t,q_1,q_2) = \| q_1-O(t) \|^2 - r_0^2(t)\]
+%     \[ f_2(t,q_1,q_2) = \|q_1-q_2\|^2 - D_0^2(t) \]
+%     TBD
+% \end{example} 
 
 In preprarazione alla discussione sui vincoli ideali, definiamo un importante concetto di geometria differenziale:
 
@@ -836,7 +834,7 @@ In preprarazione alla discussione sui vincoli ideali, definiamo un importante co
     Consideriamo, per $t\in\Q^1$, la sottovarietà embedded $\Q_t = \V^{n+1}\cap\Sigma^N_t \subset \Sigma^N_t$.\\
     Scegliendo coordinate locali su $\Q_t$, ovvero una carta locale $(U,\psi)$ tale che $U\subset\Q_t$ e $\psi:U\to\R^n$ otteniamo una parametrizzazione locale $\psi^{-1}:\psi(U)\to\Sigma^N_t$ di $\Q_t$ data da $\psi^{-1}(q^1,...,q^n)$.\\
     Definiamo lo \bemph{spazio tangente} di $\Q_t$ in $q \in U$ come il sottospazio vettoriale 
-    \[ T_q\Q_t := \left\langle \frac{\partial \psi^{-1}(q^1,...,q^n)}{\partial q^1}\bigg|_{\psi(q)},...,\frac{\partial \psi^{-1}(q^1,...,q^n)}{\partial q^n}\bigg|_{\psi(q)}  \right\rangle \]
+    \[ T_q\Q_t := \operatorname{span}_{\R}\left( \frac{\partial \psi^{-1}(q^1,...,q^n)}{\partial q^1}\bigg|_{\psi(q)},...,\frac{\partial \psi^{-1}(q^1,...,q^n)}{\partial q^n}\bigg|_{\psi(q)}  \right) \]
     di $V_t^N$, spazio sottostante a $\Sigma_t^N$.
 \end{definition}
 
@@ -847,7 +845,7 @@ Dimostriamo alcuni utili risultati su $T_q\Q_t$:
     \proof 
     Senza esplicitare tutti i calcoli, date due carte locali $(U,\psi)$ e $(U',\psi')$ si nota che la funzione di trasferimento $\psi'\circ\psi^{-1}$; calcolando con la regola della catena le derivate di $\psi^{-1} = \psi'^{-1}\circ \psi'\circ \psi^{-1}$ otteniamo 
     \[ \frac{\partial \psi^{-1}(q^1,..., q^n)}{\partial q^i}\bigg|_{\psi(q)} = \sum_j \frac{\partial \psi'^{-1}(q'^1,..., q'^n)}{\partial q'^j}\bigg|_{\psi(q)}\frac{\partial q'^j}{\partial q^i}\bigg|_{\psi(q)} \]
-    Poichè la jacobiana di ogni diffeomorfismo è invertibile, ne segue che gli spazi tangenti coincidono.\\
+    Poichè la Jacobiana di ogni diffeomorfismo è invertibile, ne segue che gli spazi tangenti coincidono.\\
     Per dimostrare che la dimensione è la stessa di $\Q_t$, usiamo una carta del tipo del terzo punto di \cref{prop:utile sulle varietà}: in questo caso è evidente che i generatori di $T_q\Q_t$ sono indipendenti, dato che usando coordinate locali su $\Sigma_t^N$ si ottiene $\psi^{-1}(q^1,...,q^n) = (q^1,...,q^n,0,...,0)$ e derivando rispetto a $q^i$ si osserva l'indipendenza lineare.
     \qed 
 \end{proposition}
@@ -859,8 +857,8 @@ Finalmente possiamo definire i vincoli ideali:
     Questi vincoli sono detti \bemph{ideali} se per ogni linea di universo $\Gamma:I\to\V^{n+1}$ e ogni $t\in I$, la reazione vincolare $\phi = (\phi_1,...,\phi_N) \in V_t^N$ è normale a $\Q_t$, ovvero $\phi \cdot v = 0$ per ogni vettore tangente $v \in T_{\Gamma(t)}\Q_t$
 \end{definition}
 
-Osserviamo che questa definizione ha una forte connotazione fisica, infatti questi vincoli sono stati introdotti nel contesto della meccanica newtoniana: in particolare, non si può dedurre dalla definizione matematica di vincoli olonomi che questi debbano essere o non essere anche ideali.\\
-Si deve pensare alla richiesta di idealità come a una richiesta aggiuntiva sul comportamento geometrico di un vincolo che lo rende adatto per applicare l'apparato della meccanica lagrangiana.
+Osserviamo che questa definizione ha una forte connotazione fisica, infatti questi vincoli sono stati introdotti nel contesto della meccanica Newtoniana: in particolare, non si può dedurre dalla definizione matematica di vincoli olonomi che questi debbano essere o non essere anche ideali.\\
+Si deve pensare alla richiesta di idealità come a una richiesta aggiuntiva sul comportamento geometrico di un vincolo che lo rende adatto per applicare l'apparato della meccanica Lagrangiana.
 
 \newpage
 \newcommand\T{\mc{T}}
@@ -942,9 +940,21 @@ E questo ci permette di recuperare le espressioni per la velocità ed energia ci
     \proof 
     Omettiamo gli argomenti delle funzioni per alleggerire la notazione\footnote{Potreste chiederci perchè non l'abbiamo fatto prima... bella domanda, diremo che dovevamo tutti interiorizzare quali fossero questi argomenti.} e sviluppiamo il lato sinistro: 
     \begin{align*}
-        \frac{\di}{\di t}\left[ \frac{\partial \T_R}{\partial \dot q^k} \right]_{\hat\Gamma(t)} - \left[ \frac{\partial \T_R}{\partial q^k} \right]_{\hat\Gamma(t)} & = \sum_i \frac{m_{Q_i}}{2} \left( \frac{\di}{\di t}\left[ \frac{\partial (v_{Q_i}|_R\cdot v_{Q_i}|_R) }{\partial \dot q^k} \right]_{\hat\Gamma(t)} - \left[ \frac{\partial (v_{Q_i}|_R\cdot v_{Q_i}|_R) }{\partial q^k} \right]_{\hat\Gamma(t)} \right) \\ & = \sum_i m_{Q_i} \left( \frac{\di}{\di t} \left[ v_{Q_i}|_R\cdot \frac{\partial v_{Q_i}|_R }{\partial\dot q^k} \right]_{\hat\Gamma(t)} - \left[ v_{Q_i}|_R\cdot \frac{\partial v_{Q_i}|_R }{\partial q^k} \right]_{\hat\Gamma(t)} \right)
+        \frac{\di}{\di t}\left[ \frac{\partial \T_R}{\partial \dot q^k} \right]_{\hat\Gamma(t)} - \left[ \frac{\partial \T_R}{\partial q^k} \right]_{\hat\Gamma(t)} & = \sum_i \frac{m_{Q_i}}{2} \left( \frac{\di}{\di t}\left[ \frac{\partial (v_{Q_i}|_R\cdot v_{Q_i}|_R) }{\partial \dot q^k} \right]_{\hat\Gamma(t)} - \left[ \frac{\partial (v_{Q_i}|_R\cdot v_{Q_i}|_R) }{\partial q^k} \right]_{\hat\Gamma(t)} \right) \\ 
+        & = \sum_i m_{Q_i} \left( \frac{\di}{\di t} \left[ v_{Q_i}|_R\cdot \frac{\partial v_{Q_i}|_R }{\partial\dot q^k} \right]_{\hat\Gamma(t)} - \left[ v_{Q_i}|_R\cdot \frac{\partial v_{Q_i}|_R }{\partial q^k} \right]_{\hat\Gamma(t)} \right) \\ 
+        & = \sum_i m_{Q_i} \left( \left(a_{Q_i}|_R \cdot \frac{\partial v_{Q_i}|_R}{\partial \dot q^k} \right) + \left( v_{Q_i}|_R \cdot \frac{\di}{\di t}\bigg|_R \frac{\partial v_{Q_i}|_R}{\partial \dot q^k} \right) - \left(v_{Q_i}|_R \cdot \frac{\partial v_{Q_i}|_R}{\partial q^k} \right) \right)\\
+        & = \sum_i m_{Q_i}\left( \left(a_{Q_i}|_R \cdot \underbrace{\frac{\partial v_{Q_i}|_R}{\partial \dot q^k}}_{=: \heartsuit} \right) + \left( v_{Q_i}|_R \cdot \underbrace{\frac{\di}{\di t}\bigg|_R \frac{\partial v_{Q_i}|_R}{\partial \dot q^k} - \frac{\partial v_{Q_i}|_R}{\partial q^k}}_{=:\diamondsuit} \right) \right)
     \end{align*}
-    TBD
+    Nel terzo passaggio abbiamo valutato le funzioni su $\hat\Gamma$ e usato la regola di Leibniz per la derivata del prodotto scalare.\\
+    Per calcolare $\heartsuit$ usiamo la formula della velocità dell'osservazione di sopra 
+    \[ \frac{\partial v_{Q_i}|_R}{\partial \dot q^k} = \pi_i\left( \frac{\partial \psi|_{\Sigma_t^N}^{-1}}{\partial q^k} \right) \]
+    E allo stesso modo per $\diamondsuit$:
+    \begin{align*}
+        \frac{\di}{\di t}\bigg|_R \frac{\partial v_{Q_i}|_R}{\partial \dot q^k} - \frac{\partial v_{Q_i}|_R}{\partial q^k} & = \pi_i\left( \frac{\di}{\di t}\bigg|_R \frac{\partial \psi|_{\Sigma_t^N}^{-1}}{\partial q^k} - \frac{\partial}{\partial q}\frac{\partial }{\partial t}\bigg|_R \psi|_{\Sigma_t^N}^{-1} -\sum_l \frac{\partial^2 \psi|_{\Sigma_t^N}^{-1}}{\partial q^k \partial q^l} \frac{\di q^l}{\di t} \right) \\
+        & = \pi_i\left( \frac{\di}{\di t}\bigg|_R \frac{\partial \psi|_{\Sigma_t^N}^{-1}}{\partial q^k} + \sum_l \frac{\partial^2 \psi|_{\Sigma_t^N}^{-1}}{\partial q^l \partial q^k} \frac{\di q^l}{\di t} - \frac{\partial}{\partial q}\frac{\partial }{\partial t}\bigg|_R \psi|_{\Sigma_t^N}^{-1} -\sum_l \frac{\partial^2 \psi|_{\Sigma_t^N}^{-1}}{\partial q^k \partial q^l} \frac{\di q^l}{\di t} = 0 \right)
+    \end{align*}
+    Dove i termini si annullano per il teorema di Schwarz e il fatto che $R$ non dipende da $q^k$.
+    \qed
 \end{proposition}
 
 Nel caso in cui $\Gamma: I\to\V^{n+1}$ non si fattorizzi attraverso una singola carta locale, si può scegliere un ricoprimento aperto di $I$ con sottointervalli abbastanza piccoli e lavorare localmente su quello.
@@ -952,7 +962,7 @@ Nel caso in cui $\Gamma: I\to\V^{n+1}$ non si fattorizzi attraverso una singola 
 \newpage
 \section{Equazioni di Eulero-Lagrange}
 
-Adesso deriveremo e studieremo le equazioni cardinali della meccanica lagrangiana, le equazioni di Eulero-Lagrange, che governano un sistema vincolato sotto le ipotesi che i vincoli siano olonomi e ideali.
+Adesso deriveremo e studieremo le equazioni cardinali della meccanica Lagrangiana, le equazioni di Eulero-Lagrange, che governano un sistema vincolato sotto le ipotesi che i vincoli siano olonomi e ideali.
 
 \begin{theorem}{Equazioni di Eulero-Lagrange}{Eulero-Lagrange 1}
     Sia $\{Q_1,...,Q_N\}$ un sistema di $N\ge 1$ punti materiali sottoposto a un sistema $\{f_1,...,f_C\}$ di $0\le C\le 3N$ vincoli olonomi. Sia inoltre $\Gamma:I\to\V^{n+1}\subset\V^{3N+1}$ una linea di universo nello spaziotempo delle configurazioni del sistema vincolato con $I\subset E^1$ abbastanza piccolo da ammettere una rappresentazione in coordinate locali naturali $\Gamma(t) = \psi^{-1}(t,\bar q(t))$.\\
@@ -1000,12 +1010,12 @@ Per applicare il teorema \cref{th:esistenza e unicità locale 1} dobbiamo dimost
     E dunque per ogni dato iniziale $(t_0,\bar q_0, \dot{\bar q}_0)$ esiste ed è unica la soluzione locale.
 \end{corollary}
 
-Questo teorema ci dice qualcosa di molto forte, e in un certo senso "giustifica" il passaggio dalla meccanica newtoniana a quella lagrangiana: la seconda è in grado di darci delle equazioni del moto deterministiche sia nei sistemi svincolati, dove era sufficiente quella newtoniana, sia in quelli vincolati sotto opportune ipotesi di idealità.\\
+Questo teorema ci dice qualcosa di molto forte, e in un certo senso "giustifica" il passaggio dalla meccanica Newtoniana a quella Lagrangiana: la seconda è in grado di darci delle equazioni del moto deterministiche sia nei sistemi svincolati, dove era sufficiente quella Newtoniana, sia in quelli vincolati sotto opportune ipotesi di idealità.\\
 In molti casi pratici, ma non in tutti, le forze $F_R = (F_{R,1},..., F_{R,N})$ hanno una forma particolare, ovvero ammettono un cosiddetto \bemph{potenziale}: ciò significa che esiste una funzione liscia $\U : \V^{3N+1}\to\R$ tale che per ogni punto $p \in \V^{3N+1}$ e ogni vettore $v \in V_{T(p)}^N$ valga
 \[ F_{R}(p) \cdot v = -\frac{\di}{\di\varepsilon}\U(p+\varepsilon v)\bigg|_{\varepsilon = 0} \]
 Che in coordinate standard adattate $(t,\bar{\bar x})$ assume la forma familiare
 \[ \bar F_{R,i}(t,\bar{\bar x}) = - \nabla_{\bar x_i} \U(t, \bar{\bar x}) \]
-Dove il segno negativo è per convenzione. In questo caso, le componenti lagrangiane delle forze sono date da
+Dove il segno negativo è per convenzione. In questo caso, le componenti Lagrangiane delle forze sono date da
 \[ Q_{R,k}(t,\bar q) = F_R \cdot \frac{\partial \psi|_{\Sigma_t^N}^{-1}(\bar q)}{\partial q^k} = -\frac{\partial\U(t,\bar q)}{\partial q^k}\]
 Dove con un piccolo abuso di notazione abbiamo indicato $\U(t,\bar q) = \U(\psi^{-1}(t,\bar q))$ restringendoci a una carta locale su $\V^{n+1}$.
 
@@ -1020,26 +1030,26 @@ Dove con un piccolo abuso di notazione abbiamo indicato $\U(t,\bar q) = \U(\psi^
     Poi basta riordinare per recuperare le equazioni di Eulero-Lagrange.
 \end{corollary}
 
-Nel contesto della meccanica lagrangiana, spesso un sistema è descritto puramente in termini della sua lagrangiana $\L_R : A(\V^{n+1})\to\R$ senza specificare le forze, anche se questa non dovesse assumere la forma di una lagrangiana "standard" $\T_R -\U$, ad esempio lasciando che un potenziale dipenda anche dalle coordinate puntate.\\
-Notiamo che due lagrangiane diverse possono generare le stesse equazioni di Eulero-Lagrange: per una mappa liscia $g:\V^{n+1}\to\R$ definiamo la sua derivata totale formale come una funzione $\di_t g: A(\V^{n+1})\to\R$ in coordinate naturali come
+Nel contesto della meccanica Lagrangiana, spesso un sistema è descritto puramente in termini della sua Lagrangiana $\L_R : A(\V^{n+1})\to\R$ senza specificare le forze, anche se questa non dovesse assumere la forma di una Lagrangiana "standard" $\T_R -\U$, ad esempio lasciando che un potenziale dipenda anche dalle coordinate puntate.\\
+Notiamo che due Lagrangiane diverse possono generare le stesse equazioni di Eulero-Lagrange: per una mappa liscia $g:\V^{n+1}\to\R$ definiamo la sua derivata totale formale come una funzione $\di_t g: A(\V^{n+1})\to\R$ in coordinate naturali come
 \[ \di_t g(t,\bar q, \dot{\bar q}) := \frac{\partial g(t,\bar q)}{\partial t} + \sum_{k} \frac{\partial g(t,\bar q)}{\partial q^k} \]
-Allora per calcolo diretto si verifica che $\L_R$ e $\L_R +\di_t g$ producono le stesse equazioni di Eulero-Lagrange; per questo motivo a volte è utile pensare alle lagrangiane come a classi di equivalenza $[\L]$ rispetto alla relazione $\L \sim \L + \di_t g$.
+Allora per calcolo diretto si verifica che $\L_R$ e $\L_R +\di_t g$ producono le stesse equazioni di Eulero-Lagrange; per questo motivo a volte è utile pensare alle Lagrangiane come a classi di equivalenza $[\L]$ rispetto alla relazione $\L \sim \L + \di_t g$.
 
 \chapter{Simmetrie e leggi di conservazione}
 
-In questa parte studieremo degli interessanti legami tra le simmetrie di un sistema fisico descritto da una lagrangiana $\L: A(\V^{n+1})\to\R$ e le quantità che rimangono costanti durante l'evoluzione dinamica del sistema. Partiremo da un caso molto semplice, quello delle coordinate cicliche, per poi studiare i teoremi di Noether e di Jacobi.
+In questa parte studieremo degli interessanti legami tra le simmetrie di un sistema fisico descritto da una Lagrangiana $\L: A(\V^{n+1})\to\R$ e le quantità che rimangono costanti durante l'evoluzione dinamica del sistema. Partiremo da un caso molto semplice, quello delle coordinate cicliche, per poi studiare i teoremi di Noether e di Jacobi.
 
 \newcommand\I{\mc I}
 \section{Coordinate Cicliche}
 
 \begin{definition}{Coordinate cicliche}{coordinate cicliche}
-    Si consideri un sistema fisico descritto da uno spaziotempo delle configurazioni $T:\V^{n+1}\to E^1$ e da una lagrangiana $\L:A(\V^{n+1})\to\R$ e sia $(U,\psi)$ una carta locale per $\V^{n+1}$ con le corrispondenti coordinate locali naturali $(t, q, \dot q) := (t,\bar q, \dot{\bar q})$.\\
+    Si consideri un sistema fisico descritto da uno spaziotempo delle configurazioni $T:\V^{n+1}\to E^1$ e da una Lagrangiana $\L:A(\V^{n+1})\to\R$ e sia $(U,\psi)$ una carta locale per $\V^{n+1}$ con le corrispondenti coordinate locali naturali $(t, q, \dot q) := (t,\bar q, \dot{\bar q})$.\\
     Una coordinata $q^j$ si dice \bemph{ciclica} se la derivata parziale 
     \[ \frac{\partial \L(t,q,\dot q)}{\partial q^j} = 0 \]
     È nulla per tutti i punti di $\psi(U)\times\R^n$.
 \end{definition}
 
-Notiamo che il significato geometrico di questa richiesta è che la lagrangiana sia invariante per traslazione lungo questa coordinata, ovvero che per ogni $b\in\R$ sufficientemente piccolo valga
+Notiamo che il significato geometrico di questa richiesta è che la Lagrangiana sia invariante per traslazione lungo questa coordinata, ovvero che per ogni $b\in\R$ sufficientemente piccolo valga
 \[\L(t,q^1,...,q^j,...,q^n,\dot q) = \L(t,q^1,...,q^j+b,...,q^n,\dot q)\]
 Ne segue che le coordinate cicliche esprimono una simmetria (locale) per traslazione del sistema fisico.
 
@@ -1059,7 +1069,7 @@ Ovviamente, più coordinate cicliche generano più integrali primi del moto.
 
 \begin{example}{}{}
     Consideriamo un sistema di $N\ge 1$ punti materiali svincolati e senza forze in un riferimento inerziale $R$ con coordinate standard $(t,\bar{\bar x}) \in \R^{3N+1}$.\\
-    La lagrangiana di questo sistema è data da
+    La Lagrangiana di questo sistema è data da
     \[ \L(t,\bar{\bar x},\dot{\bar{\bar x}})  = \sum_i \frac{m_{Q_i}}{2}\| \dot{\bar x}_i \|^2\]
     Osserviamo che tutte le coordinate $x_i^k$ con $i \le N$ e $k\le 3$ sono cicliche; i momenti coniugati sono dati da
     \[ p_k^i(t,\bar{\bar x}, \dot{\bar{\bar x}}) = \frac{\partial \L(t,\bar{\bar x},\dot{\bar{\bar x}})}{\partial \dot x_k^i} = m_{Q_i}\dot x_i^k \]
@@ -1068,14 +1078,14 @@ Ovviamente, più coordinate cicliche generano più integrali primi del moto.
 \end{example}
 
 \begin{example}{}{}
-    Supponiamo di introdurre nel sistema precedente delle forze che derivano da un potenziale $\U$ dipendente soltanto dalle differenze $\bar x_i -\bar x_j$ tra le posizioni: la lagrangiana allora diventa 
+    Supponiamo di introdurre nel sistema precedente delle forze che derivano da un potenziale $\U$ dipendente soltanto dalle differenze $\bar x_i -\bar x_j$ tra le posizioni: la Lagrangiana allora diventa 
     \[ \L(t,\bar{\bar x},\dot{\bar{\bar x}})  = \sum_i \frac{m_{Q_i}}{2}\| \dot{\bar x}_i \|^2 - \U(\bar x_1 - \bar x_2,..., \bar x_{N-1} - \bar x_N)\]
     Dove abbiamo scritto $\U$ puramente in funzione delle differenze tra indici consecutivi\footnote{Perchè possiamo farlo senza perdita di generalità? Lo lasciamo come esercizio per il lettore}.\\
     Almeno così ad occhio, non sembrano esserci coordinate cicliche... o invece ce ne sono? Facciamo un cambiamento di coordinate: 
     \[ \bar X := \frac{ \sum_i m_{Q_i}\bar x_i }{\sum_i m_{Q_i}} \]
     \[ \bar\xi_i := \bar x_i - \frac{ \sum_{j = i+1} m_{Q_j}\bar x_j }{\sum_{j=i+1} m_{Q_j}} \]
     Dette rispettivamente \bemph{centro di massa} e \bemph{coordinate di Jacobi} del sistema.\\
-    Si può dimostrare per induzione su $N$ che la lagrangiana di questo sistema è scritta come 
+    Si può dimostrare per induzione su $N$ che la Lagrangiana di questo sistema è scritta come 
     \[ \L\left(t,\bar X, \bar{\bar \xi}, \dot{\bar X}, \dot{\bar{\bar\xi}} \right) = \frac{M}{2}\| \dot{\bar X} \|^2 + \sum_i \frac{\mu_i}{2} \|\dot{\bar\xi}_i\|^2 - \tilde\U(\bar{\bar\xi}) \]
     Dove $M$ è la massa totale e le $\mu_i$ sono dette \bemph{masse ridotte} e sono costanti definite in termini delle masse un modo che non ci interessa.\\
     Poichè il potenziale dipende solo dalle $\bar\xi_i$, le coordinate di $\bar X=(X^1,X^2,X^3)$ sono coordinate cicliche e gli integrali primi di questo moto sono quelle che riconosciamo essere le componenti dell'impulso totale 
@@ -1127,17 +1137,17 @@ Possiamo estendere l'azione di $F$ allo spaziotempo degli atti di moto $A(\V^{n+
 \[ \dot q'^k (s,t,q,\dot q) = \frac{\partial q'(s,t,q)}{\partial t} + \sum_l \frac{\partial q'^k(s,t,q)}{\partial q^l} \dot q^l \]
 
 \begin{definition}{Sistema invariante}{sistema invariante}
-    Si consideri un sistema fisico con spaziotempo delle configurazioni $T:\V^{n+1}\to E^1$ descritto dalla lagrangiana $\L:A(\V^{n+1})\to\R$.\\
+    Si consideri un sistema fisico con spaziotempo delle configurazioni $T:\V^{n+1}\to E^1$ descritto dalla Lagrangiana $\L:A(\V^{n+1})\to\R$.\\
     Questo sistema si dice \bemph{debolmente invariante} rispetto a un gruppo di automorfismi a un parametro $F:\R\times\V^{n+1}\to\V^{n+1}$ che preservano le fibre se, in ogni carta locale adattata $(U,\psi)$ e aperto $V\subset U$ sufficientemente piccolo come visto sopra, esiste una funzione liscia $g: \V^{n+1}\to\R$ tale che
     \[ \frac{\partial \L(t, q'(s,t,q), \dot q'(t,s,q,\dot q))}{\partial s}\bigg|_{s=0} = \di_t g(t,q,\dot q) := \frac{\partial g(t,q)}{\partial t} + \sum_k \frac{\partial g(t,q)}{\partial q^k}\dot q^k \]
     In particolare, se $g$ è la funzione costantemente nulla, il sistema si dice \bemph{invariante}.\\
     $F$ è detto \bemph{gruppo di simmetria (debole)} del sistema fisico.
 \end{definition}
 
-Chiaramente l'idea alla base dell'invarianza debole è l'osservazione fatta qualche pagina fa secondo cui le lagrangiane $\L$ e $\L+\di_t g$ producono le stesse equazioni di Eulero-Lagrange: infatti, l'invarianza debole afferma che non la lagrangiana $\L$ in sè ma la sua classe di equivalenza $[\L]$ è invariante rispetto all'azione di $F$.\\
+Chiaramente l'idea alla base dell'invarianza debole è l'osservazione fatta qualche pagina fa secondo cui le Lagrangiane $\L$ e $\L+\di_t g$ producono le stesse equazioni di Eulero-Lagrange: infatti, l'invarianza debole afferma che non la Lagrangiana $\L$ in sè ma la sua classe di equivalenza $[\L]$ è invariante rispetto all'azione di $F$.\\
 Si può introdurre anche una nozione di invarianza (debole) locale quando si dispone non di un automorfismo globale da restringere opportunamente ma di una famiglia di diffeomorfismi locali $F_\loc : (-\varepsilon, \varepsilon)\times \psi(V)\to\psi(U)$; dato che comunque noi lavoreremo in carte locali, le dimostrazioni che seguono si applicano anche al caso in cui si disponga soltanto di una simmetria locale.
 
-\begin{theorem}{Teorema di Noether}{teorema di noether}
+\begin{theorem}{Teorema di Noether}{teorema di Noether}
     Nel contesto della definizione precedente, le funzioni lisce $I_{F,g}:\psi(V)\times\R^n\to\R$ definite da
     \[ I_{F,g}(t,q,\dot q) = -g(t,q) + \sum_k \frac{\partial \L(t,q,\dot q)}{\partial \dot q^k}\frac{q'^k(s,t,q)}{\partial s}\bigg|_{s=0}  \]
     Sono integrali primi del moto, vale a dire che la loro valutazione lungo una linea di universo $\hat\Gamma:I\to A(\V^{n+1})$ che soddisfa le equazioni di Eulero-Lagrange è costante.\\
@@ -1182,8 +1192,8 @@ Si può introdurre anche una nozione di invarianza (debole) locale quando si dis
 In questa parte introduciamo il teorema di Jacobi, che è complementare al teorema di Noether perchè si occupa dell'invarianza rispetto alle traslazioni temporali invece che alle variazioni lungo una coordinata spaziale.
 
 \begin{theorem}{Teorema di Jacobi}{teorema di Jacobi}
-    Si consideri un sistema fisico $T:\V^{n+1}\to E^1$ descritto da una lagrangiana $\L : A(\V^{n+1})\to\R$.\\
-    Data una carta locale adattata $(U,\psi)$, definiamo la \bemph{funzione hamiltoniana locale} in $(U,\psi)$ del sistema come la funzione liscia $\H : \psi(U)\times\R^n\to \R$ data da 
+    Si consideri un sistema fisico $T:\V^{n+1}\to E^1$ descritto da una Lagrangiana $\L : A(\V^{n+1})\to\R$.\\
+    Data una carta locale adattata $(U,\psi)$, definiamo la \bemph{funzione Hamiltoniana locale} in $(U,\psi)$ del sistema come la funzione liscia $\H : \psi(U)\times\R^n\to \R$ data da 
     \[ \H(t,q,\dot q) = \sum_k \dot q^k\frac{\partial \L(t,q,\dot q)}{\partial \dot q^k} - \L(t,q,\dot q) \]
     Allora lungo ogni linea di universo $\Gamma:I\to\V^{n+1}$ che risolve le equazioni di Eulero-Lagrange vale l'identità 
     \[ \frac{\di}{\di t} [\H]_{\hat\Gamma(t)} = -\left[ \frac{\partial \L}{\partial t} \right]_{\hat\Gamma(t)} \]
@@ -1203,13 +1213,13 @@ In questa parte introduciamo il teorema di Jacobi, che è complementare al teore
 \end{theorem}
 
 \begin{corollary}{}{}
-    Nella situazione del teorema precedente, se la lagrangiana è costante nel tempo in coordinate locali naturali, allora l'hamiltoniana è un integrale primo del moto
+    Nella situazione del teorema precedente, se la Lagrangiana è costante nel tempo in coordinate locali naturali, allora l'Hamiltoniana è un integrale primo del moto
 \end{corollary}
 
 È chiaro che questo corollario dunque si riferisce a una simmetria del sistema, come il teorema di Noether di Noether, dato che possiamo interpretare la costanza nel tempo come un'invarianza del sistema rispetto a traslazioni temporali $(t,q,\dot q)\mapsto (t+\tau, q, \dot q)$.\\
-È importante sottolineare che l'hamiltoniana è una funzione \textit{locale}, che \textit{non} può essere estesa a una funzione globale, così come il suo integrale primo: infatti ricordando che una trasformazione di coordinate $(t,q,\dot q)\mapsto (t', q', \dot q')$ è data da 
+È importante sottolineare che l'Hamiltoniana è una funzione \textit{locale}, che \textit{non} può essere estesa a una funzione globale, così come il suo integrale primo: infatti ricordando che una trasformazione di coordinate $(t,q,\dot q)\mapsto (t', q', \dot q')$ è data da 
 \[ (t', q', \dot q') = \left( t', q'(t,q), \frac{\partial q'(t,q)}{\partial t} + \sum_k \frac{\partial q'^k(t,q)}{\partial q^k}\dot q'^k \right) \]
-L'hamiltoniana si trasforma 
+L'Hamiltoniana si trasforma 
 \begin{align*}
     \H(t,q,\dot q) & = \sum_k \dot q^k\frac{\partial \L(t,q,\dot q)}{\partial \dot q^k} - \L(t,q,\dot q) \\
     & = \sum_k \dot q^k\frac{\partial \L(t',q',\dot q')}{\partial \dot q^k} - \L(t',q',\dot q')\\
@@ -1219,28 +1229,28 @@ L'hamiltoniana si trasforma
 Dunque vediamo che, analogamente alle coordinate cicliche, l'integrale primo di Jacobi dipende dalla scelta di una carta.\\
 Consideriamo un caso particolare, in cui la Lagrangiana ha forma standard $\L(t,q,\dot q) = \T_R(q,\dot q)-\U(q)$ ed è indipendente dal tempo $t$, con energia cinetica di forma 
 \[ \T_R = \sum_{k,l} A_{k,l}(q)\dot q^k\dot q^l  \]
-Allora l'hamiltoniana locale è data dall'energia totale del sistema:
+Allora l'Hamiltoniana locale è data dall'energia totale del sistema:
 \begin{align*}
-    \H(q,\dot q) = \sum_k \dot q^k \frac{\partial \L(q,\dot q)}{\partial \dot q^k} - \L(q,\dot q)\\
-    & = sum_{k,l} 2 A_{k,l}(q)\dot q^k \dot q^l - \sum_{k,l} A_{k,l}(q)\dot q^k\dot q^l + \U(q) = \T_R(q,\dot q) + \U(q)
+    \H(q,\dot q) & = \sum_k \dot q^k \frac{\partial \L(q,\dot q)}{\partial \dot q^k} - \L(q,\dot q)\\
+    & = \sum_{k,l} 2 A_{k,l}(q)\dot q^k \dot q^l - \sum_{k,l} A_{k,l}(q)\dot q^k\dot q^l + \U(q) = \T_R(q,\dot q) + \U(q)
 \end{align*}
 In questa situazione, il teorema di Jacobi implica che localmente l'energia totale si conserva durante l'evoluzione dinamica del sistema.
 
 \chapter{Meccanica Hamiltoniana}
 
-In questa parte studieremo una formulazione alternativa della meccanica classica, ovvero la meccanica hamiltoniana.\\
-Sebbene sia equivalente alla formulazione lagrangiana, presenta alcune caratteristiche interessanti:\begin{itemize}
-    \item Le equazioni di hamilton assumono una forma più simmetrica rispetto a quella delle equazioni di Eulero-Lagrange e possono essere scritte in un'utile forma algebrica attraverso la cosiddetta parentesi di Poisson che vedremo più avanti.
-    \item Per chi sarà interessato a proseguire con un percorso legato alla fisica matematica, la meccanica hamiltoniana è il punto di partenza per le formulazioni della meccanica statistica e la meccanica quantistica, che tuttavia sono al di fuori di questo corso.
+In questa parte studieremo una formulazione alternativa della meccanica classica, ovvero la meccanica Hamiltoniana.\\
+Sebbene sia equivalente alla formulazione Lagrangiana, presenta alcune caratteristiche interessanti:\begin{itemize}
+    \item Le equazioni di Hamilton assumono una forma più simmetrica rispetto a quella delle equazioni di Eulero-Lagrange e possono essere scritte in un'utile forma algebrica attraverso la cosiddetta parentesi di Poisson che vedremo più avanti.
+    \item Per chi sarà interessato a proseguire con un percorso legato alla fisica matematica, la meccanica Hamiltoniana è il punto di partenza per le formulazioni della meccanica statistica e la meccanica quantistica, che tuttavia sono al di fuori di questo corso.
 \end{itemize}
 
 \newcommand\Leg{\mathbb L}
 \section{Spaziotempo delle fasi e trasformata di Legendre}
 
-Mentre la meccanica lagrangiana è stata formulata sullo spaziotempo degli atti di moto $T:A(\V^{n+1})\to E^1$ con coordinate locali naturali $(t,q,\dot q)$, nella meccanica hamiltoniana si sostituiscono le coordinate puntate $\dot q = (\dot q^1,..., \dot q^n)$ coi cosiddetti momenti coniugati $p = (p_1,...,p_k)$.\\
-Se si viene dalla meccanica lagrangiana, questi sono definiti in termini della lagrangiana $\L:A(\V^{n+1})\to\R$ tramite la formula 
+Mentre la meccanica Lagrangiana è stata formulata sullo spaziotempo degli atti di moto $T:A(\V^{n+1})\to E^1$ con coordinate locali naturali $(t,q,\dot q)$, nella meccanica Hamiltoniana si sostituiscono le coordinate puntate $\dot q = (\dot q^1,..., \dot q^n)$ coi cosiddetti momenti coniugati $p = (p_1,...,p_k)$.\\
+Se si viene dalla meccanica Lagrangiana, questi sono definiti in termini della Lagrangiana $\L:A(\V^{n+1})\to\R$ tramite la formula 
 \[ p_k = \frac{\partial \L(t,q,\dot q)}{\partial \dot q^k} \]
-Ma è importante sottolineare che nella meccanica hamiltoniana questi non sono definiti in termini delle coordinate puntate, ma sono vere coordinate indipendenti che le sostituiscono.\\
+Ma è importante sottolineare che nella meccanica Hamiltoniana questi non sono definiti in termini delle coordinate puntate, ma sono vere coordinate indipendenti che le sostituiscono.\\
 Ricordandoci la legge di trasformazione per le coordinate puntate $(t,q,\dot q)\mapsto(t', q', \dot q')$, ovvero 
 \[ t' = t',\quad q'^k = q'^k(t,q),\quad \dot q'^k = \dot q'^k(t,q,\dot q) = \frac{\partial q'^k(t,q)}{\partial t} + \sum_l \frac{\partial q'^k(t,q) }{\partial q^l}\dot q^l  \]
 Segue che i momenti coniugati devono trasformarsi nel seguente modo:
@@ -1253,55 +1263,314 @@ Segue che i momenti coniugati devono trasformarsi nel seguente modo:
     Con la sommersione suriettiva $(t,q,p)\mapsto t$
 \end{definition}
 
-Notiamo che richiedendo che i momenti coniugati rispondano alla stessa legge di trasformazione derivata dal formalismo lagrangiano, otteniamo un'identità che coinvolge l'inversa della matrice jacobiana del cambiamento di coordinate $q'=q'(t,q)$, definita dalle derivate di $q^l$ rispetto a $q'^k$.\\
+Notiamo che richiedendo che i momenti coniugati rispondano alla stessa legge di trasformazione derivata dal formalismo Lagrangiano, otteniamo un'identità che coinvolge l'inversa della matrice Jacobiana del cambiamento di coordinate $q'=q'(t,q)$, definita dalle derivate di $q^l$ rispetto a $q'^k$.\\
 Questo implica che i momenti coniugati $p_k$ si comportino \textit{dualmente} rispetto alle velocità $\dot q^k$, cosa che nel linguaggio della geometria differenziale viene espressa dicendo che i $p_k$ sono \bemph{vettori cotangenti} alle coordinate $q^k$\\
-La formula che determina i momenti coniugati a partire dalla lagrangiana definisce un'importante trasformazione globale che ci permette di passare dalla meccanica lagrangiana a quella hamiltoniana.
+La formula che determina i momenti coniugati a partire dalla Lagrangiana definisce un'importante trasformazione globale che ci permette di passare dalla meccanica Lagrangiana a quella Hamiltoniana.
 
-\begin{proposition}{Trasformata di Legendre}{trasformata di legendre}
-    Si consideri uno spaziotempo delle configurazioni $T:\V^{n+1}\to E^1$ per un sistema fisico descritto dalla lagrangiana $\L:A(\V^{n+1})\to\R$.\\
-    A questi dati è associata una mappa liscia $\Leg_\L : A(\V^{n+1})\to F(\V^{n+1})$ detta \bemph{trasformazione di legendre} definita in coordinate locali come 
+\begin{proposition}{Trasformata di Legendre}{trasformata di Legendre}
+    Si consideri uno spaziotempo delle configurazioni $T:\V^{n+1}\to E^1$ per un sistema fisico descritto dalla Lagrangiana $\L:A(\V^{n+1})\to\R$.\\
+    A questi dati è associata una mappa liscia $\Leg_\L : A(\V^{n+1})\to F(\V^{n+1})$ detta \bemph{trasformazione di Legendre} definita in coordinate locali come 
     \[ \Leg_\L(t,q,\dot q) = \left( t, q, \frac{\partial \L(t,q\dot q)}{\partial \dot q^1},...,  \frac{\partial \L(t,q\dot q)}{\partial \dot q^n}\right) \]
-    Nel caso in cui la lagrangiana è della forma
+    Nel caso in cui la Lagrangiana è della forma
     \[ \L(t,q,\dot q) = \sum_{k,l}A_{k,l}(t,q)\dot q^k \dot q^l + \sum_k \tilde B_k(t,q) \dot q^k + \tilde C(t,q) \]
-    Con $A_{k,l}$, $\tilde B_k$ e $\tilde C$ funzioni lisce e la matrice $A = (A_{k,l})_{k,l}$ invertibile, la trasformazione di legendre è anche un diffeomorfismo.
+    Con $A_{k,l}$, $\tilde B_k$ e $\tilde C$ funzioni lisce e la matrice $A = (A_{k,l})_{k,l}$ invertibile, la trasformazione di Legendre è anche un diffeomorfismo.
     \proof 
     Abbiamo già visto che in coordinate locali i momenti coniugati si trasformano come le derivate parziali sotto i cambiamenti di coordinate, dunque le espressioni locali si assemblano in una trasformazione liscia globale.\\
     Sotto le ipotesi date, si ha l'espressione per i $p_k$ data da:
     \[ p^k = \sum_l 2A_{k,l}(t,q)\dot q^l + \tilde B_k(t,q) \]
     Che può essere invertita come 
     \[ \dot q^k(t,q,p) = \sum_{l}\frac{1}{2}(A^{-1})^{k,l}(t,q)(p_l - \tilde B_l(t,q)) \]
-    Definendo localmente un'inversa liscia della trasformazione di legendre.
+    Definendo localmente un'inversa liscia della trasformazione di Legendre.
 \end{proposition}
 
-Notiamo che la richiesta sulla forma della lagrangiana è esattamente quella che avevamo imposto per dimostrare la buona positura delle equazioni di Eulero-Lagrange. Tale condizione in particolare è soddisfatta dalle lagrangiane di forma standard $\L(t,q,\dot q) = \T_R(t,q,\dot q) - \U(t,q)$, dove $\T_R$ è l'energia cinetica e $\U$ un potenziale.\\
-Più in generale, si dice che una lagrangiana è \bemph{non degenere} se, in ogni scelta di coordinate locali naturali, la famiglia di equazioni 
+Notiamo che la richiesta sulla forma della Lagrangiana è esattamente quella che avevamo imposto per dimostrare la buona positura delle equazioni di Eulero-Lagrange. Tale condizione in particolare è soddisfatta dalle Lagrangiane di forma standard $\L(t,q,\dot q) = \T_R(t,q,\dot q) - \U(t,q)$, dove $\T_R$ è l'energia cinetica e $\U$ un potenziale.\\
+Più in generale, si dice che una Lagrangiana è \bemph{non degenere} se, in ogni scelta di coordinate locali naturali, la famiglia di equazioni 
 \[ p_k(t,q,\dot q) = \frac{\partial\L(t,q,\dot q)}{\partial\dot q^k} \]
 Può essere invertita ottentendo espressioni $\dot q^k(t,q,p)$ lisce.\\
-Ovviamente la trasformata di Legendre è un diffeomorfismo in questo caso più generale di lagrangiane non degeneri.
+Ovviamente la trasformata di Legendre è un diffeomorfismo in questo caso più generale di Lagrangiane non degeneri.
 
 \newpage
 \section{Equazioni di Hamilton}
 
-In questa parte formuleremo e studieremo le equazioni di hamilton, che dimostreremo essere equivalenti a quelle di Eulero-Lagrange sotto l'ipotesi di non degenerazione della lagrangiana.\\
-Mentre nella meccanica lagrangiana la dinamica è codificata dalla scelta di una funzione globale $\L:A(\V^{n+1})\to\R$, nella meccanica hamiltoniana viene codificata in modo simile dalla scelta di hamiltoniana $\H$.\\
-Il tipo di oggetto che descrive un'hamiltoniana globale su $F(\V^{n+1})$ però è più sofisticato, in quanto un'hamiltoniana non è una funzione liscia globale su $F(\V^{n+1})$ a differenza della lagrangiana. Per comprenderne meglio la costruzione è bene trasformare il dato globale della lagrangiana $\L$ in una collezione di dati locali.\\
-Una lagrangiana è una mappa globale $\L:A(\V^{n+1})\to\R$, la cui restrizione alle carte adattate $\psi(U)\times\R^n$ definisce una famiglia di mappe lisce locali $\{ \L_U:\psi(U)\times\R^n\to\R \}_{(U,\psi)}$ parametrizzata dalle carte locali adattate a $T:\V^{n+1}\to E^1$.\\
+In questa parte formuleremo e studieremo le equazioni di Hamilton, che dimostreremo essere equivalenti a quelle di Eulero-Lagrange sotto l'ipotesi di non degenerazione della Lagrangiana.\\
+Mentre nella meccanica Lagrangiana la dinamica è codificata dalla scelta di una funzione globale $\L:A(\V^{n+1})\to\R$, nella meccanica Hamiltoniana viene codificata in modo simile dalla scelta di Hamiltoniana $\H$.\\
+Il tipo di oggetto che descrive un'Hamiltoniana globale su $F(\V^{n+1})$ però è più sofisticato, in quanto un'Hamiltoniana non è una funzione liscia globale su $F(\V^{n+1})$ a differenza della Lagrangiana. Per comprenderne meglio la costruzione è bene trasformare il dato globale della Lagrangiana $\L$ in una collezione di dati locali.\\
+Una Lagrangiana è una mappa globale $\L:A(\V^{n+1})\to\R$, la cui restrizione alle carte adattate $\psi(U)\times\R^n$ definisce una famiglia di mappe lisce locali $\{ \L_U:\psi(U)\times\R^n\to\R \}_{(U,\psi)}$ parametrizzata dalle carte locali adattate a $T:\V^{n+1}\to E^1$.\\
 Per costruzione, queste mappe locali devono andare d'accordo sulle intersezioni, ovvero per carte $(U,\psi)$ e $(U,\psi')$ si abbia $\L_{U'}(t',q',\dot q') = \L_U(t,q,\dot q)$ dove $(t,q,\dot q)\mapsto (t',q',\dot q')$ è il cambiamento di coordinate.\\
 Viceversa, qualsiasi famiglia di mappe lisce locali $\{\L_U\}_{(U,\psi)}$ che soddisfi queste condizioni definisce globalmente per incollamento una mappa liscia $\L : A(\V^{n+1})\to\R$.
 
-\begin{definition}{Hamiltoniana}{hamiltoniana}
+\begin{definition}{Hamiltoniana}{Hamiltoniana}
     Un'Hamiltoniana $\H$ sullo spaziotempo delle fasi $F(\V^{n+1})$ è data da una famiglia di mappe $\{\H_U: \psi(U)\times\R^n\to\R\}_{(U,\psi)}$ tale che per ogni coppia di carte locali $(U,\psi)$ e $(U',\psi')$ con cambiamento di coordinate $(t,q,p)\mapsto (t',q',p')$ si abbia 
     \[ \H_{U'}(t',q',p')  = \H_U(t,q,p) +\sum_k \frac{\partial q'^k}{\partial t}p'_k \]
 \end{definition}
 
-\begin{proposition}{Costruzione di un'hamiltoniana da una lagrangiana}{lagrangiana to hamiltoniana}
-    Sia $T:\V^{n+1}\to E^1$ lo spaziotempo delle configurazioni per un sistema con vincoli olonomi e sia $\L:A(\V^{n+1})\to\R$ una lagrangiana le cui restrizioni a ciascuna carta locale adattata siano tutte non degeneri, ovvero tali che le equazioni $p_k(t,q,\dot q)$ siano localmente invertibili in espressioni $\dot q^k(t,q,p)$.\\
+\begin{proposition}{Costruzione di un'Hamiltoniana da una Lagrangiana}{Lagrangiana to Hamiltoniana}
+    Sia $T:\V^{n+1}\to E^1$ lo spaziotempo delle configurazioni per un sistema con vincoli olonomi e sia $\L:A(\V^{n+1})\to\R$ una Lagrangiana le cui restrizioni a ciascuna carta locale adattata siano tutte non degeneri, ovvero tali che le equazioni $p_k(t,q,\dot q)$ siano localmente invertibili in espressioni $\dot q^k(t,q,p)$.\\
     Allora la famiglia di mappe 
     \[ \left\{\H_U(t,q,p) := \sum_k \dot q^k(t,q,p)p_k - \L_U(t,q,\dot q(t,q,p)) \right\}_{(U,\psi)} \]
-    Definisce un'hamiltoniana su $F(\V^{n+1})$.
-    \proof 
-    
+    Definisce un'Hamiltoniana su $F(\V^{n+1})$.
+    \proof
+    Dobbiamo dimostrare che per ogni coppia di carte locali $(U,\psi)$ e $(U',\psi')$ con intersezione non vuota l'Hamiltoniana si trasformi nel modo corretto; ricordando le leggi di trasformazione 
+    \[ t' = t \quad q'^k = q'^k(t, q) \quad \dot q'^k = \frac{\partial q'^k(t,q)}{\partial t} + \sum_l \frac{\partial q'^k(t,q)}{\partial q^l}\dot q^l \quad p'_k = \sum_l \frac{\partial q^l}{\partial q'^k}p_k \]
+    Segue da un semplice calcolo che 
+    \begin{align*}
+        \H_{U'}(t',q',p') & = \sum_k\dot q'^k p'_k - \L_{U'}(t',q',\dot q') \\
+        & = \sum_k \frac{\partial q'^k}{\partial t}p'_k + \sum_{k,l,m} \frac{\partial q'^k}{\partial q^l}\dot q^l \frac{\partial q^m}{\partial q'^k} p_m - \L_U(t,q,\dot q) \\
+        & = \sum_k \frac{\partial q'^k}{\partial t}p'_k + \sum_{l,m}\underbrace{\left( \sum_k \frac{\partial q'^k}{\partial q^l}\frac{\partial q^m}{\partial q'^k} \right)}_{= \frac{\partial q^m}{\partial q^l} = \delta_l^m }\dot q^l p_m - \L_U(t,q,\dot q) \\
+        & = \sum_k \frac{\partial q'^k}{\partial t}p'_k + \sum_l \dot q^l p_l - \L_U(t,q,\dot q) = \sum_k \frac{\partial q'^k}{\partial t}p'_k + \H_U(t,q,p)
+    \end{align*}
+    \qed
 \end{proposition}
+
+Notiamo che questa formula per l'Hamiltoniana non è nuova, l'avevamo già vista nel teorema di Jacobi; in casi particolari, $\H$ può essere interpretata come l'energia totale del sistema.\\
+La condizione di non degenerazione che abbiamo richiesto in questa proposizione è precisamente la condizione necessaria affinchè la trasformazione di Legendre sia un diffeomorfismo, che è ciò che ci serve per esprimere le Hamiltoniane locali in termini delle coordinate locali di $F(\V^{n+1})$.\\
+La bizzarra legge di trasformazione delle Hamiltoniane è imposta dal modo in cui sono costruite rispetto alla Lagrangiana globale $\L$. In un contesto geometrico più avanzato, questa legge di trasformazione viene espressa in termini di una sezione globale di un fibrato affine canonico unidimensionale sullo spaziotempo delle fasi, ma questo va decisamente oltre gli scopi di questo corso.\\
+La proposizione precedente ammette un'inversione.
+
+\begin{proposition}{Costruzione di una Lagrangiana da un'Hamiltoniana}{Hamiltoniana to Lagrangiana}
+    Sia $T:\V^{n+1}\to E^1$ lo spaziotempo per un sistema con vincoli olonomi e sia $\H = \{\H_U\}_{(U,\psi)}$ un'Hamiltoniana su $F(\V^{n+1})$ tale che tutte le $\H_U(t,q,p)$ siano non degeneri, ovvero le espressioni 
+    \[ \dot q^k(t,q,p) = \frac{\partial \H_U(t,q,p)}{\partial p_k} \]
+    Siano invertibili in espressioni $p_k = p_k(t,q,\dot q)$.\\
+    Allora la famiglia di mappe locali
+    \[ \left\{ \L_U(t,q,\dot q) = \sum_k \dot q^k p_k(t,q,\dot q) - \H_U(t,q,p(t,q\dot q)) \right\}_{(U,\psi)} \]
+    Definisce una Lagrangiana globale su $A(\V^{n+1})$.
+    \proof 
+    Dobbiamo dimostrare che $\L_U(t,q,\dot q) = \L_{U'}(t',q',\dot q')$ sull'intersezione non vuota di ogni coppia di carte locali. Con le stesse leggi di trasformazione della proposizione precedente, vediamo 
+    \begin{align*}
+        \L_U'(t',q',\dot q') & = \sum_k \dot q'^k p'_k - \underbrace{ \sum_k \frac{\partial q'^k}{\partial t}p'_k - \H_U(t,q,p) }_{\H_U'(t',q',p')} \\
+        & = \sum_{k} \frac{\partial q'^k}{\partial t}p'_k + \sum_{k,l,m} \frac{\partial q'^k}{\partial q^l}\dot q^l \frac{\partial q^m}{\partial q'^k} p_m - \H_U(t,q,p) - \sum_k \frac{\partial q'^k}{\partial t}p'_k \\
+        & = \sum_{l,m} \underbrace{\left( \sum_k \frac{\partial q'^k}{\partial q^l}\frac{\partial q^m}{\partial q'^k} \right)}_{= \frac{\partial q^m}{\partial q^l} = \delta_l^m }\dot q^l p_m - \H_U(t,q,p) \\
+        & = \sum_l \dot q^l p_l - \H_U(t,q,p) = \L_U(t,q,p)
+    \end{align*}
+    \qed
+\end{proposition}
+
+Come vorremmo sperare, abbiamo il seguente teorema.
+
+\begin{theorem}{Equivalenza tra Lagrangiana e Hamiltoniana}{}
+    Le due costruzioni precedenti sono inverse l'una dell'altra e stabiliscono una biezione tra le Lagrangiane non degeneri su $A(\V^{n+1})$ e le Hamiltoniane non degeneri su $F(\V^{n+1})$.
+    \proof 
+    Dobbiamo dimostrare due cose: $(1)$ che le due costruzioni preservano la non-degenerazione, e $(2)$ che sono inverse l'una all'altra.
+    \begin{enumerate}
+        \item \begin{itemize}
+            \item Osserviamo che nel caso $\L\mapsto \H$ si ha 
+                \begin{align*}
+                    \frac{\partial\H_U(t,q,p)}{\partial p_k} & = \frac{\partial}{\partial p_k}\left( \sum_l \dot q^l (t,q,p) p_l - \L_U(t,q,\dot q(t,q,p)) \right) \\
+                    & = \sum_l \frac{\partial \dot q^l}{\partial p_k}p_l + \dot q^k(t,q,p) +\sum_l \underbrace{\frac{\partial \L_U(t,q,\dot q(t,p,q))}{\partial \dot q^l}}_{=: p_l} \frac{\partial \dot q^l}{\partial p_k} = \dot q^k(t,q,p)
+                \end{align*}
+                Che è invertibile per 
+                \[ p_k(t,q,\dot q) = \frac{\partial \L_U(t,q, \dot q)}{\partial \dot q^k} \]
+            \item Nel caso $\H\mapsto \L$ invece abbiamo 
+                \begin{align*}
+                    \frac{\partial\L_U(t,q,\dot q)}{\partial \dot q^k} & = \frac{\partial }{\partial \dot q^k}\left( \sum_l \dot q^l p_l - \H_U(t,q,p(t,q,\dot q)) \right) \\
+                    & = p_k(t,q,\dot q)+ \sum_l \dot q^l\frac{\partial p_l(t,q,\dot q)}{\partial \dot q^k} - \sum_l \underbrace{\frac{\partial \H_U(t,q,p(t,q,\dot q))}{\frac \partial p_l}}_{=: \dot q^l} \frac{\partial p_l(t,q,\dot q)}{\partial \dot q^k} = p_k(t,q,\dot q)
+                \end{align*}
+                Che è invertibile per 
+                \[ \dot q^k(t,q,p) = \frac{\partial \H_U(t,q,p)}{\partial p_k} \]
+        \end{itemize}
+        \item \begin{itemize}
+            \item Data una Lagrangiana non degenere $\{\L_U\}$ troviamo la Lagrangiana associata alla sua Hamiltoniana $\{\H_U\}$:
+                \[ \sum_k \dot q^k p_k -\H_U = \sum_k \dot q^k p_k - \sum_k \dot q^k p_k + \L_U = \L_U \]
+            \item Analogamente per un'Hamiltoniana non degenere $\{H_U\}$: 
+                \[ \sum_k \dot q^k p_k -\L_U = \sum_k \dot q^kp_k - \sum_k \dot q^k p_k + \H_U = \H_U \]
+        \end{itemize}
+    \end{enumerate}
+    \qed 
+\end{theorem}
+
+Possiamo ora descrivere come si presentano le equazioni di Eulero-Lagrange quando formulate dal punto di vista dell'Hamiltoniana invece che della Lagrangiana; per farlo sarà comodo esprimerle in una forma equivalente.\\
+Consideriamo una generica linea di universo a valori in una carta locale $\Gamma_A:I\to\psi(U)\times \R^n \subset A(\V^{n+1})$ che mappa $t\mapsto (t,q(t),\dot q(t))$. Questa sorge come estensione canonica $\Gamma_A = \hat\Gamma$ di una linea di universo $\Gamma:I\to\psi(U)$ se e solo se per ogni $k$ vale
+\[ \dot q^k(t) = \frac{\di q^k(t)}{\di t} \]
+Allora possiamo riscrivere le equazioni di Eulero-Lagrange per nel sistema di equazioni 
+\[ \begin{cases}
+    \frac{\di }{\di t}\frac{\partial \L(t,q(t),\dot q(t))}{\partial \dot q^k} - \frac{\partial \L_U(t, q(t),\dot q(t))}{\partial q^k} \\ \dot q^k(t) = \frac{\di q^k(t)}{\di t}
+\end{cases} \]
+
+\begin{theorem}{Equazioni di Hamilton}{equazioni di Hamilton}
+    Consideriamo una Lagrangiana non degenere $\{\L_U\}$ e una linea di universo locale $\Gamma_A : I \to \psi(U)\times \R^n\subset A(\V^{n+1})$ che mappa $t\mapsto (t,q(t),\dot q(t))$.\\
+    Usando la trasformazione di Legendre, questi dati ammettono una descrizione equivalente in termini di un'Hamiltoniana $\{\H_U\}$ e una linea di universo locale $\Gamma_F:I \to\psi(U)\times \R^n \subset F(\V^{n+1})$ che mappa $t\mapsto (t,q(t),p(t))$.\\
+    Allora $\Gamma_A$ soddisfa le equazioni di Eulero-Lagrange nella forma equivalente di cui sopra se e solo se $\Gamma_F$ soddisfa le \bemph{equazioni di Hamilton}:
+    \[ \begin{cases}
+        \frac{\di p_k(t)}{\di t} = -\frac{\partial \H_U(t,q(t),p(t))}{\partial q^k}\\
+        \frac{\di q^k(t)}{\di t} = \frac{\partial \H_U(t,q(t),p(t))}{\partial p_k}
+    \end{cases} \]
+    \proof 
+    Dato che la trasformata di Legendre è un diffeomorfismo nel caso non degenere, basta provare che le equazioni di Hamilton implicano quelle di Eulero-Lagrange: vediamo che per la definizione di Hamiltoniana 
+    \[ \H_U(t,q,p) = \sum_k \dot q^k(t,q,p) p_k -\L_U(t,q,\dot q(t,q,p)) \]
+    Si ha per il lato destro
+    \begin{align*}
+        -\frac{\partial \H_U(t,q,p)}{\partial q^k} & = -\sum_l \frac{\partial \dot q^l(t,q,p)}{\partial q^k}p_l +\frac{\partial \L_U(t,q,\dot q(t,q,p))}{\partial q^k} + \sum_l \underbrace{\frac{\partial \L_U(t,q,\dot q(t,q,p))}{\partial \dot q^l}}_{=: p_l}\frac{\partial \dot q^l}{\partial q^k}\\ 
+        & = \frac{\partial \L_U(t,q,\dot q(t,q,p))}{\partial q^k} \\
+        \frac{\partial\H_U(t,q,p)}{\partial p_k} & = \sum_l \frac{\partial \dot q^l(t,q,p)}{\partial p^k}p_l + \dot q^k(t,q,p) -\sum_l \underbrace{\frac{\partial \L_U(t,q,\dot q(t,q,p))}{\partial \dot q^l}}_{=: p_l}\frac{\partial \dot q^l(t,q,\dot q(t,q,p))}{\partial p_k} \\
+        & = \dot q^k(t,q,p)
+    \end{align*}
+    Valutando sulla trasformata di Legendre di $\Gamma_A(t) = (t,q(t),\dot q(t))$ data da 
+    \[ \Gamma_F(t):= (t,q,p(t)) = \left( t, q^1(t),...,q^n(t),\frac{\partial \L_U(t,q(t)\dot q(t))}{\partial \dot q^1},..., \frac{\partial \L_U(t,q(t),\dot q(t))}{\partial\dot q^n} \right) \]
+    Otteniamo le equazioni di Eulero-Lagrange: 
+    \begin{align*}
+        \frac{\di}{\di t}\frac{\partial \L_U(t,q(t),\dot q(t))}{\partial \dot q^k} & = \frac{\di p_k(\Gamma_F(t))}{\di t} = - \frac{\partial \H_U(\Gamma_F(t))}{\partial q_k} \\
+        & = \frac{\partial \L(t,q(t),\dot q(t))}{\partial q^k} \\
+        \frac{\di q^k(t)}{\di t} &  = \frac{\partial \H_U(\Gamma_F(t)) }{\partial p_k} = \dot q^k(t)
+    \end{align*}
+    \qed
+\end{theorem}
+
+Sebbene questo teorema sia enunciato solo nel caso locale, come abbiamo visto qualche pagina fa possiamo estenderlo al caso globale: data una linea di universo $\Gamma_A:I\to A(\V^{n+1})$ con trasformata di Legendre $\Gamma_F:I\to F(\V^{n+1})$, possiamo ricoprire $I$ in sottointervalli $\{I_U\}$ tali che le restrizioni delle linee di universo si fattorizzino in carte locali:
+\[\begin{tikzcd}
+	{I_U} && {A(\V^{n+1})} && {I_U} && {F(\V^{n+1})} \\
+	\\
+	&& {\psi(U)\times\R^n} &&&& {\psi(U)\times \R^n}
+	\arrow["{\Gamma_A|_{I_U}}"{description}, from=1-1, to=1-3]
+	\arrow["{\Gamma_A}"{description}, dashed, from=1-1, to=3-3]
+	\arrow["{\Gamma_F|_{I_U}}"{description}, from=1-5, to=1-7]
+	\arrow["{\Gamma_F}"{description}, dashed, from=1-5, to=3-7]
+	\arrow[hook, from=3-3, to=1-3]
+	\arrow[hook, from=3-7, to=1-7]
+\end{tikzcd}\]
+E applicando il teorema a tutta questa famiglia di linee di universo locali otteniamo l'equivalenza globale.\\
+Notiamo che le equazioni di Hamilton costituiscono un sistema di equazioni del primo ordine in forma normale per $q^k(t)$ e $p_k(t)$. Questo sistema tuttavia le tratta in modo molto più simmetrico di quanto la meccanica Lagrangiana tratti $q(t)$ e $\dot q(t)$; in particolare vengono preservate dalla trasformazione $(q^k,p_k)\mapsto (-p_k, q_k)$, che è un esempio di una cosiddetta \bemph{trasformazione canonica}, argomento che non tratteremo in questo corso ma che è molto importante per gli sviluppi della meccanica Hamiltoniana\footnote{In effetti, questa equivalenza tra \textit{posizione} e \textit{momento} di una \textit{particella} potrebbe far venire qualcosa in mente ad alcuni lettori}.\\
+
+\newpage
+\section{Parentesi di Poisson}
+
+In questa parte introduciamo la cosiddetta parentesi di Poisson, una struttura algebrica definita canonicamente su $F(\V^{n+1})$. Questa non serve solo a riscrivere in una forma molto coincisa le equazioni di Hamilton, ma anche a formulare il teorema di Noether per la meccanica Hamiltoniana e affrontare il problema della quantizzazione in meccanica quantistica.
+
+\begin{definition}{Parentesi di Poisson locale}{parentesi di Poisson locale}
+    Sia $(U,\psi)$ una carta locale adattata alla sommersione suriettiva $T:\V^{n+1}\to E^1$ e si consideri la carta locale associata $\psi(U)\times\R^n$ per $F(\V^{n+1})$.\\
+    La \bemph{parentesi di Poisson} di due mappe lisce $f_U, g_U : \psi(U)\times\R^n \to \R $ è data da 
+    \[ \langle f_U, g_U\rangle_U = \sum_k \frac{ \partial f_U }{\partial q^k} \frac{\partial g_U}{\partial p_k} - \frac{\partial f_U}{\partial p_k}\frac{\partial g_U}{\partial q^k} \]
+\end{definition}
+
+\begin{proposition}{parentesi di Poisson globale}{parentesi di Poisson globale}
+    Le parentesi di Poisson locali $\langle\bullet, \bullet\rangle_U$ si assemblano in una parentesi di Poisson globale $\langle\bullet,\bullet\rangle:\C^\infty (F(\V^{n+1}))\times \C^\infty (F(\V^{n+1})) \to \C^\infty (F(\V^{n+1}))$ sull'algebra delle funzioni reali lisce sullo spaziotempo delle fasi.\\
+    In particolare, ricordando che ogni mappa liscia $h:\F(\V^{n+1})\to \R$ ammette una descrizione equivalente in termini di una famiglia di mappe locali lisce $\{h_U\}_U$ che concordano sull'intersezione delle carte, la parentesi di Poisson globale $\langle f,g\rangle$ è definita dalla famiglia $\{ \langle f_U, g_U\rangle_U \}_U$
+    \proof 
+    Dobbiamo dimostrare che sull'intersezione $U\cap U'$ le parentesi locali soddisfano $\langle f_{U'}, g_{U'} \rangle_{U'}(t',q',p') = \langle f_U, g_U\rangle_U(t,q,p)$, ricordando la legge di trasformazione 
+    \[ t' = t, \quad q' = q'(t,q), \quad p'_k = \sum_l \frac{\partial q^l}{\partial q'^k}p_l \]
+    E usando il fatto che $f_U$ e $g_U$ concordano con $f_{U'}$ e $g_{U'}$ sull'intersezione otteniamo la regola della catena:
+    \begin{align*}
+        \langle f_U, g_U\rangle_U(t,q,p) & = \sum_k \frac{ \partial f_U }{\partial q^k} \frac{\partial g_U}{\partial p_k} - \frac{\partial f_U}{\partial p_k}\frac{\partial g_U}{\partial q^k} \\
+        & = \sum_{k,l,m} \left[ \left( \frac{\partial q'^l}{\partial q'^k} \frac{\partial f_{U'}}{\partial q'^l} + \frac{\partial p'_l}{\partial q^k}\frac{\partial f_{U'}}{\partial p'_l} \right)\underbrace{\frac{\partial p'_m}{\partial p_k}}_{= \frac{\partial q^k}{\partial q'^m}}\frac{\partial g_{U'} }{\partial p'_m} - \underbrace{\frac{\partial p'_l}{\partial p_k}}_{=\frac{\partial q^k}{\partial q'^l}}\frac{\partial f_{U'}}{\partial p'_l}\left( \frac{ \partial q'^m }{\partial q^k} \frac{\partial g_{U'}}{\partial q'^m} + \frac{\partial p'_m}{q^k}\frac{\partial g_{U'}}{\partial p'_m} \right) \right] \\
+        & = \sum_k \left(\frac{ \partial f_{U'} }{\partial q'^k} \frac{\partial g_{U'}}{\partial p'_k} - \frac{\partial f_{U'}}{\partial p'_k}\frac{\partial g_{U'}}{\partial q'^k}\right) + \underbrace{\sum_{k,l,m} \left( \frac{\partial p'_l}{\partial q^k}\frac{\partial q^k}{\partial q'^m}- \frac{\partial p'_m}{\partial q^k}\frac{\partial q^k}{\partial q'^l} \right)\frac{\partial f_U}{\partial p'_l}\frac{\partial g_U}{\partial p'_m}}_{= 0} \\
+        & = \langle f_{U'}, g_{U'} \rangle_{U'}(t',q',p')
+    \end{align*}
+    Dove nell'ultimo passaggio abbiamo usato l'identità
+    \[ \sum_k \frac{\partial q'^l}{\partial q^k}\frac{\partial q^k}{\partial q'^m} = \frac{\partial q'^l}{\partial q'^m} = \delta_m^l \]
+    E il termine che si annulla viene dal fatto che
+    \begin{align*}
+        \sum_k \frac{\partial p'_l}{\partial q^k}\frac{\partial q^k}{\partial q'^m} & = \sum_{k,s} p_s \frac{\partial}{\partial q^k}\left( \frac{\partial q^s}{\partial q'^l} \right)\frac{\partial q^k}{\partial q'^m} = \sum_{k,s,u} p_s \frac{\partial^2 q^s}{\partial q'^u \partial q'^l}\frac{ \partial q'^u}{\partial q^k}\frac{\partial q^k}{\partial q'^m} \\ & = \sum_s p_s \frac{ \partial^2 q^s }{\partial q'^l \partial q'^m}
+    \end{align*}
+    È simmetrico rispetto allo scambio di $l$ e $m$.
+    \qed
+\end{proposition}
+
+Notiamo che se introduciamo la matrice 
+\[ S := \begin{pmatrix}
+    \mathbf{0}_{n\times n} & \mathbf{1}_{n\times n} \\ - \mathbf{1}_{n\times n} & \mathbf{0}_{n\times n}
+\end{pmatrix} \]
+La parentesi di Poisson locale può essere scritta più compattamente come 
+\[ \langle f_U, g_U \rangle_U = \sum_{a,b} S^{a,b} \frac{\partial f_U}{\partial z^a}\frac{\partial g_U}{\partial z^b} \]
+Forma occasionalmente utile per i calcoli.\\
+Le parentesi di Poisson delle coordinate locali assumono i valori 
+\[ \langle q^k, q^l \rangle_U = 0,\quad \langle p_k, p_l\rangle_U = 0 \quad \langle q^k, p_l\rangle_U = \delta_l^k  \]
+Queste identità sono un possibile punto di partenza per passare dalla meccanica classica a quella quantistica. Infatti sostituendo $q$ e $p$ con operatori, ad esempio su uno spazio di Hilbert complesso, $\hat q$ e $\hat p$ i cui commutatori soddisfano le identità analoghe
+\[ [\hat q^k, \hat q^l]= 0,\quad [\hat p_k, \hat p_l] = 0,\quad [\hat q^k,\hat p_l] = i\hbar \delta_l^k  \]
+dove $\hbar$ è la costante di Planck ridotta. La matematica che sorge da questa transizione è estremamente interessante, ma purtroppo non abbiamo il tempo di esplorarla in questo corso.
+
+\begin{proposition}{Proprietà della parentesi di Poisson}{proprietà della parentesi di Poisson}
+    La parentesi di Poisson gode delle seguenti proprietà:\begin{enumerate}
+        \item \bemph{bilinearità}, ovvero 
+        \[ \langle \alpha f + \beta g, h \rangle = \alpha\langle f,h \rangle+\beta \langle g, h\rangle,\qquad \langle f, \alpha g + \beta h \rangle = \alpha\langle f,g\rangle + \beta\langle f, h\rangle \]
+        \item \bemph{Antisimmetria}, ovvero $\langle f,g\rangle = - \langle g, f\rangle$.
+        \item \bemph{Identità di Jacobi}\footnote{Legata alle permutazioni cicliche $fgh\to hfg \to ghf$}, ovvero 
+        \[ \langle\langle f, g \rangle, h\rangle + \langle\langle g,h\rangle,f\rangle + \langle\langle h,f\rangle, g\rangle = 0 \]
+        \item \bemph{Biderivazione}, o regola di Leibniz:
+        \[ \langle fg, h \rangle = f \langle g,h\rangle + \langle f,h\rangle g, \qquad \langle f, gh\rangle = \langle f,g\rangle h + g\langle f,h\rangle \]
+    \end{enumerate}
+    \proof 
+    È sufficiente dimostrare localmente queste proprietà, dunque dall'espressione locale vista sopra 
+    \[ \langle f_U, g_U\rangle_U = \sum_{a,b}S^{a,b} \frac{\partial f_U}{\partial z^a} \frac{\partial g_U}{\partial z^b}  \]
+    Seguono immediatamente $(1)$, $(2)$ e $(4)$ dalle proprietà della derivata e dall'antisimmetria di $S$.\\
+    Rimane da mostrare la $(3)$: esplicitando il primo termine e omettendo $U$ per alleggerire la notazione otteniamo:
+    \begin{align*}
+        \langle\langle f, g \rangle, h\rangle & = \sum_{a,b}S^{a,b}\frac{\partial \langle f, g \rangle}{\partial z^a}\frac{\partial h}{\partial z^b} = \sum_{a,b,c,d}S^{a,b}S^{c,d}\frac{\partial }{\partial z^a}\left( \frac{\partial f}{\partial z^c}\frac{\partial g}{\partial z^d} \right)\frac{\partial h}{\partial z^b} \\ 
+        & = \sum_{a,b,c,d} S^{a,b}S^{c,d}\left( \frac{\partial^2 f}{\partial z^a \partial z^c} \frac{\partial g}{\partial z^d} \frac{\partial h}{\partial z^b} + \frac{\partial f}{\partial z^c}\frac{\partial^2 g}{\partial z^a\partial z^d}\frac{\partial h}{\partial z^b} \right) 
+    \end{align*}
+    Quindi possiamo riscrivere il lato sinistro dell'identità di Jacobi come 
+    \begin{align*}
+        \sum_{a,b,c,d}S^{a,b}S^{c,d} & \left( \underbrace{\frac{\partial^2 f}{\partial z^a \partial z^c} \frac{\partial g}{\partial z^d} \frac{\partial h}{\partial z^b}}_{=: \heartsuit_1} + \underbrace{\frac{\partial f}{\partial z^c}\frac{\partial^2 g}{\partial z^a\partial z^d}\frac{\partial h}{\partial z^b}}_{=:\diamondsuit_1} \right. \\
+        & + \underbrace{\frac{\partial^2 g}{\partial z^a \partial z^c} \frac{\partial h}{\partial z^d} \frac{\partial f}{\partial z^b}}_{=: \diamondsuit_2} + \underbrace{\frac{\partial g}{\partial z^c}\frac{\partial^2 h}{\partial z^a\partial z^d}\frac{\partial f}{\partial z^b}}_{=:\clubsuit_1} \\
+        & \left. + \underbrace{\frac{\partial^2 h}{\partial z^a \partial z^c} \frac{\partial f}{\partial z^d} \frac{\partial g}{\partial z^b}}_{=: \clubsuit_2} + \underbrace{\frac{\partial h}{\partial z^c}\frac{\partial^2 f}{\partial z^a\partial z^d}\frac{\partial g}{\partial z^b}}_{=:\heartsuit_2} \right)
+    \end{align*} 
+    Si vede con un poco di lavoro che i termini con lo stesso seme\footnote{a dire il vero, una volta messi in sommatoria} sono opposti l'uno all'altro: consideriamo $\heartsuit$, per gli altri semi il ragionamento è analogo:
+    \begin{align*}
+        \heartsuit_2 & = \sum_{a,b,c,d} S^{a,b}S^{c,d} \frac{\partial h}{\partial z^c}\frac{\partial^2 f}{\partial z^a\partial z^d}\frac{\partial g}{\partial z^b} \\
+        & = \sum_{a,b,c,d} S^{c,d}\underbrace{S^{a,b}}_{= -S^{b,a}} \frac{\partial h}{\partial z^a}\frac{\partial^2 f}{\underbrace{\partial z^c\partial z^b}_{= \partial z^b \partial z^c}}\frac{\partial g}{\partial z^d} \\
+        & = -\sum_{a,b,c,d} S^{b,a}S^{c,d} \frac{\partial^2 f}{\partial z^b \partial z^c } \frac{\partial g}{\partial z^d}\frac{\partial h}{\partial z^a} \\
+        & = -\sum_{a,b,c,d} S^{a,b}S^{c,d} \frac{\partial^2 f}{\partial z^a \partial z^c } \frac{\partial g}{\partial z^d}\frac{\partial h}{\partial z^b} = - \heartsuit_1
+    \end{align*}
+    Dove nel secondo passaggio abbiamo rinominato $a,b$ in $c,d$ e viceversa e nel quarto rinominato $a$ in $b$ e viceversa.
+    \qed
+\end{proposition}
+
+Le proprietà $(1)$, $(2)$ e $(3)$ sono le proprietà che caratterizzano una cosiddetta \bemph{algebra di Lie}; pertanto la parentesi di Poisson dota $\C^{\infty}(F(\V^{n+1}))$ di una struttura di algebra di Lie con una proprietà aggiuntiva, la $(4)$, che la rende compatibile con la moltiplicazione puntuale di funzioni. Nel contesto della geometria differenziale, una varietà dotata di una parentesi di Poisson è detta \bemph{varietà di Poisson}.
+
+\begin{proposition}{}{}
+    Nel contesto della definizione di cui sopra, le equazioni di Hamilton possono essere riscritte equivalentemente come 
+    \[ \begin{cases}
+        \frac{\di p_k(t)}{\di t} = \langle p_k, \H_U\rangle_U(t,q(t),p(t)) \\
+        \frac{\di q^k(t)}{\di t} = \langle q^k, \H_U\rangle_U(t,q(t),p(t))
+    \end{cases} \]
+    \proof 
+    Segue per calcolo diretto, infatti per $p_k$ abbiamo 
+    \[ \langle p_k, \H_U\rangle_U = \sum_l \left( \underbrace{\frac{\partial p_k}{\partial q^l}}_{=0}\frac{\partial \H_U}{\partial p_l} - \underbrace{\frac{\partial p_k}{\partial p_l}}_{=\delta_l^k}\frac{\partial \H_U}{\partial q^l} \right) = -\frac{\partial \H_U}{\partial q^k} \]
+    E analogamente per $q^k$
+    \qed 
+\end{proposition}
+
+La parentesi di Poisson non è solo utile per riscrivere in maniera più compatta le equazioni di Hamilton, ma anche per studiare gli integrali primi del moto.
+
+\begin{definition}{Integrale primo del moto}{integrale primo}
+    Si consideri un sistema fisico descritto da uno spaziotempo delle configurazioni $T:\V^{n+1}\to E^1$ e un'Hamiltoniana $\H = \{\H_U\}_U$ sullo spaziotempo delle fasi $F(\V^{n+1})$.\\
+    Un \bemph{integrale primo del moto} è una funzione liscia globale $f:F(\V^{n+1})\to \R$ tale che in ogni carta locale $\psi(U)\times\R^n$ e lungo ogni soluzione $(t,q(t),p(t))$ locale delle equazioni di Hamilton si abbia 
+    \[\frac{\di f_U(t,q(t),p(t))}{\di t} = 0\]
+\end{definition}
+
+\begin{proposition}{}{}
+    Nel contesto della definizione di cui sopra, $f = \{ f_U\}_U$ è un integrale primo del moto se e solo se in ogni carta locale $\psi(U)\times\R^n$ si ha 
+    \[ \frac{\partial f_U}{\partial t} + \langle f_U,\H_U\rangle_U = 0 \]
+    \proof 
+    Usando le equazioni di Hamilton e sottintendendo che tutte le funzioni sono da valutare lungo $(t,q(t),p(t))$ in $U$ possiamo scrivere 
+    \begin{align*}
+        \frac{\di f}{\di t} & = \frac{\partial f}{\partial t} + \sum_k\left( \frac{\partial f}{\partial q^k} \frac{\di q^k}{\di t} + \frac{\partial f}{\partial p_k}\frac{\di p_k}{\di t} \right) \\
+        & = \frac{\partial f}{\partial t} + \sum_k\left( \frac{\partial f}{\partial q^k} \frac{\partial \H}{\partial p_k} - \frac{\partial f}{\partial p_k}\frac{\partial \H}{\partial q^k} \right) \\
+        & = \frac{\partial f}{\partial t} + \langle f, \H\rangle
+    \end{align*}
+    Poichè le equazioni di Hamilton sono in forma normale, ogni punto di $F(\V^{n+1})$ funge da dato iniziale, dunque ogni punto della carta appartiene a qualche linea di universo e perciò questa identità è vera su tutta la carta.
+\end{proposition}
+
+Dalla sua derivazione, è chiaro che questa condizione equivalente per un integrale primo è interpretabile come l'affermazione che $f$ è invariante rispetto alla dinamica generata dall'Hamiltoniana $\H$ del sistema. Abbiamo già visto sopra che la dinamica delle coordinate del sistema viene codificata dall'azione di $\langle \cdot, \H\rangle$ sulle coordinate, dunque con un po' di lavoro si può mostrare che la dinamica di una funzione liscia $f$ è codificata dall'azione del campo vettoriale, o derivazione 
+\[ Z = \frac{\partial}{\partial t} + \langle\cdot, \H\rangle \]
+E che dunque gli integrali primi corrispondono agli zeri di questo campo vettoriale, ovvero le funzioni che non cambiano lungo la sua dinamica.\\
+Allo stesso modo, si può interpetare questa condizione dicendo che il sistema Hamiltoniano possiede una simmetria generata da $f$ tramite la derivazione $X_f = \langle f,\cdot\rangle$, che può essere integrata a un gruppo a un parametro di automorfismi di $F(\V^{n+1})$.\\
+La relazione tra questi due punti di vista viene codificata precisamente nel \bemph{teorema di Noether Hamiltoniano}, che può essere reperito nel capitolo 13.3.3 di \cite{Moretti2024}, ma che purtroppo non abbiamo tempo di trattare.\\
+Concludiamo con un bel risultato sulle strutture algebriche definibili sull'insieme degli integrali primi del moto.
+
+\begin{theorem}{}{}
+    Indichiamo con 
+    \[ \I_\H := \left\{ f \in \C^{\infty}(F(\V^{n+1})) : \frac{\partial f}{\partial t} + \langle f,\H \rangle = 0 \right\} \]
+    L'insieme degli integrali primi del moto di un sistema fisico descritto da un'Hamiltoniana $\H$.\\
+    Allora $(\I_\H, \langle\cdot,\cdot\rangle )$ è una sottoalgebra di Poisson di $(\C^{\infty}(F(\V^{n+1})), \langle\cdot,\cdot\rangle )$, vale a dire che include la funzione identicamente $1$ ed è chiuso per combinazioni lineari, prodotti e parentesi di Poisson dei suoi elementi.
+    \proof 
+    È sufficiente provare la proposizione localmente:\begin{itemize}
+        \item La chiusura per combinazioni lineari segue dalla linearità della derivata rispetto a $t$ e di $\langle \cdot , \H\rangle$.
+        \item Segue dal fatto che la funzione costante $1$ è costante e dalla proprietà di derivazione di $\langle \cdot , \H\rangle$.
+        \item Segue dall'antisimmetria e dall'identità di Jacobi.
+    \end{itemize}
+    \qed
+\end{theorem}
+
+Questo risultato può esserci utile per cercare nuovi integrali primi del moto quando ne abbiamo già alcuni: non solo considerando banalmente loro combinazioni lineari o prodotti, ma anche considerando le loro parentesi di Poisson.
 
 \nocite{*}
 \printbibliography
