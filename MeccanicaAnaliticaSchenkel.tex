@@ -190,7 +190,7 @@ Un atlante massimale di dimensione $n$ per $M$ in generale contiene una quantit�
 
 Vediamo che è sufficiente controllare la differenziabilità su un atlante non massimale:
 
-\begin{proposition}{}{}
+\begin{proposition}{Incollamento per mappe differenziabili}{incollamento per mappe differenziabili}
     Sia $f:M\to M'$ una mappa continua e siano $\B,\B'$ due atlanti di classe $\C^k$ e dimensioni $n,n'$, non necessariamente massimali, che inducano le strutture differenziabili $\A := \bar\B$ e $\A':=\bar\B'$.\\
     Se la mappa definita dal diagramma della definizione \ref{def:varietà} è $\C^k$ per ogni coppia di carte in $\B,\B'$ che ne soddisfino le ipotesi, allora lo è anche per ogni coppia di carte in $\A,\A'$ che ne soddisfino le ipotesi, ovvero $f$ è un morfismo di varietà $\C^k$.
     \proof 
@@ -205,7 +205,7 @@ Vediamo che sia gli spazi vettoriali che gli spazi affini sono esempi di variet�
     Banalmente, una mappa lineare $L:V\to V'$ definisce un morfismo di varietà lisce in quanto le mappe lineari $\R^n\to\R^{n'}$ sono lisce, ma non tutti i morfismi $f$ di varietà lisce sono dati da mappe lineari, dato che si richiede semplicemente che $e'\circ f\circ e^{-1}$ sia una mappa liscia, non necessariamente lineare.
 \end{example}
 
-L'esempio si generalizza immediatamente agli spazi affini di dimensione finita con lo stesso \textit{caveat}, ma il concetto di varietà è molto più generale: esempi di varietà liscie sono anche le sfere $\mathbb{S}^n$, le varietà algebriche non singolari, gli spazi proiettivi, le immagini di aperti di $\R^n$ attraverso mappe lisce e i loro grafici e moltissimi altri.
+L'esempio si generalizza immediatamente agli spazi affini di dimensione finita con lo stesso \textit{caveat}, ma il concetto di varietà è molto più generale: esempi di varietà lisce sono anche le sfere $\mathbb{S}^n$, le varietà algebriche non singolari, gli spazi proiettivi, le immagini di aperti di $\R^n$ attraverso mappe lisce e i loro grafici e moltissimi altri.
 
 \subsubsection{Teoria delle categorie}
 
@@ -272,7 +272,7 @@ Notiamo anche che una mappa affine $\psi : E\to E'$ è un'isometria se e solo se
 
 Come per il caso vettoriale e per il caso affine, non sarà mica che ogni spazio euclideo di dimensione finita è segretamente $\R^n$ sotto mentite spoglie? E certo che è così, lo vediamo con la prossima proposizione:
 
-\begin{proposition}{}{}
+\begin{proposition}{Coordinate cartesiane ortonormali}{coordinate cartesiane ortonormali}
     Sia $E$ uno spazio euclideo di dimensione $n \in \N$. Allora esiste un\footnote{non unico} isomorfismo di spazi euclidei $\psi:\R^n\iso E$, detto \bemph{sistema di coordinate cartesiane ortonormali} per $E$.
     \proof 
     Scegliamo un punto $P_0 \in E$ e una base ortonormale $\{e_i \in V : s(e_i,e_j) = \delta_{i,j}\}_{1\le i\le n}$ per lo spazio vettoriale sottostante $V$, dunque definiamo la mappa $\psi$ come
@@ -527,7 +527,7 @@ Il primo principio stabilisce una classe privilegiata di sistemi di riferimento 
 \end{axiom}
 
 \textit{Espressiamo} (sic) questo principio in un linguaggio vagamente più formale.\\
-Un insieme di $N$ punti materiali $\{ Q_1,...,Q_N \}$ corrisponde a $N$ linee di universo $\gamma_{Q_k}:I\to\V^4$ nello spaziotempo. Dato in qualsiasi sistema di riferimento $(R,\id_{E^1})$ per lo spaziotempo con coordinate standard adattate, abbiamo introdotto il concetto di velocità rispetto ad $R$
+Un insieme di $N$ punti materiali $\{ Q_1,\ ...\ ,\ Q_N \}$ corrisponde a $N$ linee di universo $\gamma_{Q_k}:I\to\V^4$ nello spaziotempo. Dato in qualsiasi sistema di riferimento $(R,\id_{E^1})$ per lo spaziotempo con coordinate standard adattate, abbiamo introdotto il concetto di velocità rispetto ad $R$
 \[ v_{Q_k}|_R (t) = \sum_i\frac{\di \bar\gamma_{Q_k}^i(t)}{\di t}e_i(t) \]
 Il primo principio allora richiede che l'accelerazione di ciascun punto sia nulla, ovvero
 \[ a_{Q_k}|_R (t) = \sum_i\frac{\di^2 \bar\gamma_{Q_k}^i(t)}{\di t^2}e_i(t) = 0 \]
@@ -615,12 +615,12 @@ A differenza del primo principio, questo e i prossimi permettono che i singoli p
 \end{axiom}
 
 \begin{axiom}{Secondo principio della dinamica}{dinamica 2.1}
-    Per ogni sistema di riferimento $R$ e ogni sistema isolato costituito da due punti isolati $Q,Q'$, esistono due mappe liscie 
+    Per ogni sistema di riferimento $R$ e ogni sistema isolato costituito da due punti isolati $Q,Q'$, esistono due mappe lisce 
     \[ F_R, F'_R : E^3\times E^3 \times V^3\times V^3 \to V^3 \times V^3 \] tali che 
-    \[ \forall t \in I, \begin{cases}
+    \[ \forall t \in I, \begin{dcases}
         m_Q a_Q|_R(t) = F_R(\gamma_Q|_R(t), \gamma_{Q'}|_R(t), v_Q|_R(t), v_{Q'}|_R(t))\\
         m_{Q'} a_{Q'}|_R(t) = F'_R(\gamma_{Q'}|_R(t), \gamma_{Q}|_R(t), v_{Q'}|_R(t), v_{Q}|_R(t))
-    \end{cases}\]
+    \end{dcases}\]
     $F_R$ ($F'_R$) è chiamata la \bemph{forza} che agisce su $Q$ ($Q'$) a causa di $Q'$ ($Q$), e ciascuna è detta \bemph{reazione} rispetto all'altra.\\
     Inoltre, le forze sono equivarianti rispetto a cambiamenti di sistema di riferimento inerziale, ovvero il\footnote{A dire il vero, i seguenti due diagrammi, dato che ne otteniamo un altro scambiando $F$ con $F'$} seguente diagramma commuta per ogni $t \in I$:
     \[\begin{tikzcd}
@@ -664,12 +664,12 @@ Il prossimo principio ci permette di generalizzare quanto detto per i sistemi co
 
 \begin{axiom}{Principio di sovrapposizione delle forze}{sovrapposizione delle forze}
     Dato un sistema isolato di $N \in \N$ punti $\{Q_k\}_{k\le N}$, per ogni sistema di riferimento inerziale $R$ vale il secondo principio della dinamica in forma completa, ovvero per ogni $k\le N$ e per ogni $t \in I$:
-    \[ m_{Q_k}a_{Q_k}|_R(t) = \underbrace{\sum_{i\neq k} F_{R,ki} (\gamma_{Q_k}|_R(t), \gamma_{Q_i}|_R(t), v_{Q_k}|_R(t), v_{Q_i}|_R(t)) }_{=: F_{R,k}(\gamma_{Q_1}|_R(t),...,\gamma_{Q_N}|_R(t),v_{Q_1}|_R(t),..., v_{Q_N}|_R(t)) } \]
+    \[ m_{Q_k}a_{Q_k}|_R(t) = \underbrace{\sum_{i\neq k} F_{R,ki} (\gamma_{Q_k}|_R(t), \gamma_{Q_i}|_R(t), v_{Q_k}|_R(t), v_{Q_i}|_R(t)) }_{=: F_{R,k}(\gamma_{Q_1}|_R(t),\ ...\ ,\ \gamma_{Q_N}|_R(t),v_{Q_1}|_R(t),\ ...\ ,\  v_{Q_N}|_R(t)) } \]
     Dove $F_{R,ki}$ è la forza che agisce su $Q_k$ a causa di $Q_i$, ottenuta allontanando sufficientemente tutti gli altri punti
 \end{axiom}
 
 Mettendo l'equazione dataci da questo principio in coordinate, otteniamo un familiare sistema di equazioni differenziali del secondo ordine:
-\[ \frac{\di^2 \bar x_k(t) }{\di t^2} = \frac{1}{m_k}  \bar F_k \left(\bar x_1(t),...,\bar x_N(t), \frac{\di \bar x_1(t)}{\di t},..., \frac{\di \bar x_N(t)}{\di t}\right) \]
+\[ \frac{\di^2 \bar x_k(t) }{\di t^2} = \frac{1}{m_k}  \bar F_k \left(\bar x_1(t),\ ...\ ,\ \bar x_N(t), \frac{\di \bar x_1(t)}{\di t},\ ...\ ,\  \frac{\di \bar x_N(t)}{\di t}\right) \]
 Il \bemph{problema fondamentale della dinamica} è risolvere questo sistema date le condizioni iniziali e così prevedere il moto del sistema fisico.\\
 È un problema difficile, ma il seguente teorema (la cui dimostrazione esula dagli scopi di questo corso) ci garantisce almeno il fatto che una soluzione esista e che la nostra teoria sia deterministica:
 
@@ -706,27 +706,27 @@ I principi appena formulati non contemplano numerosi casi di interesse fisico, d
 \newcommand\eff{\text{eff}}
 \subsubsection{Moto assegnato per un sottosistema e forze dipendenti dal tempo}
 
-Molto frequentemente, quasi sempre in effetti, nelle situazioni pratiche capita che in un sistema di punti $\{Q_1,...,Q_N\}$ il moto di un sottosistema $\{Q_{n+1},...,Q_N\}$ sia fissato e si voglia trovare di conseguenza il moto dei punti $\{Q_1,...,Q_n\}$ rimanenti; è il caso ad esempio del moto della Terra fissato quello del Sole.\\
-Inserendo le linee di universo prescritte di $\{Q_{n+1},..., Q_N\}$ nelle equazioni di Newton si trova una forza "effettiva" che può dipendere esplicitamente dal tempo:
-\[F^\eff_k(t, \gamma_{Q_1}(t),..., \gamma_{Q_n}(t), v_{Q_1}(t),...,v_{Q_n}(t)) := F_k(\gamma_{Q_1}(t),..., \gamma_{Q_N}(t),  v_{Q_1}(t),...,v_{Q_N}(t) )\]
+Molto frequentemente, quasi sempre in effetti, nelle situazioni pratiche capita che in un sistema di punti $\{Q_1,\ ...\ ,\ Q_N\}$ il moto di un sottosistema $\{Q_{n+1},\ ...\ ,\ Q_N\}$ sia fissato e si voglia trovare di conseguenza il moto dei punti $\{Q_1,\ ...\ ,\ Q_n\}$ rimanenti; è il caso ad esempio del moto della Terra fissato quello del Sole.\\
+Inserendo le linee di universo prescritte di $\{Q_{n+1},\ ...\ ,\  Q_N\}$ nelle equazioni di Newton si trova una forza "effettiva" che può dipendere esplicitamente dal tempo:
+\[F^\eff_k(t, \gamma_{Q_1}(t),\ ...\ ,\  \gamma_{Q_n}(t), v_{Q_1}(t),\ ...\ ,\ v_{Q_n}(t)) := F_k(\gamma_{Q_1}(t),\ ...\ ,\  \gamma_{Q_N}(t),  v_{Q_1}(t),\ ...\ ,\ v_{Q_N}(t) )\]
 Le linee di universo dei punti rimanenti sono quindi determinate dal sistema 
-\[ m_{Q_k} a_{Q_k}(t) = F^\eff_k(t, \gamma_{Q_1}(t),..., \gamma_{Q_n}(t), v_{Q_1}(t),...,v_{Q_n}(t)) \]
+\[ m_{Q_k} a_{Q_k}(t) = F^\eff_k(t, \gamma_{Q_1}(t),\ ...\ ,\  \gamma_{Q_n}(t), v_{Q_1}(t),\ ...\ ,\ v_{Q_n}(t)) \]
 che comunque soddisfa le ipotesi del teorema di esistenza e unicità delle soluzioni, dunque possiamo estendere il determinismo a situazioni più generali.
 
 \newcommand\cent{\text{(cent)}}
 \subsubsection{Sistemi non inerziali}
 
 A volte conviene usare un sistema di riferimento non inerziale $R'$, ad esempio un sistema solidale alla superficie della Terra, ma questo modifica un po' la forma delle equazioni di Newton. Dalle leggi di trasformazione ottengo le nuove equazioni 
-\[ m_{Q_k}a_{Q_k}|_{R'}(t) + m_{Q_k}a_{Qk}^\tv(t) + m_{Q_k}a_{Q_k}^\cor (t) = F_{R',k}\left( t, \gamma_{Q_1}|_{R'}(t),..,\gamma_{Q_N}|_{R'}(t), v_{Q_1}|_{R'}(t),..., v_{Q_n}|_{R'}(t)  \right) \]
+\[ m_{Q_k}a_{Q_k}|_{R'}(t) + m_{Q_k}a_{Qk}^\tv(t) + m_{Q_k}a_{Q_k}^\cor (t) = F_{R',k}\left( t, \gamma_{Q_1}|_{R'}(t),..,\gamma_{Q_N}|_{R'}(t), v_{Q_1}|_{R'}(t),\ ...\ ,\  v_{Q_n}|_{R'}(t)  \right) \]
 ricordando che $v|_R(t) = v|_{R'}(t)+v^\tv(t)$ e $a|_R(t) = a|_{R'}+a^\tv(t)+a^\cor(t)$: spesso i due termini "aggiuntivi" a sinistra vengono portati a destra e interpretati come le cosiddette forze fittizie, dovute al sistema non inerziale:
 \[ m_{Q_k}a_{Q_k}|_{R'} = \underbrace{F^\cent}_{=: -m_{Q_k}a_{Q_k}^\tv} + \underbrace{F^\cor}_{=: -m_{Q_k}a_{Q_k}^\cor} + F_{R', k} \]
 Dato che il lato destro comunque dipende da $t$, $\gamma_{Q_i}$ e $v_{Q_i}$ si applica comunque il teorema di esistenza e unicità dandoci il determinismo.
 
 \subsubsection{Vincoli geometrici}
 
-Nelle applicazioni reali, spesso capita che i punti del sistema $\{Q_1,...,Q_N\}$ debbano muoversi rispettando certi vincoli geometrici: magari la posizione di $Q_3$ deve trovarsi su una qualche curva perchè scorre su un binario, o $Q_1$ e $Q_5$ devono trovarsi a distanza fissata perchè uniti da un'asta, o tutti i punti devono giacere sulla superficie di un tavolo, chi più ne ha più ne metta.\\
+Nelle applicazioni reali, spesso capita che i punti del sistema $\{Q_1,\ ...\ ,\ Q_N\}$ debbano muoversi rispettando certi vincoli geometrici: magari la posizione di $Q_3$ deve trovarsi su una qualche curva perchè scorre su un binario, o $Q_1$ e $Q_5$ devono trovarsi a distanza fissata perchè uniti da un'asta, o tutti i punti devono giacere sulla superficie di un tavolo, chi più ne ha più ne metta.\\
 Si nota immediatamente che le equazioni di Newton viste sopra non sono adeguate a descrivere questi sistemi vincolati, perchè la dinamica indotta non presenta vincoli geometrici: per affrontare questo problema si introducono le cosiddette \bemph{reazioni vincolari}, delle "forze" $\phi_k$ che modificano le equazioni del moto nella forma
-\[ m_{Q_k} a_{Q_k}|_R(t) = F_{R,k}\left( \gamma_{Q_1}|_{R}(t),..,\gamma_{Q_N}|_{R}(t), v_{Q_1}|_{R}(t),..., v_{Q_n}|_{R}(t)  \right) + \phi_k \]
+\[ m_{Q_k} a_{Q_k}|_R(t) = F_{R,k}\left( \gamma_{Q_1}|_{R}(t),..,\gamma_{Q_N}|_{R}(t), v_{Q_1}|_{R}(t),\ ...\ ,\  v_{Q_n}|_{R}(t)  \right) + \phi_k \]
 Ma queste reazioni vincolari non sono note a priori, appaiono come incognite nel sistema e questo in generale ci porta fuori dalle ipotesi sotto cui ci è garantito il determinismo dagli strumenti sviluppati fino a questo punto.\\ 
 Per trattare questi sistemi introdurremo il formalismo della meccanica Lagrangiana, che svilupperemo nella prossima parte del corso.
 
@@ -740,13 +740,13 @@ Alcuni dei principali vantaggi sono:\begin{itemize}
 
 \section{Geometria dei vincoli olonomi e ideali}
 
-In questa sezione ci occuperemo dei sistemi di $N\ge 1$ punti materiali $\{Q_1,...,Q_N\}$. Dato che questi $N$ punti sono descritti da $N$ linee di universo $\gamma_k : I \to \V^4$ con $T\circ \gamma_k = \id_{I}$, per tenere traccia di tutti questi punti contemporaneamente introduciamo un'estensione del nostro spaziotempo.
+In questa sezione ci occuperemo dei sistemi di $N\ge 1$ punti materiali $\{Q_1,\ ...\ ,\ Q_N\}$. Dato che questi $N$ punti sono descritti da $N$ linee di universo $\gamma_k : I \to \V^4$ con $T\circ \gamma_k = \id_{I}$, per tenere traccia di tutti questi punti contemporaneamente introduciamo un'estensione del nostro spaziotempo.
 
-\begin{definition}{}{}
+\begin{definition}{Spaziotempo delle configurazioni}{spaziotempo delle configurazioni}
     Sia $T:\V^4\to E^1$ uno spaziotempo e sia $N\ge 1$.\\
     Il corrispondete \bemph{spaziotempo delle configurazioni} per $N$ punti materiali è dato dal prodotto fibrato 
-    \[ \V^{3N+1} = \underbrace{\V^4 \times_{\E_1}...\times_{\E_1} \V^4 }_{N\text{ volte}} = \left\{ (p_1,...,p_N) \in (\V^4)^N : \forall i, j, T(p_i) = T(p_j) \right\} \]
-    Con la sommersione suriettiva ovvia $T:\V^{3N+1}\to E^1$ data da $T(p_1,...,p_N) = T(p_i)$ per qualsiasi $i$.\\
+    \[ \V^{3N+1} = \underbrace{\V^4 \times_{\E_1}...\times_{\E_1} \V^4 }_{N\text{ volte}} = \left\{ (p_1,\ ...\ ,\ p_N) \in (\V^4)^N : \forall i, j, T(p_i) = T(p_j) \right\} \]
+    Con la sommersione suriettiva ovvia $T:\V^{3N+1}\to E^1$ data da $T(p_1,\ ...\ ,\ p_N) = T(p_i)$ per qualsiasi $i$.\\
     Alternativamente, $T:\V^{3N+1}\to E^1$ è definito per proprietà universale come limite del seguente diagramma nella categoria dei fibrati differenziabili 
     \[\begin{tikzcd}
     	& {\V^{3N+1}} & \\
@@ -762,14 +762,14 @@ In questa sezione ci occuperemo dei sistemi di $N\ge 1$ punti materiali $\{Q_1,.
 \end{definition}
 
 Osserviamo che le fibre di $\V^{3N+1}$ al tempo $t\in E^1$ sono date da $\Sigma_t^N = \Sigma_t\times...\times\Sigma_t$, che dunque eredita la struttura di spazio euclideo sopra lo spazio vettoriale sottostante $V_t^N = V_t\times...\times V_t$ con l'evidente prodotto scalare.\\
-Trattare un sistema di $N$ linee di universo $\gamma_{k}:I\to\V^4$ è assolutamente identico al trattare una singola linea di universo $\Gamma :I\to\V^{3N+1}$ data da $\Gamma(t)=(\gamma_1(t),...,\gamma_N(t))$, infatti come visto sopra $T\circ \Gamma = \id_{I}$ e viceversa proiettando su ciascuna componente torniamo a $\gamma_k = \pi_k\circ \Gamma: I \to \V^4$.\\
+Trattare un sistema di $N$ linee di universo $\gamma_{k}:I\to\V^4$ è assolutamente identico al trattare una singola linea di universo $\Gamma :I\to\V^{3N+1}$ data da $\Gamma(t)=(\gamma_1(t),\ ...\ ,\ \gamma_N(t))$, infatti come visto sopra $T\circ \Gamma = \id_{I}$ e viceversa proiettando su ciascuna componente torniamo a $\gamma_k = \pi_k\circ \Gamma: I \to \V^4$.\\
 Anche un sistema di riferimento $R:\V^4\to E^1\times E^3$ può essere facilmente esteso e illuminare un attimo il senso di quel $3N+1$ all'esponente, come si vede in questo diagramma 
 \[\begin{tikzcd}
 	{\V^4\times_{\E_1}...\times_{\E_1}\V^4} &&& {(E^1\times E^3)\times_{E^1}...\times_{E^1}(E^1\times E^3)} \\
 	{\V^{3N+1}} &&& {E^1\times E^{3N}} \\
 	\\
 	{E^1} &&& {E^1}
-	\arrow["{(R,..., R)}"{description}, from=1-1, to=1-4]
+	\arrow["{(R,\ ...\ ,\  R)}"{description}, from=1-1, to=1-4]
 	\arrow["\cong"{marking, allow upside down}, draw=none, from=1-4, to=2-4]
 	\arrow["{=}"{marking, allow upside down}, draw=none, from=2-1, to=1-1]
 	\arrow["T"{description}, from=2-1, to=4-1]
@@ -779,14 +779,14 @@ Anche un sistema di riferimento $R:\V^4\to E^1\times E^3$ può essere facilmente
 E lo stesso vale evidentemente per qualsiasi scelta di coordinate standard che ci porterà in $\R^1\times\R^{3N}$.
 
 \begin{definition}{Vincoli olonomi}{vincoli olonomi}
-    Un sistema di $0\le C\le N$ \bemph{vincoli olonomi} per un sistema di di $N\ge 1$ punti materiali è dato da una famiglia di $C$ funzioni liscie $f_j : \V^{3N+1}\to\R$ che soddisfano le seguenti proprietà:\begin{itemize}
+    Un sistema di $0\le C\le N$ \bemph{vincoli olonomi} per un sistema di di $N\ge 1$ punti materiali è dato da una famiglia di $C$ funzioni lisce $f_j : \V^{3N+1}\to\R$ che soddisfano le seguenti proprietà:\begin{itemize}
         \item Per ogni $t \in E^1$ vale 
         \[ \Sigma_t^N \cap \bigcap_j f_j^{-1}(\{0\}) \neq \varnothing\]
-        \item Per ogni $t \in E^1$ e qualsiasi scelta di coordinate standard adattate $(t,\bar{\bar x}) := (t,x^1,...,x^{3N})$, la matrice Jacobiana 
+        \item Per ogni $t \in E^1$ e qualsiasi scelta di coordinate standard adattate $(t,\bar{\bar x}) := (t,x^1,\ ...\ ,\ x^{3N})$, la matrice Jacobiana 
         \[ \left[ \frac{\partial f_j}{\partial x^i} \bigg|_{(t,\bar{\bar x})} \right]_{1\le i\le 3N,1\le j\le C} : \R^{3N}\to \R^C \]
         Ha rango massimo per ogni $(t,\bar{\bar x})$ tale che $f_j((t,\bar{\bar x})) = 0$ per ogni $j\le C$
     \end{itemize}
-    A questo punto è detto \bemph{spaziotempo delle configurazioni} di un sistema di $N$ punti materiali sottoposto a $C$ vincoli olonomi $\{f_1,...,f_C\}$ il fibrato 
+    A questo punto è detto \bemph{spaziotempo delle configurazioni} di un sistema di $N$ punti materiali sottoposto a $C$ vincoli olonomi $\{f_1,\ ...\ ,\ f_C\}$ il fibrato 
     \[ T: \V^{n+1}:= \bigcap_j f_j^{-1}(\{0\}) \subset \V^{3N+1} \to E^1 \]
     Dove $n := 3N - C$ è detto il numero di \bemph{gradi di libertà} del sistema.\\
     Lo spazio $\Q_t := \V^{n+1}\cap \Sigma_t^N$ è detto \bemph{spazio delle configurazioni} del sistema al tempo $t$.
@@ -794,13 +794,13 @@ E lo stesso vale evidentemente per qualsiasi scelta di coordinate standard che c
 
 Ok, che diavolo abbiamo appena letto? Le proprietà che abbiamo richiesto sui vincoli sono proprietà tecniche che ci permettono di applicare un potente teorema di geometria differenziale, il \bemph{teorema dei valori regolari}\footnote{Reperibile in \cite{Moretti2024} per interessati e masochisti} che ci conduce al seguente risultato.
 
-\begin{proposition}{}{utile sulle varietà}
+\begin{proposition}{Utile sulle varietà}{utile sulle varietà}
     Nel contesto della definizione precedente, valgono i seguenti fatti:\begin{enumerate}
         \item $\V^{n+1}\subset \V^{3N+1}$ è una sottovarietà \textit{embedded}\footnote{Possibili traduzioni sono immersa, inclusa o incastonata, ma in genere si usa l'aggettivo in inglese e ci si mette il cuore in pace.} di dimensione $n+1$ e la restrizione $T:\V^{n+1}\to E^1$ è una sommersione suriettiva.
         \item Per ogni $t \in E^1$, $\Q_t = \V^{n+1}\cap\sigma_t^N \subset \Sigma_t^N$ è una sottovarietà embedded di dimensione $n$.
         \item Per ogni punto $p \in \V^{3N+1}$ possiamo scegliere in un intorno di $p$ una carta locale $(U\subset \V^{3N+1},\phi:U\to \R^{3N+1})$ tale che \begin{itemize}
-            \item \[ \forall p' \in U, \phi(p') := (T(p'), \phi^1(p'),...,\phi^{3N}(p')) \]
-            \item \[ \forall t \in T(U), \forall p' \in U\cap Q_t, \phi(p') = (t, \phi^1(p'),...,\phi^n(p'),0,...,0) \]
+            \item \[ \forall p' \in U, \phi(p') := (T(p'), \phi^1(p'),\ ...\ ,\ \phi^{3N}(p')) \]
+            \item \[ \forall t \in T(U), \forall p' \in U\cap Q_t, \phi(p') = (t, \phi^1(p'),\ ...\ ,\ \phi^n(p'),0,\ ...\ ,\ 0) \]
         \end{itemize}
     \end{enumerate}
     \proof 
@@ -812,8 +812,8 @@ Ok, che diavolo abbiamo appena letto? Le proprietà che abbiamo richiesto sui vi
 
 Vediamo un esempio
 
-\begin{example}{}{}
-    Consideriamo un sistema di un ($N=1$) punto materiale e un ($C=1$) vincolo: scegliendo un qualsiasi sistema di riferimento $R$, abbiamo $\V^{3+1}\cong E^1\times E^3$ possiamo considerare la mappa liscia $f:E^1\times E^3\to\R$ definita da $(t, q)\mapsto \| q- O(t) \|^2 - r_0^2(t)$, dove $O:E^1\to E^3$ e $r_0:E^1\to\R_{>0}$ sono mappe liscie.\\
+\begin{example}{Un punto su una sfera}{un punto su una sfera}
+    Consideriamo un sistema di un ($N=1$) punto materiale e un ($C=1$) vincolo: scegliendo un qualsiasi sistema di riferimento $R$, abbiamo $\V^{3+1}\cong E^1\times E^3$ possiamo considerare la mappa liscia $f:E^1\times E^3\to\R$ definita da $(t, q)\mapsto \| q- O(t) \|^2 - r_0^2(t)$, dove $O:E^1\to E^3$ e $r_0:E^1\to\R_{>0}$ sono mappe lisce.\\
     Per ogni $t$ fissato, i punti di $f(t,q)=0$ definiscono una sfera $\S^2_t$ di centro $O(t)$ e raggio $r_0(t)$. Passando in coordinate abbiamo:
     \[ f(t,\bar x) = (x^1 - O^1(t))^2 + (x^2 -O^2(t))^2 + (x^3 -O^3(t))^2 - r_0^2(t) \]
     Chiaramente il primo punto della definizione di vincolo olonomo è soddisfatto dal fatto che la controimmagine di $0$ è come abbiamo detto una sfera; per la seconda proprietà dobbiamo calcolare la matrice Jacobiana:
@@ -821,8 +821,8 @@ Vediamo un esempio
     Che ha rango massimo fintanto che almeno una delle sue componenti non è nulla, cosa che si verifica sempre negli zeri di $f$, dunque questo è un vincolo olonomo.
 \end{example}
 
-% \begin{example}{}{}
-%     Consideriamo ora $N=2$ punti materiali, dunque con un riferimento $R$ ci poniamo in $\V^{6+1}\iso E^1\times E^3\times E^3$ e le mappe liscie $f_{1,2}:E^1\times E^3\times E^3$ definite da 
+% \begin{example}{asdasd}{asfsaf}
+%     Consideriamo ora $N=2$ punti materiali, dunque con un riferimento $R$ ci poniamo in $\V^{6+1}\iso E^1\times E^3\times E^3$ e le mappe lisce $f_{1,2}:E^1\times E^3\times E^3$ definite da 
 %     \[ f_1(t,q_1,q_2) = \| q_1-O(t) \|^2 - r_0^2(t)\]
 %     \[ f_2(t,q_1,q_2) = \|q_1-q_2\|^2 - D_0^2(t) \]
 %     TBD
@@ -832,29 +832,29 @@ In preprarazione alla discussione sui vincoli ideali, definiamo un importante co
 
 \begin{definition}{Spazio tangente di $\Q_t$}{spazio tangente}
     Consideriamo, per $t\in\Q^1$, la sottovarietà embedded $\Q_t = \V^{n+1}\cap\Sigma^N_t \subset \Sigma^N_t$.\\
-    Scegliendo coordinate locali su $\Q_t$, ovvero una carta locale $(U,\psi)$ tale che $U\subset\Q_t$ e $\psi:U\to\R^n$ otteniamo una parametrizzazione locale $\psi^{-1}:\psi(U)\to\Sigma^N_t$ di $\Q_t$ data da $\psi^{-1}(q^1,...,q^n)$.\\
+    Scegliendo coordinate locali su $\Q_t$, ovvero una carta locale $(U,\psi)$ tale che $U\subset\Q_t$ e $\psi:U\to\R^n$ otteniamo una parametrizzazione locale $\psi^{-1}:\psi(U)\to\Sigma^N_t$ di $\Q_t$ data da $\psi^{-1}(q^1,\ ...\ ,\ q^n)$.\\
     Definiamo lo \bemph{spazio tangente} di $\Q_t$ in $q \in U$ come il sottospazio vettoriale 
-    \[ T_q\Q_t := \operatorname{span}_{\R}\left( \frac{\partial \psi^{-1}(q^1,...,q^n)}{\partial q^1}\bigg|_{\psi(q)},...,\frac{\partial \psi^{-1}(q^1,...,q^n)}{\partial q^n}\bigg|_{\psi(q)}  \right) \]
+    \[ T_q\Q_t := \operatorname{span}_{\R}\left( \frac{\partial \psi^{-1}(q^1,\ ...\ ,\ q^n)}{\partial q^1}\bigg|_{\psi(q)},\ ...\ ,\ \frac{\partial \psi^{-1}(q^1,\ ...\ ,\ q^n)}{\partial q^n}\bigg|_{\psi(q)}  \right) \]
     di $V_t^N$, spazio sottostante a $\Sigma_t^N$.
 \end{definition}
 
 Dimostriamo alcuni utili risultati su $T_q\Q_t$:
 
-\begin{proposition}{}{}
+\begin{proposition}{Essenziale unicità dello spazio tangente}{essenziale unicità dello spazio tangente}
     Lo spazio tangente $T_q\Q_t$ non dipende dalla scelta di coordinate e come spazio vettoriale ha la stessa dimensione $n$ di $\Q_t$ come varietà.
     \proof 
     Senza esplicitare tutti i calcoli, date due carte locali $(U,\psi)$ e $(U',\psi')$ si nota che la funzione di trasferimento $\psi'\circ\psi^{-1}$; calcolando con la regola della catena le derivate di $\psi^{-1} = \psi'^{-1}\circ \psi'\circ \psi^{-1}$ otteniamo 
-    \[ \frac{\partial \psi^{-1}(q^1,..., q^n)}{\partial q^i}\bigg|_{\psi(q)} = \sum_j \frac{\partial \psi'^{-1}(q'^1,..., q'^n)}{\partial q'^j}\bigg|_{\psi(q)}\frac{\partial q'^j}{\partial q^i}\bigg|_{\psi(q)} \]
+    \[ \frac{\partial \psi^{-1}(q^1,\ ...\ ,\  q^n)}{\partial q^i}\bigg|_{\psi(q)} = \sum_j \frac{\partial \psi'^{-1}(q'^1,\ ...\ ,\  q'^n)}{\partial q'^j}\bigg|_{\psi(q)}\frac{\partial q'^j}{\partial q^i}\bigg|_{\psi(q)} \]
     Poichè la Jacobiana di ogni diffeomorfismo è invertibile, ne segue che gli spazi tangenti coincidono.\\
-    Per dimostrare che la dimensione è la stessa di $\Q_t$, usiamo una carta del tipo del terzo punto di \cref{prop:utile sulle varietà}: in questo caso è evidente che i generatori di $T_q\Q_t$ sono indipendenti, dato che usando coordinate locali su $\Sigma_t^N$ si ottiene $\psi^{-1}(q^1,...,q^n) = (q^1,...,q^n,0,...,0)$ e derivando rispetto a $q^i$ si osserva l'indipendenza lineare.
+    Per dimostrare che la dimensione è la stessa di $\Q_t$, usiamo una carta del tipo del terzo punto di \cref{prop:utile sulle varietà}: in questo caso è evidente che i generatori di $T_q\Q_t$ sono indipendenti, dato che usando coordinate locali su $\Sigma_t^N$ si ottiene $\psi^{-1}(q^1,\ ...\ ,\ q^n) = (q^1,\ ...\ ,\ q^n,0,\ ...\ ,\ 0)$ e derivando rispetto a $q^i$ si osserva l'indipendenza lineare.
     \qed 
 \end{proposition}
 
 Finalmente possiamo definire i vincoli ideali:
 
 \begin{definition}{Vincoli ideali}{vincoli ideali}
-    Sia $\{f_1,..., f_C\}$ un sistema di $0\le C\le 3N$ vincoli olonomi per un sistema di $N\ge 1$ punti materiali.\\
-    Questi vincoli sono detti \bemph{ideali} se per ogni linea di universo $\Gamma:I\to\V^{n+1}$ e ogni $t\in I$, la reazione vincolare $\phi = (\phi_1,...,\phi_N) \in V_t^N$ è normale a $\Q_t$, ovvero $\phi \cdot v = 0$ per ogni vettore tangente $v \in T_{\Gamma(t)}\Q_t$
+    Sia $\{f_1,\ ...\ ,\  f_C\}$ un sistema di $0\le C\le 3N$ vincoli olonomi per un sistema di $N\ge 1$ punti materiali.\\
+    Questi vincoli sono detti \bemph{ideali} se per ogni linea di universo $\Gamma:I\to\V^{n+1}$ e ogni $t\in I$, la reazione vincolare $\phi = (\phi_1,\ ...\ ,\ \phi_N) \in V_t^N$ è normale a $\Q_t$, ovvero $\phi \cdot v = 0$ per ogni vettore tangente $v \in T_{\Gamma(t)}\Q_t$
 \end{definition}
 
 Osserviamo che questa definizione ha una forte connotazione fisica, infatti questi vincoli sono stati introdotti nel contesto della meccanica Newtoniana: in particolare, non si può dedurre dalla definizione matematica di vincoli olonomi che questi debbano essere o non essere anche ideali.\\
@@ -865,10 +865,10 @@ Si deve pensare alla richiesta di idealità come a una richiesta aggiuntiva sul 
 \section{Energia cinetica}
 
 Per trattare i sistemi di punti materiali con vincoli ideali è spesso necessario calcolare le componenti tangenziali ai vincoli dell'accelerazione, ma per farlo è necessario introdurre il concetto di energia cinetica.\\
-L'obiettivo di questa parte sarà definire l'energia cinetica per sistemi di $N\ge 1$ punti materiali $\{Q_1,...,Q_N\}$ sottoposti a $C\le N$ vincoli olonomi $\{f_1,...,f_C\}$ e illustrare la geometria sottesa alle coordinate puntate $\dot q$. Per farlo dobbiamo estendere opportunamente i concetti di velocià e accelerazione in $\V^4$ a $\V^{3N+1}$\\
+L'obiettivo di questa parte sarà definire l'energia cinetica per sistemi di $N\ge 1$ punti materiali $\{Q_1,\ ...\ ,\ Q_N\}$ sottoposti a $C\le N$ vincoli olonomi $\{f_1,\ ...\ ,\ f_C\}$ e illustrare la geometria sottesa alle coordinate puntate $\dot q$. Per farlo dobbiamo estendere opportunamente i concetti di velocià e accelerazione in $\V^4$ a $\V^{3N+1}$\\
 Sia $\Gamma:I\to \V^{n+1}$ una linea di universo nello spazio delle configurazioni vincolato: dato che questo è una sottovarietà embedded di $\V^{3N+1}$, possiamo leggerla come linea di universo in quest'ultimo e definire come sopra velocità e accelerazione rispetto a un riferimento $R$: esplicitamente
-\[ v|_R(t) := \left((\di R|_{\Sigma_t}^{\times N})^{-1}\circ \frac{\di}{\di t} \circ R|_{\Sigma_t}^{\times N} \right)(\Gamma(t)) = (v_{Q_1}|_R(t),..., v_{Q_N}|_R(t)) \in V_t^\N \]
-\[ a|_R(t) := \left((\di R|_{\Sigma_t}^{\times N})^{-1}\circ \frac{\di^2}{\di t^2} \circ R|_{\Sigma_t}^{\times N} \right)(\Gamma(t)) = (a_{Q_1}|_R(t),..., a_{Q_N}|_R(t)) \in V_t^\N \]
+\[ v|_R(t) := \left((\di R|_{\Sigma_t}^{\times N})^{-1}\circ \frac{\di}{\di t} \circ R|_{\Sigma_t}^{\times N} \right)(\Gamma(t)) = (v_{Q_1}|_R(t),\ ...\ ,\  v_{Q_N}|_R(t)) \in V_t^\N \]
+\[ a|_R(t) := \left((\di R|_{\Sigma_t}^{\times N})^{-1}\circ \frac{\di^2}{\di t^2} \circ R|_{\Sigma_t}^{\times N} \right)(\Gamma(t)) = (a_{Q_1}|_R(t),\ ...\ ,\  a_{Q_N}|_R(t)) \in V_t^\N \]
 Ora possiamo definire l'energia cinetica.
 
 \begin{definition}{Energia cinetica}{energia cinetica}
@@ -879,18 +879,18 @@ Ora possiamo definire l'energia cinetica.
 \end{definition}
 
 Sarà opportuno ottenere una formula per l'energia cinetica in coordinate.\\
-Data una carta $(U,\psi)$, questa si dice \bemph{adattata alla sommersione suriettiva} $T:\V^{n+1}\to E^1$ se è della forma $\psi(q) = (T(q),q^1(q),...,q^n(q))$; le coordinate locali $(t,q^1,...,q^n)$ sono dette \bemph{coordinate locali naturali} su $\V^{n+1}$.\\
-Notiamo che la restrizione $\phi|_{\Sigma_t^N}$ definisce una carta locale su $\Q_t$ per $t$ fissato; per $I$ sufficientemente piccoli, la linea di universo $\Gamma : I\to\V^{n+1}$ può essere fattorizzata attraverso una carta locale adattata $\psi$ in $\psi\circ\Gamma : I \to \psi(U)\subset \R^{n+1}$ con $\psi\Gamma(t) = (t,q^1(t),...,q^n(t))$; allo stesso modo una mappa liscia $\gamma:I\to\psi(U)\subset\R^{n+1}$ della forma $t\mapsto(t,q^1(t),...,q^n(t))$ definisce una linea di universo attraverso la composizione $\psi^{-1}\circ\gamma$.
+Data una carta $(U,\psi)$, questa si dice \bemph{adattata alla sommersione suriettiva} $T:\V^{n+1}\to E^1$ se è della forma $\psi(q) = (T(q),q^1(q),\ ...\ ,\ q^n(q))$; le coordinate locali $(t,q^1,\ ...\ ,\ q^n)$ sono dette \bemph{coordinate locali naturali} su $\V^{n+1}$.\\
+Notiamo che la restrizione $\phi|_{\Sigma_t^N}$ definisce una carta locale su $\Q_t$ per $t$ fissato; per $I$ sufficientemente piccoli, la linea di universo $\Gamma : I\to\V^{n+1}$ può essere fattorizzata attraverso una carta locale adattata $\psi$ in $\psi\circ\Gamma : I \to \psi(U)\subset \R^{n+1}$ con $\psi\Gamma(t) = (t,q^1(t),\ ...\ ,\ q^n(t))$; allo stesso modo una mappa liscia $\gamma:I\to\psi(U)\subset\R^{n+1}$ della forma $t\mapsto(t,q^1(t),\ ...\ ,\ q^n(t))$ definisce una linea di universo attraverso la composizione $\psi^{-1}\circ\gamma$.
 
 \begin{lemma}{}{}
-    Sia $\Gamma:I\to\V^{n+1}$ una linea di universo con $I$ sufficientemente piccolo da permettere una rappresentazione in coordinate locali naturali $\Gamma(t) = \psi^{-1}(t,q^1(t),...,q^n(t))$. Allora la sua velocità può essere scritta come 
-    \[ v|_R(t) = \frac{\partial }{\partial t}\bigg|_R \psi^{-1}(t, q^1(t),...,q^n(t)) +\sum_k \frac{\partial \psi|_{\Sigma_t^N}^{-1}(q^1(t),...,q^n(t))}{\partial q^k}\frac{\di q^k(t)}{\di t} \]
+    Sia $\Gamma:I\to\V^{n+1}$ una linea di universo con $I$ sufficientemente piccolo da permettere una rappresentazione in coordinate locali naturali $\Gamma(t) = \psi^{-1}(t,q^1(t),\ ...\ ,\ q^n(t))$. Allora la sua velocità può essere scritta come 
+    \[ v|_R(t) = \frac{\partial }{\partial t}\bigg|_R \psi^{-1}(t, q^1(t),\ ...\ ,\ q^n(t)) +\sum_k \frac{\partial \psi|_{\Sigma_t^N}^{-1}(q^1(t),\ ...\ ,\ q^n(t))}{\partial q^k}\frac{\di q^k(t)}{\di t} \]
     Dove il primo termine è definito da 
     \[ \frac{\partial }{\partial t}\bigg|_R = (\di R|_{\Sigma_t}^{\times N})^{-1}\circ \frac{\partial}{\partial t}\circ R|_{\Sigma_t}^{\times N} \]
     \proof 
     Usiamo la formula della velocità che abbiamo definito sopra:
     \begin{align*}
-        v|_R(t) & = \left((\di R|_{\Sigma_t}^{\times N})^{-1}\circ \frac{\di}{\di t} \circ R|_{\Sigma_t}^{\times N} \right)(\psi^{-1}(t,q^1(t),...,q^n(t))) \\ & = (\di R|_{\Sigma_t}^{\times N})^{-1}\circ\left[ \frac{\partial R|_{\Sigma_t}^{\times N}(\psi^{-1}(...))}{\partial t} + \sum_k \underbrace{\frac{\partial R|_{\Sigma_t}^{\times N}(\psi^{-1}(...))}{\partial q^k}}_{= \di R|_{\Sigma_t}^{\times N} \frac{\partial \psi|_{\Sigma_t^N}^{-1}(...)}{\partial q^k}}\frac{\di q^k(t)}{\di t} \right] \\ & = \left((\di R|_{\Sigma_t}^{\times N})^{-1}\circ \frac{\partial}{\partial t}\circ R|_{\Sigma_t}^{\times N}\right)(\psi^{-1}(...)) + \sum_k \frac{\partial \psi|_{\Sigma_t^N}^{-1}(q^1(t),...,q^n(t))}{\partial q^k}\frac{\di q^k(t)}{\di t}
+        v|_R(t) & = \left((\di R|_{\Sigma_t}^{\times N})^{-1}\circ \frac{\di}{\di t} \circ R|_{\Sigma_t}^{\times N} \right)(\psi^{-1}(t,q^1(t),\ ...\ ,\ q^n(t))) \\ & = (\di R|_{\Sigma_t}^{\times N})^{-1}\circ\left[ \frac{\partial R|_{\Sigma_t}^{\times N}(\psi^{-1}(...))}{\partial t} + \sum_k \underbrace{\frac{\partial R|_{\Sigma_t}^{\times N}(\psi^{-1}(...))}{\partial q^k}}_{= \di R|_{\Sigma_t}^{\times N} \frac{\partial \psi|_{\Sigma_t^N}^{-1}(...)}{\partial q^k}}\frac{\di q^k(t)}{\di t} \right] \\ & = \left((\di R|_{\Sigma_t}^{\times N})^{-1}\circ \frac{\partial}{\partial t}\circ R|_{\Sigma_t}^{\times N}\right)(\psi^{-1}(...)) + \sum_k \frac{\partial \psi|_{\Sigma_t^N}^{-1}(q^1(t),\ ...\ ,\ q^n(t))}{\partial q^k}\frac{\di q^k(t)}{\di t}
     \end{align*}
     \qed 
 \end{lemma}
@@ -898,17 +898,17 @@ Notiamo che la restrizione $\phi|_{\Sigma_t^N}$ definisce una carta locale su $\
 Notiamo che le derivate parziali rispetto ai vari $q^k$ di $\psi|_{\Sigma_t^N}^{-1}(...)$ sono vettori tangenti a $\Q_t$ che hanno $N$ componenti in $V_t$, ciascuna accessibile tramite la proiezione all'$i$-esimo fattore $\pi_i$.\\
 Inserendo le velocità in coordinate nella formula dell'energia cinetica, otteniamo 
 \begin{align*}
-    \T_R(t) & = \sum_{k,l} A_{k,l}(t, q^1(t),..., q^n(t))\frac{\di q^k(t)}{\di t}\frac{\di q^l(t)}{\di t} \\ & +  \sum_k B_k(t, q^1(t),..., q^n(t)) \frac{\di q^k(t)}{\di t} \\ & + C(t, q^1(t),..., q^n(t))
+    \T_R(t) & = \sum_{k,l} A_{k,l}(t, q^1(t),\ ...\ ,\  q^n(t))\frac{\di q^k(t)}{\di t}\frac{\di q^l(t)}{\di t} \\ & +  \sum_k B_k(t, q^1(t),\ ...\ ,\  q^n(t)) \frac{\di q^k(t)}{\di t} \\ & + C(t, q^1(t),\ ...\ ,\  q^n(t))
 \end{align*}
 con 
-\[ A_{k,l}(t, q^1(t),..., q^n(t)) = \sum_i \frac{m_{Q_i}}{2}  \left( \pi_i\left( \frac{\partial \psi|_{\Sigma_t^N}^{-1}(t,q^1(t),...,q^n(t)) }{\partial q^k} \right) \cdot \pi_i\left( \frac{\partial \psi|_{\Sigma_t^N}^{-1}(t,q^1(t),...,q^n(t)) }{\partial q^l} \right) \right) \]
-\[ B_k(t, q^1(t),..., q^n(t)) = 2\sum_i \frac{m_{Q_i}}{2}  \left( \pi_i\left( \frac{\partial \psi|_{\Sigma_t^N}^{-1}(t,q^1(t),...,q^n(t)) }{\partial q^k} \right) \cdot \pi_i\left( \frac{\partial }{\partial t}\bigg|_R\psi^{-1}(t,q^1(t),...,q^n(t))  \right) \right) \]
-\[ C(t, q^1(t),..., q^n(t)) = \sum_i \frac{m_{Q_i}}{2}  \left( \pi_i\left( \frac{\partial }{\partial t}\bigg|_R\psi^{-1}(t,q^1(t),...,q^n(t)) \right) \cdot \pi_i\left( \frac{\partial }{\partial t}\bigg|_R\psi^{-1}(t,q^1(t),...,q^n(t))  \right) \right) \]
-Questa mostruosità ci permette di pensare all'energia cinetica come a una funzione $\T(t,q^1,...,q^n,\dot q^1,...,\dot q^n)$ in $2n+1$ variabili in $\psi(U)\times\R^n$, dove le $\dot q^i$ rappresentano le derivate temporali. Ma che oggetto geometrico sottosta a queste nuove coordinate?
+\[ A_{k,l}(t, q^1(t),\ ...\ ,\  q^n(t)) = \sum_i \frac{m_{Q_i}}{2}  \left( \pi_i\left( \frac{\partial \psi|_{\Sigma_t^N}^{-1}(t,q^1(t),\ ...\ ,\ q^n(t)) }{\partial q^k} \right) \cdot \pi_i\left( \frac{\partial \psi|_{\Sigma_t^N}^{-1}(t,q^1(t),\ ...\ ,\ q^n(t)) }{\partial q^l} \right) \right) \]
+\[ B_k(t, q^1(t),\ ...\ ,\  q^n(t)) = 2\sum_i \frac{m_{Q_i}}{2}  \left( \pi_i\left( \frac{\partial \psi|_{\Sigma_t^N}^{-1}(t,q^1(t),\ ...\ ,\ q^n(t)) }{\partial q^k} \right) \cdot \pi_i\left( \frac{\partial }{\partial t}\bigg|_R\psi^{-1}(t,q^1(t),\ ...\ ,\ q^n(t))  \right) \right) \]
+\[ C(t, q^1(t),\ ...\ ,\  q^n(t)) = \sum_i \frac{m_{Q_i}}{2}  \left( \pi_i\left( \frac{\partial }{\partial t}\bigg|_R\psi^{-1}(t,q^1(t),\ ...\ ,\ q^n(t)) \right) \cdot \pi_i\left( \frac{\partial }{\partial t}\bigg|_R\psi^{-1}(t,q^1(t),\ ...\ ,\ q^n(t))  \right) \right) \]
+Questa mostruosità ci permette di pensare all'energia cinetica come a una funzione $\T(t,q^1,\ ...\ ,\ q^n,\dot q^1,\ ...\ ,\ \dot q^n)$ in $2n+1$ variabili in $\psi(U)\times\R^n$, dove le $\dot q^i$ rappresentano le derivate temporali. Ma che oggetto geometrico sottosta a queste nuove coordinate?
 
 \subsection{Spaziotempo degli atti di moto}
 
-Ci sono diversi metodi avanzati e molto eleganti per costruire i fibrati di jet, ma noi purtroppo non li possediamo, quindi dobbiamo usare il \textit{metodo della bestia}\footnote{Moretti, 2023}, più elementare ma anche più sgraziato.
+Ci sono diversi metodi avanzati e molto eleganti per costruire i fibrati di jet, ma noi purtroppo non li possediamo, quindi dobbiamo usare il \textit{metodo della bestia} (sic)\footnote{Moretti 2023}, più elementare ma anche più sgraziato.
 
 \subsubsection{Costruzione di una varietà dalla scelta di un atlante}
 
@@ -924,7 +924,7 @@ Trasferendo la struttura differenziabile di $\M$ lungo l'omeomorfismo $\bigsqcup
 
 Notiamo che la regola di trasformazione delle coordinate puntate $\dot{\bar q}$ codifica precisamente il modo in cui la derivata temporale di una curva liscia $\bar q(t)$ si trasforma attraverso un cambiamento di coordinate secondo la regola della catena.\\
 Abbiamo un'evidente sommersione suriettiva $T:A(\V^{n+1})\to \V^{n+1}\to E^1$ che manda $(t,\bar q ,\bar{\dot q})\mapsto(t,\bar q )\mapsto t$. Allo stesso modo possiamo estendere una linea di universo $\Gamma:I\to\V^{n+1}$ a una linea $\hat\Gamma:I\to A(\V^{n+1})$ aggiungendo le derivate delle componenti:
-\[ \hat\Gamma(t):= \left(t, q^1(t),...,q^n(t), \frac{\di q^1(t)}{\di t},..., \frac{\di q^n(t)}{\di t}\right) \]
+\[ \hat\Gamma(t):= \left(t, q^1(t),\ ...\ ,\ q^n(t), \frac{\di q^1(t)}{\di t},\ ...\ ,\  \frac{\di q^n(t)}{\di t}\right) \]
 Notiamo anche che la velocità può essere considerata una funzione $A(\V^{n+1})\to V_t^N$ ponendo
 \[ v|_R(t,\bar q,\dot{\bar q}) = \frac{\partial }{\partial t}\bigg|_R \psi^{-1}(t,\bar q,\dot{\bar q}) +\sum_k \frac{\partial \psi|_{\Sigma_t^N}^{-1}(t,\bar q,\dot{\bar q})}{\partial q^k}\dot q^k \]
 Possiamo fare un ragionamento analogo per l'energia cinetica dunque 
@@ -933,7 +933,7 @@ E questo ci permette di recuperare le espressioni per la velocità ed energia ci
 \[ v_R(t) = [v_R]_{\hat\Gamma(t)} := v_R(\hat\Gamma(t)) \]
 \[ \T_R(t) = [\T_R]_{\hat\Gamma(t)} := \T_R(\hat\Gamma(t)) \]
 
-\begin{proposition}{}{}
+\begin{proposition}{Pre-Eulero--Lagrange}{premessa ad Eulero--Lagrange}
     Sia $\Gamma:I\to\V^{n+1}$ una linea di universo con $I$ abbastanza piccolo da ammettere una rappresentazione in coordinate locali naturali.\\
     Allora
     \[ \frac{\di}{\di t}\left[ \frac{\partial \T_R}{\partial \dot q^k} \right]_{\hat\Gamma(t)} - \left[ \frac{\partial \T_R}{\partial q^k} \right]_{\hat\Gamma(t)} = \sum_i m_{Q_i} \left( a_{Q_i}|_R(t)\cdot \pi_i\left( \frac{\partial \psi|_{\Sigma_t^N}^{-1}(t,\bar q,\dot{\bar q})}{\partial q^k} \right) \right) \]
@@ -960,19 +960,19 @@ E questo ci permette di recuperare le espressioni per la velocità ed energia ci
 Nel caso in cui $\Gamma: I\to\V^{n+1}$ non si fattorizzi attraverso una singola carta locale, si può scegliere un ricoprimento aperto di $I$ con sottointervalli abbastanza piccoli e lavorare localmente su quello.
 
 \newpage
-\section{Equazioni di Eulero-Lagrange}
+\section{Equazioni di Eulero--Lagrange}
 
-Adesso deriveremo e studieremo le equazioni cardinali della meccanica Lagrangiana, le equazioni di Eulero-Lagrange, che governano un sistema vincolato sotto le ipotesi che i vincoli siano olonomi e ideali.
+Adesso deriveremo e studieremo le equazioni cardinali della meccanica Lagrangiana, le equazioni di Eulero--Lagrange, che governano un sistema vincolato sotto le ipotesi che i vincoli siano olonomi e ideali.
 
-\begin{theorem}{Equazioni di Eulero-Lagrange}{Eulero-Lagrange 1}
-    Sia $\{Q_1,...,Q_N\}$ un sistema di $N\ge 1$ punti materiali sottoposto a un sistema $\{f_1,...,f_C\}$ di $0\le C\le 3N$ vincoli olonomi. Sia inoltre $\Gamma:I\to\V^{n+1}\subset\V^{3N+1}$ una linea di universo nello spaziotempo delle configurazioni del sistema vincolato con $I\subset E^1$ abbastanza piccolo da ammettere una rappresentazione in coordinate locali naturali $\Gamma(t) = \psi^{-1}(t,\bar q(t))$.\\
+\begin{theorem}{Equazioni di Eulero--Lagrange}{Eulero--Lagrange 1}
+    Sia $\{Q_1,\ ...\ ,\ Q_N\}$ un sistema di $N\ge 1$ punti materiali sottoposto a un sistema $\{f_1,\ ...\ ,\ f_C\}$ di $0\le C\le 3N$ vincoli olonomi. Sia inoltre $\Gamma:I\to\V^{n+1}\subset\V^{3N+1}$ una linea di universo nello spaziotempo delle configurazioni del sistema vincolato con $I\subset E^1$ abbastanza piccolo da ammettere una rappresentazione in coordinate locali naturali $\Gamma(t) = \psi^{-1}(t,\bar q(t))$.\\
     Se $\Gamma$ soddisfa le equazioni di Newton 
     \[ m_{Q_i}a_{Q_i}|_R(t) = F_{R,i}(\Gamma(t),v_R(t)) + \Phi_i \]
-    Dove $\Phi_i$ sono reazioni vincolari che verificano la proprietà di vincoli ideali, allora soddisfa anche le \bemph{equazioni di Eulero-Lagrange}:
+    Dove $\Phi_i$ sono reazioni vincolari che verificano la proprietà di vincoli ideali, allora soddisfa anche le \bemph{equazioni di Eulero--Lagrange}:
     \[ \frac{\di}{\di t}\left[ \frac{\partial \T_R}{\partial \dot q^k} \right]_{\hat\Gamma(t)} - \left[ \frac{\partial\T_R}{\partial q^k} \right]_{\hat\Gamma(t)} = [\mc Q_{R,k}]_{\hat\Gamma(t)} \]
     Dove 
     \[ \mc Q_{R,k}(t,\bar q, \dot{\bar q}) = \left( F_R \cdot \frac{ \partial \psi|_{\Sigma_t^N}}{\partial q^k} \right) \]
-    sono le componenti della forza $F_R = (F_{R,1},...,F_{R,N}) \in V_t^N$ lungo i vettori tangenti di $T_q\Q_t$.
+    sono le componenti della forza $F_R = (F_{R,1},\ ...\ ,\ F_{R,N}) \in V_t^N$ lungo i vettori tangenti di $T_q\Q_t$.
     \proof 
     Scriviamo il sistema delle equazioni di Newton come un'unica equazione 
     \[ \begin{pmatrix}
@@ -987,15 +987,15 @@ Adesso deriveremo e studieremo le equazioni cardinali della meccanica Lagrangian
     \qed 
 \end{theorem}
 
-Notiamo che il vantaggio delle equazioni di Eulero-Lagrange è che grazie all'ipotesi di idealità dei vincoli, queste non dipendono dalle reazioni vincolari, che nelle equazioni di Newton appaiono come incognite.\\
-Tuttavia il teorema di cui sopra non risulta essere davvero soddisfacente: non ci dice che possiamo trovare una soluzione\footnote{Che in linea di massa potrebbe anche non esistere per quanto ne sappiamo ora} delle equazioni di Eulero-Lagrange ed essere certi che questa sia effettivamente una linea di universo che soddisfa le equazioni di Newton. Per ottenere questo risultato dobbiamo lavorare ancora un po'.\\
+Notiamo che il vantaggio delle equazioni di Eulero--Lagrange è che grazie all'ipotesi di idealità dei vincoli, queste non dipendono dalle reazioni vincolari, che nelle equazioni di Newton appaiono come incognite.\\
+Tuttavia il teorema di cui sopra non risulta essere davvero soddisfacente: non ci dice che possiamo trovare una soluzione\footnote{Che in linea di massa potrebbe anche non esistere per quanto ne sappiamo ora} delle equazioni di Eulero--Lagrange ed essere certi che questa sia effettivamente una linea di universo che soddisfa le equazioni di Newton. Per ottenere questo risultato dobbiamo lavorare ancora un po'.\\
 Ricordiamo che l'energia cinetica in coordinate naturali ha forma 
 \[ \T_R = \sum_{k,l}A_{k,l}\dot q^k \dot q^l + \sum_k B_k \dot q^k + C  \]
-Ciò implica che le equazioni di Eulero-Lagrange possono essere riscritte come 
+Ciò implica che le equazioni di Eulero--Lagrange possono essere riscritte come 
 \[ \sum_l A_{k,l}(t,\bar q(t))\frac{\di^2 q^l(t)}{\di t^2} = G_k\left(t, \bar q(t), \frac{\di\bar q(t)}{\di t}\right) \]
 Per applicare il teorema \cref{th:esistenza e unicità locale 1} dobbiamo dimostrare che la matrice $A(t,\bar q) = (A_{k,l}(t,\bar q))_{k,l}$ è invertibile, in modo da poter riscrivere l'equazione in forma normale.
 
-\begin{theorem}{}{}
+\begin{theorem}{Invertibilità della matrice per l'energia cinetica}{invertibilità della matrice per l'energia cinetica}
     Nel contesto del teorema precedente, la matrice $A(t,\bar q)$ è definita positiva per ogni $(t,\bar q)$ e dunque è invertibile.
     \proof 
     Ricordiamo che una matrice è definita positiva se e solo se $\bar v^T A \bar v > 0$ per ogni vettore $\bar v$  non nullo; in particolare possiamo riscrivere questa condizione per esteso usando la formula per $A_{k,l}$ come 
@@ -1004,14 +1004,14 @@ Per applicare il teorema \cref{th:esistenza e unicità locale 1} dobbiamo dimost
     \qed
 \end{theorem}
 
-\begin{corollary}{Esistenza e unicità locale per le equazioni di Eulero-Lagrange}{esistenza e unicità locale 2}
-    Le equazioni di Eulero-Lagrange possono essere riscritte in forma normale come
+\begin{corollary}{Esistenza e unicità locale per le equazioni di Eulero--Lagrange}{esistenza e unicità locale 2}
+    Le equazioni di Eulero--Lagrange possono essere riscritte in forma normale come
     \[ \frac{\di^2 q^l(t)}{\di t^2} =  \sum_k \frac{1}{2} (A^{k,l}(t,\bar q(t)))^{-1} G_k\left(t, \bar q(t), \frac{\di\bar q(t)}{\di t}\right) \] 
     E dunque per ogni dato iniziale $(t_0,\bar q_0, \dot{\bar q}_0)$ esiste ed è unica la soluzione locale.
 \end{corollary}
 
 Questo teorema ci dice qualcosa di molto forte, e in un certo senso "giustifica" il passaggio dalla meccanica Newtoniana a quella Lagrangiana: la seconda è in grado di darci delle equazioni del moto deterministiche sia nei sistemi svincolati, dove era sufficiente quella Newtoniana, sia in quelli vincolati sotto opportune ipotesi di idealità.\\
-In molti casi pratici, ma non in tutti, le forze $F_R = (F_{R,1},..., F_{R,N})$ hanno una forma particolare, ovvero ammettono un cosiddetto \bemph{potenziale}: ciò significa che esiste una funzione liscia $\U : \V^{3N+1}\to\R$ tale che per ogni punto $p \in \V^{3N+1}$ e ogni vettore $v \in V_{T(p)}^N$ valga
+In molti casi pratici, ma non in tutti, le forze $F_R = (F_{R,1},\ ...\ ,\  F_{R,N})$ hanno una forma particolare, ovvero ammettono un cosiddetto \bemph{potenziale}: ciò significa che esiste una funzione liscia $\U : \V^{3N+1}\to\R$ tale che per ogni punto $p \in \V^{3N+1}$ e ogni vettore $v \in V_{T(p)}^N$ valga
 \[ F_{R}(p) \cdot v = -\frac{\di}{\di\varepsilon}\U(p+\varepsilon v)\bigg|_{\varepsilon = 0} \]
 Che in coordinate standard adattate $(t,\bar{\bar x})$ assume la forma familiare
 \[ \bar F_{R,i}(t,\bar{\bar x}) = - \nabla_{\bar x_i} \U(t, \bar{\bar x}) \]
@@ -1019,28 +1019,28 @@ Dove il segno negativo è per convenzione. In questo caso, le componenti Lagrang
 \[ Q_{R,k}(t,\bar q) = F_R \cdot \frac{\partial \psi|_{\Sigma_t^N}^{-1}(\bar q)}{\partial q^k} = -\frac{\partial\U(t,\bar q)}{\partial q^k}\]
 Dove con un piccolo abuso di notazione abbiamo indicato $\U(t,\bar q) = \U(\psi^{-1}(t,\bar q))$ restringendoci a una carta locale su $\V^{n+1}$.
 
-\begin{corollary}{Equazioni di Eulero-Lagrange con un potenziale}{Eulero-Lagrange 2}
+\begin{corollary}{Equazioni di Eulero--Lagrange con un potenziale}{Eulero--Lagrange 2}
     Nel contesto dei teoremi precedenti, si supponga che le forze $F_R$ ammettano un potenziale $\U$; definiamo allora in coordinate locali naturali la \bemph{Lagrangiana} del sistema $\L_R : A(\V^{n+1})\to \R$ come
     \[ \L_R(t,\bar q, \dot{\bar q}) := \T_R(t,\bar q, \dot{\bar q}) - \U(t, \bar q) \]
-    Sotto questa ipotesi, le equazioni di Eulero-Lagrange possono essere riscritte come
+    Sotto questa ipotesi, le equazioni di Eulero--Lagrange possono essere riscritte come
     \[ \frac{\di}{\di t}\left[ \frac{\partial \L_R}{\partial \dot q^k} \right]_{\hat\Gamma(t)} - \left[ \frac{\partial \L_R}{\partial q^k} \right]_{\hat\Gamma(t)} = 0\]
     \proof 
     Notando che $\U$ non dipende dalle coordinate puntate, il primo termine si riconosce essere semplicemente la derivata dell'energia cinetica $\T_R$, mentre il secondo termine per linearità è
     \[ \left[ \frac{\partial \L_R}{\partial q^k} \right]_{\hat\Gamma(t)} = \left[ \frac{\partial \T_R}{\partial q^k} \right]_{\hat\Gamma(t)} - \underbrace{\left[ \frac{\partial \U_R}{\partial q^k} \right]_{\hat\Gamma(t)}}_{= - [Q_{R,k}]_{\hat\Gamma(t)}} \]
-    Poi basta riordinare per recuperare le equazioni di Eulero-Lagrange.
+    Poi basta riordinare per recuperare le equazioni di Eulero--Lagrange.
 \end{corollary}
 
 Nel contesto della meccanica Lagrangiana, spesso un sistema è descritto puramente in termini della sua Lagrangiana $\L_R : A(\V^{n+1})\to\R$ senza specificare le forze, anche se questa non dovesse assumere la forma di una Lagrangiana "standard" $\T_R -\U$, ad esempio lasciando che un potenziale dipenda anche dalle coordinate puntate.\\
-Notiamo che due Lagrangiane diverse possono generare le stesse equazioni di Eulero-Lagrange: per una mappa liscia $g:\V^{n+1}\to\R$ definiamo la sua derivata totale formale come una funzione $\di_t g: A(\V^{n+1})\to\R$ in coordinate naturali come
+Notiamo che due Lagrangiane diverse possono generare le stesse equazioni di Eulero--Lagrange: per una mappa liscia $g:\V^{n+1}\to\R$ definiamo la sua derivata totale formale come una funzione $\di_t g: A(\V^{n+1})\to\R$ in coordinate naturali come
 \[ \di_t g(t,\bar q, \dot{\bar q}) := \frac{\partial g(t,\bar q)}{\partial t} + \sum_{k} \frac{\partial g(t,\bar q)}{\partial q^k} \]
-Allora per calcolo diretto si verifica che $\L_R$ e $\L_R +\di_t g$ producono le stesse equazioni di Eulero-Lagrange; per questo motivo a volte è utile pensare alle Lagrangiane come a classi di equivalenza $[\L]$ rispetto alla relazione $\L \sim \L + \di_t g$.
+Allora per calcolo diretto si verifica che $\L_R$ e $\L_R +\di_t g$ producono le stesse equazioni di Eulero--Lagrange; per questo motivo a volte è utile pensare alle Lagrangiane come a classi di equivalenza $[\L]$ rispetto alla relazione $\L \sim \L + \di_t g$.
 
 \chapter{Simmetrie e leggi di conservazione}
 
 In questa parte studieremo degli interessanti legami tra le simmetrie di un sistema fisico descritto da una Lagrangiana $\L: A(\V^{n+1})\to\R$ e le quantità che rimangono costanti durante l'evoluzione dinamica del sistema. Partiremo da un caso molto semplice, quello delle coordinate cicliche, per poi studiare i teoremi di Noether e di Jacobi.
 
 \newcommand\I{\mc I}
-\section{Coordinate Cicliche}
+\section{Coordinate cicliche}
 
 \begin{definition}{Coordinate cicliche}{coordinate cicliche}
     Si consideri un sistema fisico descritto da uno spaziotempo delle configurazioni $T:\V^{n+1}\to E^1$ e da una Lagrangiana $\L:A(\V^{n+1})\to\R$ e sia $(U,\psi)$ una carta locale per $\V^{n+1}$ con le corrispondenti coordinate locali naturali $(t, q, \dot q) := (t,\bar q, \dot{\bar q})$.\\
@@ -1050,16 +1050,16 @@ In questa parte studieremo degli interessanti legami tra le simmetrie di un sist
 \end{definition}
 
 Notiamo che il significato geometrico di questa richiesta è che la Lagrangiana sia invariante per traslazione lungo questa coordinata, ovvero che per ogni $b\in\R$ sufficientemente piccolo valga
-\[\L(t,q^1,...,q^j,...,q^n,\dot q) = \L(t,q^1,...,q^j+b,...,q^n,\dot q)\]
+\[\L(t,q^1,\ ...\ ,\ q^j,\ ...\ ,\ q^n,\dot q) = \L(t,q^1,\ ...\ ,\ q^j+b,\ ...\ ,\ q^n,\dot q)\]
 Ne segue che le coordinate cicliche esprimono una simmetria (locale) per traslazione del sistema fisico.
 
 \begin{proposition}{Momento coniugato}{momento coniugato}
     Nel contesto della definizione precedente, definendo il \bemph{momento coniugato associato} a una coordinata ciclica $q^j$ come 
     \[ p_j(t,q,\dot q) = \frac{\partial \L(t,q,\dot q)}{\partial \dot q^j} \]
-    Si ha che questo è un \bemph{integrale primo} del moto, ovvero la sua valutazione lungo una linea di universo $\hat\Gamma(t)$ che risolve le equazioni di Eulero-Lagrange è costante rispetto al tempo.
+    Si ha che questo è un \bemph{integrale primo} del moto, ovvero la sua valutazione lungo una linea di universo $\hat\Gamma(t)$ che risolve le equazioni di Eulero--Lagrange è costante rispetto al tempo.
     \proof 
-    Richiamiamo le equazioni di Eulero-Lagrange per la coordinata ciclica $q^j$:
-    \[ \underbrace{\frac{\di}{\di t}\left[ \frac{\partial \L}{\partial \dot q^j} \right]_{\hat\Gamma(t)}}_{=: [p_j]_{\hat\Gamma(t)}} - \underbrace{\left[ \frac{\partial \L_R}{\partial q^j} \right]_{\hat\Gamma(t)}}_{= 0} = 0\] 
+    Richiamiamo le equazioni di Eulero--Lagrange per la coordinata ciclica $q^j$:
+    \[ \frac{\di}{\di t} \underbrace{\left[ \frac{\partial \L}{\partial \dot q^j} \right]_{\hat\Gamma(t)}}_{=: [p_j]_{\hat\Gamma(t)}} - \underbrace{\left[ \frac{\partial \L_R}{\partial q^j} \right]_{\hat\Gamma(t)}}_{= 0} = 0\] 
     \qed
 \end{proposition}
 
@@ -1067,7 +1067,7 @@ In linea di principio, l'integrale primo $p_j(t,q,\dot q)$ è definito solo loca
 È importante sottolineare che l'integrale primo è costante nel tempo \textit{per una linea di universo fissata}, in generale linee di universo con dati iniziali diversi possono avere integrali primi anche molto diversi.\\
 Ovviamente, più coordinate cicliche generano più integrali primi del moto.
 
-\begin{example}{}{}
+\begin{example}{Punti materiali svincolati}{punti materiali svincolati}
     Consideriamo un sistema di $N\ge 1$ punti materiali svincolati e senza forze in un riferimento inerziale $R$ con coordinate standard $(t,\bar{\bar x}) \in \R^{3N+1}$.\\
     La Lagrangiana di questo sistema è data da
     \[ \L(t,\bar{\bar x},\dot{\bar{\bar x}})  = \sum_i \frac{m_{Q_i}}{2}\| \dot{\bar x}_i \|^2\]
@@ -1077,16 +1077,16 @@ Ovviamente, più coordinate cicliche generano più integrali primi del moto.
     Si nota immediatamente che questi non sono nient'altro che le componenti degli impulsi del sistema, quindi ogni impulso $\bar p^i$ è conservato durante il moto del sistema
 \end{example}
 
-\begin{example}{}{}
+\begin{example}{Punti materiali svincolati con forze dipendenti dalle posizioni relative}{Punti materiali svincolati con forze dipendenti dalle posizioni relative}
     Supponiamo di introdurre nel sistema precedente delle forze che derivano da un potenziale $\U$ dipendente soltanto dalle differenze $\bar x_i -\bar x_j$ tra le posizioni: la Lagrangiana allora diventa 
-    \[ \L(t,\bar{\bar x},\dot{\bar{\bar x}})  = \sum_i \frac{m_{Q_i}}{2}\| \dot{\bar x}_i \|^2 - \U(\bar x_1 - \bar x_2,..., \bar x_{N-1} - \bar x_N)\]
+    \[ \L(t,\bar{\bar x},\dot{\bar{\bar x}})  = \sum_i \frac{m_{Q_i}}{2}\| \dot{\bar x}_i \|^2 - \U(\bar x_1 - \bar x_2,\ ...\ ,\  \bar x_{N-1} - \bar x_N)\]
     Dove abbiamo scritto $\U$ puramente in funzione delle differenze tra indici consecutivi\footnote{Perchè possiamo farlo senza perdita di generalità? Lo lasciamo come esercizio per il lettore}.\\
     Almeno così ad occhio, non sembrano esserci coordinate cicliche... o invece ce ne sono? Facciamo un cambiamento di coordinate: 
     \[ \bar X := \frac{ \sum_i m_{Q_i}\bar x_i }{\sum_i m_{Q_i}} \]
     \[ \bar\xi_i := \bar x_i - \frac{ \sum_{j = i+1} m_{Q_j}\bar x_j }{\sum_{j=i+1} m_{Q_j}} \]
     Dette rispettivamente \bemph{centro di massa} e \bemph{coordinate di Jacobi} del sistema.\\
     Si può dimostrare per induzione su $N$ che la Lagrangiana di questo sistema è scritta come 
-    \[ \L\left(t,\bar X, \bar{\bar \xi}, \dot{\bar X}, \dot{\bar{\bar\xi}} \right) = \frac{M}{2}\| \dot{\bar X} \|^2 + \sum_i \frac{\mu_i}{2} \|\dot{\bar\xi}_i\|^2 - \tilde\U(\bar{\bar\xi}) \]
+    \[ \L\left(t,\bar X, \bar{\bar \xi}, \dot{\bar X}, \dot{\bar{\bar\xi}}\ \right) = \frac{M}{2}\| \dot{\bar X} \|^2 + \sum_i \frac{\mu_i}{2} \|\dot{\bar\xi}_i\|^2 - \tilde\U(\bar{\bar\xi}) \]
     Dove $M$ è la massa totale e le $\mu_i$ sono dette \bemph{masse ridotte} e sono costanti definite in termini delle masse un modo che non ci interessa.\\
     Poichè il potenziale dipende solo dalle $\bar\xi_i$, le coordinate di $\bar X=(X^1,X^2,X^3)$ sono coordinate cicliche e gli integrali primi di questo moto sono quelle che riconosciamo essere le componenti dell'impulso totale 
     \[ [\bar p]_{\hat\Gamma(t)} = \sum_i m_{Q_i} \frac{\di \bar x_i(t)}{\di t} \]
@@ -1101,7 +1101,7 @@ Questo diventerà molto più chiaro nel contesto generale del teorema di Noether
 
 Per formulare e dimostrare il teorema di Noether dobbiamo considerare una classe particolare di automorfismi dello spaziotempo delle configurazioni, ovvero quelli che non trasformano il tempo.
 
-\begin{definition}{}{}
+\begin{definition}{Automorfismo che preserva le fibre}{automorfismo che preserva le fibre}
     Un \bemph{automorfismo che preserva le fibre} dello spaziotempo delle configurazioni $T:\V^{n+1}\to E^1$ è un automorfismo $F:\V^{n+1}\iso \V^{n+1}$ tale che $T = T \circ F = T \circ F^{-1}$, ovvero tale che il seguente diagramma commuti:
     \[\begin{tikzcd}
     	{\V^{n+1}} && {\V^{n+1}} \\
@@ -1132,7 +1132,7 @@ Per facilitare i calcoli sarebbe bello riuscire a esprimere l'azione di questi a
 	\arrow["{\psi\circ F\circ (\id_{(-\varepsilon, \varepsilon)}\times \psi)^{-1}}"{description}, from=3-1, to=3-5]
 	\arrow[maps to, from=4-1, to=4-5]
 \end{tikzcd}\]
-Dove ovviamente $q = (q^1,...,q^n)$ e $q' = (q'^1,...,q'^n)$.\\
+Dove ovviamente $q = (q^1,\ ...\ ,\ q^n)$ e $q' = (q'^1,\ ...\ ,\ q'^n)$.\\
 Possiamo estendere l'azione di $F$ allo spaziotempo degli atti di moto $A(\V^{n+1})$ mandando $(s,(t,q,\dot q))$ in $(t,q'(s,t,q),\dot q'(s,t,q,\dot q))$, dove 
 \[ \dot q'^k (s,t,q,\dot q) = \frac{\partial q'(s,t,q)}{\partial t} + \sum_l \frac{\partial q'^k(s,t,q)}{\partial q^l} \dot q^l \]
 
@@ -1144,13 +1144,13 @@ Possiamo estendere l'azione di $F$ allo spaziotempo degli atti di moto $A(\V^{n+
     $F$ è detto \bemph{gruppo di simmetria (debole)} del sistema fisico.
 \end{definition}
 
-Chiaramente l'idea alla base dell'invarianza debole è l'osservazione fatta qualche pagina fa secondo cui le Lagrangiane $\L$ e $\L+\di_t g$ producono le stesse equazioni di Eulero-Lagrange: infatti, l'invarianza debole afferma che non la Lagrangiana $\L$ in sè ma la sua classe di equivalenza $[\L]$ è invariante rispetto all'azione di $F$.\\
+Chiaramente l'idea alla base dell'invarianza debole è l'osservazione fatta qualche pagina fa secondo cui le Lagrangiane $\L$ e $\L+\di_t g$ producono le stesse equazioni di Eulero--Lagrange: infatti, l'invarianza debole afferma che non la Lagrangiana $\L$ in sè ma la sua classe di equivalenza $[\L]$ è invariante rispetto all'azione di $F$.\\
 Si può introdurre anche una nozione di invarianza (debole) locale quando si dispone non di un automorfismo globale da restringere opportunamente ma di una famiglia di diffeomorfismi locali $F_\loc : (-\varepsilon, \varepsilon)\times \psi(V)\to\psi(U)$; dato che comunque noi lavoreremo in carte locali, le dimostrazioni che seguono si applicano anche al caso in cui si disponga soltanto di una simmetria locale.
 
 \begin{theorem}{Teorema di Noether}{teorema di Noether}
     Nel contesto della definizione precedente, le funzioni lisce $I_{F,g}:\psi(V)\times\R^n\to\R$ definite da
     \[ I_{F,g}(t,q,\dot q) = -g(t,q) + \sum_k \frac{\partial \L(t,q,\dot q)}{\partial \dot q^k}\frac{q'^k(s,t,q)}{\partial s}\bigg|_{s=0}  \]
-    Sono integrali primi del moto, vale a dire che la loro valutazione lungo una linea di universo $\hat\Gamma:I\to A(\V^{n+1})$ che soddisfa le equazioni di Eulero-Lagrange è costante.\\
+    Sono integrali primi del moto, vale a dire che la loro valutazione lungo una linea di universo $\hat\Gamma:I\to A(\V^{n+1})$ che soddisfa le equazioni di Eulero--Lagrange è costante.\\
     Questi integrali primi si assemblano per incollamento in un integrale primo globale $\I_{F,g}:A(\V^{n+1})\to\R$ detto \bemph{integrale primo di Noether}.
     \proof 
     Analizziamo la condizione di invarianza debole 
@@ -1163,7 +1163,7 @@ Si può introdurre anche una nozione di invarianza (debole) locale quando si dis
     \begin{align*}
         \frac{\partial \dot q'^k}{\partial s} \bigg|_{s=0} & = \frac{\partial }{\partial s}\left( \frac{\partial q'^k}{\partial t} + \sum_l \frac{\partial q'^k}{\partial q^l}\dot q^l \right)\bigg|_{s=0} \\ & = \left( \frac{\partial^2 q'^k }{\underbrace{\partial s \partial t}_{= \partial t \partial s}} + \sum_l \frac{\partial^2 q'^k}{\underbrace{\partial s \partial q^l}_{= \partial q^l \partial s}} \dot q^l \right)\bigg|_{s=0} \\ & = \frac{\partial }{\partial t}\left( \frac{\partial q'^k}{\partial s} \bigg|_{s=0} \right) + \sum_k \frac{\partial}{\partial q^l} \left( \frac{\partial q'^k}{\partial s}\bigg|_{s=0} \right)\dot q^l = \frac{\di}{\di t}\left( \frac{\partial q'^k}{\partial s}\bigg|_{s=0} \right)
     \end{align*}
-    Adesso, ricordandoci che $\Gamma$ soddisfa le equazioni di Eulero-Lagrange 
+    Adesso, ricordandoci che $\Gamma$ soddisfa le equazioni di Eulero--Lagrange 
     \[ \frac{\di}{\di t}\left[ \frac{\partial \L}{\partial \dot q^k} \right]_{\hat\Gamma(t)} =  \left[ \frac{\partial \L}{\partial q^k} \right]_{\hat\Gamma(t)} \]
     Possiamo scrivere 
     \begin{align*}
@@ -1195,14 +1195,14 @@ In questa parte introduciamo il teorema di Jacobi, che è complementare al teore
     Si consideri un sistema fisico $T:\V^{n+1}\to E^1$ descritto da una Lagrangiana $\L : A(\V^{n+1})\to\R$.\\
     Data una carta locale adattata $(U,\psi)$, definiamo la \bemph{funzione Hamiltoniana locale} in $(U,\psi)$ del sistema come la funzione liscia $\H : \psi(U)\times\R^n\to \R$ data da 
     \[ \H(t,q,\dot q) = \sum_k \dot q^k\frac{\partial \L(t,q,\dot q)}{\partial \dot q^k} - \L(t,q,\dot q) \]
-    Allora lungo ogni linea di universo $\Gamma:I\to\V^{n+1}$ che risolve le equazioni di Eulero-Lagrange vale l'identità 
+    Allora lungo ogni linea di universo $\Gamma:I\to\V^{n+1}$ che risolve le equazioni di Eulero--Lagrange vale l'identità 
     \[ \frac{\di}{\di t} [\H]_{\hat\Gamma(t)} = -\left[ \frac{\partial \L}{\partial t} \right]_{\hat\Gamma(t)} \]
     \proof 
     La dimostrazione procede per calcolo diretto 
     \begin{align*}
         \frac{\di}{\di t}[\H]_{\hat\Gamma(t)} & = \frac{\di}{\di t}\left[ \sum_k \dot q^k \frac{\partial \L}{\partial \dot q^k} - \L \right]_{\hat\Gamma(t)} \\
         & = \frac{\di}{\di t}\left( \frac{\di q^k}{\di t}\left[ \frac{\partial \L}{\partial \dot q^k} \right]_{\hat\Gamma(t)} - [\L]_{\hat\Gamma(t)}  \right) \\ 
-        & = \sum_k \left( \frac{\di^2 q^k}{\di t^2}\left[ \frac{\partial \L}{\partial \dot q^k} \right]_{\hat\Gamma(t)} + \frac{\di q^k}{\di t} \underbrace{\frac{\di}{\di t}\left[ \frac{\partial \L}{\partial \dot q^k} \right]_{\hat\Gamma(t)}}_{\text{Eulero-Lagrange}} \right) - \frac{\di}{\di t}[\L]_{\hat\Gamma(t)} \\ 
+        & = \sum_k \left( \frac{\di^2 q^k}{\di t^2}\left[ \frac{\partial \L}{\partial \dot q^k} \right]_{\hat\Gamma(t)} + \frac{\di q^k}{\di t} \underbrace{\frac{\di}{\di t}\left[ \frac{\partial \L}{\partial \dot q^k} \right]_{\hat\Gamma(t)}}_{\text{Eulero--Lagrange}} \right) - \frac{\di}{\di t}[\L]_{\hat\Gamma(t)} \\ 
         & = \sum_k\left( \underbrace{\frac{\di^2 q^k}{\di t^2}\left[ \frac{\partial \L}{\partial \dot q^k} \right]_{\hat\Gamma(t)}}_{=:\heartsuit_k } + \underbrace{\frac{\di q^k}{\di t} \left[ \frac{\partial \L}{\partial q^k} \right]_{\hat\Gamma(t)}}_{=:\diamondsuit_k} \right) - \underbrace{\frac{\di}{\di t}[\L]_{\hat\Gamma(t)}}_{=:\clubsuit}
     \end{align*}
     Studiando $\clubsuit$ tramite la regola della catena otteniamo 
@@ -1240,14 +1240,14 @@ In questa situazione, il teorema di Jacobi implica che localmente l'energia tota
 
 In questa parte studieremo una formulazione alternativa della meccanica classica, ovvero la meccanica Hamiltoniana.\\
 Sebbene sia equivalente alla formulazione Lagrangiana, presenta alcune caratteristiche interessanti:\begin{itemize}
-    \item Le equazioni di Hamilton assumono una forma più simmetrica rispetto a quella delle equazioni di Eulero-Lagrange e possono essere scritte in un'utile forma algebrica attraverso la cosiddetta parentesi di Poisson che vedremo più avanti.
+    \item Le equazioni di Hamilton assumono una forma più simmetrica rispetto a quella delle equazioni di Eulero--Lagrange e possono essere scritte in un'utile forma algebrica attraverso la cosiddetta parentesi di Poisson che vedremo più avanti.
     \item Per chi sarà interessato a proseguire con un percorso legato alla fisica matematica, la meccanica Hamiltoniana è il punto di partenza per le formulazioni della meccanica statistica e la meccanica quantistica, che tuttavia sono al di fuori di questo corso.
 \end{itemize}
 
 \newcommand\Leg{\mathbb L}
 \section{Spaziotempo delle fasi e trasformata di Legendre}
 
-Mentre la meccanica Lagrangiana è stata formulata sullo spaziotempo degli atti di moto $T:A(\V^{n+1})\to E^1$ con coordinate locali naturali $(t,q,\dot q)$, nella meccanica Hamiltoniana si sostituiscono le coordinate puntate $\dot q = (\dot q^1,..., \dot q^n)$ coi cosiddetti momenti coniugati $p = (p_1,...,p_k)$.\\
+Mentre la meccanica Lagrangiana è stata formulata sullo spaziotempo degli atti di moto $T:A(\V^{n+1})\to E^1$ con coordinate locali naturali $(t,q,\dot q)$, nella meccanica Hamiltoniana si sostituiscono le coordinate puntate $\dot q = (\dot q^1,\ ...\ ,\  \dot q^n)$ coi cosiddetti momenti coniugati $p = (p_1,\ ...\ ,\ p_k)$.\\
 Se si viene dalla meccanica Lagrangiana, questi sono definiti in termini della Lagrangiana $\L:A(\V^{n+1})\to\R$ tramite la formula 
 \[ p_k = \frac{\partial \L(t,q,\dot q)}{\partial \dot q^k} \]
 Ma è importante sottolineare che nella meccanica Hamiltoniana questi non sono definiti in termini delle coordinate puntate, ma sono vere coordinate indipendenti che le sostituiscono.\\
@@ -1270,7 +1270,7 @@ La formula che determina i momenti coniugati a partire dalla Lagrangiana definis
 \begin{proposition}{Trasformata di Legendre}{trasformata di Legendre}
     Si consideri uno spaziotempo delle configurazioni $T:\V^{n+1}\to E^1$ per un sistema fisico descritto dalla Lagrangiana $\L:A(\V^{n+1})\to\R$.\\
     A questi dati è associata una mappa liscia $\Leg_\L : A(\V^{n+1})\to F(\V^{n+1})$ detta \bemph{trasformazione di Legendre} definita in coordinate locali come 
-    \[ \Leg_\L(t,q,\dot q) = \left( t, q, \frac{\partial \L(t,q\dot q)}{\partial \dot q^1},...,  \frac{\partial \L(t,q\dot q)}{\partial \dot q^n}\right) \]
+    \[ \Leg_\L(t,q,\dot q) = \left( t, q, \frac{\partial \L(t,q\dot q)}{\partial \dot q^1},\ ...\ ,\   \frac{\partial \L(t,q\dot q)}{\partial \dot q^n}\right) \]
     Nel caso in cui la Lagrangiana è della forma
     \[ \L(t,q,\dot q) = \sum_{k,l}A_{k,l}(t,q)\dot q^k \dot q^l + \sum_k \tilde B_k(t,q) \dot q^k + \tilde C(t,q) \]
     Con $A_{k,l}$, $\tilde B_k$ e $\tilde C$ funzioni lisce e la matrice $A = (A_{k,l})_{k,l}$ invertibile, la trasformazione di Legendre è anche un diffeomorfismo.
@@ -1283,7 +1283,7 @@ La formula che determina i momenti coniugati a partire dalla Lagrangiana definis
     Definendo localmente un'inversa liscia della trasformazione di Legendre.
 \end{proposition}
 
-Notiamo che la richiesta sulla forma della Lagrangiana è esattamente quella che avevamo imposto per dimostrare la buona positura delle equazioni di Eulero-Lagrange. Tale condizione in particolare è soddisfatta dalle Lagrangiane di forma standard $\L(t,q,\dot q) = \T_R(t,q,\dot q) - \U(t,q)$, dove $\T_R$ è l'energia cinetica e $\U$ un potenziale.\\
+Notiamo che la richiesta sulla forma della Lagrangiana è esattamente quella che avevamo imposto per dimostrare la buona positura delle equazioni di Eulero--Lagrange. Tale condizione in particolare è soddisfatta dalle Lagrangiane di forma standard $\L(t,q,\dot q) = \T_R(t,q,\dot q) - \U(t,q)$, dove $\T_R$ è l'energia cinetica e $\U$ un potenziale.\\
 Più in generale, si dice che una Lagrangiana è \bemph{non degenere} se, in ogni scelta di coordinate locali naturali, la famiglia di equazioni 
 \[ p_k(t,q,\dot q) = \frac{\partial\L(t,q,\dot q)}{\partial\dot q^k} \]
 Può essere invertita ottentendo espressioni $\dot q^k(t,q,p)$ lisce.\\
@@ -1292,7 +1292,7 @@ Ovviamente la trasformata di Legendre è un diffeomorfismo in questo caso più g
 \newpage
 \section{Equazioni di Hamilton}
 
-In questa parte formuleremo e studieremo le equazioni di Hamilton, che dimostreremo essere equivalenti a quelle di Eulero-Lagrange sotto l'ipotesi di non degenerazione della Lagrangiana.\\
+In questa parte formuleremo e studieremo le equazioni di Hamilton, che dimostreremo essere equivalenti a quelle di Eulero--Lagrange sotto l'ipotesi di non degenerazione della Lagrangiana.\\
 Mentre nella meccanica Lagrangiana la dinamica è codificata dalla scelta di una funzione globale $\L:A(\V^{n+1})\to\R$, nella meccanica Hamiltoniana viene codificata in modo simile dalla scelta di Hamiltoniana $\H$.\\
 Il tipo di oggetto che descrive un'Hamiltoniana globale su $F(\V^{n+1})$ però è più sofisticato, in quanto un'Hamiltoniana non è una funzione liscia globale su $F(\V^{n+1})$ a differenza della Lagrangiana. Per comprenderne meglio la costruzione è bene trasformare il dato globale della Lagrangiana $\L$ in una collezione di dati locali.\\
 Una Lagrangiana è una mappa globale $\L:A(\V^{n+1})\to\R$, la cui restrizione alle carte adattate $\psi(U)\times\R^n$ definisce una famiglia di mappe lisce locali $\{ \L_U:\psi(U)\times\R^n\to\R \}_{(U,\psi)}$ parametrizzata dalle carte locali adattate a $T:\V^{n+1}\to E^1$.\\
@@ -1363,7 +1363,7 @@ Come vorremmo sperare, abbiamo il seguente teorema.
             \item Nel caso $\H\mapsto \L$ invece abbiamo 
                 \begin{align*}
                     \frac{\partial\L_U(t,q,\dot q)}{\partial \dot q^k} & = \frac{\partial }{\partial \dot q^k}\left( \sum_l \dot q^l p_l - \H_U(t,q,p(t,q,\dot q)) \right) \\
-                    & = p_k(t,q,\dot q)+ \sum_l \dot q^l\frac{\partial p_l(t,q,\dot q)}{\partial \dot q^k} - \sum_l \underbrace{\frac{\partial \H_U(t,q,p(t,q,\dot q))}{\frac \partial p_l}}_{=: \dot q^l} \frac{\partial p_l(t,q,\dot q)}{\partial \dot q^k} = p_k(t,q,\dot q)
+                    & = p_k(t,q,\dot q)+ \sum_l \dot q^l\frac{\partial p_l(t,q,\dot q)}{\partial \dot q^k} - \sum_l \underbrace{\frac{\partial \H_U(t,q,p(t,q,\dot q))}{ \partial p_l}}_{=: \dot q^l} \frac{\partial p_l(t,q,\dot q)}{\partial \dot q^k} = p_k(t,q,\dot q)
                 \end{align*}
                 Che è invertibile per 
                 \[ \dot q^k(t,q,p) = \frac{\partial \H_U(t,q,p)}{\partial p_k} \]
@@ -1378,24 +1378,24 @@ Come vorremmo sperare, abbiamo il seguente teorema.
     \qed 
 \end{theorem}
 
-Possiamo ora descrivere come si presentano le equazioni di Eulero-Lagrange quando formulate dal punto di vista dell'Hamiltoniana invece che della Lagrangiana; per farlo sarà comodo esprimerle in una forma equivalente.\\
+Possiamo ora descrivere come si presentano le equazioni di Eulero--Lagrange quando formulate dal punto di vista dell'Hamiltoniana invece che della Lagrangiana; per farlo sarà comodo esprimerle in una forma equivalente.\\
 Consideriamo una generica linea di universo a valori in una carta locale $\Gamma_A:I\to\psi(U)\times \R^n \subset A(\V^{n+1})$ che mappa $t\mapsto (t,q(t),\dot q(t))$. Questa sorge come estensione canonica $\Gamma_A = \hat\Gamma$ di una linea di universo $\Gamma:I\to\psi(U)$ se e solo se per ogni $k$ vale
 \[ \dot q^k(t) = \frac{\di q^k(t)}{\di t} \]
-Allora possiamo riscrivere le equazioni di Eulero-Lagrange per nel sistema di equazioni 
-\[ \begin{cases}
+Allora possiamo riscrivere le equazioni di Eulero--Lagrange per nel sistema di equazioni 
+\[ \begin{dcases}
     \frac{\di }{\di t}\frac{\partial \L(t,q(t),\dot q(t))}{\partial \dot q^k} - \frac{\partial \L_U(t, q(t),\dot q(t))}{\partial q^k} \\ \dot q^k(t) = \frac{\di q^k(t)}{\di t}
-\end{cases} \]
+\end{dcases} \]
 
 \begin{theorem}{Equazioni di Hamilton}{equazioni di Hamilton}
     Consideriamo una Lagrangiana non degenere $\{\L_U\}$ e una linea di universo locale $\Gamma_A : I \to \psi(U)\times \R^n\subset A(\V^{n+1})$ che mappa $t\mapsto (t,q(t),\dot q(t))$.\\
     Usando la trasformazione di Legendre, questi dati ammettono una descrizione equivalente in termini di un'Hamiltoniana $\{\H_U\}$ e una linea di universo locale $\Gamma_F:I \to\psi(U)\times \R^n \subset F(\V^{n+1})$ che mappa $t\mapsto (t,q(t),p(t))$.\\
-    Allora $\Gamma_A$ soddisfa le equazioni di Eulero-Lagrange nella forma equivalente di cui sopra se e solo se $\Gamma_F$ soddisfa le \bemph{equazioni di Hamilton}:
-    \[ \begin{cases}
+    Allora $\Gamma_A$ soddisfa le equazioni di Eulero--Lagrange nella forma equivalente di cui sopra se e solo se $\Gamma_F$ soddisfa le \bemph{equazioni di Hamilton}:
+    \[ \begin{dcases}
         \frac{\di p_k(t)}{\di t} = -\frac{\partial \H_U(t,q(t),p(t))}{\partial q^k}\\
         \frac{\di q^k(t)}{\di t} = \frac{\partial \H_U(t,q(t),p(t))}{\partial p_k}
-    \end{cases} \]
+    \end{dcases} \]
     \proof 
-    Dato che la trasformata di Legendre è un diffeomorfismo nel caso non degenere, basta provare che le equazioni di Hamilton implicano quelle di Eulero-Lagrange: vediamo che per la definizione di Hamiltoniana 
+    Dato che la trasformata di Legendre è un diffeomorfismo nel caso non degenere, basta provare che le equazioni di Hamilton implicano quelle di Eulero--Lagrange: vediamo che per la definizione di Hamiltoniana 
     \[ \H_U(t,q,p) = \sum_k \dot q^k(t,q,p) p_k -\L_U(t,q,\dot q(t,q,p)) \]
     Si ha per il lato destro
     \begin{align*}
@@ -1405,8 +1405,8 @@ Allora possiamo riscrivere le equazioni di Eulero-Lagrange per nel sistema di eq
         & = \dot q^k(t,q,p)
     \end{align*}
     Valutando sulla trasformata di Legendre di $\Gamma_A(t) = (t,q(t),\dot q(t))$ data da 
-    \[ \Gamma_F(t):= (t,q,p(t)) = \left( t, q^1(t),...,q^n(t),\frac{\partial \L_U(t,q(t)\dot q(t))}{\partial \dot q^1},..., \frac{\partial \L_U(t,q(t),\dot q(t))}{\partial\dot q^n} \right) \]
-    Otteniamo le equazioni di Eulero-Lagrange: 
+    \[ \Gamma_F(t):= (t,q,p(t)) = \left( t, q^1(t),\ ...\ ,\ q^n(t),\frac{\partial \L_U(t,q(t)\dot q(t))}{\partial \dot q^1},\ ...\ ,\  \frac{\partial \L_U(t,q(t),\dot q(t))}{\partial\dot q^n} \right) \]
+    Otteniamo le equazioni di Eulero--Lagrange: 
     \begin{align*}
         \frac{\di}{\di t}\frac{\partial \L_U(t,q(t),\dot q(t))}{\partial \dot q^k} & = \frac{\di p_k(\Gamma_F(t))}{\di t} = - \frac{\partial \H_U(\Gamma_F(t))}{\partial q_k} \\
         & = \frac{\partial \L(t,q(t),\dot q(t))}{\partial q^k} \\
@@ -1442,8 +1442,8 @@ In questa parte introduciamo la cosiddetta parentesi di Poisson, una struttura a
 \end{definition}
 
 \begin{proposition}{parentesi di Poisson globale}{parentesi di Poisson globale}
-    Le parentesi di Poisson locali $\langle\bullet, \bullet\rangle_U$ si assemblano in una parentesi di Poisson globale $\langle\bullet,\bullet\rangle:\C^\infty (F(\V^{n+1}))\times \C^\infty (F(\V^{n+1})) \to \C^\infty (F(\V^{n+1}))$ sull'algebra delle funzioni reali lisce sullo spaziotempo delle fasi.\\
-    In particolare, ricordando che ogni mappa liscia $h:\F(\V^{n+1})\to \R$ ammette una descrizione equivalente in termini di una famiglia di mappe locali lisce $\{h_U\}_U$ che concordano sull'intersezione delle carte, la parentesi di Poisson globale $\langle f,g\rangle$ è definita dalla famiglia $\{ \langle f_U, g_U\rangle_U \}_U$
+    Le parentesi di Poisson locali $\langle\cdot, \cdot\rangle_U$ si assemblano in una parentesi di Poisson globale $\langle\cdot,\cdot\rangle:\C^\infty (F(\V^{n+1}))\times \C^\infty (F(\V^{n+1})) \to \C^\infty (F(\V^{n+1}))$ sull'algebra delle funzioni reali lisce sullo spaziotempo delle fasi.\\
+    In particolare, ricordando che ogni mappa liscia $h:F(\V^{n+1})\to \R$ ammette una descrizione equivalente in termini di una famiglia di mappe locali lisce $\{h_U\}_{(U,\psi)}$ che concordano sull'intersezione delle carte, la parentesi di Poisson globale $\langle f,g\rangle$ è definita dalla famiglia $\{ \langle f_U, g_U\rangle_U \}_{(U,\psi)}$
     \proof 
     Dobbiamo dimostrare che sull'intersezione $U\cap U'$ le parentesi locali soddisfano $\langle f_{U'}, g_{U'} \rangle_{U'}(t',q',p') = \langle f_U, g_U\rangle_U(t,q,p)$, ricordando la legge di trasformazione 
     \[ t' = t, \quad q' = q'(t,q), \quad p'_k = \sum_l \frac{\partial q^l}{\partial q'^k}p_l \]
@@ -1457,16 +1457,14 @@ In questa parte introduciamo la cosiddetta parentesi di Poisson, una struttura a
     Dove nell'ultimo passaggio abbiamo usato l'identità
     \[ \sum_k \frac{\partial q'^l}{\partial q^k}\frac{\partial q^k}{\partial q'^m} = \frac{\partial q'^l}{\partial q'^m} = \delta_m^l \]
     E il termine che si annulla viene dal fatto che
-    \begin{align*}
-        \sum_k \frac{\partial p'_l}{\partial q^k}\frac{\partial q^k}{\partial q'^m} & = \sum_{k,s} p_s \frac{\partial}{\partial q^k}\left( \frac{\partial q^s}{\partial q'^l} \right)\frac{\partial q^k}{\partial q'^m} = \sum_{k,s,u} p_s \frac{\partial^2 q^s}{\partial q'^u \partial q'^l}\frac{ \partial q'^u}{\partial q^k}\frac{\partial q^k}{\partial q'^m} \\ & = \sum_s p_s \frac{ \partial^2 q^s }{\partial q'^l \partial q'^m}
-    \end{align*}
+    \[\sum_k \frac{\partial p'_l}{\partial q^k}\frac{\partial q^k}{\partial q'^m} = \sum_{k,s} p_s \frac{\partial}{\partial q^k}\left( \frac{\partial q^s}{\partial q'^l} \right)\frac{\partial q^k}{\partial q'^m} = \sum_{k,s,u} p_s \frac{\partial^2 q^s}{\partial q'^u \partial q'^l}\frac{ \partial q'^u}{\partial q^k}\frac{\partial q^k}{\partial q'^m} = \sum_s p_s \frac{ \partial^2 q^s }{\partial q'^l \partial q'^m}\]
     È simmetrico rispetto allo scambio di $l$ e $m$.
     \qed
 \end{proposition}
 
 Notiamo che se introduciamo la matrice 
 \[ S := \begin{pmatrix}
-    \mathbf{0}_{n\times n} & \mathbf{1}_{n\times n} \\ - \mathbf{1}_{n\times n} & \mathbf{0}_{n\times n}
+    \mathbf{0}_{n\times n} & \id_{n\times n} \\ - \id_{n\times n} & \mathbf{0}_{n\times n}
 \end{pmatrix} \]
 La parentesi di Poisson locale può essere scritta più compattamente come 
 \[ \langle f_U, g_U \rangle_U = \sum_{a,b} S^{a,b} \frac{\partial f_U}{\partial z^a}\frac{\partial g_U}{\partial z^b} \]
@@ -1475,7 +1473,7 @@ Le parentesi di Poisson delle coordinate locali assumono i valori
 \[ \langle q^k, q^l \rangle_U = 0,\quad \langle p_k, p_l\rangle_U = 0 \quad \langle q^k, p_l\rangle_U = \delta_l^k  \]
 Queste identità sono un possibile punto di partenza per passare dalla meccanica classica a quella quantistica. Infatti sostituendo $q$ e $p$ con operatori, ad esempio su uno spazio di Hilbert complesso, $\hat q$ e $\hat p$ i cui commutatori soddisfano le identità analoghe
 \[ [\hat q^k, \hat q^l]= 0,\quad [\hat p_k, \hat p_l] = 0,\quad [\hat q^k,\hat p_l] = i\hbar \delta_l^k  \]
-dove $\hbar$ è la costante di Planck ridotta. La matematica che sorge da questa transizione è estremamente interessante, ma purtroppo non abbiamo il tempo di esplorarla in questo corso.
+Dove $\hbar$ è la costante di Planck ridotta. La matematica che sorge da questa transizione è estremamente interessante, ma purtroppo non abbiamo il tempo di esplorarla in questo corso.
 
 \begin{proposition}{Proprietà della parentesi di Poisson}{proprietà della parentesi di Poisson}
     La parentesi di Poisson gode delle seguenti proprietà:\begin{enumerate}
@@ -1515,12 +1513,12 @@ dove $\hbar$ è la costante di Planck ridotta. La matematica che sorge da questa
 
 Le proprietà $(1)$, $(2)$ e $(3)$ sono le proprietà che caratterizzano una cosiddetta \bemph{algebra di Lie}; pertanto la parentesi di Poisson dota $\C^{\infty}(F(\V^{n+1}))$ di una struttura di algebra di Lie con una proprietà aggiuntiva, la $(4)$, che la rende compatibile con la moltiplicazione puntuale di funzioni. Nel contesto della geometria differenziale, una varietà dotata di una parentesi di Poisson è detta \bemph{varietà di Poisson}.
 
-\begin{proposition}{}{}
+\begin{proposition}{Equazioni di Hamilton in forma di parentesi di Poisson}{parentesi di poisson per le equazioni di Hamilton}
     Nel contesto della definizione di cui sopra, le equazioni di Hamilton possono essere riscritte equivalentemente come 
-    \[ \begin{cases}
+    \[ \begin{dcases}
         \frac{\di p_k(t)}{\di t} = \langle p_k, \H_U\rangle_U(t,q(t),p(t)) \\
         \frac{\di q^k(t)}{\di t} = \langle q^k, \H_U\rangle_U(t,q(t),p(t))
-    \end{cases} \]
+    \end{dcases} \]
     \proof 
     Segue per calcolo diretto, infatti per $p_k$ abbiamo 
     \[ \langle p_k, \H_U\rangle_U = \sum_l \left( \underbrace{\frac{\partial p_k}{\partial q^l}}_{=0}\frac{\partial \H_U}{\partial p_l} - \underbrace{\frac{\partial p_k}{\partial p_l}}_{=\delta_l^k}\frac{\partial \H_U}{\partial q^l} \right) = -\frac{\partial \H_U}{\partial q^k} \]
@@ -1531,13 +1529,13 @@ Le proprietà $(1)$, $(2)$ e $(3)$ sono le proprietà che caratterizzano una cos
 La parentesi di Poisson non è solo utile per riscrivere in maniera più compatta le equazioni di Hamilton, ma anche per studiare gli integrali primi del moto.
 
 \begin{definition}{Integrale primo del moto}{integrale primo}
-    Si consideri un sistema fisico descritto da uno spaziotempo delle configurazioni $T:\V^{n+1}\to E^1$ e un'Hamiltoniana $\H = \{\H_U\}_U$ sullo spaziotempo delle fasi $F(\V^{n+1})$.\\
+    Si consideri un sistema fisico descritto da uno spaziotempo delle configurazioni $T:\V^{n+1}\to E^1$ e un'Hamiltoniana $\H = \{\H_U\}_{(U,\psi)}$ sullo spaziotempo delle fasi $F(\V^{n+1})$.\\
     Un \bemph{integrale primo del moto} è una funzione liscia globale $f:F(\V^{n+1})\to \R$ tale che in ogni carta locale $\psi(U)\times\R^n$ e lungo ogni soluzione $(t,q(t),p(t))$ locale delle equazioni di Hamilton si abbia 
     \[\frac{\di f_U(t,q(t),p(t))}{\di t} = 0\]
 \end{definition}
 
-\begin{proposition}{}{}
-    Nel contesto della definizione di cui sopra, $f = \{ f_U\}_U$ è un integrale primo del moto se e solo se in ogni carta locale $\psi(U)\times\R^n$ si ha 
+\begin{proposition}{Caratterizzazione degli integrali primi del moto}{caratterizzazione degli integrali primi del moto}
+    Nel contesto della definizione di cui sopra, $f = \{ f_U\}_{(U,\psi)}$ è un integrale primo del moto se e solo se in ogni carta locale $\psi(U)\times\R^n$ si ha 
     \[ \frac{\partial f_U}{\partial t} + \langle f_U,\H_U\rangle_U = 0 \]
     \proof 
     Usando le equazioni di Hamilton e sottintendendo che tutte le funzioni sono da valutare lungo $(t,q(t),p(t))$ in $U$ possiamo scrivere 
@@ -1556,7 +1554,7 @@ Allo stesso modo, si può interpetare questa condizione dicendo che il sistema H
 La relazione tra questi due punti di vista viene codificata precisamente nel \bemph{teorema di Noether Hamiltoniano}, che può essere reperito nel capitolo 13.3.3 di \cite{Moretti2024}, ma che purtroppo non abbiamo tempo di trattare.\\
 Concludiamo con un bel risultato sulle strutture algebriche definibili sull'insieme degli integrali primi del moto.
 
-\begin{theorem}{}{}
+\begin{theorem}{Struttura di algebra di Poisson per gli integrali primi}{algebra di Poisson degli integrali primi}
     Indichiamo con 
     \[ \I_\H := \left\{ f \in \C^{\infty}(F(\V^{n+1})) : \frac{\partial f}{\partial t} + \langle f,\H \rangle = 0 \right\} \]
     L'insieme degli integrali primi del moto di un sistema fisico descritto da un'Hamiltoniana $\H$.\\
