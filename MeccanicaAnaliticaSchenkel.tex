@@ -155,9 +155,9 @@ Assumiamo che il lettore abbia familiarità con alcuni concetti di topologia gen
     $M$ si dice \bemph{varietà topologica, differenziabile di classe $\C^k$ o liscia di dimensione $n$} se possiede un atlante massimale rispettivamente di classe $\C^0$, $\C^k$ con $k \in \N_{>0}$ o $\C^\infty$ di dimensione $n$.\\
     Un morfismo di varietà di classe $\C^k$ $f:(M,\A)\to (M',\A')$ di dimensioni $n,n' \in\N$ è dato da una mappa continua $f:M\to N$ tale che per ogni $(U,\phi)\in \A$ e $(U',\phi') \in \A'$ tale che $f(U)\subset U'$, la composizione definita dal diagramma sia $\C^k$
     \[\begin{tikzcd}
-    	& {M\ni U} && {U'\in M'} & \\
+    	& {M\supset U} && {U'\subset M'} & \\
 	    \\
-	    {\R^n\ni \phi(U)} &&&& {\phi'(U')\in\R^{n'}}
+	    {\R^n\supset \phi(U)} &&&& {\phi'(U')\subset\R^{n'}}
 	    \arrow["f"{description}, from=1-2, to=1-4]
 	    \arrow["\phi"{description}, from=1-2, to=3-1]
 	    \arrow["{\phi'}"{description}, from=1-4, to=3-5]
@@ -505,7 +505,7 @@ Per confrontare $v|_R$ e $v|_{R'}$, usiamo che esiste un $A \in \C^\infty(I, \O(
 \[ e_i(t) = \sum_j A_i^j(t) e'_j(t) \]
 e calcoliamo 
 \begin{align*} \gamma(t) & = O'(t) + \left( O(t)-O'(t) +\sum_{i,j} \bar\gamma^i(t) A_i^j(t) e'_j(t)  \right)\\ & = O'(t) + \sum_j\underbrace{\left( b^j(t) + \sum_i A_i^j(t)\bar\gamma^i(t) \right)}_{= \bar\gamma'^j(t)} e'_j(t) \end{align*}
-dove $\bar b \in \C^{\infty(I, \R^3)}$ è data da $O(t)-O'(t) = \sum_i b^i(t)e'_i(t)$: otteniamo la relazione
+dove $\bar b \in \C^{\infty}(I, \R^3)$ è data da $O(t)-O'(t) = \sum_i b^i(t)e'_i(t)$: otteniamo la relazione
 \begin{align*}
     v|_{R'}(t) & = \sum_i \frac{\di}{\di t}\bar\gamma'^i(t) e'_i(t) \\ & = \sum_i\frac{\di}{\di t} \left( b^i(t) + \sum_j A^i_j(t)\bar\gamma^j(t) \right)e'_i(t) \\ & = \sum_i\left[ \frac{\di}{\di t} b^i(t) + \sum_j\left( \frac{\di A^i_j(t) }{\di t}\bar\gamma^j(t) + A^i_j(t) \frac{\di \bar\gamma^j(t)}{\di t} \right) \right] e'_i(t) \\ & = \underbrace{\sum_j \frac{\di \bar\gamma^j(t)}{\di t} e_j(t)}_{=v|_R(t)} + \underbrace{\sum_i \left[ \frac{\di b^i(t)}{\di t} + \sum_j\left( \frac{\di A^i_j(t)}{\di t} \bar\gamma^j(t) \right) \right]e'_i(t)}_{=: v^\tv (t)}
 \end{align*} 
@@ -797,7 +797,7 @@ Ok, che diavolo abbiamo appena letto? Le proprietà che abbiamo richiesto sui vi
 \begin{proposition}{Utile sulle varietà}{utile sulle varietà}
     Nel contesto della definizione precedente, valgono i seguenti fatti:\begin{enumerate}
         \item $\V^{n+1}\subset \V^{3N+1}$ è una sottovarietà \textit{embedded}\footnote{Possibili traduzioni sono immersa, inclusa o incastonata, ma in genere si usa l'aggettivo in inglese e ci si mette il cuore in pace.} di dimensione $n+1$ e la restrizione $T:\V^{n+1}\to E^1$ è una sommersione suriettiva.
-        \item Per ogni $t \in E^1$, $\Q_t = \V^{n+1}\cap\sigma_t^N \subset \Sigma_t^N$ è una sottovarietà embedded di dimensione $n$.
+        \item Per ogni $t \in E^1$, $\Q_t = \V^{n+1}\cap\Sigma_t^N \subset \Sigma_t^N$ è una sottovarietà embedded di dimensione $n$.
         \item Per ogni punto $p \in \V^{3N+1}$ possiamo scegliere in un intorno di $p$ una carta locale $(U\subset \V^{3N+1},\phi:U\to \R^{3N+1})$ tale che \begin{itemize}
             \item \[ \forall p' \in U, \phi(p') := (T(p'), \phi^1(p'),\ ...\ ,\ \phi^{3N}(p')) \]
             \item \[ \forall t \in T(U), \forall p' \in U\cap Q_t, \phi(p') = (t, \phi^1(p'),\ ...\ ,\ \phi^n(p'),0,\ ...\ ,\ 0) \]
