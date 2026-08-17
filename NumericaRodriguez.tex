@@ -1,0 +1,190 @@
+\documentclass[openany]{book}
+
+\usepackage{cianatex}
+
+\usepackage{cianacolors}
+
+\usepackage[cianabook]{cianatheorems}
+
+\title{Analisi Numerica 1}
+\author{F. Troncana, dalle note della prof. A. A. Rodriguez}
+\date{A.A. 2025/2026}
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents 
+
+\chapter{Risoluzione di sistemi lineari}
+
+In questo capitolo studieremo vari metodi per risolvere numericamente sistemi lineari. Ma in effetti, cosa diavolo è un sistema lineare?
+
+\begin{definition}{Sistema lineare}{sistema lineare}
+    Un sistema di $M$ equazioni lineari in $N$ incognite è un sistema di equazioni della forma 
+    \[ \sum_{j=1}^N a_{ij}x_j = b_i \qquad \text{con}\qquad i \in \{ 1,\dots, M \}\]
+    Dove le $x_i$ sono dette \bemph{incognite} del sistema, gli $a_{i,j}$ sono i \bemph{coefficienti} e i $b_i$ sono i \bemph{termini noti}.
+\end{definition}
+
+Si vede immediatamente che il sistema può essere scritto più coincisamente in forma matriciale 
+\[ A\mathbf{x} = \begin{bmatrix}
+    a_{11} & \dots & a_{1N} \\ \vdots & & \vdots \\ a_{M1} & \dots & a_{MN} \end{bmatrix}\begin{bmatrix} x_1 \\ \vdots \\ x_N \end{bmatrix} = \begin{bmatrix}
+        b_1 \\ \vdots \\ b_M
+    \end{bmatrix} = \mathbf{b} \]
+Con $A \in \R^{M\times N}$ e $\mathbf b \in \R^M$ dati e $\mathbf x \in \R^N$ incognita. Noi considereremo il caso in cui $N=M$, ovvero in cui i sistemi sono detti \bemph{quadrati}.
+
+\section{Metodi diretti}
+
+Se la matrice $A$ è invertibile, il sistema può essere risolto con la cosiddetta \bemph{regola di Cramer}, data da 
+\[ x_j = \frac{\Delta_j}{\det A} \]
+Dove $\Delta_j$ è il determinante della matrice ottenuta sostituendo la colonna $j$-esima di $A$ col termine noto $\mathbf{b}$. Questa formula richiede di calcolare $N+1$ determinanti: gli $N$ dei $\Delta_j$ e quello di $A$.\\
+Per calcolare il determinante si può usare, ad esempio, la regola di Laplace in modo ricorsivo.
+
+\begin{proposition}{Regola di Laplace}{regola di Laplace}
+    Sia $A \in \R^{N^2}$ una matrice.\\
+    Se $N=1$, si ha $\det A = A = a_{1,1}$; altrimenti si ha 
+    \[\det A = \sum_{j=1}^N (-1)^{i+j}\det A_{ij}a_{ij}\]
+    Dove $A_{ij}$ è la matrice di $\R^{(N-1)^2}$ ottenuta eliminando la riga $i$-esima e la colonna $j$-esima da $A$.
+\end{proposition}
+
+Questa regola ha un problema: costa un sacco!\\
+Ciascun determinante ha un costo computazionale nell'ordine $N!$ operazioni, quindi risolvere il sistema con la regola di Cramer ha un costo nell'ordine di $(N+1)!$ operazioni, assolutamente inaccettabile anche per $N$ molto piccoli.\\
+Per avere un'idea di quanto sia costoso, ponendo $N=50$ abbiamo $51!\approx 1.551\cdot 10^{66}$; a giugno 2026, secondo la popolare lista \href{https://top500.org/lists/top500/2026/06/}{TOP500},  il supercomputer più potente del mondo è il cinese LineShine, con una potenza misurata di $2.198\cdot 10^{18}$ operazioni al secondo, che corrispondono a $6.932\cdot 10^{25}$ operazioni all'anno, abbondiamo e diciamo $10^{26}$. Dunque per risolvere il nostro sistema con la regola di Cramer, il LineShine dovrebbe lavorare per 
+\[ 1.551\cdot 10^{30} \text{ anni } = 1'551'000'000'000'000'000'000'000'000'000 \text{ anni}\]
+Per non parlare delle bollette poi. È chiaro che dobbiamo trovare delle alternative.\\
+A questo proposito quindi studieremo due classi di metodi: i \bemph{metodi diretti}, che usano aritmetica esatta per calcolare le soluzioni esatte del sistema in un numero finito di passi, e i \bemph{metodi iterativi}, che calcolano una successione di approssimazioni che converge alla soluzione. Tecnicamente i metodi iterativi richiederebbero un numero infinito di passi per calcolare la soluzione, ma ne troveremo di sufficientemente veloci da darci una buona approssimazione in relativamente pochi passi.
+
+\newpage
+\section{Metodi Diretti}
+
+\subsection{Sostituzione in avanti e indietro}
+
+Osserviamo che se la matrice del sistema lineare è triangolare inferiore o superiore, ovvero rispettivamente $a_{ij} = 0$ se $i<j$ o $i>j$, risolvere il sistema non è affatto difficile: infatti avremmo
+\begin{align*}
+    a_{11}x_1 & = b_1 \\
+    a_{21}x_1 + a_{22}x_2 & = b_2\\
+    \vdots & \\
+    a_{N1}x_1 + \dots + a_{NN}x_N & = b_N
+\end{align*}
+Che si traduce in 
+\[ x_1 = \frac{b_1}{a_{11}},\quad x_2 = \frac{b_2 - a_{21}x_1}{a_{22}}, \quad x_3 = \frac{b_3 - a_{31}x_1 - a_{32}x_2}{a_{33}},\dots  \]
+Ovvero, in forma più generale 
+\[ x_1 = \frac{b_1}{a_{11}}, \qquad x_i = \frac{1}{a_{ii}}\left( b_i - \sum_{j=1}^{i-1} a_{ij}x_j \right) \]
+Detto metodo di \bemph{sostituzione in avanti}. Dobbiamo però verificare che $a_{ii}\neq 0$ per ogni $i$, altrimenti incapperemmo in una o più divisioni per zero.\\
+Dato che $A$ è triangolare, vale la formula 
+\[ \det A = \prod_{i =1}^N a_{ii} \]
+E quindi la nostra condizione diventa semplicemente richiedere che $\det A \neq 0$, ovvero che $A$ sia invertibile.\\
+In modo assolutamente analogo possiamo ottenere il metodo risolutivo per il caso triangolare superiore, che sarà sottoposto alla stessa condizione: un sistema della forma 
+\begin{align*}
+    a_{11}x_1 + \dots a_{1N}x_N & = b_1\\
+    \vdots & \\
+    a_{NN}x_N & = b_N
+\end{align*}
+Verrà risolto da 
+\[ x_N = \frac{b_N}{a_{NN}}, \qquad x_{N-i} = \frac{1}{a_{N-i,N-i}}\left( b_{N-i} - \sum_{j = N-i+1}^{N} a_{N-1, j}x_j \right) \]
+Questi metodi sono immediatamente più efficienti: vediamo che il numero di operazioni fatto è dato da:
+\begin{align*} 
+    \# \text{prodotti} & = \sum_{i=1}^N i = \frac{N(N+1)}{2} \\
+    \# \text{somme} & = \sum_{i=1}^{N} (i-1) = \sum_{i=1}^{N-1}i = \frac{(N-1)N}{2}
+    \# \text{prodotti} + \# \text{somme} & = \frac{N(N+1)}{2} + \frac{(N-1)N}{2} = N^2
+\end{align*}
+Che è \bemph{drammaticamente} migliore del metodo di Cramer.
+
+\subsection{Metodo di eliminazione di Gauss}
+
+Il \bemph{metodo di eliminazione di Gauss}, detto \bemph{MEG} per chi non ha fiato da sprecare\footnote{O \bemph{El Metodo} per i veri maestri della geometria}, si basa sul trasformare il sistema generale $A\mathbf{x} = \mathbf{b}$ in un sistema equivalente della forma $U\mathbf x = \mathbf c$ con $U$ triangolare superiore, per poi risolvere con la sostituzione all'indietro.\\
+Questo metodo si basa su due fatti:\begin{itemize}
+    \item Se si moltiplica una riga del sistema per un numero diverso da zero, la soluzione non cambia.
+    \item Se si somma a una riga del sistema un'altra riga del sistema, la soluzione non cambia,
+\end{itemize}
+Il MEG procede eliminando un'incognita alla volta: prima si elimina l'incognita $x_1$ dalle equazioni successive alla prima, poi l'incognita $x_2$ dalle equazioni successive alla seconda e così via fino a che l'$N$-esima equazione non contiene solo l'incognita $x_N$ in $N-1$ passi:
+\[ A\mathbf x = \mathbf b \to A^{(1)}\mathbf x = \mathbf b^{(1)}\to \dots \to \underbrace{A^{(N)}}_{=: U}\mathbf x = \underbrace{\mathbf b^{(N)}}_{=: \mathbf c}  \]
+Dove la matrice $A^{(k)}$ e il vettore $\mathbf b^{(k)}$ hanno forma 
+\[ A^{(k)} = \begin{bmatrix}
+a_{11}^{(1)} & a_{12}^{(1)} & \dots & \dots & \dots & a_{1N}^{(1)} \\
+0 & a_{22}^{(2)} & \dots & \dots & \dots & a_{2N}^{(2)} \\
+\vdots & 0 & \ddots &  &  & \vdots \\
+\vdots & \vdots &  & a_{kk}^{(k)} & \dots & a_{kN}^{(k)} \\
+\vdots & \vdots &  & \vdots & \ddots & \vdots \\
+0 & 0 & \dots & a_{Nk}^{(k)} & \dots & a_{NN}^{(k)}
+\end{bmatrix}, \qquad \mathbf b^{(k)} = \begin{bmatrix}
+    b_1^{(1)}\\ b_2^{(2)} \\ \vdots \\ b_k^{(k)} \\ \vdots \\ b_N^{(k)}
+\end{bmatrix} \]
+Per passare dal sistema $A^{(k)}\mathbf x = \mathbf b^{(k)}$ al sistema $A^{(k+1)}\mathbf x = \mathbf b^{(k+1)}$ si procede nel seguente modo:\begin{itemize}
+    \item Per $i = k+1,..., N$ si calcolano i moltiplicatori 
+        \[ m_{ik} = \frac{a_{ik}^{(k)}}{a_{kk}^{(k)}} \]
+        Vedremo poi come trattare il caso in cui $a_{kk}^{(k)}=0$.
+    \item Sostituiamo l'equazione $i$-esima con lei stessa meno $m_{ik}$ per l'equazione $k$-esima
+\end{itemize}
+Scritto in codice diventa 
+\begin{lstlisting}[language=Python]
+    for k in range(1, N-1):
+    for i in range(k+1, N):
+        m[i][k] = a[i][k] / a[k][k]
+        for j in range(k+1, N):
+            a[i][j] = a[i][j]- m[i][j] * a[j][k]
+        b[i] = b[i] - m[i][k] * b[i]
+\end{lstlisting}
+Notiamo che facciamo partire $i$ e $j$ da $k+1$ perchè sappiamo già che $a_{ik}^{(k+1)}$ si annulla.\\
+Dopo essere arrivati a $A^{(N)}\mathbf x = \mathbf b^{(N)}$ risolviamo con la sostituzione all'indietro.
+
+\subsection{Fattorizzazione LU}
+
+Oltre a richiedere che $A$ sia invertibile, il MEG ha un altro requisito: dobbiamo essere certi che $a_{kk}^{(k)}$ non sia mai zero, condizione che ci viene data dal seguente risultato:
+
+\begin{proposition}{}{}
+    Se i minori principali dominanti della matrice $A$ di ordine $k = 1,\dots, N-1$ sono diversi da zero, allora gli elementi pivotali $a_{kk}^{(k)}$ per $k = 1,\dots, N-1$ sono diversi da zero, dove il minore principale dominante di ordine $k$ è dato dal determinante della sottomatrice $A_k$ ottenuta dalle prime $k$ righe e colonne della matrice $A$.
+\end{proposition}
+
+Per soddisfare questa condizione, può essere necessario scambiare due righe tra di loro ogni tanto: per formalizzarlo, sarà utile scrivere il MEG in forma matriciale.\\
+Introduciamo la matrice $M_k$ come:
+\[M_k := \begin{bmatrix}
+1 & 0 & \dots & \dots & \dots & 0 \\
+0 & \ddots &  &  &  & \vdots \\
+\vdots &  & 1 & &  & \vdots \\
+\vdots &  & -m_{k+1,k} & 1 &  & \vdots \\
+\vdots &  & \vdots &  & \ddots & \vdots \\
+0 & \dots & -m_{N,k} &  &  & 1
+\end{bmatrix} \]
+In breve, con tutti $1$ sulla diagonale e con i moltiplicatori $-m_{j,k}$ sulla colonna $k$-esima; sono matrici triangolari inferiori e hanno determinante uguale a $1$.\\
+Si verifica molto facilmente che 
+\[ A^{(k+1)} = M_k A^{(k)}\qquad\text{e}\qquad \mathbf b^{(k+1)}=M_k \mathbf b^{(k)} \]
+E dunque in particolare 
+\[ U = A^{(N)} = M_{N-1}\dots M_1 A^{(1)} = M_{N-1}\dots M_1 A \Rarr A = \underbrace{M_1^{-1}\dots M_{N-1}^{-1}}_{=: L} U \]
+Notiamo che, per come sono definite le $M_k$ è abbastanza immediato osservare 
+\[ M_k^{-1} = 2I-M_{k} = \begin{bmatrix}
+1 & 0 & \dots & \dots & \dots & 0 \\
+0 & \ddots &  &  &  & \vdots \\
+\vdots &  & 1 & &  & \vdots \\
+\vdots &  & m_{k+1,k} & 1 &  & \vdots \\
+\vdots &  & \vdots &  & \ddots & \vdots \\
+0 & \dots & m_{N,k} &  &  & 1
+\end{bmatrix} \Rarr L = M_1^{-1}\dots M_{N-1}^{-1} = \begin{bmatrix}
+1 &  &  &  &  \\
+m_{21} & 1 &  &  &  \\
+m_{31} & m_{32} & \ddots &  &  \\
+\vdots & \vdots &  & 1 &  \\
+m_{N1} & m_{N2} & \dots & m_{N,N-1} & 1
+\end{bmatrix} \]
+Se $a_{kk}^{(k)}$ è diverso da zero dunque la matrice $A$ si può scrivere come prodotto di una matrice triangolare inferiore $L$ con elementi diagonali uguali a $1$ e una triangolare superiore $U$, fattorizzazione che viene appropriatamente detta \bemph{fattorizzazione LU} di $A$.\\
+Esaminiamo per un po' la situazione in cui $A = LU$: notiamo che\begin{itemize}
+    \item Se la matrice $A$ è invertibile lo è anche la matrice $U$, infatti si ha 
+    \[\det A = \det(LU) = \det L \det U = 1 \prod_{i=1}^N u_{ii}\]
+    \item Risolvere il sistema $A\mathbf X = \mathbf b$ diventa equivalente a risolvere due sistemi triangolari dati da $LU\mathbf x = \mathbf b$, ovvero $L\mathbf y = \mathbf b$ e $U\mathbf x = \mathbf y$.
+    \item Calcolare la fattorizzazione LU di $A$ richiede $O(N^3)$ operazioni, poi risolvere ciascuno dei due sistemi triangolari richiede $O(N^2)$ operazioni; questo mostra che la fattorizzazione LU risulta particolarmente vantaggiosa quando si devono risolvere più sistemi con la stessa matrice $A$.
+\end{itemize}
+Una situazione in cui capita di dover risolvere molti sistemi lineari con la stessa matrice $A$ è quando si calcola la matrice inversa $A^{-1}$: l'equazione $A C = I$ risulta equivalente a risolvere $N$ sistemi lineari della forma 
+\[ A \mathbf c_j = \mathbf e_j := (\delta_{i,j})_i \]
+Ma quando esiste la fattorizzazione LU di $A$?\\
+Definiamo come sopra la matrice $A_k$ come la sottomatrice principale di ordine $k$ di $A$ data dalle prime $k$ righe e colonne e $d_k := \det A_k$ il minore principale dominante di ordine $k$ di $A$.\\
+Se $d_k \neq 0$ per ogni $k=1,\dots, N$ allora l'elemento pivotale $a_{kk}^{(k)}$ è non nullo per ogni $k$, dunque la parte di eliminazione del MEG si completa e la fattorizzazione LU esiste.
+
+\chapter{Interpolazione polinomiale}
+
+\chapter{Integrazione numerica}
+
+\chapter{Problemi di Cauchy}
+
+
+
+\end{document}

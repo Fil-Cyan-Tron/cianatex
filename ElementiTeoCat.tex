@@ -27,9 +27,11 @@
 
 \chapter{Teoria delle categorie elementare}
 
-\section{Fondamenti insiemistici}
+\section{Fondamenti}
 
-Trattando strutture molto "grandi" in un senso che renderemo preciso in seguito, per fondare propriamente la Teoria delle Categorie sulla Teoria degli Insiemi è necessario estendere gli assiomi di Zermelo-Fraenkel più l'assioma della scelta, che assumeremo sempre. L'approccio che seguiremo è un approccio che in qualche modo "limiti" la grandezza delle nostre strutture, supponendo l'esistenza di alcuni insiemi "universo" che si sostituiscano alla classe di tutti gli insiemi.
+\subsection{Che cos'è la teoria delle categorie?}
+
+La teoria delle categorie è una branca della matematica nata nel corso del ventesimo secolo in seguito alla necessità di trovare un linguaggio più conveniente per sviluppare l'algebra omologica 
 
 \begin{definition}{Universo di Grothendieck}{universo di Grothendieck}
     Sia $\G$ un insieme non vuoto. Questo si dice \bemph{universo di Grothendieck} se:\begin{itemize}
@@ -54,13 +56,7 @@ Si dimostrano immediatamente le seguenti proprietà:
 \end{proposition} 
 
 Da queste proprietà seguono due fatti strettamente correlati, ovvero che un universo di Grothendieck più che numerabile è un \bemph{modello} per ZFC e che l'esistenza di un universo di Grothendieck più che numerabile è indipendente da ZFC.\\
-Intuitivamente, il seguente assioma ci permette di trattare un universo di Grothendieck come "sostituto" della classe di tutti gli insiemi, sicuri del fatto che questo "limiti" tutta la pratica matematica "usuale".
-
-% \begin{axiom}{Assioma di Universo debole}{assioma di universo debole}
-%     Esiste un universo di Grothendieck più che numerabile $\G$. Tutti gli elementi di $\G$ si dicono \bemph{piccoli}, mentre gli altri insiemi si dicono \bemph{grandi}. I sottoinsiemi di $\G$, piccoli o grandi che siano, si dicono \bemph{moderati}.
-% \end{axiom}
-
-% In realtà l'assioma \cref{ax:assioma di universo debole} è\footnote{Come si potrebbe intuire dal nome} più spesso assunto in una sua versione più forte, ovvero:
+Intuitivamente, il seguente assioma ci permette per qualunque insieme di "evocare" un insieme ambiente che contenga tutta la matematica "usuale" che lo coinvolga.
 
 \newcommand\Ord{\catname{Ord}}
 
@@ -75,7 +71,7 @@ Intuitivamente, il seguente assioma ci permette di trattare un universo di Groth
     Fissato $\omega$ il più piccolo ordinale infinito, diremo in generale \bemph{piccoli} gli insiemi che sono $\alpha$-piccoli per un qualche $\alpha <\omega$, \bemph{moderati} gli insiemi $\omega$-moderati e \bemph{grandi} gli insiemi $\omega$-grandi.
 \end{axiom}
 
-La scelta di dove fissare il confine tra "piccolo" e "grande" è meno arbitraria di quanto possa sembrare: sebbene sia abbastanza irrilevante quale ordinale \textit{limite} si scelga, il fatto di scegliere un ordinale limite permette di formulare più agilmente i teoremi tra le cui ipotesi c'è una limitazione di dimensione, come vedremo più avanti.\\
+La scelta di dove fissare il confine tra "piccolo" e "grande" è di fatto arbitraria ma richiede comunque alcuni accorgimenti: sebbene sia abbastanza irrilevante quale ordinale \textit{limite} si scelga, il fatto di scegliere un ordinale limite permette di formulare più agilmente i teoremi tra le cui ipotesi c'è una limitazione di dimensione, come vedremo più avanti.\\
 Si osserva facilmente che l'insieme $\G_0$ è numerabile e corrisponde alla classe degli insiemi ereditariamente finiti, ovvero degli insiemi finiti i cui elementi sono insiemi ereditariamente finiti, e che in generale gli insiemi $\alpha$-moderati sono $\alpha+1$-piccoli.\\
 Intuitivamente, $\G_1$ è già sufficiente per la pratica matematica "ordinaria", contenendo tutte le costruzioni usuali, e appunto è già un candidato per la "classe di tutti gli insiemi" in ZFC costituendone un \bemph{modello}. 
 
@@ -91,10 +87,8 @@ Vale inoltre un teorema molto importante, che enunciamo senza dimostrazione, che
     Inoltre, se $\kappa$ è un cardinale fortemente inaccessibile, lo stadio $V_\kappa$ dell'universo di Von Neumann è un universo di Grothendieck.
 \end{theorem}
 
-Nel reame degli assiomi che introducono cosiddetti "grandi cardinali", l'esistenza di una classe propria di cardinali fortemente inaccessibili è uno più deboli ed è considerato standard per fondare sulla teoria degli insiemi la teoria delle categorie, approccio seguito ad esempio da \cite{SGA4}.\\
-Volendo è possibile indebolire questo assioma in moltissimi casi: come suggerito da \cite{MacLane1978}: l'idea generale è di assumere l'assioma di universo, fissare un universo $U$ e passare a uno più grande ogni volta che se ne ha necessità, per poi sostituire a posteriori l'assioma di universo "forte" con l'esistenza dell'universo più grande utilizzato. Non ci preoccupiamo di seguire questo schema.
-
-% Questo implicherebbe l'esistenza di tutta una gerarchia di universi ciascuno "inaccessibile" (nel senso della Teoria degli Insiemi) da quello precedente, utile per fare Teoria delle Categorie Superiori, ma per una trattazione più elementare è sufficiente assumere l'esistenza di un solo universo, si veda \cite{MacLane1969}.
+Nel reame degli assiomi che introducono cosiddetti "grandi cardinali", l'esistenza di una classe propria di cardinali fortemente inaccessibili è uno tra i più deboli ed è considerato standard per fondare sulla teoria degli insiemi la teoria delle categorie, approccio seguito ad esempio da \cite{SGA4}.\\
+Volendo è possibile indebolire questo assioma in moltissimi casi: come suggerito da \cite{MacLane1978}: l'idea generale è di assumere l'assioma di universo, fissare un universo $U$ e passare a uno più grande ogni volta che se ne ha necessità, per poi sostituire a posteriori l'assioma di universo "forte" con l'esistenza dell'universo più grande utilizzato. Non ci preoccupiamo di seguire questo schema, ma vale la pena citarlo in quanto ha il vantaggio di permettere in ogni dimostrazione di limitare il numero di universi di Grothendieck di cui assumere l'esistenza.
 
 \section{Nozioni fondamentali}
 
@@ -242,6 +236,7 @@ Adesso faremo una cosa un po' buffa, ovvero definiremo il prodotto di categorie 
 \end{definition}
 
 Perchè "spostiamo" il prodotto cartesiano alle categorie? Perchè spesso quando lavoriamo in qualche categoria ci risulta più agevole una definizione più "intrinseca" di prodotto, oppure abbiamo prodotti diversi: in $\catname{Rel}$\footnote{Categoria degli insiemi piccoli e delle relazioni tra loro} il prodotto "categorico" è dato dall'unione disgiunta, nonostante $\setcat$ sia una sua sottocategoria e in questa il prodotto sia l'usuale prodotto cartesiano.\\
+Nel contesto della teoria delle Categorie Superiori è comunque possibile dare una caratterizzazione del prodotto di categorie ordinarie\footnote{Dette 1-categorie strette} in termini di una simile proprietà universale a quella che vedremo più giù.\\
 Abbiamo visto che i morfismi sono trasformazioni tra oggetti, mentre i funtori sono trasformazioni tra morfismi. Introduciamo ora un ulteriore "livello" di frecce, le trasformazioni naturali, ovvero trasformazioni tra funtori.
 
 \begin{definition}{Trasformazione naturale}{trasformazione naturale}
@@ -257,7 +252,8 @@ Abbiamo visto che i morfismi sono trasformazioni tra oggetti, mentre i funtori s
     	\arrow["{G(f)}"{description}, from=1-5, to=3-5]
 	    \arrow["{\Phi_Y}"{description}, from=3-3, to=3-5]
     \end{tikzcd}\]
-    Una trasformazione naturale tale per cui tutti i morfismi $\Phi_X$ sono isomorfismi si dice \bemph{isomorfismo naturale}.
+    Una trasformazione naturale tale per cui tutti i morfismi $\Phi_X$ sono isomorfismi si dice \bemph{isomorfismo naturale}.\\
+    In particolare, se $H:\D\to\E$ è un altro funtore, possiamo definire la trasformazione naturale $H\Phi : H\circ F \Rarr H\circ G$ definita da $H\Phi_X := H(\Phi_X)$; allo stesso modo possiamo definire per un funtore $K:\B\to\C$ la trasformazione naturale $\Phi K : F\circ K \Rarr G\circ K$ data da $(\Phi K)_X := \Phi_{K(X)}$.
 \end{definition}
 
 Le trasformazioni naturali ci permettono di dare una nozione di equivalenza più appropriata al contesto della Teoria delle Categorie rispetto a quella di isomorfismo, troppo stringente per risultare interessante. 
@@ -269,7 +265,7 @@ Le trasformazioni naturali ci permettono di dare una nozione di equivalenza più
 \end{definition}
 
 Un principio "filosofico" importante per la Teoria delle Categorie è il cosiddetto "principio di equivalenza", ovvero l'idea che tutte le costruzioni portate avanti e le proprietà dimostrate in Teoria delle Categorie debbano essere invarianti per equivalenza di categorie, ovvero che oggetti isomorfi debbano essere in qualche modo "indistinguibili": in un certo senso lo abbiamo già rotto con diverse delle nostre definizioni, ad esempio quando invochiamo l'uguaglianza estensionale per due insiemi invece di limitarci alla biezione.\\
-Di fatto nella pratica matematica il principio di equivalenza è uno slogan più che una legge, ma risulta estremamente importante quando si discute della possibilità di fondare la matematica sulla teoria delle categorie, o di fondare la teoria delle categorie su teorie alternative a quella degli insiemi di ZFC che non contengano ad esempio l'assioma di estensionalità.\\
+Di fatto nella pratica matematica il principio di equivalenza è uno slogan più che una legge, ma risulta estremamente importante quando discute della possibilità di fondare la matematica sulla teoria delle categorie, o di fondare la teoria delle categorie su teorie alternative a quella degli insiemi di ZFC che non contengano ad esempio l'assioma di estensionalità; da qui nasce lo studio della teoria delle categorie superiori e in particolare dei gruppoidi superiori, particolari categorie superiori che codificano l'idea di equivalenze tra oggetti, equivalenze tra morfismi e così via.\\
 Useremo spesso (attraverso un altro risultato che vedremo dopo) questa caratterizzazione\footnote{Senza assumere l'assioma della scelta in realtà si avrebbe solo un'implicazione} per le equivalenze di categorie, di cui omettiamo la dimostrazione in quanto più lunga e laboriosa che profonda.
 
 \begin{proposition}{Caratterizzazione per un'equivalenza di categorie}{equivalenza di categorie}
@@ -278,14 +274,6 @@ Useremo spesso (attraverso un altro risultato che vedremo dopo) questa caratteri
 \end{proposition}
 
 Il ruolo dell'assioma della scelta sta nell'essenziale suriettività: per ottenere un'equivalenza di categorie da un funtore pienamente fedele ed essenzialmente suriettivo sugli oggetti dovremmo appunto scegliere un oggetto $x$ per ogni classe di isomorfismo $[Fx]$, possibile solo in alcuni casi senza l'assioma della scelta.
-
-\begin{definition}{Funtori aggiunti}{funtori aggiunti}
-    Siano $\C,\D$ due categorie localmente $\alpha$-piccole e $F:\C\to\D$ e $G:\D\to\C$ due funtori.\\
-    Questi si dicono \bemph{aggiunti} se esiste un isomorfismo in $\setcat_{\alpha+1}$
-    \[ \D(Fc, d) \cong \C(c, Gd)\]
-    naturale per ogni $c \in \C$ e $d \in \D$, ovvero sia come trasformazione naturale $\D(F(-),d)\to \C(-,G(d))$ sia come trasformazione naturale $\D(F(c),-)\to \C(c,G(-))$.\\
-    Scriveremo $F\dashv G$ per indicare che $F$ è aggiunto sinistro a $G$ e che $G$ è aggiunto destro a $F$.
-\end{definition}
 
 \section{Lemma di Yoneda e conseguenze}
 
@@ -424,7 +412,66 @@ Abbiamo dualmente la versione controvariante:
     \qed
 \end{corollary}
 
-Ora grazie al lemma di Yoneda possiamo dimostrare un fatto che ci servirà più tardi:
+\subsection{Funtori aggiunti}
+
+Uno degli slogan più celebri da \cite{MacLane1978} è \textit{"Adjoint functors arise everywhere"}, ovvero 
+
+\begin{definition}{Funtori aggiunti}{funtori aggiunti}
+    Siano $\C,\D$ due categorie e $F:\D\to\C$ e $G:\C\to\D$ due funtori.\\
+    La coppia $(F,G)$ definisce un'\bemph{aggiunzione} tra $\C$ e $\D$ se esistono due trasformazioni naturali $\varepsilon : FG\to \id_\C$ e $\eta:\id_\D \to GF$ rispettivamente dette \bemph{counità} e \bemph{unità} dell'aggiunzione tali che i seguenti diagrammi, detti \bemph{identità triangolari}, commutino: 
+    \[\begin{tikzcd}
+	    F && FGF && G && GFG \\
+	    \\
+	    && F &&&& G
+	    \arrow["{F\eta}"{description}, from=1-1, to=1-3]
+	    \arrow["{\id_F}"{description}, from=1-1, to=3-3]
+	    \arrow["{\varepsilon F}"{description}, from=1-3, to=3-3]
+	    \arrow["{\eta G}"{description}, from=1-5, to=1-7]
+	    \arrow["{\id_F}"{description}, from=1-5, to=3-7]
+	    \arrow["{G\varepsilon}"{description}, from=1-7, to=3-7]
+    \end{tikzcd}\]
+    I due funtori si diranno \bemph{aggiunti} e scriveremo $F\dashv G$ per indicare che $F$ è \bemph{aggiunto sinistro} a $G$ e che $G$ è \bemph{aggiunto destro} a $F$.\\
+\end{definition}
+
+Osserviamo che le identità triangolari implicano che per ogni $X \in \C$ e $Y\in \D$ valgano 
+\[ \id_{FY} = \varepsilon_{FY}\circ F(\eta_Y), \qquad \id_{GX} = G(\varepsilon_X) \circ \eta_{GX} \]
+È possibile dare una definizione equivalente ma più illustrativa della terminologia "aggiunto destro/sinistro": ricordandoci che due operatori lineari $L: H\to H'$ e $R:H'\to H$ tra spazi di Hilbert si dicono aggiunti quando vale $\langle Lv, w \rangle_{H'} = \langle v, Rw\rangle_H$, la prossima proposizione illustra l'analogia.
+
+\begin{proposition}{Caratterizzazione delle aggiunzioni}{}
+    Siano $F:\D\to\C$ e $G:\C\to\D$ funtori aggiunti con counità $\varepsilon$ e unità $\eta$; allora esiste un isomorfismo naturale $\Phi: \C(F-, -)\iso \D(-, G-)$.\\
+    Inoltre, un isomorfismo naturale di quel tipo induce un'aggiunzione.
+    \proof 
+    Dimostriamo le due implicazioni:\begin{itemize}
+        \item Assumiamo di avere le counità e unità e definiamo le trasformazioni naturali $\Phi: \C(F-, -)\to \D(-, G-)$ e $ \Psi: \D(-, G-) \to \C(F-, -)$ le cui componenti sono date, per ciascun $f: FX\to Y$ e $g : Y\to GX$, da
+        \[ \Phi_{Y,X}(f) := Gf \circ \eta_Y , \qquad \Psi \varepsilon_X\circ F(g)\]
+        Mostriamo che sono inverse: usando le identià triangolari vale 
+        \[ \Psi\Phi(f) = \varepsilon_X \circ FG(f)\circ F(\eta_Y) = f\circ \varepsilon_{FY} \circ F(\eta_Y) = f\circ \id_{FY} = f \]
+        Ovvero $\Psi\Phi = \id$; la composizione inversa segue per dualità dimostrando l'isomorfismo.
+        \item Dato un isomorfismo naturale $\Phi$ possiamo definire 
+        \[ \varepsilon_X := \Phi_{GX, X}^{-1}(\id_{GX}), \qquad \eta_Y := \Phi_{Y, FY}(\id_{FY}) \]
+        La verifica delle identità triangolari è automatica.
+    \end{itemize}
+    \qed
+\end{proposition}
+
+Abbiamo alcuni esempi "prototipici" di funtori aggiunti:
+
+\begin{example}{Aggiunzione Libero-Dimenticante \textit{(Free-Forgetful)}}{}
+    Denotiamo con $\operatorname{Free}:\setcat\to\grpcat$ il funtore che assegna ad un insieme $X$ il gruppo libero $(FX, *)$ su $X$: la proprietà universale dei gruppi liberi ci dice che per qualsiasi altro gruppo $G$, una funzione insiemistica $f:X\to G$ definisce un unico omomorfismo di gruppi $\varphi : (FX,*) \to (G,\cdot)$ tale che $\varphi|_X = f$.\\
+    Questa proprietà nel linguaggio della teoria delle categorie si esprime definendo il funtore dimenticante $U:\grpcat\to\setcat$ che manda un gruppo $(G,\cdot)$ nell'insieme $G$ e un omomorfismo di gruppi in sè stesso considerato come funzione insiemistica e dicendo che esiste un'aggiunzione $\operatorname{Free}\dashv U$, infatti per ogni insieme $X$ e gruppo $(G,\cdot)$ abbiamo 
+    \[ \grpcat(\operatorname{Free}(X), (G,\cdot)) \cong \setcat(X,U((G,\cdot))) = \setcat(X, G) \]
+\end{example}
+
+Questo esempio si generalizza a moltissimi casi di funtori dimenticanti: gli $R-$moduli liberi per $R-\modcat\to\setcat$, i gruppi abeliani liberi per $\abcat\to\setcat$, gli spazi topologici discreti per $\topcat\to\setcat$. Curiosamente, non abbiamo una nozione di "campo libero" su un insieme, ma la costruzione del campo delle frazioni su un dominio di integrità definisce comunque un aggiunto sinistro al funtore di inclusione della categoria dei campi in quella dei domini di integrità.
+
+\begin{example}{Connessione di Galois}{}
+    Siano $(A,\le)$ e $(B,\le)$ due insiemi parzialmente ordinati: una \bemph{connessione di Galois} è una coppia di funzioni monotone $F: B\to A$ e $G:A\to B$ tali che valga
+    \[ F(a)\le b \Harr a\le G(b) \]
+    In particolare, possiamo considerare $A$ e $B$ come categorie con al più un unico morfismo tra due oggetti, dove $a\to b$ è dato quando esiste da $a\le b$; sotto queste lenti, una corrispondenza di Galois è una coppia di funtori $F \dashv G$, infatti la condizione di prima si riscrive come
+    \[ \hom_A(Fa, b) \cong \hom_B(a, G(b)) \]
+\end{example}
+
+Ora grazie al lemma di Yoneda possiamo dimostrare un fatto che ci servirà più tardi
 
 \begin{lemma}{Essenziale unicità degli aggiunti}{unicità degli aggiunti}
     Siano $\C,\D$ due categorie localmente piccole e siano $F:\C\to\D$ e $G_1,G_2: \D\to\C$ funtori tali che $F\dashv G_1$ e $F\dashv G_2$ oppure $G_1\dashv F$ e $G_2\dashv F$.\\
@@ -436,9 +483,10 @@ Ora grazie al lemma di Yoneda possiamo dimostrare un fatto che ci servirà più 
     \qed
 \end{lemma}
 
-In generale la categoria $[\C^\op,\setcat]$ è mostruosamente più grande di $\C$, quindi cercare oggetti particolari di $\C$ in $[\C^\op,\setcat]$ attraverso la rappresentazione di Yoneda potrebbe sembrare un modo per trasformare dei problemi semplici in problemi più complicati, ma in molti casi (come quello appena visto) risulta più facile confrontare 
+In generale la categoria $[\C^\op,\setcat]$ è mostruosamente più grande di $\C$\footnote{Ad esempio, la classe dei morfismi di $[\mathbf{1},\setcat]$ è in biezione con quella di $\setcat$ e dunque è grande nonostante quella di $\mathbf{1}$ sia un singoletto.} e dunque cercare oggetti particolari di $\C$ in $[\C^\op,\setcat]$ attraverso la rappresentazione di Yoneda potrebbe sembrare un modo per trasformare dei problemi semplici in problemi più complicati, ma in molti casi (come quello appena visto) risulta più facile confrontare gli oggetti dal punto di vista dei loro insiemi di morfismi; questo perchè gli $\hom$-funtori hanno delle proprietà particolari che rendono .\\
+In più le categorie di funtori risultano essere molto "beneducate" al di là della loro grandezza, ereditando proprietà desiderabili dal loro codominio\footnote{E $\setcat$ è una delle categorie più beneducate di tutte} anche qualora queste dovessero mancare al loro dominio, vedremo degli esempi più tardi.
 
-\section{Limiti}
+\section{Limiti e proprietà universali}
 
 Uno dei concetti più importanti in Teoria delle Categorie è quello di limite. Per definire propriamente i limiti dobbiamo dare la definizione formale di diagramma in una categoria, che categorifica il concetto di famiglia indicizzata in $\setcat$.
 
@@ -507,6 +555,15 @@ Talvolta diremo che una categoria "ammette/ha tutti i..." facendo riferimento a 
     \end{itemize}
 \end{proposition}
 
+Ora possiamo dare senza dimostrazione un'altra caratterizzazione dei funtori aggiunti in termini di proprietà universali che ci servirà più avanti:
+
+\begin{proposition}{Aggiunti come PU}{}
+    Siano $F:\D\to\C$ e $G:\C\to\D$ funtori.\\
+    $F$ è aggiunto sinistro a $G$ se e solo se esiste un cono limite $\{ \varepsilon_X : F(G(X))\to X \}_{X\in \ob C}$. 
+\end{proposition}
+
+Come possiamo intuire questo cono sarà dato o darà la counità dell'aggiunzione, mentre l'unità dell'aggiunzione darà o sarà data da un cocono limite $\{ \eta_Y : Y \to G(F(Y)) \}_{Y \in \ob \D}$.
+
 \begin{definition}{Diagramma discreto e prodotto}{prodotto limite}
     Sia $\C$ una categoria e per un insieme di indici $I$ definiamo la categoria discreta $\mathbf{D}[I]$, ovvero la categoria i cui oggetti sono elementi di $I$ e i cui unici morfismi sono le identità.\\
     Si dice \bemph{diagramma discreto} un funtore $X_{\bullet}:\mathbf{D}[I]\to\C$ e il limite di questo diagramma (quando esiste) è detto \bemph{prodotto} degli $X_i$ in $\C$ ed è indicato con $\prod_{i \in I}X_i$.\\
@@ -533,7 +590,7 @@ Talvolta diremo che una categoria "ammette/ha tutti i..." facendo riferimento a 
 \begin{definition}{Diagramma parallelo ed equalizzatore}{equalizzatore}
     Sia $I$ un insieme di indici e sia $\mathbf{2}[I]$ la categoria con due oggetti $\heartsuit$ e $\diamondsuit$ e per i cui morfismi non identità sono $i:\heartsuit \to \diamondsuit$ per $i \in I$.\\
     Si dice \bemph{diagramma parallelo} un funtore $f_\bullet : \mathbf{2}[I]\to \C$ e il limite di questo diagramma si dice \bemph{equalizzatore} degli $f_i : X\to Y$ in $\C$ ed è indicato con $\eq(\{f_i\}_{i \in I})$.\\
-    Questo è dotato di un (mono)morfismo $e: \eq(\{f_i\}_{i \in I})\to X$ che soddisfa la proprietà universale dell'equalizzatore, ovvero per ogni $p:Z\to X$ e $q:Z\to Y$ tale che per ogni $i \in I$ il triangolo a destra commuti, esiste ed è unico $h:Z\to \eq(\{f_i\}_{i \in I})$ tale che tutto il seguente diagramma commuti:
+    Questo è dotato di un (mono)morfismo $e: \eq(\{f_i\}_{i \in I})\to X$ che soddisfa la proprietà universale dell'equalizzatore, ovvero per ogni $p:Z\to X$ e $q:Z\to Y$ tale che per ogni $i \in I$ il triangolo a destra commuti, esiste ed è unico $r:Z\to \eq(\{f_i\}_{i \in I})$ tale che tutto il seguente diagramma commuti:
     \[\begin{tikzcd}
     	&& Z && \\
 	    {\eq(\{f_i\}_{i \in I})} \\
@@ -544,7 +601,7 @@ Talvolta diremo che una categoria "ammette/ha tutti i..." facendo riferimento a 
 	    \arrow["e"{description}, hook, from=2-1, to=3-3]
 	    \arrow["{f_i}"{description}, from=3-3, to=3-5]
     \end{tikzcd}\]
-    Il colimite di $f_i$ in $\C$ si dice \bemph{coequalizzatore}
+    Il colimite di $f_i$ in $\C$ si dice \bemph{coequalizzatore}.
 \end{definition}
  
 \begin{example}{Prodotti, coprodotti, equalizzatori e coequalizzatori in $\setcat$}{limiti e colimiti in set}
@@ -652,7 +709,7 @@ Chiudiamo il capitolo con una discussione di una diversa caratterizzazione del p
 La definizione che abbiamo dato in \cref{def:prodotto limite} è evidentemente utile quando si parla di lavorare coi prodotti nell'usuale pratica matematica, ad esempio è una definizione meno "pesante" di quella che si dà dei prodotti in $\topcat$ o $\mblecat$ nella maggior parte dei corsi introduttivi di Topologia Generale o Teoria della Misura. Allo stesso modo non dipende da scelte arbitrarie, come di una norma prodotto in $\catname{NormVec}\K$ o di una misura prodotto in $\meascat$.\\
 Tuttavia in altre applicazioni della Teoria delle Categorie, ad esempio in Topologia Algebrica o informatica teorica, può essere agevole considerare il prodotto di due oggetti non come definito intrinsecamente tramite proprietà universale, ma come un bifuntore.
 
-\begin{theorem}{Caratterizzazione del prodotto binario}{prodotto binario come funtore}
+\begin{theorem}{Caratterizzazione del prodotto binario}{Prodotto binario come funtore}
     Sia $\C$ una categoria localmente piccola e sia $\Delta :\C\to\C\times\C$ il funtore diagonale, ovvero l'applicazione
     \[ \Delta( f:X\to Y ) = ((f,f):(X,X)\to(Y,Y)).\]
     Se $\C$ ammette i prodotti binari, \textit{una scelta di un prodotto per ciascuna coppia di oggetti} definisce un'applicazione $\Pi : \C\times\C \to \C$ attraverso la mappa
@@ -701,7 +758,9 @@ Tornando indietro alla discussione del principio di equivalenza avuta in \cref{d
 
 \chapter{Categorie Cartesiane Chiuse}
 
-\begin{definition}{}{}
+Quella delle categorie cartesiane chiuse è un'importante classe di categorie molto "beneducate", che permettono di 
+
+\begin{definition}{Oggetto esponenziale}{oggetto esponenziale}
     Sia $\C$ una categoria e siano $X,Y$ oggetti di $\C$ che ammettano un prodotto in $\C$.\\
     Si dice \bemph{esponenziale} di $Z$ e $Y$ in $\C$ un oggetto, indicato con $Z^Y$, munito di un morfismo $\eval_{Y,Z} : Z^Y\times Y \to Z$ tale che per ogni morfismo $f:X\times Y \to Z$ esista un unico $\lambda f: X\to Z^Y$ tale che il seguente diagramma commuti:
     \[\begin{tikzcd}
@@ -809,7 +868,16 @@ Seguendo questa intuizione, ci si potrebbe chiedere se qualchedi moduli, magari 
     In particolare, questi funtori aggiunti esistono se e solo se $\C$ è una categoria cartesiana chiusa.
     \proof 
     Procediamo un punto alla volta:\begin{enumerate}
-        \item 
+        \item Per la caratterizzazione delle aggiunzioni in termini di $\hom$-set, per ogni oggetto $X$ vale
+            \[ \{\id_0 \} = \mathbf{1}(K_0(X), 0) \cong \C(X, \I(0))\]
+            Quindi esiste ed è unico il morfismo $\zeta_X : X \to \I(0)$, ovvero $\I(0)$ è terminale. Notiamo che un qualsiasi oggetto $T$ di $\C$ definisce l'unico funtore $\I$ che manda $0\to 0$ in $\id_T : T\to T$ dando una mappa iniettiva $\mathbf{1}(K_0(X), 0) \to \C(X, T)$: in particolare dunque se $T$ è terminale la mappa è anche suriettiva e dunque definisce un'aggiunzione. 
+        \item Combiniamo i teoremi \cref{th:Prodotto binario come funtore} e \cref{th:Esistenza dei prodotti dagli aggiunti}.
+        \item Dimostriamo entrambe le implicazioni:\begin{itemize}
+            \item Assumendo l'esistenza degli esponenziali, notiamo che l'universalità di $\eval$ implica che la collezione 
+                \[\{\eval_{A,B} : A^B \times B \to A \}_{A \in \ob\C} =: \{ \varepsilon_A \}_{A \in \ob\C}  \]
+                Definisce la counità di un'aggiunzione, garantendo per universalità l'esistenza dell'unità $\eta$.
+            \item Supponendo di avere l'aggiunzione in termini di counità $\varepsilon: (-)^B\times B \to \id_\C$ e unità $\eta : \id_\C \to (-\times B)^B$, basta porre $\eval_{A,B} := \varepsilon_A $ e per ciascun $f : A\times B \to C$ la mappa $f \mapsto \lambda f$ è data dall'isomorfismo $\hom(A\times B, C)\iso \hom(A, C^B)$, ovvero $\lambda f := (f)^B \circ \eta_C$.
+        \end{itemize}
     \end{enumerate}
 \end{theorem}
 
