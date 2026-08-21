@@ -454,6 +454,15 @@ Osserviamo che le identità triangolari implicano che per ogni $X \in \C$ e $Y\i
     \qed
 \end{proposition}
 
+Vediamo anche che un'aggiunzione tra un funtore e una mappa di oggetti può essere promossa ad un'aggiunzione tra funtori:
+
+\begin{proposition}{TBD: Estensione di una mappa a un funtore}{estensione via aggiunzione}
+    Siano $F:\D\to\C$ un funtore e $G_0: \ob\C\to\ob\D $ una mappa di oggetti.\\
+    Se per ogni $Y\in \ob\D$ esistono biezioni $\Phi_{X,Y}:\C(FX,Y) \cong \D(X,G_0Y)$ naturali in $X$, allora esiste un funtore $G : \C\to\D$ tale che $F\dashv G$ e $G|_{\ob\C} = G_0$.
+    \proof
+    Supponiamo di avere un morfismo $g : Y\to Z$ in $\C$ e consideriamo $\id_{G_0Z}$: applicando $\Phi^{-1}$ definiamo $\varepsilon_Z := \phi^{-1}(\id_{G_0 Z})$
+\end{proposition}
+
 Abbiamo alcuni esempi "prototipici" di funtori aggiunti:
 
 \begin{example}{Aggiunzione Libero-Dimenticante \textit{(Free-Forgetful)}}{}
@@ -604,6 +613,8 @@ Come possiamo intuire questo cono sarà dato o darà la counità dell'aggiunzion
     Il colimite di $f_i$ in $\C$ si dice \bemph{coequalizzatore}.
 \end{definition}
  
+L'equalizzatore è una sorta di analogo categoriale di un'equazione, esplicitamente in $\setcat$ e nelle categorie concrete come vediamo qua sotto, ma in generale per 
+
 \begin{example}{Prodotti, coprodotti, equalizzatori e coequalizzatori in $\setcat$}{limiti e colimiti in set}
     La categoria $\setcat$ è una categoria completa:
     \begin{itemize}
@@ -614,38 +625,38 @@ Come possiamo intuire questo cono sarà dato o darà la counità dell'aggiunzion
     Saltando a piè pari tutti i dettagli\footnote{Per una trattazione comunque informale dei quali si rimanda il lettore a \cite{ButGeeee}}, abbiamo che il coprodotto è dato dall'unione disgiunta, mentre il coequalizzatore è dato da $Y/\sim$, dove $\sim$ è la più piccola relazione di equivalenza su $Y$ tale che per ogni $x \in X$ si abbia $f(x)\sim g(x)$ e l'epimorfismo coequalizzante è dato dalla proiezione canonica al quoziente $y\mapsto [y]_\sim$.
 \end{example}
 
-\subsection{Limiti notevoli}
+% \subsection{Limiti notevoli}
 
-Presentiamo alcune forme di diagramma che hanno limiti di particolare importanza nella pratica matematica; in questa sezione, assumeremo per semplicità che $\J$ sia una sottocategoria (di forma opportunamente specificata) di $\C$ e $F : \J \inj \C$ sia il funtore di inclusione: questo ci permetterà di dire semplicemente "Sia $\J$ un diagramma" o parlare di $\catlim\J$.
+% Presentiamo alcune forme di diagramma che hanno limiti di particolare importanza nella pratica matematica; in questa sezione, assumeremo per semplicità che $\J$ sia una sottocategoria (di forma opportunamente specificata) di $\C$ e $F : \J \inj \C$ sia il funtore di inclusione: questo ci permetterà di dire semplicemente "Sia $\J$ un diagramma" o parlare di $\catlim\J$.
 
-\begin{definition}{Prodotto}{kdjfhkjdsfkprodotto limite}
-    Sia $\C$ una categoria e sia $\J$ un diagramma discreto (ovvero i cui unici morfismi sono le identità).\\
-    Si dice \bemph{prodotto} di $\J$ in $\C$ il limite di $\J$ in $\C$, che indicheremo come
-    \[ \prod_{X\in\ob\J} X\quad\text{oppure, più semplicemente,}\quad \prod\J\ . \]
-    Un prodotto in $\C^\op$ si dice \bemph{coprodotto} in $\C$ e lo indicheremo come $\coprod \J$, mentre prodotti e coprodotti binari verranno indicati (nel caso in cui sia chiara la categoria ambiente) rispettivamente come $A\times B$ e $A+B$.\\
-    I morfismi $\pi_X : \prod\J\to X$ si dicono \bemph{proiezioni}, mentre i morfismi $\iota_X: X\to\coprod\J$ si dicono \bemph{inclusioni}.
-\end{definition}
+% \begin{definition}{Prodotto}{kdjfhkjdsfkprodotto limite}
+%     Sia $\C$ una categoria e sia $\J$ un diagramma discreto (ovvero i cui unici morfismi sono le identità).\\
+%     Si dice \bemph{prodotto} di $\J$ in $\C$ il limite di $\J$ in $\C$, che indicheremo come
+%     \[ \prod_{X\in\ob\J} X\quad\text{oppure, più semplicemente,}\quad \prod\J\ . \]
+%     Un prodotto in $\C^\op$ si dice \bemph{coprodotto} in $\C$ e lo indicheremo come $\coprod \J$, mentre prodotti e coprodotti binari verranno indicati (nel caso in cui sia chiara la categoria ambiente) rispettivamente come $A\times B$ e $A+B$.\\
+%     I morfismi $\pi_X : \prod\J\to X$ si dicono \bemph{proiezioni}, mentre i morfismi $\iota_X: X\to\coprod\J$ si dicono \bemph{inclusioni}.
+% \end{definition}
 
-È immediato osservare che se $\C$ ammette un oggetto terminale $1$, il prodotto del diagramma vuoto esiste ed è $1$.
+% È immediato osservare che se $\C$ ammette un oggetto terminale $1$, il prodotto del diagramma vuoto esiste ed è $1$.
 
-\begin{definition}{Pullback o prodotto fibrato}{pullback o prodotto fibrato}
-    Sia $\C$ una categoria, e sia $\J$ il diagramma $\{ X\xrightarrow{f} Z \xleftarrow{g} Y \}$, detto \bemph{cospan}\footnote{E ovviamente $\J^\op$ si dirà \bemph{span}}.\\
-    Il limite di $\J$ in $\C$ si dice \bemph{pullback} di $\J$, o anche \bemph{prodotto fibrato} di $X$ e $Y$ lungo (o su) $Z$ e si può indicare con $X\times_Z Y$.\\
-    Un pullback in $\C^\op$ si dice \bemph{pushout}.
-\end{definition}
+% \begin{definition}{Pullback o prodotto fibrato}{pullback o prodotto fibrato}
+%     Sia $\C$ una categoria, e sia $\J$ il diagramma $\{ X\xrightarrow{f} Z \xleftarrow{g} Y \}$, detto \bemph{cospan}\footnote{E ovviamente $\J^\op$ si dirà \bemph{span}}.\\
+%     Il limite di $\J$ in $\C$ si dice \bemph{pullback} di $\J$, o anche \bemph{prodotto fibrato} di $X$ e $Y$ lungo (o su) $Z$ e si può indicare con $X\times_Z Y$.\\
+%     Un pullback in $\C^\op$ si dice \bemph{pushout}.
+% \end{definition}
 
-Il pullback è una sorta di analogo categoriale delle equazioni: è facile dimostrare che in $\setcat$ e nelle categorie concrete il pullback di $\{ X\xrightarrow{f} Z \xleftarrow{g} Y \}$ è il sottoinsieme $\{ (x,y) | f(x) = g(y) \}$ di $X\times Y$ e i morfismi che lo accompagnano sono la restrizione delle proiezioni. Un altro esempio è quello del grafico di una funzione, che è il pullback del diagramma $\{ X\xrightarrow{f} Y \xleftarrow{\id_Y} Y \}$.
+% Il pullback è una sorta di analogo categoriale delle equazioni: è facile dimostrare che in $\setcat$ e nelle categorie concrete il pullback di $\{ X\xrightarrow{f} Z \xleftarrow{g} Y \}$ è il sottoinsieme $\{ (x,y) | f(x) = g(y) \}$ di $X\times Y$ e i morfismi che lo accompagnano sono la restrizione delle proiezioni. Un altro esempio è quello del grafico di una funzione, che è il pullback del diagramma $\{ X\xrightarrow{f} Y \xleftarrow{\id_Y} Y \}$.
 
-\begin{definition}{Equalizzatore}{equalizzatore}
-    Sia $\C$ una categoria e sia $\J$ il diagramma 
-    \[\begin{tikzcd}
-    	X && Y
-    	\arrow["f"{description}, shift left=3, from=1-1, to=1-3]
-    	\arrow["g"{description}, shift right=3, from=1-1, to=1-3]
-    \end{tikzcd}\]
-    Si dice \bemph{equalizzatore} di $f$ e $g$ il limite di $\J$ in $\C$, e lo indichiamo con $\eq(f,g)$,  come indichiamo l'unico morfismo "primitivo" del cono con $e_{f,g}:\eq(f,g)\to X$.\\
-    Un equalizzatore in $\C^\op$ si dice \bemph{coequalizzatore}.
-\end{definition}
+% \begin{definition}{Equalizzatore}{equalizzatore}
+%     Sia $\C$ una categoria e sia $\J$ il diagramma 
+%     \[\begin{tikzcd}
+%     	X && Y
+%     	\arrow["f"{description}, shift left=3, from=1-1, to=1-3]
+%     	\arrow["g"{description}, shift right=3, from=1-1, to=1-3]
+%     \end{tikzcd}\]
+%     Si dice \bemph{equalizzatore} di $f$ e $g$ il limite di $\J$ in $\C$, e lo indichiamo con $\eq(f,g)$,  come indichiamo l'unico morfismo "primitivo" del cono con $e_{f,g}:\eq(f,g)\to X$.\\
+%     Un equalizzatore in $\C^\op$ si dice \bemph{coequalizzatore}.
+% \end{definition}
 
 \subsection{Esistenza dei limiti}
 
@@ -716,13 +727,13 @@ Tuttavia in altre applicazioni della Teoria delle Categorie, ad esempio in Topol
     \[\Pi((f,g):(X,Y)\to(W,Z)) := (\langle f, g\rangle : X\times Y \to W\times Z) \]
     che è funtoriale e aggiunta destra a $\Delta$.
     \proof
-    Osserviamo che dalle definizioni di categoria prodotto (definizione \cref{def:categoria prodotto e bifuntore}), di prodotto nella definizione \cref{def:prodotto limite} e assumendo che il prodotto in $\setcat$ sia l'usuale prodotto cartesiano\footnote{Dimostrazione lasciata per esercizio al lettore}, la seguente catena di biezioni è verificata in $\setcat$ per ogni $A,B$ e $C$ oggetti in $\C$:
+    Osserviamo che dalle definizioni di categoria prodotto (definizione \cref{def:categoria prodotto e bifuntore}), di prodotto nella definizione \cref{def:prodotto limite} e dal fatto che il prodotto in $\setcat$ è l'usuale prodotto cartesiano\footnote{Dimostrazione lasciata per esercizio al lettore}, la seguente catena di biezioni è verificata in $\setcat$ per ogni $A,B$ e $C$ oggetti in $\C$:
     \[\begin{aligned}
         \C^2(\Delta A,(B,C)) & \cong \C^2((A,A),(B,C))\\
         & \cong \C(A,B)\times \C(A,C)\\
         & \cong \underbrace{\C(A, B\times C)}_{\C^\op \times (\C\times\C) \to \setcat} = \C(A,\Pi(B,C))
     \end{aligned} \]
-    Abbiamo dimostrato che $\Pi$ è effettivamente una mappa aggiunta destra alla mappa diagonale; dovremmo dimostrare la funtorialità, ma è banale e consiste semplicemente nell'applicare le proprietà universali dei prodotti.\\
+    Abbiamo dimostrato che $\Pi$ è effettivamente una mappa aggiunta destra alla mappa diagonale; la funtorialità segue dalla proposizione \cref{prop:estensione via aggiunzione}.\\
     Applicando il lemma \cref{lem:unicità degli aggiunti}, otteniamo l'essenziale unicità, concludendo.
     \qed
 \end{theorem}
@@ -758,7 +769,9 @@ Tornando indietro alla discussione del principio di equivalenza avuta in \cref{d
 
 \chapter{Categorie Cartesiane Chiuse}
 
-Quella delle categorie cartesiane chiuse è un'importante classe di categorie molto "beneducate", che permettono di 
+Quella delle categorie cartesiane chiuse è una classe di categorie la cui importanza viene da due campi apparentemente scollegati: l'informatica teorica e la geometria. Intuitivamente, le categorie cartesiane chiuse sono quelle in cui è possibile trasformare un morfismo $X\times Y\to Z$ in un morfismo $X\to (Y\to Z)$ astraendo la nozione di "fissare" un argomento in un modo che si comporti bene rispetto al prodotto.\\
+In informatica teorica, le categorie cartesiane chiuse corrispondono in modo diretto a modelli della computazione, di cui vedremo un esempio più nel terzo capitolo.\\
+L'importanza delle categorie cartesiane chiuse in geometria invece è dovuta allo sviluppo della teoria dei Topoi, categorie cartesiane 
 
 \begin{definition}{Oggetto esponenziale}{oggetto esponenziale}
     Sia $\C$ una categoria e siano $X,Y$ oggetti di $\C$ che ammettano un prodotto in $\C$.\\
@@ -1095,7 +1108,7 @@ Si vede che $\c_1$ e $\c_2$ sono equivalenti perchè definiscono la funzione $x\
         \item L'operatore di minimalizzazione per una funzione $ f:\N^{k+1}\to \N $ definita dal comando $\c_f$ (che assumiamo non usi la variabile $t_1$ e non modifichi il valore di $x_{k+1}$) è dato dal comando 
         \[ \c_{\mu(f)} = \left(x_{k+1}:= 0;\ \c_f ;\underbrace{\while(y_1 \neq 0)}_{\text{controlla il valore di }f}\do(x_{k+1} := x_{k+1}+1;\ \c_f );\ y_1 := x_{k+1} \right) \]
     \end{enumerate}
-    L'implicazione inversa è più laboriosa, ma procede nello stesso modo per induzione sulla semantica di $\imp$ e la lasciamo nell'appendice stocazzo.
+    L'implicazione inversa è più laboriosa, ma procede nello stesso modo per induzione sulla semantica di $\imp$.
     \qed 
 \end{theorem}
 
@@ -1169,13 +1182,8 @@ Ora, mantenendo questa notazione, possiamo enunciare un risultato che sarà esse
     \qed
 \end{theorem}
 
-Notiamo che la funzione $s_{m,n}$ non esegue il comando $\Phi(i)$, ma semplicemente restituisce il numero del comando con le variabili fissate.
-
-\begin{definition}{Numerazione per $\hom\grf(\N)$}{numerazione per le grf}
-    Indichiamo con $f_i$ la funzione calcolata dal comando $\Phi^{-1}(i)$ per $i \in \N$.
-\end{definition}
-
-Questa numerazione non è iniettiva, in quanto comandi sintatticamente diversi potrebbero calcolare la stessa funzione, ma è suriettiva e questo ci basta.
+Notiamo che la funzione $s_{m,n}$ non esegue il comando $\Phi(i)$, ma semplicemente restituisce il numero del comando con le variabili fissate.\\
+Notiamo che se indichiamo con $f_i$ la funzione calcolata dal comando $\Phi^{-1}(i)$ per $i \in \N$, la mappa $i\mapsto f_i$ non è iniettiva, in quanto comandi sintatticamente diversi potrebbero calcolare la stessa funzione, ma è suriettiva e questo ci basta.
 
 \section{$\percat(\N)$: definizioni e proprietà}
 
@@ -1210,28 +1218,68 @@ La nostra scelta "canonica" di oggetto terminale sarà la relazione $1 := \N\tim
     Date due relazioni di equivalenza parziali $R$ e $S$ su $\N$, la relazione 
     \[\pair(a,b) P \pair(c,d) \Harr aRc \wedge bSd\]
     è una relazione di equivalenza parziale su $\N$ ed è un prodotto categoriale in $\percat(\N)$ di $R$ e $S$.\\
-    Le proiezioni ai fattori sono tracciate rispettivamente da $\pi_R = \pi_1\circ \pair^{-1}$ e $\pi_S := \pi_2\circ \pair^{-1}$ e per due morfismi $f:X\to R$ e $g:X\to S$ tracciate da mappe $\alpha,\beta$ il morfismo $h:X\to P$ dato dalla proprietà universale è tracciato da $\eta : x\mapsto \pair(\alpha(x),\beta(x))$.
+    Le proiezioni ai fattori sono tracciate rispettivamente da $\pi_R = \pi_1\circ \pair^{-1}$ e $\pi_S := \pi_2\circ \pair^{-1}$ e per due morfismi $f:X\to R$ e $g:X\to S$ tracciate da mappe $\alpha,\beta$ il morfismo $h:X\to P$ dato dalla proprietà universale è tracciato da $\gamma : x\mapsto \pair(\alpha(x),\beta(x))$.
     \proof 
     È immediato osservare che $P$ è sia transitiva che simmetrica, dunque dimostriamo che è un prodotto di $R$ e $S$.\\
     Prendiamo $n,m \in \N$ tali che $nXm$, $\alpha(n)R\alpha(m)$ e $\beta(n)S\beta(m)$; osserviamo che per definizione di $P$ vale 
-    \[ \underbrace{\pair(\alpha(n),\beta(n))}_{\eta(n)}P\underbrace{\pair(\alpha(m),\beta(m))}_{\eta(m)}\Harr \alpha(n)R\alpha(m)\wedge \beta(n)S\beta(m) \]
+    \[ \underbrace{\pair(\alpha(n),\beta(n))}_{\gamma(n)}P\underbrace{\pair(\alpha(m),\beta(m))}_{\gamma(m)}\Harr \alpha(n)R\alpha(m)\wedge \beta(n)S\beta(m) \]
     Vediamo inoltre che le mappe sottostanti (e dunque anche i morfismi) rispettano la proprietà di cono  
-    \[ \pi_R\circ \eta = \pi_1\circ\pair^{-1}\circ\pair(\alpha,\beta) = \pi_1(\alpha,\beta) = \alpha \]
+    \[ \pi_R\circ \gamma = \pi_1\circ\pair^{-1}\circ\pair(\alpha,\beta) = \pi_1(\alpha,\beta) = \alpha \]
     Dimostriamo infine che $P$ è universale: per qualsiasi altro cono $(P', \pi'_R,\pi'_S)$ abbiamo 
     \[ xP'y \Rarr \pi'_R(x)R\pi'_R(y)\wedge \pi'_S(x)S\pi'_S(y) \Harr \pair(\pi'_R(x),\pi'_S(x))P\pair(\pi'_R(y),\pi'_S(y))  \]
     Ovvero esiste un morfismo $P'\to P$ tracciato da $\pair\circ(\pi'_R, \pi'_S)$
     \qed
 \end{lemma}
 
+In particolare per ogni relazione $S$ possiamo costruire un funtore $-\times S : \percat(\N)\to\percat(\N)$ dato da
+\[ (f:R\to T)\times S := \pair (f, \id) : R\times S \to T\times S \]
+
 \begin{theorem}{Chiusura cartesiana di $\percat(\N)$}{chiusura cartesiana di per}
     La categoria $\percat(\N)$ è una categoria cartesiana chiusa.\\
-    Un esponenziale $R^S$ è dato dalla relazione 
-    \[ aR^Sb \Harr \forall x,y \in \N, xSy \Rarr f_a(x)Rf_b(y) \]
-    o in altre parole, due numeri sono equivalenti in $R^S$ se e solo se tracciano lo stesso morfismo $S\to R$.
+    Un esponenziale $T^S$ è dato dalla relazione 
+    \[ aT^Sb \Harr \forall x,y \in \N, xSy \Rarr f_a(x)Tf_b(y) \]
+    o in altre parole, due numeri sono equivalenti in $R^S$ se e solo se tracciano lo stesso morfismo $S\to T$.
     \proof 
     I lemmi \ref{lem:oggetto terminale di per} e \ref{lem:prodotti in per} ci danno le prime due condizioni; per la terza, costruiamo per esaustione su $S \in \ob\percat(\N)$ un funtore aggiunto destro a $-\times S$, dove il prodotto scelto è quello definito nel lemma, che ci darà la chiusura grazie al teorema \ref{th:ccc da aggiunti}.\\
-    Il funtore $(-)^S$ agisce sugli oggetti come specificato nella tesi 
+    Supponiamo di avere un morfismo $f:R\times S \to T$: la funzione sottostante è una funzione $f:\N\to \N$, ma la possiamo leggere come funzione $f':= f\circ \pair : \N^{1+1}\to\N$ tale che 
+    \[ aRc \wedge bSd \Harr \pair(a,b)R\times S \pair(c,d) \Rarr f(\pair(a,b))T f(\pair(c,d)) \Harr f'(a,b)Tf'(c,d) \]
+    In particolare supponiamo che la funzione $f'$ sia calcolata dal comando $\Phi^{-1}(i)$; applicando il teorema \cref{th:teorema smn} nel caso $m=n=1$ otteniamo due mappe: fissando $x$ abbiamo la mappa $i\mapsto s(i,x)$ e fissando $f$ abbiamo la mappa $x\mapsto s(i,x)$.\\
+    CLAIM: per ogni $f: R\times S \to T$, la mappa $x\mapsto s(i,x)$ definisce un morfismo $\lambda f : R\to T^S$.\\
+    Usando la corrispondenza $f \equiv f'_i$ che abbiamo stabilito sopra, abbiamo
+    \[ aRb \Rarr s(i,a)T^S s(i,b) \Harr \forall x,y \in \N, xSy \Rarr f_{s(i,a)}(x) = f'(a,x) T f'(b,y) = f_{s(i,b)}(y)\]
+    Dato che il teorema $smn$ ci garantisce che $s$ è indipendente da $f$, la mappa $f\mapsto \lambda f$ è effettivamente una funzione $\hom(R\times S, T)\to \hom(R,T^S)$.\\
+    Notiamo che ha una funzione inversa 
+    Senza scendere in dettagli, la naturalità dell'isomorfismo segue dall'indipendenza del teorema $smn$ 
 \end{theorem}
+
+Consideriamo una sottocategoria 
+
+\begin{definition}{Sottocategoria delle identità}{}
+    Definiamo la sottocategoria $\I\le \percat(\N)$ con lo stesso insieme degli oggetti ma i cui morfismi sono quelli tracciati dall'identità su $\N$.\\
+    In altre parole abbiamo un morfismo $R\to S$ se $aRb$ implica $aSc$, ovvero se per ogni $a\in \dom R$ abbiamo $a \in \dom S$ e $[a]_R \subset [a]_S$.\\
+    Chiamiamo \bemph{$\I$-mappe} i morfismi di $\I$.
+\end{definition}
+
+Notiamo che abbiamo al più una $\I$-mappa tra due oggetti dando a $\I$ una struttura di insieme parzialmente ordinato: intuitivamente abbiamo una $\I$-mappa $R\to S$ quando le classi di $S$ sono unioni di classi di $R$ a cui possibilmente sono stati aggiunti elementi dalla zona d'ombra di $R$. In particolare, la relazione massimale $1 = \N\times\N$ che abbiamo definito sopra è il massimo di questo insieme mentre la relazione vuota $0 = \varnothing\subset \N\times\N$ è il minimo.\\
+Per un esempio, che mostra anche che le $\I$-mappe non sono necessariamente isomorfismi e nemmeno monomorfismi in quanto non iniettive, consideriamo le relazioni
+\[ R = \left\{ (p,p)  : p\text{ primo} \right\} \subset \N^2 \]
+\[ S = \left\{ (p_{2k}^m, p_{2k+1}^n),(p_{2k+1}^m, p_{2k}^n)  :k\ge 1, p_k =k\text{-esimo primo}, m\cdot n \neq 0 \right\} \cup \left\{ (p\cdot q, p\cdot q) : p\neq q\text{ primi} \right\} \subset \N^2 \]
+Vediamo $R$ identifica ogni numero primo solo con sè stesso, mentre $S$ identifica ciascun primo con il suo primo precedente o successivo e con tutte le loro potenze non nulle e ogni prodotto di due primi distinti solo con sè stesso : le classi di $S$ dunque sono estensioni e unioni delle classi di $R$ o classi completamente nuove, dove i nuovi elementi sono presi dalla zona d'ombra di $R$, dunque abbiamo una $\I$-mappa $R\to S$ anche se non è data da una funzione iniettiva o suriettiva $\dom R/R \to \dom S/S$.\\
+Nonostante sembri apparentemente molto semplice, la seguente proposizione ci mostra che $\I$ è una sottocategoria molto rappresentativa di $\percat(\N)$.
+
+\begin{proposition}{Rappresentazione di $\percat(\N)$ in $\I$}{}
+    Per ogni morfismo $f: R\to S$ in $\percat(\N)$ esistono due isomorfismi $\varphi :R\iso G$ e $\psi : G'\iso S$ e una $\I$-mappa $\iota: G\to G'$ tali che $f = \psi \circ \iota\circ \varphi$.
+    \proof 
+    Definiamo $G$ intuitivamente come il "grafico" di $f$, ponendo 
+    \[ \pair(x,y) G \pair (x',y') \Harr xRx'\wedge ySf(x)\wedge y' S f(x') \]
+    \[ \pair(x,y) G' \pair(x',y') \Harr yS y' \]
+    Chiaramente se $\pair(x,y)G\pair(x',y')$ in particolare vale $xRx'$, dunque $f(x)Sf(x')$ per la definizione dei morfismi di $\percat(\N)$ e quindi $\pair(x,y)G'\pair(x',y')$, ovvero esiste una $\I$-mappa $\iota:G\to G'$.\\
+    Immediatamente osserviamo $G'\cong 1\times S \cong S$.\\
+    Per quanto riguarda l'isomorfismo tra $R$ e $G$ vogliamo presentare una mappa $\varphi$ tale che valga $xRx'$ se e solo se $\varphi(x) S \varphi(x')$: vediamo che la mappa cercata è $\varphi(x) = \pair(x, f(x))$.
+    \qed
+\end{proposition}
+
+Il ruolo di $\I$ in $\percat(\N)$ è analogo in qualche modo a quello che hanno le potenze di un campo $\K$ nella categoria degli spazi vettoriali definiti su di esso: allo stesso modo in cui ogni mappa lineare $f:V\to W$ può essere \textit{innaturalmente} rappresentata da una mappa $M:\K^m\to\K^n$ dopo la scelta di due basi, ovvero di isomorfismi $\beta :\K^m\iso V$ e $\beta ':\K^n\iso W$ e che in particolare la scelta delle basi cambierebbe in base a $f$ se dovessimo imporre restrizioni sulla forma di $M$, dato che le mappe di $\I$ hanno una forma molto restrittiva abbiamo che non solo gli isomorfismi ma anche gli oggetti di rappresentazione scelti devono variare in base al morfismo considerato.
 
 \nocite{*}
 \printbibliography
