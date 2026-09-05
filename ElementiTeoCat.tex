@@ -552,7 +552,7 @@ Se in Teoria degli Insiemi definiamo una famiglia di sottoinsiemi di un insieme 
     Analogamente esiste la categoria dei cononi $\catname{Cocone}(\C,F)$ che non è altro che la categoria $\cone(\C^\op, F)$.
 \end{definition}
 
-Ed eccoci pronti a definire i limiti.
+Siamo pronti a definire i limiti e colimiti di un diagramma, che intuitivamente corrispondono all'oggetto "più grande" che può essere mappato negli elementi del diagramma e all'oggetto più piccolo in cui questi possono essere mappati \textit{coerentemente alla commutatività dello stesso}.
 
 \begin{definition}{Limite e colimite}{limite}
     Sia $F:\J\to\C$ un diagramma.\\
@@ -580,7 +580,7 @@ Più esplicitamente\footnote{Ovvero scrivendo per esteso la definizione di ogget
 \end{tikzcd}\]
 Chiameremo una tale proprietà\footnote{Ovvero essere il cono terminale/iniziale su un qualche diagramma} \bemph{universalità}.\\
 Il limite è uno dei concetti centrali della Teoria delle Categorie: analogamente a come sia possibile definire equivalentemente aperti, chiusi, intorni, chiusura, interno e così via in Topologia Generale, è possibile definire i funtori aggiunti in termini di limiti, i limiti in termini di funtori aggiunti ed equivalentemente tante altre costruzioni in Teoria delle Categorie.\\
-Talvolta diremo che una categoria "ammette/ha tutti i..." facendo riferimento a dei (co)limiti definiti su una qualche forma di diagrammi: questo significa che ogni diagramma di quella forma ammette un (co)limite in $\C$.
+Spesso diremo che una categoria "ammette/ha tutti i..." facendo riferimento a dei (co)limiti definiti su una qualche forma di diagrammi: questo significa che ogni diagramma di quella forma ammette un (co)limite in $\C$.
 
 \begin{proposition}{Limiti e oggetti iniziali}{limiti e oggetti iniziali}
     Sia $F:\J\to\C$ un diagramma.\begin{itemize}
@@ -592,12 +592,12 @@ Talvolta diremo che una categoria "ammette/ha tutti i..." facendo riferimento a 
 
 Ora possiamo dare senza dimostrazione un'altra caratterizzazione dei funtori aggiunti in termini di proprietà universali che ci servirà più avanti:
 
-\begin{proposition}{Aggiunti come PU}{}
+\begin{proposition}{Aggiunti come limiti}{aggiunti via limiti}
     Siano $F:\D\to\C$ e $G:\C\to\D$ funtori.\\
     $F$ è aggiunto sinistro a $G$ se e solo se esiste un cono limite $\{ \varepsilon_X : F(G(X))\to X \}_{X\in \ob C}$. 
 \end{proposition}
 
-Come possiamo intuire questo cono sarà dato o darà la counità dell'aggiunzione, mentre l'unità dell'aggiunzione darà o sarà data da un cocono limite $\{ \eta_Y : Y \to G(F(Y)) \}_{Y \in \ob \D}$.
+Come possiamo intuire questo cono corrisponde alla counità dell'aggiunzione, mentre l'unità dell'aggiunzione corrisponde a un cocono universale $\{ \eta_Y : Y \to G(F(Y)) \}_{Y \in \ob \D}$.
 
 \begin{definition}{Diagramma discreto e prodotto}{prodotto limite}
     Sia $\C$ una categoria e per un insieme di indici $I$ definiamo la categoria discreta $\mathbf{D}[I]$, ovvero la categoria i cui oggetti sono elementi di $I$ e i cui unici morfismi sono le identità.\\
@@ -639,7 +639,7 @@ Come possiamo intuire questo cono sarà dato o darà la counità dell'aggiunzion
     Il colimite di $f_i$ in $\C$ si dice \bemph{coequalizzatore}.
 \end{definition}
  
-L'equalizzatore è una sorta di analogo categoriale di un'equazione, esplicitamente in $\setcat$ e nelle categorie concrete come vediamo qua sotto, ma in generale per 
+L'equalizzatore è una sorta di analogo categoriale di un'equazione, esplicitamente in $\setcat$ e nelle categorie concrete come vediamo qua sotto, corrispondendo al "sotto-oggetto più grande" sul quale restringere i morfismi in modo tale che questi risultino essere uguali.
 
 \begin{example}{Prodotti, coprodotti, equalizzatori e coequalizzatori in $\setcat$}{limiti e colimiti in set}
     La categoria $\setcat$ è una categoria completa:
@@ -651,42 +651,11 @@ L'equalizzatore è una sorta di analogo categoriale di un'equazione, esplicitame
     Saltando a piè pari tutti i dettagli\footnote{Per una trattazione comunque informale dei quali si rimanda il lettore a \cite{ButGeeee}}, abbiamo che il coprodotto è dato dall'unione disgiunta, mentre il coequalizzatore è dato da $Y/\sim$, dove $\sim$ è la più piccola relazione di equivalenza su $Y$ tale che per ogni $x \in X$ si abbia $f(x)\sim g(x)$ e l'epimorfismo coequalizzante è dato dalla proiezione canonica al quoziente $y\mapsto [y]_\sim$.
 \end{example}
 
-% \subsection{Limiti notevoli}
-
-% Presentiamo alcune forme di diagramma che hanno limiti di particolare importanza nella pratica matematica; in questa sezione, assumeremo per semplicità che $\J$ sia una sottocategoria (di forma opportunamente specificata) di $\C$ e $F : \J \inj \C$ sia il funtore di inclusione: questo ci permetterà di dire semplicemente "Sia $\J$ un diagramma" o parlare di $\catlim\J$.
-
-% \begin{definition}{Prodotto}{kdjfhkjdsfkprodotto limite}
-%     Sia $\C$ una categoria e sia $\J$ un diagramma discreto (ovvero i cui unici morfismi sono le identità).\\
-%     Si dice \bemph{prodotto} di $\J$ in $\C$ il limite di $\J$ in $\C$, che indicheremo come
-%     \[ \prod_{X\in\ob\J} X\quad\text{oppure, più semplicemente,}\quad \prod\J\ . \]
-%     Un prodotto in $\C^\op$ si dice \bemph{coprodotto} in $\C$ e lo indicheremo come $\coprod \J$, mentre prodotti e coprodotti binari verranno indicati (nel caso in cui sia chiara la categoria ambiente) rispettivamente come $A\times B$ e $A+B$.\\
-%     I morfismi $\pi_X : \prod\J\to X$ si dicono \bemph{proiezioni}, mentre i morfismi $\iota_X: X\to\coprod\J$ si dicono \bemph{inclusioni}.
-% \end{definition}
-
-% È immediato osservare che se $\C$ ammette un oggetto terminale $1$, il prodotto del diagramma vuoto esiste ed è $1$.
-
-% \begin{definition}{Pullback o prodotto fibrato}{pullback o prodotto fibrato}
-%     Sia $\C$ una categoria, e sia $\J$ il diagramma $\{ X\xrightarrow{f} Z \xleftarrow{g} Y \}$, detto \bemph{cospan}\footnote{E ovviamente $\J^\op$ si dirà \bemph{span}}.\\
-%     Il limite di $\J$ in $\C$ si dice \bemph{pullback} di $\J$, o anche \bemph{prodotto fibrato} di $X$ e $Y$ lungo (o su) $Z$ e si può indicare con $X\times_Z Y$.\\
-%     Un pullback in $\C^\op$ si dice \bemph{pushout}.
-% \end{definition}
-
-% Il pullback è una sorta di analogo categoriale delle equazioni: è facile dimostrare che in $\setcat$ e nelle categorie concrete il pullback di $\{ X\xrightarrow{f} Z \xleftarrow{g} Y \}$ è il sottoinsieme $\{ (x,y) | f(x) = g(y) \}$ di $X\times Y$ e i morfismi che lo accompagnano sono la restrizione delle proiezioni. Un altro esempio è quello del grafico di una funzione, che è il pullback del diagramma $\{ X\xrightarrow{f} Y \xleftarrow{\id_Y} Y \}$.
-
-% \begin{definition}{Equalizzatore}{equalizzatore}
-%     Sia $\C$ una categoria e sia $\J$ il diagramma 
-%     \[\begin{tikzcd}
-%     	X && Y
-%     	\arrow["f"{description}, shift left=3, from=1-1, to=1-3]
-%     	\arrow["g"{description}, shift right=3, from=1-1, to=1-3]
-%     \end{tikzcd}\]
-%     Si dice \bemph{equalizzatore} di $f$ e $g$ il limite di $\J$ in $\C$, e lo indichiamo con $\eq(f,g)$,  come indichiamo l'unico morfismo "primitivo" del cono con $e_{f,g}:\eq(f,g)\to X$.\\
-%     Un equalizzatore in $\C^\op$ si dice \bemph{coequalizzatore}.
-% \end{definition}
-
 \subsection{Esistenza dei limiti}
 
-Considerando l'ubiquità del concetto di (co)limite, è importante essere in grado di dimostrare che le categorie in cui si sta lavorando siano (co)complete, ma può sembrare difficile dimostrare l'esistenza del (co)limite per diagrammi piccoli di forma arbitraria. Fortunatamente il prossimo risultato ci dà una condizione necessaria e sufficiente per la (co)completezza di una categoria e ci mostra che in realtà ogni limite si può costruire "facendo prodotti e risolvendo equazioni".
+Considerando l'ubiquità del concetto di (co)limite, è importante essere in grado di dimostrare che le categorie in cui si sta lavorando siano (co)complete, ma può sembrare difficile dimostrare l'esistenza del (co)limite per diagrammi piccoli di forma arbitraria.\\
+Fortunatamente il prossimo risultato ci dà una condizione necessaria e sufficiente per la (co)completezza di una categoria e ci mostra che in realtà ogni limite si può costruire "facendo prodotti e risolvendo equazioni".\\
+In alcuni casi esistono anche costruzioni che permettono di "aggiungere" artificialmente alcuni (co)limiti a una categoria che potrebbe esserne sprovvista, ma purtroppo non abbiamo il tempo o lo spazio per trattarle.
 
 \begin{theorem}{Esistenza dei limiti}{esistenza dei limiti}
     Sia $\C$ una categoria.\\
@@ -744,9 +713,9 @@ Considerando l'ubiquità del concetto di (co)limite, è importante essere in gra
 
 Chiudiamo il capitolo con una discussione di una diversa caratterizzazione del prodotto di due oggetti in una categoria.\\
 La definizione che abbiamo dato in \cref{def:prodotto limite} è evidentemente utile quando si parla di lavorare coi prodotti nell'usuale pratica matematica, ad esempio è una definizione meno "pesante" di quella che si dà dei prodotti in $\topcat$ o $\mblecat$ nella maggior parte dei corsi introduttivi di Topologia Generale o Teoria della Misura. Allo stesso modo non dipende da scelte arbitrarie, come di una norma prodotto in $\catname{NormVec}\K$ o di una misura prodotto in $\meascat$.\\
-Tuttavia in altre applicazioni della Teoria delle Categorie, ad esempio in Topologia Algebrica o informatica teorica, può essere agevole considerare il prodotto di due oggetti non come definito intrinsecamente tramite proprietà universale, ma come un bifuntore.
+Tuttavia in altre applicazioni della Teoria delle Categorie, ad esempio in Topologia Algebrica o Informatica Teorica, può essere agevole considerare il prodotto di due oggetti non come definito intrinsecamente tramite proprietà universale, ma come un bifuntore.
 
-\begin{theorem}{Caratterizzazione del prodotto binario}{Prodotto binario come funtore}
+\begin{theorem}{Costruzione del funtore prodotto}{Prodotto binario come funtore}
     Sia $\C$ una categoria localmente piccola e sia $\Delta :\C\to\C\times\C$ il funtore diagonale, ovvero l'applicazione
     \[ \Delta( f:X\to Y ) = ((f,f):(X,X)\to(Y,Y)).\]
     Se $\C$ ammette i prodotti binari, \textit{una scelta di un prodotto per ciascuna coppia di oggetti} definisce un'applicazione $\Pi : \C\times\C \to \C$ attraverso la mappa
@@ -764,9 +733,10 @@ Tuttavia in altre applicazioni della Teoria delle Categorie, ad esempio in Topol
     \qed
 \end{theorem}
 
-Tornando indietro alla discussione del principio di equivalenza avuta in \cref{def:equivalenza di categorie}, notiamo che questo risultato dipende da una serie di scelte che solo dopo possiamo "sanare" grazie al lemma di Yoneda che ci garantisce che scelte diverse ci danno \textit{essenzialmente} lo stesso funtore. Vediamo che vale anche l'implicazione inversa:
+Tornando indietro alla discussione del principio di equivalenza avuta in \cref{def:equivalenza di categorie}, notiamo che questo risultato dipende da una serie di scelte che solo dopo possiamo "sanare" grazie al lemma di Yoneda, che ci garantisce che scelte diverse ci diano \textit{essenzialmente} lo stesso funtore.\\
+Vediamo che vale anche l'implicazione inversa:
 
-\begin{theorem}{}{Esistenza dei prodotti dagli aggiunti}
+\begin{theorem}{Esistenza dei prodotti dagli aggiunti}{Esistenza dei prodotti dagli aggiunti}
     Sia $\C$ una categoria localmente piccola e sia $\Delta :\C\to\C\times\C$ il funtore diagonale.\\
     Se $\Delta$ ammette un aggiunto destro $\Pi$, allora $\C$ ammette i prodotti binari e per ogni coppia $(X,Y)$ di oggetti di $\C$, $\Pi(X,Y)$ è \textit{un} prodotto di $X$ e $Y$.
     \proof 
@@ -793,11 +763,14 @@ Tornando indietro alla discussione del principio di equivalenza avuta in \cref{d
 
 \newcommand\eval{\operatorname{eval}}
 
-\chapter{Categorie Cartesiane Chiuse}
+\section{Categorie Cartesiane Chiuse}
 
-Quella delle categorie cartesiane chiuse è una classe di categorie la cui importanza viene da due campi apparentemente scollegati: l'informatica teorica e la geometria. Intuitivamente, le categorie cartesiane chiuse sono quelle in cui è possibile trasformare un morfismo $X\times Y\to Z$ in un morfismo $X\to (Y\to Z)$ astraendo la nozione di "fissare" un argomento in un modo che si comporti bene rispetto al prodotto.\\
-In informatica teorica, le categorie cartesiane chiuse corrispondono in modo diretto a modelli della computazione, di cui vedremo un esempio più nel terzo capitolo.\\
-L'importanza delle categorie cartesiane chiuse in geometria invece è dovuta allo sviluppo della teoria dei Topoi, categorie cartesiane 
+\subsection{Introduzione}
+
+Quella delle categorie cartesiane chiuse è una classe di categorie la cui importanza viene da due campi apparentemente scollegati: l'Informatica Teorica e la Geometria. Intuitivamente, le categorie cartesiane chiuse sono quelle in cui è possibile trasformare un morfismo $X\times Y\to Z$ in un morfismo $X\to (Y\to Z)$ astraendo la nozione di "fissare" un argomento in un modo che si comporti bene rispetto al prodotto.\\
+In Informatica Teorica, le categorie cartesiane chiuse corrispondono in modo diretto a modelli della computazione, di cui vedremo un esempio più nel terzo capitolo.\\
+L'importanza delle categorie cartesiane chiuse in Geometria invece è dovuta allo sviluppo della Teoria dei Topoi, categorie cartesiane chiuse in cui è anche possibile definire un analogo dell'insieme delle parti: i topoi generalizzano contemporaneamente le varie nozioni di "spazio" in Topologia e Geometria Algebrica e al contempo fungono da "universi" per la matematica, costituendo uno dei candidati principali per una fondazione alternative della matematica rispetto alla Teoria degli Insiemi.\\
+Non ci è possibile affrontare il concetto di Topos in questa trattazione per questioni di spazio e di difficoltà della teoria, ma rimandiamo il lettore interessato a \cite{MacLaneMoerdijk1994}.
 
 \begin{definition}{Oggetto esponenziale}{oggetto esponenziale}
     Sia $\C$ una categoria e siano $X,Y$ oggetti di $\C$ che ammettano un prodotto in $\C$.\\
@@ -812,9 +785,9 @@ L'importanza delle categorie cartesiane chiuse in geometria invece è dovuta all
     \end{tikzcd}\]
 \end{definition}
 
-Notiamo che l'assegnazione $f\mapsto \lambda f$ deve definire una biezione
+Notiamo che l'assegnazione $f\mapsto \lambda f$ definisce una biezione
 \[ \hom(X\times Y, Z) \cong \hom(X, Z^Y) \]
-La cui inversa è data da $\lambda f \mapsto \eval(\lambda f \times \id)$
+La cui inversa è data da $\lambda f \mapsto \eval(\lambda f \times \id)$.
 
 \begin{definition}{Categoria Cartesiana Chiusa}{CCC}
     Sia $\C$ una categoria. Questa si dice \bemph{cartesiana chiusa} se soddisfa le seguenti condizioni:\begin{enumerate}
@@ -824,6 +797,8 @@ La cui inversa è data da $\lambda f \mapsto \eval(\lambda f \times \id)$
     \end{enumerate}
     Le condizioni (1) e (2) possono essere combinate richiedendo che $\C$ ammetta tutti i prodotti finiti, dove l'oggetto terminale è il prodotto della famiglia vuota.
 \end{definition}
+
+Un esempio tipico di categoria cartesiana chiusa è quella degli insiemi.
 
 \begin{example}{$\setcat_\alpha$ è cartesiana chiusa}{set è ccc}
     La categoria $\setcat_\alpha$ è cartesiana chiusa per ogni ordinale $\alpha$.
@@ -851,6 +826,8 @@ La cui inversa è data da $\lambda f \mapsto \eval(\lambda f \times \id)$
     \qed
 \end{example}
 
+Vediamo che, analogamente a come quozientare per $0=1$ faccia collassare un anello commutativo unitario nell'anello banale $\{0\}$, l'esistenza di un oggetto zero rende una categoria cartesiana chiusa equivalente alla categoria banale.
+
 \begin{lemma}{CCC e oggetti zero}{ccc e oggetti zero}
     Sia $\C$ una categoria cartesiana chiusa con oggetto terminale $1$.\\
     Se $\C$ ammette un oggetto zero $0 \cong 1$, allora ogni coppia di oggetti in $\C$ è isomorfa tramite un unico isomorfismo.
@@ -861,18 +838,22 @@ La cui inversa è data da $\lambda f \mapsto \eval(\lambda f \times \id)$
     \qed
 \end{lemma}
 
-L'intuizione sugli oggetti esponenziali come analoghi agli spazi di funzioni nel caso di $\setcat$ ci suggerisce di cercare esempi di categorie cartesiane chiuse, almeno nel caso concreto, in categorie che abbiano i prodotti e dove l'hom-set tra due oggetti abbia la struttura di un oggetto in sè.\\
-Seguendo questa intuizione, ci si potrebbe chiedere se qualchedi moduli, magari particolarmente "beneducata" come quella degli $\R$-spazi vettoriali di dimensione finita, sia cartesiana chiusa: d'altronde ha un oggetto terminale nello spazio vettoriale banale $\{0\}$, ha il prodotto binario nel prodotto cartesiano\footnote{Che nel caso finito è naturalmente isomorfo alla somma diretta, che è il coprodotto} e in effetti $\hom(V,W)$ ha una struttura di spazio vettoriale su $\R$; tuttavia il lemma che abbiamo visto impedisce non solo agli spazi vettoriali, ma ai moduli in generale, di formare una categoria cartesiana chiusa.
+\subsection{Esempi e non esempi}
+
+L'intuizione sugli oggetti esponenziali come analoghi agli spazi di funzioni nel caso di $\setcat$ ci suggerisce di cercare esempi di categorie cartesiane chiuse, almeno nel caso concreto, in categorie che abbiano i prodotti e dove la collezione dei morfismi tra due oggetti abbia la struttura di un oggetto in sè.\\
+Seguendo questa intuizione, ci si potrebbe chiedere se qualche categoria di moduli, magari particolarmente "beneducata" come quella degli $\R$-spazi vettoriali di dimensione finita, sia cartesiana chiusa: d'altronde ha un oggetto terminale nello spazio vettoriale banale $\{0\}$, ha il prodotto binario nel prodotto cartesiano\footnote{Nel caso finito è naturalmente isomorfo alla somma diretta, che è il coprodotto} e in effetti $\hom(V,W)$ ha una struttura di spazio vettoriale su $\R$; tuttavia il lemma che abbiamo visto impedisce non solo agli spazi vettoriali, ma ai moduli in generale, di formare una categoria cartesiana chiusa.
 
 \begin{example}{$A\modcat$ non è cartesiana chiusa}{rmod non è ccc}
-    Per qualsiasi anello $A$, la categoria $A\modcat$ non è cartesiana chiusa; in particolare dunque, per qualsiasi campo $\K$, la categoria $\veccat(\K)$ non è cartesiana chiusa.
+    Per qualsiasi anello non banale $A$, la categoria $A\modcat$ non è cartesiana chiusa; in particolare dunque, per qualsiasi campo $\K$, la categoria $\veccat(\K)$ non è cartesiana chiusa.
     \proof 
     $A\modcat$ ha un oggetto zero $\{0\}$, il modulo banale, ma dunque se fosse cartesiana chiusa tutti i moduli sarebbero isomorfi per il lemma \cref{lem:ccc e oggetti zero}; dato che questo non è vero, $A\modcat$ non può essere cartesiana chiusa.
     \qed
 \end{example}
 
+Esistono anche numerosi esempi di categorie cartesiane chiuse che emergono dalla topologia e dalla logica.
+
 \renewcommand\int{\operatorname{int}}
-\begin{example}{}{}
+\begin{example}{Reticolo degli aperti di uno spazio topologico}{}
     Sia $(X,\tau)$ uno spazio topologico e consideriamo la categoria $T_\tau$ i cui oggetti sono gli aperti di $\tau$ e i cui morfismi sono le inclusioni $x\inj y$. Allora $T_\tau$ è una categoria cartesiana chiusa nel seguente modo:
     \begin{enumerate}
         \item L'oggetto terminale è $X$.
@@ -882,16 +863,10 @@ Seguendo questa intuizione, ci si potrebbe chiedere se qualchedi moduli, magari 
         o equivalentemente 
         \[ a\cap b\subset c\ \Harr\ a\subset \int((X\setminus b)\cup c) \]
     \end{enumerate}
-    \proof 
-    Le verifiche di (1) e (2) sono banali, dimostriamo (3):\begin{itemize}
-        \item Assumiamo che $a\cap b \subset c$ e sia $p \in a$. Allora \begin{itemize}
-            \item Se $p \in a\cap b$ e dunque per ipotesi appartiene a $c$ allora appartiene a $\int((X\setminus b)\cup c)$ in quanto
-            \[\int(X\setminus b)\cup \int(c) = \int(X\setminus b)\cup c \subset \int((X\setminus b)\cup c)\]
-            \item Se $p \in a \setminus b $ vediamo che vale 
-            \[ a\setminus b = (a\cap \partial b) \cup \int (a \setminus b) \subset (a\cap \partial b) \cup \int(X\setminus b) \]
-        \end{itemize} 
-    \end{itemize}
+    Questo è un caso particolare del fatto che ogni algebra di Heyting, un tipo particolare di reticolo dotato di una struttura aggiuntiva, può essere vista come categoria cartesiana chiusa, e il reticolo degli aperti di uno spazio topologico forma un'algebra di Heyting.
 \end{example}
+
+La definizione che viene data da \cite{MacLane1969} di categoria cartesiana chiusa è un po' diversa da quella che abbiamo scelto noi, meno pratica e agevole nel contesto del lavoro teorico ma al contempo meno oscura a livello intuitivo, dunque ne dimostramo l'equivalenza.
 
 \newcommand\I{\mc{I}}
 \begin{theorem}{Caratterizzazione per le CCC in termini di aggiunti}{ccc da aggiunti}
@@ -922,8 +897,41 @@ Seguendo questa intuizione, ci si potrebbe chiedere se qualchedi moduli, magari 
     \end{enumerate}
 \end{theorem}
 
-Notiamo che questo teorema ci dà un'altra ragione per cui una categoria di $A$-moduli non può essere cartesiana chiusa: nonostante per ogni coppia di moduli $M$ e $N$ ci sia effettivamente un modulo $N^M = \hom_R(M,N)$, la mappa $N\mapsto N^M$ non è aggiunta destra a $N\mapsto N\times M$ ma notoriamente a $N\mapsto N \otimes M$ e in generale $N\otimes M$ non è isomorfo a $N\times M$.\\
-Per un esempio basta pensare a $\R$ visto come $\R$-spazio vettoriale: abbiamo che $\R\times\R \cong \R^2$, ma\footnote{Basta notare che dato che $\{1\}$ è una base di $\R$ su $\R$, una base di $\R\otimes\R$ è data da $\{1\otimes 1\}$} $\R\otimes\R \cong \R$, che ovviamente non sono isomorfi perché hanno dimensione diversa.
+Notiamo che questo teorema ci dà un'altra ragione per cui una categoria di $A$-moduli non può essere cartesiana chiusa: nonostante per ogni coppia di moduli $M$ e $N$ ci sia effettivamente un modulo $N^M = \hom_R(M,N)$, la mappa $N\mapsto N^M$ non è aggiunta destra a $N\mapsto N\times M$ ma notoriamente a $N\mapsto N \otimes_A M$ e in generale $N\otimes_A M$ non è isomorfo a $N\times_A M$.\\
+Per un esempio basta pensare a $\R$ visto come $\R$-spazio vettoriale: abbiamo che $\R\times\R \cong \R^2$ è bidimensionale, mentre $\R\otimes_\R \R \cong \R$ è unidimensionale\footnote{Basta notare che dato che $\{1\}$ è una base di $\R$ su $\R$, una base di $\R\otimes_\R \R$ è data da $\{1\otimes 1\}$}, dunque non possono essere isomorfi.
+
+\subsection{Categorie cartesiane chiuse e argomenti diagonali}
+
+Riportiamo un interessante risultato dimostrato da Lawvere in \cite{Lawvere1969} che generalizza molte forme di "argomento diagonale", come ad esempio quello usato da Cantor per dimostrare che un insieme $X$ non è in biezione con $2^X$.
+
+\begin{theorem}{Teorema del punto fisso di Lawvere}{punto fisso di Lawvere}
+    Sia $\C$ una categoria cartesiana chiusa e sia $Y$ un oggetto di $\C$.\\
+    Se esiste un oggetto $A$ che ammette un morfismo $\gamma : A\to Y^A$ \bemph{suriettivo sui punti}, ovvero tale che per ogni punto $q:1\to Y$ esista un punto $p: 1\to A$ tale che $\gamma p = q$, allora ogni endomorfismo $t:Y\to Y$ ammette un \bemph{punto fisso}, ovvero un punto $y:1\to Y$ tale che $ty = y$.
+    \proof 
+    Consideriamo il morfismo $g : A\times A\to B$ tale che $\lambda g = \gamma$; allora per ogni morfismo $f: A\to Y$ esiste un punto $x: 1\to A$ tale che per ogni punto $1\to A$ vale 
+    \[ g  (a\times x) = f a \] 
+    Ora prendiamo un qualunque endomorfismo $t:Y\to Y$ e poniamo come $f$ la composizione 
+    \[\begin{tikzcd}
+    	A && {A\times A} && Y && Y
+	    \arrow["{(\id_A\times \id_A)}"{description}, from=1-1, to=1-3]
+	    \arrow["g"{description}, from=1-3, to=1-5]
+	    \arrow["t"{description}, from=1-5, to=1-7]
+    \end{tikzcd}\]
+    Allora come sopra esiste un punto $x:1\to A$ tale che per ogni punto $a:1\to A$ valga 
+    \[g ( a\times x) = t g (\id\times \id) a = t g (a\times a)\]
+    Quindi ponendo $a:= x$ otteniamo un punto fisso $y = g (\id \times \id ) x $ per $t$.
+    \qed 
+\end{theorem}
+
+La potenza di questo teorema è evidente soprattutto passando alla contronominale, ad esempio come abbiamo detto sopra il teorema di Cantor è un corollario immediato:
+
+\begin{corollary}{Teorema di Cantor}{teorema di Cantor}
+    Per ogni insieme $X$ non esiste una funzione suriettiva $X\to 2^X$.
+    \proof 
+    Supponiamo che esista $f:X\to 2^X$ suriettiva.\\
+    Dato che $\setcat$ è cartesiana chiusa e ogni funzione suriettiva è un morfismo suriettivo sui punti, possiamo applicare il teorema precedente, ma immediatamente vediamo che la mappa $\sigma:2\to 2$ data da $\sigma(0) = 1$ e $\sigma(1)=0$ non ha punti fissi, dunque non può esistere una tale funzione suriettiva.
+    \qed
+\end{corollary}
 
 \newcommand\percat{\catname{PER}}
 \newcommand\pf{\catname{pf}}
@@ -943,7 +951,7 @@ Consideriamo la seguente categoria:
     Sia $\pf(\N)$ la categoria i cui oggetti sono potenze insiemistiche finite di $\N$, ovvero 
     \[\ob\pf(\N) := \{ \N^n : n\in\N  \} \qquad\text{con}\qquad \N^n := \begin{cases}
     1 := \{\varnothing\} & \text{se } n = 0\\
-    \{ (x_1,..., x_n) : \forall i\le n, x_i \in \N \} & \text{altrimenti}
+    \{ (x_1,\ \dots, x_n) : \forall i\le n, x_i \in \N \} & \text{altrimenti}
     \end{cases} \]
     E i cui morfismi sono le \bemph{funzioni parziali} su $\N$, ovvero dove un morfismo $f:\N^n\to \N^m$ è dato da una funzione $f: D\to\N^m$, dove $D\subset \N^k$ può essere anche vuoto.\\
     I morfismi identità corrispondono alle funzioni identità \textit{totali} e la composizione $g\circ f$ è data dalla composizione di funzioni nei punti $x$ tali che $f(x)$ e $g(f(x))$ sono definite e lasciata indefinita altrimenti.
@@ -965,12 +973,12 @@ Vediamo che, indicando con $D_f$ il dominio come funzione di un morfismo $f$, va
 
 \renewcommand\R{\mc{R}}
 
-\begin{definition}{}{grf e prf}
-    Consideriamo la sottocategoria $\grf(\N)$ di $\pf(\N)$ definita da $\ob\grf(\N) = \ob\pf(\N)$ e il cui insieme dei morfismi $\R$ è definito come il minimo sottoinsieme di $\hom\pf(\N)$ tale che:\begin{enumerate}
+\begin{definition}{Funzioni ricorsive primitive e generali}{grf e prf}
+    Consideriamo la sottocategoria $\grf$ di $\pf(\N)$ definita da $\ob\grf = \ob\pf(\N)$ e il cui insieme dei morfismi $\R$ è definito come il minimo sottoinsieme di $\hom\pf(\N)$ tale che:\begin{enumerate}
         \item La funzione costantemente zero $z : 1 \to \N$ appartiene a $\R$.
         \item La funzione successore $s: \N \to \N$ appartiene a $\R$.
         \item Per ogni $n\ge i\ge 1$ le proiezioni $\pi_i^n : \N^n \to \N$ appartengono a $\R$.
-        \item Per $n,k\ge 0$, se $f_1,..., f_k : \N^n\to\N$ appartengono a $\R$, allora il loro \bemph{appaiamento} $\langle f_1,..., f_k \rangle : \N^n\to\N^k$ (il cui dominio come funzione è l'intersezione dei domini di ogni componente) appartiene a $\R$; in particolare se $k=0$ otteniamo la funzione $!:\N^n\to 1$ che ritorna la $0$-upla $\varnothing = \langle\rangle$.
+        \item Per $n,k\ge 0$, se $f_1,\ \dots, f_k : \N^n\to\N$ appartengono a $\R$, allora il loro \bemph{appaiamento} $\langle f_1,\ \dots, f_k \rangle : \N^n\to\N^k$ (il cui dominio come funzione è l'intersezione dei domini di ogni componente) appartiene a $\R$; in particolare se $k=0$ otteniamo la funzione $!:\N^n\to 1$ che ritorna la $0$-upla $\varnothing = \langle\rangle$.
         \item Se $f:\N^a\to \N^b$ e $g: \N^b\to \N^c$ appartengono a $\R$, allora la loro composizione $g\circ f : \N^a\to\N^c$ appartiene a $\R$.
         \item Se $f: \N^k \to \N$ e $g : \N^{k+2}\to\N$ appartengono a $\R$, allora la funzione $h:\N^{k+1}\to\N$ definita per induzione da
         \[ h(\mathbf{x},y) = \begin{cases}
@@ -981,10 +989,10 @@ Vediamo che, indicando con $D_f$ il dominio come funzione di un morfismo $f$, va
         \[ \mu_f(\mathbf{x}) = \min\{ y \in \N : f(\mathbf{x}, y) = 0 \wedge \forall n\le y, \exists f(\mathbf{x},n) \} \]
         dove questo minimo esiste, indefinita altrimenti, appartiene a $\R$
     \end{enumerate}
-    Questa è detta categoria delle \bemph{funzioni ricorsive generali}; omettendo il requisito $7$ si ottiene la categoria delle \bemph{funzioni ricorsive primitive} $\prf(\N)$.
+    Questa è detta categoria delle \bemph{funzioni ricorsive generali}; omettendo il requisito $7$ si ottiene la categoria delle \bemph{funzioni ricorsive primitive} $\prf$.
 \end{definition}
 
-Si può dimostrare facilmente che le funzioni ricorsive primitive sono tutte funzioni totali, in quanto l'unico requisito che potrebbe lasciare la funzione 
+Si può dimostrare facilmente che le funzioni ricorsive primitive sono tutte funzioni totali, in quanto l'unica operazione che potrebbe lasciare indefinita una funzione appare nel requisito $7$
 
 \newcommand\imp{\catname{IMP}}
 \newcommand\stimp{\imp^{(\to)}}
@@ -1002,41 +1010,53 @@ Si può dimostrare facilmente che le funzioni ricorsive primitive sono tutte fun
 \newcommand\then{\catname{then}}
 \newcommand\elsec{\catname{else}}
 
-\section{Il linguaggio $\imp$ e il teorema $s-m-n$}
+\section{Il linguaggio $\imp$ e il teorema $smn$}
 \renewcommand\c{\mathbf{c}}
+
+Per questa sezione useremo un linguaggio di programmazione imperativo minimale definito in \cite{Winskel1993}, ovvero il linguaggio $\imp$.\\
+La sua semantica fa riferimento a tre insiemi: $\Var$ per le variabili (che assumono valori interi), $\Exp$ per le espressioni e $\Com$ per i comandi, i suoi comandi includono:\begin{itemize}
+    \item Il comando che non fa nulla $\skip$;
+    \item L'assegnazione di una variabile ad un'espressione $x:= e$;
+    \item La composizione di comandi $(\dots);(\dots)$
+    \item Il condizionale $\ifc(\dots)\then(\dots)\elsec(\dots)$;
+    \item Il ciclo while $\while(\dots)\do(\dots)$.
+\end{itemize} 
+Questo è un linguaggio abbastanza semplice da poter ragionare formalmente sulla sua semantica, ma abbastanza potente da poter calcolare più o meno tutte le funzioni che "intuitivamente" vogliamo che calcoli, come vedremo dopo.
 
 \begin{definition}{Funzione $\imp$-definibile}{funzione definibile}
     Modifichiamo leggermente il linguaggio $\imp$, restringendo i valori delle variabili a numeri naturali invece che interi e assumendo senza perdita di generalità che l'insieme $\Var$ abbia la forma 
-    \[ \Var = \underbrace{\{x_i : i \in \N_{\le 0}\}}_{:= \Input} \sqcup \underbrace{\{y_i : i \in \N_{\le 0}\}}_{:= \Output} \sqcup \underbrace{\{t_i : i \in \N_{\le 0}\}}_{:= \Temp} \]
+    \[ \Var = \underbrace{\{x_i : i \in \N_{> 0}\}}_{:= \Input} \sqcup \underbrace{\{y_i : i \in \N_{> 0}\}}_{:= \Output} \sqcup \underbrace{\{t_i : i \in \N_{> 0}\}}_{:= \Temp} \]
     e che ogni comando sia scritto in modo da dipendere soltanto dal valore delle variabili in $\Input$: le variabili in $\Temp$ sono da considerarsi le variabili temporanee che un comando può invocare come "appoggio" e le variabili in $\Output$ sono quelle in cui il comando "deposita" il risultato dei suoi calcoli.\\ 
-    Diciamo che un comando $\c \in \Com$ definisce una funzione parziale $f_{\c} : \N^n\to\N^k$ per $n,k\ge 0$ se per ogni $a_1,...,a_n,b_1,...,b_k$ si ha 
-    \[ f(a_1,...,a_n) = (b_1,...,b_k) \Harr \forall\sigma, \exists\sigma' : \langle \c, \sigma[x_1\mapsto a_1,..., x_n\mapsto a_n] \rangle \to_b \sigma'[y_1\mapsto b_1,..., y_k\mapsto b_k]\]
+    Diciamo che un comando $\c \in \Com$ definisce una funzione parziale $f_{\c} : \N^n\to\N^k$ per $n,k\ge 0$ se per ogni $a_1,\ \dots,a_n,b_1,\ \dots,b_k$ si ha 
+    \[ f(a_1,\ \dots ,a_n) = (b_1,\ \dots,b_k) \Rarr \forall\sigma, \exists\sigma' : \langle \c, \sigma[x_1\mapsto a_1,\ \dots, x_n\mapsto a_n] \rangle \to_b \sigma'[y_1\mapsto b_1,\ \dots, y_k\mapsto b_k]\]
+    \[ \nexists f(a_1,\ \dots , a_n ) \Rarr \Rarr \forall\sigma, \nexists\sigma' : \langle \c, \sigma[x_1\mapsto a_1,\ \dots, x_n\mapsto a_n] \rangle \to_b \sigma' \]
     In questo caso diremo che $\c$ \bemph{calcola} $f$ e che $f$ è $\imp$\bemph{-definibile}.\\
-    In particolare, la funzione non è definita per i valori di $a_1,...,a_n$ per i quali esiste un qualche stato in cui il comando $\c$ non termina.
+    In particolare, la funzione non è definita per i valori di $a_1,\ \dots,a_n$ per i quali il comando $\c$ non termina in nessuno stato.
 \end{definition}
 
-Questa corrispondenza tra funzioni e comandi non è biunivoca in realtà: in generale, una funzione ammette infiniti comandi che la calcolano e il problema di determinare se due comandi diversi calcolano la stessa funzione è in generale molto difficile da risolvere.\\
-Possiamo definire una relazione di equivalenza $\equiv$ sui comandi, detta equivalenza estensionale, dove due comandi sono equivalenti se e solo se definiscono la stessa funzione \textit{tenendo conto del suo dominio}.\\
+Questa corrispondenza tra funzioni e comandi non è biunivoca in realtà e non è nemmeno una funzione totale: in generale, un comando non definisce una funzione e una funzione ammette infiniti comandi che la calcolano.\\ 
+Il problema di determinare se un comando calcoli una funzione o se due comandi diversi calcolano la stessa funzione è in generale molto difficile da risolvere.\\
 Ad esempio, se 
-\[ \c_1 = (y_1 := x_1\cdot x_1),\]\[ \c_2 = (\ifc(x_1 = 0)\then(y_1 := 0)\elsec(y_1 := x_1\cdot x_1)),\]\[ \c_3 = (\ifc(x_1 = 0)\then(\skip)\elsec(y_1 := x_1\cdot x_1)) \]
-Si vede che $\c_1$ e $\c_2$ sono equivalenti perché definiscono la funzione $x\mapsto x^2$ su tutto $\N$, ma non sono equivalenti a $\c_3$ perché questo la definisce solo su $\N\setminus\{0\}$.
+\[ \c_1 = (y_1 := x_1\cdot x_1),\]
+\[ \c_2 = (\ifc(x_1 = 0)\then(y_1 := 0)\elsec(y_1 := x_1\cdot x_1)),\]
+\[ \c_3 = \left(\ifc(x_1 = 0)\then(\while(0 = 0)\do(t_1 := 0) )\elsec(y_1 := x_1\cdot x_1)\right) \]
+Si vede che $\c_1$ e $\c_2$ sono calcolano entrambi la funzione $x\mapsto x^2$ su tutto $\N$, ma non sono in questo modo equivalenti a $\c_3$ perché questo la definisce solo su $\N\setminus\{0\}$.
 
-\begin{theorem}{Tesi di Church-Turing per $\imp$}{tesi di church-turing}
-    Tutte e sole le funzioni in $\hom\grf(\N)$ sono $\imp$-definibili.
+\begin{theorem}{Calcolabilità delle funzioni ricorsive}{tesi di church-turing}
+    Tutte e sole le funzioni in $\hom\grf$ sono $\imp$-definibili.
     \proof 
-    Dimostriamo solamente che tutte le funzioni $\hom\grf(\N)$ sono $\imp$-definibili per induzione esibendo un programma che le calcoli:\begin{enumerate}
+    Dimostriamo solamente che tutte le funzioni $\hom\grf$ sono $\imp$-definibili per induzione esibendo un programma che le calcoli:\begin{enumerate}
         \item La funzione zero è calcolata dal comando $\c_z = (y_1 := 0)$.
         \item La funzione successore è calcolata dal comando $\c_s = (y_1 := x_1+1)$
         \item Le proiezioni sono calcolate dai comandi $\mathbf{p}_i^n = (y_1 := x_i)$
-        \item Grazie alla sua naturale associatività, la capacità di calcolare l'appaiamento di un numero finito di funzioni è equivalente alla capacità di calcolare l'appaiamento binario insieme alla capacità di calcolare la funzione vuota: quest'ultima viene calcolata da $(\skip)$ o da un qualsiasi comando che non termina mai per nessun input e nessuno stato, ad esempio
-        \[\c_! = \left( \while(0 = 0)\do(t_1 := 0) \right)\]
-        mentre se $f$ e $g$ sono funzioni $\N^n \to \N$ calcolate rispettivamente da $\c_f$ e $\c_g$ il loro appaiamento è calcolato da
-        \[ \c_{\langle f,g \rangle} = \left( \underbrace{t_1 := x_1; ...; t_k := x_k;}_{\text{memorizzare gli input}}\ \c_f ; \underbrace{t_{k+1} := y_1;}_{\text{memorizzare l'output}} \underbrace{x_1 := t_1;...; x_k := t_k;}_{\text{reimpostare gli input}}\ \c_g ;\ \underbrace{y_2 := y_1 ; y_1 := t_{k+1}}_{\text{impostare gli output}}  \right) \]
-        assumendo che le variabili temporanee $t_i$ non siano usate nè in $\c_f$ nè in $\c_g$.
+        \item L'appaiamento che restituisce l'$n$-upla vuota è dato da $\c_! := (\skip)$, mentre se $f$ e $g$ sono funzioni $\N^k \to \N$ calcolate rispettivamente da $\c_f$ e $\c_g$ il loro appaiamento è calcolato da
+        \[ \c_{\langle f,g \rangle} = \left( \underbrace{t_1 := x_1; \ \dots; t_k := x_k;}_{\text{memorizzare gli input}}\ \c_f ; \underbrace{t_{k+1} := y_1;}_{\text{memorizzare l'output}} \underbrace{x_1 := t_1;\ \dots; x_k := t_k;}_{\text{reimpostare gli input}}\ \c_g ;\ \underbrace{y_2 := y_1 ; y_1 := t_{k+1}}_{\text{impostare gli output}}  \right) \]
+        assumendo che le variabili temporanee $t_i$ non siano usate nè in $\c_f$ nè in $\c_g$.\\
+        L'appaiamento di due funzioni $\N^k\to\N^m$ e $\N^k\to\N^n$ in generale si calcola in modo analogo, semplicemente considerando le variabili temporanee da $t_{k+1}$ fino a $t_{k+m}$.
         \item Se $f : \N^a\to\N^b$ è definita dal comando $\c_f$ e $g: \N^b\to\N^c$ è definita dal comando $\c_g$, la loro composizione è definita dal comando
-        \[ \c_{g\circ f} := \left( \c_1 ;\ \underbrace{x_1 := y_1 ; ... ; x_b := y_b ;}_{\text{reimpostare gli input}}\ \c_2 \right) \]
-        \item Se $f: \N^k \to \N$ e $g:\N^{k+2}\to\N$ sono definite rispettivamente da $\c_f$ e $\c_g$, allora la funzione $h : \N^{k+1}\to\N$ data dallo schema di ricorsione è definita dal comando
-        \[ \c_h = \left(\underbrace{\ifc(x_{k+1} = 0)\then(\c_f)}_{\text{caso base}}\elsec(\underbrace{x_{k+1} := x_{k+1} - 1 ;\ \c_h ;\ x_{k+2} := y_1 ;\ \c_g }_{\text{ricorsione}}) \right) \]
+        \[ \c_{g\circ f} := \left( \c_1 ;\ \underbrace{x_1 := y_1 ; \ \dots ; x_b := y_b ;}_{\text{reimpostare gli input}}\ \c_2 \right) \]
+        \item Se $f: \N^k \to \N$ e $g:\N^{k+2}\to\N$ sono definite rispettivamente da $\c_f$ e $\c_g$, allora la funzione $h : \N^{k+1}\to\N$ data dallo schema di ricorsione è definita dal comando RIFALLO SENZA CHIAMARSI DA SOLO
+        \[ \c_h = \left(  \c_f;  ;\while(x_{k+1}\neq 0)\do()  \underbrace{\ifc(x_{k+1} = 0)\then(\c_f)}_{\text{caso base}}\elsec(\underbrace{x_{k+1} := x_{k+1} - 1 ;\ \c_h ;\ x_{k+2} := y_1 ;\ \c_g }_{\text{ricorsione}}) \right) \]
         \item L'operatore di minimalizzazione per una funzione $ f:\N^{k+1}\to \N $ definita dal comando $\c_f$ (che assumiamo non usi la variabile $t_1$ e non modifichi il valore di $x_{k+1}$) è dato dal comando 
         \[ \c_{\mu(f)} = \left(x_{k+1}:= 0;\ \c_f ;\underbrace{\while(y_1 \neq 0)}_{\text{controlla il valore di }f}\do(x_{k+1} := x_{k+1}+1;\ \c_f );\ y_1 := x_{k+1} \right) \]
     \end{enumerate}
@@ -1044,26 +1064,26 @@ Si vede che $\c_1$ e $\c_2$ sono equivalenti perché definiscono la funzione $x\
     \qed 
 \end{theorem}
 
-\begin{corollary}{Cardinalità di $\hom\grf(\N)$}{cardinalità delle grf}
-    L'insieme $\hom\grf(\N)$ è numerabile.
+\begin{corollary}{Cardinalità di $\hom\grf$}{cardinalità delle grf}
+    L'insieme $\hom\grf$ è numerabile.
     \proof
-    Dato che ogni funzione in $\hom\grf(\N)$ è calcolabile da un programma, ovvero una sequenza finita di simboli tratti da un alfabeto finito $\Gamma$ e per ogni numero naturale $n$ abbiamo la funzione $\pi_1^n : \N^n\to \N$, vediamo che 
-    \[ \left|\N\right| \le \left| \hom\grf(\N) \right| \le \left| \bigsqcup_{n \in \N} \Gamma^n \right| = \sum_{n \in \N}\left|\Gamma\right|^n = \left|\N\right| \]
+    Dato che ogni funzione in $\hom\grf$ è calcolabile da un programma, ovvero una sequenza finita di simboli tratti da un alfabeto finito $\Gamma$ e per ogni numero naturale $n$ abbiamo la funzione $\pi_1^n : \N^n\to \N$, vediamo che 
+    \[ \left|\N\right| \le \left| \hom\grf \right| \le \left| \bigsqcup_{n \in \N} \Gamma^n \right| = \sum_{n \in \N}\left|\Gamma\right|^n = \left|\N\right| \]
     \qed
 \end{corollary}
 
 \newcommand\pair{\operatorname{pair}}
 \newcommand\smnk{\catname{Smnk}}
 
-\subsection{Teorema $s-m-n$}
+\subsection{Teorema $smn$}
 
-Per discutere la categoria che stiamo costruendo avremo bisogno di numerare l'insieme $\hom\grf(\N)$ in modo ricorsivo, dunque abbiamo bisogno di alcuni ingredienti: prima di tutto ci serve un appaiamento ricorsivo $\pair: \N^2\iso\N$, di cui un esempio è l'appaiamento di Cantor
+Per discutere la categoria che stiamo costruendo avremo bisogno di numerare l'insieme $\hom\grf$ in modo ricorsivo, dunque abbiamo bisogno di alcuni ingredienti: prima di tutto ci serve un appaiamento ricorsivo $\pair: \N^2\iso\N$, di cui un esempio è l'appaiamento di Cantor
 \[ \pair(x,y) = \frac{x^2+x+2xy+3y+y^2}{2} \]
 Che è immediatamente riconoscibile come funzione ricorsiva primitiva.\\
 Possiamo costruire ora esplicitamente una biezione $\Phi : \Com \iso\N$, notazione che manterremo nel prossimo risultato: dalla definizione di $\imp$ si vede che 
-\[ \Com \cong \{\skip\}\sqcup \underbrace{(\Var \times \Exp)}_{(...):=(...)} \sqcup \underbrace{(\Com\times\Com)}_{(...);(...)} \sqcup \underbrace{(\Exp \times \Com \times \Com)}_{\ifc(...)\then(...)\elsec(...)} \sqcup \underbrace{(\Exp \times \Com)}_{\while(...)\do(...)} \]
+\[ \Com \cong \{\skip\}\sqcup \underbrace{(\Var \times \Exp)}_{(\dots):=(\dots)} \sqcup \underbrace{(\Com\times\Com)}_{(\dots);(\dots)} \sqcup \underbrace{(\Exp \times \Com \times \Com)}_{\ifc(\dots)\then(\dots)\elsec(\dots)} \sqcup \underbrace{(\Exp \times \Com)}_{\while(\dots)\do(\dots)} \]
 E allo stesso modo 
-\[ \Exp \cong \N\sqcup\Var \sqcup\underbrace{(\Exp\times\Exp)}_{(...)+(...)} \sqcup\underbrace{(\Exp\times\Exp)}_{(...)-(...)} \sqcup\underbrace{(\Exp\times\Exp)}_{(...)\cdot(...)} \]
+\[ \Exp \cong \N\sqcup\Var \sqcup\underbrace{(\Exp\times\Exp)}_{(\dots)+(\dots)} \sqcup\underbrace{(\Exp\times\Exp)}_{(\dots)-(\dots)} \sqcup\underbrace{(\Exp\times\Exp)}_{(\dots)\cdot(\dots)} \]
 Dunque definiamo per induzione l'enumerazione $\Phi : \Com \iso \N$:
 \[ \begin{cases}
     \Phi(\skip) & := 0\\
@@ -1102,45 +1122,47 @@ E $\varphi:\Var \iso \N$ è semplicemente data da
     vale a dire circa $2.25\cdot 10^{63}$, notevole per un comando da una ventina di simboli.
 \end{example}
 
-Ora, mantenendo questa notazione, possiamo enunciare un risultato che sarà essenziale per dimostrare la chiusura della categoria che stiamo costruendo
+Ora, mantenendo questa notazione, possiamo enunciare un risultato che sarà essenziale per dimostrare la chiusura della categoria che stiamo costruendo:
 
-\begin{theorem}{Teorema $s-m-n$}{teorema smn}
+\begin{theorem}{Teorema $smn$}{teorema smn}
     Sia $f : \N^{m+n} \to \N$ in $\hom\grf(\N)$ definita dal comando $\Phi^{-1}(i)$ per $i \in \N$.\\
     Esiste una funzione $s_{m,n}: \N^{1+n} \to \N$ in $\hom\prf(\N)$ tale che per ogni $\mathbf{x} \in \N^n$ e $\mathbf{y}\in \N^m$ la funzione $\mathbf{y}\mapsto f(\mathbf{x},\mathbf{y})$ sia calcolata dal comando $\Phi^{-1}(s_{m,n}(i,\mathbf{x}))$.\\
     In più, $s_{m,n}$ è univocamente determinata da $m$ e $n$.
     \proof 
     La funzione $s_{m,n}$ è esibita da
-    \[ s_{m,n}(i,a_1,...,a_n) = \Phi\left( x_1 := a_1;\ ...;\ x_n := a_n ;\ \Phi^{-1}(i) \right) \]
+    \[ s_{m,n}(i,a_1,\ \dots,a_n) = \Phi\left( x_{m+1} := a_1;\ \ \dots;\ x_{m+n} := a_n ;\ \Phi^{-1}(i) \right) \]
     \qed
 \end{theorem}
 
 Notiamo che la funzione $s_{m,n}$ non esegue il comando $\Phi(i)$, ma semplicemente restituisce il numero del comando con le variabili fissate.\\
-Notiamo che se indichiamo con $f_i$ la funzione calcolata dal comando $\Phi^{-1}(i)$ per $i \in \N$, la mappa $i\mapsto f_i$ non è iniettiva, in quanto comandi sintatticamente diversi potrebbero calcolare la stessa funzione, ma è suriettiva e questo ci basta.
+Notiamo che se il comando $\Phi^{-1}(i)$ calcola una funzione che indichiamo con $f_i$ per $i \in \N$, la mappa $i\mapsto f_i$ non è iniettiva (o totale), in quanto comandi sintatticamente diversi potrebbero calcolare la stessa funzione, ma è suriettiva come conseguenza del teorema \ref{th:tesi di church-turing} e questo ci basta.
 
 \section{$\percat(\N)$: definizioni e proprietà}
 
 \begin{definition}{Relazione di equivalenza parziale}{per}
     Sia $A$ un insieme.\\
     Una \bemph{relazione di equivalenza parziale} su $A$ è una relazione $R\subset A\times A$ che rispetti la proprietà transitiva e simmetrica, ma non necessariamente quella riflessiva.\\
-    Definiamo come $\dom R$ l'insieme dei punti $x \in A$ che sono in relazione con sè stessi (o equivalentemente con un qualsiasi altro punto) e definiamo l'insieme $A/R$ come $(\dom R/R) \sqcup (A\setminus \dom R)$.
+    Definiamo come $\dom R$ l'insieme dei punti $x \in A$ che sono in relazione con sè stessi (o equivalentemente con un qualsiasi altro punto) e definiamo l'insieme $A/R$ come $(\dom R/R)$.
 \end{definition}
 
-Intuitivamente possiamo pensare a $A/R$ come ad una partizione di $A$ in $R$-classi di equivalenza e una "zona d'ombra" che $R$ non vede; equivalentemente, potremmo estendere $R$ ad una relazione di equivalenza completa $\cap{R}$ che identifichi i punti fuori dal dominio di $R$ in una nuova classe. 
+Intuitivamente possiamo pensare a $A/R$ come ad una partizione di $A$ in $R$-classi di equivalenza e una "zona d'ombra" che $R$ non vede.. 
 
 \begin{definition}{La categoria $\percat(\N)$}{categoria per}
-    Definiamo la categoria $\percat(\N)$ come la categoria i cui oggetti sono le relazioni di equivalenza parziali su $\N$ (a volte identificate con i loro quozienti $\N/R$) e i cui morfismi sono dati dalle funzioni $f:\N/R\to\N/S$ "tracciate" da una qualche $i \in \N$, ovvero da una mappa $f_i \in \hom_\grf(\N,\N)$ definita sul dominio di $R$ tale che 
-    \[ xRy \Rarr f_i(x)S f_i(y) \]
+    Definiamo la categoria $\percat(\N)$ come la categoria i cui oggetti sono le relazioni di equivalenza parziali su $\N$ (a volte identificate con i loro quozienti $\N/R$) e i cui morfismi sono dati dalle funzioni $f:\N/R\to\N/S$ "tracciate" da una qualche mappa $\varphi \in \grf(\N,\N)$ definita \textit{almeno} sul dominio di $R$ tale che 
+    \[ xRy \Rarr \varphi(x)S \varphi(y) \]
     O equivalentemente 
-    \[f([x]_R) =[f_i(x)]_S\]
+    \[f([x]_R) =[\varphi(x)]_S\]
+    In particolare, chiamiamo un numero $i$ tale che $\varphi$ sia calcolata da $\Phi^{-1}(i)$ un \bemph{codice} di $f$ o di $\varphi$.
 \end{definition}
 
-Nella definizione dei morfismi di $\percat(\N)$ non è richiesto nè che $i$ sia unico nè che $f_i$ si comporti in qualsiasi modo stabilito a priori nella "zona d'ombra" di $R$. 
+Nella definizione dei morfismi di $\percat(\N)$ non è richiesto nè che $\varphi$ sia unica nè che si comporti in qualsiasi modo stabilito a priori nella "zona d'ombra" di $R$.\\
+Osserviamo anche che un morfismo $R\to S$ tracciato dalla funzione $\varphi:\N\to\N$ è univocamente determinato dal comportamento della funzione $\varphi|_{\dom R}$.
 
 \begin{lemma}{Oggetto terminale di $\percat(\N)$}{oggetto terminale di per}
     Ogni relazione $T$ con un'unica classe di equivalenza non vuota $\dom T$ è un oggetto terminale di $\percat(\N)$.
     \proof 
     Sia $R$ un oggetto in $\percat(\N)$ e sia $T$ una relazione di equivalenza con un'unica classe non vuota $\dom T$.\\ 
-    È chiaro che l'unico morfismo $f:R \to T$ è dato una qualsiasi mappa tale che $f(\dom R)\subset \dom T$, in particolare abbiamo che se $\dom R = \varnothing$ l'unica funzione è la funzione vuota, mentre se $\dom R$ non è vuoto esiste sempre la funzione costante per qualche elemento di $\dom T$.
+    È chiaro che l'unico morfismo $f:R \to T$ è dato una qualsiasi mappa tale che $\varphi(\dom R)\subset \dom T$, in particolare abbiamo che se $\dom R = \varnothing$ l'unica funzione è la funzione vuota, mentre se $\dom R$ non è vuoto esiste sempre la funzione costante per qualche elemento di $\dom T$.
     \qed 
 \end{lemma}
 
@@ -1164,7 +1186,8 @@ La nostra scelta "canonica" di oggetto terminale sarà la relazione $1 := \N\tim
 \end{lemma}
 
 In particolare per ogni relazione $S$ possiamo costruire un funtore $-\times S : \percat(\N)\to\percat(\N)$ dato da
-\[ (f:R\to T)\times S := \pair (f, \id) : R\times S \to T\times S \]
+\[ (f:R\to T)\times S := f\times \id_S : R\times S \to T\times S \]
+Dove se $f$ è tracciato da $\varphi$, $f\times \id_S$ è tracciato da $\pair(\varphi, \id)$
 
 \begin{theorem}{Chiusura cartesiana di $\percat(\N)$}{chiusura cartesiana di per}
     La categoria $\percat(\N)$ è una categoria cartesiana chiusa.\\
@@ -1195,8 +1218,8 @@ Consideriamo una sottocategoria
 Notiamo che abbiamo al più una $\I$-mappa tra due oggetti dando a $\I$ una struttura di insieme parzialmente ordinato: intuitivamente abbiamo una $\I$-mappa $R\to S$ quando le classi di $S$ sono unioni di classi di $R$ a cui possibilmente sono stati aggiunti elementi dalla zona d'ombra di $R$. In particolare, la relazione massimale $1 = \N\times\N$ che abbiamo definito sopra è il massimo di questo insieme mentre la relazione vuota $0 = \varnothing\subset \N\times\N$ è il minimo.\\
 Per un esempio, che mostra anche che le $\I$-mappe non sono necessariamente isomorfismi e nemmeno monomorfismi in quanto non iniettive, consideriamo le relazioni
 \[ R = \left\{ (p,p)  : p\text{ primo} \right\} \subset \N^2 \]
-\[ S = \left\{ (p_{2k}^m, p_{2k+1}^n),(p_{2k+1}^m, p_{2k}^n)  :k\ge 1, p_k =k\text{-esimo primo}, m\cdot n \neq 0 \right\} \cup \left\{ (p\cdot q, p\cdot q) : p\neq q\text{ primi} \right\} \subset \N^2 \]
-Vediamo $R$ identifica ogni numero primo solo con sè stesso, mentre $S$ identifica ciascun primo con il suo primo precedente o successivo e con tutte le loro potenze non nulle e ogni prodotto di due primi distinti solo con sè stesso : le classi di $S$ dunque sono estensioni e unioni delle classi di $R$ o classi completamente nuove, dove i nuovi elementi sono presi dalla zona d'ombra di $R$, dunque abbiamo una $\I$-mappa $R\to S$ anche se non è data da una funzione iniettiva o suriettiva $\dom R/R \to \dom S/S$.\\
+\[ S = \left\{  (p_k^n, p_k^m), (p_{2k}^m, p_{2k+1}^n),(p_{2k+1}^m, p_{2k}^n)  :k\ge 1, p_k =k\text{-esimo primo}, m\cdot n \neq 0 \right\} \cup \left\{ (p\cdot q, p\cdot q) : p\neq q\text{ primi} \right\} \subset \N^2 \]
+Vediamo $R$ identifica ogni numero primo solo con sè stesso, mentre $S$ identifica i primi a coppie e con tutte le loro potenze non nulle e ogni prodotto di due primi distinti solo con sè stesso : le classi di $S$ dunque sono estensioni e unioni delle classi di $R$ o classi completamente nuove, dove i nuovi elementi sono presi dalla zona d'ombra di $R$, dunque abbiamo una $\I$-mappa $R\to S$ anche se non è data da una funzione iniettiva o suriettiva $\dom R/R \to \dom S/S$.\\
 Nonostante sembri apparentemente molto semplice, la seguente proposizione ci mostra che $\I$ è una sottocategoria molto rappresentativa di $\percat(\N)$.
 
 \begin{proposition}{Rappresentazione di $\percat(\N)$ in $\I$}{}
@@ -1212,6 +1235,10 @@ Nonostante sembri apparentemente molto semplice, la seguente proposizione ci mos
 \end{proposition}
 
 Il ruolo di $\I$ in $\percat(\N)$ è analogo in qualche modo a quello che hanno le potenze di un campo $\K$ nella categoria degli spazi vettoriali definiti su di esso: allo stesso modo in cui ogni mappa lineare $f:V\to W$ può essere \textit{innaturalmente} rappresentata da una mappa $M:\K^m\to\K^n$ dopo la scelta di due basi, ovvero di isomorfismi $\beta :\K^m\iso V$ e $\beta ':\K^n\iso W$ e che in particolare la scelta delle basi cambierebbe in base a $f$ se dovessimo imporre restrizioni sulla forma di $M$, dato che le mappe di $\I$ hanno una forma molto restrittiva abbiamo che non solo gli isomorfismi ma anche gli oggetti di rappresentazione scelti devono variare in base al morfismo considerato.
+
+\section*{Conclusione}
+
+
 
 \nocite{*}
 \printbibliography
