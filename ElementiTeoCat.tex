@@ -8,7 +8,7 @@
 
 \addbibresource{ElementiTeoCat.bib}
 
-\title{Elementi di Teoria delle Categorie\\ {\small\it Categories for the Learning Mathematician}}
+\title{Elementi di Teoria delle Categorie:\\ aspetti generali e un esempio dalla Teoria della Computazione}
 \author{Filippo Troncana, sotto la supervisione del prof. R. Zunino}
 \date{A.A. 2025/2026}
 
@@ -25,13 +25,19 @@
 
 \tableofcontents
 
-\chapter{Teoria delle categorie elementare}
+\chapter{Teoria delle Categorie elementare}
 
 \section{Fondamenti}
 
-\subsection{Che cos'è la teoria delle categorie?}
+\subsection{Cenni storici}
 
-La teoria delle categorie è una branca della matematica nata nel corso del ventesimo secolo in seguito alla necessità di trovare un linguaggio più conveniente per sviluppare l'algebra omologica 
+
+
+Tradizionalmente si colloca la nascita della Teoria delle Categorie 
+
+\subsection{Universi di Grothendieck}
+
+
 
 \begin{definition}{Universo di Grothendieck}{universo di Grothendieck}
     Sia $\G$ un insieme non vuoto. Questo si dice \bemph{universo di Grothendieck} se:\begin{itemize}
@@ -81,8 +87,8 @@ Si osserva facilmente che l'insieme $\G_0$ è numerabile e corrisponde alla clas
 Intuitivamente, $\G_1$ è già sufficiente per la pratica matematica "ordinaria", contenendo tutte le costruzioni usuali, e appunto è già un candidato per la "classe di tutti gli insiemi" in ZFC costituendone un \bemph{modello}. 
 
 \begin{theorem}{Modelli per ZFC in $\{\G_\alpha\}_{\alpha}$}{modelli per ZFC}
-    L'esistenza di $\G_0$ è indipendente dalla teoria degli insiemi di ZF meno l'assioma di infinito e questo ne costituisce un modello; in particolare, postulare l'esistenza di $\G_0$ in questa teoria è equivalente all'assioma di infinito.\\
-    L'esistenza di $\G_\alpha$ per $\alpha>0$ è indipendente dalla teoria degli insiemi di ZFC e questo ne costituisce un modello.
+    L'esistenza di $\G_0$ è indipendente dalla Teoria degli Insiemi di ZF meno l'assioma di infinito e questo ne costituisce un modello; in particolare, postulare l'esistenza di $\G_0$ in questa teoria è equivalente all'assioma di infinito.\\
+    L'esistenza di $\G_\alpha$ per $\alpha>0$ è indipendente dalla Teoria degli Insiemi di ZFC e questo ne costituisce un modello.
 \end{theorem}
 
 Vale inoltre un teorema molto importante, per la cui dimostrazione rimandiamo a \cite{Williams1969}, che stabilisce una corrispondenza tra universi di Grothendieck e cardinali fortemente inaccessibili in ZFC:
@@ -92,11 +98,14 @@ Vale inoltre un teorema molto importante, per la cui dimostrazione rimandiamo a 
     Inoltre, se $\kappa$ è un cardinale fortemente inaccessibile, lo stadio $V_\kappa$ dell'universo di Von Neumann è un universo di Grothendieck.
 \end{theorem}
 
-Nel reame degli assiomi che introducono cosiddetti "grandi cardinali", l'esistenza di una classe propria di cardinali fortemente inaccessibili è uno tra i più deboli ed è considerato standard per fondare sulla teoria degli insiemi la teoria delle categorie, approccio seguito ad esempio da \cite{SGA4}.\\
+Nel reame degli assiomi che introducono cosiddetti "grandi cardinali", l'esistenza di una classe propria di cardinali fortemente inaccessibili è uno tra i più deboli ed è considerato standard per fondare sulla Teoria degli Insiemi la Teoria delle Categorie, approccio seguito ad esempio da \cite{SGA4}.\\
 Si tratta comunque di un assioma con conseguenze importanti: nel contesto degli altri assiomi di ZF, l'assioma di Tarski implica immediatamente gli assiomi di infinito e di esistenza dell'insieme delle parti e meno banalmente l'assioma di scelta, per cui si veda \cite{Tarski1939}.\\
 Volendo è possibile indebolire questo assioma in moltissimi casi: come suggerito da \cite{MacLane1978}: l'idea generale è di assumere l'assioma di universo, fissare un universo $U$ e passare a uno più grande ogni volta che se ne ha necessità, per poi sostituire a posteriori l'assioma di universo "forte" con l'esistenza dell'universo più grande utilizzato. Non ci preoccupiamo di seguire questo schema, ma vale la pena citarlo in quanto ha il vantaggio di permettere in ogni dimostrazione di limitare il numero di universi di Grothendieck di cui assumere l'esistenza.
 
+\newpage
 \section{Nozioni fondamentali}
+
+Le convenzioni che useremo a livello di notazione vengono in gran parte da \cite{Riehl2017}.
 
 \begin{definition}{Categoria e dualità}{categoria}
     Una \bemph{categoria} $\C$ è una struttura munita di due insiemi: $\ob\C$ e $\hom\C$, detti rispettivamente \bemph{oggetti} (o elementi) e \bemph{morfismi} (o mappe o frecce) tali che: \begin{itemize}
@@ -242,7 +251,7 @@ Adesso faremo una cosa un po' buffa, ovvero definiremo il prodotto di categorie 
 \end{definition}
 
 Perché "spostiamo" il prodotto cartesiano alle categorie? Perché spesso quando lavoriamo in qualche categoria ci risulta più agevole una definizione più "intrinseca" di prodotto, oppure abbiamo prodotti diversi: in $\catname{Rel}$\footnote{Categoria degli insiemi piccoli e delle relazioni tra loro} il prodotto "categorico" è dato dall'unione disgiunta, nonostante $\setcat$ sia una sua sottocategoria e in questa il prodotto sia l'usuale prodotto cartesiano.\\
-Nel contesto della teoria delle Categorie Superiori è comunque possibile dare una caratterizzazione del prodotto di categorie ordinarie\footnote{Dette 1-categorie strette} in termini di una simile proprietà universale a quella che vedremo più giù.\\
+Nel contesto della Teoria delle Categorie Superiori è comunque possibile dare una caratterizzazione del prodotto di categorie ordinarie\footnote{Dette 1-categorie strette} in termini di una simile proprietà universale a quella che vedremo più giù.\\
 Abbiamo visto che i morfismi sono trasformazioni tra oggetti, mentre i funtori sono trasformazioni tra morfismi. Introduciamo ora un ulteriore "livello" di frecce, le trasformazioni naturali, ovvero trasformazioni tra funtori.
 
 \begin{definition}{Trasformazione naturale}{trasformazione naturale}
@@ -271,7 +280,7 @@ Le trasformazioni naturali ci permettono di dare una nozione di equivalenza più
 \end{definition}
 
 Un principio "filosofico" importante per la Teoria delle Categorie è il cosiddetto "principio di equivalenza", ovvero l'idea che tutte le costruzioni portate avanti e le proprietà dimostrate in Teoria delle Categorie debbano essere invarianti per equivalenza di categorie, ovvero che oggetti isomorfi debbano essere in qualche modo "indistinguibili": in un certo senso lo abbiamo già rotto con diverse delle nostre definizioni, ad esempio quando invochiamo l'uguaglianza estensionale per due insiemi invece di limitarci alla biezione.\\
-Di fatto nella pratica matematica il principio di equivalenza è uno slogan più che una legge, ma risulta estremamente importante quando discute della possibilità di fondare la matematica sulla teoria delle categorie, o di fondare la teoria delle categorie su teorie alternative a quella degli insiemi di ZFC che non contengano ad esempio l'assioma di estensionalità; da qui nasce lo studio della teoria delle categorie superiori e in particolare dei gruppoidi superiori, particolari categorie superiori che codificano l'idea di equivalenze tra oggetti, equivalenze tra morfismi e così via.\\
+Di fatto nella pratica matematica il principio di equivalenza è uno slogan più che una legge, ma risulta estremamente importante quando discute della possibilità di fondare la matematica sulla Teoria delle Categorie, o di fondare la Teoria delle Categorie su teorie alternative a quella degli Insiemi di ZFC che non contengano ad esempio l'assioma di estensionalità; da qui nasce lo studio della Teoria delle Categorie Superiori e in particolare della Teoria dei Gruppoidi Superiori, particolari categorie superiori che codificano l'idea di equivalenze tra oggetti, equivalenze tra isomorfismi e così via.\\
 Useremo spesso (attraverso un altro risultato che vedremo dopo) questa caratterizzazione per le equivalenze di categorie, di cui omettiamo la dimostrazione in quanto più lunga e laboriosa che profonda.
 
 \begin{proposition}{Caratterizzazione per un'equivalenza di categorie}{equivalenza di categorie}
@@ -281,6 +290,7 @@ Useremo spesso (attraverso un altro risultato che vedremo dopo) questa caratteri
 
 A dire il vero, questa caratterizzazione dipenderebbe dall'assioma della scelta, altrimenti sarebbe solo una proprietà delle equivalenze di categorie: per ottenere un'equivalenza di categorie da un funtore pienamente fedele ed essenzialmente suriettivo sugli oggetti dovremmo appunto scegliere un oggetto $x$ per ogni classe di isomorfismo $[Fx]$, possibile solo in alcuni casi senza l'assioma della scelta. Comunque come visto sopra l'assioma di Tarski implica l'assioma della scelta, dunque noi possiamo usarla senza problemi.
 
+\newpage
 \section{Lemma di Yoneda e conseguenze}
 
 Un risultato assolutamente centrale in Teoria delle Categorie è il lemma di Yoneda, una versione "categoriale" del teorema di Cayley in Teoria dei Gruppi\footnote{E in effetti, il teorema di Cayley può essere ridotto ad un caso particolare del lemma di Yoneda}. Prima di presentarlo dobbiamo introdurre alcune costruzioni e nozioni importanti per formularlo.
@@ -492,7 +502,7 @@ Abbiamo alcuni esempi "prototipici" di funtori aggiunti:
 
 \begin{example}{Aggiunzione Libero-Dimenticante \textit{(Free-Forgetful)}}{}
     Denotiamo con $\operatorname{Free}:\setcat\to\grpcat$ il funtore che assegna ad un insieme $X$ il gruppo libero $(FX, *)$ su $X$: la proprietà universale dei gruppi liberi ci dice che per qualsiasi altro gruppo $G$, una funzione insiemistica $f:X\to G$ definisce un unico omomorfismo di gruppi $\varphi : (FX,*) \to (G,\cdot)$ tale che $\varphi|_X = f$.\\
-    Questa proprietà nel linguaggio della teoria delle categorie si esprime definendo il funtore dimenticante $U:\grpcat\to\setcat$ che manda un gruppo $(G,\cdot)$ nell'insieme $G$ e un omomorfismo di gruppi in sè stesso considerato come funzione insiemistica e dicendo che esiste un'aggiunzione $\operatorname{Free}\dashv U$, infatti per ogni insieme $X$ e gruppo $(G,\cdot)$ abbiamo 
+    Questa proprietà nel linguaggio della Teoria delle Categorie si esprime definendo il funtore dimenticante $U:\grpcat\to\setcat$ che manda un gruppo $(G,\cdot)$ nell'insieme $G$ e un omomorfismo di gruppi in sè stesso considerato come funzione insiemistica e dicendo che esiste un'aggiunzione $\operatorname{Free}\dashv U$, infatti per ogni insieme $X$ e gruppo $(G,\cdot)$ abbiamo 
     \[ \grpcat(\operatorname{Free}(X), (G,\cdot)) \cong \setcat(X,U((G,\cdot))) = \setcat(X, G) \]
 \end{example}
 
@@ -520,6 +530,7 @@ Ora grazie al lemma di Yoneda possiamo dimostrare un fatto che ci servirà più 
 In generale la categoria $[\C^\op,\setcat]$ è mostruosamente più grande di $\C$\footnote{Ad esempio, la classe dei morfismi di $[\mathbf{1},\setcat]$ è in biezione con quella di $\setcat$ e dunque è grande nonostante quella di $\mathbf{1}$ sia un singoletto.} e dunque cercare oggetti particolari di $\C$ in $[\C^\op,\setcat]$ attraverso la rappresentazione di Yoneda potrebbe sembrare un modo per trasformare dei problemi semplici in problemi più complicati, ma in molti casi (come quello appena visto) risulta più facile confrontare gli oggetti dal punto di vista dei loro insiemi di morfismi; questo perché gli $\hom$-funtori hanno delle proprietà particolari che rendono .\\
 In più le categorie di funtori risultano essere molto "beneducate" al di là della loro grandezza, ereditando proprietà desiderabili dal loro codominio\footnote{E $\setcat$ è una delle categorie più beneducate di tutte} anche qualora queste dovessero mancare al loro dominio, vedremo degli esempi più tardi.
 
+\newpage
 \section{Limiti e proprietà universali}
 
 Uno dei concetti più importanti in Teoria delle Categorie è quello di limite. Per definire propriamente i limiti dobbiamo dare la definizione formale di diagramma in una categoria, che categorifica il concetto di famiglia indicizzata in $\setcat$.
@@ -761,8 +772,9 @@ Vediamo che vale anche l'implicazione inversa:
     $\C$ ammette i coprodotti binari se e solo se ammette un funtore $\amalg$ aggiunto sinistro a $\Delta$ e per ogni coppia $(X,Y)$ di oggetti di $\C$, $\amalg(X,Y)$ è \textit{un} coprodotto di $X$ e $Y$.
 \end{corollary}
 
-\newcommand\eval{\operatorname{eval}}
 
+\newpage
+\newcommand\eval{\operatorname{eval}}
 \section{Categorie Cartesiane Chiuse}
 
 \subsection{Introduzione}
@@ -770,7 +782,7 @@ Vediamo che vale anche l'implicazione inversa:
 Quella delle categorie cartesiane chiuse è una classe di categorie la cui importanza viene da due campi apparentemente scollegati: l'Informatica Teorica e la Geometria. Intuitivamente, le categorie cartesiane chiuse sono quelle in cui è possibile trasformare un morfismo $X\times Y\to Z$ in un morfismo $X\to (Y\to Z)$ astraendo la nozione di "fissare" un argomento in un modo che si comporti bene rispetto al prodotto.\\
 In Informatica Teorica, le categorie cartesiane chiuse corrispondono in modo diretto a modelli della computazione, di cui vedremo un esempio più nel terzo capitolo.\\
 L'importanza delle categorie cartesiane chiuse in Geometria invece è dovuta allo sviluppo della Teoria dei Topoi, categorie cartesiane chiuse in cui è anche possibile definire un analogo dell'insieme delle parti: i topoi generalizzano contemporaneamente le varie nozioni di "spazio" in Topologia e Geometria Algebrica e al contempo fungono da "universi" per la matematica, costituendo uno dei candidati principali per una fondazione alternative della matematica rispetto alla Teoria degli Insiemi.\\
-Non ci è possibile affrontare il concetto di Topos in questa trattazione per questioni di spazio e di difficoltà della teoria, ma rimandiamo il lettore interessato a \cite{MacLaneMoerdijk1994}.
+Non ci è possibile affrontare il concetto di topos in questa trattazione per questioni di spazio e di difficoltà della teoria, ma rimandiamo il lettore interessato a \cite{MacLaneMoerdijk1994}.
 
 \begin{definition}{Oggetto esponenziale}{oggetto esponenziale}
     Sia $\C$ una categoria e siano $X,Y$ oggetti di $\C$ che ammettano un prodotto in $\C$.\\
@@ -941,7 +953,7 @@ La potenza di questo teorema è evidente soprattutto passando alla contronominal
 \chapter{La categoria $\percat(\N)$}
 
 Questo capitolo è dedicato alla costruzione e allo studio delle proprietà elementari di una particolare categoria cartesiana chiusa, che funge da importante controesempio all'idea intuitiva che avendo gli oggetti esponenziali la cardinalità possa sfuggire di mano: nonostante sia una categoria concreta e tra i suoi oggetti includa insiemi infiniti, la cardinalità di ciascun oggetto rimane al più numerabile, esponenziali inclusi.\\
-La costruzione di questa categoria e la dimostrazione della sua chiusura cartesiana appaiono in una versione estremamente essenziale in \cite{Bainbridge1990}, dove il teorema \ref{th:chiusura cartesiana di per} è una semplice proposizione; qui abbiamo deciso di espandere e precisare i dettagli lasciati "sotto il tappeto".
+La costruzione di questa categoria e la dimostrazione della sua chiusura cartesiana appaiono in una versione estremamente essenziale in \cite{Bainbridge1990}, dove il teorema \cref{th:chiusura cartesiana di per} è una semplice proposizione; qui abbiamo deciso di espandere e precisare i dettagli lasciati "sotto il tappeto".
 
 \section{Funzioni ricorsive generali}
 
@@ -994,9 +1006,6 @@ Vediamo che, indicando con $D_f$ il dominio come funzione di un morfismo $f$, va
 
 Si può dimostrare facilmente che le funzioni ricorsive primitive sono tutte funzioni totali, in quanto l'unica operazione che potrebbe lasciare indefinita una funzione appare nel requisito $7$
 
-\newcommand\imp{\catname{IMP}}
-\newcommand\stimp{\imp^{(\to)}}
-\newcommand\nimp{\N\imp}
 \newcommand\Var{\catname{Var}}
 \newcommand\Input{\catname{Input}}
 \newcommand\Output{\catname{Output}}
@@ -1010,6 +1019,7 @@ Si può dimostrare facilmente che le funzioni ricorsive primitive sono tutte fun
 \newcommand\then{\catname{then}}
 \newcommand\elsec{\catname{else}}
 
+\newpage
 \section{Il linguaggio $\imp$ e il teorema $smn$}
 \renewcommand\c{\mathbf{c}}
 
@@ -1021,7 +1031,7 @@ La sua semantica fa riferimento a tre insiemi: $\Var$ per le variabili (che assu
     \item Il condizionale $\ifc(\dots)\then(\dots)\elsec(\dots)$;
     \item Il ciclo while $\while(\dots)\do(\dots)$.
 \end{itemize} 
-Questo è un linguaggio abbastanza semplice da poter ragionare formalmente sulla sua semantica, ma abbastanza potente da poter calcolare più o meno tutte le funzioni che "intuitivamente" vogliamo che calcoli, come vedremo dopo.
+Questo è un linguaggio abbastanza semplice da poter ragionare formalmente sulla sua semantica, ma abbastanza potente da poter calcolare più o meno tutte le funzioni che "intuitivamente" ci aspettiamo un computer calcoli, come vedremo dopo.
 
 \begin{definition}{Funzione $\imp$-definibile}{funzione definibile}
     Modifichiamo leggermente il linguaggio $\imp$, restringendo i valori delle variabili a numeri naturali invece che interi e assumendo senza perdita di generalità che l'insieme $\Var$ abbia la forma 
@@ -1029,11 +1039,12 @@ Questo è un linguaggio abbastanza semplice da poter ragionare formalmente sulla
     e che ogni comando sia scritto in modo da dipendere soltanto dal valore delle variabili in $\Input$: le variabili in $\Temp$ sono da considerarsi le variabili temporanee che un comando può invocare come "appoggio" e le variabili in $\Output$ sono quelle in cui il comando "deposita" il risultato dei suoi calcoli.\\ 
     Diciamo che un comando $\c \in \Com$ definisce una funzione parziale $f_{\c} : \N^n\to\N^k$ per $n,k\ge 0$ se per ogni $a_1,\ \dots,a_n,b_1,\ \dots,b_k$ si ha 
     \[ f(a_1,\ \dots ,a_n) = (b_1,\ \dots,b_k) \Rarr \forall\sigma, \exists\sigma' : \langle \c, \sigma[x_1\mapsto a_1,\ \dots, x_n\mapsto a_n] \rangle \to_b \sigma'[y_1\mapsto b_1,\ \dots, y_k\mapsto b_k]\]
-    \[ \nexists f(a_1,\ \dots , a_n ) \Rarr \Rarr \forall\sigma, \nexists\sigma' : \langle \c, \sigma[x_1\mapsto a_1,\ \dots, x_n\mapsto a_n] \rangle \to_b \sigma' \]
+    \[ \nexists f(a_1,\ \dots , a_n ) \Rarr \forall\sigma, \nexists\sigma' : \langle \c, \sigma[x_1\mapsto a_1,\ \dots, x_n\mapsto a_n] \rangle \to_b \sigma' \]
     In questo caso diremo che $\c$ \bemph{calcola} $f$ e che $f$ è $\imp$\bemph{-definibile}.\\
-    In particolare, la funzione non è definita per i valori di $a_1,\ \dots,a_n$ per i quali il comando $\c$ non termina in nessuno stato.
+    In particolare, la funzione non è definita per i valori di $a_1,\ \dots,a_n$ per i quali il comando $\c$ non termina mai, indipendentemente dallo stato.
 \end{definition}
 
+Notiamo che non richiediamo a priori che il comando \textit{durante la sua esecuzione} si comporti in un modo prestabilito con le variabili in $\Input$ e $\Output$, semplicemente che il suo terminare e i valori in cui termina dipendano solo dalle variabili in $\Input$ e che i suoi risultati vadano letti attraverso le variabili in $\Output$. Questo requisito di "buona scrittura" potrebbe anche essere omesso, ma rende la nostra trattazione più agevole sotto molti punti di vista e dunque lo manteniamo.\\
 Questa corrispondenza tra funzioni e comandi non è biunivoca in realtà e non è nemmeno una funzione totale: in generale, un comando non definisce una funzione e una funzione ammette infiniti comandi che la calcolano.\\ 
 Il problema di determinare se un comando calcoli una funzione o se due comandi diversi calcolano la stessa funzione è in generale molto difficile da risolvere.\\
 Ad esempio, se 
@@ -1055,14 +1066,19 @@ Si vede che $\c_1$ e $\c_2$ sono calcolano entrambi la funzione $x\mapsto x^2$ s
         L'appaiamento di due funzioni $\N^k\to\N^m$ e $\N^k\to\N^n$ in generale si calcola in modo analogo, semplicemente considerando le variabili temporanee da $t_{k+1}$ fino a $t_{k+m}$.
         \item Se $f : \N^a\to\N^b$ è definita dal comando $\c_f$ e $g: \N^b\to\N^c$ è definita dal comando $\c_g$, la loro composizione è definita dal comando
         \[ \c_{g\circ f} := \left( \c_1 ;\ \underbrace{x_1 := y_1 ; \ \dots ; x_b := y_b ;}_{\text{reimpostare gli input}}\ \c_2 \right) \]
-        \item Se $f: \N^k \to \N$ e $g:\N^{k+2}\to\N$ sono definite rispettivamente da $\c_f$ e $\c_g$, allora la funzione $h : \N^{k+1}\to\N$ data dallo schema di ricorsione è definita dal comando RIFALLO SENZA CHIAMARSI DA SOLO
-        \[ \c_h = \left(  \c_f;  ;\while(x_{k+1}\neq 0)\do()  \underbrace{\ifc(x_{k+1} = 0)\then(\c_f)}_{\text{caso base}}\elsec(\underbrace{x_{k+1} := x_{k+1} - 1 ;\ \c_h ;\ x_{k+2} := y_1 ;\ \c_g }_{\text{ricorsione}}) \right) \]
+        \item Se $f: \N^k \to \N$ e $g:\N^{k+2}\to\N$ sono definite rispettivamente da $\c_f$ e $\c_g$, allora la funzione $h : \N^{k+1}\to\N$ data dallo schema di ricorsione è definita dal comando.
+        \[ \c_h = \left( \underbrace{t_1 := x_{k+1};\ \c_f}_{\text{caso base}};\ \underbrace{\while(t_1 \neq 0)\do(x_{k+2}:= y_1;\ \c_g;\ t_1 := t_1-1)}_{\text{Ricorsione}} \right) \]
+        Assumendo che la variabile $t_1$ non sia usata nè da $\c_f$ nè da $\c_g$
         \item L'operatore di minimalizzazione per una funzione $ f:\N^{k+1}\to \N $ definita dal comando $\c_f$ (che assumiamo non usi la variabile $t_1$ e non modifichi il valore di $x_{k+1}$) è dato dal comando 
         \[ \c_{\mu(f)} = \left(x_{k+1}:= 0;\ \c_f ;\underbrace{\while(y_1 \neq 0)}_{\text{controlla il valore di }f}\do(x_{k+1} := x_{k+1}+1;\ \c_f );\ y_1 := x_{k+1} \right) \]
     \end{enumerate}
-    L'implicazione inversa è più laboriosa, ma procede nello stesso modo per induzione sulla semantica di $\imp$.
+    L'implicazione inversa è più laboriosa, ma procede nello stesso modo per induzione sulla semantica di $\imp$. 
     \qed 
 \end{theorem}
+
+Notiamo che nello schema di ricorsione generale potremmo essere tentati di far calcolare $h:\N^{k+1}\to\N$ al comando
+\[ \c_h = \left(\underbrace{\ifc(x_{k+1} = 0)\then(\c_f)}_{\text{caso base}}\elsec(\underbrace{x_{k+1} := x_{k+1} - 1 ;\ \c_h ;\ x_{k+2} := y_1 ;\ \c_g }_{\text{ricorsione}}) \right) \]
+Ma questo ha il problema di non essere un comando valido, in quanto sintatticamente infinito! Se provassimo ad assegnargli un numero naturale in modo ricorsivo come vedremo più avanti, falliremmo in quanto la funzione di numerazione continuerebbe a chiamare sè stessa.
 
 \begin{corollary}{Cardinalità di $\hom\grf$}{cardinalità delle grf}
     L'insieme $\hom\grf$ è numerabile.
@@ -1129,15 +1145,18 @@ Ora, mantenendo questa notazione, possiamo enunciare un risultato che sarà esse
     Esiste una funzione $s_{m,n}: \N^{1+n} \to \N$ in $\hom\prf(\N)$ tale che per ogni $\mathbf{x} \in \N^n$ e $\mathbf{y}\in \N^m$ la funzione $\mathbf{y}\mapsto f(\mathbf{x},\mathbf{y})$ sia calcolata dal comando $\Phi^{-1}(s_{m,n}(i,\mathbf{x}))$.\\
     In più, $s_{m,n}$ è univocamente determinata da $m$ e $n$.
     \proof 
-    La funzione $s_{m,n}$ è esibita da
-    \[ s_{m,n}(i,a_1,\ \dots,a_n) = \Phi\left( x_{m+1} := a_1;\ \ \dots;\ x_{m+n} := a_n ;\ \Phi^{-1}(i) \right) \]
+    La funzione $s_{m,n}$ è esibita dal comando
+    \[ s_{m,n}(i,a_1,\ \dots,a_n) = \Phi\left( x_{m+1} := a_1;\ \dots;\ x_{m+n} := a_n ;\ \Phi^{-1}(i) \right) \]
     \qed
 \end{theorem}
 
 Notiamo che la funzione $s_{m,n}$ non esegue il comando $\Phi(i)$, ma semplicemente restituisce il numero del comando con le variabili fissate.\\
-Notiamo che se il comando $\Phi^{-1}(i)$ calcola una funzione che indichiamo con $f_i$ per $i \in \N$, la mappa $i\mapsto f_i$ non è iniettiva (o totale), in quanto comandi sintatticamente diversi potrebbero calcolare la stessa funzione, ma è suriettiva come conseguenza del teorema \ref{th:tesi di church-turing} e questo ci basta.
+Notiamo che se il comando $\Phi^{-1}(i)$ calcola una funzione che indichiamo con $f_i$ per $i \in \N$, la mappa $i\mapsto f_i$ non è iniettiva (o totale), in quanto comandi sintatticamente diversi potrebbero calcolare la stessa funzione, ma è suriettiva come conseguenza del teorema \cref{th:tesi di church-turing} e questo ci basta.
 
+\newpage
 \section{$\percat(\N)$: definizioni e proprietà}
+
+\subsection{Costruzione e chiusura cartesiana}
 
 \begin{definition}{Relazione di equivalenza parziale}{per}
     Sia $A$ un insieme.\\
@@ -1152,17 +1171,18 @@ Intuitivamente possiamo pensare a $A/R$ come ad una partizione di $A$ in $R$-cla
     \[ xRy \Rarr \varphi(x)S \varphi(y) \]
     O equivalentemente 
     \[f([x]_R) =[\varphi(x)]_S\]
-    In particolare, chiamiamo un numero $i$ tale che $\varphi$ sia calcolata da $\Phi^{-1}(i)$ un \bemph{codice} di $f$ o di $\varphi$.
+    In particolare, chiamiamo un numero $i$ tale che $\varphi$ sia calcolata da $\Phi^{-1}(i)$ un \bemph{codice} di $f$ o di $\varphi$. Per dire che il comando di numero $i$ calcola effettivamente una funzione $\varphi$, diremo che $i$ è un \bemph{codice valido} per $\varphi$ e solo in quel caso scriveremo $\varphi = \varphi_i$
 \end{definition}
 
 Nella definizione dei morfismi di $\percat(\N)$ non è richiesto nè che $\varphi$ sia unica nè che si comporti in qualsiasi modo stabilito a priori nella "zona d'ombra" di $R$.\\
-Osserviamo anche che un morfismo $R\to S$ tracciato dalla funzione $\varphi:\N\to\N$ è univocamente determinato dal comportamento della funzione $\varphi|_{\dom R}$.
+Osserviamo anche che un morfismo $R\to S$ tracciato dalla funzione $\varphi:\N\to\N$ è univocamente determinato dal comportamento della funzione $\varphi|_{\dom R}$.\\
+La categoria $\percat(\N)$ è anche dotata di una struttura di categoria cartesiana chiusa. 
 
 \begin{lemma}{Oggetto terminale di $\percat(\N)$}{oggetto terminale di per}
     Ogni relazione $T$ con un'unica classe di equivalenza non vuota $\dom T$ è un oggetto terminale di $\percat(\N)$.
     \proof 
     Sia $R$ un oggetto in $\percat(\N)$ e sia $T$ una relazione di equivalenza con un'unica classe non vuota $\dom T$.\\ 
-    È chiaro che l'unico morfismo $f:R \to T$ è dato una qualsiasi mappa tale che $\varphi(\dom R)\subset \dom T$, in particolare abbiamo che se $\dom R = \varnothing$ l'unica funzione è la funzione vuota, mentre se $\dom R$ non è vuoto esiste sempre la funzione costante per qualche elemento di $\dom T$.
+    È chiaro che l'unico morfismo $f:R \to T$ è dato una qualsiasi mappa tale che $\varphi(\dom R)\subset \dom T$: in particolare abbiamo che se $\dom R$ è vuoto l'unica funzione è la funzione vuota, mentre se $\dom R$ non è vuoto esiste sempre la funzione costante per qualche elemento di $\dom T$.
     \qed 
 \end{lemma}
 
@@ -1172,7 +1192,7 @@ La nostra scelta "canonica" di oggetto terminale sarà la relazione $1 := \N\tim
     Date due relazioni di equivalenza parziali $R$ e $S$ su $\N$, la relazione 
     \[\pair(a,b) P \pair(c,d) \Harr aRc \wedge bSd\]
     è una relazione di equivalenza parziale su $\N$ ed è un prodotto categoriale in $\percat(\N)$ di $R$ e $S$.\\
-    Le proiezioni ai fattori sono tracciate rispettivamente da $\pi_R = \pi_1\circ \pair^{-1}$ e $\pi_S := \pi_2\circ \pair^{-1}$ e per due morfismi $f:X\to R$ e $g:X\to S$ tracciate da mappe $\alpha,\beta$ il morfismo $h:X\to P$ dato dalla proprietà universale è tracciato da $\gamma : x\mapsto \pair(\alpha(x),\beta(x))$.
+    Le proiezioni ai fattori sono tracciate rispettivamente da $\pi_R = \pi_1\circ \pair^{-1}$ e $\pi_S := \pi_2\circ \pair^{-1}$; per due morfismi $f:X\to R$ e $g:X\to S$ tracciati rispettivamente dalle funzioni $\alpha$ e $\beta$, il morfismo $h:X\to P$ dato dalla proprietà universale è tracciato dalla funzione $\gamma : x\mapsto \pair(\alpha(x),\beta(x))$.
     \proof 
     È immediato osservare che $P$ è sia transitiva che simmetrica, dunque dimostriamo che è un prodotto di $R$ e $S$.\\
     Prendiamo $n,m \in \N$ tali che $nXm$, $\alpha(n)R\alpha(m)$ e $\beta(n)S\beta(m)$; osserviamo che per definizione di $P$ vale 
@@ -1180,7 +1200,7 @@ La nostra scelta "canonica" di oggetto terminale sarà la relazione $1 := \N\tim
     Vediamo inoltre che le mappe sottostanti (e dunque anche i morfismi) rispettano la proprietà di cono  
     \[ \pi_R\circ \gamma = \pi_1\circ\pair^{-1}\circ\pair(\alpha,\beta) = \pi_1(\alpha,\beta) = \alpha \]
     Dimostriamo infine che $P$ è universale: per qualsiasi altro cono $(P', \pi'_R,\pi'_S)$ abbiamo 
-    \[ xP'y \Rarr \pi'_R(x)R\pi'_R(y)\wedge \pi'_S(x)S\pi'_S(y) \Harr \pair(\pi'_R(x),\pi'_S(x))P\pair(\pi'_R(y),\pi'_S(y))  \]
+    \[ xP'y \Rarr \left(\pi'_R(x)R\pi'_R(y)\wedge \pi'_S(x)S\pi'_S(y)\right) \Harr \pair(\pi'_R(x),\pi'_S(x))P\pair(\pi'_R(y),\pi'_S(y))  \]
     Ovvero esiste un morfismo $P'\to P$ tracciato da $\pair\circ(\pi'_R, \pi'_S)$
     \qed
 \end{lemma}
@@ -1192,22 +1212,31 @@ Dove se $f$ è tracciato da $\varphi$, $f\times \id_S$ è tracciato da $\pair(\v
 \begin{theorem}{Chiusura cartesiana di $\percat(\N)$}{chiusura cartesiana di per}
     La categoria $\percat(\N)$ è una categoria cartesiana chiusa.\\
     Un esponenziale $T^S$ è dato dalla relazione 
-    \[ aT^Sb \Harr \forall x,y \in \N, xSy \Rarr f_a(x)Tf_b(y) \]
-    o in altre parole, due numeri sono equivalenti in $R^S$ se e solo se tracciano lo stesso morfismo $S\to T$.
+    \[ aT^Sb \Harr \forall x,y \in \N, xSy \Rarr \varphi_a(x)T\varphi_b(y) \]
+    o in altre parole, due numeri sono equivalenti in $R^S$ se e solo se sono codici validi di funzioni che tracciano lo stesso morfismo $S\to T$.
     \proof 
-    I lemmi \ref{lem:oggetto terminale di per} e \ref{lem:prodotti in per} ci danno le prime due condizioni; per la terza, costruiamo per esaustione su $S \in \ob\percat(\N)$ un funtore aggiunto destro a $-\times S$, dove il prodotto scelto è quello definito nel lemma, che ci darà la chiusura grazie al teorema \ref{th:ccc da aggiunti}.\\
-    Supponiamo di avere un morfismo $f:R\times S \to T$: la funzione sottostante è una funzione $f:\N\to \N$, ma la possiamo leggere come funzione $f':= f\circ \pair : \N^{1+1}\to\N$ tale che 
-    \[ aRc \wedge bSd \Harr \pair(a,b)R\times S \pair(c,d) \Rarr f(\pair(a,b))T f(\pair(c,d)) \Harr f'(a,b)Tf'(c,d) \]
-    In particolare supponiamo che la funzione $f'$ sia calcolata dal comando $\Phi^{-1}(i)$; applicando il teorema \cref{th:teorema smn} nel caso $m=n=1$ otteniamo due mappe: fissando $x$ abbiamo la mappa $i\mapsto s(i,x)$ e fissando $f$ abbiamo la mappa $x\mapsto s(i,x)$.\\
-    CLAIM: per ogni $f: R\times S \to T$, la mappa $x\mapsto s(i,x)$ definisce un morfismo $\lambda f : R\to T^S$.\\
-    Usando la corrispondenza $f \equiv f'_i$ che abbiamo stabilito sopra, abbiamo
-    \[ aRb \Rarr s(i,a)T^S s(i,b) \Harr \forall x,y \in \N, xSy \Rarr f_{s(i,a)}(x) = f'(a,x) T f'(b,y) = f_{s(i,b)}(y)\]
-    Dato che il teorema $smn$ ci garantisce che $s$ è indipendente da $f$, la mappa $f\mapsto \lambda f$ è effettivamente una funzione $\hom(R\times S, T)\to \hom(R,T^S)$.\\
-    Notiamo che ha una funzione inversa 
-    Senza scendere in dettagli, la naturalità dell'isomorfismo segue dall'indipendenza del teorema $smn$ 
+    I due lemmi appena visti ci danno l'esistenza di un oggetto terminale e dei prodotti binari.\\
+    Per quanto riguarda gli esponenziali, vediamo facilmente che questa relazione è sia simmetrica che transitiva, mentre per dimostrare che è effettivamente un'esponenziale sfrutteremo due risultati visti precedentemente: per ogni oggetto $S$ fissato dimostreremo l'esistenza di una biezione tra $\hom(R\times S, T)$ e $\hom(R, T^S)$ che sarà definita in modo indipendente da $R$: questo ci permetterà di estendere la mappa di oggetti $T\mapsto T^S$ attraverso la proposizione \cref{prop:estensione via aggiunzione} a un funtore aggiunto destro a $-\times S$, che quindi tramite il teorema \cref{th:ccc da aggiunti} ci darà la chiusura cartesiana.\\
+    Supponiamo di avere un morfismo $f:R\times S \to T$ tracciato dalla funzione $\alpha :\N\to \N$: questa può essere vista come una funzione $\alpha':= \alpha \circ \pair : \N^{1+1}\to\N$ tale che 
+    \[ \left( aRc \wedge bSd \right) \Harr\left( \pair(a,b)R\times S \pair(c,d) \right)  \Rarr \left(\alpha(\pair(a,b))T \alpha (\pair(c,d))\right) \Harr \left(  \alpha'(a,b)T\alpha'(c,d) \right) \]
+    In particolare in quanto composizione di funzioni calcolabili abbiamo che la funzione $\alpha'$ è calcolata da un comando di numero $i$; applicando il teorema \cref{th:teorema smn} nel caso $m=n=1$ otteniamo la mappa $x\mapsto s(i,x)$.\\
+    Vogliamo dimostrare che questa funzione $x\mapsto s(i,x)$ traccia effettivamente un morfismo $\lambda f: R \to T^S$: per questo dobbiamo verificare che per ogni $a,b$ valga 
+    \[ aRb \Rarr s(i,a)T^S s(i,b) \]
+    Ma questo è presto detto, infatti espandendo come sopra la definizione della relazione (presunta) esponenziale abbiamo 
+    \[ s(i,a)T^S s(i,b) \Harr \left(\forall x,y \in \N, xSy \Rarr \underbrace{\varphi_{s(i,a)}(x)}_{= \alpha'(a,x)}  T  \underbrace{\varphi_{s(i,b)}(y)}_{= \alpha'(b,y)}\right) \]
+    Dato che il teorema $smn$ ci garantisce che la funzione $s$ è indipendente dalla funzione $\alpha'$, la mappa $f\mapsto \lambda f$ costituisce effettivamente una funzione ben definita $\hom(R\times S, T)\to \hom(R,T^S)$.\\
+    Vogliamo costruire , cerchiamo un morfismo $\eval_{S,T}: T^S\times S\to T$ che soddisfi la formula che abbiamo visto sotto la definizione \cref{def:oggetto esponenziale}:
+    \[ f = \eval_{S,T} \circ (\lambdaf\times \id_T)\] 
+    Il candidato per questo morfismo $\eval$ è intuitivamente tracciato dalla mappa $\varepsilon:\N\to\N$ data da 
+    \[ \varepsilon(\pair(a,x)) = \varphi_a(x) \]
+    Quando $a$ è un codice valido: 
+    La dimostrazione della naturalità è molto più lunga e laboriosa che illustrativa, dunque la omettiamo.
+    \qed
 \end{theorem}
 
-Consideriamo una sottocategoria 
+\subsection{Rappresentazione e cardinalità}
+
+Consideriamo ora una particolare sottocategoria:
 
 \begin{definition}{Sottocategoria delle identità}{}
     Definiamo la sottocategoria $\I\le \percat(\N)$ con lo stesso insieme degli oggetti ma i cui morfismi sono quelli tracciati dall'identità su $\N$.\\
@@ -1217,9 +1246,9 @@ Consideriamo una sottocategoria
 
 Notiamo che abbiamo al più una $\I$-mappa tra due oggetti dando a $\I$ una struttura di insieme parzialmente ordinato: intuitivamente abbiamo una $\I$-mappa $R\to S$ quando le classi di $S$ sono unioni di classi di $R$ a cui possibilmente sono stati aggiunti elementi dalla zona d'ombra di $R$. In particolare, la relazione massimale $1 = \N\times\N$ che abbiamo definito sopra è il massimo di questo insieme mentre la relazione vuota $0 = \varnothing\subset \N\times\N$ è il minimo.\\
 Per un esempio, che mostra anche che le $\I$-mappe non sono necessariamente isomorfismi e nemmeno monomorfismi in quanto non iniettive, consideriamo le relazioni
-\[ R = \left\{ (p,p)  : p\text{ primo} \right\} \subset \N^2 \]
-\[ S = \left\{  (p_k^n, p_k^m), (p_{2k}^m, p_{2k+1}^n),(p_{2k+1}^m, p_{2k}^n)  :k\ge 1, p_k =k\text{-esimo primo}, m\cdot n \neq 0 \right\} \cup \left\{ (p\cdot q, p\cdot q) : p\neq q\text{ primi} \right\} \subset \N^2 \]
-Vediamo $R$ identifica ogni numero primo solo con sè stesso, mentre $S$ identifica i primi a coppie e con tutte le loro potenze non nulle e ogni prodotto di due primi distinti solo con sè stesso : le classi di $S$ dunque sono estensioni e unioni delle classi di $R$ o classi completamente nuove, dove i nuovi elementi sono presi dalla zona d'ombra di $R$, dunque abbiamo una $\I$-mappa $R\to S$ anche se non è data da una funzione iniettiva o suriettiva $\dom R/R \to \dom S/S$.\\
+\[ R = \left\{ pRp  : p\text{ primo} \right\} \subset \N^2 \]
+\[ S = \left\{  p_k^nSp_k^m, p_{2k-1}^mSp_{2k}^n,p_{2k}^mS p_{2k-1}^n  :k\ge 1, p_k =k\text{-esimo primo}, m\cdot n \neq 0 \right\} \cup \left\{ (p\cdot q)S(p\cdot q) : p\neq q\text{ primi} \right\} \subset \N^2 \]
+Vediamo $R$ identifica ogni numero primo solo con sè stesso, mentre $S$ è un po' più complicata: identifica i primi a coppie e con tutte le loro potenze non nulle e ogni prodotto di due primi distinti solo con sè stesso : le classi di $S$ dunque sono estensioni e unioni delle classi di $R$ o classi completamente nuove, dove i nuovi elementi sono presi dalla zona d'ombra di $R$, dunque abbiamo una $\I$-mappa $R\to S$ anche se non è data da una funzione iniettiva o suriettiva $\dom R/R \to \dom S/S$.\\
 Nonostante sembri apparentemente molto semplice, la seguente proposizione ci mostra che $\I$ è una sottocategoria molto rappresentativa di $\percat(\N)$.
 
 \begin{proposition}{Rappresentazione di $\percat(\N)$ in $\I$}{}
@@ -1234,11 +1263,23 @@ Nonostante sembri apparentemente molto semplice, la seguente proposizione ci mos
     \qed
 \end{proposition}
 
-Il ruolo di $\I$ in $\percat(\N)$ è analogo in qualche modo a quello che hanno le potenze di un campo $\K$ nella categoria degli spazi vettoriali definiti su di esso: allo stesso modo in cui ogni mappa lineare $f:V\to W$ può essere \textit{innaturalmente} rappresentata da una mappa $M:\K^m\to\K^n$ dopo la scelta di due basi, ovvero di isomorfismi $\beta :\K^m\iso V$ e $\beta ':\K^n\iso W$ e che in particolare la scelta delle basi cambierebbe in base a $f$ se dovessimo imporre restrizioni sulla forma di $M$, dato che le mappe di $\I$ hanno una forma molto restrittiva abbiamo che non solo gli isomorfismi ma anche gli oggetti di rappresentazione scelti devono variare in base al morfismo considerato.
+Il ruolo di $\I$ in $\percat(\N)$ è analogo in qualche modo a quello che hanno nella categoria degli spazi vettoriali di dimensione finita definiti sul campo $\K$ gli spazi $\K^n$.\\
+Notoriamente ogni mappa lineare $f:V\to W$ può essere \textit{innaturalmente} rappresentata da una mappa $M:\K^m\to\K^n$ dopo la scelta di due basi, ovvero di isomorfismi $\beta :\K^m\iso V$ e $\beta ':\K^n\iso W$, in particolare la scelta delle basi cambierebbe in base a $f$ se dovessimo imporre restrizioni sulla forma di $M$: dato che le mappe di $\I$ hanno una forma molto restrittiva abbiamo che non solo gli isomorfismi ma anche gli oggetti di rappresentazione scelti devono variare in base al morfismo considerato.\\
+A livello pratico risulta molto agevole poter ricorrere a un teorema di questo genere, perchè permette di considerare ogni morfismo come una $\I$-mappa a meno di comporre con due isomorfismi.\\
+L'importanza di $\percat(\N)$ come controesempio sta nel fatto che nonostante sia una categoria concreta e ammetta oggetti esponenziali, la sua cardinalità rimane estremamente controllata.
 
-\section*{Conclusione}
+\begin{proposition}{Cardinalità di $\percat(\N)$}{}
+    L'insieme degli oggetti di $\percat(\N)$ ha cardinalità del continuo.\\
+    L'insieme $\hom(R,S)$ ha cardinalità al più numerabile.\\
+    Combinando i due fatti precedenti, l'insieme dei morfismi di $\percat(\N)$ ha cardinalità del continuo.
+    \proof 
+    Abbiamo una mappa iniettiva $2^\N \to \ob\percat(\N)$ data da $X\mapsto X^2$ e abbiamo naturalmente $\ob\percat(\N)\subset 2^{\N^2}\cong 2^\N$, dunque la sua cardinalità è esattamente quella di $2^\N$.\\
+    Dato che ogni morfismo $R\to S$ ha almeno un codice $i \in \N$, esiste una funzione (parziale) suriettiva $\N \to \hom(R,S)$.\\
+    Dato che è unione di $|2^\N|$ insiemi di cardinalità al più numerabile, abbiamo che la cardinalità dell'insieme dei morfismi di $\percat(\N)$ è quella di $2^\N$.
+    \qed
+\end{proposition}
 
-
+Dunque, nonostante stiamo trattando una categoria concreta in cui abbiamo oggetti come $N = \{nNn : n\ in \N\}$ che hanno cardinalità numerabile, le cardinalità degli $hom$-set o degli esponenziali non possono esplodere come succede in $\setcat$ dove ad esempio potremmo iterare la mappa $X\mapsto 2^X$ su un insieme infinito per salire di cardinalità a piacimento, ma rimangono controllate dalle restrizioni imposte sui morfismi.
 
 \nocite{*}
 \printbibliography
