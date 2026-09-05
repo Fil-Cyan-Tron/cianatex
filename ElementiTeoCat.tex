@@ -70,7 +70,7 @@ Intuitivamente, il seguente assioma ci permette per qualunque insieme di "evocar
     Per ogni insieme $x$ esiste un universo di Grothendieck $U$ tale che $x \in U$.
 \end{axiom}
 
-Questo assioma è molto potente
+Definiamo una gerarchia particolare di universi di Grothendieck che ci permetta di definire una nozione di insieme "piccolo", molto importante in Teoria delle Categorie.
 
 \begin{definition}{Gerarchia degli universi e insiemi piccoli}{}
     Consideriamo nella classe $\mathbb{G}$ degli universi di Grothendieck la famiglia $\{\G_\alpha\}_{\alpha \in \Ord}$, definita per induzione come segue:
@@ -100,7 +100,7 @@ Vale inoltre un teorema molto importante, per la cui dimostrazione rimandiamo a 
 
 Nel reame degli assiomi che introducono cosiddetti "grandi cardinali", l'esistenza di una classe propria di cardinali fortemente inaccessibili è uno tra i più deboli ed è considerato standard per fondare sulla Teoria degli Insiemi la Teoria delle Categorie, approccio seguito ad esempio da \cite{SGA4}.\\
 Si tratta comunque di un assioma con conseguenze importanti: nel contesto degli altri assiomi di ZF, l'assioma di Tarski implica immediatamente gli assiomi di infinito e di esistenza dell'insieme delle parti e meno banalmente l'assioma di scelta, per cui si veda \cite{Tarski1939}.\\
-Volendo è possibile indebolire questo assioma in moltissimi casi: come suggerito da \cite{MacLane1978}: l'idea generale è di assumere l'assioma di universo, fissare un universo $U$ e passare a uno più grande ogni volta che se ne ha necessità, per poi sostituire a posteriori l'assioma di universo "forte" con l'esistenza dell'universo più grande utilizzato. Non ci preoccupiamo di seguire questo schema, ma vale la pena citarlo in quanto ha il vantaggio di permettere in ogni dimostrazione di limitare il numero di universi di Grothendieck di cui assumere l'esistenza.
+Volendo è possibile indebolire questo assioma in moltissimi casi: come suggerito da \cite{MacLane1978}: l'idea generale è di assumere l'assioma di universo, fissare un universo $U$ e passare a uno più grande ogni volta che se ne ha necessità, per poi sostituire a posteriori l'assioma di universo "forte" con l'esistenza dell'universo più grande utilizzato. Non ci preoccupiamo di seguire questo schema, ma vale la pena citarlo in quanto ha il vantaggio di permettere in ogni dimostrazione di limitare il numero di universi di Grothendieck di cui assumere l'esistenza invece di ricorrere all'assioma di Tarski.
 
 \newpage
 \section{Nozioni fondamentali}
@@ -130,7 +130,7 @@ La definizione di grandezza è in qualche modo più sottile di quanto possa sugg
 
 \begin{example}{Monoide degli insiemi}{}
     Un monoide $\M = (M,1,\cdot)$ può essere letto come una categoria dotata di un solo oggetto e i cui morfismi sono rappresentati dagli elementi del monoide, dove la composizione è data dall'operazione del monoide; concretamente, è semplicemente vedere l'operazione di $\M$ come la sua azione sul suo insieme sottostante.\\
-    Fissiamo un qualche ordinale limite $\lambda\ge \omega$ e sia $\V := (\G_\lambda, \varnothing, \cup)$ il monoide abeliano definito dall'unione di insiemi: come categoria, sebbene il suo insieme degli oggetti sia un singoletto non è solo una categoria grande, ma addirittura non è nemmeno localmente piccola.
+    Fissiamo un qualche ordinale $\lambda\ge \omega$ e sia $\V := (\G_\lambda, \varnothing, \cup)$ il monoide abeliano definito dall'unione di insiemi: come categoria, sebbene il suo insieme degli oggetti sia un singoletto non è solo una categoria grande, ma addirittura non è nemmeno localmente piccola.
 \end{example}
 
 %Da ora in avanti, assumeremo sempre (anche senza specificarlo) che le nostre categorie siano almeno localmente piccole per comodità, ma lo specificheremo comunque nei casi in cui si tratti di un'ipotesi cruciale.
@@ -211,7 +211,7 @@ Introduciamo quello che può essere considerato un morfismo di categorie (e in e
 \end{definition}
 
 Anche se l'espressione "un funtore controvariante $\C^\op\to\D$" tecnicamente indicherebbe un funtore covariante $\C\to\D$, la useremo quasi sempre per indicare un funtore controvariante $\C\to\D$, ovvero una controvarianza specificata due volte non farà una covarianza.\\
-Ora possiamo definire una categoria assolutamente centrale, di fatto la categoria ambiente per tutta la pratica matematica "tradizionale" e che ci permette di definire una certa classe di sue "sottocategorie" in un senso più ampio e di un insieme di sue sovracategorie che permetta una trattazione adeguata della teoria generale:
+Ora possiamo definire una categoria assolutamente centrale, di fatto la categoria ambiente per tutta la pratica matematica "tradizionale" e che ci permette di definire una certa classe di sue "sottocategorie" in un senso più ampio.
 
 \begin{example}{La categoria degli insiemi ($\alpha$-)piccoli e categorie concrete}{setcat e categorie concrete}
     Per $\alpha \in \Ord$, indichiamo con $\setcat_\alpha$ la categoria i cui oggetti sono insiemi $\alpha$-piccoli, ovvero elementi di $\G_\alpha$, e i cui morfismi sono le funzioni tra di loro con l'usuale composizione di funzioni insiemistiche; indicheremo semplicemente con $\setcat$ la categoria $\setcat_\omega$ degli insiemi piccoli.\\
@@ -293,7 +293,7 @@ A dire il vero, questa caratterizzazione dipenderebbe dall'assioma della scelta,
 \newpage
 \section{Lemma di Yoneda e conseguenze}
 
-Un risultato assolutamente centrale in Teoria delle Categorie è il lemma di Yoneda, una versione "categoriale" del teorema di Cayley in Teoria dei Gruppi\footnote{E in effetti, il teorema di Cayley può essere ridotto ad un caso particolare del lemma di Yoneda}. Prima di presentarlo dobbiamo introdurre alcune costruzioni e nozioni importanti per formularlo.
+Un risultato centrale in Teoria delle Categorie è il lemma di Yoneda, una versione "categoriale" del teorema di Cayley in Teoria dei Gruppi\footnote{E in effetti, il teorema di Cayley può essere ridotto ad un caso particolare del lemma di Yoneda}. Prima di presentarlo dobbiamo introdurre alcune costruzioni e nozioni importanti per formularlo.
 
 \begin{definition}{Categoria dei funtori}{categoria dei funtori}
     Siano $\C,\D$ due categorie.\\
@@ -433,7 +433,7 @@ Abbiamo dualmente la versione controvariante:
 
 \subsection{Funtori aggiunti}
 
-Uno degli slogan più celebri da \cite{MacLane1978} è \textit{"Adjoint functors arise everywhere"}, ovvero "Funtori aggiunti sorgono ovunque"
+Uno degli slogan più celebri da \cite{MacLane1978} è \textit{"Adjoint functors arise everywhere"}, ovvero "Funtori aggiunti emergono ovunque"
 
 \begin{definition}{Funtori aggiunti}{funtori aggiunti}
     Siano $\C,\D$ due categorie e $F:\D\to\C$ e $G:\C\to\D$ due funtori.\\
@@ -528,7 +528,7 @@ Ora grazie al lemma di Yoneda possiamo dimostrare un fatto che ci servirà più 
 \end{lemma}
 
 In generale la categoria $[\C^\op,\setcat]$ è mostruosamente più grande di $\C$\footnote{Ad esempio, la classe dei morfismi di $[\mathbf{1},\setcat]$ è in biezione con quella di $\setcat$ e dunque è grande nonostante quella di $\mathbf{1}$ sia un singoletto.} e dunque cercare oggetti particolari di $\C$ in $[\C^\op,\setcat]$ attraverso la rappresentazione di Yoneda potrebbe sembrare un modo per trasformare dei problemi semplici in problemi più complicati, ma in molti casi (come quello appena visto) risulta più facile confrontare gli oggetti dal punto di vista dei loro insiemi di morfismi; questo perché gli $\hom$-funtori hanno delle proprietà particolari che rendono .\\
-In più le categorie di funtori risultano essere molto "beneducate" al di là della loro grandezza, ereditando proprietà desiderabili dal loro codominio\footnote{E $\setcat$ è una delle categorie più beneducate di tutte} anche qualora queste dovessero mancare al loro dominio, vedremo degli esempi più tardi.
+In più le categorie di funtori risultano essere molto "beneducate" al di là della loro grandezza, ereditando proprietà desiderabili dal loro codominio\footnote{E $\setcat$ è una delle categorie più beneducate di tutte} anche qualora queste dovessero mancare al loro dominio.
 
 \newpage
 \section{Limiti e proprietà universali}
@@ -726,7 +726,7 @@ Chiudiamo il capitolo con una discussione di una diversa caratterizzazione del p
 La definizione che abbiamo dato in \cref{def:prodotto limite} è evidentemente utile quando si parla di lavorare coi prodotti nell'usuale pratica matematica, ad esempio è una definizione meno "pesante" di quella che si dà dei prodotti in $\topcat$ o $\mblecat$ nella maggior parte dei corsi introduttivi di Topologia Generale o Teoria della Misura. Allo stesso modo non dipende da scelte arbitrarie, come di una norma prodotto in $\catname{NormVec}\K$ o di una misura prodotto in $\meascat$.\\
 Tuttavia in altre applicazioni della Teoria delle Categorie, ad esempio in Topologia Algebrica o Informatica Teorica, può essere agevole considerare il prodotto di due oggetti non come definito intrinsecamente tramite proprietà universale, ma come un bifuntore.
 
-\begin{theorem}{Costruzione del funtore prodotto}{Prodotto binario come funtore}
+\begin{theorem}{Costruzione del funtore prodotto}{prodotto binario come funtore}
     Sia $\C$ una categoria localmente piccola e sia $\Delta :\C\to\C\times\C$ il funtore diagonale, ovvero l'applicazione
     \[ \Delta( f:X\to Y ) = ((f,f):(X,X)\to(Y,Y)).\]
     Se $\C$ ammette i prodotti binari, \textit{una scelta di un prodotto per ciascuna coppia di oggetti} definisce un'applicazione $\Pi : \C\times\C \to \C$ attraverso la mappa
@@ -909,7 +909,7 @@ La definizione che viene data da \cite{MacLane1969} di categoria cartesiana chiu
     \end{enumerate}
 \end{theorem}
 
-Notiamo che questo teorema ci dà un'altra ragione per cui una categoria di $A$-moduli non può essere cartesiana chiusa: nonostante per ogni coppia di moduli $M$ e $N$ ci sia effettivamente un modulo $N^M = \hom_R(M,N)$, la mappa $N\mapsto N^M$ non è aggiunta destra a $N\mapsto N\times M$ ma notoriamente a $N\mapsto N \otimes_A M$ e in generale $N\otimes_A M$ non è isomorfo a $N\times_A M$.\\
+Notiamo che questo teorema ci dà un'altra ragione per cui una categoria di $A$-moduli non può essere cartesiana chiusa: nonostante per ogni coppia di moduli $M$ e $N$ ci sia effettivamente un modulo $N^M = \hom_R(M,N)$, la mappa $N\mapsto N^M$ non è aggiunta destra a $N\mapsto N\times M$ ma notoriamente a $N\mapsto N \otimes_A M$ e in generale $N\otimes_A M$ non è isomorfo a $N\times M$.\\
 Per un esempio basta pensare a $\R$ visto come $\R$-spazio vettoriale: abbiamo che $\R\times\R \cong \R^2$ è bidimensionale, mentre $\R\otimes_\R \R \cong \R$ è unidimensionale\footnote{Basta notare che dato che $\{1\}$ è una base di $\R$ su $\R$, una base di $\R\otimes_\R \R$ è data da $\{1\otimes 1\}$}, dunque non possono essere isomorfi.
 
 \subsection{Categorie cartesiane chiuse e argomenti diagonali}
@@ -1006,6 +1006,7 @@ Vediamo che, indicando con $D_f$ il dominio come funzione di un morfismo $f$, va
 
 Si può dimostrare facilmente che le funzioni ricorsive primitive sono tutte funzioni totali, in quanto l'unica operazione che potrebbe lasciare indefinita una funzione appare nel requisito $7$
 
+\newcommand\imp{\catname{IMP}}
 \newcommand\Var{\catname{Var}}
 \newcommand\Input{\catname{Input}}
 \newcommand\Output{\catname{Output}}
@@ -1020,7 +1021,7 @@ Si può dimostrare facilmente che le funzioni ricorsive primitive sono tutte fun
 \newcommand\elsec{\catname{else}}
 
 \newpage
-\section{Il linguaggio $\imp$ e il teorema $smn$}
+\section{Il linguaggio $\imp$ e il teorema SMN}
 \renewcommand\c{\mathbf{c}}
 
 Per questa sezione useremo un linguaggio di programmazione imperativo minimale definito in \cite{Winskel1993}, ovvero il linguaggio $\imp$.\\
@@ -1091,7 +1092,7 @@ Ma questo ha il problema di non essere un comando valido, in quanto sintatticame
 \newcommand\pair{\operatorname{pair}}
 \newcommand\smnk{\catname{Smnk}}
 
-\subsection{Teorema $smn$}
+\subsection{Teorema SMN}
 
 Per discutere la categoria che stiamo costruendo avremo bisogno di numerare l'insieme $\hom\grf$ in modo ricorsivo, dunque abbiamo bisogno di alcuni ingredienti: prima di tutto ci serve un appaiamento ricorsivo $\pair: \N^2\iso\N$, di cui un esempio è l'appaiamento di Cantor
 \[ \pair(x,y) = \frac{x^2+x+2xy+3y+y^2}{2} \]
@@ -1140,7 +1141,7 @@ E $\varphi:\Var \iso \N$ è semplicemente data da
 
 Ora, mantenendo questa notazione, possiamo enunciare un risultato che sarà essenziale per dimostrare la chiusura della categoria che stiamo costruendo:
 
-\begin{theorem}{Teorema $smn$}{teorema smn}
+\begin{theorem}{Teorema SMN}{teorema smn}
     Sia $f : \N^{m+n} \to \N$ in $\hom\grf(\N)$ definita dal comando $\Phi^{-1}(i)$ per $i \in \N$.\\
     Esiste una funzione $s_{m,n}: \N^{1+n} \to \N$ in $\hom\prf(\N)$ tale che per ogni $\mathbf{x} \in \N^n$ e $\mathbf{y}\in \N^m$ la funzione $\mathbf{y}\mapsto f(\mathbf{x},\mathbf{y})$ sia calcolata dal comando $\Phi^{-1}(s_{m,n}(i,\mathbf{x}))$.\\
     In più, $s_{m,n}$ è univocamente determinata da $m$ e $n$.
@@ -1224,9 +1225,9 @@ Dove se $f$ è tracciato da $\varphi$, $f\times \id_S$ è tracciato da $\pair(\v
     \[ aRb \Rarr s(i,a)T^S s(i,b) \]
     Ma questo è presto detto, infatti espandendo come sopra la definizione della relazione (presunta) esponenziale abbiamo 
     \[ s(i,a)T^S s(i,b) \Harr \left(\forall x,y \in \N, xSy \Rarr \underbrace{\varphi_{s(i,a)}(x)}_{= \alpha'(a,x)}  T  \underbrace{\varphi_{s(i,b)}(y)}_{= \alpha'(b,y)}\right) \]
-    Dato che il teorema $smn$ ci garantisce che la funzione $s$ è indipendente dalla funzione $\alpha'$, la mappa $f\mapsto \lambda f$ costituisce effettivamente una funzione ben definita $\hom(R\times S, T)\to \hom(R,T^S)$.\\
+    Dato che il teorema SMN ci garantisce che la funzione $s$ è indipendente dalla funzione $\alpha'$, la mappa $f\mapsto \lambda f$ costituisce effettivamente una funzione ben definita $\hom(R\times S, T)\to \hom(R,T^S)$.\\
     Vogliamo costruire , cerchiamo un morfismo $\eval_{S,T}: T^S\times S\to T$ che soddisfi la formula che abbiamo visto sotto la definizione \cref{def:oggetto esponenziale}:
-    \[ f = \eval_{S,T} \circ (\lambdaf\times \id_T)\] 
+    \[ f = \eval_{S,T} \circ (\lambda f\times \id_T)\] 
     Il candidato per questo morfismo $\eval$ è intuitivamente tracciato dalla mappa $\varepsilon:\N\to\N$ data da 
     \[ \varepsilon(\pair(a,x)) = \varphi_a(x) \]
     Quando $a$ è un codice valido: 
