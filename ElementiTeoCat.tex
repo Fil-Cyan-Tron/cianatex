@@ -443,7 +443,6 @@ Abbiamo dualmente la versione controvariante:
 	    \arrow[maps to, from=4-4, to=4-2]
 	    \arrow["{\mc{Y}'(f)(Y) = -\circ f}"{description}, from=5-5, to=5-1]
     \end{tikzcd}\]
-    \qed
 \end{corollary}
 
 \subsection{Funtori aggiunti}
@@ -584,10 +583,10 @@ Se in Teoria degli Insiemi definiamo una famiglia di sottoinsiemi di un insieme 
     Definiamo la \bemph{categoria dei coni} in $\C$ su $F$ come la categoria i cui oggetti sono i coni intesi come coppia $(N, \psi^N: K_N \to F )$ e i cui morfismi sono i cosiddetti morfismi \bemph{medianti}, ovvero i morfismi $\alpha : N\to M$ di $\C$ tali per cui per ogni oggetto $X$ di $\J$ valga:
     \[\psi^M_X\circ \alpha = \psi^N_X,\]
     Denoteremo questa categoria come $\cone(\C,F)$.\\
-    Analogamente esiste la categoria dei cononi $\catname{Cocone}(\C,F)$ che non è altro che la categoria $\cone(\C^\op, F)$.
+    Analogamente esiste la categoria dei coconi $\catname{Cocone}(\C,F)$ che non è altro che la categoria $\cone(\C^\op, F)$.
 \end{definition}
 
-Siamo pronti a definire i limiti e colimiti di un diagramma, che intuitivamente corrispondono all'oggetto "più grande" che può essere mappato negli elementi del diagramma e all'oggetto più piccolo in cui questi possono essere mappati \textit{coerentemente alla commutatività dello stesso}.
+Siamo pronti a definire i limiti e colimiti di un diagramma, che intuitivamente corrispondono all'oggetto "più grande" che può essere mappato negli elementi del diagramma e all'oggetto più piccolo in cui questi possono essere mappati \textit{coerentemente alla commutatività del diagramma}.
 
 \begin{definition}{Limite e colimite}{limite}
     Sia $F:\J\to\C$ un diagramma.\\
@@ -613,7 +612,7 @@ Più esplicitamente\footnote{Ovvero scrivendo per esteso la definizione di ogget
 	\arrow["{\psi^L_X}"{description}, from=3-3, to=5-5]
 	\arrow["{F(f)}"{description}, from=5-1, to=5-5]
 \end{tikzcd}\]
-Chiameremo una tale proprietà\footnote{Ovvero essere il cono terminale/iniziale su un qualche diagramma} \bemph{universalità}.\\
+Chiameremo una tale proprietà\footnote{Ovvero essere il cono/cocono terminale/iniziale su un qualche diagramma} \bemph{universalità}.\\
 Il limite è uno dei concetti centrali della Teoria delle Categorie: analogamente a come sia possibile definire equivalentemente aperti, chiusi, intorni, chiusura, interno e così via in Topologia Generale, è possibile definire i funtori aggiunti in termini di limiti, i limiti in termini di funtori aggiunti ed equivalentemente tante altre costruzioni in Teoria delle Categorie.\\
 Spesso diremo che una categoria "ammette/ha tutti i..." facendo riferimento a dei (co)limiti definiti su una qualche forma di diagrammi: questo significa che ogni diagramma di quella forma ammette un (co)limite in $\C$.
 
@@ -793,6 +792,7 @@ Vediamo che vale anche l'implicazione inversa:
 	    \arrow["g"{description}, from=3-3, to=3-5]
     \end{tikzcd}\]
     Abbiamo che quindi $(\Pi(X,Y),\pi_X,\pi_Y)$ è un adeguato candidato prodotto, l'universalità segue da un ragionamento analogo a quello del teorema \cref{th:prodotto binario come funtore}: se esistesse un altro prodotto, questo definirebbe un aggiunto destro alla diagonale, ma dato che questo deve essere essenzialmente unico allora deve essere isomorfo a $\Pi(X,Y)$.
+    \qed
 \end{theorem}
 
 Vale ovviamente il duale.
@@ -944,6 +944,7 @@ La definizione che viene data da \cite{MacLane1969} di categoria cartesiana chiu
             \item Supponendo di avere l'aggiunzione in termini di counità $\varepsilon: (-)^B\times B \to \id_\C$ e unità $\eta : \id_\C \to (-\times B)^B$, basta porre $\eval_{A,B} := \varepsilon_A $ e per ciascun $f : A\times B \to C$ la mappa $f \mapsto \lambda f$ è data dall'isomorfismo $\hom(A\times B, C)\iso \hom(A, C^B)$, ovvero $\lambda f := (f)^B \circ \eta_C$.
         \end{itemize}
     \end{enumerate}
+    \qed
 \end{theorem}
 
 Notiamo che questo teorema ci dà un'altra ragione per cui una categoria di $A$-moduli non può essere cartesiana chiusa: nonostante per ogni coppia di moduli $M$ e $N$ ci sia effettivamente un modulo $N^M = \hom_R(M,N)$, la mappa $N\mapsto N^M$ non è aggiunta destra a $N\mapsto N\times M$ ma notoriamente a $N\mapsto N \otimes_A M$ e in generale $N\otimes_A M$ non è isomorfo a $N\times M$.\\
@@ -1030,6 +1031,7 @@ Vediamo che, indicando con $D_f$ il dominio come funzione di un morfismo $f$, va
     Dunque passando alle cardinalità per $n,m \ge 1$ possiamo concludere che $\hom_\pf(\N^n,\N^m)$ abbia cardinalità del continuo; a questo punto basta osservare che
     \[ \hom\pf(\N) = \bigcup_{n\in \N, m\in \N} \hom_\pf(\N^n,\N^m) \]
     Dato che è un'unione numerabile di insiemi che hanno al più cardinalità del continuo e quasi sempre la raggiungono, possiamo concludere che abbia cardinalità del continuo.
+    \qed
 \end{proposition}
 
 Ora definiamo due sottocategorie di $\pf(\N)$ che corrispondono alle funzioni parziali o totali che possiamo "intuitivamente" aspettarci di far calcolare a un computer.
