@@ -102,7 +102,7 @@ Vale inoltre un teorema molto importante, per la cui dimostrazione rimandiamo a 
 
 Nel reame degli assiomi che introducono cosiddetti "grandi cardinali", l'esistenza di una classe propria di cardinali fortemente inaccessibili è uno tra i più deboli ed è considerato standard per fondare sulla Teoria degli Insiemi la Teoria delle Categorie, approccio seguito ad esempio da \cite{SGA4}.\\
 Si tratta comunque di un assioma con conseguenze importanti: nel contesto degli altri assiomi di ZF, l'assioma di Tarski implica immediatamente gli assiomi di infinito e di esistenza dell'insieme delle parti e meno banalmente l'assioma di scelta, per cui si veda \cite{Tarski1939}.\\
-Volendo è possibile indebolire questo assioma in moltissimi casi: come suggerito da \cite{MacLane1978}: l'idea generale è di assumere l'assioma di universo, fissare un universo $U$ e passare a uno più grande ogni volta che se ne ha necessità, per poi sostituire a posteriori l'assioma di universo "forte" con l'esistenza dell'universo più grande utilizzato. Non ci preoccupiamo di seguire questo schema, ma vale la pena citarlo in quanto ha il vantaggio di permettere in ogni dimostrazione di limitare il numero di universi di Grothendieck di cui assumere l'esistenza invece di ricorrere all'assioma di Tarski.
+Volendo è possibile indebolire questo assioma in moltissimi casi, come suggerito da \cite{MacLane1978}: l'idea generale è di assumere l'assioma di universo, fissare un universo $U$ e passare a uno più grande ogni volta che se ne ha necessità, per poi sostituire a posteriori l'assioma di Tarski con l'esistenza dell'universo più grande utilizzato. Non ci preoccupiamo di seguire questo schema, ma vale la pena citarlo in quanto ha il vantaggio di permettere in ogni dimostrazione di limitare il numero di universi di Grothendieck di cui assumere l'esistenza invece di ricorrere all'assioma di Tarski.
 
 \newpage
 \section{Nozioni fondamentali}
@@ -292,7 +292,7 @@ Le trasformazioni naturali ci permettono di dare una nozione di equivalenza più
 \end{definition}
 
 Un principio "filosofico" importante per la Teoria delle Categorie è il cosiddetto "principio di equivalenza", ovvero l'idea che tutte le costruzioni portate avanti e le proprietà dimostrate in Teoria delle Categorie debbano essere invarianti per equivalenza di categorie, ovvero che oggetti isomorfi debbano essere in qualche modo "indistinguibili": in un certo senso lo abbiamo già rotto con diverse delle nostre definizioni, ad esempio quando invochiamo l'uguaglianza estensionale per due insiemi invece di limitarci alla biezione.\\
-Di fatto nella pratica matematica il principio di equivalenza è uno slogan più che una legge, ma risulta estremamente importante quando discute della possibilità di fondare la matematica sulla Teoria delle Categorie, o di fondare la Teoria delle Categorie su teorie alternative a quella degli Insiemi di ZFC che non contengano ad esempio l'assioma di estensionalità; da qui nasce lo studio della Teoria delle Categorie Superiori e in particolare della Teoria dei Gruppoidi Superiori, particolari categorie superiori che codificano l'idea di equivalenze tra oggetti, equivalenze tra isomorfismi e così via.\\
+Di fatto nella pratica matematica il principio di equivalenza è uno slogan più che una legge, ma risulta estremamente importante quando si discute della possibilità di fondare la matematica sulla Teoria delle Categorie, o di fondare la Teoria delle Categorie su teorie alternative a quella degli Insiemi di ZFC che non contengano ad esempio l'assioma di estensionalità; da qui nasce lo studio della Teoria delle Categorie Superiori e in particolare della Teoria dei Gruppoidi Superiori, particolari categorie superiori che codificano l'idea di equivalenze tra oggetti, equivalenze tra isomorfismi e così via.\\
 Useremo spesso (attraverso un altro risultato che vedremo dopo) questa caratterizzazione per le equivalenze di categorie, di cui omettiamo la dimostrazione in quanto più lunga e laboriosa che profonda.
 
 \begin{proposition}{Caratterizzazione per un'equivalenza di categorie}{equivalenza di categorie}
@@ -477,7 +477,7 @@ Osserviamo che le identità triangolari implicano che per ogni $X \in \C$ e $Y\i
     \proof 
     Dimostriamo le due implicazioni:\begin{itemize}
         \item Assumiamo di avere le counità e unità $\varepsilon, \eta$ e definiamo le trasformazioni naturali $\Phi: \C(F-, -)\to \D(-, G-)$ e $ \Psi: \D(-, G-) \to \C(F-, -)$ le cui componenti sono date, per ciascun $f: FX\to Y$ e $g : Y\to GX$, da
-        \[ \Phi_{Y,X}(f) := Gf \circ \eta_Y , \qquad \Psi \varepsilon_X\circ F(g)\]
+        \[ \Phi_{X,Y}(f) := Gf \circ \eta_Y , \qquad \Psi_{X,Y}(g) = \varepsilon_X\circ F(g)\]
         Mostriamo che sono inverse: usando le identià triangolari vale 
         \begin{align*}
             \Psi\Phi(f) & = \varepsilon_X \circ FG(f)\circ F(\eta_Y) \\
@@ -550,7 +550,7 @@ Ora grazie al lemma di Yoneda possiamo dimostrare un fatto che ci servirà più 
     \qed
 \end{lemma}
 
-In generale la categoria $[\C^\op,\setcat]$ è mostruosamente più grande di $\C$\footnote{Ad esempio, la classe dei morfismi di $[\mathbf{1},\setcat]$ è in biezione con quella di $\setcat$ e dunque è grande nonostante quella di $\mathbf{1}$ sia un singoletto} e dunque cercare oggetti particolari di $\C$ in $[\C^\op,\setcat]$ attraverso la rappresentazione di Yoneda potrebbe sembrare un modo per trasformare dei problemi semplici in problemi più complicati, ma in molti casi (come quello appena visto) risulta più facile confrontare gli oggetti dal punto di vista dei loro insiemi di morfismi; questo perché gli $\hom$-funtori hanno delle proprietà particolari che rendono .\\
+In generale la categoria $[\C^\op,\setcat]$ è mostruosamente più grande di $\C$\footnote{Ad esempio, la classe dei morfismi di $[\mathbf{1},\setcat]$ è in biezione con quella di $\setcat$ e dunque è grande nonostante quella di $\mathbf{1}$ sia un singoletto} e dunque cercare oggetti particolari di $\C$ in $[\C^\op,\setcat]$ attraverso la rappresentazione di Yoneda potrebbe sembrare un modo per trasformare dei problemi semplici in problemi più complicati, ma in molti casi (come quello appena visto) risulta più facile confrontare gli oggetti dal punto di vista dei loro insiemi di morfismi; questo perché gli $\hom$-funtori hanno delle proprietà particolari che li fanno comportare bene rispetto a varie costruzioni in Teoria delle Categorie.\\
 In più le categorie di funtori risultano essere molto "beneducate" al di là della loro grandezza, ereditando proprietà desiderabili dal loro codominio\footnote{E $\setcat$ è una delle categorie più beneducate di tutte} anche qualora queste dovessero mancare al loro dominio.
 
 \newpage
@@ -567,8 +567,8 @@ Uno dei concetti più importanti in Teoria delle Categorie è quello di limite. 
 Se in Teoria degli Insiemi definiamo una famiglia di sottoinsiemi di un insieme $X$ indicizzata dall'insieme $J$ come un'applicazione $J\to \mc{P}(X)$, qui abbiamo bisogno di un'applicazione che rispetti la struttura di categoria, ovvero un funtore: intuitivamente oltre a indicizzare gli oggetti indicizziamo anche i morfismi in modo che la composizione sia rispettata. Per la prossima definizione ci servirà di considerare un diagramma particolare, il diagramma costante $K_N : \J\to \C$ (dove $N$ è un oggetto di $\C$) che manda ogni oggetto di $\J$ in $N$ e ogni morfismo in $\id_N$.
 
 \begin{definition}{Cono e cocono}{cono}
-    Sia $\C$ una categoria, sia $F: \J\to\C$ un diagramma e sia $N$ un oggetto di $\C$ e sia $K_N:\J\to\C$ il funtore costante, ovvero il funtore 
-    \[K_N(f:X\to Y) = (\id_N:N\to N).\]
+    Sia $\C$ una categoria, sia $F: \J\to\C$ un diagramma, sia $N$ un oggetto di $\C$ e sia $K_N:\J\to\C$ il funtore costante, ovvero il funtore 
+    \[K_N(f:X\to Y) = (\id_N:N\to N)\]
     Si dice \bemph{cono} in $\C$ su $F$ con punta $N$ un morfismo $\psi : K_N \to F$ di $[\J,\C]$, ovvero una famiglia di morfismi \[\{\psi_X : N\to F(X)\}_{X \in \ob\J} \subset \hom\C\]
     Tali che per ogni morfismo $f:X\to Y$ in $\J$ il seguente diagramma commuti:
     \[\begin{tikzcd}
@@ -581,7 +581,7 @@ Se in Teoria degli Insiemi definiamo una famiglia di sottoinsiemi di un insieme 
     \end{tikzcd}\]
     Dualmente, si dice \bemph{cocono} su $F$ con punta $N$ un morfismo $\psi : F \to K_N$, o equivalentemente un cono in $\C^\op$.\\
     Definiamo la \bemph{categoria dei coni} in $\C$ su $F$ come la categoria i cui oggetti sono i coni intesi come coppia $(N, \psi^N: K_N \to F )$ e i cui morfismi sono i cosiddetti morfismi \bemph{medianti}, ovvero i morfismi $\alpha : N\to M$ di $\C$ tali per cui per ogni oggetto $X$ di $\J$ valga:
-    \[\psi^M_X\circ \alpha = \psi^N_X,\]
+    \[\psi^M_X\circ \alpha = \psi^N_X\]
     Denoteremo questa categoria come $\cone(\C,F)$.\\
     Analogamente esiste la categoria dei coconi $\catname{Cocone}(\C,F)$ che non è altro che la categoria $\cone(\C^\op, F)$.
 \end{definition}
@@ -593,7 +593,7 @@ Siamo pronti a definire i limiti e colimiti di un diagramma, che intuitivamente 
     Si dice \bemph{limite} (o limite proiettivo) di $F$ in $\C$ l'oggetto terminale di $\cone(\C,F)$.\\
     Si dice \bemph{colimite} (o limite induttivo) di $F$ in $\C$ il limite di $F$ in $\C^\op$, o equivalentemente l'oggetto iniziale di $\catname{Cocone}(\C,F)$.\\
     Indichiamo rispettivamente limiti e colimiti di $F$ in $\C$ come
-    \[ \catlim F \quad \text{e}\quad\catcolim F.\]
+    \[ \catlim F \quad \text{e}\quad\catcolim F\]
     Un limite si dice rispettivamente piccolo o finito se lo è $F$ come diagramma.\\
     Una categoria che ammette tutti i (co)limiti piccoli si dice \bemph{(co)completa}.
 \end{definition}
@@ -751,7 +751,7 @@ Tuttavia in altre applicazioni della Teoria delle Categorie, ad esempio in Topol
 
 \begin{theorem}{Costruzione del funtore prodotto}{prodotto binario come funtore}
     Sia $\C$ una categoria localmente piccola e sia $\Delta :\C\to\C\times\C$ il funtore diagonale, ovvero l'applicazione
-    \[ \Delta( f:X\to Y ) = ((f,f):(X,X)\to(Y,Y)).\]
+    \[ \Delta( f:X\to Y ) = ((f,f):(X,X)\to(Y,Y))\]
     Se $\C$ ammette i prodotti binari, \textit{una scelta di un prodotto per ciascuna coppia di oggetti} definisce un'applicazione $\Pi : \C\times\C \to \C$ attraverso la mappa
     \[\Pi((f,g):(X,Y)\to(W,Z)) := (f\times  g : X\times Y \to W\times Z) \]
     che è funtoriale e aggiunta destra a $\Delta$.
@@ -839,6 +839,7 @@ La cui inversa è data da $\lambda f \mapsto \eval(\lambda f \times \id)$.
     Le condizioni (1) e (2) possono essere combinate richiedendo che $\C$ ammetta tutti i prodotti finiti, dove l'oggetto terminale è il prodotto della famiglia vuota.
 \end{definition}
 
+Per un oggetto $X$ è tipico chiamare \bemph{punto} di $X$ un morfismo $1\to X$, quando esiste, in analogia al caso concreto in cui gli elementi di un insieme $X$ sono in biezione con le funzioni dal singoletto $1$ a $X$.\\
 Un esempio tipico di categoria cartesiana chiusa è quella degli insiemi.
 
 \begin{example}{$\setcat_\alpha$ è cartesiana chiusa}{set è ccc}
@@ -956,26 +957,26 @@ Riportiamo un interessante risultato dimostrato da Lawvere in \cite{Lawvere1969}
 
 \begin{theorem}{Teorema del punto fisso di Lawvere}{punto fisso di Lawvere}
     Sia $\C$ una categoria cartesiana chiusa e sia $Y$ un oggetto di $\C$.\\
-    Se esiste un oggetto $A$ che ammette un morfismo $\gamma : A\to Y^A$ \bemph{suriettivo sui punti}, ovvero tale che per ogni punto $q:1\to Y$ esista un punto $p: 1\to A$ tale che $\gamma p = q$, allora ogni endomorfismo $t:Y\to Y$ ammette un \bemph{punto fisso}, ovvero un punto $y:1\to Y$ tale che $ty = y$.
+    Se esiste un oggetto $X$ che ammette un morfismo $\gamma : X\to Y^X$ \bemph{suriettivo sui punti}, ovvero tale che per ogni punto $q:1\to Y^X$ esista un punto $p: 1\to X$ tale che $\gamma p = q$, allora ogni endomorfismo $t:Y\to Y$ ammette un \bemph{punto fisso}, ovvero un punto $y:1\to Y$ tale che $ty = y$.
     \proof 
-    Consideriamo il morfismo $g : A\times A\to B$ tale che $\lambda g = \gamma$; allora per ogni morfismo $f: A\to Y$ esiste un punto $x: 1\to A$ tale che per ogni punto $1\to A$ vale 
+    Consideriamo il morfismo $g : X\times X\to Y$ tale che $\lambda g = \gamma$, ovvero $g = \eval_{X,Y}\circ(\gamma \times \id_X)$; allora per ogni morfismo $f: X\to Y$ esiste un punto $x: 1\to X$ tale che per ogni punto $1\to X$ valga
     \[ g  (a\times x) = f a \] 
     Ora prendiamo un qualunque endomorfismo $t:Y\to Y$ e poniamo come $f$ la composizione 
     \[\begin{tikzcd}
-    	A && Y \\
+    	X && Y \\
 	    \\
-	    {A\times A} && Y
+	    {X\times X} && Y
 	    \arrow["f"{description}, from=1-1, to=1-3]
-	    \arrow["{(\id_A\times \id_A)}"{description}, from=1-1, to=3-1]
+	    \arrow["{(\id_X\times \id_X)}"{description}, from=1-1, to=3-1]
 	    \arrow["g"{description}, from=3-1, to=3-3]
 	    \arrow["t"{description}, from=3-3, to=1-3]
     \end{tikzcd}\]
-    Allora come sopra esiste un punto $x:1\to A$ tale che per ogni punto $a:1\to A$ valga 
+    Allora come sopra esiste un punto $x:1\to X$ tale che per ogni punto $a:1\to X$ valga 
     \begin{align*}
-        g ( a\times x) & = t g (\id_A\times \id_A) a \\
+        g ( a\times x) & = t g (\id_X\times \id_X) a \\
         & = t g (a\times a)
     \end{align*}
-    Quindi ponendo $a:= x$ otteniamo un punto fisso $y = g (\id_A \times \id_A ) x $ per $t$.
+    Quindi ponendo $a:= x$ otteniamo un punto fisso $y = g (\id_X \times \id_X ) x $ per $t$.
     \qed 
 \end{theorem}
 
@@ -1067,7 +1068,7 @@ Si può dimostrare facilmente che le funzioni ricorsive primitive sono tutte fun
 \newcommand\Com{\catname{Com}}
 \renewcommand\skip{\catname{skip}}
 \newcommand\while{\catname{while}}
-\renewcommand\do{\catname{do}}
+\newcommand\doc{\catname{do}}
 \newcommand\ifc{\catname{if}}
 \newcommand\then{\catname{then}}
 \newcommand\elsec{\catname{else}}
@@ -1082,7 +1083,7 @@ La sua semantica fa riferimento a tre insiemi: $\Var$ per le variabili (che assu
     \item L'assegnazione di una variabile ad un'espressione $x:= e$;
     \item La composizione di comandi $(\dots);(\dots)$
     \item Il condizionale $\ifc(\dots)\then(\dots)\elsec(\dots)$;
-    \item Il ciclo while $\while(\dots)\do(\dots)$.
+    \item Il ciclo while $\while(\dots)\doc(\dots)$.
 \end{itemize} 
 Questo è un linguaggio abbastanza semplice da poter ragionare formalmente sulla sua semantica, ma abbastanza potente da poter calcolare più o meno tutte le funzioni che "intuitivamente" ci aspettiamo un computer calcoli, come vedremo dopo.
 
@@ -1101,12 +1102,13 @@ Questo è un linguaggio abbastanza semplice da poter ragionare formalmente sulla
 \end{definition}
 
 Notiamo che non richiediamo a priori che il comando \textit{durante la sua esecuzione} si comporti in un modo prestabilito con le variabili in $\Input$ e $\Output$, semplicemente che il suo terminare e i valori in cui termina dipendano solo dalle variabili in $\Input$ e che i suoi risultati vadano letti attraverso le variabili in $\Output$. Questo requisito di "buona scrittura" potrebbe anche essere omesso, ma rende la nostra trattazione più agevole sotto molti punti di vista e dunque lo manteniamo.\\
+Possiamo sempre assumere che un comando non usi certe variabili senza perdita di generalità: dato che ne usa al più un numero finito, deve esistere un minimo indice $I \in \N$ tale che le variabili $x_i$, $t_i$ e $y_i$ non compaiano al suo interno per ogni $i > I$, dunque quando diciamo per esempio "assumiamo che il comando $\c$ non usi la variabile $t_1$" vogliamo dire che quando scriviamo $t_1$ intendiamo usare in realtà la variabile $t_{I + 1 }$.\\
 Questa corrispondenza tra funzioni e comandi non è biunivoca in realtà e non è nemmeno una funzione totale: in generale, un comando non definisce una funzione e una funzione ammette infiniti comandi che la calcolano.\\ 
 Il problema di determinare se un comando calcoli una funzione o se due comandi diversi calcolano la stessa funzione è in generale molto difficile da risolvere.\\
 Ad esempio, se 
 \[ \c_1 = (y_1 := x_1\cdot x_1),\]
 \[ \c_2 = (\ifc(x_1 = 0)\then(y_1 := 0)\elsec(y_1 := x_1\cdot x_1)),\]
-\[ \c_3 = \left(\ifc(x_1 = 0)\then(\while(0 = 0)\do(t_1 := 0) )\elsec(y_1 := x_1\cdot x_1)\right) \]
+\[ \c_3 = \left(\ifc(x_1 = 0)\then(\while(0 = 0)\doc(t_1 := 0) )\elsec(y_1 := x_1\cdot x_1)\right) \]
 Si vede che $\c_1$ e $\c_2$ sono calcolano entrambi la funzione $x\mapsto x^2$ su tutto $\N$, ma non sono in questo modo equivalenti a $\c_3$ perché questo la definisce solo su $\N\setminus\{0\}$.
 
 \begin{theorem}{Calcolabilità delle funzioni ricorsive}{tesi di church-turing}
@@ -1125,12 +1127,12 @@ Si vede che $\c_1$ e $\c_2$ sono calcolano entrambi la funzione $x\mapsto x^2$ s
         \item Se $f : \N^a\to\N^b$ è definita dal comando $\c_f$ e $g: \N^b\to\N^c$ è definita dal comando $\c_g$, la loro composizione è definita dal comando
         \[ \c_{g\circ f} := \left( \c_1 ;\ \underbrace{x_1 := y_1 ; \ \dots ; x_b := y_b ;}_{\text{reimpostare gli input}}\ \c_2 \right) \]
         \item Se $f: \N^k \to \N$ e $g:\N^{k+2}\to\N$ sono definite rispettivamente da $\c_f$ e $\c_g$, allora la funzione $h : \N^{k+1}\to\N$ data dallo schema di ricorsione è definita dal comando.
-        \[ \c_h = \left( \underbrace{t_1 := x_{k+1};\ \c_f}_{\text{caso base}};\ \underbrace{\while(t_1 \neq 0)\do(x_{k+2}:= y_1;\ \c_g;\ t_1 := t_1-1)}_{\text{Ricorsione}} \right) \]
+        \[ \c_h = \left( \underbrace{t_1 := x_{k+1};\ \c_f}_{\text{caso base}};\ \underbrace{\while(t_1 \neq 0)\doc(x_{k+2}:= y_1;\ \c_g;\ t_1 := t_1-1)}_{\text{ricorsione}} \right) \]
         Assumendo che la variabile $t_1$ non sia usata nè da $\c_f$ nè da $\c_g$
         \item L'operatore di minimalizzazione per una funzione $ f:\N^{k+1}\to \N $ definita dal comando $\c_f$ è dato dal comando 
         \begin{align*}
             \c_{\mu(f)} = & \left( t_1 := 0;\ x_{k+1}:= t_1;\ \c_f ;\underbrace{\while(y_1 \neq 0)}_{\text{controlla il valore di }f} \right. \\
-            &\left. \underbrace{\do( t_1:= t_1+1;\ x_{k+1} := t_1;\ \c_f )}_{\text{riprova }f\text{ aumentando l'input di }1};\ y_1 := t_1 \right)
+            &\left. \underbrace{\doc( t_1:= t_1+1;\ x_{k+1} := t_1;\ \c_f )}_{\text{riprova }f\text{ aumentando l'input di }1};\ y_1 := t_1 \right)
         \end{align*}
         Assumendo che $\c_f$ non usi la variabile $t_1$.
     \end{enumerate}
@@ -1159,7 +1161,7 @@ Per discutere la categoria che stiamo costruendo avremo bisogno di numerare l'in
 \[ \pair(x,y) = \frac{x^2+x+2xy+3y+y^2}{2} \]
 Che è immediatamente riconoscibile come funzione ricorsiva primitiva.\\
 Possiamo costruire ora esplicitamente una biezione $\Phi : \Com \iso\N$, notazione che manterremo nel prossimo risultato: dalla definizione di $\imp$ si vede che 
-\[ \Com \cong \{\skip\}\sqcup \underbrace{(\Var \times \Exp)}_{(\dots):=(\dots)} \sqcup \underbrace{(\Com\times\Com)}_{(\dots);(\dots)} \sqcup \underbrace{(\Exp \times \Com \times \Com)}_{\ifc(\dots)\then(\dots)\elsec(\dots)} \sqcup \underbrace{(\Exp \times \Com)}_{\while(\dots)\do(\dots)} \]
+\[ \Com \cong \{\skip\}\sqcup \underbrace{(\Var \times \Exp)}_{(\dots):=(\dots)} \sqcup \underbrace{(\Com\times\Com)}_{(\dots);(\dots)} \sqcup \underbrace{(\Exp \times \Com \times \Com)}_{\ifc(\dots)\then(\dots)\elsec(\dots)} \sqcup \underbrace{(\Exp \times \Com)}_{\while(\dots)\doc(\dots)} \]
 E allo stesso modo 
 \[ \Exp \cong \N\sqcup\Var \sqcup\underbrace{(\Exp\times\Exp)}_{(\dots)+(\dots)} \sqcup\underbrace{(\Exp\times\Exp)}_{(\dots)-(\dots)} \sqcup\underbrace{(\Exp\times\Exp)}_{(\dots)\cdot(\dots)} \]
 Dunque definiamo per induzione l'enumerazione $\Phi : \Com \iso \N$:
@@ -1168,7 +1170,7 @@ Dunque definiamo per induzione l'enumerazione $\Phi : \Com \iso \N$:
     \Phi(x := e) & := 1+4\cdot \pair(\varphi(x), \phi(e))\\
     \Phi(\c_1; \c_2 ) & := 2+4\cdot \pair(\Phi(\c_1),\Phi(\c_2))\\
     \Phi(\ifc( e\neq 0 )\then( \c_1 )\elsec(\c_2)) & := 3+4\cdot\pair( \phi(e) , \pair(\Phi(\c_1),\Phi(\c_2)) )\\
-    \Phi(\while(e\neq 0)\do(\c)) & := 4+4\cdot\pair(\phi(e), \Phi(\c))
+    \Phi(\while(e\neq 0)\doc(\c)) & := 4+4\cdot\pair(\phi(e), \Phi(\c))
 \end{cases} \]
 Dove $\phi:\Exp \iso \N$ è definita per induzione da 
 \[ \begin{cases}
@@ -1187,7 +1189,7 @@ E $\varphi:\Var \iso \N$ è semplicemente data da
 
 \begin{example}{Numero di un semplice comando di $\imp$}{}
     Prendiamo un semplice comando che calcoli la funzione $x\mapsto x!$:
-    \[ \c = \left( y_1 := 1\ ;\ \overbrace{\while(x_1 \neq 0)\do\underbrace{(y_1 := y_1 \cdot x_1\ ;\ x_1 := x_1 - 1)}_{\c_2}}^{\c_1} \right) \]
+    \[ \c = \left( y_1 := 1\ ;\ \overbrace{\while(x_1 \neq 0)\doc\underbrace{(y_1 := y_1 \cdot x_1\ ;\ x_1 := x_1 - 1)}_{\c_2}}^{\c_1} \right) \]
     Procedendo per step:
     \[ \Phi(y_1 := 1) = 1+4\cdot\pair(5,5) =241 \]
     \[ \Phi(x_1 := x_1-1) = 1+4\cdot \pair (3, 3+5\cdot \pair(16,5)) = 2820297 \]
@@ -1200,6 +1202,7 @@ E $\varphi:\Var \iso \N$ è semplicemente data da
     vale a dire circa $2.25\cdot 10^{63}$, notevole per un comando da una ventina di simboli.
 \end{example}
 
+Notiamo che sia $\Phi$ che la sua inversa sono primitive ricorsive, in quanto $\Phi$ è solo una composizione ricorsiva di somme e prodotti, mentre $\Phi^{-1}$ è una serie di divisioni con resto, che sono primitive ricorsive.\\
 Ora, mantenendo questa notazione, possiamo enunciare un risultato che sarà essenziale per dimostrare la chiusura della categoria che stiamo costruendo:
 
 \begin{theorem}{Teorema SMN}{teorema smn}
@@ -1207,13 +1210,13 @@ Ora, mantenendo questa notazione, possiamo enunciare un risultato che sarà esse
     Esiste una funzione $s_{m,n}: \N^{1+n} \to \N$ in $\hom\prf(\N)$ tale che per ogni $\mathbf{x} \in \N^n$ e $\mathbf{y}\in \N^m$ la funzione $\mathbf{y}\mapsto f(\mathbf{x},\mathbf{y})$ sia calcolata dal comando $\Phi^{-1}(s_{m,n}(i,\mathbf{x}))$.\\
     In più, $s_{m,n}$ è univocamente determinata da $m$ e $n$.
     \proof 
-    La funzione $s_{m,n}$ è esibita dal comando
+    La funzione $s_{m,n}$ è esibita dalla seguente composizione di funzioni ricorsive primitive:
     \[ s_{m,n}(i,a_1,\ \dots,a_n) = \Phi\left( x_{m+1} := a_1;\ \dots;\ x_{m+n} := a_n ;\ \Phi^{-1}(i) \right) \]
     \qed
 \end{theorem}
 
 Notiamo che la funzione $s_{m,n}$ non esegue il comando $\Phi(i)$, ma semplicemente restituisce il numero del comando con le variabili fissate.\\
-Notiamo che se il comando $\Phi^{-1}(i)$ calcola una funzione che indichiamo con $\varphi_i$ per $i \in \N$, la mappa $i\mapsto \varphi_i$ non è iniettiva (o totale), in quanto comandi sintatticamente diversi potrebbero calcolare la stessa funzione, ma è suriettiva come conseguenza del teorema \cref{th:tesi di church-turing} e questo ci basta.
+Notiamo anche che se il comando $\Phi^{-1}(i)$ calcola una funzione che indichiamo con $\varphi_i$ per $i \in \N$, la mappa $i\mapsto \varphi_i$ non è iniettiva (o totale), in quanto comandi sintatticamente diversi potrebbero calcolare la stessa funzione, ma è suriettiva come conseguenza del teorema \cref{th:tesi di church-turing} e questo ci basta.
 
 \newpage
 \section{$\percat(\N)$: definizioni e proprietà}
@@ -1319,7 +1322,7 @@ Dove se $f$ è tracciato da $\varphi$, $f\times \id_S$ è tracciato da $\pair(\v
     Il candidato per il morfismo $\eval_{S,T}:T^S\times S \to T$ è evidentemente tracciato dalla mappa $\varepsilon:\N\to\N$ data da 
     \[ \varepsilon(\pair(a,x)) = \varphi_a(x) \]
     Che è computabile: supponendo che $\pair^{-1}$ sia calcolata dal comando $\c_p$, $\varepsilon$ è calcolata dal comando
-    \[ \c_\varepsilon = \left( \c_p;\ x_1:= y_2;\ \Phi(y_1)  \right) \]
+    \[ \c_\varepsilon = \left( \c_p;\ x_1:= y_2;\ \Phi^{-1}(y_1)  \right) \]
     Notiamo che la stessa mappa $\varepsilon$ traccia effettivamente un morfismo $T^S\times S\to T$ \textit{indipendentemente da} $S$ e $T$, infatti segue direttamente dalla definizione di relazione esponenziale e di prodotto:
     \begin{align*}
        \pair(a,b) T^S\times S \pair(c,d) & \Harr \left[\left(\forall x, y \in \N, xSy\Rarr \varphi_a(x)T\varphi_c(y) \right)\wedge bSd \right] \\
