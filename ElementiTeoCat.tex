@@ -6,6 +6,8 @@
 
 \usepackage[cianabook]{cianatheorems}
 
+\usepackage{pdfpages}
+
 \addbibresource{ElementiTeoCat.bib}
 
 \title{Elementi di Teoria delle Categorie: aspetti generali e un esempio dalla Teoria della Computazione}
@@ -21,7 +23,11 @@
 
 \begin{document}
 
-\maketitle
+%\maketitle
+
+\begin{titlepage}
+    \includepdf{frontespizio-elaborato-finale-laurea-matematica-Troncana-firmato.pdf}
+\end{titlepage}
 
 \tableofcontents
 
@@ -959,24 +965,24 @@ Riportiamo un interessante risultato dimostrato da Lawvere in \cite{Lawvere1969}
     Sia $\C$ una categoria cartesiana chiusa e sia $Y$ un oggetto di $\C$.\\
     Se esiste un oggetto $X$ che ammette un morfismo $\gamma : X\to Y^X$ \bemph{suriettivo sui punti}, ovvero tale che per ogni punto $q:1\to Y^X$ esista un punto $p: 1\to X$ tale che $\gamma p = q$, allora ogni endomorfismo $t:Y\to Y$ ammette un \bemph{punto fisso}, ovvero un punto $y:1\to Y$ tale che $ty = y$.
     \proof 
-    Consideriamo il morfismo $g : X\times X\to Y$ tale che $\lambda g = \gamma$, ovvero $g = \eval_{X,Y}\circ(\gamma \times \id_X)$; allora per ogni morfismo $f: X\to Y$ esiste un punto $x: 1\to X$ tale che per ogni punto $1\to X$ valga
-    \[ g  (a\times x) = f a \] 
+    Consideriamo il morfismo $g : X\times X\to Y$ tale che $\lambda g = \gamma$, ovvero $g = \eval_{X,Y}\circ(\gamma \times \id_X)$; allora usando la suriettività per punti di $\gamma$ per ogni morfismo $f: X\to Y$ esiste un punto $x: 1\to X$ tale che per ogni punto $a:1\to X$ valga
+    \[ g  \langle a, x\rangle = f a \] 
     Ora prendiamo un qualunque endomorfismo $t:Y\to Y$ e poniamo come $f$ la composizione 
     \[\begin{tikzcd}
     	X && Y \\
 	    \\
 	    {X\times X} && Y
 	    \arrow["f"{description}, from=1-1, to=1-3]
-	    \arrow["{(\id_X\times \id_X)}"{description}, from=1-1, to=3-1]
+	    \arrow["{\langle \id_X, \id_X \rangle}"{description}, from=1-1, to=3-1]
 	    \arrow["g"{description}, from=3-1, to=3-3]
 	    \arrow["t"{description}, from=3-3, to=1-3]
     \end{tikzcd}\]
     Allora come sopra esiste un punto $x:1\to X$ tale che per ogni punto $a:1\to X$ valga 
     \begin{align*}
-        g ( a\times x) & = t g (\id_X\times \id_X) a \\
-        & = t g (a\times a)
+        g \langle a, x\rangle & = t g \langle \id_X, \id_X\rangle a \\
+        & = t g \langle a, a\rangle
     \end{align*}
-    Quindi ponendo $a:= x$ otteniamo un punto fisso $y = g (\id_X \times \id_X ) x $ per $t$.
+    Quindi ponendo $a:= x$ otteniamo un punto fisso $y = g \langle \id_X, \id_X\rangle x $ per $t$.
     \qed 
 \end{theorem}
 
@@ -1202,7 +1208,18 @@ E $\varphi:\Var \iso \N$ è semplicemente data da
     vale a dire circa $2.25\cdot 10^{63}$, notevole per un comando da una ventina di simboli.
 \end{example}
 
-Notiamo che sia $\Phi$ che la sua inversa sono primitive ricorsive, in quanto $\Phi$ è solo una composizione ricorsiva di somme e prodotti, mentre $\Phi^{-1}$ è una serie di divisioni con resto, che sono primitive ricorsive.\\
+La calcolabilità di $\Phi$ e $\Phi^{-1}$ non è banale in realtà, perchè dipende dall'implementazione di un interprete di $\imp$ in $\imp$: è possibile farlo, ma noi ricorriamo al seguente teorema che enunciamo senza dimostrazione, ma per la quale rimandiamo il lettore a \cite{Rogers1967}.
+
+\begin{theorem}{Esistenza di un comando universale}{esistenza di un comando universale}
+    Esiste un comando $\mathbf{C}$ di $\imp$ che per ogni $i \in \N$ tale che $i$ sia un codice valido di una funzione $\varphi_i : \N^n\to\N^k$, valga 
+    \begin{align*}
+        \exists \varphi_i(a_1,\ \dots ,a_n) & = (b_1,\ \dots,b_k) \\
+        & \Rarr \forall\sigma, \exists\sigma' : \langle \mathbf{C}, \sigma[x_1\mapsto i;\ x_2\mapsto a_1,\ \dots, x_{n+1}\mapsto a_n] \rangle \to_b \sigma'[y_1\mapsto b_1,\ \dots, y_k\mapsto b_k] \\
+        \nexists \varphi_i(a_1,\ \dots , a_n ) & \Rarr \forall\sigma, \nexists\sigma' : \langle \mathbf{C}, \sigma[x_2\mapsto a_1,\ \dots, x_{n+1}\mapsto a_n] \rangle \to_b \sigma'
+    \end{align*}
+    Ovvero, $\mathbf{C}$ esegue il comando $\Phi(i)$.
+\end{theorem}
+
 Ora, mantenendo questa notazione, possiamo enunciare un risultato che sarà essenziale per dimostrare la chiusura della categoria che stiamo costruendo:
 
 \begin{theorem}{Teorema SMN}{teorema smn}
@@ -1211,7 +1228,7 @@ Ora, mantenendo questa notazione, possiamo enunciare un risultato che sarà esse
     In più, $s_{m,n}$ è univocamente determinata da $m$ e $n$.
     \proof 
     La funzione $s_{m,n}$ è esibita dalla seguente composizione di funzioni ricorsive primitive:
-    \[ s_{m,n}(i,a_1,\ \dots,a_n) = \Phi\left( x_{m+1} := a_1;\ \dots;\ x_{m+n} := a_n ;\ \Phi^{-1}(i) \right) \]
+    \[ s_{m,n}(i,a_1,\ \dots,a_n) = \Phi\left(x_1:= i;\ x_{m+1+1} := a_1;\ \dots;\ x_{m+n+1} := a_n ;\ \mathbf{C} \right) \]
     \qed
 \end{theorem}
 
@@ -1229,7 +1246,7 @@ Notiamo anche che se il comando $\Phi^{-1}(i)$ calcola una funzione che indichia
     Definiamo come $\dom R$ l'insieme dei punti $x \in A$ che sono in relazione con sè stessi (o equivalentemente con un qualsiasi altro punto) e definiamo l'insieme $A/R$ come $(\dom R/R)$.
 \end{definition}
 
-Intuitivamente possiamo pensare a $A/R$ come ad una partizione di $A$ in $R$-classi di equivalenza e una "zona d'ombra" che $R$ non vede.
+Intuitivamente possiamo pensare a $A/R$ come ad una partizione di $A$ in $R$-classi di equivalenza e una \bemph{zona d'ombra} che $R$ non vede data da $(\N\setminus \dom R)^2$.
 
 \begin{definition}{La categoria $\percat(\N)$}{categoria per}
     Definiamo la categoria $\percat(\N)$ come la categoria i cui oggetti sono le relazioni di equivalenza parziali su $\N$ (a volte identificate con i loro quozienti $\N/R$) e i cui morfismi sono dati dalle funzioni $f:\N/R\to\N/S$ "tracciate" da una qualche mappa $\varphi \in \grf(\N,\N)$ definita \textit{almeno} sul dominio di $R$ tale che 
@@ -1248,7 +1265,7 @@ Intuitivamente possiamo pensare a $A/R$ come ad una partizione di $A$ in $R$-cla
     \qed
 \end{definition}
 
-Nella definizione dei morfismi di $\percat(\N)$ non è richiesto nè che $\varphi$ sia unica nè che si comporti in qualsiasi modo stabilito a priori nella "zona d'ombra" di $R$: questo sarà importante più tardi quando considereremo una sottocategoria rappresentativa di $\percat(\N)$.\\
+Nella definizione dei morfismi di $\percat(\N)$ non è richiesto nè che $\varphi$ sia unica nè che si comporti in qualsiasi modo stabilito a priori nella zona d'ombra di $R$: questo sarà importante più tardi quando considereremo una sottocategoria rappresentativa di $\percat(\N)$.\\
 Osserviamo anche che un morfismo $R\to S$ tracciato dalla funzione $\varphi:\N\to\N$ è univocamente determinato dal comportamento della funzione $\varphi|_{\dom R}$.\\
 La categoria $\percat(\N)$ è anche dotata di una struttura di categoria cartesiana chiusa. 
 
@@ -1260,7 +1277,7 @@ La categoria $\percat(\N)$ è anche dotata di una struttura di categoria cartesi
     \qed 
 \end{lemma}
 
-La nostra scelta "canonica" di oggetto terminale sarà la relazione $1 := \N\times_{\setcat}\N$ con "zona d'ombra" vuota.
+La nostra scelta "canonica" di oggetto terminale sarà la relazione $1 := \N\times_{\setcat}\N$ con zona d'ombra vuota.
 
 \begin{lemma}{Prodotti in $\percat(\N)$}{prodotti in per}
     Date due relazioni di equivalenza parziali $R$ e $S$ su $\N$, la relazione 
@@ -1297,7 +1314,7 @@ Dove se $f$ è tracciato da $\varphi$, $f\times \id_S$ è tracciato da $\pair(\v
     La categoria $\percat(\N)$ è una categoria cartesiana chiusa.\\
     Un esponenziale $T^S$ è dato dalla relazione 
     \[ aT^Sb \Harr \forall x,y \in \N, xSy \Rarr \varphi_a(x)T\varphi_b(y) \]
-    o in altre parole, due numeri sono equivalenti in $R^S$ se e solo se sono codici validi di funzioni che tracciano lo stesso morfismo $S\to T$.
+    o in altre parole, due numeri sono equivalenti in $T^S$ se e solo se sono codici \bemph{validi} di funzioni che tracciano lo stesso morfismo $S\to T$.
     \proof 
     I due lemmi appena visti ci danno l'esistenza di un oggetto terminale e dei prodotti binari.\\
     Per quanto riguarda gli esponenziali, vediamo facilmente che la relazione $T^S$ è sia simmetrica che transitiva, mentre per dimostrare che è effettivamente un'esponenziale sfrutteremo due risultati visti precedentemente: per ogni oggetto $S$ fissato dimostreremo l'esistenza di una biezione tra $\hom(R\times S, T)$ e $\hom(R, T^S)$ che sarà definita in modo indipendente da $R$: questo ci permetterà di estendere la mappa di oggetti $T\mapsto T^S$ attraverso la proposizione \cref{prop:estensione via aggiunzione} a un funtore aggiunto destro a $-\times S$, che quindi tramite il teorema \cref{th:ccc da aggiunti} ci darà la chiusura cartesiana.\\
@@ -1321,8 +1338,8 @@ Dove se $f$ è tracciato da $\varphi$, $f\times \id_S$ è tracciato da $\pair(\v
     \[ f = \eval_{S,T} \circ (\lambda f\times \id_T)\] 
     Il candidato per il morfismo $\eval_{S,T}:T^S\times S \to T$ è evidentemente tracciato dalla mappa $\varepsilon:\N\to\N$ data da 
     \[ \varepsilon(\pair(a,x)) = \varphi_a(x) \]
-    Che è computabile: supponendo che $\pair^{-1}$ sia calcolata dal comando $\c_p$, $\varepsilon$ è calcolata dal comando
-    \[ \c_\varepsilon = \left( \c_p;\ x_1:= y_2;\ \Phi^{-1}(y_1)  \right) \]
+    Che è computabile: supponendo che $\pair^{-1}$ sia calcolata dal comando $\c_p$, $\varepsilon$ è calcolata, sfruttando il comando universale $\mathbf{C}$ del teorema \cref{th:esistenza di un comando universale}, dal comando
+    \[ \c_\varepsilon = \left( \c_p;\ x_1:= y_1;\ x_2:= y_2;\ \mathbf{C}  \right) \]
     Notiamo che la stessa mappa $\varepsilon$ traccia effettivamente un morfismo $T^S\times S\to T$ \textit{indipendentemente da} $S$ e $T$, infatti segue direttamente dalla definizione di relazione esponenziale e di prodotto:
     \begin{align*}
        \pair(a,b) T^S\times S \pair(c,d) & \Harr \left[\left(\forall x, y \in \N, xSy\Rarr \varphi_a(x)T\varphi_c(y) \right)\wedge bSd \right] \\
@@ -1339,7 +1356,7 @@ Consideriamo ora una particolare sottocategoria:
 
 \begin{definition}{Sottocategoria delle identità}{}
     Definiamo la sottocategoria $\I\le \percat(\N)$ con lo stesso insieme degli oggetti ma i cui morfismi sono quelli tracciati dall'identità su $\N$.\\
-    In altre parole abbiamo un morfismo $R\to S$ se $aRb$ implica $aSc$, ovvero se per ogni $a\in \dom R$ abbiamo $a \in \dom S$ e $[a]_R \subset [a]_S$.\\
+    In altre parole abbiamo un morfismo $R\to S$ se $aRb$ implica $aSb$, ovvero se per ogni $a\in \dom R$ abbiamo $a \in \dom S$ e $[a]_R \subset [a]_S$.\\
     Chiamiamo \bemph{$\I$-mappe} i morfismi di $\I$.
 \end{definition}
 
@@ -1357,7 +1374,7 @@ Vediamo che $R$ identifica ogni numero primo solo con sè stesso, mentre $S$ è 
 Nonostante sembri apparentemente molto semplice, la seguente proposizione ci mostra che $\I$ è una sottocategoria molto rappresentativa di $\percat(\N)$.
 
 \begin{proposition}{Rappresentazione di $\percat(\N)$ in $\I$}{}
-    Per ogni morfismo $f: R\to S$ in $\percat(\N)$ esistono due isomorfismi $\phi :R\iso G$ e $\psi : G'\iso S$ e una $\I$-mappa $\iota: G\to G'$ tali che $f = \psi \circ \iota\circ \phi$.
+    Per ogni morfismo $f: R\to S$ in $\percat(\N)$ esistono due oggetti $G, G'$ e isomorfismi $\phi :R\iso G$ e $\psi : G'\iso S$ e una $\I$-mappa $\iota: G\to G'$ tali che $f = \psi \circ \iota\circ \phi$.
     \proof 
     Supponiamo che $f$ sia tracciata da $\alpha$ e definiamo $G$ intuitivamente come il "grafico" di $f$, ponendo 
     \begin{align*}
@@ -1373,7 +1390,7 @@ Nonostante sembri apparentemente molto semplice, la seguente proposizione ci mos
 Il ruolo di $\I$ in $\percat(\N)$ è analogo in qualche modo a quello che hanno nella categoria degli spazi vettoriali di dimensione finita definiti sul campo $\K$ gli spazi $\K^n$.\\
 Notoriamente ogni mappa lineare $f:V\to W$ può essere \textit{innaturalmente} rappresentata da una mappa $M:\K^m\to\K^n$ dopo la scelta di due basi, ovvero di isomorfismi $\beta :\K^m\iso V$ e $\beta ':\K^n\iso W$, in particolare la scelta delle basi cambierebbe in base a $f$ se dovessimo imporre restrizioni sulla forma di $M$: dato che le mappe di $\I$ hanno una forma molto restrittiva abbiamo che non solo gli isomorfismi ma anche gli oggetti di rappresentazione scelti devono variare in base al morfismo considerato.\\
 A livello pratico risulta molto agevole poter ricorrere a un teorema di questo genere, perché permette di considerare ogni morfismo come una $\I$-mappa a meno di comporre con due isomorfismi.\\
-L'importanza di $\percat(\N)$ come controesempio sta nel fatto che nonostante sia una categoria concreta e ammetta oggetti esponenziali, la sua cardinalità rimane estremamente controllata.
+L'importanza di $\percat(\N)$ come esempio sta nel fatto che nonostante sia una categoria concreta e ammetta oggetti esponenziali, la sua cardinalità rimane estremamente controllata.
 
 \begin{proposition}{Cardinalità di $\percat(\N)$}{}
     Come insieme, ogni oggetto di $\percat(\N)$ ha cardinalità al più numerabile.\\
@@ -1383,12 +1400,12 @@ L'importanza di $\percat(\N)$ come controesempio sta nel fatto che nonostante si
     \proof 
     Chiaramente ogni relazione $R$ è un sottoinsieme di $\N^2\cong \N$, dunque è al più numerabile.
     Abbiamo una mappa iniettiva $2^\N \to \ob\percat(\N)$ data da $X\mapsto X^2$ e abbiamo naturalmente $\ob\percat(\N)\subset 2^{\N^2}\cong 2^\N$, dunque la sua cardinalità è esattamente quella di $2^\N$.\\
-    Dato che ogni morfismo $R\to S$ ha almeno un codice $i \in \N$, esiste una funzione (parziale) suriettiva $\N \to \hom(R,S)$.\\
-    Dato che è unione di $|2^\N|$ insiemi di cardinalità al più numerabile, abbiamo che la cardinalità dell'insieme dei morfismi di $\percat(\N)$ è quella di $2^\N$.
+    Dato che ogni morfismo $R\to S$ ha almeno un codice $i \in \N$ che la determina univocamente, esiste una funzione (parziale) suriettiva $\N \to \hom(R,S)$.\\
+    Riguardo all'insieme dei morfismi di $\percat(\N)$, dato che è unione di $|2^\N|$ insiemi di cardinalità al più numerabile la sua cardinalità è quella di $2^\N$.
     \qed
 \end{proposition}
 
-Dunque, nonostante stiamo trattando una categoria concreta in cui abbiamo oggetti come $N = \{nNn : n\ in \N\}$ che hanno cardinalità numerabile, le cardinalità degli $\hom$-set o degli esponenziali non possono esplodere come succede in $\setcat$ dove ad esempio potremmo iterare la mappa $X\mapsto 2^X$ su un insieme infinito per salire di cardinalità a piacimento, ma rimangono controllate dalle restrizioni imposte sui morfismi.
+Dunque, nonostante stiamo trattando una categoria concreta in cui abbiamo oggetti come $N = \{nNn : n \in \N\}$ che hanno cardinalità numerabile, le cardinalità degli $\hom$-set o degli esponenziali non possono esplodere come succede in $\setcat$ dove ad esempio potremmo iterare la mappa $X\mapsto 2^X$ su un insieme infinito per continuare a salire di cardinalità, ma rimangono controllate dalle restrizioni imposte sui morfismi.
 
 \nocite{*}
 \printbibliography
