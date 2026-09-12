@@ -21,13 +21,38 @@
 \newcommand\eq{\operatorname{eq}}
 \newcommand\cod{\operatorname{cod}}
 
+\setlength\epigraphwidth{275pt}
+
 \begin{document}
 
 %\maketitle
 
 \begin{titlepage}
-    \includepdf{frontespizio-elaborato-finale-laurea-matematica-Troncana-firmato.pdf}
+    \includepdf{frontespizio-tesi-stampa.pdf}
 \end{titlepage}
+
+%\import
+
+\newpage
+
+\
+
+\newpage
+
+\vspace*{200pt}
+
+\begin{flushright}
+    \textit{Last time, I asked: 'What does mathematics mean to you?'\linebreak And some people answered: 'The manipulation of numbers, the manipulation of structures.'\linebreak 
+    And if I had asked what music means to you, would you have answered:\linebreak 'The manipulation of notes?'}\linebreak
+    \linebreak
+    \textit{Serge Lang, The Beauty of Doing Mathematics}
+\end{flushright}
+
+\newpage
+
+\
+
+\newpage
 
 \tableofcontents
 
@@ -41,7 +66,7 @@ Tradizionalmente si colloca la nascita della Teoria delle Categorie nel 1945 con
 Negli anni successivi quello delle categorie si presentò di fatto solo come linguaggio conveniente per l'Algebra Omologica e la Topologia Algebrica, fino all'articolo "Sur quelques points d'algèbre homologique" del 1957 di Grothendieck e al lavoro del 1958 di Kan sui funtori aggiunti, che mostrarono la necessità e le potenzialità dello sviluppo di una vera e propria Teoria delle Categorie. A questi seguirono gli sforzi di Freyd e Lawvere, che posero le basi per quella che è la Teoria delle Categorie al giorno d'oggi e il suo ruolo tra le varie teorie matematiche.\\
 In particolare il lavoro di Lawvere durante gli anni '60 evidenziò la potenzialità della Teoria delle Categorie come possibile nuova fondazione della matematica, applicandola all'Algebra Universale e inaugurando lo studio della Logica Categoriale, contemporaneamente al lavoro di Lambek sulle applicazioni delle categorie ai sistemi deduttivi e alla Teoria della Dimostrabilità.\\
 Il culmine di questi sforzi è rappresentato dallo sviluppo a partire dagli anni '70 della Teoria dei Topoi, esibendo il concetto di Topos come ponte tra la Geometria e la Logica. Al di là delle sue applicazioni alla Geometria Algebrica, la Teoria dei Topoi trovò molto successo nello studio delle varie Teorie degli Insiemi, della Matematica Costruttiva e della Teoria della Computabilità, ma anche alla Geometria Differenziale Sintetica.\\
-Attualmente, la Teoria delle Categorie si è attestata sia come linguaggio di importanza fondamentale nell'apprendimento della Geometria, dell'Algebra e dell'Informatica Teorica, sia come teoria autonoma nella sua generalizzazione alla Teoria delle Categorie Superiori, che ha portato a numerosi risultati anche nel campo della Fisica Teorica a partire dagli anni '90.\\
+Attualmente, la Teoria delle Categorie si è attestata sia come linguaggio unificante di importanza fondamentale per l'apprendimento sistematico della Geometria, dell'Algebra e dell'Informatica Teorica, sia come teoria autonoma anche nella sua generalizzazione alla Teoria delle Categorie Superiori, che ha portato a numerosi risultati anche nel campo della Fisica Teorica a partire dagli anni '90.\\
 Per più dettagli e riferimenti bibliografici sulla storia della Teoria delle Categorie rimandiamo il lettore a \cite{Marquis2026}.
 
 \subsection{Universi di Grothendieck}
@@ -651,6 +676,7 @@ Come possiamo intuire questo cono corrisponde alla counità dell'aggiunzione, me
 	    \arrow["h"{description}, dashed, from=3-1, to=1-1]
 	    \arrow["{f_i}"{description}, from=3-1, to=3-3]
     \end{tikzcd}\]
+    Per indicarlo, scriviamo $h = \langle f_i \rangle_{i \in I}$.\\
     Quando $|I| = 2$ diciamo che il prodotto è \bemph{binario} e lo\footnote{o meglio, ne indichiamo uno} indichiamo con $X_1\times X_2$.\\
     Il colimite di $X_\bullet$ in $\C$ si dice \bemph{coprodotto} e si indica con $\amalg_{i \in I}X_i$.
 \end{definition}
@@ -834,7 +860,7 @@ Non ci è possibile affrontare il concetto di topos in questa trattazione per qu
 
 Notiamo che l'assegnazione $f\mapsto \lambda f$ definisce una biezione
 \[ \hom(X\times Y, Z) \cong \hom(X, Z^Y) \]
-La cui inversa è data da $\lambda f \mapsto \eval(\lambda f \times \id)$.
+La cui inversa è data da $\lambda f \mapsto \eval\circ (\lambda f \times \id)$.
 
 \begin{definition}{Categoria Cartesiana Chiusa}{CCC}
     Sia $\C$ una categoria. Questa si dice \bemph{cartesiana chiusa} se soddisfa le seguenti condizioni:\begin{enumerate}
@@ -1097,11 +1123,12 @@ Questo è un linguaggio abbastanza semplice da poter ragionare formalmente sulla
     Modifichiamo leggermente il linguaggio $\imp$, restringendo i valori delle variabili a numeri naturali invece che interi e assumendo senza perdita di generalità che l'insieme $\Var$ abbia la forma 
     \[ \Var = \underbrace{\{x_i : i \in \N_{> 0}\}}_{:= \Input} \sqcup \underbrace{\{y_i : i \in \N_{> 0}\}}_{:= \Output} \sqcup \underbrace{\{t_i : i \in \N_{> 0}\}}_{:= \Temp} \]
     e che ogni comando sia scritto in modo da dipendere soltanto dal valore delle variabili in $\Input$: le variabili in $\Temp$ sono da considerarsi le variabili temporanee che un comando può invocare come "appoggio" e le variabili in $\Output$ sono quelle in cui il comando "deposita" il risultato dei suoi calcoli.\\ 
-    Diciamo che un comando $\c \in \Com$ definisce una funzione parziale $f_{\c} : \N^n\to\N^k$ per $n,k\ge 0$ se per ogni $a_1,\ \dots,a_n,b_1,\ \dots,b_k$ si ha 
+    Diciamo che un comando $\c \in \Com$ definisce una funzione parziale $f : \N^n\to\N^k$ per $n,k\ge 0$ se per ogni $a_1,\ \dots,a_n,b_1,\ \dots,b_k$ si ha 
     \begin{align*}
-        \exists f(a_1,\ \dots ,a_n) & = (b_1,\ \dots,b_k) \\
+        \text{Se } &\exists f(a_1,\ \dots ,a_n) = (b_1,\ \dots,b_k) \\
         & \Rarr \forall\sigma, \exists\sigma' : \langle \c, \sigma[x_1\mapsto a_1,\ \dots, x_n\mapsto a_n] \rangle \to_b \sigma'[y_1\mapsto b_1,\ \dots, y_k\mapsto b_k] \\
-        \nexists f(a_1,\ \dots , a_n ) & \Rarr \forall\sigma, \nexists\sigma' : \langle \c, \sigma[x_1\mapsto a_1,\ \dots, x_n\mapsto a_n] \rangle \to_b \sigma'
+        \text{Se } & \nexists f(a_1,\ \dots , a_n ) \\
+        & \Rarr \forall\sigma, \nexists\sigma' : \langle \c, \sigma[x_1\mapsto a_1,\ \dots, x_n\mapsto a_n] \rangle \to_b \sigma'
     \end{align*}
     In questo caso diremo che $\c$ \bemph{calcola} $f$ e che $f$ è $\imp$\bemph{-definibile}.\\
     In particolare, la funzione non è definita per i valori di $a_1,\ \dots,a_n$ per i quali il comando $\c$ non termina mai, indipendentemente dallo stato.
@@ -1115,7 +1142,7 @@ Ad esempio, se
 \[ \c_1 = (y_1 := x_1\cdot x_1),\]
 \[ \c_2 = (\ifc(x_1 = 0)\then(y_1 := 0)\elsec(y_1 := x_1\cdot x_1)),\]
 \[ \c_3 = \left(\ifc(x_1 = 0)\then(\while(0 = 0)\doc(t_1 := 0) )\elsec(y_1 := x_1\cdot x_1)\right) \]
-Si vede che $\c_1$ e $\c_2$ sono calcolano entrambi la funzione $x\mapsto x^2$ su tutto $\N$, ma non sono in questo modo equivalenti a $\c_3$ perché questo la definisce solo su $\N\setminus\{0\}$.
+Si vede che $\c_1$ e $\c_2$ calcolano entrambi la funzione $x\mapsto x^2$ su tutto $\N$, ma non sono in questo modo equivalenti a $\c_3$ perché questo la definisce solo su $\N\setminus\{0\}$.
 
 \begin{theorem}{Calcolabilità delle funzioni ricorsive}{tesi di church-turing}
     Tutte e sole le funzioni in $\hom\grf$ sono $\imp$-definibili.
@@ -1208,16 +1235,17 @@ E $\varphi:\Var \iso \N$ è semplicemente data da
     vale a dire circa $2.25\cdot 10^{63}$, notevole per un comando da una ventina di simboli.
 \end{example}
 
-La calcolabilità di $\Phi$ e $\Phi^{-1}$ non è banale in realtà, perchè dipende dall'implementazione di un interprete di $\imp$ in $\imp$: è possibile farlo, ma noi ricorriamo al seguente teorema che enunciamo senza dimostrazione, ma per la quale rimandiamo il lettore a \cite{Rogers1967}.
+La calcolabilità di $\Phi$ e $\Phi^{-1}$ non è banale in realtà, perché dipende dall'implementazione di un interprete di $\imp$ in $\imp$: è possibile farlo, ma noi ricorriamo al seguente teorema che enunciamo senza dimostrazione, per la quale rimandiamo il lettore a \cite{Rogers1967}.
 
 \begin{theorem}{Esistenza di un comando universale}{esistenza di un comando universale}
-    Esiste un comando $\mathbf{C}$ di $\imp$ che per ogni $i \in \N$ tale che $i$ sia un codice valido di una funzione $\varphi_i : \N^n\to\N^k$, valga 
+    Esiste un comando $\mathbf{C}$ di $\imp$ tale che per ogni codice valido $i \in \N$, valga 
     \begin{align*}
-        \exists \varphi_i(a_1,\ \dots ,a_n) & = (b_1,\ \dots,b_k) \\
+        \text{Se }& \exists \varphi_i(a_1,\ \dots ,a_n) = (b_1,\ \dots,b_k) \\
         & \Rarr \forall\sigma, \exists\sigma' : \langle \mathbf{C}, \sigma[x_1\mapsto i;\ x_2\mapsto a_1,\ \dots, x_{n+1}\mapsto a_n] \rangle \to_b \sigma'[y_1\mapsto b_1,\ \dots, y_k\mapsto b_k] \\
-        \nexists \varphi_i(a_1,\ \dots , a_n ) & \Rarr \forall\sigma, \nexists\sigma' : \langle \mathbf{C}, \sigma[x_2\mapsto a_1,\ \dots, x_{n+1}\mapsto a_n] \rangle \to_b \sigma'
+        \text{Se } &\nexists \varphi_i(a_1,\ \dots , a_n ) \\
+        & \Rarr \forall\sigma, \nexists\sigma' : \langle \mathbf{C}, \sigma[x_2\mapsto a_1,\ \dots, x_{n+1}\mapsto a_n] \rangle \to_b \sigma'
     \end{align*}
-    Ovvero, $\mathbf{C}$ esegue il comando $\Phi(i)$.
+    Ovvero, $\mathbf{C}$ esegue il comando $\Phi(i)$ calcolando la funzione $\varphi_i$.
 \end{theorem}
 
 Ora, mantenendo questa notazione, possiamo enunciare un risultato che sarà essenziale per dimostrare la chiusura della categoria che stiamo costruendo:
@@ -1227,12 +1255,12 @@ Ora, mantenendo questa notazione, possiamo enunciare un risultato che sarà esse
     Esiste una funzione $s_{m,n}: \N^{1+n} \to \N$ in $\hom\prf(\N)$ tale che per ogni $\mathbf{x} \in \N^n$ e $\mathbf{y}\in \N^m$ la funzione $\mathbf{y}\mapsto f(\mathbf{x},\mathbf{y})$ sia calcolata dal comando $\Phi^{-1}(s_{m,n}(i,\mathbf{x}))$.\\
     In più, $s_{m,n}$ è univocamente determinata da $m$ e $n$.
     \proof 
-    La funzione $s_{m,n}$ è esibita dalla seguente composizione di funzioni ricorsive primitive:
+    La funzione $s_{m,n}$ è definita da questa formula:
     \[ s_{m,n}(i,a_1,\ \dots,a_n) = \Phi\left(x_1:= i;\ x_{m+1+1} := a_1;\ \dots;\ x_{m+n+1} := a_n ;\ \mathbf{C} \right) \]
     \qed
 \end{theorem}
 
-Notiamo che la funzione $s_{m,n}$ non esegue il comando $\Phi(i)$, ma semplicemente restituisce il numero del comando con le variabili fissate.\\
+Notiamo che la funzione $s_{m,n}$ non esegue il comando $\Phi(i)$ attraverso $\C$, ma semplicemente restituisce il numero del comando con le variabili fissate, dunque è una funzione ricorsiva primitiva in quanto lo è $\Phi$.\\
 Notiamo anche che se il comando $\Phi^{-1}(i)$ calcola una funzione che indichiamo con $\varphi_i$ per $i \in \N$, la mappa $i\mapsto \varphi_i$ non è iniettiva (o totale), in quanto comandi sintatticamente diversi potrebbero calcolare la stessa funzione, ma è suriettiva come conseguenza del teorema \cref{th:tesi di church-turing} e questo ci basta.
 
 \newpage
@@ -1405,9 +1433,50 @@ L'importanza di $\percat(\N)$ come esempio sta nel fatto che nonostante sia una 
     \qed
 \end{proposition}
 
-Dunque, nonostante stiamo trattando una categoria concreta in cui abbiamo oggetti come $N = \{nNn : n \in \N\}$ che hanno cardinalità numerabile, le cardinalità degli $\hom$-set o degli esponenziali non possono esplodere come succede in $\setcat$ dove ad esempio potremmo iterare la mappa $X\mapsto 2^X$ su un insieme infinito per continuare a salire di cardinalità, ma rimangono controllate dalle restrizioni imposte sui morfismi.
+Dunque, nonostante stiamo trattando una categoria concreta in cui abbiamo oggetti come $N = \{nNn : n \in \N\}$ che hanno cardinalità infinita, le cardinalità degli $\hom$-set o degli esponenziali non possono esplodere come succede in $\setcat$: lì per esempio potremmo iterare la mappa $X\mapsto 2^X$ su un insieme infinito per continuare a salire di cardinalità come visto nel corollario \cref{corol:teorema di Cantor}, mentre in $\percat(\N)$ le cardinalità rimangono controllate dalle restrizioni imposte sui morfismi.
+
+\markboth{}{}
 
 \nocite{*}
 \printbibliography
+
+\markboth{}{}
+
+\newpage 
+
+\ 
+
+\newpage
+
+\section*{Ringraziamenti}
+
+Se cercassi di ringraziare una a una ogni persona grazie alla quale sono arrivato alla fine di questi quattro anni, probabilmente dovrei raddoppiare o triplicare il numero di pagine di questa tesi. Tengo comunque a citare alcune persone in particolare.\\
+\\
+Innanzitutto il prof. Roberto Zunino, per l'attenzione e il tempo dedicatomi e l'aver portato la mia attenzione verso gli aspetti fondativi della Teoria delle Categorie, che ora riconosco tanto indispensabili quanto interessanti.\\
+\\
+La mia famiglia.\\
+I miei genitori Dionisio e Loredana, per il loro infinito supporto materiale e per la loro incrollabile fiducia nei miei confronti, per aver sempre assecondato e nutrito il mio amore per la lettura, per la matematica e per la musica e avermi sempre spinto all'autonomia e alla responsabilità, anche e soprattutto nelle nostre divergenze di vedute.\\
+I miei fratelli Riccardo e Nicolò, per avermi sempre incluso con entusiasmo nelle loro passioni e avermi sempre ricordato che ovunque io vada ci sarà sempre qualcuno a casa a cui manchi.\\
+Rosanna, per essersi sempre presa amorevolmente cura di me e dei miei fratelli ed essere stata come una seconda madre per noi.\\
+\\
+I miei amici di Trento.\\
+In particolare Davide per essere stato un costante compagno di avventure, suonate, discussioni accademiche e non ed eterna guida nel \LaTeX , senza di lui non credo avrei raggiunto questo risultato.\\
+I miei coinquilini Matteo, Daniele e Massimo per le mille avventure, disavventure e risate domestiche, che hanno reso ST7 una vera casa.\\
+Gli amici incontrati in università, tra i quali Matilde, Daniele, Alessia, Matteo, Marco, Pippo, Tudor e Simone, senza di loro non avrei passato un esame.\\
+I miei compagni musicisti, in particolare Alice, Nicola, Andrea, Sergio, Dario, Cristina, Fabio, Fabrizio e i miei colleghi trombonisti Greta, Veronica, Lorenzo, Gabriele e Nicola.\\
+I colleghi dell'ufficio supporto ICT: Luca, Gaia, Marte, Alessandro, Annalisa, Alex, Alice e Davide.\\
+\\
+I miei amici di Brescia.\\
+In particolare Ilaria, che mi ha aiutato forse più di chiunque altro a conoscermi più a fondo e alla quale so di poter dire tutto.\\
+I \textit{trinkatori}: Giovanni, Azzurra, Anna, Anna, Chiara, Carolina, Stefano e Riccardo, che mi è stato vicino nel mio ultimo esame.\\
+I membri del \textit{C.D.L.B.D.M.D.} Paolo, Lorenzo, Franco, Cristian, Daniele e Filippo.\\
+Gli \textit{Alighieri}: Benedetta, Daniele, Elisa e Rebecca.\\
+I miei compagni educatori Elena, Linda e Davide.\\
+\\
+I miei amici di Roma e non: Sasra, Ercoca, Massimiliano, Arsenio, Gaumra, Dario, Edgar, Marina, Monia, Martina ed Emanuele.\\
+\\
+Tutte quelle persone che mi sentirei in imbarazzo a citare esplicitamente per un motivo o per un altro, ma che hanno lasciato un segno indelebile nella mia vita.\\
+\\
+E ultime, ma non per importanza, le persone che ho dimenticato di ringraziare, che spero mi perdonino e alle quali voglio dedicare un pensiero speciale: un funtore dimenticante è per definizione un funtore fedele.
 
 \end{document}
