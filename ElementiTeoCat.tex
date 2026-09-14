@@ -1,8 +1,8 @@
-\documentclass{book}
+\documentclass[openany]{book}
 
 \usepackage{cianatex}
 
-\usepackage{cianacolors}
+\usepackage[depression]{cianacolors}
 
 \usepackage[cianabook]{cianatheorems}
 
@@ -33,12 +33,6 @@
 
 %\import
 
-\newpage
-
-\
-
-\newpage
-
 \vspace*{200pt}
 
 \begin{flushright}
@@ -48,15 +42,7 @@
     \textit{Serge Lang, The Beauty of Doing Mathematics}
 \end{flushright}
 
-\newpage
-
-\
-
-\newpage
-
 \tableofcontents
-
-\markboth{}{}
 
 \chapter{Teoria delle Categorie elementare}
 
@@ -1262,7 +1248,7 @@ Ora, mantenendo questa notazione, possiamo enunciare un risultato che sarà esse
     \qed
 \end{theorem}
 
-Notiamo che la funzione $s_{m,n}$ non esegue il comando $\Phi(i)$ attraverso $\C$, ma semplicemente restituisce il numero del comando con le variabili fissate, dunque è una funzione ricorsiva primitiva in quanto lo è $\Phi$.\\
+Notiamo che la funzione $s_{m,n}$ non esegue il comando $\Phi(i)$ attraverso $\mathbf{C}$, ma semplicemente restituisce il numero del comando con le variabili fissate, dunque è una funzione ricorsiva primitiva in quanto lo è $\Phi$.\\
 Notiamo anche che se il comando $\Phi^{-1}(i)$ calcola una funzione che indichiamo con $\varphi_i$ per $i \in \N$, la mappa $i\mapsto \varphi_i$ non è iniettiva (o totale), in quanto comandi sintatticamente diversi potrebbero calcolare la stessa funzione, ma è suriettiva come conseguenza del teorema \cref{th:tesi di church-turing} e questo ci basta.
 
 \newpage
@@ -1437,18 +1423,10 @@ L'importanza di $\percat(\N)$ come esempio sta nel fatto che nonostante sia una 
 
 Dunque, nonostante stiamo trattando una categoria concreta in cui abbiamo oggetti come $N = \{nNn : n \in \N\}$ che hanno cardinalità infinita, le cardinalità degli $\hom$-set o degli esponenziali non possono esplodere come succede in $\setcat$: lì per esempio potremmo iterare la mappa $X\mapsto 2^X$ su un insieme infinito per continuare a salire di cardinalità come visto nel corollario \cref{corol:teorema di Cantor}, mentre in $\percat(\N)$ le cardinalità rimangono controllate dalle restrizioni imposte sui morfismi.
 
-\markboth{}{}
-
 \nocite{*}
 \printbibliography
 
 \markboth{}{}
-
-\newpage 
-
-\ 
-
-\newpage
 
 \section*{Ringraziamenti}
 
