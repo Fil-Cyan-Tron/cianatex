@@ -1,0 +1,18 @@
+\documentclass{standalone}
+
+\usepackage{/home/ciana/Documents/Codice/LaTeX/cianatex/cianatex}
+
+\newcommand\eval{operatorname{eval}}
+
+\begin{document}
+
+\begin{tikzcd}
+	{X\times Y} && \\
+	\\
+	{Z^Y\times Y} && Z
+	\arrow["{\lambda f \times \id_Y}"{description}, from=1-1, to=3-1]
+	\arrow["f"{description}, from=1-1, to=3-3]
+	\arrow["\eval"{description}, from=3-1, to=3-3]
+\end{tikzcd}
+
+\end{document}

@@ -1,0 +1,20 @@
+\documentclass{standalone}
+
+\usepackage{/home/ciana/Documents/Codice/LaTeX/cianatex/cianatex}
+
+\begin{document}
+
+\begin{tikzcd}
+	& {\prod_i F(X_i)} && {\eq(\{f_i\}_i)} &&& \\
+	\\
+	{F(X_j)} && {F(X_k)} && {F(X)} && {F(Y)}
+	\arrow["{\pi_j}"{description}, from=1-2, to=3-1]
+	\arrow["{\pi_k}"{description}, from=1-2, to=3-3]
+	\arrow["{e_{\{f_i\}_i}}"{description}, hook, from=1-4, to=3-5]
+	\arrow["\dots"{description}, draw=none, from=3-1, to=3-3]
+	\arrow["{F(f_j)}"{description}, shift left=3, curve={height=-6pt}, from=3-5, to=3-7]
+	\arrow["{F(f_k)}"{description}, shift right=3, curve={height=6pt}, from=3-5, to=3-7]
+	\arrow["\vdots"{description}, draw=none, from=3-5, to=3-7]
+\end{tikzcd}
+
+\end{document}
